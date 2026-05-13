@@ -122,8 +122,8 @@ function ClientLogos() {
           flex: 1;
           overflow: hidden;
           position: relative;
-          mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
-          -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 8%, black 92%, transparent 100%);
+          mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
+          -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
         }
         .client-track {
           display: flex;
@@ -139,14 +139,14 @@ function ClientLogos() {
           to   { transform: translateX(-50%); }
         }
         .client-cell {
-          width: 200px;
-          height: 80px;
-          padding: 0 12px;
+          width: 220px;
+          height: 110px;
+          padding: 0 28px;
           display: grid;
           place-items: center;
           flex-shrink: 0;
           filter: grayscale(1);
-          opacity: 0.55;
+          opacity: 0.6;
           transition: opacity 240ms var(--ease), filter 240ms var(--ease);
         }
         .client-cell:hover {
@@ -156,7 +156,7 @@ function ClientLogos() {
         .client-cell svg,
         .client-cell img {
           max-width: 100%;
-          max-height: 100%;
+          max-height: 64px;
           width: auto;
           height: auto;
           object-fit: contain;
