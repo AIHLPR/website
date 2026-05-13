@@ -570,6 +570,10 @@ function WhatWeCover() {
         }
         .tile-vis { width: 100%; height: 100%; display: block; }
 
+        .cover-tile-meta {
+          display: flex;
+          flex-direction: column;
+        }
         .cover-tile-num {
           font-family: var(--font-mono);
           font-size: 11px;
@@ -584,15 +588,15 @@ function WhatWeCover() {
           letter-spacing: 0.12em;
           text-transform: uppercase;
           color: var(--ink-muted);
-          margin: 8px 0 2px;
-          max-width: 30ch;
-          line-height: 1.45;
-          min-height: calc(10.5px * 1.45 * 2);
+          margin: 10px 0 0;
+          max-width: 36ch;
+          line-height: 1.5;
+          min-height: calc(10.5px * 1.5 * 2);
         }
         .cover-tile h3 {
           font-size: 17px;
           line-height: 1.3;
-          margin: 6px 0 8px;
+          margin: 14px 0 0;
           max-width: 22ch;
           min-height: calc(17px * 1.3 * 2);
         }
@@ -601,6 +605,7 @@ function WhatWeCover() {
           font-size: 14px;
           line-height: 1.6;
           max-width: 40ch;
+          margin: 12px 0 0;
         }
 
         /* ---- Self-animating elements on tile reveal ---- */
