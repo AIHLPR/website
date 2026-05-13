@@ -254,7 +254,7 @@ function Hero({ tweaks, onOpenContact }) {
       <div className="container hero-floor">
         <span className="eyebrow">AIHLPR</span>
         <a href="#cover" className="hero-scroll-cue" aria-label="Scroll to next section">
-          <span>What we cover</span>
+          <span>What we do</span>
           <svg viewBox="0 0 14 14" width="11" height="11" fill="none">
             <path d="M7 2 L7 12 M3 8 L7 12 L11 8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>

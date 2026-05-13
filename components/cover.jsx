@@ -1,7 +1,7 @@
 /* global React, Reveal */
 
 /* -------------------------------------------------------------
-   04 / What we cover
+   04 / What we do
    Six tiles. Each tile has a developed, brand-styled visual that
    reads at a glance and animates in on viewport entry.
 
@@ -492,10 +492,10 @@ function WhatWeCover() {
   ];
 
   return (
-    <section id="cover" className="section" data-screen-label="04 What we cover">
+    <section id="cover" className="section" data-screen-label="04 What we do">
       <div className="container">
         <Reveal className="section-head">
-          <span className="eyebrow"><span className="dot"></span>What we cover</span>
+          <span className="eyebrow"><span className="dot"></span>What we do</span>
         </Reveal>
 
         <div className="cover-grid">
@@ -587,12 +587,14 @@ function WhatWeCover() {
           margin: 8px 0 2px;
           max-width: 30ch;
           line-height: 1.45;
+          min-height: calc(10.5px * 1.45 * 2);
         }
         .cover-tile h3 {
           font-size: 17px;
           line-height: 1.3;
           margin: 6px 0 8px;
           max-width: 22ch;
+          min-height: calc(17px * 1.3 * 2);
         }
         .cover-tile p {
           color: var(--ink-soft);

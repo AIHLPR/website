@@ -40,7 +40,7 @@ function Nav({ onOpenContact }) {
           <img src="assets/aihlpr-logo-transparent.png" alt="AIHLPR" />
         </a>
         <div className="nav-links">
-          <a href="#cover">What we cover</a>
+          <a href="#cover">What we do</a>
           <a href="#work">Work</a>
           <a href="#how">How we work</a>
           <a className="nav-cta" onClick={(e) => { e.preventDefault(); onOpenContact(); }} href="#contact">
@@ -900,7 +900,7 @@ function Footer() {
           </div>
           <div className="footer-col">
             <h4>Site</h4>
-            <a href="#cover">What we cover</a>
+            <a href="#cover">What we do</a>
             <a href="#work">Selected work</a>
             <a href="#compliance">Compliance</a>
             <a href="#how">How we work</a>
