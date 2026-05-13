@@ -506,7 +506,7 @@ function WhatWeCover() {
               <div className="cover-tile-vis"><t.Vis/></div>
               <div className="cover-tile-meta">
                 <span className="cover-tile-num" style={{ color: t.tone }}>{t.n}</span>
-                <span className="cover-tile-audience">{t.audience}</span>
+                <span className="cover-tile-audience" style={{ color: t.tone }}>{t.audience}</span>
                 <h3>{t.title}</h3>
                 <p>{t.copy}</p>
               </div>
