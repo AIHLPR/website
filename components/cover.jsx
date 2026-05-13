@@ -587,7 +587,8 @@ function WhatWeCover() {
           font-size: 10.5px;
           letter-spacing: 0.12em;
           text-transform: uppercase;
-          color: var(--ink-muted);
+          color: var(--accent);
+          font-weight: 500;
           margin: 10px 0 0;
           max-width: 36ch;
           line-height: 1.5;
