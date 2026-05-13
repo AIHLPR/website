@@ -122,8 +122,6 @@ function ClientLogos() {
           flex: 1;
           overflow: hidden;
           position: relative;
-          mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
-          -webkit-mask-image: linear-gradient(90deg, transparent 0%, black 3%, black 97%, transparent 100%);
         }
         .client-track {
           display: flex;
