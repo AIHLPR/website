@@ -1,86 +1,17 @@
 /* global React, Reveal */
-const { useState: useState_cli } = React;
 
 /* -------------------------------------------------------------
-   02 / Working with — placeholder client logo strip.
-   Auto-scrolling marquee, pauses on hover. Decorative arrow + dot
-   accents echo the reference layout. Replace SVG logos with real
-   client marks when available.
+   02 / Working with — client logo strip.
+   Auto-scrolling marquee, pauses on hover.
    ------------------------------------------------------------- */
 
-/* Placeholder brand marks — varied styles so the layout reads
-   like a real logo wall. None of these are real brands. */
-const PLACEHOLDER_LOGOS = [
-  // 1. Monogram on a circle
-  () => (
-    <svg viewBox="0 0 120 60" preserveAspectRatio="xMidYMid meet">
-      <circle cx="30" cy="30" r="20" fill="var(--ink)"/>
-      <text x="30" y="38" textAnchor="middle" fontSize="22" fontWeight="600"
-            fontFamily="Poppins, serif" fill="var(--white)">S</text>
-      <text x="58" y="35" fontSize="13" fontWeight="500"
-            fontFamily="Poppins, sans-serif" fill="var(--ink)" letterSpacing="0.08em">STRIDE</text>
-    </svg>
-  ),
-  // 2. Wordmark with subtle accent
-  () => (
-    <svg viewBox="0 0 140 60" preserveAspectRatio="xMidYMid meet">
-      <text x="0" y="38" fontSize="22" fontWeight="700"
-            fontFamily="Poppins, sans-serif" fill="var(--ink)" letterSpacing="-0.02em">AXION</text>
-      <circle cx="106" cy="30" r="3" fill="var(--ink)"/>
-    </svg>
-  ),
-  // 3. Two-letter monogram with degree mark
-  () => (
-    <svg viewBox="0 0 120 60" preserveAspectRatio="xMidYMid meet">
-      <text x="60" y="40" textAnchor="middle" fontSize="26" fontWeight="600"
-            fontFamily="Poppins, serif" fill="var(--ink)" letterSpacing="-0.02em">K°</text>
-      <line x1="40" y1="48" x2="80" y2="48" stroke="var(--ink)" strokeWidth="1"/>
-    </svg>
-  ),
-  // 4. Geometric mark + serif text
-  () => (
-    <svg viewBox="0 0 140 60" preserveAspectRatio="xMidYMid meet">
-      <rect x="10" y="18" width="22" height="22" fill="none" stroke="var(--ink)" strokeWidth="2"/>
-      <rect x="16" y="24" width="10" height="10" fill="var(--ink)"/>
-      <text x="42" y="36" fontSize="20" fontWeight="500"
-            fontFamily="Poppins, serif" fontStyle="italic" fill="var(--ink)">Lumen</text>
-    </svg>
-  ),
-  // 5. All-caps acronym
-  () => (
-    <svg viewBox="0 0 120 60" preserveAspectRatio="xMidYMid meet">
-      <text x="60" y="34" textAnchor="middle" fontSize="20" fontWeight="700"
-            fontFamily="Poppins, sans-serif" fill="var(--ink)" letterSpacing="0.16em">MTRX</text>
-      <text x="60" y="48" textAnchor="middle" fontSize="8"
-            fontFamily="Roboto Mono, monospace" fill="var(--ink-muted)" letterSpacing="0.16em">SYSTEMS</text>
-    </svg>
-  ),
-  // 6. Icon + text (penguin-style)
-  () => (
-    <svg viewBox="0 0 140 60" preserveAspectRatio="xMidYMid meet">
-      <ellipse cx="22" cy="30" rx="11" ry="15" fill="none" stroke="var(--ink)" strokeWidth="1.5"/>
-      <circle cx="22" cy="22" r="2" fill="var(--ink)"/>
-      <path d="M22 30 L 22 38" stroke="var(--ink)" strokeWidth="1.5"/>
-      <text x="42" y="35" fontSize="13" fontWeight="500"
-            fontFamily="Poppins, sans-serif" fill="var(--ink)" letterSpacing="0.05em">NORTHWING</text>
-    </svg>
-  ),
-  // 7. Script-style placeholder
-  () => (
-    <svg viewBox="0 0 160 60" preserveAspectRatio="xMidYMid meet">
-      <text x="80" y="32" textAnchor="middle" fontSize="22" fontWeight="500"
-            fontFamily="Poppins, serif" fontStyle="italic" fill="var(--ink)" letterSpacing="-0.01em">Polaris</text>
-      <text x="80" y="48" textAnchor="middle" fontSize="9" fontWeight="600"
-            fontFamily="Poppins, sans-serif" fill="var(--ink)" letterSpacing="0.18em">RESEARCH GROUP</text>
-    </svg>
-  ),
-  // 8. Bracketed sans-serif
-  () => (
-    <svg viewBox="0 0 140 60" preserveAspectRatio="xMidYMid meet">
-      <text x="14" y="38" fontSize="22" fontWeight="600"
-            fontFamily="Poppins, sans-serif" fill="var(--ink)" letterSpacing="-0.01em">⟨ HORIZON ⟩</text>
-    </svg>
-  ),
+const CLIENT_LOGOS = [
+  { src: "assets/clients/penguin.png", alt: "Penguin" },
+  { src: "assets/clients/sphere.png", alt: "Sphere" },
+  { src: "assets/clients/erasmus-sport.png", alt: "Erasmus Sport" },
+  { src: "assets/clients/undp.png", alt: "UNDP" },
+  { src: "assets/clients/ambis.png", alt: "AMBIS" },
+  { src: "assets/clients/loreal.png", alt: "L'Oréal Professionnel" },
 ];
 
 function ClientLogos() {
@@ -89,10 +20,6 @@ function ClientLogos() {
       <div className="container">
         <Reveal className="client-head">
           <span className="eyebrow"><span className="dot"></span>Working with</span>
-          <span className="client-note">
-            <span className="client-note-mark"/>
-            Logos shown are placeholders
-          </span>
         </Reveal>
 
         {/* Marquee with subtle fade edges */}
@@ -106,9 +33,9 @@ function ClientLogos() {
           <div className="client-marquee">
             <div className="client-track">
               {/* duplicated twice for seamless loop */}
-              {[...PLACEHOLDER_LOGOS, ...PLACEHOLDER_LOGOS].map((Logo, i) => (
-                <div key={i} className="client-cell" aria-hidden={i >= PLACEHOLDER_LOGOS.length}>
-                  <Logo />
+              {[...CLIENT_LOGOS, ...CLIENT_LOGOS].map((logo, i) => (
+                <div key={i} className="client-cell" aria-hidden={i >= CLIENT_LOGOS.length}>
+                  <img src={logo.src} alt={logo.alt} />
                 </div>
               ))}
             </div>
@@ -226,9 +153,13 @@ function ClientLogos() {
           opacity: 1;
           filter: grayscale(0);
         }
-        .client-cell svg {
+        .client-cell svg,
+        .client-cell img {
           max-width: 100%;
           max-height: 100%;
+          width: auto;
+          height: auto;
+          object-fit: contain;
           display: block;
         }
 
