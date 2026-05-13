@@ -251,16 +251,6 @@ function Hero({ tweaks, onOpenContact }) {
         </div>
       </div>
 
-      <div className="container hero-floor">
-        <span className="eyebrow">AIHLPR</span>
-        <a href="#cover" className="hero-scroll-cue" aria-label="Scroll to next section">
-          <span>What we do</span>
-          <svg viewBox="0 0 14 14" width="11" height="11" fill="none">
-            <path d="M7 2 L7 12 M3 8 L7 12 L11 8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-          </svg>
-        </a>
-      </div>
-
       <style>{`
         .hero {
           position: relative;
@@ -365,31 +355,6 @@ function Hero({ tweaks, onOpenContact }) {
           .hero-visual { justify-self: center; max-width: 460px; }
         }
 
-        .hero-floor {
-          margin-top: clamp(56px, 8vh, 88px);
-          padding-top: 24px;
-          border-top: 1px solid var(--hairline);
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-        }
-        .hero-floor .eyebrow { color: var(--ink-muted); }
-        .hero-scroll-cue {
-          display: inline-flex;
-          align-items: center;
-          gap: 10px;
-          font-family: var(--font-mono);
-          font-size: 11px;
-          letter-spacing: 0.12em;
-          text-transform: uppercase;
-          color: var(--ink-soft);
-          transition: color 200ms var(--ease);
-        }
-        .hero-scroll-cue:hover { color: var(--ink); }
-        .hero-scroll-cue svg {
-          transition: transform 240ms var(--ease);
-        }
-        .hero-scroll-cue:hover svg { transform: translateY(2px); }
       `}</style>
     </section>
   );
