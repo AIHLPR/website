@@ -822,162 +822,86 @@
   .work-rows {
     display: flex;
     flex-direction: column;
-    gap: 28px;
   }
   .work-row {
     --accent: var(--pink);
-    display: flex;
-    flex-direction: column;
-    gap: 28px;
-    /* inset slightly so the card edges sit inside the section heading */
-    margin-inline: clamp(8px, 2.4vw, 40px);
-    padding: clamp(28px, 3.4vw, 48px);
-    background: var(--surface-2);
-    border: 1px solid var(--hairline);
-    border-radius: 20px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 5vw, 80px);
+    padding: clamp(40px, 5vw, 72px) 0;
+    border-top: 1px solid var(--hairline);
     text-decoration: none;
     color: inherit;
-    transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease), transform 200ms var(--ease);
   }
+  .work-row:last-child { border-bottom: 1px solid var(--hairline); }
   .work-row:nth-child(1) { --accent: var(--pink); }
   .work-row:nth-child(2) { --accent: var(--magenta); }
   .work-row:nth-child(3) { --accent: var(--purple); }
-  .work-row:hover {
-    border-color: color-mix(in srgb, var(--accent) 45%, var(--hairline));
-    box-shadow: 0 18px 40px -28px rgba(31,31,31,0.45);
-    transform: translateY(-2px);
-  }
-  .work-row:hover .read-more .arrow { transform: translateX(4px); }
 
-  /* header band */
-  .work-head { display: flex; flex-direction: column; gap: 12px; }
-  .work-row .work-meta { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
-  .work-row .work-no {
+  .work-lead { display: flex; flex-direction: column; gap: clamp(16px, 1.8vw, 26px); }
+  .work-cap { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+  .work-no {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    color: var(--accent);
+  }
+  .work-cat {
     font-family: var(--font-mono);
     font-size: 12px;
-    letter-spacing: 0.12em;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--accent);
-    font-weight: 600;
   }
-  .work-row .work-meta .label-mono { color: var(--ink-muted); }
   .work-row h3 {
-    font-size: clamp(30px, 3.4vw, 46px);
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3vw, 44px);
     line-height: 1.04;
     letter-spacing: -0.025em;
     font-weight: 600;
-  }
-  .work-row .work-subhead {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(17px, 1.8vw, 22px);
-    letter-spacing: -0.01em;
-    color: var(--accent);
+    color: var(--ink);
+    max-width: 16ch;
+    text-wrap: balance;
   }
 
-  /* body band */
-  .work-body {
-    display: grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: clamp(28px, 4vw, 64px);
-    border-top: 1px solid var(--hairline);
-    padding-top: 28px;
+  .work-detail { display: flex; flex-direction: column; gap: clamp(18px, 1.8vw, 26px); }
+  .work-brief {
+    color: var(--ink-soft);
+    font-size: clamp(15px, 1.1vw, 16px);
+    line-height: 1.65;
+    max-width: 48ch;
   }
-  .numbers-label, .fig-label, .fig-caption {
+  .work-outcome {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(17px, 1.5vw, 20px);
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .work-outcome .arrow { color: var(--ink-muted); padding: 0 6px; }
+  .work-meta-list { display: flex; flex-wrap: wrap; gap: 10px 24px; }
+  .work-meta-item {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: clamp(11px, 0.9vw, 12.5px);
     letter-spacing: 0.13em;
     text-transform: uppercase;
     color: var(--ink-muted);
-  }
-  .work-stats { display: flex; flex-direction: column; gap: 10px; }
-  .work-stats .numbers-label { margin-bottom: 4px; }
-  .work-stats .stat-line {
-    font-family: var(--font-mono);
-    font-size: clamp(15px, 1.5vw, 17px);
-    color: var(--ink);
-    line-height: 1.5;
-  }
-  .work-stats .dot-sep { color: var(--accent); padding: 0 6px; font-weight: 700; }
-  .work-stats .work-summary {
-    margin-top: 8px;
-    color: var(--ink-soft);
-    font-size: 15px;
-    line-height: 1.65;
-    max-width: 46ch;
-  }
-
-  /* right-column figure — bar comparison */
-  .work-fig { display: flex; flex-direction: column; gap: 18px; justify-content: center; }
-  .fig-group { display: flex; flex-direction: column; gap: 8px; }
-  .fig-label--accent { color: var(--accent); }
-  .fig-row { display: flex; align-items: center; gap: 14px; }
-  .fig-track {
-    flex: 1;
-    height: 30px;
-    border-radius: 7px;
-    background: var(--surface);
-    overflow: hidden;
-  }
-  .fig-fill { display: block; height: 100%; border-radius: 7px; }
-  .fig-fill--base { background: var(--ink-muted); }
-  .fig-fill--accent { background: var(--accent); }
-  .fig-val {
-    font-family: var(--font-mono);
-    font-size: 15px;
-    color: var(--ink);
-    white-space: nowrap;
-  }
-  .fig-val--accent { color: var(--accent); }
-  .fig-caption { margin-top: 2px; }
-
-  /* right-column figure — stat pair (cards 02 / 03) */
-  .work-fig--stats { gap: 24px; }
-  .fig-stat { display: flex; flex-direction: column; gap: 5px; }
-  .fig-stat-num {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(40px, 5vw, 60px);
-    line-height: 0.95;
-    letter-spacing: -0.03em;
-    color: var(--accent);
-  }
-
-  /* footer band */
-  .work-foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 24px;
-    flex-wrap: wrap;
-    border-top: 1px solid var(--hairline);
-    padding-top: 24px;
-  }
-  .work-row .tag-row { display: flex; gap: 8px; flex-wrap: wrap; }
-  .work-row .tag {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    padding: 7px 13px;
-    border-radius: 7px;
-    border: 1px solid var(--hairline-strong);
-    color: var(--ink-soft);
-    background: var(--white);
+    font-weight: 500;
   }
   .work-row .read-more {
     display: inline-flex; align-items: center; gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 13px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
+    font-size: 14px;
     font-weight: 500;
-    color: var(--accent);
+    color: var(--ink);
     white-space: nowrap;
   }
   .work-row .read-more .arrow { transition: transform 220ms var(--ease); }
+  .work-row:hover .read-more { color: var(--accent); }
+  .work-row:hover .read-more .arrow { transform: translateX(4px); }
   @media (max-width: 900px) {
-    .work-row { margin-inline: 0; gap: 22px; }
-    .work-body { grid-template-columns: 1fr; gap: 26px; }
+    .work-row { grid-template-columns: 1fr; gap: 24px; padding: 40px 0; }
   }
 
   /* ===== Stack ===== */
@@ -1907,46 +1831,23 @@
     <div class="work-rows" id="workRows">
       <!-- 01 -->
       <a class="work-row" data-sector="retail" href="work/asset-workflow-engine.html">
-        <div class="work-head">
-          <div class="work-meta">
+        <div class="work-lead">
+          <div class="work-cap">
             <span class="work-no">01</span>
-            <span class="label-mono">Retail &middot; Juvenile products</span>
+            <span class="work-cat">Retail &middot; Juvenile products</span>
           </div>
           <h3>Asset Workflow Engine</h3>
-          <p class="work-subhead">From 6 weeks to 8 days per launch.</p>
         </div>
-        <div class="work-body">
-          <div class="work-stats">
-            <span class="numbers-label">The numbers</span>
-            <p class="stat-line">47 SKUs <span class="dot-sep">&middot;</span> 3 markets</p>
-            <p class="stat-line">2 brands <span class="dot-sep">&middot;</span> 1 brand voice</p>
-            <p class="work-summary">
-              Amazon A+ and PDP assets scaled across markets without losing brand consistency. Vision AI handles composition. Humans approve.
-            </p>
-          </div>
-          <div class="work-fig">
-            <div class="fig-group">
-              <span class="fig-label">Time per launch</span>
-              <div class="fig-row">
-                <div class="fig-track"><span class="fig-fill fig-fill--base" style="width:100%"></span></div>
-                <span class="fig-val">6 weeks</span>
-              </div>
-            </div>
-            <div class="fig-group">
-              <span class="fig-label fig-label--accent">With the engine</span>
-              <div class="fig-row">
-                <div class="fig-track"><span class="fig-fill fig-fill--accent" style="width:19%"></span></div>
-                <span class="fig-val fig-val--accent">8 days</span>
-              </div>
-            </div>
-            <span class="fig-caption">85% time reduction &middot; NL DE UK</span>
-          </div>
-        </div>
-        <div class="work-foot">
-          <div class="tag-row">
-            <span class="tag">Vision AI</span>
-            <span class="tag">Brand aware composition</span>
-            <span class="tag">Multi locale translation</span>
+        <div class="work-detail">
+          <p class="work-brief">
+            Amazon A+ and PDP assets scaled across markets without losing brand consistency. Vision AI handles composition. Humans approve.
+          </p>
+          <p class="work-outcome">6 weeks <span class="arrow">&rarr;</span> 8 days per launch</p>
+          <div class="work-meta-list">
+            <span class="work-meta-item">47 SKUs &middot; 3 markets</span>
+            <span class="work-meta-item">Vision AI</span>
+            <span class="work-meta-item">Brand-aware composition</span>
+            <span class="work-meta-item">Multi-locale translation</span>
           </div>
           <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
         </div>
@@ -1954,39 +1855,23 @@
 
       <!-- 02 -->
       <a class="work-row" data-sector="arch" href="work/ai-modeling-assistant.html">
-        <div class="work-head">
-          <div class="work-meta">
+        <div class="work-lead">
+          <div class="work-cap">
             <span class="work-no">02</span>
-            <span class="label-mono">Architecture &middot; Computational design</span>
+            <span class="work-cat">Architecture &middot; Computational design</span>
           </div>
           <h3>AI as a Modeling Assistant</h3>
-          <p class="work-subhead">In Rhino, by prompt, under constraint.</p>
         </div>
-        <div class="work-body">
-          <div class="work-stats">
-            <span class="numbers-label">The numbers</span>
-            <p class="stat-line">100s of decisions <span class="dot-sep">&middot;</span> 5 principles</p>
-            <p class="work-summary">
-              An architect orchestrates AI inside their existing software. Constraint first, single objective, viewport verified. Geometry stays the source of truth.
-            </p>
-          </div>
-          <div class="work-fig work-fig--stats">
-            <div class="fig-stat">
-              <span class="fig-stat-num">100s</span>
-              <span class="fig-label">Modeling decisions guided</span>
-            </div>
-            <div class="fig-stat">
-              <span class="fig-stat-num">5</span>
-              <span class="fig-label">Constraint-first principles</span>
-            </div>
-            <span class="fig-caption">Rhino &middot; LLM orchestration</span>
-          </div>
-        </div>
-        <div class="work-foot">
-          <div class="tag-row">
-            <span class="tag">Rhino + LLM</span>
-            <span class="tag">Constraint first prompting</span>
-            <span class="tag">Open source workflow</span>
+        <div class="work-detail">
+          <p class="work-brief">
+            An architect orchestrates AI inside their existing software. Constraint first, single objective, viewport verified. Geometry stays the source of truth.
+          </p>
+          <p class="work-outcome">In Rhino, by prompt, under constraint.</p>
+          <div class="work-meta-list">
+            <span class="work-meta-item">100s of decisions &middot; 5 principles</span>
+            <span class="work-meta-item">Rhino + LLM</span>
+            <span class="work-meta-item">Constraint-first prompting</span>
+            <span class="work-meta-item">Open-source workflow</span>
           </div>
           <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
         </div>
@@ -1994,39 +1879,23 @@
 
       <!-- 03 -->
       <a class="work-row" data-sector="workforce" href="work/careeros.html">
-        <div class="work-head">
-          <div class="work-meta">
+        <div class="work-lead">
+          <div class="work-cap">
             <span class="work-no">03</span>
-            <span class="label-mono">Workforce &middot; Owned product</span>
+            <span class="work-cat">Workforce &middot; Owned product</span>
           </div>
           <h3>CareerOS</h3>
-          <p class="work-subhead">A career is a graph, not a document.</p>
         </div>
-        <div class="work-body">
-          <div class="work-stats">
-            <span class="numbers-label">The numbers</span>
-            <p class="stat-line">10 domains <span class="dot-sep">&middot;</span> 13+ AI functions</p>
-            <p class="work-summary">
-              A career decision platform that turns a static CV into a living career map. AI scores fit against real opportunities, surfaces hidden strengths, and tells you which next step is yours.
-            </p>
-          </div>
-          <div class="work-fig work-fig--stats">
-            <div class="fig-stat">
-              <span class="fig-stat-num">10</span>
-              <span class="fig-label">Career domains mapped</span>
-            </div>
-            <div class="fig-stat">
-              <span class="fig-stat-num">13+</span>
-              <span class="fig-label">AI functions in production</span>
-            </div>
-            <span class="fig-caption">Static CV &rarr; living career map</span>
-          </div>
-        </div>
-        <div class="work-foot">
-          <div class="tag-row">
-            <span class="tag">Skill mapping</span>
-            <span class="tag">Pathway design</span>
-            <span class="tag">Decision support</span>
+        <div class="work-detail">
+          <p class="work-brief">
+            A career decision platform that turns a static CV into a living career map. AI scores fit against real opportunities, surfaces hidden strengths, and tells you which next step is yours.
+          </p>
+          <p class="work-outcome">A career is a graph, not a document.</p>
+          <div class="work-meta-list">
+            <span class="work-meta-item">10 domains &middot; 13+ AI functions</span>
+            <span class="work-meta-item">Skill mapping</span>
+            <span class="work-meta-item">Pathway design</span>
+            <span class="work-meta-item">Decision support</span>
           </div>
           <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
         </div>
