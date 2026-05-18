@@ -485,13 +485,19 @@
     overflow: hidden;
   }
   .services-pin-head {
-    padding: clamp(88px, 9vw, 112px) clamp(40px, 6vw, 96px) 0;
+    /* Empty top spacer — just clears the fixed site header.
+       The nav controls now sit below the cards. */
+    flex: 0 0 auto;
+    height: clamp(64px, 6vw, 88px);
   }
   .services-nav {
+    --svc-accent: var(--pink);
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 18px;
+    border-top: 1px solid var(--hairline);
+    padding: clamp(20px, 2.6vw, 32px) clamp(40px, 6vw, 96px) clamp(28px, 3.5vw, 52px);
   }
   .services-arrow {
     display: inline-flex;
@@ -508,7 +514,11 @@
     cursor: pointer;
     transition: border-color 200ms var(--ease), color 200ms var(--ease), opacity 200ms var(--ease);
   }
-  .services-arrow:hover { border-color: var(--ink); }
+  .services-arrow:not(:disabled) {
+    color: var(--svc-accent);
+    border-color: color-mix(in srgb, var(--svc-accent) 38%, var(--hairline-strong));
+  }
+  .services-arrow:not(:disabled):hover { border-color: var(--svc-accent); }
   .services-arrow:disabled {
     opacity: 0.3;
     cursor: default;
@@ -518,29 +528,29 @@
     display: inline-flex;
     align-items: center;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 0.1em;
   }
   .services-progress .step {
     position: relative;
-    padding: 0 12px;
+    padding: 4px 14px;
     font: inherit;
     color: var(--ink-muted);
     background: none;
     border: 0;
+    border-bottom: 2px solid transparent;
     cursor: pointer;
-    transition: color 220ms var(--ease);
+    transition: color 200ms var(--ease), border-color 200ms var(--ease);
     white-space: nowrap;
   }
   .services-progress .step:hover { color: var(--ink); }
   .services-progress .step.is-active {
-    color: var(--ink);
-    font-weight: 500;
+    color: var(--svc-accent);
+    border-bottom-color: var(--svc-accent);
+    font-weight: 600;
   }
-  .services-progress .step.is-active::before { content: '['; position: absolute; left: 2px; }
-  .services-progress .step.is-active::after  { content: ']'; position: absolute; right: 2px; }
   .services-progress .sep {
-    width: 32px;
+    width: 28px;
     height: 1px;
     background: var(--hairline-strong);
     opacity: 0.45;
@@ -1440,15 +1450,7 @@
      toggle so the deliverables get real attention, not buried fine print. -->
 <section class="services-section" id="services">
   <div class="services-pin">
-    <div class="services-pin-head">
-      <div class="services-nav">
-        <button class="services-arrow" type="button" data-dir="-1" aria-label="Previous service">&larr;</button>
-        <div class="services-progress" id="servicesProgress">
-          <button class="step is-active" type="button" data-step="0">01</button><span class="sep"></span><button class="step" type="button" data-step="1">02</button><span class="sep"></span><button class="step" type="button" data-step="2">03</button><span class="sep"></span><button class="step" type="button" data-step="3">04</button>
-        </div>
-        <button class="services-arrow" type="button" data-dir="1" aria-label="Next service">&rarr;</button>
-      </div>
-    </div>
+    <div class="services-pin-head"></div>
     <div class="services-track" id="servicesTrack">
 
       <!-- 01 pink -->
@@ -1804,6 +1806,13 @@
         </div>
       <p class="body-copy">You already have a stack that works. Most of it. We help you keep what earns its place, retire what does not, and build the AI layer that connects what is left. Retrieval, guardrails, fine tuning, integration, wired into your systems, bound by your rules.</p>
       </article>
+    </div>
+    <div class="services-nav">
+      <button class="services-arrow" type="button" data-dir="-1" aria-label="Previous service">&larr;</button>
+      <div class="services-progress" id="servicesProgress">
+        <button class="step is-active" type="button" data-step="0">01</button><span class="sep"></span><button class="step" type="button" data-step="1">02</button><span class="sep"></span><button class="step" type="button" data-step="2">03</button><span class="sep"></span><button class="step" type="button" data-step="3">04</button>
+      </div>
+      <button class="services-arrow" type="button" data-dir="1" aria-label="Next service">&rarr;</button>
     </div>
   </div>
 </section>
@@ -2290,17 +2299,21 @@
   (function () {
     const section = document.querySelector('.services-section');
     const track   = document.getElementById('servicesTrack');
+    const nav     = document.querySelector('.services-nav');
     const steps   = Array.from(document.querySelectorAll('#servicesProgress .step'));
     const arrows  = Array.from(document.querySelectorAll('.services-arrow'));
     const cards   = document.querySelectorAll('.service-card-h');
     if (!section || !track || !cards.length) return;
 
+    // Each card's accent — the nav adopts the active card's colour.
+    const accents = ['var(--pink)', 'var(--magenta)', 'var(--blue)', 'var(--purple)'];
     const mqMobile = window.matchMedia('(max-width: 880px)');
     const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
     let current = 0;
 
     function go(idx) {
       current = clamp(idx, 0, cards.length - 1);
+      if (nav) nav.style.setProperty('--svc-accent', accents[current % accents.length]);
       track.style.transform = mqMobile.matches
         ? ''
         : `translate3d(${-current * 100}vw, 0, 0)`;
