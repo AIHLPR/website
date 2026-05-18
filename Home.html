@@ -544,9 +544,9 @@
     flex: 0 0 100vw;
     display: grid;
     /* Left text ~40%, gap ~3%, diagram ~57% — right column ~1.4× the left. */
-    grid-template-columns: 40fr 3fr 57fr;
+    grid-template-columns: 40fr 3fr 50fr;
     grid-template-rows: auto auto;
-    row-gap: clamp(32px, 3vw, 52px);
+    row-gap: clamp(20px, 2vw, 34px);
     padding: clamp(16px, 2vw, 32px) clamp(40px, 6vw, 96px) clamp(40px, 5vw, 80px);
     align-items: start;
     align-content: start;
@@ -600,7 +600,7 @@
   }
   .service-card-h .diagram-frame {
     grid-column: 3; grid-row: 1;
-    padding: clamp(18px, 2.2vw, 32px);
+    padding: clamp(10px, 1.2vw, 20px);
     border-radius: 16px;
     border: 1px solid var(--hairline);
     background: rgba(242, 242, 242, 0.4);
@@ -1655,7 +1655,7 @@
 
             <!-- Quadrant labels -->
             <g font-size="3.4" letter-spacing="0.12em" dominant-baseline="hanging">
-              <text x="55" y="24" fill="#3478E5" font-weight="600">QUICK WINS</text>
+              <text x="55" y="24" fill="#3478E5">QUICK WINS</text>
               <text x="120" y="24" fill="#8A8A8A">BIG BETS</text>
               <text x="55" y="56" fill="#8A8A8A">SMALL FIXES</text>
               <text x="120" y="56" fill="#8A8A8A">AVOID</text>
@@ -1699,10 +1699,9 @@
             <text x="115" y="100" text-anchor="middle" font-size="3.2"
                   fill="#1F1F1F" letter-spacing="0.18em">EFFORT</text>
 
-            <!-- "Start here" pointer to the highlighted Quick Wins dot — bolder, larger, longer curl -->
-            <text x="52" y="10" font-size="5.4" fill="#3478E5" font-style="italic" font-weight="500"
-                  font-family="Poppins, system-ui, sans-serif">Start here</text>
-            <path d="M 70 13 Q 70 24 77.5 35" stroke="#3478E5" stroke-width="1.1" fill="none" stroke-linecap="round"/>
+            <!-- "Start here" pointer to the highlighted Quick Wins dot — mono, matches the other diagram labels -->
+            <text x="52" y="11" font-size="3.6" fill="#3478E5" letter-spacing="0.12em">START HERE</text>
+            <path d="M 70 14 Q 70 24 77.5 35" stroke="#3478E5" stroke-width="1.1" fill="none" stroke-linecap="round"/>
             <polygon points="77.5,35 74.6,32.4 78.7,31.6" fill="#3478E5"/>
           </svg>
         </div>
