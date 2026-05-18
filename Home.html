@@ -2453,6 +2453,32 @@
     mqMobile.addEventListener && mqMobile.addEventListener('change', update);
     update();
 
+    // ---- Snap: when a scroll burst ends inside the services section, lock
+    // to the nearest card boundary so the user always rests on one full card
+    // (never half-a-diagram + half-a-headline). Scoped to this section only.
+    function snapToNearestCard() {
+      if (mqMobile.matches) return;
+      const range = section.offsetHeight - window.innerHeight;
+      if (range <= 0) return;
+      const top = section.offsetTop;
+      const y = window.scrollY;
+      if (y < top - 4 || y > top + range + 4) return; // outside the section
+      const step = range / (cards.length - 1);
+      const idx = clamp(Math.round((y - top) / step), 0, cards.length - 1);
+      const target = Math.round(top + idx * step);
+      if (Math.abs(y - target) < 2) return; // already aligned
+      window.scrollTo({ top: target, behavior: 'smooth' });
+    }
+    if ('onscrollend' in window) {
+      window.addEventListener('scrollend', snapToNearestCard);
+    } else {
+      let snapTimer;
+      window.addEventListener('scroll', () => {
+        clearTimeout(snapTimer);
+        snapTimer = setTimeout(snapToNearestCard, 120);
+      }, { passive: true });
+    }
+
     // ---- Vertical alignment: pull each diagram up so its TOP edge sits
     // exactly on the headline's first cap-line. We measure at runtime
     // (headline font-size + sub-element gaps are clamp-based, so static
