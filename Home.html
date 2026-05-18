@@ -1717,84 +1717,84 @@
         </div>
         <div class="diagram-frame">
           <svg viewBox="0 0 200 70" preserveAspectRatio="xMidYMid meet" aria-hidden="true" font-family="JetBrains Mono, Roboto Mono, monospace">
-            <!-- 4x4 grid scaffold (faint empty cells). Cols x9/56/103/150, rows y2/19/36/53, cells 40x15 -->
+            <!-- 4x4 grid scaffold (faint empty cells). Cols x27/67/107/147, rows y4/21/38/55, cells 26x11 -->
             <g stroke="#1F1F1F" stroke-width="0.3" opacity="0.10" fill="none">
-              <rect x="9"   y="2"  width="40" height="15" rx="2.5"/>
-              <rect x="56"  y="2"  width="40" height="15" rx="2.5"/>
-              <rect x="103" y="2"  width="40" height="15" rx="2.5"/>
-              <rect x="150" y="2"  width="40" height="15" rx="2.5"/>
-              <rect x="9"   y="19" width="40" height="15" rx="2.5"/>
-              <rect x="56"  y="19" width="40" height="15" rx="2.5"/>
-              <rect x="103" y="19" width="40" height="15" rx="2.5"/>
-              <rect x="150" y="19" width="40" height="15" rx="2.5"/>
-              <rect x="9"   y="36" width="40" height="15" rx="2.5"/>
-              <rect x="56"  y="36" width="40" height="15" rx="2.5"/>
-              <rect x="103" y="36" width="40" height="15" rx="2.5"/>
-              <rect x="150" y="36" width="40" height="15" rx="2.5"/>
-              <rect x="9"   y="53" width="40" height="15" rx="2.5"/>
-              <rect x="56"  y="53" width="40" height="15" rx="2.5"/>
-              <rect x="103" y="53" width="40" height="15" rx="2.5"/>
-              <rect x="150" y="53" width="40" height="15" rx="2.5"/>
+              <rect x="27"  y="4"  width="26" height="11" rx="2"/>
+              <rect x="67"  y="4"  width="26" height="11" rx="2"/>
+              <rect x="107" y="4"  width="26" height="11" rx="2"/>
+              <rect x="147" y="4"  width="26" height="11" rx="2"/>
+              <rect x="27"  y="21" width="26" height="11" rx="2"/>
+              <rect x="67"  y="21" width="26" height="11" rx="2"/>
+              <rect x="107" y="21" width="26" height="11" rx="2"/>
+              <rect x="147" y="21" width="26" height="11" rx="2"/>
+              <rect x="27"  y="38" width="26" height="11" rx="2"/>
+              <rect x="67"  y="38" width="26" height="11" rx="2"/>
+              <rect x="107" y="38" width="26" height="11" rx="2"/>
+              <rect x="147" y="38" width="26" height="11" rx="2"/>
+              <rect x="27"  y="55" width="26" height="11" rx="2"/>
+              <rect x="67"  y="55" width="26" height="11" rx="2"/>
+              <rect x="107" y="55" width="26" height="11" rx="2"/>
+              <rect x="147" y="55" width="26" height="11" rx="2"/>
             </g>
 
             <!-- Grey existing-stack hairlines (drawn first, sit behind boxes) -->
             <g stroke="#8A8A8A" stroke-width="0.4" opacity="0.7" fill="none">
-              <line x1="49"  y1="26.5" x2="56"  y2="26.5"/>   <!-- DOCS to RETRIEVAL -->
-              <line x1="96"  y1="43.5" x2="103" y2="43.5"/>   <!-- TICKETS to FINE-TUNE -->
-              <line x1="49"  y1="60.5" x2="103" y2="60.5"/>   <!-- WAREHOUSE to INTEGRATION -->
-              <line x1="143" y1="60.5" x2="150" y2="60.5"/>   <!-- INTEGRATION to APIS -->
+              <line x1="53"  y1="26.5" x2="67"  y2="26.5"/>   <!-- DOCS to RETRIEVAL -->
+              <line x1="93"  y1="43.5" x2="107" y2="43.5"/>   <!-- TICKETS to FINE-TUNE -->
+              <line x1="53"  y1="60.5" x2="107" y2="60.5"/>   <!-- WAREHOUSE to INTEGRATION -->
+              <line x1="133" y1="60.5" x2="147" y2="60.5"/>   <!-- INTEGRATION to APIS -->
             </g>
 
             <!-- DAM to APIS outer L-hook on the right edge -->
-            <polyline points="190,9.5 196,9.5 196,60.5 190,60.5"
+            <polyline points="173,9.5 180,9.5 180,60.5 173,60.5"
                       stroke="#8A8A8A" stroke-width="0.4" fill="none" opacity="0.55"/>
 
             <!-- Purple AI-layer links (drawn between greys and boxes) -->
             <g stroke="#9B59B6" stroke-width="0.7" fill="none" stroke-linecap="round">
-              <line x1="110" y1="17" x2="92"  y2="19"/>   <!-- CRM diagonal to RETRIEVAL -->
-              <line x1="96"  y1="26.5" x2="150" y2="26.5"/>   <!-- RETRIEVAL horizontal to GUARDRAILS -->
-              <line x1="170" y1="17" x2="170" y2="19"/>   <!-- DAM vertical to GUARDRAILS -->
-              <line x1="156" y1="34" x2="138" y2="36"/>   <!-- GUARDRAILS diagonal to FINE-TUNE -->
-              <line x1="123" y1="51" x2="123" y2="53"/>   <!-- FINE-TUNE vertical to INTEGRATION -->
+              <line x1="112" y1="15" x2="88"  y2="21"/>   <!-- CRM diagonal to RETRIEVAL -->
+              <line x1="93"  y1="26.5" x2="147" y2="26.5"/>   <!-- RETRIEVAL horizontal to GUARDRAILS -->
+              <line x1="160" y1="15" x2="160" y2="21"/>   <!-- DAM vertical to GUARDRAILS -->
+              <line x1="152" y1="32" x2="128" y2="38"/>   <!-- GUARDRAILS diagonal to FINE-TUNE -->
+              <line x1="120" y1="49" x2="120" y2="55"/>   <!-- FINE-TUNE vertical to INTEGRATION -->
             </g>
 
             <!-- ===== Grey system nodes ===== -->
             <g stroke="#8A8A8A" stroke-width="0.5" fill="#FFFFFF">
-              <rect x="103" y="2"  width="40" height="15" rx="2.5"/>  <!-- CRM -->
-              <rect x="150" y="2"  width="40" height="15" rx="2.5"/>  <!-- DAM -->
-              <rect x="9"   y="19" width="40" height="15" rx="2.5"/>  <!-- DOCS -->
-              <rect x="56"  y="36" width="40" height="15" rx="2.5"/>  <!-- TICKETS -->
-              <rect x="9"   y="53" width="40" height="15" rx="2.5"/>  <!-- WAREHOUSE -->
-              <rect x="150" y="53" width="40" height="15" rx="2.5"/>  <!-- APIS -->
+              <rect x="107" y="4"  width="26" height="11" rx="2"/>  <!-- CRM -->
+              <rect x="147" y="4"  width="26" height="11" rx="2"/>  <!-- DAM -->
+              <rect x="27"  y="21" width="26" height="11" rx="2"/>  <!-- DOCS -->
+              <rect x="67"  y="38" width="26" height="11" rx="2"/>  <!-- TICKETS -->
+              <rect x="27"  y="55" width="26" height="11" rx="2"/>  <!-- WAREHOUSE -->
+              <rect x="147" y="55" width="26" height="11" rx="2"/>  <!-- APIS -->
             </g>
-            <g font-size="3.2" fill="#1F1F1F" text-anchor="middle" dominant-baseline="central" letter-spacing="0.04em">
-              <text x="123" y="9.5">CRM</text>
-              <text x="170" y="9.5">DAM</text>
-              <text x="29"  y="26.5">DOCS</text>
-              <text x="76"  y="43.5">TICKETS</text>
-              <text x="29"  y="60.5">WAREHOUSE</text>
-              <text x="170" y="60.5">APIS</text>
+            <g font-size="2.6" fill="#1F1F1F" text-anchor="middle" dominant-baseline="central" letter-spacing="0.04em">
+              <text x="120" y="9.5">CRM</text>
+              <text x="160" y="9.5">DAM</text>
+              <text x="40"  y="26.5">DOCS</text>
+              <text x="80"  y="43.5">TICKETS</text>
+              <text x="40"  y="60.5">WAREHOUSE</text>
+              <text x="160" y="60.5">APIS</text>
             </g>
 
             <!-- ===== Purple AI nodes ===== -->
             <g stroke="#9B59B6" stroke-width="0.6" fill="#FFFFFF">
-              <rect x="56"  y="19" width="40" height="15" rx="2.5"/>  <!-- RETRIEVAL -->
-              <rect x="150" y="19" width="40" height="15" rx="2.5"/>  <!-- GUARDRAILS -->
-              <rect x="103" y="36" width="40" height="15" rx="2.5"/>  <!-- FINE-TUNE -->
-              <rect x="103" y="53" width="40" height="15" rx="2.5"/>  <!-- INTEGRATION -->
+              <rect x="67"  y="21" width="26" height="11" rx="2"/>  <!-- RETRIEVAL -->
+              <rect x="147" y="21" width="26" height="11" rx="2"/>  <!-- GUARDRAILS -->
+              <rect x="107" y="38" width="26" height="11" rx="2"/>  <!-- FINE-TUNE -->
+              <rect x="107" y="55" width="26" height="11" rx="2"/>  <!-- INTEGRATION -->
             </g>
-            <g font-size="3.2" fill="#9B59B6" text-anchor="middle" dominant-baseline="central" letter-spacing="0.04em">
-              <text x="76"  y="26.5">RETRIEVAL</text>
-              <text x="170" y="26.5">GUARDRAILS</text>
-              <text x="123" y="43.5">FINE-TUNE</text>
-              <text x="123" y="60.5">INTEGRATION</text>
+            <g font-size="2.6" fill="#9B59B6" text-anchor="middle" dominant-baseline="central" letter-spacing="0.04em">
+              <text x="80"  y="26.5">RETRIEVAL</text>
+              <text x="160" y="26.5">GUARDRAILS</text>
+              <text x="120" y="43.5">FINE-TUNE</text>
+              <text x="120" y="60.5">INTEGRATION</text>
             </g>
 
             <!-- Small connector dots on the three grey row-links -->
             <g fill="#8A8A8A">
-              <circle cx="52.5"  cy="26.5" r="0.55"/>     <!-- DOCS to RETRIEVAL -->
-              <circle cx="99.5"  cy="43.5" r="0.55"/>     <!-- TICKETS to FINE-TUNE -->
-              <circle cx="146.5" cy="60.5" r="0.55"/>     <!-- INTEGRATION to APIS -->
+              <circle cx="60"  cy="26.5" r="0.55"/>     <!-- DOCS to RETRIEVAL -->
+              <circle cx="100" cy="43.5" r="0.55"/>     <!-- TICKETS to FINE-TUNE -->
+              <circle cx="140" cy="60.5" r="0.55"/>     <!-- INTEGRATION to APIS -->
             </g>
           </svg>
         </div>
