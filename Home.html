@@ -827,7 +827,10 @@
     grid-template-columns: 1.05fr 1fr;
     gap: 56px;
     align-items: center;
-    padding: 48px 0;
+    /* padding insets the content from the hover panel edges; the matching
+       negative margin keeps the content aligned with the section header. */
+    padding: 36px 32px;
+    margin: 0 -32px;
     border-bottom: 1px solid var(--hairline);
     text-decoration: none;
     color: inherit;
@@ -911,7 +914,7 @@
   }
   .work-visual svg { width: 100%; height: 100%; }
   @media (max-width: 900px) {
-    .work-row { grid-template-columns: 1fr; gap: 24px; padding: 32px 0; }
+    .work-row { grid-template-columns: 1fr; gap: 24px; padding: 32px 0; margin: 0; }
     .work-row:nth-child(even) .work-visual { order: 0; }
   }
 
