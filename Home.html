@@ -1640,62 +1640,61 @@
                  (mildly rounded) with cross dividers. QUICK WINS is
                  highlighted by its blue label + blue dots only. ===== -->
 
-            <!-- Matrix: outer rounded rectangle + cross dividers. Bounds x26..190 y6..62 -->
-            <g fill="none" stroke="#8A8A8A">
-              <rect x="26" y="6" width="164" height="56" rx="2.5" stroke-width="0.7"/>
-              <line x1="108" y1="6" x2="108" y2="62" stroke-width="0.6"/>
-              <line x1="26" y1="34" x2="190" y2="34" stroke-width="0.6"/>
+            <!-- Matrix: outer rounded rectangle + cross dividers, centered. Bounds x18..182 y4..60 -->
+            <g fill="none" stroke="#C4C4C4">
+              <rect x="18" y="4" width="164" height="56" rx="2.5" stroke-width="0.7"/>
+              <line x1="100" y1="4" x2="100" y2="60" stroke-width="0.6"/>
+              <line x1="18" y1="32" x2="182" y2="32" stroke-width="0.6"/>
             </g>
 
             <!-- Quadrant labels -->
             <g font-size="3.2" letter-spacing="0.12em" dominant-baseline="hanging">
-              <text x="30" y="9" fill="#3478E5">QUICK WINS</text>
-              <text x="112" y="9" fill="#8A8A8A">BIG BETS</text>
-              <text x="30" y="37" fill="#8A8A8A">SMALL FIXES</text>
-              <text x="112" y="37" fill="#8A8A8A">AVOID</text>
+              <text x="22" y="7" fill="#3478E5">QUICK WINS</text>
+              <text x="104" y="7" fill="#8A8A8A">BIG BETS</text>
+              <text x="22" y="35" fill="#8A8A8A">SMALL FIXES</text>
+              <text x="104" y="35" fill="#8A8A8A">AVOID</text>
             </g>
 
             <!-- ===== Opportunity dots ===== -->
             <!-- Quick Wins: 1 highlighted hero dot + halo + 2 supporting (blue) -->
-            <circle cx="58" cy="21" r="2.2" fill="#3478E5"/>
-            <circle cx="58" cy="21" r="3.8" fill="none" stroke="#3478E5" stroke-width="0.5" opacity="0.45"/>
-            <circle cx="46" cy="27" r="1.6" fill="#3478E5"/>
-            <circle cx="78" cy="26" r="1.6" fill="#3478E5" opacity="0.9"/>
+            <circle cx="50" cy="19" r="2.2" fill="#3478E5"/>
+            <circle cx="50" cy="19" r="3.8" fill="none" stroke="#3478E5" stroke-width="0.5" opacity="0.45"/>
+            <circle cx="38" cy="25" r="1.6" fill="#3478E5"/>
+            <circle cx="70" cy="24" r="1.6" fill="#3478E5" opacity="0.9"/>
 
             <!-- Other quadrants: grey, muted -->
             <g fill="#8A8A8A" opacity="0.5">
               <!-- Big Bets -->
-              <circle cx="128" cy="22" r="1.4"/>
-              <circle cx="152" cy="14" r="1.4"/>
-              <circle cx="174" cy="21" r="1.4"/>
+              <circle cx="120" cy="20" r="1.4"/>
+              <circle cx="144" cy="12" r="1.4"/>
+              <circle cx="166" cy="19" r="1.4"/>
               <!-- Small Fixes -->
-              <circle cx="44" cy="52" r="1.4"/>
-              <circle cx="62" cy="45" r="1.4"/>
-              <circle cx="82" cy="54" r="1.4"/>
+              <circle cx="36" cy="50" r="1.4"/>
+              <circle cx="54" cy="43" r="1.4"/>
+              <circle cx="74" cy="52" r="1.4"/>
               <!-- Avoid -->
-              <circle cx="128" cy="48" r="1.4"/>
-              <circle cx="152" cy="53" r="1.4"/>
-              <circle cx="176" cy="56" r="1.4"/>
+              <circle cx="120" cy="46" r="1.4"/>
+              <circle cx="144" cy="51" r="1.4"/>
+              <circle cx="168" cy="54" r="1.4"/>
             </g>
 
             <!-- ===== Axis ticks ===== -->
             <g fill="#8A8A8A" font-size="2.5" letter-spacing="0.12em">
-              <text x="22" y="7" text-anchor="end" dominant-baseline="hanging">HIGH</text>
-              <text x="22" y="55" text-anchor="end" dominant-baseline="hanging">LOW</text>
-              <text x="28" y="65" dominant-baseline="hanging">LOW</text>
-              <text x="188" y="65" text-anchor="end" dominant-baseline="hanging">HIGH</text>
+              <text x="14" y="5" text-anchor="end" dominant-baseline="hanging">HIGH</text>
+              <text x="14" y="56" text-anchor="end" dominant-baseline="hanging">LOW</text>
+              <text x="20" y="63" dominant-baseline="hanging">LOW</text>
+              <text x="180" y="63" text-anchor="end" dominant-baseline="hanging">HIGH</text>
             </g>
             <!-- Axis titles -->
-            <text x="9" y="34" text-anchor="middle" font-size="2.8"
+            <text x="6" y="32" text-anchor="middle" font-size="2.8"
                   fill="#1F1F1F" letter-spacing="0.18em"
-                  transform="rotate(-90 9 34)">IMPACT</text>
-            <text x="108" y="69" text-anchor="middle" font-size="2.8"
+                  transform="rotate(-90 6 32)">IMPACT</text>
+            <text x="100" y="68" text-anchor="middle" font-size="2.8"
                   fill="#1F1F1F" letter-spacing="0.18em">EFFORT</text>
 
             <!-- "START HERE" callout — inside the Quick Wins quadrant -->
-            <text x="66" y="11" font-size="3" fill="#3478E5" font-style="italic" letter-spacing="0.1em">START HERE</text>
-            <path d="M 71 13 Q 66 16 60.5 19" stroke="#3478E5" stroke-width="0.8" fill="none" stroke-linecap="round"/>
-            <polygon points="60.5,19 63.6,18 62.7,21.2" fill="#3478E5"/>
+            <text x="58" y="9" font-size="3" fill="#3478E5" font-style="italic" letter-spacing="0.1em">START HERE</text>
+            <path d="M 63 11 Q 57 14 51.5 17.2" stroke="#3478E5" stroke-width="0.8" fill="none" stroke-linecap="round"/>
           </svg>
         </div>
       <p class="body-copy">Most AI projects fail because they were the wrong project. We score your use cases on impact and feasibility, then tell you which three to start with and which to drop. You leave with a prioritised roadmap, not a wishlist.</p>
