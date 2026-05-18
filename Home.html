@@ -545,10 +545,11 @@
     display: grid;
     /* Left text ~40%, gap ~3%, diagram ~57% — right column ~1.4× the left. */
     grid-template-columns: 40fr 3fr 57fr;
-    grid-template-rows: 1fr auto;
-    row-gap: clamp(48px, 6vw, 96px);
+    grid-template-rows: auto auto;
+    row-gap: clamp(32px, 3vw, 52px);
     padding: clamp(16px, 2vw, 32px) clamp(40px, 6vw, 96px) clamp(40px, 5vw, 80px);
     align-items: start;
+    align-content: start;
   }
   .service-card-h .card-left {
     grid-column: 1; grid-row: 1;
