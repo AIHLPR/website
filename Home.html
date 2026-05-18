@@ -587,7 +587,7 @@
     font-weight: 600;
     color: var(--ink);
     margin: 0;
-    max-width: 12ch;
+    max-width: 16ch;
     text-wrap: balance;
   }
   .service-card-h .deliverables-list {
@@ -1635,74 +1635,67 @@
           </div>
         </div>
         <div class="diagram-frame">
-          <svg viewBox="0 4  200 100" preserveAspectRatio="xMidYMid meet" aria-hidden="true" font-family="JetBrains Mono, Roboto Mono, monospace">
-            <!-- ===== 2x2 IMPACT x EFFORT matrix.
-                 Only the QUICK WINS quadrant is in brand blue (outline only,
-                 no fill). The other three quadrants are neutral grey.
-                 Rounded corners (rx=2) match the design language of the
-                 other service diagrams. ===== -->
+          <svg viewBox="0 0 200 68" preserveAspectRatio="xMidYMid meet" aria-hidden="true" font-family="JetBrains Mono, Roboto Mono, monospace">
+            <!-- ===== 2x2 IMPACT x EFFORT matrix — one graph rectangle
+                 (mildly rounded) with cross dividers. QUICK WINS is
+                 highlighted by its blue label + blue dots only. ===== -->
 
-            <!-- Grey quadrants (no fill, hairline outline, rounded) -->
-            <g fill="none" stroke="#8A8A8A" stroke-width="0.5" opacity="0.55">
-              <rect x="115" y="18" width="65" height="32" rx="2"/>   <!-- Big Bets -->
-              <rect x="50" y="50" width="65" height="32" rx="2"/>    <!-- Small Fixes -->
-              <rect x="115" y="50" width="65" height="32" rx="2"/>   <!-- Avoid -->
+            <!-- Matrix: outer rounded rectangle + cross dividers. Bounds x26..194 y13..55 -->
+            <g fill="none" stroke="#8A8A8A">
+              <rect x="26" y="13" width="168" height="42" rx="2.5" stroke-width="0.6"/>
+              <line x1="110" y1="13" x2="110" y2="55" stroke-width="0.5"/>
+              <line x1="26" y1="34" x2="194" y2="34" stroke-width="0.5"/>
             </g>
-
-            <!-- Blue QUICK WINS quadrant — outline only, no fill, rounded -->
-            <rect x="50" y="18" width="65" height="32" rx="2"
-                  fill="none" stroke="#3478E5" stroke-width="0.9"/>
 
             <!-- Quadrant labels -->
             <g font-size="3.4" letter-spacing="0.12em" dominant-baseline="hanging">
-              <text x="55" y="24" fill="#3478E5">QUICK WINS</text>
-              <text x="120" y="24" fill="#8A8A8A">BIG BETS</text>
-              <text x="55" y="56" fill="#8A8A8A">SMALL FIXES</text>
-              <text x="120" y="56" fill="#8A8A8A">AVOID</text>
+              <text x="30" y="16.5" fill="#3478E5">QUICK WINS</text>
+              <text x="114" y="16.5" fill="#8A8A8A">BIG BETS</text>
+              <text x="30" y="37.5" fill="#8A8A8A">SMALL FIXES</text>
+              <text x="114" y="37.5" fill="#8A8A8A">AVOID</text>
             </g>
 
             <!-- ===== Opportunity dots ===== -->
-            <!-- Quick Wins: 1 highlighted hero dot + 2 supporting (blue) -->
-            <circle cx="78" cy="38" r="2.6" fill="#3478E5"/>
-            <circle cx="78" cy="38" r="4.6" fill="none" stroke="#3478E5" stroke-width="0.55" opacity="0.45"/>
-            <circle cx="95" cy="32" r="1.8" fill="#3478E5"/>
-            <circle cx="100" cy="44" r="1.7" fill="#3478E5" opacity="0.85"/>
+            <!-- Quick Wins: 1 highlighted hero dot + halo + 2 supporting (blue) -->
+            <circle cx="64" cy="26" r="2.4" fill="#3478E5"/>
+            <circle cx="64" cy="26" r="4.2" fill="none" stroke="#3478E5" stroke-width="0.5" opacity="0.45"/>
+            <circle cx="86" cy="23" r="1.7" fill="#3478E5"/>
+            <circle cx="95" cy="30" r="1.6" fill="#3478E5" opacity="0.85"/>
 
-            <!-- All other quadrants: grey, muted -->
+            <!-- Other quadrants: grey, muted -->
             <g fill="#8A8A8A" opacity="0.5">
               <!-- Big Bets -->
-              <circle cx="135" cy="38" r="1.5"/>
-              <circle cx="155" cy="32" r="1.5"/>
-              <circle cx="170" cy="42" r="1.5"/>
+              <circle cx="138" cy="25" r="1.5"/>
+              <circle cx="162" cy="21" r="1.5"/>
+              <circle cx="180" cy="28" r="1.5"/>
               <!-- Small Fixes -->
-              <circle cx="65" cy="62" r="1.5"/>
-              <circle cx="82" cy="70" r="1.5"/>
-              <circle cx="95" cy="64" r="1.5"/>
-              <circle cx="105" cy="74" r="1.5"/>
+              <circle cx="44" cy="47" r="1.5"/>
+              <circle cx="66" cy="43" r="1.5"/>
+              <circle cx="82" cy="50" r="1.5"/>
               <!-- Avoid -->
-              <circle cx="130" cy="70" r="1.5"/>
-              <circle cx="155" cy="63" r="1.5"/>
-              <circle cx="170" cy="74" r="1.5"/>
+              <circle cx="132" cy="46" r="1.5"/>
+              <circle cx="156" cy="49" r="1.5"/>
+              <circle cx="180" cy="44" r="1.5"/>
             </g>
 
-            <!-- ===== Axis labels (readable size) ===== -->
-            <g fill="#8A8A8A" font-size="2.8" letter-spacing="0.12em">
-              <text x="46" y="20" text-anchor="end">HIGH</text>
-              <text x="46" y="80" text-anchor="end">LOW</text>
-              <text x="54" y="87" dominant-baseline="hanging">LOW</text>
-              <text x="176" y="87" text-anchor="end" dominant-baseline="hanging">HIGH</text>
+            <!-- ===== Axis ticks ===== -->
+            <g fill="#8A8A8A" font-size="2.6" letter-spacing="0.12em">
+              <text x="23" y="14" text-anchor="end" dominant-baseline="hanging">HIGH</text>
+              <text x="23" y="49" text-anchor="end" dominant-baseline="hanging">LOW</text>
+              <text x="28" y="58" dominant-baseline="hanging">LOW</text>
+              <text x="192" y="58" text-anchor="end" dominant-baseline="hanging">HIGH</text>
             </g>
             <!-- Axis titles -->
-            <text x="38" y="50" text-anchor="middle" font-size="3.2"
+            <text x="12" y="34" text-anchor="middle" font-size="3"
                   fill="#1F1F1F" letter-spacing="0.18em"
-                  transform="rotate(-90 38 50)">IMPACT</text>
-            <text x="115" y="100" text-anchor="middle" font-size="3.2"
+                  transform="rotate(-90 12 34)">IMPACT</text>
+            <text x="110" y="66" text-anchor="middle" font-size="3"
                   fill="#1F1F1F" letter-spacing="0.18em">EFFORT</text>
 
-            <!-- "Start here" pointer to the highlighted Quick Wins dot — mono, matches the other diagram labels -->
-            <text x="52" y="11" font-size="3.6" fill="#3478E5" letter-spacing="0.12em">START HERE</text>
-            <path d="M 70 14 Q 70 24 77.5 35" stroke="#3478E5" stroke-width="1.1" fill="none" stroke-linecap="round"/>
-            <polygon points="77.5,35 74.6,32.4 78.7,31.6" fill="#3478E5"/>
+            <!-- "START HERE" pointer to the highlighted Quick Wins dot -->
+            <text x="74" y="7" font-size="3.6" fill="#3478E5" font-style="italic" letter-spacing="0.1em">START HERE</text>
+            <path d="M 84 9 Q 80 16 67.5 23" stroke="#3478E5" stroke-width="0.9" fill="none" stroke-linecap="round"/>
+            <polygon points="67.5,23 70.6,21.6 70.2,25.1" fill="#3478E5"/>
           </svg>
         </div>
       <p class="body-copy">Most AI projects fail because they were the wrong project. We score your use cases on impact and feasibility, then tell you which three to start with and which to drop. You leave with a prioritised roadmap, not a wishlist.</p>
