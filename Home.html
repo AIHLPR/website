@@ -916,35 +916,8 @@
     max-width: 46ch;
   }
 
-  /* figure — bar comparison (case 01) */
+  /* figure */
   .work-fig { display: flex; flex-direction: column; gap: 13px; }
-  .fig-group { display: flex; flex-direction: column; gap: 7px; }
-  .fig-label {
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.13em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-  }
-  .fig-label--accent { color: var(--accent); }
-  .fig-bar-row { display: flex; align-items: center; gap: 12px; }
-  .fig-track {
-    flex: 1;
-    height: 26px;
-    border-radius: 6px;
-    background: var(--surface);
-    overflow: hidden;
-  }
-  .fig-fill { display: block; height: 100%; border-radius: 6px; }
-  .fig-fill--base { background: var(--ink-muted); }
-  .fig-fill--accent { background: var(--accent); }
-  .fig-val {
-    font-family: var(--font-mono);
-    font-size: 13px;
-    color: var(--ink);
-    white-space: nowrap;
-  }
-  .fig-val--accent { color: var(--accent); }
   .fig-caption {
     font-family: var(--font-mono);
     font-size: 10.5px;
@@ -1940,27 +1913,22 @@
           <p class="work-brief">
             Amazon A+ and PDP assets scaled across markets without losing brand consistency. Vision AI handles composition. Humans approve.
           </p>
-          <div class="work-fig">
-            <div class="fig-group">
-              <span class="fig-label">Time per launch</span>
-              <div class="fig-bar-row">
-                <span class="fig-track"><span class="fig-fill fig-fill--base" style="width:100%"></span></span>
-                <span class="fig-val">6 weeks</span>
+          <div class="work-fig work-fig--stats">
+            <div class="fig-stat-row">
+              <div class="fig-stat">
+                <span class="fig-stat-num">100+</span>
+                <span class="fig-stat-label">SKUs scaled</span>
+              </div>
+              <div class="fig-stat">
+                <span class="fig-stat-num">11</span>
+                <span class="fig-stat-label">EU markets</span>
               </div>
             </div>
-            <div class="fig-group">
-              <span class="fig-label fig-label--accent">With the engine</span>
-              <div class="fig-bar-row">
-                <span class="fig-track"><span class="fig-fill fig-fill--accent" style="width:19%"></span></span>
-                <span class="fig-val fig-val--accent">8 days</span>
-              </div>
-            </div>
-            <span class="fig-caption">85% time reduction &middot; NL DE UK</span>
+            <span class="fig-caption">85% time reduction per launch</span>
           </div>
         </div>
         <div class="work-foot">
           <div class="work-meta-list">
-            <span class="work-meta-item">47 SKUs &middot; 3 markets</span>
             <span class="work-meta-item">Vision AI</span>
             <span class="work-meta-item">Brand-aware composition</span>
             <span class="work-meta-item">Multi-locale translation</span>
