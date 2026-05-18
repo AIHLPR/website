@@ -466,63 +466,81 @@
     .clients-track { animation: none; }
   }
 
-  /* ===== Services — horizontal-pinned scroll with snap =====
-     Section is 4 viewport-heights tall. Inside, .services-pin sticks for
-     the full duration. JS translates the horizontal track based on section
-     progress so cards walk past from right to left. CSS scroll-snap on
-     <html> locks the page onto each card boundary so a partial scroll
-     never leaves the user looking at half-a-card-of-text + half-a-card-of-
-     diagram. Mobile collapses back to a vertical stack. */
+  /* ===== Services — pinned showcase with click navigation =====
+     The section is one viewport tall. The 4 cards sit on a horizontal
+     track; prev/next arrows and a numbered stepper slide the active card
+     into view on click. No scroll-jacking — the page scrolls normally.
+     Mobile collapses to a vertical stack. */
   .services-section {
     position: relative;
     border-top: 1px solid var(--hairline);
-    /* 4 cards × 1 viewport per card = 400vh. Snap points at every 100vh. */
-    height: 400vh;
+    height: 100vh;
     padding: 0;
   }
-  /* Invisible snap-targets, one per card. They live in section coords so
-     when html has scroll-snap-type: y proximity, the browser locks the
-     page onto card boundaries. */
-  .services-section .snap-target {
-    position: absolute;
-    left: 0;
-    width: 1px;
-    height: 100vh;
-    pointer-events: none;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
-  }
-  .services-section .snap-target:nth-child(1) { top: 0;     }
-  .services-section .snap-target:nth-child(2) { top: 100vh; }
-  .services-section .snap-target:nth-child(3) { top: 200vh; }
-  .services-section .snap-target:nth-child(4) { top: 300vh; }
   .services-pin {
-    position: sticky;
-    top: 0;
+    position: relative;
     height: 100vh;
     display: flex;
     flex-direction: column;
     overflow: hidden;
   }
   .services-pin-head {
-    /* Progress strip removed per request — keep small top padding to clear the nav. */
     padding: clamp(88px, 9vw, 112px) clamp(40px, 6vw, 96px) 0;
   }
-  .services-progress { display: none; }
+  .services-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+  }
+  .services-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    border: 1px solid var(--hairline-strong);
+    background: none;
+    color: var(--ink);
+    font-size: 15px;
+    line-height: 1;
+    cursor: pointer;
+    transition: border-color 200ms var(--ease), color 200ms var(--ease), opacity 200ms var(--ease);
+  }
+  .services-arrow:hover { border-color: var(--ink); }
+  .services-arrow:disabled {
+    opacity: 0.3;
+    cursor: default;
+    border-color: var(--hairline-strong);
+  }
+  .services-progress {
+    display: inline-flex;
+    align-items: center;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+  }
   .services-progress .step {
     position: relative;
-    padding: 0 10px;
+    padding: 0 12px;
+    font: inherit;
+    color: var(--ink-muted);
+    background: none;
+    border: 0;
+    cursor: pointer;
     transition: color 220ms var(--ease);
     white-space: nowrap;
   }
+  .services-progress .step:hover { color: var(--ink); }
   .services-progress .step.is-active {
     color: var(--ink);
     font-weight: 500;
   }
-  .services-progress .step.is-active::before { content: '['; position: absolute; left: 0; }
-  .services-progress .step.is-active::after  { content: ']'; position: absolute; right: 0; }
+  .services-progress .step.is-active::before { content: '['; position: absolute; left: 2px; }
+  .services-progress .step.is-active::after  { content: ']'; position: absolute; right: 2px; }
   .services-progress .sep {
-    flex: 0 1 64px;
+    width: 32px;
     height: 1px;
     background: var(--hairline-strong);
     opacity: 0.45;
@@ -532,6 +550,7 @@
     flex: 1;
     width: max-content;
     will-change: transform;
+    transition: transform 520ms var(--ease);
   }
   /* Canva-reference layout:
      Two-column proportions — left ~38%, right ~50%, comfortable gap.
@@ -649,6 +668,7 @@
   @media (max-width: 880px) {
     .services-section { height: auto; }
     .services-pin { position: static; height: auto; overflow: visible; }
+    .services-nav { display: none; }
     .services-track { flex-direction: column; transform: none !important; width: auto; }
     .service-card-h {
       width: auto;
@@ -1419,19 +1439,14 @@
      shows position (0.1—0.2—0.3—0.4). Each card has a Diagram/Details
      toggle so the deliverables get real attention, not buried fine print. -->
 <section class="services-section" id="services">
-  <!-- CSS scroll-snap targets: one per card. They sit at each 100vh
-       interval inside the 400vh section. Combined with the html-level
-       scroll-snap-type: y proximity, the browser locks scroll onto each
-       card boundary so a partial scroll never leaves the user mid-card. -->
-  <div class="snap-target"></div>
-  <div class="snap-target"></div>
-  <div class="snap-target"></div>
-  <div class="snap-target"></div>
-
   <div class="services-pin">
     <div class="services-pin-head">
-      <div class="services-progress" id="servicesProgress" aria-hidden="true">
-        <span class="step is-active">0.1</span><span class="sep"></span><span class="step">0.2</span><span class="sep"></span><span class="step">0.3</span><span class="sep"></span><span class="step">0.4</span>
+      <div class="services-nav">
+        <button class="services-arrow" type="button" data-dir="-1" aria-label="Previous service">&larr;</button>
+        <div class="services-progress" id="servicesProgress">
+          <button class="step is-active" type="button" data-step="0">01</button><span class="sep"></span><button class="step" type="button" data-step="1">02</button><span class="sep"></span><button class="step" type="button" data-step="2">03</button><span class="sep"></span><button class="step" type="button" data-step="3">04</button>
+        </div>
+        <button class="services-arrow" type="button" data-dir="1" aria-label="Next service">&rarr;</button>
       </div>
     </div>
     <div class="services-track" id="servicesTrack">
@@ -2267,92 +2282,69 @@
 <!-- ============= SCRIPTS ============= -->
 <script src="home-v2-hero.js"></script>
 <script>
-  // ===== Services — horizontal-pinned scroll + tab switching =====
-  // The .services-section is N viewport-heights tall. While the user is
-  // inside it, the inner .services-pin sticks. We read section progress
-  // (0..1) and translate the horizontal .services-track by N-1 viewport
-  // widths, so cards walk past from right to left. The top progress strip
-  // updates to show which card is centered. Mobile is a normal stack — we
-  // detect it via matchMedia and bail.
+  // ===== Services — pinned showcase with click navigation =====
+  // The 4 service cards sit on a horizontal track. Prev/next arrows, the
+  // numbered stepper, and the arrow keys slide the active card into view.
+  // No scroll-jacking. Mobile stacks the cards — matchMedia clears the
+  // transform there.
   (function () {
     const section = document.querySelector('.services-section');
     const track   = document.getElementById('servicesTrack');
-    const steps   = document.querySelectorAll('#servicesProgress .step');
+    const steps   = Array.from(document.querySelectorAll('#servicesProgress .step'));
+    const arrows  = Array.from(document.querySelectorAll('.services-arrow'));
     const cards   = document.querySelectorAll('.service-card-h');
     if (!section || !track || !cards.length) return;
 
     const mqMobile = window.matchMedia('(max-width: 880px)');
     const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
+    let current = 0;
 
-    function update() {
-      if (mqMobile.matches) {
-        track.style.transform = '';
-        return;
-      }
-      const rect = section.getBoundingClientRect();
-      const range = section.offsetHeight - window.innerHeight;
-      if (range <= 0) return;
-      const p = clamp(-rect.top / range, 0, 1);
-      const max = (cards.length - 1) * 100; // vw
-      track.style.transform = `translate3d(${(-p * max).toFixed(3)}vw, 0, 0)`;
-      // Active step: each card owns 1/(N-1) of the range
-      const activeIdx = Math.min(cards.length - 1, Math.round(p * (cards.length - 1)));
-      steps.forEach((s, i) => s.classList.toggle('is-active', i === activeIdx));
-      // Keep diagram top edges aligned with headline top edges. This is
-      // cheap (one bounding-rect read per card) and ensures the alignment
-      // stays correct after fonts load, resize, or any reflow.
+    function go(idx) {
+      current = clamp(idx, 0, cards.length - 1);
+      track.style.transform = mqMobile.matches
+        ? ''
+        : `translate3d(${-current * 100}vw, 0, 0)`;
+      steps.forEach((s, i) => s.classList.toggle('is-active', i === current));
+      arrows.forEach(a => {
+        const dir = Number(a.dataset.dir);
+        a.disabled = (dir < 0 && current === 0) ||
+                     (dir > 0 && current === cards.length - 1);
+      });
       alignDiagrams();
     }
 
-    // (Tab toggle code removed — cards now show diagram + deliverable list together.)
+    arrows.forEach(a => a.addEventListener('click', () => {
+      go(current + Number(a.dataset.dir));
+    }));
+    steps.forEach((s, i) => s.addEventListener('click', () => go(i)));
 
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    mqMobile.addEventListener && mqMobile.addEventListener('change', update);
-    update();
-
-    // ---- Snap: when a scroll burst ends inside the services section, lock
-    // to the nearest card boundary so the user always rests on one full card
-    // (never half-a-diagram + half-a-headline). Scoped to this section only.
-    function snapToNearestCard() {
+    // Arrow keys advance the carousel while the section is on screen.
+    window.addEventListener('keydown', (e) => {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
       if (mqMobile.matches) return;
-      const range = section.offsetHeight - window.innerHeight;
-      if (range <= 0) return;
-      const top = section.offsetTop;
-      const y = window.scrollY;
-      if (y < top - 4 || y > top + range + 4) return; // outside the section
-      const step = range / (cards.length - 1);
-      const idx = clamp(Math.round((y - top) / step), 0, cards.length - 1);
-      const target = Math.round(top + idx * step);
-      if (Math.abs(y - target) < 2) return; // already aligned
-      window.scrollTo({ top: target, behavior: 'smooth' });
-    }
-    if ('onscrollend' in window) {
-      window.addEventListener('scrollend', snapToNearestCard);
-    } else {
-      let snapTimer;
-      window.addEventListener('scroll', () => {
-        clearTimeout(snapTimer);
-        snapTimer = setTimeout(snapToNearestCard, 120);
-      }, { passive: true });
-    }
+      const r = section.getBoundingClientRect();
+      if (r.bottom < 0 || r.top > window.innerHeight) return;
+      go(current + (e.key === 'ArrowRight' ? 1 : -1));
+    });
+
+    mqMobile.addEventListener && mqMobile.addEventListener('change', () => go(current));
 
     // ---- Vertical alignment: pull each diagram up so its TOP edge sits
     // exactly on the headline's first cap-line. We measure at runtime
     // (headline font-size + sub-element gaps are clamp-based, so static
-    // CSS can't predict the exact offset across breakpoints). Also called
-    // from update() on every scroll tick, which guarantees we re-align
-    // once fonts have loaded and layout has settled.
+    // CSS can't predict the exact offset across breakpoints).
     function alignDiagrams() {
-      if (mqMobile.matches) return;
+      if (mqMobile.matches) {
+        document.querySelectorAll('.service-card-h .diagram-frame')
+          .forEach(d => { d.style.marginTop = ''; });
+        return;
+      }
       document.querySelectorAll('.service-card-h').forEach(card => {
         const left = card.querySelector('.card-left');
         const h3 = card.querySelector('h3');
         const diag = card.querySelector('.diagram-frame');
         if (!left || !h3 || !diag) return;
-        const leftRect = left.getBoundingClientRect();
-        const h3Rect = h3.getBoundingClientRect();
-        const offset = Math.max(0, h3Rect.top - leftRect.top);
+        const offset = Math.max(0, h3.getBoundingClientRect().top - left.getBoundingClientRect().top);
         diag.style.marginTop = offset + 'px';
       });
     }
@@ -2362,6 +2354,8 @@
     // Run twice with rAF spacing so the second pass picks up any layout
     // shifts caused by the first pass's margin-top write.
     requestAnimationFrame(() => requestAnimationFrame(alignDiagrams));
+
+    go(0);
   })();
 
   // Work section tabs
