@@ -929,47 +929,35 @@
   }
 
 
-  /* Microservices panel — five category cards. */
+  /* Microservices panel — FAQ-style rows, no box. */
   .work-microservices {
     display: none;
     flex-direction: column;
-    gap: 10px;
-    padding: clamp(8px, 1vw, 16px) 0;
+    padding: clamp(4px, 0.5vw, 8px) 0 clamp(16px, 2vw, 28px);
   }
   details.micro-cat-card {
-    --accent: var(--pink);
-    background: var(--white);
-    border: 1px solid var(--hairline);
-    border-radius: 12px;
-    transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+    border-bottom: 1px solid var(--hairline);
   }
-  details.micro-cat-card[data-accent="magenta"] { --accent: var(--magenta); }
-  details.micro-cat-card[data-accent="purple"]  { --accent: var(--purple); }
-  details.micro-cat-card[data-accent="sky"]     { --accent: var(--sky); }
-  details.micro-cat-card[data-accent="blue"]    { --accent: var(--blue); }
-  details.micro-cat-card:hover { border-color: var(--accent); }
-  details.micro-cat-card[open] {
-    border-color: var(--accent);
-    box-shadow: 0 4px 18px rgba(31, 31, 31, 0.05);
+  details.micro-cat-card:first-child {
+    border-top: 1px solid var(--hairline);
   }
   details.micro-cat-card summary {
     display: flex;
     align-items: center;
     justify-content: space-between;
     gap: 16px;
-    padding: clamp(16px, 1.8vw, 22px) clamp(18px, 2vw, 26px);
+    padding: clamp(18px, 2vw, 24px) 0;
     cursor: pointer;
     list-style: none;
   }
   details.micro-cat-card summary::-webkit-details-marker { display: none; }
   details.micro-cat-card summary::marker { content: ''; }
   .micro-cat-name {
-    font-family: var(--font-mono);
-    font-size: 12.5px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
+    font-family: var(--font-display);
+    font-size: clamp(18px, 1.6vw, 22px);
+    font-weight: 500;
+    letter-spacing: -0.01em;
+    color: var(--ink);
   }
   .micro-plus {
     flex-shrink: 0;
@@ -985,15 +973,15 @@
   }
   details.micro-cat-card[open] .micro-plus {
     transform: rotate(45deg);
-    background: var(--accent);
-    border-color: var(--accent);
+    background: var(--ink);
+    border-color: var(--ink);
     color: var(--white);
   }
   .micro-cat-list {
-    padding: 4px clamp(18px, 2vw, 26px) clamp(18px, 2vw, 26px);
+    padding: 0 0 clamp(18px, 2vw, 24px);
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 14px 28px;
+    gap: 12px 28px;
   }
   .micro-item {
     font-family: var(--font-body);
