@@ -494,8 +494,7 @@
     align-items: center;
     justify-content: center;
     gap: 14px;
-    border-top: 1px solid var(--hairline);
-    padding: clamp(12px, 1.6vw, 18px) clamp(40px, 6vw, 96px) clamp(12px, 1.6vw, 18px);
+    padding: clamp(4px, 0.8vw, 10px) clamp(40px, 6vw, 96px) clamp(12px, 1.6vw, 18px);
   }
   .services-arrow {
     display: inline-flex;
@@ -942,219 +941,6 @@
   @media (max-width: 900px) {
     .work-body { grid-template-columns: 1fr; gap: 22px; }
     .work-row { padding: 34px 0; }
-  }
-
-  /* ===== How we build — horizontal zigzag timeline ===== */
-  .build-section {
-    border-top: 1px solid var(--hairline);
-    padding-top: clamp(22px, 3vw, 40px);
-  }
-  .build-section .section-head { margin-bottom: clamp(18px, 2.4vw, 32px); }
-  .build-timeline {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: auto 48px auto;
-    column-gap: clamp(10px, 1vw, 20px);
-  }
-  .build-stage { display: contents; }
-  .build-stage:nth-child(1) { --accent: var(--pink); }
-  .build-stage:nth-child(2) { --accent: var(--magenta); }
-  .build-stage:nth-child(3) { --accent: var(--purple); }
-  .build-stage:nth-child(4) { --accent: var(--lavender); }
-  .build-stage:nth-child(5) { --accent: var(--sky); }
-  .build-stage:nth-child(6) { --accent: var(--blue); }
-  .build-stage:nth-child(1) > * { grid-column: 1; }
-  .build-stage:nth-child(2) > * { grid-column: 2; }
-  .build-stage:nth-child(3) > * { grid-column: 3; }
-  .build-stage:nth-child(4) > * { grid-column: 4; }
-  .build-stage:nth-child(5) > * { grid-column: 5; }
-  .build-stage:nth-child(6) > * { grid-column: 6; }
-
-  /* gradient axis with a travelling shine */
-  .build-axis {
-    grid-row: 2;
-    grid-column: 1 / -1;
-    align-self: center;
-    position: relative;
-    height: 2px;
-    border-radius: 2px;
-    background: var(--gradient);
-    overflow: hidden;
-    transform-origin: left center;
-    transition: transform 1800ms linear;
-  }
-  .build-axis::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    width: 130px;
-    left: -130px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.92), transparent);
-    animation: build-travel 4.5s linear infinite;
-  }
-  @keyframes build-travel {
-    from { left: -130px; }
-    to   { left: 100%; }
-  }
-
-  .build-node {
-    grid-row: 2;
-    align-self: center;
-    justify-self: center;
-    position: relative;
-    z-index: 1;
-    width: 11px;
-    height: 11px;
-    border-radius: 999px;
-    background: var(--accent);
-    box-shadow: 0 0 0 4px var(--white);
-    transition: transform 220ms var(--ease), box-shadow 260ms var(--ease);
-  }
-
-  .build-head {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 5px;
-    transition: transform 240ms var(--ease), opacity 600ms var(--ease);
-  }
-  .build-desc {
-    position: relative;
-    margin: 0;
-    text-align: center;
-    color: var(--ink-soft);
-    font-size: 13.5px;
-    line-height: 1.5;
-    transition: transform 240ms var(--ease), opacity 600ms var(--ease);
-  }
-  /* connector — a short rule from each block toward the axis */
-  .build-head::before,
-  .build-desc::before {
-    content: "";
-    position: absolute;
-    left: 50%;
-    width: 0;
-    height: 20px;
-    border-left: 1px solid var(--accent);
-    transform: translateX(-50%);
-  }
-  .build-stage-label {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--accent);
-  }
-  .build-head h3 {
-    font-family: var(--font-display);
-    font-size: clamp(17px, 1.7vw, 21px);
-    line-height: 1.15;
-    letter-spacing: -0.02em;
-    font-weight: 600;
-    color: var(--ink);
-  }
-
-  /* title on one side of the axis, sentence on the other — the block in
-     row 1 hugs the axis from above, the block in row 3 from below */
-  .build-stage:nth-child(odd) .build-head,
-  .build-stage:nth-child(even) .build-desc {
-    grid-row: 1;
-    align-self: end;
-    padding-bottom: 16px;
-  }
-  .build-stage:nth-child(odd) .build-head::before,
-  .build-stage:nth-child(even) .build-desc::before { top: 100%; }
-  .build-stage:nth-child(odd) .build-desc,
-  .build-stage:nth-child(even) .build-head {
-    grid-row: 3;
-    align-self: start;
-    padding-top: 16px;
-  }
-  .build-stage:nth-child(odd) .build-desc::before,
-  .build-stage:nth-child(even) .build-head::before { bottom: 100%; }
-
-  .build-foot {
-    margin-top: clamp(40px, 5vw, 72px);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 16px;
-    text-align: center;
-  }
-  .build-foot p {
-    font-family: var(--font-display);
-    font-weight: 600;
-    font-size: clamp(17px, 1.6vw, 20px);
-    letter-spacing: -0.01em;
-    color: var(--ink);
-    margin: 0;
-  }
-  .build-foot .arrow { transition: transform 220ms var(--ease); }
-  .build-foot .btn:hover .arrow { transform: translateX(4px); }
-
-  /* scroll reveal — armed by JS. The axis travels left to right (1800ms);
-     each stage's card fades in and its node gains a concentric ring at
-     the moment the line reaches it (delays synced to the axis draw). */
-  .build-timeline.is-armed .build-axis { transform: scaleX(0); }
-  .build-timeline.is-armed .build-head,
-  .build-timeline.is-armed .build-desc { opacity: 0; }
-  .build-timeline.is-revealed .build-axis { transform: scaleX(1); }
-  .build-timeline.is-revealed .build-head,
-  .build-timeline.is-revealed .build-desc { opacity: 1; }
-  .build-timeline.is-revealed .build-node {
-    box-shadow: 0 0 0 4px var(--white), 0 0 0 7px var(--accent);
-  }
-  .build-timeline.is-revealed .build-stage:nth-child(1) > * { transition-delay: 150ms; }
-  .build-timeline.is-revealed .build-stage:nth-child(2) > * { transition-delay: 450ms; }
-  .build-timeline.is-revealed .build-stage:nth-child(3) > * { transition-delay: 750ms; }
-  .build-timeline.is-revealed .build-stage:nth-child(4) > * { transition-delay: 1050ms; }
-  .build-timeline.is-revealed .build-stage:nth-child(5) > * { transition-delay: 1350ms; }
-  .build-timeline.is-revealed .build-stage:nth-child(6) > * { transition-delay: 1650ms; }
-
-  /* hover — node grows and glows, the blocks ease away from the axis */
-  .build-stage:hover .build-node {
-    transform: scale(1.3);
-    box-shadow: 0 0 0 4px var(--white), 0 0 0 7px var(--accent), 0 0 18px var(--accent);
-  }
-  .build-stage:nth-child(odd):hover .build-head,
-  .build-stage:nth-child(even):hover .build-desc { transform: translateY(-4px); }
-  .build-stage:nth-child(odd):hover .build-desc,
-  .build-stage:nth-child(even):hover .build-head { transform: translateY(4px); }
-
-  @media (max-width: 900px) {
-    .build-timeline { display: flex; flex-direction: column; gap: 18px; }
-    .build-stage {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      border-left: 2px solid var(--accent);
-      padding: 2px 0 2px 18px;
-    }
-    .build-axis,
-    .build-node { display: none; }
-    .build-head,
-    .build-desc { padding: 0; text-align: left; }
-    .build-head { align-items: flex-start; }
-    .build-head::before,
-    .build-desc::before { display: none; }
-    .build-stage:hover .build-head,
-    .build-stage:hover .build-desc { transform: none; }
-  }
-  @media (prefers-reduced-motion: reduce) {
-    .build-axis::after { animation: none; }
-    .build-timeline.is-armed .build-axis { transform: scaleX(1); }
-    .build-timeline.is-armed .build-head,
-    .build-timeline.is-armed .build-desc { opacity: 1; }
-    .build-timeline.is-armed .build-node {
-      box-shadow: 0 0 0 4px var(--white), 0 0 0 7px var(--accent);
-    }
   }
 
   /* ===== Stack ===== */
@@ -2392,219 +2178,6 @@
   </div>
 </section>
 
-<!-- ============= HOW WE BUILD ============= -->
-<section class="build-section" id="build">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>How we build</span>
-        <h2 style="margin-top: 14px;">Design the structure, then the intelligence.</h2>
-      </div>
-    </div>
-
-    <ol class="build-timeline">
-      <li class="build-stage">
-        <div class="build-head">
-          <span class="build-stage-label">Stage 00</span>
-          <h3>Feasibility &amp; Compliance</h3>
-        </div>
-        <span class="build-node"></span>
-        <p class="build-desc">Is it compliant? Can it be built? Do you even need it? We find out first.</p>
-      </li>
-
-      <li class="build-stage">
-        <div class="build-head">
-          <span class="build-stage-label">Stage 01</span>
-          <h3>Workflow Mapping</h3>
-        </div>
-        <span class="build-node"></span>
-        <p class="build-desc">We map how work really moves before we build anything.</p>
-      </li>
-
-      <li class="build-stage">
-        <div class="build-head">
-          <span class="build-stage-label">Stage 02</span>
-          <h3>Data Cleaning</h3>
-        </div>
-        <span class="build-node"></span>
-        <p class="build-desc">We get your data into shape before any model touches it.</p>
-      </li>
-
-      <li class="build-stage">
-        <div class="build-head">
-          <span class="build-stage-label">Stage 03</span>
-          <h3>Fine-tuning</h3>
-        </div>
-        <span class="build-node"></span>
-        <p class="build-desc">When a general model falls short, we train one on your world.</p>
-      </li>
-
-      <li class="build-stage">
-        <div class="build-head">
-          <span class="build-stage-label">Stage 04</span>
-          <h3>RAG</h3>
-        </div>
-        <span class="build-node"></span>
-        <p class="build-desc">We design where answers come from, so the system finds the right one.</p>
-      </li>
-
-      <li class="build-stage">
-        <div class="build-head">
-          <span class="build-stage-label">Stage 05</span>
-          <h3>Evaluation &amp; Guardrails</h3>
-        </div>
-        <span class="build-node"></span>
-        <p class="build-desc">We set what good looks like, draw hard limits, and watch what ships.</p>
-      </li>
-
-      <li class="build-axis" aria-hidden="true"></li>
-    </ol>
-
-    <div class="build-foot">
-      <p>Most companies start with a feasibility and readiness check.</p>
-      <a class="btn btn-primary" href="#contact">Book a free consultation <span class="arrow">&rarr;</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ============= OUR WORK ============= -->
-<section class="work-section" id="work">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>Our work</span>
-        <h2 style="margin-top: 14px;">AI products in production. Not pilots.</h2>
-      </div>
-      <p class="head-aside">
-        A few of the projects we&rsquo;ve worked on.
-      </p>
-    </div>
-
-    <div class="work-tabs">
-      <button class="work-tab is-active" data-tab="all">All sectors</button>
-      <button class="work-tab" data-tab="retail">Retail</button>
-      <button class="work-tab" data-tab="arch">Architecture</button>
-      <button class="work-tab" data-tab="workforce">Workforce</button>
-    </div>
-
-    <div class="work-rows" id="workRows">
-      <!-- 01 -->
-      <a class="work-row" data-sector="retail" href="work/asset-workflow-engine.html">
-        <div class="work-head">
-          <div class="work-cap">
-            <span class="work-no">01</span>
-            <span class="work-cat">Retail &middot; Juvenile products</span>
-          </div>
-          <h3>Asset Workflow Engine</h3>
-          <p class="work-subhead">From 6 weeks to 8 days per launch.</p>
-        </div>
-        <div class="work-body">
-          <p class="work-brief">
-            Amazon A+ and PDP assets scaled across markets without losing brand consistency. Vision AI handles composition. Humans approve.
-          </p>
-          <div class="work-fig work-fig--stats">
-            <div class="fig-stat-row">
-              <div class="fig-stat">
-                <span class="fig-stat-num">100+</span>
-                <span class="fig-stat-label">SKUs scaled</span>
-              </div>
-              <div class="fig-stat">
-                <span class="fig-stat-num">11</span>
-                <span class="fig-stat-label">EU markets</span>
-              </div>
-            </div>
-            <span class="fig-caption">85% time reduction per launch</span>
-          </div>
-        </div>
-        <div class="work-foot">
-          <div class="work-meta-list">
-            <span class="work-meta-item">Vision AI</span>
-            <span class="work-meta-item">Brand-aware composition</span>
-            <span class="work-meta-item">Multi-locale translation</span>
-          </div>
-          <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
-        </div>
-      </a>
-
-      <!-- 02 -->
-      <a class="work-row" data-sector="arch" href="work/ai-modeling-assistant.html">
-        <div class="work-head">
-          <div class="work-cap">
-            <span class="work-no">02</span>
-            <span class="work-cat">Architecture &middot; Computational design</span>
-          </div>
-          <h3>AI as a Modeling Assistant</h3>
-          <p class="work-subhead">In Rhino, by prompt, under constraint.</p>
-        </div>
-        <div class="work-body">
-          <p class="work-brief">
-            An architect orchestrates AI inside their existing software. Constraint first, single objective, viewport verified. Geometry stays the source of truth.
-          </p>
-          <div class="work-fig work-fig--stats">
-            <div class="fig-stat-row">
-              <div class="fig-stat">
-                <span class="fig-stat-num">100s</span>
-                <span class="fig-stat-label">Decisions guided</span>
-              </div>
-              <div class="fig-stat">
-                <span class="fig-stat-num">5</span>
-                <span class="fig-stat-label">Constraint principles</span>
-              </div>
-            </div>
-            <span class="fig-caption">Rhino &middot; LLM orchestration</span>
-          </div>
-        </div>
-        <div class="work-foot">
-          <div class="work-meta-list">
-            <span class="work-meta-item">Rhino + LLM</span>
-            <span class="work-meta-item">Constraint-first prompting</span>
-            <span class="work-meta-item">Open-source workflow</span>
-          </div>
-          <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
-        </div>
-      </a>
-
-      <!-- 03 -->
-      <a class="work-row" data-sector="workforce" href="work/careeros.html">
-        <div class="work-head">
-          <div class="work-cap">
-            <span class="work-no">03</span>
-            <span class="work-cat">Workforce &middot; Owned product</span>
-          </div>
-          <h3>CareerOS</h3>
-          <p class="work-subhead">A career is a graph, not a document.</p>
-        </div>
-        <div class="work-body">
-          <p class="work-brief">
-            A career decision platform that turns a static CV into a living career map. AI scores fit against real opportunities, surfaces hidden strengths, and tells you which next step is yours.
-          </p>
-          <div class="work-fig work-fig--stats">
-            <div class="fig-stat-row">
-              <div class="fig-stat">
-                <span class="fig-stat-num">10</span>
-                <span class="fig-stat-label">Career domains</span>
-              </div>
-              <div class="fig-stat">
-                <span class="fig-stat-num">13+</span>
-                <span class="fig-stat-label">AI functions</span>
-              </div>
-            </div>
-            <span class="fig-caption">Static CV &rarr; living career map</span>
-          </div>
-        </div>
-        <div class="work-foot">
-          <div class="work-meta-list">
-            <span class="work-meta-item">Skill mapping</span>
-            <span class="work-meta-item">Pathway design</span>
-            <span class="work-meta-item">Decision support</span>
-          </div>
-          <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
 <!-- ============= HOW WE WORK — animated pipeline ============= -->
 <section class="pipeline" id="how">
   <div class="container">
@@ -2745,6 +2318,144 @@
         <span id="pipePlayLabel">Pause</span>
       </button>
       <span>Click any node to jump &middot; 4s per stage</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============= OUR WORK ============= -->
+<section class="work-section" id="work">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Our work</span>
+        <h2 style="margin-top: 14px;">AI products in production. Not pilots.</h2>
+      </div>
+      <p class="head-aside">
+        A few of the projects we&rsquo;ve worked on.
+      </p>
+    </div>
+
+    <div class="work-tabs">
+      <button class="work-tab is-active" data-tab="all">All sectors</button>
+      <button class="work-tab" data-tab="retail">Retail</button>
+      <button class="work-tab" data-tab="arch">Architecture</button>
+      <button class="work-tab" data-tab="workforce">Workforce</button>
+    </div>
+
+    <div class="work-rows" id="workRows">
+      <!-- 01 -->
+      <a class="work-row" data-sector="retail" href="work/asset-workflow-engine.html">
+        <div class="work-head">
+          <div class="work-cap">
+            <span class="work-no">01</span>
+            <span class="work-cat">Retail &middot; Juvenile products</span>
+          </div>
+          <h3>Asset Workflow Engine</h3>
+          <p class="work-subhead">From 6 weeks to 8 days per launch.</p>
+        </div>
+        <div class="work-body">
+          <p class="work-brief">
+            Amazon A+ and PDP assets scaled across markets without losing brand consistency. Vision AI handles composition. Humans approve.
+          </p>
+          <div class="work-fig work-fig--stats">
+            <div class="fig-stat-row">
+              <div class="fig-stat">
+                <span class="fig-stat-num">100+</span>
+                <span class="fig-stat-label">SKUs scaled</span>
+              </div>
+              <div class="fig-stat">
+                <span class="fig-stat-num">11</span>
+                <span class="fig-stat-label">EU markets</span>
+              </div>
+            </div>
+            <span class="fig-caption">85% time reduction per launch</span>
+          </div>
+        </div>
+        <div class="work-foot">
+          <div class="work-meta-list">
+            <span class="work-meta-item">Vision AI</span>
+            <span class="work-meta-item">Brand-aware composition</span>
+            <span class="work-meta-item">Multi-locale translation</span>
+          </div>
+          <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
+        </div>
+      </a>
+
+      <!-- 02 -->
+      <a class="work-row" data-sector="arch" href="work/ai-modeling-assistant.html">
+        <div class="work-head">
+          <div class="work-cap">
+            <span class="work-no">02</span>
+            <span class="work-cat">Architecture &middot; Computational design</span>
+          </div>
+          <h3>AI as a Modeling Assistant</h3>
+          <p class="work-subhead">In Rhino, by prompt, under constraint.</p>
+        </div>
+        <div class="work-body">
+          <p class="work-brief">
+            An architect orchestrates AI inside their existing software. Constraint first, single objective, viewport verified. Geometry stays the source of truth.
+          </p>
+          <div class="work-fig work-fig--stats">
+            <div class="fig-stat-row">
+              <div class="fig-stat">
+                <span class="fig-stat-num">100s</span>
+                <span class="fig-stat-label">Decisions guided</span>
+              </div>
+              <div class="fig-stat">
+                <span class="fig-stat-num">5</span>
+                <span class="fig-stat-label">Constraint principles</span>
+              </div>
+            </div>
+            <span class="fig-caption">Rhino &middot; LLM orchestration</span>
+          </div>
+        </div>
+        <div class="work-foot">
+          <div class="work-meta-list">
+            <span class="work-meta-item">Rhino + LLM</span>
+            <span class="work-meta-item">Constraint-first prompting</span>
+            <span class="work-meta-item">Open-source workflow</span>
+          </div>
+          <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
+        </div>
+      </a>
+
+      <!-- 03 -->
+      <a class="work-row" data-sector="workforce" href="work/careeros.html">
+        <div class="work-head">
+          <div class="work-cap">
+            <span class="work-no">03</span>
+            <span class="work-cat">Workforce &middot; Owned product</span>
+          </div>
+          <h3>CareerOS</h3>
+          <p class="work-subhead">A career is a graph, not a document.</p>
+        </div>
+        <div class="work-body">
+          <p class="work-brief">
+            A career decision platform that turns a static CV into a living career map. AI scores fit against real opportunities, surfaces hidden strengths, and tells you which next step is yours.
+          </p>
+          <div class="work-fig work-fig--stats">
+            <div class="fig-stat-row">
+              <div class="fig-stat">
+                <span class="fig-stat-num">10</span>
+                <span class="fig-stat-label">Career domains</span>
+              </div>
+              <div class="fig-stat">
+                <span class="fig-stat-num">13+</span>
+                <span class="fig-stat-label">AI functions</span>
+              </div>
+            </div>
+            <span class="fig-caption">Static CV &rarr; living career map</span>
+          </div>
+        </div>
+        <div class="work-foot">
+          <div class="work-meta-list">
+            <span class="work-meta-item">Skill mapping</span>
+            <span class="work-meta-item">Pathway design</span>
+            <span class="work-meta-item">Decision support</span>
+          </div>
+          <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -3190,23 +2901,6 @@
     requestAnimationFrame(() => requestAnimationFrame(alignDiagrams));
 
     go(0);
-  })();
-
-  // ===== How we build — reveal the timeline when it scrolls into view =====
-  (function () {
-    const tl = document.querySelector('.build-timeline');
-    if (!tl) return;
-    tl.classList.add('is-armed');
-    if (!('IntersectionObserver' in window)) { tl.classList.add('is-revealed'); return; }
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach(e => {
-        if (e.isIntersecting) {
-          tl.classList.add('is-revealed');
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.25 });
-    io.observe(tl);
   })();
 
   // Work section tabs
