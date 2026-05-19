@@ -949,17 +949,79 @@
     color: var(--accent);
     margin: 0 0 12px;
   }
-  .micro-list { display: flex; flex-wrap: wrap; gap: 10px 28px; }
-  .micro-item {
-    font-family: var(--font-mono);
-    font-size: clamp(10.5px, 0.85vw, 12px);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    font-weight: 500;
-    transition: color 200ms var(--ease);
+  .micro-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 8px;
   }
-  .micro-item:hover { color: var(--accent); }
+  details.micro-card {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease);
+  }
+  details.micro-card:hover { border-color: var(--accent); }
+  details.micro-card[open] {
+    border-color: var(--accent);
+    box-shadow: 0 4px 16px rgba(31, 31, 31, 0.05);
+  }
+  details.micro-card summary {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 14px;
+    cursor: pointer;
+    list-style: none;
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink);
+    font-weight: 500;
+    line-height: 1.3;
+  }
+  details.micro-card summary::-webkit-details-marker { display: none; }
+  details.micro-card summary::marker { content: ''; }
+  .micro-num {
+    flex-shrink: 0;
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .micro-name { flex: 1; }
+  .micro-plus {
+    flex-shrink: 0;
+    width: 22px; height: 22px;
+    display: grid;
+    place-items: center;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 999px;
+    color: var(--ink-soft);
+    font-size: 14px;
+    line-height: 1;
+    transition: transform 220ms var(--ease), background 220ms var(--ease), color 220ms var(--ease), border-color 220ms var(--ease);
+  }
+  details.micro-card[open] .micro-plus {
+    transform: rotate(45deg);
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--white);
+  }
+  .micro-body {
+    padding: 0 14px 14px;
+  }
+  .micro-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--accent);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .micro-cta .arrow { transition: transform 200ms var(--ease); }
+  .micro-cta:hover .arrow { transform: translateX(3px); }
   .work-row .read-more {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 13.5px;
@@ -2457,76 +2519,526 @@
       <div class="micro-cat" data-accent="pink">
         <h3 class="micro-cat-title">Content & Brand</h3>
         <div class="micro-list">
-          <span class="micro-item">GEO — AI answer visibility</span>
-          <span class="micro-item">Brand compliance checker</span>
-          <span class="micro-item">Content repurposing agent</span>
-          <span class="micro-item">SEO-to-GEO migration agent</span>
-          <span class="micro-item">Brand voice auditor</span>
-          <span class="micro-item">Multi-market localisation agent</span>
-          <span class="micro-item">AI content grader</span>
-          <span class="micro-item">Campaign brief generator</span>
-          <span class="micro-item">Product description generator</span>
-          <span class="micro-item">Social media scheduling agent</span>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">01</span>
+              <span class="micro-name">GEO — AI answer visibility</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">02</span>
+              <span class="micro-name">Brand compliance checker</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">03</span>
+              <span class="micro-name">Content repurposing agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">04</span>
+              <span class="micro-name">SEO-to-GEO migration agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">05</span>
+              <span class="micro-name">Brand voice auditor</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">06</span>
+              <span class="micro-name">Multi-market localisation agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">07</span>
+              <span class="micro-name">AI content grader</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">08</span>
+              <span class="micro-name">Campaign brief generator</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">09</span>
+              <span class="micro-name">Product description generator</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">10</span>
+              <span class="micro-name">Social media scheduling agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
         </div>
       </div>
       <div class="micro-cat" data-accent="magenta">
         <h3 class="micro-cat-title">Knowledge & Documents</h3>
         <div class="micro-list">
-          <span class="micro-item">Document intelligence agent</span>
-          <span class="micro-item">Knowledge assistant</span>
-          <span class="micro-item">Contract review agent</span>
-          <span class="micro-item">Meeting summariser</span>
-          <span class="micro-item">RFP/tender response agent</span>
-          <span class="micro-item">Policy compliance checker</span>
-          <span class="micro-item">Research synthesis agent</span>
-          <span class="micro-item">SOP generator</span>
-          <span class="micro-item">Email triage agent</span>
-          <span class="micro-item">Report generator</span>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">11</span>
+              <span class="micro-name">Document intelligence agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">12</span>
+              <span class="micro-name">Knowledge assistant</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">13</span>
+              <span class="micro-name">Contract review agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">14</span>
+              <span class="micro-name">Meeting summariser</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">15</span>
+              <span class="micro-name">RFP/tender response agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">16</span>
+              <span class="micro-name">Policy compliance checker</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">17</span>
+              <span class="micro-name">Research synthesis agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">18</span>
+              <span class="micro-name">SOP generator</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">19</span>
+              <span class="micro-name">Email triage agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">20</span>
+              <span class="micro-name">Report generator</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
         </div>
       </div>
       <div class="micro-cat" data-accent="purple">
         <h3 class="micro-cat-title">Data</h3>
         <div class="micro-list">
-          <span class="micro-item">Data orchestration agent</span>
-          <span class="micro-item">Data readiness auditor</span>
-          <span class="micro-item">Data quality monitor</span>
-          <span class="micro-item">CRM enrichment agent</span>
-          <span class="micro-item">ETL automation agent</span>
-          <span class="micro-item">Dashboard narrative agent</span>
-          <span class="micro-item">Anomaly detection agent</span>
-          <span class="micro-item">Data lineage tracker</span>
-          <span class="micro-item">Duplicate detection agent</span>
-          <span class="micro-item">Schema mapping agent</span>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">21</span>
+              <span class="micro-name">Data orchestration agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">22</span>
+              <span class="micro-name">Data readiness auditor</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">23</span>
+              <span class="micro-name">Data quality monitor</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">24</span>
+              <span class="micro-name">CRM enrichment agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">25</span>
+              <span class="micro-name">ETL automation agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">26</span>
+              <span class="micro-name">Dashboard narrative agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">27</span>
+              <span class="micro-name">Anomaly detection agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">28</span>
+              <span class="micro-name">Data lineage tracker</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">29</span>
+              <span class="micro-name">Duplicate detection agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">30</span>
+              <span class="micro-name">Schema mapping agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
         </div>
       </div>
       <div class="micro-cat" data-accent="sky">
         <h3 class="micro-cat-title">Customer & Sales</h3>
         <div class="micro-list">
-          <span class="micro-item">Lead routing agent</span>
-          <span class="micro-item">Lead scoring agent</span>
-          <span class="micro-item">Customer support agent</span>
-          <span class="micro-item">Churn prediction agent</span>
-          <span class="micro-item">Onboarding agent</span>
-          <span class="micro-item">Sales proposal agent</span>
-          <span class="micro-item">Competitor monitoring agent</span>
-          <span class="micro-item">Review analysis agent</span>
-          <span class="micro-item">Pricing intelligence agent</span>
-          <span class="micro-item">Win/loss analysis agent</span>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">31</span>
+              <span class="micro-name">Lead routing agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">32</span>
+              <span class="micro-name">Lead scoring agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">33</span>
+              <span class="micro-name">Customer support agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">34</span>
+              <span class="micro-name">Churn prediction agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">35</span>
+              <span class="micro-name">Onboarding agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">36</span>
+              <span class="micro-name">Sales proposal agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">37</span>
+              <span class="micro-name">Competitor monitoring agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">38</span>
+              <span class="micro-name">Review analysis agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">39</span>
+              <span class="micro-name">Pricing intelligence agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">40</span>
+              <span class="micro-name">Win/loss analysis agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
         </div>
       </div>
       <div class="micro-cat" data-accent="blue">
         <h3 class="micro-cat-title">Operations & Workflow</h3>
         <div class="micro-list">
-          <span class="micro-item">Approval routing agent</span>
-          <span class="micro-item">Invoice processing agent</span>
-          <span class="micro-item">HR onboarding agent</span>
-          <span class="micro-item">Compliance monitoring agent</span>
-          <span class="micro-item">Incident triage agent</span>
-          <span class="micro-item">Vendor evaluation agent</span>
-          <span class="micro-item">Project status agent</span>
-          <span class="micro-item">Resource allocation agent</span>
-          <span class="micro-item">Supply chain monitor</span>
-          <span class="micro-item">IT helpdesk agent</span>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">41</span>
+              <span class="micro-name">Approval routing agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">42</span>
+              <span class="micro-name">Invoice processing agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">43</span>
+              <span class="micro-name">HR onboarding agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">44</span>
+              <span class="micro-name">Compliance monitoring agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">45</span>
+              <span class="micro-name">Incident triage agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">46</span>
+              <span class="micro-name">Vendor evaluation agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">47</span>
+              <span class="micro-name">Project status agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">48</span>
+              <span class="micro-name">Resource allocation agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">49</span>
+              <span class="micro-name">Supply chain monitor</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
+          <details class="micro-card">
+            <summary>
+              <span class="micro-num">50</span>
+              <span class="micro-name">IT helpdesk agent</span>
+              <span class="micro-plus" aria-hidden="true">+</span>
+            </summary>
+            <div class="micro-body">
+              <a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a>
+            </div>
+          </details>
         </div>
       </div>
     </div>
