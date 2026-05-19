@@ -688,79 +688,40 @@
       width: auto;
       flex: 0 0 auto;
       grid-template-columns: 1fr;
-      grid-template-rows: auto auto auto;
+      grid-template-rows: auto auto auto auto;
       padding: 48px 20px;
       row-gap: 28px;
     }
     .service-card-h .card-left   { grid-column: 1; grid-row: 1; gap: 32px; }
     .service-card-h .diagram-frame { grid-column: 1; grid-row: 2; margin-top: 0; }
     .service-card-h .body-copy   { grid-column: 1; grid-row: 3; }
+    .service-card-h .service-cta { grid-column: 1; grid-row: 4; }
     .service-card-h h3 { font-size: clamp(28px, 7vw, 40px); max-width: 20ch; }
     .service-card-h .heading-zone { gap: 32px; }
   }
 
-  /* CTA section that sits AFTER the pinned services scroll */
-  .services-cta-section {
-    padding: clamp(48px, 6vw, 80px) 0;
-    border-top: 1px solid var(--hairline);
+  /* Per-card consultation line */
+  .service-card-h .service-cta {
+    grid-column: 1 / -1;
+    grid-row: 3;
+    text-align: center;
+    margin-top: clamp(14px, 1.6vw, 22px);
   }
-
-  /* Don't-see-your-use-case CTA band */
-  .services-aside {
-    margin-top: clamp(40px, 5vw, 72px);
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    gap: clamp(20px, 3vw, 40px);
-    align-items: center;
-    border: 1px solid var(--hairline);
-    background: rgba(242, 242, 242, 0.4);
-    border-radius: 20px;
-    padding: clamp(24px, 3vw, 40px);
-  }
-  .services-aside .aside-label {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink);
-    font-weight: 500;
-    max-width: 24ch;
-  }
-  .services-aside .aside-body {
-    font-family: var(--font-display);
-    font-size: clamp(18px, 1.7vw, 22px);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    line-height: 1.4;
-    color: var(--ink);
-    margin: 0;
-    text-wrap: balance;
-  }
-  .services-aside .aside-cta {
+  .service-cta a {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 14px 22px;
-    border-radius: 999px;
-    border: 1px solid var(--pink);
-    background: var(--pink);
-    color: var(--white);
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 500;
-    white-space: nowrap;
-    transition: background 200ms var(--ease), border-color 200ms var(--ease), color 200ms var(--ease);
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 1px solid var(--hairline-strong);
+    padding-bottom: 3px;
+    transition: color 180ms var(--ease), border-color 180ms var(--ease);
   }
-  .services-aside .aside-cta:hover {
-    background: var(--ink);
-    border-color: var(--ink);
-    color: var(--white);
-  }
-  .services-aside .aside-cta .arrow { transition: transform 180ms var(--ease); }
-  .services-aside .aside-cta:hover .arrow { transform: translateX(3px); }
-  @media (max-width: 760px) {
-    .services-aside { grid-template-columns: 1fr; gap: 16px; }
-    .services-aside .aside-cta { width: fit-content; }
-  }
+  .service-cta a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+  .service-cta a .arrow { transition: transform 200ms var(--ease); }
+  .service-cta a:hover .arrow { transform: translateX(3px); }
 
   /* ===== Constellation transition (Services → Work) =====
      Four brand-coloured hubs (one per service) connected by hairlines.
@@ -1650,6 +1611,7 @@
           </svg>
         </div>
       <p class="body-copy">Off the shelf tools handle the easy 60 percent and break on the rest. We build AI that knows your edge cases, sorts, drafts, routes, and escalates what needs a person. Your team stops firefighting. They start deciding.</p>
+      <p class="service-cta"><a href="#contact">Curious if this fits your team? Book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
 
       <!-- 02 magenta -->
@@ -1748,6 +1710,7 @@
           </svg>
         </div>
       <p class="body-copy">Every market needs its own version. Every adaptation chips away at the brand. We build AI workflows that take one master asset and produce on brand content across markets, channels, and formats. Same voice, same look, faster output.</p>
+      <p class="service-cta"><a href="#contact">Curious if this fits your team? Book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
 
       <!-- 03 blue -->
@@ -1829,6 +1792,7 @@
           </svg>
         </div>
       <p class="body-copy">Most AI projects fail because they were the wrong project. We score your use cases on impact and feasibility, then tell you which three to start with and which to drop. You leave with a prioritised roadmap, not a wishlist.</p>
+      <p class="service-cta"><a href="#contact">Curious if this fits your team? Book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
 
       <!-- 04 purple -->
@@ -1930,6 +1894,7 @@
           </svg>
         </div>
       <p class="body-copy">You already have a stack that works. Most of it. We help you keep what earns its place, retire what does not, and build the AI layer that connects what is left. Retrieval, guardrails, fine tuning, integration, wired into your systems, bound by your rules.</p>
+      <p class="service-cta"><a href="#contact">If none of these fit, or you need something else, book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
     </div>
     <div class="services-nav">
@@ -1938,19 +1903,6 @@
         <button class="step is-active" type="button" data-step="0">01</button><span class="sep"></span><button class="step" type="button" data-step="1">02</button><span class="sep"></span><button class="step" type="button" data-step="2">03</button><span class="sep"></span><button class="step" type="button" data-step="3">04</button>
       </div>
       <button class="services-arrow" type="button" data-dir="1" aria-label="Next service">&rarr;</button>
-    </div>
-  </div>
-</section>
-
-<!-- ============= SERVICES CTA (Don't see your use case?) ============= -->
-<section class="services-cta-section">
-  <div class="container">
-    <div class="services-aside">
-      <span class="aside-label">Don't see your use case?</span>
-      <p class="aside-body">
-        The four above are common patterns, not the limit. Tell us what your work looks like, or let's figure out together where AI fits. First conversation is on us.
-      </p>
-      <a class="aside-cta" href="#contact">Tell us about your work <span class="arrow">&rarr;</span></a>
     </div>
   </div>
 </section>
