@@ -483,10 +483,9 @@
     overflow: hidden;
   }
   .services-pin-head {
-    /* Empty top spacer — just clears the fixed site header.
-       The nav controls now sit below the cards. */
+    /* Clears the fixed site header and carries the section eyebrow. */
     flex: 0 0 auto;
-    height: clamp(44px, 4vw, 60px);
+    padding: 52px 0 clamp(8px, 1vw, 14px);
   }
   .services-nav {
     --svc-accent: var(--pink);
@@ -1346,7 +1345,7 @@
     --accent: var(--pink);
     background: #0E0E10;
     color: rgba(255,255,255,0.85);
-    padding: clamp(56px, 7vw, 96px) 0;
+    padding: clamp(44px, 5vw, 68px) 0;
     position: relative;
     overflow: hidden;
   }
@@ -1372,22 +1371,13 @@
   }
   .pipeline > .container { position: relative; z-index: 1; }
 
-  .pipe-header { margin-bottom: clamp(36px, 4.5vw, 64px); }
+  .pipe-header { margin-bottom: clamp(24px, 3vw, 40px); }
   .pipe-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--font-mono);
     font-size: 11px; font-weight: 500;
     letter-spacing: 0.14em; text-transform: uppercase;
     color: rgba(255,255,255,0.5);
-  }
-  .pipe-title {
-    font-family: var(--font-display);
-    font-size: clamp(32px, 3.6vw, 48px);
-    letter-spacing: -0.02em;
-    line-height: 1.05;
-    font-weight: 600;
-    color: var(--white);
-    margin: 12px 0 0;
   }
 
   .pipe-status-dot {
@@ -1513,15 +1503,15 @@
   .rail-label.is-active { color: var(--accent); }
 
   .stage-display {
-    margin-top: clamp(56px, 6vw, 88px);
+    margin-top: clamp(32px, 4vw, 52px);
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
     gap: clamp(32px, 4vw, 56px);
-    align-items: end;
+    align-items: start;
   }
   .stage-display-main {
     min-width: 0;
-    min-height: clamp(280px, 28vw, 360px);
+    min-height: clamp(190px, 19vw, 250px);
     position: relative;
   }
   .stage-frame {
@@ -1594,6 +1584,7 @@
   .stage-console {
     width: clamp(220px, 22vw, 280px);
     align-self: start;
+    margin-top: clamp(40px, 6vw, 84px);
     border-left: 1px solid rgba(255,255,255,0.10);
     padding-left: clamp(20px, 2vw, 28px);
     font-family: var(--font-mono);
@@ -1630,7 +1621,7 @@
     letter-spacing: 0.10em;
   }
   .pipe-controls {
-    margin-top: clamp(40px, 5vw, 56px);
+    margin-top: clamp(14px, 2vw, 24px);
     display: flex; align-items: center; justify-content: space-between;
     gap: 16px;
     flex-wrap: wrap;
@@ -1791,7 +1782,11 @@
      toggle so the deliverables get real attention, not buried fine print. -->
 <section class="services-section" id="services">
   <div class="services-pin">
-    <div class="services-pin-head"></div>
+    <div class="services-pin-head">
+      <div class="container">
+        <span class="label-mono"><span class="dot"></span>Our services</span>
+      </div>
+    </div>
     <div class="services-track" id="servicesTrack">
 
       <!-- 01 pink -->
@@ -2168,8 +2163,7 @@
 
     <!-- section header -->
     <div class="pipe-header">
-      <span class="pipe-eyebrow"><span class="pipe-status-dot" aria-hidden="true"></span>The process</span>
-      <h2 class="pipe-title">How we work</h2>
+      <span class="pipe-eyebrow"><span class="pipe-status-dot" aria-hidden="true"></span>How we work</span>
     </div>
 
     <!-- the rail -->
