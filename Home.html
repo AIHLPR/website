@@ -512,13 +512,17 @@
     font-size: 15px;
     line-height: 1;
     cursor: pointer;
-    transition: border-color 200ms var(--ease), color 200ms var(--ease), opacity 200ms var(--ease);
+    transition: background 200ms var(--ease), border-color 200ms var(--ease), color 200ms var(--ease), opacity 200ms var(--ease);
   }
   .services-arrow:not(:disabled) {
-    color: var(--svc-accent);
-    border-color: color-mix(in srgb, var(--svc-accent) 38%, var(--hairline-strong));
+    background: var(--svc-accent);
+    border-color: var(--svc-accent);
+    color: var(--white);
   }
-  .services-arrow:not(:disabled):hover { border-color: var(--svc-accent); }
+  .services-arrow:not(:disabled):hover {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
   .services-arrow:disabled {
     opacity: 0.3;
     cursor: default;
@@ -863,6 +867,7 @@
     text-decoration: none;
     color: inherit;
   }
+  .work-row:first-child { border-top: none; }
   .work-row:last-child { border-bottom: 1px solid var(--hairline); }
   .work-row:nth-child(1) { --accent: var(--pink); }
   .work-row:nth-child(2) { --accent: var(--magenta); }
@@ -979,6 +984,80 @@
     .work-body { grid-template-columns: 1fr; gap: 22px; }
     .work-row { padding: 34px 0; }
   }
+
+  /* ===== How we build — vertical stepper ===== */
+  .build-section { border-top: 1px solid var(--hairline); }
+  .build-steps { list-style: none; margin: 0; padding: 0; }
+  .build-step {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: clamp(20px, 3vw, 44px);
+  }
+  .build-marker { position: relative; display: flex; justify-content: center; }
+  .build-marker::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 1px;
+    background: var(--hairline-strong);
+    transform: translateX(-50%);
+  }
+  .build-step:first-child .build-marker::before { top: 10px; }
+  .build-step:last-child .build-marker::before { bottom: auto; height: 11px; }
+  .build-dot {
+    position: relative;
+    z-index: 1;
+    width: 13px;
+    height: 13px;
+    margin-top: 4px;
+    border-radius: 999px;
+    background: var(--ink);
+    box-shadow: 0 0 0 5px var(--white);
+  }
+  .build-body { padding-bottom: clamp(34px, 4.5vw, 60px); }
+  .build-step:last-child .build-body { padding-bottom: 0; }
+  .build-head {
+    display: flex;
+    align-items: baseline;
+    gap: 14px;
+    flex-wrap: wrap;
+    margin-bottom: 12px;
+  }
+  .build-no {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+  }
+  .build-step h3 {
+    font-family: var(--font-display);
+    font-size: clamp(19px, 1.9vw, 25px);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  .build-body p {
+    color: var(--ink-soft);
+    font-size: clamp(15px, 1.1vw, 16px);
+    line-height: 1.65;
+    max-width: 62ch;
+  }
+  .build-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--pink);
+    text-decoration: none;
+  }
+  .build-cta .arrow { transition: transform 220ms var(--ease); }
+  .build-cta:hover .arrow { transform: translateX(4px); }
 
   /* ===== Stack ===== */
   .stack-section { background: var(--surface-2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
@@ -1876,7 +1955,87 @@
   </div>
 </section>
 
-<!-- ============= READINESS CTA (removed per user request) ============= -->
+<!-- ============= HOW WE BUILD ============= -->
+<section class="build-section" id="build">
+  <div class="container">
+    <div class="section-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>How we build</span>
+        <h2 style="margin-top: 14px;">Design the structure, then the intelligence.</h2>
+      </div>
+      <p class="head-aside">Six steps. In order.</p>
+    </div>
+
+    <ol class="build-steps">
+      <li class="build-step">
+        <div class="build-marker"><span class="build-dot"></span></div>
+        <div class="build-body">
+          <div class="build-head">
+            <span class="build-no">00</span>
+            <h3>Feasibility &amp; Compliance</h3>
+          </div>
+          <p>Before anything starts, we ask the questions that sink projects later. Is it legal? Can it actually be built? Do you have the data, the people and the budget for it? And the honest one: do you even need AI, or would something simpler do the job just as well? Far better to know that now than six months in.</p>
+          <a class="build-cta" href="#contact">Most clients start here. Book a readiness check <span class="arrow">&rarr;</span></a>
+        </div>
+      </li>
+
+      <li class="build-step">
+        <div class="build-marker"><span class="build-dot"></span></div>
+        <div class="build-body">
+          <div class="build-head">
+            <span class="build-no">01</span>
+            <h3>Workflow Mapping</h3>
+          </div>
+          <p>We map how the work really moves before we touch a model or write a line of code. Who decides what, where the knowledge actually sits, what keeps slowing everyone down. That is how we find what AI should take on, and what it is better off leaving alone.</p>
+        </div>
+      </li>
+
+      <li class="build-step">
+        <div class="build-marker"><span class="build-dot"></span></div>
+        <div class="build-body">
+          <div class="build-head">
+            <span class="build-no">02</span>
+            <h3>Data Cleaning</h3>
+          </div>
+          <p>Your AI is only ever as good as the data sitting under it. We go through what you already have, sort out the mess, and get it into a shape worth building on. Get this right and the models stay simpler, the costs stay lower, and the whole thing still works a year later.</p>
+        </div>
+      </li>
+
+      <li class="build-step">
+        <div class="build-marker"><span class="build-dot"></span></div>
+        <div class="build-body">
+          <div class="build-head">
+            <span class="build-no">03</span>
+            <h3>Fine-tuning</h3>
+          </div>
+          <p>When an off the shelf model keeps falling short, we train one on your data and the way your people actually write and talk. It learns the awkward cases that only ever show up in your line of work, so it fits your world instead of a generic average of everyone else's.</p>
+        </div>
+      </li>
+
+      <li class="build-step">
+        <div class="build-marker"><span class="build-dot"></span></div>
+        <div class="build-body">
+          <div class="build-head">
+            <span class="build-no">04</span>
+            <h3>RAG</h3>
+          </div>
+          <p>We build the part that decides where answers come from: your documents, your databases, the knowledge your team has built up over years. We structure it so the system pulls the exact right thing, not something that just looks close enough.</p>
+        </div>
+      </li>
+
+      <li class="build-step">
+        <div class="build-marker"><span class="build-dot"></span></div>
+        <div class="build-body">
+          <div class="build-head">
+            <span class="build-no">05</span>
+            <h3>Evaluation &amp; Guardrails</h3>
+          </div>
+          <p>We agree on what a good answer looks like before a single thing ships, then we keep watching once it is live. Every response stays inside limits we set on purpose. Every failure gets logged. Nothing runs without a person able to see exactly what it is doing.</p>
+        </div>
+      </li>
+    </ol>
+  </div>
+</section>
 
 <!-- ============= OUR WORK ============= -->
 <section class="work-section" id="work">
