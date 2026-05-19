@@ -946,79 +946,139 @@
     .work-row { padding: 34px 0; }
   }
 
-  /* ===== How we build — vertical stepper ===== */
+  /* ===== How we build — horizontal zigzag timeline ===== */
   .build-section { border-top: 1px solid var(--hairline); }
-  .build-steps { list-style: none; margin: 0; padding: 0; }
-  .build-step {
+  .build-timeline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: grid;
-    grid-template-columns: 22px 1fr;
-    gap: clamp(20px, 3vw, 44px);
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: auto 60px auto;
+    column-gap: clamp(12px, 1.5vw, 28px);
   }
-  .build-marker { position: relative; display: flex; justify-content: center; }
-  .build-marker::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    width: 1px;
-    background: var(--hairline-strong);
-    transform: translateX(-50%);
+  .build-stage { display: contents; }
+  .build-stage:nth-child(1) { --accent: var(--pink); }
+  .build-stage:nth-child(2) { --accent: var(--magenta); }
+  .build-stage:nth-child(3) { --accent: var(--purple); }
+  .build-stage:nth-child(4) { --accent: var(--lavender); }
+  .build-stage:nth-child(5) { --accent: var(--sky); }
+  .build-stage:nth-child(6) { --accent: var(--blue); }
+  .build-stage:nth-child(1) > * { grid-column: 1; }
+  .build-stage:nth-child(2) > * { grid-column: 2; }
+  .build-stage:nth-child(3) > * { grid-column: 3; }
+  .build-stage:nth-child(4) > * { grid-column: 4; }
+  .build-stage:nth-child(5) > * { grid-column: 5; }
+  .build-stage:nth-child(6) > * { grid-column: 6; }
+
+  .build-axis {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    align-self: center;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--gradient);
   }
-  .build-step:first-child .build-marker::before { top: 10px; }
-  .build-step:last-child .build-marker::before { bottom: auto; height: 11px; }
-  .build-dot {
+
+  .build-node {
+    grid-row: 2;
+    align-self: center;
+    justify-self: center;
     position: relative;
     z-index: 1;
-    width: 13px;
-    height: 13px;
-    margin-top: 4px;
-    border-radius: 999px;
-    background: var(--ink);
+    width: 14px;
+    height: 14px;
+    border-radius: 3px;
+    background: var(--accent);
     box-shadow: 0 0 0 5px var(--white);
+    transition: transform 200ms var(--ease);
   }
-  .build-body { padding-bottom: clamp(20px, 2.6vw, 34px); }
-  .build-step:last-child .build-body { padding-bottom: 0; }
-  .build-head {
+  .build-node::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    width: 0;
+    height: 30px;
+    border-left: 1px dotted var(--accent);
+    transform: translateX(-50%);
+  }
+  .build-stage:hover .build-node { transform: scale(1.16); }
+
+  .build-card {
     display: flex;
-    align-items: baseline;
-    gap: 14px;
-    flex-wrap: wrap;
-    margin-bottom: 7px;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 6px;
   }
-  .build-no {
+  .build-stage-label {
     font-family: var(--font-mono);
-    font-size: 13px;
+    font-size: 11px;
     font-weight: 600;
-    letter-spacing: 0.08em;
-    color: var(--ink-muted);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
   }
-  .build-step h3 {
+  .build-card h3 {
     font-family: var(--font-display);
-    font-size: clamp(19px, 1.9vw, 25px);
+    font-size: clamp(17px, 1.7vw, 21px);
     line-height: 1.15;
     letter-spacing: -0.02em;
     font-weight: 600;
     color: var(--ink);
   }
-  .build-body p {
+  .build-card p {
     color: var(--ink-soft);
-    font-size: clamp(15px, 1.1vw, 16px);
-    line-height: 1.65;
-    max-width: 62ch;
+    font-size: 13.5px;
+    line-height: 1.5;
   }
+
+  /* odd stages — card above the axis */
+  .build-stage:nth-child(odd) .build-card {
+    grid-row: 1;
+    align-self: end;
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 12px;
+  }
+  .build-stage:nth-child(odd) .build-node::before { bottom: 100%; }
+  /* even stages — card below the axis */
+  .build-stage:nth-child(even) .build-card {
+    grid-row: 3;
+    align-self: start;
+    border-top: 2px solid var(--accent);
+    padding-top: 12px;
+  }
+  .build-stage:nth-child(even) .build-node::before { top: 100%; }
+
   .build-cta {
     display: inline-flex;
     align-items: center;
-    gap: 8px;
-    margin-top: 14px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--pink);
+    gap: 7px;
+    margin-top: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent);
     text-decoration: none;
   }
   .build-cta .arrow { transition: transform 220ms var(--ease); }
   .build-cta:hover .arrow { transform: translateX(4px); }
+
+  @media (max-width: 900px) {
+    .build-timeline { display: flex; flex-direction: column; gap: 22px; }
+    .build-stage { display: flex; }
+    .build-axis,
+    .build-node { display: none; }
+    .build-card {
+      align-items: flex-start;
+      text-align: left;
+      border: 0 !important;
+      border-left: 2px solid var(--accent) !important;
+      padding: 2px 0 2px 18px !important;
+    }
+  }
 
   /* ===== Stack ===== */
   .stack-section { background: var(--surface-2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
@@ -1918,73 +1978,63 @@
       <p class="head-aside">Six steps. In order.</p>
     </div>
 
-    <ol class="build-steps">
-      <li class="build-step">
-        <div class="build-marker"><span class="build-dot"></span></div>
-        <div class="build-body">
-          <div class="build-head">
-            <span class="build-no">00</span>
-            <h3>Feasibility &amp; Compliance</h3>
-          </div>
+    <ol class="build-timeline">
+      <li class="build-stage">
+        <div class="build-card">
+          <span class="build-stage-label">Stage 00</span>
+          <h3>Feasibility &amp; Compliance</h3>
           <p>Is it legal? Can it be built? Do you even need it? We find out first.</p>
-          <a class="build-cta" href="#contact">Most clients start here. Book a readiness check <span class="arrow">&rarr;</span></a>
+          <a class="build-cta" href="#contact">Book a readiness check <span class="arrow">&rarr;</span></a>
         </div>
+        <span class="build-node"></span>
       </li>
 
-      <li class="build-step">
-        <div class="build-marker"><span class="build-dot"></span></div>
-        <div class="build-body">
-          <div class="build-head">
-            <span class="build-no">01</span>
-            <h3>Workflow Mapping</h3>
-          </div>
+      <li class="build-stage">
+        <div class="build-card">
+          <span class="build-stage-label">Stage 01</span>
+          <h3>Workflow Mapping</h3>
           <p>We map how work really moves before we build anything.</p>
         </div>
+        <span class="build-node"></span>
       </li>
 
-      <li class="build-step">
-        <div class="build-marker"><span class="build-dot"></span></div>
-        <div class="build-body">
-          <div class="build-head">
-            <span class="build-no">02</span>
-            <h3>Data Cleaning</h3>
-          </div>
+      <li class="build-stage">
+        <div class="build-card">
+          <span class="build-stage-label">Stage 02</span>
+          <h3>Data Cleaning</h3>
           <p>We get your data into shape before any model touches it.</p>
         </div>
+        <span class="build-node"></span>
       </li>
 
-      <li class="build-step">
-        <div class="build-marker"><span class="build-dot"></span></div>
-        <div class="build-body">
-          <div class="build-head">
-            <span class="build-no">03</span>
-            <h3>Fine-tuning</h3>
-          </div>
+      <li class="build-stage">
+        <div class="build-card">
+          <span class="build-stage-label">Stage 03</span>
+          <h3>Fine-tuning</h3>
           <p>When a general model falls short, we train one on your world.</p>
         </div>
+        <span class="build-node"></span>
       </li>
 
-      <li class="build-step">
-        <div class="build-marker"><span class="build-dot"></span></div>
-        <div class="build-body">
-          <div class="build-head">
-            <span class="build-no">04</span>
-            <h3>RAG</h3>
-          </div>
+      <li class="build-stage">
+        <div class="build-card">
+          <span class="build-stage-label">Stage 04</span>
+          <h3>RAG</h3>
           <p>We design where answers come from, so the system finds the right one.</p>
         </div>
+        <span class="build-node"></span>
       </li>
 
-      <li class="build-step">
-        <div class="build-marker"><span class="build-dot"></span></div>
-        <div class="build-body">
-          <div class="build-head">
-            <span class="build-no">05</span>
-            <h3>Evaluation &amp; Guardrails</h3>
-          </div>
+      <li class="build-stage">
+        <div class="build-card">
+          <span class="build-stage-label">Stage 05</span>
+          <h3>Evaluation &amp; Guardrails</h3>
           <p>We set what good looks like, draw hard limits, and watch what ships.</p>
         </div>
+        <span class="build-node"></span>
       </li>
+
+      <li class="build-axis" aria-hidden="true"></li>
     </ol>
   </div>
 </section>
