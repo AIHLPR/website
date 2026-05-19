@@ -927,6 +927,39 @@
     color: var(--ink-muted);
     font-weight: 500;
   }
+
+  /* Microservices panel inside the work section. */
+  .work-microservices {
+    display: none;
+    flex-direction: column;
+    gap: clamp(26px, 3.2vw, 40px);
+    padding: clamp(8px, 1vw, 16px) 0;
+  }
+  .micro-cat { --accent: var(--pink); }
+  .micro-cat[data-accent="magenta"] { --accent: var(--magenta); }
+  .micro-cat[data-accent="purple"]  { --accent: var(--purple); }
+  .micro-cat[data-accent="sky"]     { --accent: var(--sky); }
+  .micro-cat[data-accent="blue"]    { --accent: var(--blue); }
+  .micro-cat-title {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 12px;
+  }
+  .micro-list { display: flex; flex-wrap: wrap; gap: 10px 28px; }
+  .micro-item {
+    font-family: var(--font-mono);
+    font-size: clamp(10.5px, 0.85vw, 12px);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+    transition: color 200ms var(--ease);
+  }
+  .micro-item:hover { color: var(--accent); }
   .work-row .read-more {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 13.5px;
@@ -2299,10 +2332,10 @@
     </div>
 
     <div class="work-tabs">
-      <button class="work-tab is-active" data-tab="all">All sectors</button>
-      <button class="work-tab" data-tab="retail">Retail</button>
+      <button class="work-tab is-active" data-tab="retail">Retail</button>
       <button class="work-tab" data-tab="arch">Architecture</button>
-      <button class="work-tab" data-tab="workforce">Workforce</button>
+      <button class="work-tab" data-tab="resources">Resources</button>
+      <button class="work-tab" data-tab="microservices">Microservices</button>
     </div>
 
     <div class="work-rows" id="workRows">
@@ -2383,11 +2416,11 @@
       </a>
 
       <!-- 03 -->
-      <a class="work-row" data-sector="workforce" href="work/careeros.html">
+      <a class="work-row" data-sector="resources" href="work/careeros.html">
         <div class="work-head">
           <div class="work-cap">
             <span class="work-no">03</span>
-            <span class="work-cat">Workforce &middot; Owned product</span>
+            <span class="work-cat">Resources &middot; Owned product</span>
           </div>
           <h3>CareerOS</h3>
           <p class="work-subhead">A career is a graph, not a document.</p>
@@ -2419,6 +2452,83 @@
           <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
         </div>
       </a>
+    </div>
+    <div class="work-microservices" data-tab="microservices">
+      <div class="micro-cat" data-accent="pink">
+        <h3 class="micro-cat-title">Content & Brand</h3>
+        <div class="micro-list">
+          <span class="micro-item">GEO — AI answer visibility</span>
+          <span class="micro-item">Brand compliance checker</span>
+          <span class="micro-item">Content repurposing agent</span>
+          <span class="micro-item">SEO-to-GEO migration agent</span>
+          <span class="micro-item">Brand voice auditor</span>
+          <span class="micro-item">Multi-market localisation agent</span>
+          <span class="micro-item">AI content grader</span>
+          <span class="micro-item">Campaign brief generator</span>
+          <span class="micro-item">Product description generator</span>
+          <span class="micro-item">Social media scheduling agent</span>
+        </div>
+      </div>
+      <div class="micro-cat" data-accent="magenta">
+        <h3 class="micro-cat-title">Knowledge & Documents</h3>
+        <div class="micro-list">
+          <span class="micro-item">Document intelligence agent</span>
+          <span class="micro-item">Knowledge assistant</span>
+          <span class="micro-item">Contract review agent</span>
+          <span class="micro-item">Meeting summariser</span>
+          <span class="micro-item">RFP/tender response agent</span>
+          <span class="micro-item">Policy compliance checker</span>
+          <span class="micro-item">Research synthesis agent</span>
+          <span class="micro-item">SOP generator</span>
+          <span class="micro-item">Email triage agent</span>
+          <span class="micro-item">Report generator</span>
+        </div>
+      </div>
+      <div class="micro-cat" data-accent="purple">
+        <h3 class="micro-cat-title">Data</h3>
+        <div class="micro-list">
+          <span class="micro-item">Data orchestration agent</span>
+          <span class="micro-item">Data readiness auditor</span>
+          <span class="micro-item">Data quality monitor</span>
+          <span class="micro-item">CRM enrichment agent</span>
+          <span class="micro-item">ETL automation agent</span>
+          <span class="micro-item">Dashboard narrative agent</span>
+          <span class="micro-item">Anomaly detection agent</span>
+          <span class="micro-item">Data lineage tracker</span>
+          <span class="micro-item">Duplicate detection agent</span>
+          <span class="micro-item">Schema mapping agent</span>
+        </div>
+      </div>
+      <div class="micro-cat" data-accent="sky">
+        <h3 class="micro-cat-title">Customer & Sales</h3>
+        <div class="micro-list">
+          <span class="micro-item">Lead routing agent</span>
+          <span class="micro-item">Lead scoring agent</span>
+          <span class="micro-item">Customer support agent</span>
+          <span class="micro-item">Churn prediction agent</span>
+          <span class="micro-item">Onboarding agent</span>
+          <span class="micro-item">Sales proposal agent</span>
+          <span class="micro-item">Competitor monitoring agent</span>
+          <span class="micro-item">Review analysis agent</span>
+          <span class="micro-item">Pricing intelligence agent</span>
+          <span class="micro-item">Win/loss analysis agent</span>
+        </div>
+      </div>
+      <div class="micro-cat" data-accent="blue">
+        <h3 class="micro-cat-title">Operations & Workflow</h3>
+        <div class="micro-list">
+          <span class="micro-item">Approval routing agent</span>
+          <span class="micro-item">Invoice processing agent</span>
+          <span class="micro-item">HR onboarding agent</span>
+          <span class="micro-item">Compliance monitoring agent</span>
+          <span class="micro-item">Incident triage agent</span>
+          <span class="micro-item">Vendor evaluation agent</span>
+          <span class="micro-item">Project status agent</span>
+          <span class="micro-item">Resource allocation agent</span>
+          <span class="micro-item">Supply chain monitor</span>
+          <span class="micro-item">IT helpdesk agent</span>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -2866,18 +2976,23 @@
     go(0);
   })();
 
-  // Work section tabs
-  document.querySelectorAll('.work-tab').forEach(tab => {
-    tab.addEventListener('click', () => {
-      document.querySelectorAll('.work-tab').forEach(t => t.classList.remove('is-active'));
-      tab.classList.add('is-active');
-      const sector = tab.dataset.tab;
-      document.querySelectorAll('.work-row').forEach(row => {
-        const show = sector === 'all' || row.dataset.sector === sector;
-        row.style.display = show ? '' : 'none';
+  // Work section tabs (sector filter + microservices panel)
+  (function () {
+    const tabs = document.querySelectorAll('.work-tab');
+    const rows = document.querySelectorAll('.work-row');
+    const microPanel = document.querySelector('.work-microservices');
+    function activate(sector) {
+      tabs.forEach(t => t.classList.toggle('is-active', t.dataset.tab === sector));
+      const isMicro = sector === 'microservices';
+      rows.forEach(row => {
+        row.style.display = (!isMicro && row.dataset.sector === sector) ? '' : 'none';
       });
-    });
-  });
+      if (microPanel) microPanel.style.display = isMicro ? 'flex' : 'none';
+    }
+    tabs.forEach(tab => tab.addEventListener('click', () => activate(tab.dataset.tab)));
+    const initial = document.querySelector('.work-tab.is-active');
+    if (initial) activate(initial.dataset.tab);
+  })();
 
   // Contact form (mailto)
   function handleContact(e) {
