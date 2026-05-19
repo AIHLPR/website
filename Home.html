@@ -494,7 +494,7 @@
     align-items: center;
     justify-content: center;
     gap: 14px;
-    padding: clamp(4px, 0.8vw, 10px) clamp(40px, 6vw, 96px) clamp(12px, 1.6vw, 18px);
+    padding: clamp(4px, 0.8vw, 10px) clamp(40px, 6vw, 96px) clamp(36px, 5vw, 72px);
   }
   .services-arrow {
     display: inline-flex;
@@ -1372,23 +1372,24 @@
   }
   .pipeline > .container { position: relative; z-index: 1; }
 
-  .pipe-index {
-    display: grid;
-    grid-template-columns: auto 1fr auto;
-    align-items: center;
-    gap: clamp(16px, 2vw, 28px);
+  .pipe-header { margin-bottom: clamp(36px, 4.5vw, 64px); }
+  .pipe-eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    margin-bottom: clamp(40px, 5vw, 64px);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
   }
-  .pipe-index .left, .pipe-index .right {
-    display: inline-flex; align-items: center; gap: 12px;
-    white-space: nowrap;
+  .pipe-title {
+    font-family: var(--font-display);
+    font-size: clamp(32px, 3.6vw, 48px);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    font-weight: 600;
+    color: var(--white);
+    margin: 12px 0 0;
   }
+
   .pipe-status-dot {
     width: 7px; height: 7px;
     border-radius: 999px;
@@ -1401,24 +1402,6 @@
     70%  { box-shadow: 0 0 0 10px transparent; }
     100% { box-shadow: 0 0 0 0   transparent; }
   }
-  .pipe-index strong { color: var(--white); font-weight: 500; }
-  .pipe-progress {
-    height: 2px;
-    background: rgba(255,255,255,0.08);
-    position: relative;
-    border-radius: 2px;
-    overflow: hidden;
-  }
-  .pipe-progress::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: var(--p, 0%);
-    background: var(--accent);
-    transition: width 80ms linear;
-    box-shadow: 0 0 8px color-mix(in oklab, var(--accent) 70%, transparent);
-  }
-
   .rail {
     position: relative;
     height: 56px;
@@ -1581,12 +1564,12 @@
   }
   .stage-title {
     font-family: var(--font-display);
-    font-size: clamp(40px, 5.4vw, 78px);
-    line-height: 0.98;
-    letter-spacing: -0.03em;
+    font-size: clamp(26px, 2.8vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
     font-weight: 600;
     color: var(--white);
-    max-width: 16ch;
+    max-width: 18ch;
     text-wrap: balance;
   }
   .stage-desc {
@@ -1610,6 +1593,7 @@
   }
   .stage-console {
     width: clamp(220px, 22vw, 280px);
+    align-self: start;
     border-left: 1px solid rgba(255,255,255,0.10);
     padding-left: clamp(20px, 2vw, 28px);
     font-family: var(--font-mono);
@@ -1683,7 +1667,7 @@
   @media (prefers-reduced-motion: reduce) {
     .pipe-status-dot, .rail-stop.is-active .rail-node::before,
     .stage-cursor { animation: none; }
-    .rail-head, .pipe-progress::before { transition: none; }
+    .rail-head { transition: none; }
   }
 </style>
 </head>
@@ -2182,16 +2166,10 @@
 <section class="pipeline" id="how">
   <div class="container">
 
-    <!-- index strip -->
-    <div class="pipe-index">
-      <span class="left">
-        <span class="pipe-status-dot" aria-hidden="true"></span>
-        <span>Auto &middot; Stage <strong id="pipeIdx">01</strong>/06</span>
-      </span>
-      <span class="pipe-progress" aria-hidden="true"></span>
-      <span class="right">
-        <span>tick <strong id="pipeTick">0000</strong></span>
-      </span>
+    <!-- section header -->
+    <div class="pipe-header">
+      <span class="pipe-eyebrow"><span class="pipe-status-dot" aria-hidden="true"></span>The process</span>
+      <h2 class="pipe-title">How we work</h2>
     </div>
 
     <!-- the rail -->
@@ -2317,7 +2295,6 @@
         </span>
         <span id="pipePlayLabel">Pause</span>
       </button>
-      <span>Click any node to jump &middot; 4s per stage</span>
     </div>
   </div>
 </section>
@@ -2946,10 +2923,7 @@
     const STAGE_MS = 4000;
 
     const head        = document.getElementById('pipeHead');
-    const idxEl       = document.getElementById('pipeIdx');
-    const tickEl      = document.getElementById('pipeTick');
     const uptimeEl    = document.getElementById('consoleUptime');
-    const progressEl  = root.querySelector('.pipe-progress');
     const stops       = [...root.querySelectorAll('.rail-stop')];
     const labels      = [...root.querySelectorAll('.rail-label')];
     const frames      = [...root.querySelectorAll('.stage-frame')];
@@ -2964,8 +2938,6 @@
     let current = 0;
     let playing = true;
     let stageStartedAt = performance.now();
-    let lastTickStamp = performance.now();
-    let tickCount = 0;
     let bootStamp = performance.now();
 
     const pad = (n, w) => String(n).padStart(w, '0');
@@ -2996,8 +2968,6 @@
         else if (i === current) st.textContent = 'run';
         else                    st.textContent = 'idle';
       });
-
-      idxEl.textContent = pad(current + 1, 2);
     }
 
     function advance() {
@@ -3012,24 +2982,13 @@
     }
 
     function frame(t) {
-      if (t - lastTickStamp > 100) {
-        tickCount += 1;
-        tickEl.textContent = pad(tickCount, 4);
-        lastTickStamp = t;
-      }
-
       const elapsedSec = Math.floor((t - bootStamp) / 1000);
       const hh = pad(Math.floor(elapsedSec / 3600), 2);
       const mm = pad(Math.floor((elapsedSec % 3600) / 60), 2);
       const ss = pad(elapsedSec % 60, 2);
       if (uptimeEl) uptimeEl.textContent = `${hh}:${mm}:${ss}`;
 
-      if (playing) {
-        const stageElapsed = t - stageStartedAt;
-        const p = Math.min(1, stageElapsed / STAGE_MS);
-        progressEl.style.setProperty('--p', (p * 100).toFixed(2) + '%');
-        if (stageElapsed >= STAGE_MS) advance();
-      }
+      if (playing && t - stageStartedAt >= STAGE_MS) advance();
 
       requestAnimationFrame(frame);
     }
