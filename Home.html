@@ -512,13 +512,17 @@
     font-size: 15px;
     line-height: 1;
     cursor: pointer;
-    transition: border-color 200ms var(--ease), color 200ms var(--ease), opacity 200ms var(--ease);
+    transition: background 200ms var(--ease), border-color 200ms var(--ease), color 200ms var(--ease), opacity 200ms var(--ease);
   }
   .services-arrow:not(:disabled) {
-    color: var(--svc-accent);
-    border-color: color-mix(in srgb, var(--svc-accent) 38%, var(--hairline-strong));
+    background: var(--svc-accent);
+    border-color: var(--svc-accent);
+    color: var(--white);
   }
-  .services-arrow:not(:disabled):hover { border-color: var(--svc-accent); }
+  .services-arrow:not(:disabled):hover {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
   .services-arrow:disabled {
     opacity: 0.3;
     cursor: default;
