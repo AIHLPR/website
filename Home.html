@@ -2942,7 +2942,7 @@
 
       root.style.setProperty('--accent', stage.accent);
 
-      const pct = (current / (N - 1)) * 100;
+      const pct = ((current + 0.5) / N) * 100;
       head.style.setProperty('--head-x', pct + '%');
 
       stops.forEach((s, i) => {
