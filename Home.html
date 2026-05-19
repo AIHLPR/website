@@ -947,15 +947,19 @@
   }
 
   /* ===== How we build — horizontal zigzag timeline ===== */
-  .build-section { border-top: 1px solid var(--hairline); }
+  .build-section {
+    border-top: 1px solid var(--hairline);
+    padding-top: clamp(22px, 3vw, 40px);
+  }
+  .build-section .section-head { margin-bottom: clamp(18px, 2.4vw, 32px); }
   .build-timeline {
     list-style: none;
     margin: 0;
     padding: 0;
     display: grid;
     grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: auto 60px auto;
-    column-gap: clamp(12px, 1.5vw, 28px);
+    grid-template-rows: auto 48px auto;
+    column-gap: clamp(10px, 1vw, 20px);
   }
   .build-stage { display: contents; }
   .build-stage:nth-child(1) { --accent: var(--pink); }
@@ -971,13 +975,32 @@
   .build-stage:nth-child(5) > * { grid-column: 5; }
   .build-stage:nth-child(6) > * { grid-column: 6; }
 
+  /* gradient axis with a travelling shine */
   .build-axis {
     grid-row: 2;
     grid-column: 1 / -1;
     align-self: center;
+    position: relative;
     height: 2px;
     border-radius: 2px;
     background: var(--gradient);
+    overflow: hidden;
+    transform-origin: left center;
+    transition: transform 1100ms var(--ease);
+  }
+  .build-axis::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 130px;
+    left: -130px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.92), transparent);
+    animation: build-travel 4.5s linear infinite;
+  }
+  @keyframes build-travel {
+    from { left: -130px; }
+    to   { left: 100%; }
   }
 
   .build-node {
@@ -986,30 +1009,30 @@
     justify-self: center;
     position: relative;
     z-index: 1;
-    width: 14px;
-    height: 14px;
-    border-radius: 3px;
+    width: 15px;
+    height: 15px;
+    border-radius: 999px;
     background: var(--accent);
     box-shadow: 0 0 0 5px var(--white);
-    transition: transform 200ms var(--ease);
+    transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), opacity 400ms var(--ease);
   }
   .build-node::before {
     content: "";
     position: absolute;
     left: 50%;
     width: 0;
-    height: 30px;
-    border-left: 1px dotted var(--accent);
+    height: 24px;
+    border-left: 1px solid var(--accent);
     transform: translateX(-50%);
   }
-  .build-stage:hover .build-node { transform: scale(1.16); }
 
   .build-card {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    gap: 6px;
+    gap: 5px;
+    transition: transform 240ms var(--ease), opacity 600ms var(--ease);
   }
   .build-stage-label {
     font-family: var(--font-mono);
@@ -1037,16 +1060,14 @@
   .build-stage:nth-child(odd) .build-card {
     grid-row: 1;
     align-self: end;
-    border-bottom: 2px solid var(--accent);
-    padding-bottom: 12px;
+    padding-bottom: 16px;
   }
   .build-stage:nth-child(odd) .build-node::before { bottom: 100%; }
   /* even stages — card below the axis */
   .build-stage:nth-child(even) .build-card {
     grid-row: 3;
     align-self: start;
-    border-top: 2px solid var(--accent);
-    padding-top: 12px;
+    padding-top: 16px;
   }
   .build-stage:nth-child(even) .build-node::before { top: 100%; }
 
@@ -1066,18 +1087,47 @@
   .build-cta .arrow { transition: transform 220ms var(--ease); }
   .build-cta:hover .arrow { transform: translateX(4px); }
 
+  /* scroll reveal — armed by JS, released when the section enters view */
+  .build-timeline.is-armed .build-axis { transform: scaleX(0); }
+  .build-timeline.is-armed .build-card { opacity: 0; }
+  .build-timeline.is-armed .build-node { opacity: 0; }
+  .build-timeline.is-revealed .build-axis { transform: scaleX(1); }
+  .build-timeline.is-revealed .build-card { opacity: 1; }
+  .build-timeline.is-revealed .build-node { opacity: 1; }
+  .build-timeline.is-revealed .build-stage:nth-child(1) > * { transition-delay: 120ms; }
+  .build-timeline.is-revealed .build-stage:nth-child(2) > * { transition-delay: 270ms; }
+  .build-timeline.is-revealed .build-stage:nth-child(3) > * { transition-delay: 420ms; }
+  .build-timeline.is-revealed .build-stage:nth-child(4) > * { transition-delay: 570ms; }
+  .build-timeline.is-revealed .build-stage:nth-child(5) > * { transition-delay: 720ms; }
+  .build-timeline.is-revealed .build-stage:nth-child(6) > * { transition-delay: 870ms; }
+
+  /* hover — node grows and glows, card eases away from the axis */
+  .build-stage:hover .build-node {
+    transform: scale(1.32);
+    box-shadow: 0 0 0 5px var(--white), 0 0 16px var(--accent);
+  }
+  .build-stage:nth-child(odd):hover .build-card { transform: translateY(-4px); }
+  .build-stage:nth-child(even):hover .build-card { transform: translateY(4px); }
+
   @media (max-width: 900px) {
-    .build-timeline { display: flex; flex-direction: column; gap: 22px; }
+    .build-timeline { display: flex; flex-direction: column; gap: 20px; }
     .build-stage { display: flex; }
     .build-axis,
     .build-node { display: none; }
     .build-card {
       align-items: flex-start;
       text-align: left;
-      border: 0 !important;
-      border-left: 2px solid var(--accent) !important;
-      padding: 2px 0 2px 18px !important;
+      border-left: 2px solid var(--accent);
+      padding: 2px 0 2px 18px;
     }
+    .build-stage:nth-child(odd):hover .build-card,
+    .build-stage:nth-child(even):hover .build-card { transform: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .build-axis::after { animation: none; }
+    .build-timeline.is-armed .build-axis { transform: scaleX(1); }
+    .build-timeline.is-armed .build-card,
+    .build-timeline.is-armed .build-node { opacity: 1; }
   }
 
   /* ===== Stack ===== */
@@ -2618,6 +2668,23 @@
     requestAnimationFrame(() => requestAnimationFrame(alignDiagrams));
 
     go(0);
+  })();
+
+  // ===== How we build — reveal the timeline when it scrolls into view =====
+  (function () {
+    const tl = document.querySelector('.build-timeline');
+    if (!tl) return;
+    tl.classList.add('is-armed');
+    if (!('IntersectionObserver' in window)) { tl.classList.add('is-revealed'); return; }
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) {
+          tl.classList.add('is-revealed');
+          io.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+    io.observe(tl);
   })();
 
   // Work section tabs
