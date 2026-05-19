@@ -159,7 +159,7 @@
     position: fixed;
     inset: 0 0 auto 0;
     z-index: 50;
-    height: 72px;
+    height: 52px;
     background: rgba(255,255,255,0);
     transition: background 240ms var(--ease), border-color 240ms var(--ease);
     border-bottom: 1px solid transparent;
@@ -212,14 +212,14 @@
   .nav-links {
     display: flex;
     align-items: center;
-    gap: 26px;
+    gap: 16px;
     font-size: 14px;
     color: var(--ink-soft);
   }
   .nav-links a { transition: color 180ms var(--ease); }
   .nav-links a:hover { color: var(--ink); }
   .nav-links .cta {
-    padding: 9px 16px;
+    padding: 6px 12px;
     border: 1px solid var(--ink);
     border-radius: 999px;
     color: var(--ink);
@@ -1551,6 +1551,354 @@
   @media (max-width: 760px) {
     .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   }
+
+  /* ============================================================
+     HOW WE WORK — single animated pipeline strip.
+     ============================================================ */
+  .pipeline {
+    --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+    --accent: var(--pink);
+    background: #0E0E10;
+    color: rgba(255,255,255,0.85);
+    padding: clamp(56px, 7vw, 96px) 0;
+    position: relative;
+    overflow: hidden;
+  }
+  .pipeline::before {
+    content: "";
+    position: absolute; inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.04) 1px, transparent 1.5px);
+    background-size: 28px 28px;
+    background-position: 0 0;
+    pointer-events: none;
+    opacity: 0.9;
+  }
+  .pipeline::after {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 50% at 20% 30%, color-mix(in oklab, var(--accent) 24%, transparent), transparent 70%),
+      radial-gradient(50% 60% at 85% 80%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 70%);
+    transition: background 1200ms var(--ease);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .pipeline > .container { position: relative; z-index: 1; }
+
+  .pipe-index {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    align-items: center;
+    gap: clamp(16px, 2vw, 28px);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    margin-bottom: clamp(40px, 5vw, 64px);
+  }
+  .pipe-index .left, .pipe-index .right {
+    display: inline-flex; align-items: center; gap: 12px;
+    white-space: nowrap;
+  }
+  .pipe-status-dot {
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 var(--accent);
+    animation: pipe-pulse 1.6s infinite var(--ease);
+  }
+  @keyframes pipe-pulse {
+    0%   { box-shadow: 0 0 0 0   color-mix(in oklab, var(--accent) 60%, transparent); }
+    70%  { box-shadow: 0 0 0 10px transparent; }
+    100% { box-shadow: 0 0 0 0   transparent; }
+  }
+  .pipe-index strong { color: var(--white); font-weight: 500; }
+  .pipe-progress {
+    height: 2px;
+    background: rgba(255,255,255,0.08);
+    position: relative;
+    border-radius: 2px;
+    overflow: hidden;
+  }
+  .pipe-progress::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: var(--p, 0%);
+    background: var(--accent);
+    transition: width 80ms linear;
+    box-shadow: 0 0 8px color-mix(in oklab, var(--accent) 70%, transparent);
+  }
+
+  .rail {
+    position: relative;
+    height: 56px;
+    margin: 0 8px;
+  }
+  .rail-line {
+    position: absolute;
+    left: 0; right: 0; top: 50%;
+    height: 2px;
+    transform: translateY(-50%);
+    background: var(--gradient);
+    border-radius: 2px;
+    box-shadow: 0 0 24px rgba(255,255,255,0.04);
+  }
+  .rail-head {
+    position: absolute;
+    top: 50%; left: var(--head-x, 0%);
+    width: 14px; height: 14px;
+    border-radius: 999px;
+    background: var(--white);
+    transform: translate(-50%, -50%);
+    box-shadow:
+      0 0 0 4px color-mix(in oklab, var(--accent) 35%, transparent),
+      0 0 24px color-mix(in oklab, var(--accent) 80%, transparent),
+      0 0 60px color-mix(in oklab, var(--accent) 50%, transparent);
+    transition: left 900ms var(--ease-out), box-shadow 900ms var(--ease-out);
+    z-index: 3;
+  }
+  .rail-head::before {
+    content: "";
+    position: absolute;
+    right: 100%; top: 50%;
+    width: 80px; height: 2px;
+    transform: translateY(-50%);
+    background: linear-gradient(to left, var(--white), transparent);
+    opacity: 0.55;
+    border-radius: 2px;
+  }
+  .rail-stops {
+    position: absolute; inset: 0;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    pointer-events: none;
+  }
+  .rail-stop {
+    position: relative;
+    display: flex; align-items: center; justify-content: center;
+    pointer-events: auto;
+  }
+  .rail-node {
+    width: 18px; height: 18px;
+    border-radius: 999px;
+    background: #0E0E10;
+    border: 2px solid var(--stop-accent);
+    position: relative;
+    cursor: pointer;
+    transition: transform 320ms var(--ease), border-color 320ms var(--ease);
+  }
+  .rail-node::after {
+    content: "";
+    position: absolute;
+    inset: 3px;
+    border-radius: 999px;
+    background: var(--stop-accent);
+    transition: opacity 320ms var(--ease);
+  }
+  .rail-stop[data-stage="0"] { --stop-accent: var(--pink); }
+  .rail-stop[data-stage="1"] { --stop-accent: var(--magenta); }
+  .rail-stop[data-stage="2"] { --stop-accent: var(--purple); }
+  .rail-stop[data-stage="3"] { --stop-accent: var(--lavender); }
+  .rail-stop[data-stage="4"] { --stop-accent: var(--sky); }
+  .rail-stop[data-stage="5"] { --stop-accent: var(--blue); }
+  .rail-stop:not(.is-active) .rail-node { transform: scale(0.82); }
+  .rail-stop:not(.is-active) .rail-node::after { opacity: 0.55; }
+  .rail-stop.is-past .rail-node::after { opacity: 0.8; }
+  .rail-stop.is-active .rail-node {
+    transform: scale(1);
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--stop-accent) 22%, transparent);
+  }
+  .rail-stop.is-active .rail-node::before {
+    content: "";
+    position: absolute;
+    inset: -8px;
+    border-radius: 999px;
+    border: 1px solid color-mix(in oklab, var(--stop-accent) 65%, transparent);
+    animation: pipe-ring 1800ms infinite var(--ease-out);
+  }
+  @keyframes pipe-ring {
+    0%   { transform: scale(0.65); opacity: 0.9; }
+    100% { transform: scale(2.1);  opacity: 0; }
+  }
+  .rail-stop:hover .rail-node { transform: scale(1.05); }
+
+  .rail-labels {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin-top: 22px;
+  }
+  .rail-label {
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    transition: color 320ms var(--ease);
+  }
+  .rail-label.is-active { color: var(--accent); }
+
+  .stage-display {
+    margin-top: clamp(56px, 6vw, 88px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: clamp(32px, 4vw, 56px);
+    align-items: end;
+  }
+  .stage-display-main {
+    min-width: 0;
+    min-height: clamp(280px, 28vw, 360px);
+    position: relative;
+  }
+  .stage-frame {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+      opacity 700ms var(--ease-out),
+      transform 700ms var(--ease-out);
+    display: flex; flex-direction: column; gap: 14px;
+    pointer-events: none;
+  }
+  .stage-frame.is-active {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+  .stage-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.10em;
+    color: var(--accent);
+    text-transform: lowercase;
+    width: fit-content;
+  }
+  .stage-tag::before {
+    content: "\25B8";
+    opacity: 0.8;
+  }
+  .stage-no-big {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+  }
+  .stage-title {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 5.4vw, 78px);
+    line-height: 0.98;
+    letter-spacing: -0.03em;
+    font-weight: 600;
+    color: var(--white);
+    max-width: 16ch;
+    text-wrap: balance;
+  }
+  .stage-desc {
+    font-family: var(--font-body);
+    font-size: clamp(16px, 1.6vw, 19px);
+    line-height: 1.55;
+    color: rgba(255,255,255,0.7);
+    max-width: 48ch;
+  }
+  .stage-cursor {
+    display: inline-block;
+    width: 8px; height: 1.05em;
+    background: var(--accent);
+    margin-left: 6px;
+    transform: translateY(2px);
+    animation: pipe-blink 980ms steps(1) infinite;
+  }
+  @keyframes pipe-blink {
+    0%, 50% { opacity: 1; }
+    50.01%, 100% { opacity: 0; }
+  }
+  .stage-console {
+    width: clamp(220px, 22vw, 280px);
+    border-left: 1px solid rgba(255,255,255,0.10);
+    padding-left: clamp(20px, 2vw, 28px);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    line-height: 1.7;
+    color: rgba(255,255,255,0.55);
+    letter-spacing: 0.04em;
+  }
+  .stage-console .row {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 12px;
+    align-items: center;
+  }
+  .stage-console .row + .row { margin-top: 4px; }
+  .stage-console .ix { color: rgba(255,255,255,0.35); }
+  .stage-console .nm { color: rgba(255,255,255,0.65); }
+  .stage-console .st {
+    font-size: 10px;
+    letter-spacing: 0.10em;
+    color: rgba(255,255,255,0.35);
+  }
+  .stage-console .row.is-past   .st { color: rgba(255,255,255,0.5); }
+  .stage-console .row.is-active .nm { color: var(--accent); }
+  .stage-console .row.is-active .st { color: var(--accent); }
+  .stage-console .row.is-active .ix { color: var(--accent); }
+  .stage-console .tickline {
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(255,255,255,0.10);
+    display: flex; justify-content: space-between;
+    color: rgba(255,255,255,0.35);
+    font-size: 10.5px;
+    letter-spacing: 0.10em;
+  }
+  .pipe-controls {
+    margin-top: clamp(40px, 5vw, 56px);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.5);
+  }
+  .pipe-play {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 8px 14px;
+    border: 1px solid rgba(255,255,255,0.18);
+    border-radius: 999px;
+    color: rgba(255,255,255,0.85);
+    transition: background 200ms var(--ease), border-color 200ms var(--ease);
+  }
+  .pipe-play:hover { background: rgba(255,255,255,0.06); border-color: rgba(255,255,255,0.3); }
+  .pipe-play .icon {
+    display: inline-grid; place-items: center;
+    width: 14px; height: 14px;
+    color: var(--accent);
+  }
+  @media (max-width: 880px) {
+    .stage-display { grid-template-columns: 1fr; gap: 32px; }
+    .stage-console {
+      width: 100%; border-left: none;
+      border-top: 1px solid rgba(255,255,255,0.10);
+      padding-left: 0; padding-top: 20px;
+    }
+    .stage-display-main { min-height: 260px; }
+    .rail-label { font-size: 9.5px; letter-spacing: 0.12em; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .pipe-status-dot, .rail-stop.is-active .rail-node::before,
+    .stage-cursor { animation: none; }
+    .rail-head, .pipe-progress::before { transition: none; }
+  }
 </style>
 </head>
 <body>
@@ -2257,8 +2605,152 @@
   </div>
 </section>
 
+<!-- ============= HOW WE WORK — animated pipeline ============= -->
+<section class="pipeline" id="how">
+  <div class="container">
+
+    <!-- index strip -->
+    <div class="pipe-index">
+      <span class="left">
+        <span class="pipe-status-dot" aria-hidden="true"></span>
+        <span>Auto &middot; Stage <strong id="pipeIdx">01</strong>/06</span>
+      </span>
+      <span class="pipe-progress" aria-hidden="true"></span>
+      <span class="right">
+        <span>tick <strong id="pipeTick">0000</strong></span>
+      </span>
+    </div>
+
+    <!-- the rail -->
+    <div class="rail">
+      <div class="rail-line" aria-hidden="true"></div>
+      <div class="rail-head" id="pipeHead" aria-hidden="true"></div>
+      <div class="rail-stops" role="tablist" aria-label="Pipeline stages">
+        <button class="rail-stop is-active" data-stage="0" role="tab" aria-selected="true" aria-label="Stage 00 Feasibility and Compliance">
+          <span class="rail-node" aria-hidden="true"></span>
+        </button>
+        <button class="rail-stop" data-stage="1" role="tab" aria-label="Stage 01 Workflow Mapping">
+          <span class="rail-node" aria-hidden="true"></span>
+        </button>
+        <button class="rail-stop" data-stage="2" role="tab" aria-label="Stage 02 Data Cleaning">
+          <span class="rail-node" aria-hidden="true"></span>
+        </button>
+        <button class="rail-stop" data-stage="3" role="tab" aria-label="Stage 03 Fine-tuning">
+          <span class="rail-node" aria-hidden="true"></span>
+        </button>
+        <button class="rail-stop" data-stage="4" role="tab" aria-label="Stage 04 RAG">
+          <span class="rail-node" aria-hidden="true"></span>
+        </button>
+        <button class="rail-stop" data-stage="5" role="tab" aria-label="Stage 05 Evaluation and Guardrails">
+          <span class="rail-node" aria-hidden="true"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- rail labels -->
+    <div class="rail-labels" aria-hidden="true">
+      <span class="rail-label is-active" data-stage="0">Stage 00</span>
+      <span class="rail-label" data-stage="1">Stage 01</span>
+      <span class="rail-label" data-stage="2">Stage 02</span>
+      <span class="rail-label" data-stage="3">Stage 03</span>
+      <span class="rail-label" data-stage="4">Stage 04</span>
+      <span class="rail-label" data-stage="5">Stage 05</span>
+    </div>
+
+    <!-- stage display + console -->
+    <div class="stage-display">
+      <div class="stage-display-main" id="stageDisplay">
+        <div class="stage-frame is-active" data-stage="0">
+          <span class="stage-tag">stage_00.feasibility_compliance()</span>
+          <span class="stage-no-big">Stage 00</span>
+          <h2 class="stage-title">Feasibility &amp; Compliance</h2>
+          <p class="stage-desc">Is it compliant? Can it be built? Do you even need it? We find out first.<span class="stage-cursor" aria-hidden="true"></span></p>
+        </div>
+        <div class="stage-frame" data-stage="1">
+          <span class="stage-tag">stage_01.workflow_mapping()</span>
+          <span class="stage-no-big">Stage 01</span>
+          <h2 class="stage-title">Workflow Mapping</h2>
+          <p class="stage-desc">We map how work really moves before we build anything.<span class="stage-cursor" aria-hidden="true"></span></p>
+        </div>
+        <div class="stage-frame" data-stage="2">
+          <span class="stage-tag">stage_02.data_cleaning()</span>
+          <span class="stage-no-big">Stage 02</span>
+          <h2 class="stage-title">Data Cleaning</h2>
+          <p class="stage-desc">We get your data into shape before any model touches it.<span class="stage-cursor" aria-hidden="true"></span></p>
+        </div>
+        <div class="stage-frame" data-stage="3">
+          <span class="stage-tag">stage_03.fine_tuning()</span>
+          <span class="stage-no-big">Stage 03</span>
+          <h2 class="stage-title">Fine-tuning</h2>
+          <p class="stage-desc">When a general model falls short, we train one on your world.<span class="stage-cursor" aria-hidden="true"></span></p>
+        </div>
+        <div class="stage-frame" data-stage="4">
+          <span class="stage-tag">stage_04.rag()</span>
+          <span class="stage-no-big">Stage 04</span>
+          <h2 class="stage-title">RAG</h2>
+          <p class="stage-desc">We design where answers come from, so the system finds the right one.<span class="stage-cursor" aria-hidden="true"></span></p>
+        </div>
+        <div class="stage-frame" data-stage="5">
+          <span class="stage-tag">stage_05.eval_guardrails()</span>
+          <span class="stage-no-big">Stage 05</span>
+          <h2 class="stage-title">Evaluation &amp; Guardrails</h2>
+          <p class="stage-desc">We set what good looks like, draw hard limits, and watch what ships.<span class="stage-cursor" aria-hidden="true"></span></p>
+        </div>
+      </div>
+
+      <aside class="stage-console" aria-hidden="true">
+        <div class="row is-active" data-stage="0">
+          <span class="ix">00</span>
+          <span class="nm">feasibility_compliance</span>
+          <span class="st">run</span>
+        </div>
+        <div class="row" data-stage="1">
+          <span class="ix">01</span>
+          <span class="nm">workflow_mapping</span>
+          <span class="st">idle</span>
+        </div>
+        <div class="row" data-stage="2">
+          <span class="ix">02</span>
+          <span class="nm">data_cleaning</span>
+          <span class="st">idle</span>
+        </div>
+        <div class="row" data-stage="3">
+          <span class="ix">03</span>
+          <span class="nm">fine_tuning</span>
+          <span class="st">idle</span>
+        </div>
+        <div class="row" data-stage="4">
+          <span class="ix">04</span>
+          <span class="nm">rag</span>
+          <span class="st">idle</span>
+        </div>
+        <div class="row" data-stage="5">
+          <span class="ix">05</span>
+          <span class="nm">eval_guardrails</span>
+          <span class="st">idle</span>
+        </div>
+        <div class="tickline">
+          <span>uptime</span>
+          <span id="consoleUptime">00:00:00</span>
+        </div>
+      </aside>
+    </div>
+
+    <!-- controls -->
+    <div class="pipe-controls">
+      <button class="pipe-play" id="pipePlayBtn" aria-pressed="false">
+        <span class="icon" id="pipePlayIcon" aria-hidden="true">
+          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><rect x="2" y="1" width="2" height="8"/><rect x="6" y="1" width="2" height="8"/></svg>
+        </span>
+        <span id="pipePlayLabel">Pause</span>
+      </button>
+      <span>Click any node to jump &middot; 4s per stage</span>
+    </div>
+  </div>
+</section>
+
 <!-- ============= STACK ============= -->
-<section class="stack-section" id="how">
+<section class="stack-section" id="stack">
   <div class="container">
     <div class="section-head">
       <div>
@@ -2740,6 +3232,140 @@
     );
     window.location.href = `mailto:brinda@moralitybytes.eu?subject=${subject}&body=${body}`;
   }
+</script>
+
+<!-- ============= HOW WE WORK — pipeline animation ============= -->
+<script>
+  (function () {
+    const root = document.getElementById('how');
+    if (!root) return;
+
+    const STAGES = [
+      { accent: '#E91E63' },
+      { accent: '#CC418C' },
+      { accent: '#9B59B6' },
+      { accent: '#7E6CE0' },
+      { accent: '#5794EA' },
+      { accent: '#3478E5' },
+    ];
+    const N = STAGES.length;
+    const STAGE_MS = 4000;
+
+    const head        = document.getElementById('pipeHead');
+    const idxEl       = document.getElementById('pipeIdx');
+    const tickEl      = document.getElementById('pipeTick');
+    const uptimeEl    = document.getElementById('consoleUptime');
+    const progressEl  = root.querySelector('.pipe-progress');
+    const stops       = [...root.querySelectorAll('.rail-stop')];
+    const labels      = [...root.querySelectorAll('.rail-label')];
+    const frames      = [...root.querySelectorAll('.stage-frame')];
+    const consoleRows = [...root.querySelectorAll('.stage-console .row')];
+    const playBtn     = document.getElementById('pipePlayBtn');
+    const playLabel   = document.getElementById('pipePlayLabel');
+    const playIcon    = document.getElementById('pipePlayIcon');
+
+    const ICON_PAUSE = '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><rect x="2" y="1" width="2" height="8"/><rect x="6" y="1" width="2" height="8"/></svg>';
+    const ICON_PLAY  = '<svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><path d="M2 1 L8 5 L2 9 Z"/></svg>';
+
+    let current = 0;
+    let playing = true;
+    let stageStartedAt = performance.now();
+    let lastTickStamp = performance.now();
+    let tickCount = 0;
+    let bootStamp = performance.now();
+
+    const pad = (n, w) => String(n).padStart(w, '0');
+
+    function setActive(next) {
+      if (next !== current) current = next;
+      const stage = STAGES[current];
+
+      root.style.setProperty('--accent', stage.accent);
+
+      const pct = (current / (N - 1)) * 100;
+      head.style.setProperty('--head-x', pct + '%');
+
+      stops.forEach((s, i) => {
+        s.classList.toggle('is-active', i === current);
+        s.classList.toggle('is-past',   i < current);
+        s.setAttribute('aria-selected', i === current ? 'true' : 'false');
+      });
+      labels.forEach((l, i) => l.classList.toggle('is-active', i === current));
+      frames.forEach((f, i) => f.classList.toggle('is-active', i === current));
+
+      consoleRows.forEach((r, i) => {
+        r.classList.toggle('is-active', i === current);
+        r.classList.toggle('is-past',   i < current);
+        const st = r.querySelector('.st');
+        if (!st) return;
+        if (i < current)        st.textContent = 'done';
+        else if (i === current) st.textContent = 'run';
+        else                    st.textContent = 'idle';
+      });
+
+      idxEl.textContent = pad(current + 1, 2);
+    }
+
+    function advance() {
+      setActive((current + 1) % N);
+      stageStartedAt = performance.now();
+    }
+
+    function jumpTo(idx) {
+      if (idx === current) return;
+      setActive(idx);
+      stageStartedAt = performance.now();
+    }
+
+    function frame(t) {
+      if (t - lastTickStamp > 100) {
+        tickCount += 1;
+        tickEl.textContent = pad(tickCount, 4);
+        lastTickStamp = t;
+      }
+
+      const elapsedSec = Math.floor((t - bootStamp) / 1000);
+      const hh = pad(Math.floor(elapsedSec / 3600), 2);
+      const mm = pad(Math.floor((elapsedSec % 3600) / 60), 2);
+      const ss = pad(elapsedSec % 60, 2);
+      if (uptimeEl) uptimeEl.textContent = `${hh}:${mm}:${ss}`;
+
+      if (playing) {
+        const stageElapsed = t - stageStartedAt;
+        const p = Math.min(1, stageElapsed / STAGE_MS);
+        progressEl.style.setProperty('--p', (p * 100).toFixed(2) + '%');
+        if (stageElapsed >= STAGE_MS) advance();
+      }
+
+      requestAnimationFrame(frame);
+    }
+
+    stops.forEach((s, i) => s.addEventListener('click', () => jumpTo(i)));
+
+    function setPlaying(v) {
+      playing = v;
+      playBtn.setAttribute('aria-pressed', String(!v));
+      playLabel.textContent = v ? 'Pause' : 'Play';
+      playIcon.innerHTML = v ? ICON_PAUSE : ICON_PLAY;
+      if (v) stageStartedAt = performance.now();
+    }
+    playBtn.addEventListener('click', () => setPlaying(!playing));
+
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((e) => {
+        if (!playing) return;
+        if (!e.isIntersecting) {
+          stageStartedAt = performance.now() + 1e6;
+        } else {
+          stageStartedAt = performance.now();
+        }
+      });
+    }, { threshold: 0.2 });
+    io.observe(root);
+
+    setActive(0);
+    requestAnimationFrame(frame);
+  })();
 </script>
 
 </body>
