@@ -788,6 +788,27 @@
 
   /* ===== Our work — project cards ===== */
   .work-section .section-head h2 { max-width: 22ch; }
+  .work-tabs {
+    display: flex;
+    gap: 28px;
+    border-bottom: 1px solid var(--hairline);
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+  }
+  .work-tab {
+    padding: 10px 0 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    cursor: pointer;
+    transition: color 180ms var(--ease), border-color 180ms var(--ease);
+    background: none;
+    font-family: inherit;
+  }
+  .work-tab.is-active { color: var(--ink); border-bottom-color: var(--ink); }
+  .work-tab:hover { color: var(--ink); }
 
   .work-rows {
     display: flex;
@@ -1637,94 +1658,6 @@
     .stage-cursor { animation: none; }
     .rail-head { transition: none; }
   }
-
-  /* ===== Micro-services — compact agent cards ===== */
-  .micro-section {
-    background: var(--surface-2);
-    border-top: 1px solid var(--hairline);
-    border-bottom: 1px solid var(--hairline);
-    padding: var(--section-y) 0;
-  }
-  .micro-categories {
-    display: flex;
-    flex-direction: column;
-    gap: clamp(24px, 3vw, 40px);
-  }
-  .micro-category { --accent: var(--pink); }
-  .micro-category[data-accent="magenta"] { --accent: var(--magenta); }
-  .micro-category[data-accent="purple"]  { --accent: var(--purple); }
-  .micro-category[data-accent="sky"]     { --accent: var(--sky); }
-  .micro-category[data-accent="blue"]    { --accent: var(--blue); }
-
-  .micro-cat-title {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--accent);
-    margin: 0 0 12px;
-  }
-
-  .micro-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-    gap: 8px;
-    align-items: start;
-  }
-  .micro-card {
-    background: var(--white);
-    border: 1px solid var(--hairline);
-    border-radius: 10px;
-    overflow: hidden;
-    transition: border-color 200ms var(--ease), box-shadow 200ms var(--ease), transform 200ms var(--ease);
-  }
-  .micro-card:hover { border-color: var(--accent); }
-  .micro-card[open] {
-    border-color: var(--accent);
-    box-shadow: 0 4px 16px rgba(31, 31, 31, 0.06);
-  }
-  .micro-card summary {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-    padding: 10px 12px;
-    cursor: pointer;
-    list-style: none;
-    font-size: 12.5px;
-    line-height: 1.3;
-  }
-  .micro-card summary::-webkit-details-marker { display: none; }
-  .micro-card summary::marker { content: ''; }
-  .micro-num {
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.04em;
-    flex-shrink: 0;
-  }
-  .micro-name {
-    color: var(--ink);
-    font-weight: 500;
-  }
-  .micro-detail {
-    padding: 10px 12px 12px;
-    border-top: 1px dashed var(--hairline);
-  }
-  .micro-cta {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    color: var(--accent);
-    font-family: var(--font-mono);
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-  }
-  .micro-cta .arrow { transition: transform 200ms var(--ease); }
-  .micro-cta:hover .arrow { transform: translateX(3px); }
 </style>
 </head>
 <body>
@@ -2365,6 +2298,13 @@
       </p>
     </div>
 
+    <div class="work-tabs">
+      <button class="work-tab is-active" data-tab="all">All sectors</button>
+      <button class="work-tab" data-tab="retail">Retail</button>
+      <button class="work-tab" data-tab="arch">Architecture</button>
+      <button class="work-tab" data-tab="workforce">Workforce</button>
+    </div>
+
     <div class="work-rows" id="workRows">
       <!-- 01 -->
       <a class="work-row" data-sector="retail" href="work/asset-workflow-engine.html">
@@ -2479,247 +2419,6 @@
           <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
         </div>
       </a>
-    </div>
-  </div>
-</section>
-
-<!-- ============= MICRO-SERVICES ============= -->
-<section class="micro-section" id="microservices">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>Micro-services</span>
-        <h2 style="margin-top: 14px;">Fifty AI agents we ship.</h2>
-      </div>
-      <p class="head-aside">Tap a card to expand.</p>
-    </div>
-
-    <div class="micro-categories">
-      <div class="micro-category" data-accent="pink">
-        <h3 class="micro-cat-title">Content & Brand</h3>
-        <div class="micro-cards">
-          <details class="micro-card">
-            <summary><span class="micro-num">01</span><span class="micro-name">GEO — AI answer visibility</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">02</span><span class="micro-name">Brand compliance checker</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">03</span><span class="micro-name">Content repurposing agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">04</span><span class="micro-name">SEO-to-GEO migration agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">05</span><span class="micro-name">Brand voice auditor</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">06</span><span class="micro-name">Multi-market localisation agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">07</span><span class="micro-name">AI content grader</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">08</span><span class="micro-name">Campaign brief generator</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">09</span><span class="micro-name">Product description generator</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">10</span><span class="micro-name">Social media scheduling agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-        </div>
-      </div>
-      <div class="micro-category" data-accent="magenta">
-        <h3 class="micro-cat-title">Knowledge & Documents</h3>
-        <div class="micro-cards">
-          <details class="micro-card">
-            <summary><span class="micro-num">11</span><span class="micro-name">Document intelligence agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">12</span><span class="micro-name">Knowledge assistant</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">13</span><span class="micro-name">Contract review agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">14</span><span class="micro-name">Meeting summariser</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">15</span><span class="micro-name">RFP/tender response agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">16</span><span class="micro-name">Policy compliance checker</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">17</span><span class="micro-name">Research synthesis agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">18</span><span class="micro-name">SOP generator</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">19</span><span class="micro-name">Email triage agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">20</span><span class="micro-name">Report generator</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-        </div>
-      </div>
-      <div class="micro-category" data-accent="purple">
-        <h3 class="micro-cat-title">Data</h3>
-        <div class="micro-cards">
-          <details class="micro-card">
-            <summary><span class="micro-num">21</span><span class="micro-name">Data orchestration agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">22</span><span class="micro-name">Data readiness auditor</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">23</span><span class="micro-name">Data quality monitor</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">24</span><span class="micro-name">CRM enrichment agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">25</span><span class="micro-name">ETL automation agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">26</span><span class="micro-name">Dashboard narrative agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">27</span><span class="micro-name">Anomaly detection agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">28</span><span class="micro-name">Data lineage tracker</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">29</span><span class="micro-name">Duplicate detection agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">30</span><span class="micro-name">Schema mapping agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-        </div>
-      </div>
-      <div class="micro-category" data-accent="sky">
-        <h3 class="micro-cat-title">Customer & Sales</h3>
-        <div class="micro-cards">
-          <details class="micro-card">
-            <summary><span class="micro-num">31</span><span class="micro-name">Lead routing agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">32</span><span class="micro-name">Lead scoring agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">33</span><span class="micro-name">Customer support agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">34</span><span class="micro-name">Churn prediction agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">35</span><span class="micro-name">Onboarding agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">36</span><span class="micro-name">Sales proposal agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">37</span><span class="micro-name">Competitor monitoring agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">38</span><span class="micro-name">Review analysis agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">39</span><span class="micro-name">Pricing intelligence agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">40</span><span class="micro-name">Win/loss analysis agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-        </div>
-      </div>
-      <div class="micro-category" data-accent="blue">
-        <h3 class="micro-cat-title">Operations & Workflow</h3>
-        <div class="micro-cards">
-          <details class="micro-card">
-            <summary><span class="micro-num">41</span><span class="micro-name">Approval routing agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">42</span><span class="micro-name">Invoice processing agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">43</span><span class="micro-name">HR onboarding agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">44</span><span class="micro-name">Compliance monitoring agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">45</span><span class="micro-name">Incident triage agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">46</span><span class="micro-name">Vendor evaluation agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">47</span><span class="micro-name">Project status agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">48</span><span class="micro-name">Resource allocation agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">49</span><span class="micro-name">Supply chain monitor</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-          <details class="micro-card">
-            <summary><span class="micro-num">50</span><span class="micro-name">IT helpdesk agent</span></summary>
-            <div class="micro-detail"><a class="micro-cta" href="#contact">Discuss this <span class="arrow">&rarr;</span></a></div>
-          </details>
-        </div>
-      </div>
     </div>
   </div>
 </section>
@@ -3166,6 +2865,19 @@
 
     go(0);
   })();
+
+  // Work section tabs
+  document.querySelectorAll('.work-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.work-tab').forEach(t => t.classList.remove('is-active'));
+      tab.classList.add('is-active');
+      const sector = tab.dataset.tab;
+      document.querySelectorAll('.work-row').forEach(row => {
+        const show = sector === 'all' || row.dataset.sector === sector;
+        row.style.display = show ? '' : 'none';
+      });
+    });
+  });
 
   // Contact form (mailto)
   function handleContact(e) {
