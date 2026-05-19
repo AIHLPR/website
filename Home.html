@@ -486,16 +486,16 @@
     /* Empty top spacer — just clears the fixed site header.
        The nav controls now sit below the cards. */
     flex: 0 0 auto;
-    height: clamp(64px, 6vw, 88px);
+    height: clamp(44px, 4vw, 60px);
   }
   .services-nav {
     --svc-accent: var(--pink);
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 18px;
+    gap: 14px;
     border-top: 1px solid var(--hairline);
-    padding: clamp(20px, 2.6vw, 32px) clamp(40px, 6vw, 96px) clamp(28px, 3.5vw, 52px);
+    padding: clamp(12px, 1.6vw, 18px) clamp(40px, 6vw, 96px) clamp(12px, 1.6vw, 18px);
   }
   .services-arrow {
     display: inline-flex;
@@ -535,7 +535,7 @@
   }
   .services-progress .step {
     position: relative;
-    padding: 4px 14px;
+    padding: 4px 10px;
     font: inherit;
     color: var(--ink-muted);
     background: none;
@@ -577,8 +577,8 @@
     /* Left text ~40%, gap ~3%, diagram ~57% — right column ~1.4× the left. */
     grid-template-columns: 40fr 3fr 50fr;
     grid-template-rows: auto auto;
-    row-gap: clamp(20px, 2vw, 34px);
-    padding: clamp(16px, 2vw, 32px) clamp(40px, 6vw, 96px) clamp(40px, 5vw, 80px);
+    row-gap: clamp(12px, 1.4vw, 20px);
+    padding: clamp(6px, 1vw, 16px) clamp(40px, 6vw, 96px) clamp(18px, 2.2vw, 32px);
     align-items: start;
     align-content: start;
   }
@@ -587,7 +587,7 @@
     display: flex;
     flex-direction: column;
     /* Closer headline→deliverables relationship, per reference. */
-    gap: clamp(20px, 2.2vw, 40px);
+    gap: clamp(14px, 1.6vw, 26px);
   }
   .service-card-h .heading-zone {
     display: flex; flex-direction: column;
@@ -598,7 +598,7 @@
     letter-spacing: 0.06em;
     font-weight: 500;
     /* Tight stack with the audience label — roughly one line-height. */
-    margin-bottom: clamp(14px, 1.4vw, 22px);
+    margin-bottom: clamp(8px, 1vw, 14px);
   }
   .service-card-h .audience-label {
     font-family: var(--font-mono);
@@ -606,7 +606,7 @@
     letter-spacing: 0.14em;
     text-transform: uppercase;
     /* Moderate gap before the headline — roughly the label's own height. */
-    margin-bottom: clamp(24px, 2.4vw, 40px);
+    margin-bottom: clamp(12px, 1.5vw, 22px);
   }
   .service-card-h h3 {
     font-family: var(--font-display);
@@ -641,7 +641,7 @@
     /* Offset adjusted via JS at runtime so the frame's top edge aligns
        exactly with the headline's first cap-line. CSS provides a sane
        fallback before JS measures (matches typical 01 + label stack). */
-    margin-top: clamp(72px, 7vw, 110px);
+    margin-top: clamp(44px, 5vw, 72px);
   }
   .service-card-h .diagram-frame svg { width: 100%; height: auto; display: block; }
   .service-card-h .body-copy {
@@ -703,7 +703,7 @@
     grid-column: 1 / -1;
     grid-row: 3;
     text-align: center;
-    margin-top: clamp(14px, 1.6vw, 22px);
+    margin-top: clamp(8px, 1vw, 14px);
   }
   .service-cta a {
     display: inline-flex;
