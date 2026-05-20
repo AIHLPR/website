@@ -494,20 +494,8 @@
     gap: clamp(20px, 3vw, 48px);
     flex-wrap: wrap;
   }
-  .services-head-title {
-    font-family: var(--font-display);
-    font-size: clamp(26px, 3vw, 40px);
-    line-height: 1.1;
-    letter-spacing: -0.02em;
-    font-weight: 600;
-    color: var(--ink);
-    margin: 0;
-    max-width: 22ch;
-  }
-  .services-head-eyebrow {
-    flex-shrink: 0;
-    margin-top: 6px;
-  }
+  .services-head-title { flex: 1 1 auto; }
+  .services-head-eyebrow { flex-shrink: 0; }
   .services-nav {
     --svc-accent: var(--pink);
     display: flex;
@@ -1844,7 +1832,7 @@
   <div class="services-pin">
     <div class="services-pin-head">
       <div class="container services-head-grid">
-        <h2 class="services-head-title">What AIHLPR helps organizations build and operate</h2>
+        <span class="label-mono services-head-title"><span class="dot"></span>What AIHLPR helps organizations build and operate</span>
         <span class="label-mono services-head-eyebrow"><span class="dot"></span>Our services</span>
       </div>
     </div>
