@@ -576,7 +576,10 @@
     grid-template-columns: 40fr 3fr 50fr;
     grid-template-rows: auto auto;
     row-gap: clamp(12px, 1.4vw, 20px);
-    padding: clamp(6px, 1vw, 16px) clamp(40px, 6vw, 96px) clamp(18px, 2.2vw, 32px);
+    padding-top: clamp(6px, 1vw, 16px);
+    padding-bottom: clamp(18px, 2.2vw, 32px);
+    padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2));
+    padding-right: max(var(--gutter), calc((100vw - var(--container)) / 2));
     align-items: start;
     align-content: start;
   }
