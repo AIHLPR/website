@@ -1379,9 +1379,10 @@
 
   /* ===== Bottom CTA ===== */
   .closing {
-    background: var(--ink);
-    color: var(--white);
+    background: var(--surface-2);
+    color: var(--ink);
     padding: clamp(72px, 9vw, 120px) 0;
+    border-top: 1px solid var(--hairline);
   }
   .closing-grid {
     display: grid;
@@ -1390,27 +1391,27 @@
     align-items: start;
   }
   .closing h2 {
-    color: var(--white);
+    color: var(--ink);
     font-size: clamp(36px, 4.4vw, 56px);
     letter-spacing: -0.025em;
     line-height: 1.05;
     max-width: 14ch;
   }
   .closing h2 .grad-light {
-    background: linear-gradient(90deg, #F5A6C9 0%, #D6B0E1 35%, #B4C5F4 70%, #8FB6FF 100%);
+    background: var(--gradient);
     -webkit-background-clip: text; background-clip: text;
     color: transparent;
   }
   .closing-sub {
     margin-top: 18px;
-    color: rgba(255,255,255,0.7);
+    color: var(--ink-soft);
     font-size: 17px;
     max-width: 44ch;
   }
-  .closing .label-mono { color: rgba(255,255,255,0.5); margin-top: 24px; }
+  .closing .label-mono { color: var(--ink-muted); margin-top: 24px; }
   .closing-trust {
     margin-top: 28px;
-    color: rgba(255,255,255,0.55);
+    color: var(--ink-muted);
     font-size: 13px;
     font-family: var(--font-mono);
     letter-spacing: 0.08em;
@@ -1427,7 +1428,7 @@
     font-size: 11px;
     letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+    color: var(--ink-muted);
     display: inline-flex;
     align-items: center;
     gap: 8px;
@@ -1439,7 +1440,7 @@
     background: var(--blue);
   }
   .closing-cta-copy {
-    color: rgba(255,255,255,0.75);
+    color: var(--ink-soft);
     font-size: clamp(15px, 1.3vw, 17px);
     line-height: 1.6;
     max-width: 42ch;
@@ -1456,12 +1457,12 @@
     font-size: 11.5px;
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-    border-bottom: 1px solid rgba(255,255,255,0.25);
+    color: var(--ink-muted);
+    border-bottom: 1px solid var(--hairline-strong);
     padding-bottom: 3px;
     transition: color 180ms var(--ease), border-color 180ms var(--ease);
   }
-  .closing-cta-secondary:hover { color: var(--white); border-bottom-color: var(--white); }
+  .closing-cta-secondary:hover { color: var(--ink); border-bottom-color: var(--ink); }
   @media (max-width: 900px) { .closing-grid { grid-template-columns: 1fr; gap: 32px; } }
 
   /* ===== Footer (MoralityBytes block) ===== */
