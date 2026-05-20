@@ -2216,22 +2216,22 @@
       <div class="rail-line" aria-hidden="true"></div>
       <div class="rail-head" id="pipeHead" aria-hidden="true"></div>
       <div class="rail-stops" role="tablist" aria-label="Pipeline stages">
-        <button class="rail-stop is-active" data-stage="0" role="tab" aria-selected="true" aria-label="Stage 00 Feasibility and Compliance">
+        <button class="rail-stop is-active" data-stage="0" role="tab" aria-selected="true" aria-label="Stage 00 Feasibility check">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="1" role="tab" aria-label="Stage 01 Workflow Mapping">
+        <button class="rail-stop" data-stage="1" role="tab" aria-label="Stage 01 Architecture design">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="2" role="tab" aria-label="Stage 02 Data Cleaning">
+        <button class="rail-stop" data-stage="2" role="tab" aria-label="Stage 02 Data preparation">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="3" role="tab" aria-label="Stage 03 Fine-tuning">
+        <button class="rail-stop" data-stage="3" role="tab" aria-label="Stage 03 Model training">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="4" role="tab" aria-label="Stage 04 RAG">
+        <button class="rail-stop" data-stage="4" role="tab" aria-label="Stage 04 Retrieval pipeline">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="5" role="tab" aria-label="Stage 05 Evaluation and Guardrails">
+        <button class="rail-stop" data-stage="5" role="tab" aria-label="Stage 05 Eval guardrails">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
       </div>
@@ -2251,61 +2251,61 @@
     <div class="stage-display">
       <div class="stage-display-main" id="stageDisplay">
         <div class="stage-frame is-active" data-stage="0">
-          <span class="stage-tag">stage_00.feasibility_compliance()</span>
-          <h2 class="stage-title">Feasibility &amp; Compliance</h2>
-          <p class="stage-desc">Is it compliant? Can it be built? Do you even need it? We find out first.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <span class="stage-tag">stage_00.feasibility_check()</span>
+          <h2 class="stage-title">Feasibility check</h2>
+          <p class="stage-desc">Legal, technical, and organisational readiness &mdash; before a single line of code.<span class="stage-cursor" aria-hidden="true"></span></p>
         </div>
         <div class="stage-frame" data-stage="1">
-          <span class="stage-tag">stage_01.workflow_mapping()</span>
-          <h2 class="stage-title">Workflow Mapping</h2>
-          <p class="stage-desc">We map how work really moves before we build anything.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <span class="stage-tag">stage_01.architecture_design()</span>
+          <h2 class="stage-title">Architecture design</h2>
+          <p class="stage-desc">Good architecture solves problems before AI has to.<span class="stage-cursor" aria-hidden="true"></span></p>
         </div>
         <div class="stage-frame" data-stage="2">
-          <span class="stage-tag">stage_02.data_cleaning()</span>
-          <h2 class="stage-title">Data Cleaning</h2>
-          <p class="stage-desc">We get your data into shape before any model touches it.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <span class="stage-tag">stage_02.data_preparation()</span>
+          <h2 class="stage-title">Data preparation</h2>
+          <p class="stage-desc">Your data, structured for what comes next.<span class="stage-cursor" aria-hidden="true"></span></p>
         </div>
         <div class="stage-frame" data-stage="3">
-          <span class="stage-tag">stage_03.fine_tuning()</span>
-          <h2 class="stage-title">Fine-tuning</h2>
-          <p class="stage-desc">When a general model falls short, we train one on your world.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <span class="stage-tag">stage_03.model_training()</span>
+          <h2 class="stage-title">Model training</h2>
+          <p class="stage-desc">Trained on your domain. Speaks your language.<span class="stage-cursor" aria-hidden="true"></span></p>
         </div>
         <div class="stage-frame" data-stage="4">
-          <span class="stage-tag">stage_04.rag()</span>
-          <h2 class="stage-title">RAG</h2>
-          <p class="stage-desc">We design where answers come from, so the system finds the right one.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <span class="stage-tag">stage_04.retrieval_pipeline()</span>
+          <h2 class="stage-title">Retrieval pipeline</h2>
+          <p class="stage-desc">Your knowledge, retrieved precisely.<span class="stage-cursor" aria-hidden="true"></span></p>
         </div>
         <div class="stage-frame" data-stage="5">
           <span class="stage-tag">stage_05.eval_guardrails()</span>
-          <h2 class="stage-title">Evaluation &amp; Guardrails</h2>
-          <p class="stage-desc">We set what good looks like, draw hard limits, and watch what ships.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <h2 class="stage-title">Eval guardrails</h2>
+          <p class="stage-desc">Built in from the start. Still running at the end.<span class="stage-cursor" aria-hidden="true"></span></p>
         </div>
       </div>
 
       <aside class="stage-console" aria-hidden="true">
         <div class="row is-active" data-stage="0">
           <span class="ix">00</span>
-          <span class="nm">feasibility_compliance</span>
+          <span class="nm">feasibility_check</span>
           <span class="st">run</span>
         </div>
         <div class="row" data-stage="1">
           <span class="ix">01</span>
-          <span class="nm">workflow_mapping</span>
+          <span class="nm">architecture_design</span>
           <span class="st">idle</span>
         </div>
         <div class="row" data-stage="2">
           <span class="ix">02</span>
-          <span class="nm">data_cleaning</span>
+          <span class="nm">data_preparation</span>
           <span class="st">idle</span>
         </div>
         <div class="row" data-stage="3">
           <span class="ix">03</span>
-          <span class="nm">fine_tuning</span>
+          <span class="nm">model_training</span>
           <span class="st">idle</span>
         </div>
         <div class="row" data-stage="4">
           <span class="ix">04</span>
-          <span class="nm">rag</span>
+          <span class="nm">retrieval_pipeline</span>
           <span class="st">idle</span>
         </div>
         <div class="row" data-stage="5">
