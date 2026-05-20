@@ -1035,19 +1035,12 @@
   }
   @media (max-width: 900px) { .stack-grid { grid-template-columns: 1fr; } }
 
-  /* ===== Compliance — animated audit terminal ===== */
+  /* ===== Compliance — animated audit terminal (light) ===== */
   .compliance-section {
-    background: #0E0E10;
-    color: rgba(255,255,255,0.85);
+    background: var(--white);
+    color: var(--ink);
     padding: clamp(56px, 7vw, 96px) 0;
     position: relative;
-    overflow: hidden;
-  }
-  .compliance-section .ct-scanline {
-    position: absolute; inset: 0;
-    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.008) 3px, rgba(255,255,255,0.008) 4px);
-    pointer-events: none;
-    z-index: 0;
   }
   .compliance-section > .container { position: relative; z-index: 1; }
 
@@ -1079,7 +1072,7 @@
     font-family: var(--font-display);
     font-size: clamp(28px, 3.4vw, 44px);
     font-weight: 600;
-    color: var(--white);
+    color: var(--ink);
     letter-spacing: -0.02em;
     line-height: 1.05;
     margin: 0 0 6px;
@@ -1087,7 +1080,7 @@
   .ct-sub {
     font-family: var(--font-mono);
     font-size: 11px;
-    color: rgba(255,255,255,0.3);
+    color: var(--ink-muted);
     margin-bottom: clamp(24px, 3vw, 40px);
     letter-spacing: 0.06em;
   }
@@ -1095,25 +1088,25 @@
   .ct-checks { display: flex; flex-direction: column; }
   .ct-check {
     padding: 18px 0;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid var(--hairline);
     display: grid;
     grid-template-columns: 28px 1fr auto;
     gap: 12px;
     align-items: start;
-    opacity: 0.35;
+    opacity: 0.45;
     transition: opacity 400ms var(--ease);
   }
   .ct-check.is-active { opacity: 1; }
-  .ct-check.is-done { opacity: 0.7; }
+  .ct-check.is-done { opacity: 0.85; }
   .ct-check-icon {
     margin-top: 2px;
     font-family: var(--font-mono);
     font-size: 12px;
-    color: rgba(255,255,255,0.3);
+    color: var(--ink-muted);
     transition: color 400ms var(--ease);
   }
   .ct-check.is-active .ct-check-icon { color: var(--blue); }
-  .ct-check.is-done .ct-check-icon { color: var(--teal); }
+  .ct-check.is-done .ct-check-icon { color: var(--pink); }
   .ct-check-fn {
     font-family: var(--font-mono);
     font-size: 10px;
@@ -1124,12 +1117,12 @@
     transition: opacity 400ms var(--ease);
   }
   .ct-check.is-active .ct-check-fn { opacity: 1; }
-  .ct-check.is-done .ct-check-fn { opacity: 0.5; }
+  .ct-check.is-done .ct-check-fn { opacity: 0.55; color: var(--pink); }
   .ct-check-title {
     font-family: var(--font-display);
     font-size: 15px;
     font-weight: 500;
-    color: var(--white);
+    color: var(--ink);
     margin: 0 0 4px;
     line-height: 1.3;
     letter-spacing: -0.005em;
@@ -1137,7 +1130,7 @@
   .ct-check-copy {
     font-family: var(--font-body);
     font-size: 13px;
-    color: rgba(255,255,255,0.5);
+    color: var(--ink-soft);
     line-height: 1.6;
     max-height: 0;
     overflow: hidden;
@@ -1156,31 +1149,31 @@
     letter-spacing: 0.1em;
     white-space: nowrap;
     margin-top: 2px;
-    color: rgba(255,255,255,0.3);
+    color: var(--ink-muted);
     display: inline-flex; align-items: center; gap: 6px;
   }
   .ct-check-status .dot {
     display: inline-block;
     width: 6px; height: 6px;
     border-radius: 999px;
-    background: rgba(255,255,255,0.2);
+    background: var(--hairline-strong);
   }
   .ct-check.is-active .ct-check-status { color: var(--blue); }
   .ct-check.is-active .ct-check-status .dot { background: var(--blue); animation: ct-blink 1s infinite; }
-  .ct-check.is-done .ct-check-status { color: var(--teal); }
-  .ct-check.is-done .ct-check-status .dot { background: var(--teal); }
+  .ct-check.is-done .ct-check-status { color: var(--pink); }
+  .ct-check.is-done .ct-check-status .dot { background: var(--pink); }
   @keyframes ct-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
   .ct-foot {
     margin-top: 20px;
     font-family: var(--font-mono);
     font-size: 10px;
-    color: rgba(255,255,255,0.3);
+    color: var(--ink-muted);
     display: flex; justify-content: space-between;
     letter-spacing: 0.05em;
   }
   .ct-foot-ok {
-    color: var(--teal);
+    color: var(--pink);
     display: inline-flex; align-items: center; gap: 6px;
     opacity: 0;
     transition: opacity 400ms var(--ease);
@@ -1189,14 +1182,14 @@
     content: "";
     width: 7px; height: 7px;
     border-radius: 999px;
-    background: var(--teal);
+    background: var(--pink);
     animation: ct-blink 2s infinite;
   }
   .ct-foot-ok.is-shown { opacity: 1; }
 
   .ct-right {
-    background: #08080A;
-    border: 1px solid rgba(255,255,255,0.08);
+    background: var(--surface-2);
+    border: 1px solid var(--hairline);
     border-radius: 8px;
     padding: 16px;
     font-family: var(--font-mono);
@@ -1207,7 +1200,7 @@
     display: flex; align-items: center; gap: 6px;
     margin-bottom: 14px;
     padding-bottom: 12px;
-    border-bottom: 1px solid rgba(255,255,255,0.08);
+    border-bottom: 1px solid var(--hairline);
   }
   .ct-right-head .ct-dot {
     width: 8px; height: 8px;
@@ -1215,29 +1208,29 @@
   }
   .ct-right-title {
     font-size: 9.5px;
-    color: rgba(255,255,255,0.3);
+    color: var(--ink-muted);
     letter-spacing: 0.1em;
     flex: 1;
     text-align: center;
   }
   .ct-log-line {
     line-height: 2;
-    color: rgba(255,255,255,0.18);
+    color: rgba(31, 31, 31, 0.35);
     transition: color 300ms var(--ease);
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
-  .ct-log-line .key { color: rgba(255,255,255,0.3); }
-  .ct-log-line.is-running .key { color: rgba(255,255,255,0.6); }
-  .ct-log-line.is-running .val { color: var(--sky); }
-  .ct-log-line.is-ok .key { color: rgba(255,255,255,0.55); }
-  .ct-log-line.is-ok .val { color: var(--teal); }
+  .ct-log-line .key { color: var(--ink-muted); }
+  .ct-log-line.is-running .key { color: var(--ink-soft); }
+  .ct-log-line.is-running .val { color: var(--blue); }
+  .ct-log-line.is-ok .key { color: var(--ink-soft); }
+  .ct-log-line.is-ok .val { color: var(--pink); }
   .ct-timer {
     margin-top: 14px;
     padding-top: 12px;
-    border-top: 1px solid rgba(255,255,255,0.08);
-    color: rgba(255,255,255,0.2);
+    border-top: 1px solid var(--hairline);
+    color: var(--ink-muted);
     font-size: 9.5px;
     letter-spacing: 0.06em;
   }
@@ -2815,7 +2808,6 @@
 
 <!-- ============= COMPLIANCE — animated audit terminal ============= -->
 <section class="compliance-section" id="compliance">
-  <div class="ct-scanline" aria-hidden="true"></div>
   <div class="container">
     <div class="ct-grid">
       <div class="ct-left">
