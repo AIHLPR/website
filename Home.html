@@ -919,66 +919,6 @@
   }
 
 
-  /* Microservices panel — FAQ-style rows, no box. */
-  .work-microservices {
-    display: none;
-    flex-direction: column;
-    padding: clamp(4px, 0.5vw, 8px) 0 clamp(16px, 2vw, 28px);
-  }
-  details.micro-cat-card {
-    border-bottom: 1px solid var(--hairline);
-  }
-  details.micro-cat-card:first-child {
-    border-top: 1px solid var(--hairline);
-  }
-  details.micro-cat-card summary {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: clamp(18px, 2vw, 24px) 0;
-    cursor: pointer;
-    list-style: none;
-  }
-  details.micro-cat-card summary::-webkit-details-marker { display: none; }
-  details.micro-cat-card summary::marker { content: ''; }
-  .micro-cat-name {
-    font-family: var(--font-display);
-    font-size: clamp(18px, 1.6vw, 22px);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-    color: var(--ink);
-  }
-  .micro-plus {
-    flex-shrink: 0;
-    width: 28px; height: 28px;
-    display: grid;
-    place-items: center;
-    border: 1px solid var(--hairline-strong);
-    border-radius: 999px;
-    color: var(--ink-soft);
-    font-size: 16px;
-    line-height: 1;
-    transition: transform 220ms var(--ease), background 220ms var(--ease), color 220ms var(--ease), border-color 220ms var(--ease);
-  }
-  details.micro-cat-card[open] .micro-plus {
-    transform: rotate(45deg);
-    background: var(--ink);
-    border-color: var(--ink);
-    color: var(--white);
-  }
-  .micro-cat-list {
-    padding: 0 0 clamp(18px, 2vw, 24px);
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-    gap: 12px 28px;
-  }
-  .micro-item {
-    font-family: var(--font-body);
-    font-size: 14px;
-    line-height: 1.4;
-    color: var(--ink-soft);
-  }
   .work-row .read-more {
     display: inline-flex; align-items: center; gap: 8px;
     font-size: 13.5px;
@@ -2362,8 +2302,10 @@
     <div class="work-tabs">
       <button class="work-tab is-active" data-tab="retail">Retail</button>
       <button class="work-tab" data-tab="arch">Architecture</button>
-      <button class="work-tab" data-tab="resources">Resources</button>
-      <button class="work-tab" data-tab="microservices">Microservices</button>
+      <button class="work-tab" data-tab="workforce">Workforce</button>
+      <button class="work-tab" data-tab="marketing">Marketing</button>
+      <button class="work-tab" data-tab="sales">Sales</button>
+      <button class="work-tab" data-tab="ops">Ops</button>
     </div>
 
     <div class="work-rows" id="workRows">
@@ -2444,11 +2386,11 @@
       </a>
 
       <!-- 03 -->
-      <a class="work-row" data-sector="resources" href="work/careeros.html">
+      <a class="work-row" data-sector="workforce" href="work/careeros.html">
         <div class="work-head">
           <div class="work-cap">
             <span class="work-no">03</span>
-            <span class="work-cat">Resources &middot; Owned product</span>
+            <span class="work-cat">Workforce &middot; Owned product</span>
           </div>
           <h3>CareerOS</h3>
           <p class="work-subhead">A career is a graph, not a document.</p>
@@ -2480,98 +2422,6 @@
           <span class="read-more">Read case study <span class="arrow">&rarr;</span></span>
         </div>
       </a>
-    </div>
-    <div class="work-microservices" data-tab="microservices">
-      <details class="micro-cat-card" data-accent="pink">
-        <summary>
-          <span class="micro-cat-name">Content &amp; Brand</span>
-          <span class="micro-plus" aria-hidden="true">+</span>
-        </summary>
-        <div class="micro-cat-list">
-          <span class="micro-item">GEO — AI answer visibility</span>
-          <span class="micro-item">Brand compliance checker</span>
-          <span class="micro-item">Content repurposing agent</span>
-          <span class="micro-item">SEO-to-GEO migration agent</span>
-          <span class="micro-item">Brand voice auditor</span>
-          <span class="micro-item">Multi-market localisation agent</span>
-          <span class="micro-item">AI content grader</span>
-          <span class="micro-item">Campaign brief generator</span>
-          <span class="micro-item">Product description generator</span>
-          <span class="micro-item">Social media scheduling agent</span>
-        </div>
-      </details>
-      <details class="micro-cat-card" data-accent="magenta">
-        <summary>
-          <span class="micro-cat-name">Knowledge &amp; Documents</span>
-          <span class="micro-plus" aria-hidden="true">+</span>
-        </summary>
-        <div class="micro-cat-list">
-          <span class="micro-item">Document intelligence agent</span>
-          <span class="micro-item">Knowledge assistant</span>
-          <span class="micro-item">Contract review agent</span>
-          <span class="micro-item">Meeting summariser</span>
-          <span class="micro-item">RFP/tender response agent</span>
-          <span class="micro-item">Policy compliance checker</span>
-          <span class="micro-item">Research synthesis agent</span>
-          <span class="micro-item">SOP generator</span>
-          <span class="micro-item">Email triage agent</span>
-          <span class="micro-item">Report generator</span>
-        </div>
-      </details>
-      <details class="micro-cat-card" data-accent="purple">
-        <summary>
-          <span class="micro-cat-name">Data</span>
-          <span class="micro-plus" aria-hidden="true">+</span>
-        </summary>
-        <div class="micro-cat-list">
-          <span class="micro-item">Data orchestration agent</span>
-          <span class="micro-item">Data readiness auditor</span>
-          <span class="micro-item">Data quality monitor</span>
-          <span class="micro-item">CRM enrichment agent</span>
-          <span class="micro-item">ETL automation agent</span>
-          <span class="micro-item">Dashboard narrative agent</span>
-          <span class="micro-item">Anomaly detection agent</span>
-          <span class="micro-item">Data lineage tracker</span>
-          <span class="micro-item">Duplicate detection agent</span>
-          <span class="micro-item">Schema mapping agent</span>
-        </div>
-      </details>
-      <details class="micro-cat-card" data-accent="sky">
-        <summary>
-          <span class="micro-cat-name">Customer &amp; Sales</span>
-          <span class="micro-plus" aria-hidden="true">+</span>
-        </summary>
-        <div class="micro-cat-list">
-          <span class="micro-item">Lead routing agent</span>
-          <span class="micro-item">Lead scoring agent</span>
-          <span class="micro-item">Customer support agent</span>
-          <span class="micro-item">Churn prediction agent</span>
-          <span class="micro-item">Onboarding agent</span>
-          <span class="micro-item">Sales proposal agent</span>
-          <span class="micro-item">Competitor monitoring agent</span>
-          <span class="micro-item">Review analysis agent</span>
-          <span class="micro-item">Pricing intelligence agent</span>
-          <span class="micro-item">Win/loss analysis agent</span>
-        </div>
-      </details>
-      <details class="micro-cat-card" data-accent="blue">
-        <summary>
-          <span class="micro-cat-name">Operations &amp; Workflow</span>
-          <span class="micro-plus" aria-hidden="true">+</span>
-        </summary>
-        <div class="micro-cat-list">
-          <span class="micro-item">Approval routing agent</span>
-          <span class="micro-item">Invoice processing agent</span>
-          <span class="micro-item">HR onboarding agent</span>
-          <span class="micro-item">Compliance monitoring agent</span>
-          <span class="micro-item">Incident triage agent</span>
-          <span class="micro-item">Vendor evaluation agent</span>
-          <span class="micro-item">Project status agent</span>
-          <span class="micro-item">Resource allocation agent</span>
-          <span class="micro-item">Supply chain monitor</span>
-          <span class="micro-item">IT helpdesk agent</span>
-        </div>
-      </details>
     </div>
   </div>
 </section>
@@ -3002,18 +2852,15 @@
     go(0);
   })();
 
-  // Work section tabs (sector filter + microservices panel)
+  // Work section tabs (sector filter)
   (function () {
     const tabs = document.querySelectorAll('.work-tab');
     const rows = document.querySelectorAll('.work-row');
-    const microPanel = document.querySelector('.work-microservices');
     function activate(sector) {
       tabs.forEach(t => t.classList.toggle('is-active', t.dataset.tab === sector));
-      const isMicro = sector === 'microservices';
       rows.forEach(row => {
-        row.style.display = (!isMicro && row.dataset.sector === sector) ? '' : 'none';
+        row.style.display = row.dataset.sector === sector ? '' : 'none';
       });
-      if (microPanel) microPanel.style.display = isMicro ? 'flex' : 'none';
     }
     tabs.forEach(tab => tab.addEventListener('click', () => activate(tab.dataset.tab)));
     const initial = document.querySelector('.work-tab.is-active');
