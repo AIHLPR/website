@@ -237,8 +237,65 @@
     transform: none;
     pointer-events: auto;
   }
+  /* ===== Mobile hamburger + slide-down menu ===== */
+  .nav-burger {
+    display: none;
+    position: relative;
+    width: 36px;
+    height: 28px;
+    background: none;
+    border: 0;
+    padding: 0;
+    cursor: pointer;
+    z-index: 60;
+  }
+  .nav-burger span {
+    position: absolute;
+    left: 4px;
+    right: 4px;
+    height: 2px;
+    border-radius: 2px;
+    background: var(--ink);
+    transition: top 220ms var(--ease), transform 220ms var(--ease), opacity 180ms var(--ease);
+  }
+  .nav-burger span:nth-child(1) { top: 7px; }
+  .nav-burger span:nth-child(2) { top: 13px; }
+  .nav-burger span:nth-child(3) { top: 19px; }
+  .nav.is-open .nav-burger span:nth-child(1) { top: 13px; transform: rotate(45deg); }
+  .nav.is-open .nav-burger span:nth-child(2) { opacity: 0; }
+  .nav.is-open .nav-burger span:nth-child(3) { top: 13px; transform: rotate(-45deg); }
+  .nav-mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--hairline);
+    padding: 8px var(--gutter) 18px;
+    flex-direction: column;
+  }
+  .nav-mobile-menu a {
+    padding: 14px 0;
+    font-size: 16px;
+    font-weight: 500;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; }
+  .nav-mobile-menu a.cta {
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 12px 18px;
+    color: var(--ink);
+    text-align: left;
+    margin-top: 10px;
+    width: fit-content;
+  }
+  .nav.is-open .nav-mobile-menu { display: flex; }
+
   @media (max-width: 760px) {
-    .nav-links a:not(.cta) { display: none; }
+    .nav-links { display: none; }
+    .nav-burger { display: block; }
   }
 
   /* ===== Hero ===== */
@@ -1649,6 +1706,50 @@
     .stage-cursor { animation: none; }
     .rail-head { transition: none; }
   }
+
+  /* ============================================================
+     Mobile tweaks (≤ 760px) — collected fixes for narrow screens.
+     ============================================================ */
+  @media (max-width: 760px) {
+    /* Hero capability pill: let items wrap onto multiple lines instead
+       of overflowing horizontally. */
+    .hero-pill {
+      display: flex;
+      flex-wrap: wrap;
+      row-gap: 6px;
+      column-gap: 10px;
+      padding: 8px 16px;
+      letter-spacing: 0.12em;
+    }
+    .hero-pill .sep { display: none; }
+
+    /* Our work tabs: 6 tabs need a tighter gap to fit / wrap cleanly. */
+    .work-tabs {
+      gap: 6px 14px;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+    .work-tabs::-webkit-scrollbar { display: none; }
+    .work-tab {
+      white-space: nowrap;
+      font-size: 13px;
+      padding: 8px 0 12px;
+    }
+
+    /* Service card diagrams: keep SVGs inside the card frame at all
+       widths so the opportunity matrix etc. never clip off the right. */
+    .service-card-h .diagram-frame { max-width: 100%; }
+    .service-card-h .diagram-frame svg { max-width: 100%; height: auto; }
+
+    /* Hero animation feels heavy on phones: hide the right column and
+       show the static logo in the nav slot instead. The hero JS sees
+       the same media query and early-returns. */
+    .hero-anim { display: none; }
+    .nav-logo-static { display: block; height: 100%; }
+    .nav-logo-static img { height: 100%; width: auto; display: block; }
+  }
 </style>
 </head>
 <body>
@@ -1667,6 +1768,15 @@
       <a href="#how">How we work</a>
       <a href="#contact" class="cta">Discuss your use case &rarr;</a>
     </div>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <a href="#services">What we do</a>
+    <a href="#work">Our work</a>
+    <a href="#how">How we work</a>
+    <a href="#contact" class="cta">Discuss your use case &rarr;</a>
   </div>
 </nav>
 
@@ -2915,6 +3025,23 @@
     tabs.forEach(tab => tab.addEventListener('click', () => activate(tab.dataset.tab)));
     const initial = document.querySelector('.work-tab.is-active');
     if (initial) activate(initial.dataset.tab);
+  })();
+
+  // Mobile hamburger menu
+  (function () {
+    const nav    = document.getElementById('siteNav');
+    const burger = document.getElementById('navBurger');
+    const menu   = document.getElementById('navMobileMenu');
+    if (!nav || !burger || !menu) return;
+    function setOpen(open) {
+      nav.classList.toggle('is-open', open);
+      burger.setAttribute('aria-expanded', String(open));
+      menu.setAttribute('aria-hidden', String(!open));
+      burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    }
+    burger.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
   })();
 
   // Contact form (mailto)

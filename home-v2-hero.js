@@ -571,6 +571,11 @@
   }
 
   function init() {
+    // On mobile we hide the hero animation entirely (the dock logo + the
+    // network feel too busy on small screens). Skip the build and all
+    // listeners so no work is wasted; the static nav logo takes over.
+    const isMobile = window.matchMedia && window.matchMedia("(max-width: 760px)").matches;
+    if (isMobile) return;
     build();
     const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReduce) {
