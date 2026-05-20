@@ -578,8 +578,8 @@
     row-gap: clamp(12px, 1.4vw, 20px);
     padding-top: clamp(6px, 1vw, 16px);
     padding-bottom: clamp(18px, 2.2vw, 32px);
-    padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2));
-    padding-right: max(var(--gutter), calc((100vw - var(--container)) / 2));
+    padding-left: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
+    padding-right: max(var(--gutter), calc((100vw - var(--container)) / 2 + var(--gutter)));
     align-items: start;
     align-content: start;
   }
