@@ -664,6 +664,8 @@
     font-size: clamp(16px, 1.3vw, 19px);
     line-height: 1.6;
   }
+  .service-card-h .body-copy p { margin: 0; }
+  .service-card-h .body-copy p + p { margin-top: clamp(8px, 1vw, 14px); }
   .deliverable {
     font-family: var(--font-mono);
     font-size: clamp(10.5px, 0.85vw, 12px);
@@ -1909,7 +1911,10 @@
             <text x="151" y="78" text-anchor="middle" font-size="3.4" fill="#8A8A8A" letter-spacing="0.1em">HUMAN IN THE LOOP</text>
           </svg>
         </div>
-      <p class="body-copy">Off the shelf tools work until the workflow gets messy. We build AI systems around the exceptions, handovers, drafts, checks, and escalations that your team actually deals with.</p>
+      <div class="body-copy">
+        <p>Operational workflows rarely stay clean for long. Exceptions, reviews, approvals, escalations, and coordination tend to shape how work actually moves across teams.</p>
+        <p>AI systems need to account for that reality from the start.</p>
+      </div>
       </article>
 
       <!-- 02 magenta -->
@@ -2007,7 +2012,10 @@
                   letter-spacing="0.14em" fill="#CC418C">MULTI-LINGUAL</text>
           </svg>
         </div>
-      <p class="body-copy">One master asset should not become ten disconnected versions. We build workflows that help teams adapt content across markets, channels, and formats while keeping the brand intact.</p>
+      <div class="body-copy">
+        <p>As content moves across markets, formats, and channels, consistency becomes harder to maintain.</p>
+        <p>Shared workflows, adaptation systems, and structured review layers help teams scale without fragmenting the brand.</p>
+      </div>
       </article>
 
       <!-- 03 blue -->
@@ -2088,7 +2096,10 @@
             <path d="M 63 11 Q 57 14 51.5 17.2" stroke="#3478E5" stroke-width="0.8" fill="none" stroke-linecap="round"/>
           </svg>
         </div>
-      <p class="body-copy">Most AI projects struggle because the starting point was wrong. We help you assess use cases by value, feasibility, risk, and operational fit, so you know what to build, pause, or drop.</p>
+      <div class="body-copy">
+        <p>The hardest part of AI adoption is often deciding where it meaningfully fits.</p>
+        <p>Impact, feasibility, operational constraints, governance, and long term maintainability all shape what is worth pursuing.</p>
+      </div>
       </article>
 
       <!-- 04 purple -->
@@ -2189,7 +2200,10 @@
             </g>
           </svg>
         </div>
-      <p class="body-copy">You do not need to replace everything to work better. We help teams keep what works, remove what adds noise, and build the AI layer that connects systems, knowledge, rules, and decisions.</p>
+      <div class="body-copy">
+        <p>Most organizations already operate across systems, workflows, tools, and internal processes that cannot simply be replaced.</p>
+        <p>AI works best when it connects into operational reality rather than forcing teams to start over.</p>
+      </div>
       </article>
     </div>
     <div class="services-nav">
@@ -2253,7 +2267,7 @@
         <div class="stage-frame is-active" data-stage="0">
           <span class="stage-tag">stage_00.feasibility_check()</span>
           <h2 class="stage-title">Feasibility check</h2>
-          <p class="stage-desc">Legal, technical, and organisational readiness &mdash; before a single line of code.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <p class="stage-desc">Legal, technical, and organisational readiness before a single line of code.<span class="stage-cursor" aria-hidden="true"></span></p>
         </div>
         <div class="stage-frame" data-stage="1">
           <span class="stage-tag">stage_01.architecture_design()</span>
@@ -2946,17 +2960,14 @@
     let current = 0;
 
     function go(idx) {
-      current = clamp(idx, 0, cards.length - 1);
+      // Wrap around so the carousel loops 04 → 01 and 01 → 04.
+      current = ((idx % cards.length) + cards.length) % cards.length;
       if (nav) nav.style.setProperty('--svc-accent', accents[current % accents.length]);
       track.style.transform = mqMobile.matches
         ? ''
         : `translate3d(${-current * 100}vw, 0, 0)`;
       steps.forEach((s, i) => s.classList.toggle('is-active', i === current));
-      arrows.forEach(a => {
-        const dir = Number(a.dataset.dir);
-        a.disabled = (dir < 0 && current === 0) ||
-                     (dir > 0 && current === cards.length - 1);
-      });
+      arrows.forEach(a => { a.disabled = false; });
       alignDiagrams();
     }
 
