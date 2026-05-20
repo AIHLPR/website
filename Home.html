@@ -485,7 +485,28 @@
   .services-pin-head {
     /* Clears the fixed site header and carries the section eyebrow. */
     flex: 0 0 auto;
-    padding: 52px 0 clamp(8px, 1vw, 14px);
+    padding: 52px 0 clamp(12px, 1.4vw, 22px);
+  }
+  .services-head-grid {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: clamp(20px, 3vw, 48px);
+    flex-wrap: wrap;
+  }
+  .services-head-title {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.02em;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 0;
+    max-width: 22ch;
+  }
+  .services-head-eyebrow {
+    flex-shrink: 0;
+    margin-top: 6px;
   }
   .services-nav {
     --svc-accent: var(--pink);
@@ -1846,8 +1867,9 @@
 <section class="services-section" id="services">
   <div class="services-pin">
     <div class="services-pin-head">
-      <div class="container">
-        <span class="label-mono"><span class="dot"></span>Our services</span>
+      <div class="container services-head-grid">
+        <h2 class="services-head-title">What AIHLPR helps organizations build and operate</h2>
+        <span class="label-mono services-head-eyebrow"><span class="dot"></span>Our services</span>
       </div>
     </div>
     <div class="services-track" id="servicesTrack">
@@ -1858,13 +1880,13 @@
           <div class="heading-zone">
           <span class="audience-num">01</span>
           <span class="audience-label">For product and operations teams</span>
-          <h3>Put AI to work on the jobs that drain you.</h3>
+          <h3>Operational AI systems</h3>
         </div>
           <div class="deliverables-list">
-            <div class="deliverable">Workflow automation</div>
-            <div class="deliverable">Document processing</div>
-            <div class="deliverable">Knowledge assistant</div>
-            <div class="deliverable">Human-in-the-loop review</div>
+            <div class="deliverable">Workflow systems</div>
+            <div class="deliverable">Internal tools</div>
+            <div class="deliverable">Human in the loop review</div>
+            <div class="deliverable">Operational automation</div>
           </div>
         </div>
         <div class="diagram-frame">
@@ -1923,7 +1945,7 @@
             <text x="151" y="78" text-anchor="middle" font-size="3.4" fill="#8A8A8A" letter-spacing="0.1em">HUMAN IN THE LOOP</text>
           </svg>
         </div>
-      <p class="body-copy">Off the shelf tools handle the easy 60 percent and break on the rest. We build AI that knows your edge cases, sorts, drafts, routes, and escalates what needs a person. Your team stops firefighting. They start deciding.</p>
+      <p class="body-copy">Off the shelf tools work until the workflow gets messy. We build AI systems around the exceptions, handovers, drafts, checks, and escalations that your team actually deals with.</p>
       <p class="service-cta"><a href="#contact">Curious if this fits your team? Book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
 
@@ -1933,13 +1955,13 @@
           <div class="heading-zone">
           <span class="audience-num">02</span>
           <span class="audience-label">For marketing and brand teams</span>
-          <h3>Scale content without losing your brand.</h3>
+          <h3>Content and market adaptation</h3>
         </div>
           <div class="deliverables-list">
-            <div class="deliverable">Asset workflow engine</div>
-            <div class="deliverable">Translation agent</div>
-            <div class="deliverable">Campaign libraries</div>
-            <div class="deliverable">Performance testing</div>
+            <div class="deliverable">Content workflows</div>
+            <div class="deliverable">Multi market adaptation</div>
+            <div class="deliverable">Translation systems</div>
+            <div class="deliverable">Brand governance</div>
           </div>
         </div>
         <div class="diagram-frame">
@@ -2022,7 +2044,7 @@
                   letter-spacing="0.14em" fill="#CC418C">MULTI-LINGUAL</text>
           </svg>
         </div>
-      <p class="body-copy">Every market needs its own version. Every adaptation chips away at the brand. We build AI workflows that take one master asset and produce on brand content across markets, channels, and formats. Same voice, same look, faster output.</p>
+      <p class="body-copy">One master asset should not become ten disconnected versions. We build workflows that help teams adapt content across markets, channels, and formats while keeping the brand intact.</p>
       <p class="service-cta"><a href="#contact">Curious if this fits your team? Book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
 
@@ -2032,7 +2054,7 @@
           <div class="heading-zone">
           <span class="audience-num">03</span>
           <span class="audience-label">For leadership deciding where AI fits</span>
-          <h3>Figure out where AI actually pays off.</h3>
+          <h3>AI use case mapping</h3>
         </div>
           <div class="deliverables-list">
             <div class="deliverable">AI opportunity map</div>
@@ -2104,7 +2126,7 @@
             <path d="M 63 11 Q 57 14 51.5 17.2" stroke="#3478E5" stroke-width="0.8" fill="none" stroke-linecap="round"/>
           </svg>
         </div>
-      <p class="body-copy">Most AI projects fail because they were the wrong project. We score your use cases on impact and feasibility, then tell you which three to start with and which to drop. You leave with a prioritised roadmap, not a wishlist.</p>
+      <p class="body-copy">Most AI projects struggle because the starting point was wrong. We help you assess use cases by value, feasibility, risk, and operational fit, so you know what to build, pause, or drop.</p>
       <p class="service-cta"><a href="#contact">Curious if this fits your team? Book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
 
@@ -2114,7 +2136,7 @@
           <div class="heading-zone">
           <span class="audience-num">04</span>
           <span class="audience-label">For engineering and platform teams</span>
-          <h3>Wire AI into the systems you already have.</h3>
+          <h3>AI layer for existing systems</h3>
         </div>
           <div class="deliverables-list">
             <div class="deliverable">RAG build</div>
@@ -2206,7 +2228,7 @@
             </g>
           </svg>
         </div>
-      <p class="body-copy">You already have a stack that works. Most of it. We help you keep what earns its place, retire what does not, and build the AI layer that connects what is left. Retrieval, guardrails, fine tuning, integration, wired into your systems, bound by your rules.</p>
+      <p class="body-copy">You do not need to replace everything to work better. We help teams keep what works, remove what adds noise, and build the AI layer that connects systems, knowledge, rules, and decisions.</p>
       <p class="service-cta"><a href="#contact">If none of these fit, or you need something else, book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
     </div>
