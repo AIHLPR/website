@@ -715,33 +715,9 @@
     .service-card-h .card-left   { grid-column: 1; grid-row: 1; gap: 32px; }
     .service-card-h .diagram-frame { grid-column: 1; grid-row: 2; margin-top: 0; }
     .service-card-h .body-copy   { grid-column: 1; grid-row: 3; }
-    .service-card-h .service-cta { grid-column: 1; grid-row: 4; }
     .service-card-h h3 { font-size: clamp(28px, 7vw, 40px); max-width: 20ch; }
     .service-card-h .heading-zone { gap: 32px; }
   }
-
-  /* Per-card consultation line */
-  .service-card-h .service-cta {
-    grid-column: 1 / -1;
-    grid-row: 3;
-    text-align: center;
-    margin-top: clamp(8px, 1vw, 14px);
-  }
-  .service-cta a {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--ink-soft);
-    text-decoration: none;
-    border-bottom: 1px solid var(--hairline-strong);
-    padding-bottom: 3px;
-    transition: color 180ms var(--ease), border-color 180ms var(--ease);
-  }
-  .service-cta a:hover { color: var(--ink); border-bottom-color: var(--ink); }
-  .service-cta a .arrow { transition: transform 200ms var(--ease); }
-  .service-cta a:hover .arrow { transform: translateX(3px); }
 
   /* ===== Constellation transition (Services → Work) =====
      Four brand-coloured hubs (one per service) connected by hairlines.
@@ -1946,7 +1922,6 @@
           </svg>
         </div>
       <p class="body-copy">Off the shelf tools work until the workflow gets messy. We build AI systems around the exceptions, handovers, drafts, checks, and escalations that your team actually deals with.</p>
-      <p class="service-cta"><a href="#contact">Curious if this fits your team? Book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
 
       <!-- 02 magenta -->
@@ -2045,7 +2020,6 @@
           </svg>
         </div>
       <p class="body-copy">One master asset should not become ten disconnected versions. We build workflows that help teams adapt content across markets, channels, and formats while keeping the brand intact.</p>
-      <p class="service-cta"><a href="#contact">Curious if this fits your team? Book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
 
       <!-- 03 blue -->
@@ -2127,7 +2101,6 @@
           </svg>
         </div>
       <p class="body-copy">Most AI projects struggle because the starting point was wrong. We help you assess use cases by value, feasibility, risk, and operational fit, so you know what to build, pause, or drop.</p>
-      <p class="service-cta"><a href="#contact">Curious if this fits your team? Book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
 
       <!-- 04 purple -->
@@ -2229,7 +2202,6 @@
           </svg>
         </div>
       <p class="body-copy">You do not need to replace everything to work better. We help teams keep what works, remove what adds noise, and build the AI layer that connects systems, knowledge, rules, and decisions.</p>
-      <p class="service-cta"><a href="#contact">If none of these fit, or you need something else, book a free consultation <span class="arrow">&rarr;</span></a></p>
       </article>
     </div>
     <div class="services-nav">
