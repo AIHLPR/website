@@ -648,10 +648,7 @@
     overflow: hidden;
     align-self: start;
     justify-self: stretch;
-    /* Offset adjusted via JS at runtime so the frame's top edge aligns
-       exactly with the headline's first cap-line. CSS provides a sane
-       fallback before JS measures (matches typical 01 + label stack). */
-    margin-top: clamp(44px, 5vw, 72px);
+    margin-top: 0;
   }
   .service-card-h .diagram-frame svg { width: 100%; height: auto; display: block; }
   .service-card-h .body-copy {
@@ -2976,24 +2973,10 @@
 
     mqMobile.addEventListener && mqMobile.addEventListener('change', () => go(current));
 
-    // ---- Vertical alignment: pull each diagram up so its TOP edge sits
-    // exactly on the headline's first cap-line. We measure at runtime
-    // (headline font-size + sub-element gaps are clamp-based, so static
-    // CSS can't predict the exact offset across breakpoints).
+    // ---- Diagram alignment: clear any inline margin-top (CSS handles it).
     function alignDiagrams() {
-      if (mqMobile.matches) {
-        document.querySelectorAll('.service-card-h .diagram-frame')
-          .forEach(d => { d.style.marginTop = ''; });
-        return;
-      }
-      document.querySelectorAll('.service-card-h').forEach(card => {
-        const left = card.querySelector('.card-left');
-        const h3 = card.querySelector('h3');
-        const diag = card.querySelector('.diagram-frame');
-        if (!left || !h3 || !diag) return;
-        const offset = Math.max(0, h3.getBoundingClientRect().top - left.getBoundingClientRect().top);
-        diag.style.marginTop = offset + 'px';
-      });
+      document.querySelectorAll('.service-card-h .diagram-frame')
+        .forEach(d => { d.style.marginTop = ''; });
     }
     window.addEventListener('load', alignDiagrams);
     window.addEventListener('resize', alignDiagrams);
