@@ -648,7 +648,9 @@
     overflow: hidden;
     align-self: start;
     justify-self: stretch;
-    margin-top: 0;
+    /* Aligns the diagram's top edge with the audience-label line
+       (one row below the "01" number). */
+    margin-top: clamp(28px, 2.6vw, 40px);
   }
   .service-card-h .diagram-frame svg { width: 100%; height: auto; display: block; }
   .service-card-h .body-copy {
@@ -656,7 +658,8 @@
     display: block;
     text-align: center;
     margin: 0 auto;
-    max-width: min(58ch, 60%);
+    padding-top: clamp(20px, 2.4vw, 36px);
+    max-width: min(75ch, 70%);
     color: var(--ink-soft);
     font-size: clamp(16px, 1.3vw, 19px);
     line-height: 1.6;
