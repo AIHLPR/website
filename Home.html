@@ -1067,7 +1067,8 @@
   .ct-eyebrow::before {
     content: "";
     display: inline-block;
-    width: 18px; height: 1px;
+    width: 7px; height: 7px;
+    border-radius: 999px;
     background: var(--blue);
   }
   .ct-headline {
@@ -1381,13 +1382,10 @@
     background: linear-gradient(90deg, #F5A6C9 0%, #D6B0E1 35%, #B4C5F4 70%, #8FB6FF 100%);
     -webkit-background-clip: text; background-clip: text;
     color: transparent;
-    font-style: italic;
-    font-weight: 500;
   }
   .closing-sub {
     margin-top: 18px;
     color: rgba(255,255,255,0.7);
-    font-style: italic;
     font-size: 17px;
     max-width: 44ch;
   }
@@ -1418,8 +1416,9 @@
   }
   .closing-cta-eyebrow::before {
     content: "";
-    width: 18px; height: 1px;
-    background: rgba(255,255,255,0.4);
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: var(--blue);
   }
   .closing-cta-copy {
     color: rgba(255,255,255,0.75);
