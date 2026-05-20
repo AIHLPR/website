@@ -1035,56 +1035,224 @@
   }
   @media (max-width: 900px) { .stack-grid { grid-template-columns: 1fr; } }
 
-  /* ===== Compliance ===== */
-  .compliance-section .section-head .head-aside {
-    font-style: italic;
-    color: var(--ink-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-  .compliance-frame {
-    border: 1px solid var(--hairline);
-    border-radius: 20px;
-    background: var(--white);
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
+  /* ===== Compliance — animated audit terminal ===== */
+  .compliance-section {
+    background: #0E0E10;
+    color: rgba(255,255,255,0.85);
+    padding: clamp(56px, 7vw, 96px) 0;
+    position: relative;
     overflow: hidden;
   }
-  .compliance-cell {
-    padding: 36px 32px;
-    border-right: 1px solid var(--hairline);
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+  .compliance-section .ct-scanline {
+    position: absolute; inset: 0;
+    background: repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(255,255,255,0.008) 3px, rgba(255,255,255,0.008) 4px);
+    pointer-events: none;
+    z-index: 0;
   }
-  .compliance-cell:last-child { border-right: none; }
-  .compliance-cell .icon {
-    width: 44px; height: 44px;
-    display: grid; place-items: center;
-    color: var(--ink-soft);
+  .compliance-section > .container { position: relative; z-index: 1; }
+
+  .ct-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) clamp(260px, 24vw, 340px);
+    gap: clamp(28px, 4vw, 56px);
+    align-items: start;
   }
-  .compliance-cell .icon .accent { color: var(--blue); }
-  .compliance-cell h3 {
-    font-size: 20px;
-    line-height: 1.2;
-    letter-spacing: -0.01em;
-    max-width: 18ch;
+
+  .ct-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--blue);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .ct-eyebrow::before {
+    content: "";
+    display: inline-block;
+    width: 18px; height: 1px;
+    background: var(--blue);
+  }
+  .ct-headline {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.4vw, 44px);
     font-weight: 600;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+    margin: 0 0 6px;
   }
-  .compliance-cell p {
-    color: var(--ink-soft);
-    font-size: 14.5px;
-    line-height: 1.55;
+  .ct-sub {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    color: rgba(255,255,255,0.3);
+    margin-bottom: clamp(24px, 3vw, 40px);
+    letter-spacing: 0.06em;
   }
-  @media (max-width: 900px) {
-    .compliance-frame { grid-template-columns: repeat(2, 1fr); }
-    .compliance-cell:nth-child(2) { border-right: none; }
-    .compliance-cell:nth-child(1), .compliance-cell:nth-child(2) { border-bottom: 1px solid var(--hairline); }
+
+  .ct-checks { display: flex; flex-direction: column; }
+  .ct-check {
+    padding: 18px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 12px;
+    align-items: start;
+    opacity: 0.35;
+    transition: opacity 400ms var(--ease);
   }
-  @media (max-width: 540px) {
-    .compliance-frame { grid-template-columns: 1fr; }
-    .compliance-cell { border-right: none; border-bottom: 1px solid var(--hairline); }
-    .compliance-cell:last-child { border-bottom: none; }
+  .ct-check.is-active { opacity: 1; }
+  .ct-check.is-done { opacity: 0.7; }
+  .ct-check-icon {
+    margin-top: 2px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    color: rgba(255,255,255,0.3);
+    transition: color 400ms var(--ease);
+  }
+  .ct-check.is-active .ct-check-icon { color: var(--blue); }
+  .ct-check.is-done .ct-check-icon { color: var(--teal); }
+  .ct-check-fn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    color: var(--blue);
+    margin-bottom: 4px;
+    opacity: 0;
+    transition: opacity 400ms var(--ease);
+  }
+  .ct-check.is-active .ct-check-fn { opacity: 1; }
+  .ct-check.is-done .ct-check-fn { opacity: 0.5; }
+  .ct-check-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--white);
+    margin: 0 0 4px;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+  }
+  .ct-check-copy {
+    font-family: var(--font-body);
+    font-size: 13px;
+    color: rgba(255,255,255,0.5);
+    line-height: 1.6;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height 500ms var(--ease), opacity 400ms var(--ease);
+  }
+  .ct-check.is-active .ct-check-copy,
+  .ct-check.is-done .ct-check-copy {
+    max-height: 140px;
+    opacity: 1;
+    padding-top: 2px;
+  }
+  .ct-check-status {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+    margin-top: 2px;
+    color: rgba(255,255,255,0.3);
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .ct-check-status .dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: rgba(255,255,255,0.2);
+  }
+  .ct-check.is-active .ct-check-status { color: var(--blue); }
+  .ct-check.is-active .ct-check-status .dot { background: var(--blue); animation: ct-blink 1s infinite; }
+  .ct-check.is-done .ct-check-status { color: var(--teal); }
+  .ct-check.is-done .ct-check-status .dot { background: var(--teal); }
+  @keyframes ct-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+
+  .ct-foot {
+    margin-top: 20px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    color: rgba(255,255,255,0.3);
+    display: flex; justify-content: space-between;
+    letter-spacing: 0.05em;
+  }
+  .ct-foot-ok {
+    color: var(--teal);
+    display: inline-flex; align-items: center; gap: 6px;
+    opacity: 0;
+    transition: opacity 400ms var(--ease);
+  }
+  .ct-foot-ok::before {
+    content: "";
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: var(--teal);
+    animation: ct-blink 2s infinite;
+  }
+  .ct-foot-ok.is-shown { opacity: 1; }
+
+  .ct-right {
+    background: #08080A;
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 8px;
+    padding: 16px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    align-self: start;
+  }
+  .ct-right-head {
+    display: flex; align-items: center; gap: 6px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255,255,255,0.08);
+  }
+  .ct-right-head .ct-dot {
+    width: 8px; height: 8px;
+    border-radius: 999px;
+  }
+  .ct-right-title {
+    font-size: 9.5px;
+    color: rgba(255,255,255,0.3);
+    letter-spacing: 0.1em;
+    flex: 1;
+    text-align: center;
+  }
+  .ct-log-line {
+    line-height: 2;
+    color: rgba(255,255,255,0.18);
+    transition: color 300ms var(--ease);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .ct-log-line .key { color: rgba(255,255,255,0.3); }
+  .ct-log-line.is-running .key { color: rgba(255,255,255,0.6); }
+  .ct-log-line.is-running .val { color: var(--sky); }
+  .ct-log-line.is-ok .key { color: rgba(255,255,255,0.55); }
+  .ct-log-line.is-ok .val { color: var(--teal); }
+  .ct-timer {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255,255,255,0.08);
+    color: rgba(255,255,255,0.2);
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+  }
+  .ct-timer span { color: var(--blue); }
+
+  @media (max-width: 760px) {
+    .ct-grid { grid-template-columns: 1fr; }
+    .ct-right { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .ct-check, .ct-check-copy, .ct-check-icon,
+    .ct-check-status .dot, .ct-foot-ok::before { animation: none !important; transition: none !important; }
+    .ct-check { opacity: 1; }
+    .ct-check-copy { max-height: none; opacity: 1; }
+    .ct-check-fn { opacity: 0.6; }
   }
 
   /* ===== Insights ===== */
@@ -2645,66 +2813,31 @@
   </div>
 </section>
 
-<!-- ============= COMPLIANCE ============= -->
+<!-- ============= COMPLIANCE — animated audit terminal ============= -->
 <section class="compliance-section" id="compliance">
+  <div class="ct-scanline" aria-hidden="true"></div>
   <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>Compliance</span>
-      </div>
-      <p class="head-aside">Safety and trust by design.</p>
-    </div>
-
-    <div class="compliance-frame">
-      <!-- EU AI Act -->
-      <div class="compliance-cell">
-        <div class="icon">
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-            <path d="M19 4 L32 9 V19 C32 26 26 32 19 34 C12 32 6 26 6 19 V9 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
-            <path d="M12 19 L17 24 L26 14" stroke="#3478E5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
+    <div class="ct-grid">
+      <div class="ct-left">
+        <span class="ct-eyebrow">Compliance</span>
+        <h2 class="ct-headline">Safety and trust by design.</h2>
+        <div class="ct-sub">// compliance_audit &middot; 4 checks &middot; running</div>
+        <div class="ct-checks" id="ctChecks"></div>
+        <div class="ct-foot">
+          <span id="ctFootLeft">// awaiting results</span>
+          <span class="ct-foot-ok" id="ctFootOk">ALL CLEAR</span>
         </div>
-        <h3>EU AI Act ready</h3>
-        <p>Risk classified from day one. Documentation, transparency, and human oversight built in, not added later.</p>
       </div>
-      <!-- Data region -->
-      <div class="compliance-cell">
-        <div class="icon">
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-            <circle cx="19" cy="19" r="14" stroke="currentColor" stroke-width="1.2"/>
-            <path d="M5 19 H33 M19 5 C24 11 24 27 19 33 C14 27 14 11 19 5" stroke="currentColor" stroke-width="0.8" fill="none"/>
-            <circle cx="19" cy="14" r="3" fill="#3478E5"/>
-          </svg>
+      <aside class="ct-right" aria-hidden="true">
+        <div class="ct-right-head">
+          <span class="ct-dot" style="background:#FF5F56"></span>
+          <span class="ct-dot" style="background:#FFBD2E"></span>
+          <span class="ct-dot" style="background:#27C93F"></span>
+          <span class="ct-right-title">compliance_audit.log</span>
         </div>
-        <h3>Data stays in your region</h3>
-        <p>EU hosted by default. We can deploy inside your cloud tenancy (AWS, Azure, GCP) or on prem. Nothing leaves your environment.</p>
-      </div>
-      <!-- Audit -->
-      <div class="compliance-cell">
-        <div class="icon">
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-            <path d="M10 6 H24 L28 10 V32 H10 Z" stroke="currentColor" stroke-width="1.4" fill="none"/>
-            <line x1="13" y1="14" x2="25" y2="14" stroke="currentColor" stroke-width="0.8"/>
-            <line x1="13" y1="20" x2="25" y2="20" stroke="currentColor" stroke-width="0.8"/>
-            <line x1="13" y1="26" x2="21" y2="26" stroke="currentColor" stroke-width="0.8"/>
-            <circle cx="22" cy="14" r="1.8" fill="#3478E5"/>
-          </svg>
-        </div>
-        <h3>Audit trail, end to end</h3>
-        <p>Every model decision, every human override, every data access. Logged, reviewable, and exportable.</p>
-      </div>
-      <!-- GDPR -->
-      <div class="compliance-cell">
-        <div class="icon">
-          <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
-            <circle cx="14" cy="14" r="7" stroke="currentColor" stroke-width="1.4" fill="none"/>
-            <circle cx="14" cy="14" r="2" fill="#3478E5"/>
-            <path d="M20 14 L33 14 M28 10 L33 14 L28 18" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-          </svg>
-        </div>
-        <h3>GDPR ready when it applies</h3>
-        <p>We minimise data collection by default. When personal data is involved, we work with your DPO and run DPIAs as needed.</p>
-      </div>
+        <div id="ctLogLines"></div>
+        <div class="ct-timer">elapsed: <span id="ctTimer">00:00:00</span></div>
+      </aside>
     </div>
   </div>
 </section>
@@ -3025,6 +3158,148 @@
     tabs.forEach(tab => tab.addEventListener('click', () => activate(tab.dataset.tab)));
     const initial = document.querySelector('.work-tab.is-active');
     if (initial) activate(initial.dataset.tab);
+  })();
+
+  // Compliance — animated audit terminal
+  (function () {
+    const root = document.getElementById('compliance');
+    if (!root) return;
+    const checksEl = document.getElementById('ctChecks');
+    const logsEl   = document.getElementById('ctLogLines');
+    const footLeft = document.getElementById('ctFootLeft');
+    const footOk   = document.getElementById('ctFootOk');
+    const timerEl  = document.getElementById('ctTimer');
+    if (!checksEl || !logsEl) return;
+
+    const checks = [
+      {
+        fn: 'compliance.eu_ai_act()',
+        title: 'EU AI Act ready',
+        copy: 'Risk classified from day one. Documentation, transparency, and human oversight built in, not added later.',
+        logs: [
+          { key: 'risk_classification', val: 'assessed' },
+          { key: 'transparency_docs',   val: 'complete' },
+          { key: 'human_oversight',     val: 'active' },
+          { key: 'eu_ai_act_status',    val: 'COMPLIANT' },
+        ]
+      },
+      {
+        fn: 'compliance.data_region()',
+        title: 'Data stays in your region',
+        copy: 'EU hosted by default. Deploy inside your cloud tenancy or on prem. Nothing leaves your environment.',
+        logs: [
+          { key: 'data_region',       val: 'EU_only' },
+          { key: 'tenancy_isolation', val: 'enforced' },
+          { key: 'data_egress',       val: 'blocked' },
+          { key: 'region_status',     val: 'COMPLIANT' },
+        ]
+      },
+      {
+        fn: 'compliance.audit_trail()',
+        title: 'Audit trail, end to end',
+        copy: 'Every model decision, every human override, every data access. Logged, reviewable, and exportable.',
+        logs: [
+          { key: 'model_decisions', val: 'logged' },
+          { key: 'human_overrides', val: 'logged' },
+          { key: 'export_format',   val: 'ready' },
+          { key: 'audit_status',    val: 'COMPLIANT' },
+        ]
+      },
+      {
+        fn: 'compliance.gdpr_check()',
+        title: 'GDPR ready when it applies',
+        copy: 'We minimise data collection by default. When personal data is involved, we work with your DPO and run DPIAs.',
+        logs: [
+          { key: 'data_minimisation', val: 'default' },
+          { key: 'dpia_process',      val: 'active' },
+          { key: 'dpo_handshake',     val: 'ready' },
+          { key: 'gdpr_status',       val: 'COMPLIANT' },
+        ]
+      },
+    ];
+
+    const pad = (n) => String(n).padStart(2, '0');
+    const padKey = (k) => k.padEnd(22, '.');
+    const checkEls = [];
+    const logEls = [];
+
+    checks.forEach((c, ci) => {
+      const el = document.createElement('div');
+      el.className = 'ct-check';
+      el.innerHTML =
+        '<div class="ct-check-icon">○</div>' +
+        '<div class="ct-check-body">' +
+          '<div class="ct-check-fn">&gt; ' + c.fn + '</div>' +
+          '<div class="ct-check-title">' + c.title + '</div>' +
+          '<div class="ct-check-copy">' + c.copy + '</div>' +
+        '</div>' +
+        '<div class="ct-check-status"><span class="dot"></span>idle</div>';
+      checksEl.appendChild(el);
+      checkEls.push(el);
+      c.logs.forEach((l) => {
+        const lel = document.createElement('div');
+        lel.className = 'ct-log-line';
+        lel.innerHTML = '<span class="key">' + padKey(l.key) + '</span><span class="val"> pending</span>';
+        logsEl.appendChild(lel);
+        logEls.push({ el: lel, val: l.val, checkIdx: ci, key: l.key });
+      });
+    });
+
+    let seconds = 0;
+    let timerStarted = false;
+    setInterval(() => {
+      if (!timerStarted) return;
+      seconds += 1;
+      const h = pad(Math.floor(seconds / 3600));
+      const m = pad(Math.floor((seconds % 3600) / 60));
+      const s = pad(seconds % 60);
+      if (timerEl) timerEl.textContent = h + ':' + m + ':' + s;
+    }, 1000);
+
+    function runCheck(ci) {
+      const c = checks[ci];
+      const el = checkEls[ci];
+      el.classList.add('is-active');
+      el.querySelector('.ct-check-icon').textContent = '▶';
+      el.querySelector('.ct-check-status').innerHTML = '<span class="dot"></span>run';
+      if (footLeft) footLeft.textContent = '// running: ' + c.fn;
+      const mine = logEls.filter(l => l.checkIdx === ci);
+      mine.forEach((l, i) => {
+        setTimeout(() => {
+          l.el.classList.add('is-running');
+          l.el.innerHTML = '<span class="key">' + padKey(l.key) + '</span><span class="val"> scanning</span>';
+          setTimeout(() => {
+            l.el.classList.remove('is-running');
+            l.el.classList.add('is-ok');
+            l.el.innerHTML = '<span class="key">' + padKey(l.key) + '</span><span class="val"> ' + l.val + '</span>';
+          }, 400);
+        }, i * 300);
+      });
+      setTimeout(() => {
+        el.classList.remove('is-active');
+        el.classList.add('is-done');
+        el.querySelector('.ct-check-icon').textContent = '✓';
+        el.querySelector('.ct-check-status').innerHTML = '<span class="dot"></span>done';
+        if (ci < checks.length - 1) {
+          setTimeout(() => runCheck(ci + 1), 400);
+        } else {
+          if (footLeft) footLeft.textContent = '// 4/4 checks passed · no violations';
+          if (footOk) footOk.classList.add('is-shown');
+        }
+      }, mine.length * 300 + 600);
+    }
+
+    let started = false;
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting && !started) {
+          started = true;
+          timerStarted = true;
+          setTimeout(() => runCheck(0), 600);
+        }
+      });
+    }, { threshold: 0.2 });
+    io.observe(root);
   })();
 
   // Mobile hamburger menu
