@@ -9,6 +9,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="assets/aihlpr-logo-transparent.png">
+<link rel="stylesheet" href="https://assets.calendly.com/assets/external/widget.css">
+<script src="https://assets.calendly.com/assets/external/widget.js" async></script>
 <style>
   :root {
     --pink: #E91E63;
@@ -1398,46 +1400,51 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
-  .form-row { display: grid; gap: 14px; }
-  .form-field {
-    display: flex; flex-direction: column; gap: 6px;
+  .closing-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
   }
-  .form-field label {
+  .closing-cta-eyebrow {
     font-family: var(--font-mono);
     font-size: 11px;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255,255,255,0.55);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
   }
-  .form-field input,
-  .form-field textarea,
-  .form-field select {
-    background: rgba(255,255,255,0.08);
-    border: 1px solid rgba(255,255,255,0.18);
-    border-radius: 12px;
-    padding: 12px 14px;
-    color: var(--white);
-    font-family: var(--font-body);
-    font-size: 15px;
-    transition: border-color 180ms var(--ease), background 180ms var(--ease);
+  .closing-cta-eyebrow::before {
+    content: "";
+    width: 18px; height: 1px;
+    background: rgba(255,255,255,0.4);
   }
-  .form-field select { appearance: none; -webkit-appearance: none; }
-  .form-field input:focus,
-  .form-field textarea:focus,
-  .form-field select:focus {
-    outline: none;
-    border-color: var(--pink);
-    background: rgba(255,255,255,0.12);
+  .closing-cta-copy {
+    color: rgba(255,255,255,0.75);
+    font-size: clamp(15px, 1.3vw, 17px);
+    line-height: 1.6;
+    max-width: 42ch;
+    margin: 0;
   }
-  .form-field textarea { min-height: 96px; resize: vertical; }
-  .form-actions { display: flex; gap: 14px; align-items: center; flex-wrap: wrap; margin-top: 8px; }
-  .form-secondary {
-    color: rgba(255,255,255,0.7);
-    font-size: 14px;
-    border-bottom: 1px solid rgba(255,255,255,0.3);
-    padding-bottom: 2px;
+  .closing-cta-btn {
+    padding: 16px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
   }
-  .form-secondary:hover { color: var(--white); }
+  .closing-cta-secondary {
+    font-family: var(--font-mono);
+    font-size: 11.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+    border-bottom: 1px solid rgba(255,255,255,0.25);
+    padding-bottom: 3px;
+    transition: color 180ms var(--ease), border-color 180ms var(--ease);
+  }
+  .closing-cta-secondary:hover { color: var(--white); border-bottom-color: var(--white); }
   @media (max-width: 900px) { .closing-grid { grid-template-columns: 1fr; gap: 32px; } }
 
   /* ===== Footer (MoralityBytes block) ===== */
@@ -2975,36 +2982,16 @@
       </p>
     </div>
 
-    <form class="form-row" id="contactForm" onsubmit="handleContact(event)">
-      <div class="form-field">
-        <label for="name">Your name</label>
-        <input id="name" name="name" type="text" required placeholder="Vimal Patel">
-      </div>
-      <div class="form-field">
-        <label for="company">Company</label>
-        <input id="company" name="company" type="text" placeholder="Your company">
-      </div>
-      <div class="form-field">
-        <label for="role">You are</label>
-        <select id="role" name="role">
-          <option>Leadership</option>
-          <option>Product or operations</option>
-          <option>Engineering or platform</option>
-          <option>Marketing or brand</option>
-          <option>Other</option>
-        </select>
-      </div>
-      <div class="form-field">
-        <label for="goal">What are you trying to build?</label>
-        <textarea id="goal" name="goal" required placeholder="A few sentences. The shape of the problem, not a brief."></textarea>
-      </div>
-      <div class="form-actions">
-        <button class="btn btn-primary" type="submit">
-          Send enquiry <span class="arrow">&rarr;</span>
-        </button>
-        <a class="form-secondary" href="mailto:brinda@moralitybytes.eu?subject=AIHLPR%20readiness%20check">Or book a 60 min readiness check &rarr;</a>
-      </div>
-    </form>
+    <div class="closing-cta">
+      <span class="closing-cta-eyebrow">Readiness check &middot; 45 min &middot; Free</span>
+      <p class="closing-cta-copy">
+        Pick a time that suits you. We&rsquo;ll walk through your use case together and tell you where AI fits, where it doesn&rsquo;t, and what we&rsquo;d build first.
+      </p>
+      <button class="btn btn-primary closing-cta-btn" type="button" onclick="openCalendly(event)">
+        Book a 45-min readiness check <span class="arrow">&rarr;</span>
+      </button>
+      <a class="closing-cta-secondary" href="mailto:brinda@moralitybytes.eu?subject=AIHLPR%20enquiry">Or email brinda@moralitybytes.eu</a>
+    </div>
   </div>
 </section>
 
@@ -3314,15 +3301,15 @@
     document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
   })();
 
-  // Contact form (mailto)
-  function handleContact(e) {
-    e.preventDefault();
-    const f = e.target;
-    const subject = encodeURIComponent(`AIHLPR enquiry from ${f.name.value}`);
-    const body = encodeURIComponent(
-      `Name: ${f.name.value}\nCompany: ${f.company.value}\nRole: ${f.role.value}\n\nGoal:\n${f.goal.value}`
-    );
-    window.location.href = `mailto:brinda@moralitybytes.eu?subject=${subject}&body=${body}`;
+  // Closing CTA — open Calendly in a popup widget.
+  function openCalendly(e) {
+    if (e) e.preventDefault();
+    const url = 'https://calendly.com/brinda-aihlpr';
+    if (window.Calendly && typeof window.Calendly.initPopupWidget === 'function') {
+      window.Calendly.initPopupWidget({ url });
+    } else {
+      window.open(url, '_blank', 'noopener');
+    }
   }
 </script>
 
