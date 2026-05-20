@@ -1053,7 +1053,7 @@
 
   .ct-eyebrow {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--blue);
@@ -1079,7 +1079,7 @@
   }
   .ct-sub {
     font-family: var(--font-mono);
-    font-size: 11px;
+    font-size: 12.5px;
     color: var(--ink-muted);
     margin-bottom: clamp(24px, 3vw, 40px);
     letter-spacing: 0.06em;
@@ -1087,21 +1087,22 @@
 
   .ct-checks { display: flex; flex-direction: column; }
   .ct-check {
-    padding: 18px 0;
+    padding: 22px 0;
     border-bottom: 1px solid var(--hairline);
     display: grid;
-    grid-template-columns: 28px 1fr auto;
-    gap: 12px;
+    grid-template-columns: 32px 1fr auto;
+    gap: 14px;
     align-items: start;
     opacity: 0.45;
     transition: opacity 400ms var(--ease);
   }
   .ct-check.is-active { opacity: 1; }
-  .ct-check.is-done { opacity: 0.85; }
+  .ct-check.is-done { opacity: 1; }
   .ct-check-icon {
-    margin-top: 2px;
+    margin-top: 1px;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 18px;
+    line-height: 1;
     color: var(--ink-muted);
     transition: color 400ms var(--ease);
   }
@@ -1109,27 +1110,27 @@
   .ct-check.is-done .ct-check-icon { color: var(--pink); }
   .ct-check-fn {
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.1em;
+    font-size: 13px;
+    letter-spacing: 0.06em;
     color: var(--blue);
-    margin-bottom: 4px;
+    margin-bottom: 6px;
     opacity: 0;
     transition: opacity 400ms var(--ease);
   }
   .ct-check.is-active .ct-check-fn { opacity: 1; }
-  .ct-check.is-done .ct-check-fn { opacity: 0.55; color: var(--pink); }
+  .ct-check.is-done .ct-check-fn { opacity: 1; color: var(--pink); }
   .ct-check-title {
     font-family: var(--font-display);
-    font-size: 15px;
-    font-weight: 500;
+    font-size: clamp(18px, 1.7vw, 22px);
+    font-weight: 600;
     color: var(--ink);
-    margin: 0 0 4px;
-    line-height: 1.3;
-    letter-spacing: -0.005em;
+    margin: 0 0 6px;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
   }
   .ct-check-copy {
     font-family: var(--font-body);
-    font-size: 13px;
+    font-size: 15px;
     color: var(--ink-soft);
     line-height: 1.6;
     max-height: 0;
@@ -1139,22 +1140,22 @@
   }
   .ct-check.is-active .ct-check-copy,
   .ct-check.is-done .ct-check-copy {
-    max-height: 140px;
+    max-height: 200px;
     opacity: 1;
     padding-top: 2px;
   }
   .ct-check-status {
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 12px;
     letter-spacing: 0.1em;
     white-space: nowrap;
-    margin-top: 2px;
+    margin-top: 3px;
     color: var(--ink-muted);
     display: inline-flex; align-items: center; gap: 6px;
   }
   .ct-check-status .dot {
     display: inline-block;
-    width: 6px; height: 6px;
+    width: 7px; height: 7px;
     border-radius: 999px;
     background: var(--hairline-strong);
   }
@@ -1165,9 +1166,9 @@
   @keyframes ct-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
   .ct-foot {
-    margin-top: 20px;
+    margin-top: 22px;
     font-family: var(--font-mono);
-    font-size: 10px;
+    font-size: 12px;
     color: var(--ink-muted);
     display: flex; justify-content: space-between;
     letter-spacing: 0.05em;
@@ -1191,9 +1192,9 @@
     background: var(--surface-2);
     border: 1px solid var(--hairline);
     border-radius: 8px;
-    padding: 16px;
+    padding: 18px;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 12px;
     align-self: start;
   }
   .ct-right-head {
@@ -1207,7 +1208,7 @@
     border-radius: 999px;
   }
   .ct-right-title {
-    font-size: 9.5px;
+    font-size: 11px;
     color: var(--ink-muted);
     letter-spacing: 0.1em;
     flex: 1;
@@ -1231,7 +1232,7 @@
     padding-top: 12px;
     border-top: 1px solid var(--hairline);
     color: var(--ink-muted);
-    font-size: 9.5px;
+    font-size: 11px;
     letter-spacing: 0.06em;
   }
   .ct-timer span { color: var(--blue); }
