@@ -20,7 +20,6 @@
     --sky: #5794EA;
     --blue: #3478E5;
     --teal: #1D9E75;
-    --amber: #E8A04B;
 
     --ink: #1F1F1F;
     --ink-soft: #4A4A4A;
@@ -1058,7 +1057,7 @@
     font-size: 12px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--blue);
+    color: var(--ink-muted);
     display: inline-flex;
     align-items: center;
     gap: 10px;
@@ -1110,7 +1109,7 @@
     transition: color 400ms var(--ease);
   }
   .ct-check.is-active .ct-check-icon { color: var(--blue); }
-  .ct-check.is-done .ct-check-icon { color: var(--pink); }
+  .ct-check.is-done .ct-check-icon { color: var(--teal); }
   .ct-check-fn {
     font-family: var(--font-mono);
     font-size: 11.5px;
@@ -1121,7 +1120,7 @@
     transition: opacity 400ms var(--ease);
   }
   .ct-check.is-active .ct-check-fn { opacity: 1; }
-  .ct-check.is-done .ct-check-fn { opacity: 1; color: var(--pink); }
+  .ct-check.is-done .ct-check-fn { opacity: 1; color: var(--teal); }
   .ct-check-title {
     font-family: var(--font-display);
     font-size: 16px;
@@ -1164,8 +1163,8 @@
   }
   .ct-check.is-active .ct-check-status { color: var(--blue); }
   .ct-check.is-active .ct-check-status .dot { background: var(--blue); animation: ct-blink 1s infinite; }
-  .ct-check.is-done .ct-check-status { color: var(--pink); }
-  .ct-check.is-done .ct-check-status .dot { background: var(--pink); }
+  .ct-check.is-done .ct-check-status { color: var(--teal); }
+  .ct-check.is-done .ct-check-status .dot { background: var(--teal); }
   @keyframes ct-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
 
   .ct-foot {
@@ -1177,7 +1176,7 @@
     letter-spacing: 0.05em;
   }
   .ct-foot-ok {
-    color: var(--pink);
+    color: var(--teal);
     display: inline-flex; align-items: center; gap: 6px;
     opacity: 0;
     transition: opacity 400ms var(--ease);
@@ -1186,7 +1185,7 @@
     content: "";
     width: 7px; height: 7px;
     border-radius: 999px;
-    background: var(--pink);
+    background: var(--teal);
     animation: ct-blink 2s infinite;
   }
   .ct-foot-ok.is-shown { opacity: 1; }
@@ -1231,7 +1230,7 @@
   .ct-log-line.is-running .key { color: var(--ink-soft); }
   .ct-log-line.is-running .val { color: var(--blue); }
   .ct-log-line.is-ok .key { color: var(--ink-soft); }
-  .ct-log-line.is-ok .val { color: var(--pink); }
+  .ct-log-line.is-ok .val { color: var(--teal); }
   .ct-timer {
     margin-top: 14px;
     padding-top: 12px;
@@ -1254,22 +1253,42 @@
     .ct-check-fn { opacity: 0.6; }
   }
 
-  /* ===== Insights ===== */
+  /* ===== Insights — dark section with light article tiles ===== */
+  section#insights {
+    background: #0E0E10;
+    color: rgba(255,255,255,0.85);
+    padding: var(--section-y) 0;
+    border-top: 1px solid var(--hairline);
+  }
+  section#insights .label-mono { color: rgba(255,255,255,0.55); }
+  section#insights .section-head h2 { color: var(--white); }
+  section#insights .head-aside { color: rgba(255,255,255,0.5); }
+
   .insights-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 24px;
+    gap: 20px;
   }
   .insight {
     display: flex;
     flex-direction: column;
-    gap: 14px;
+    gap: 12px;
     text-decoration: none;
     color: inherit;
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.22);
+    transition: transform 220ms var(--ease), box-shadow 220ms var(--ease);
+  }
+  .insight:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.28);
   }
   .insight .insight-image {
     aspect-ratio: 4 / 3;
-    border-radius: 14px;
+    border-radius: 10px;
     background: var(--surface-2);
     border: 1px solid var(--hairline);
     overflow: hidden;
@@ -1292,16 +1311,19 @@
     letter-spacing: 0.12em;
     text-transform: uppercase;
     color: var(--ink-muted);
+    margin-top: 4px;
   }
   .insight h3 {
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.2;
     letter-spacing: -0.015em;
     font-weight: 600;
+    color: var(--ink);
     transition: color 180ms var(--ease);
+    margin: 0;
   }
   .insight:hover h3 { color: var(--blue); }
-  .insight p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; }
+  .insight p { color: var(--ink-soft); font-size: 14px; line-height: 1.55; margin: 0; }
   @media (max-width: 900px) { .insights-grid { grid-template-columns: 1fr; } }
 
   /* ===== FAQ ===== */
@@ -2238,7 +2260,7 @@
       </article>
 
       <!-- 03 blue -->
-      <article class="service-card-h audience-blue" data-card-index="2">
+      <article class="service-card-h audience-purple" data-card-index="2">
         <div class="card-left">
           <div class="heading-zone">
           <span class="audience-num">03</span>
@@ -2322,7 +2344,7 @@
       </article>
 
       <!-- 04 purple -->
-      <article class="service-card-h audience-purple" data-card-index="3">
+      <article class="service-card-h audience-blue" data-card-index="3">
         <div class="card-left">
           <div class="heading-zone">
           <span class="audience-num">04</span>
@@ -3078,7 +3100,7 @@
     if (!section || !track || !cards.length) return;
 
     // Each card's accent — the nav adopts the active card's colour.
-    const accents = ['var(--pink)', 'var(--magenta)', 'var(--blue)', 'var(--purple)'];
+    const accents = ['var(--pink)', 'var(--magenta)', 'var(--purple)', 'var(--blue)'];
     const mqMobile = window.matchMedia('(max-width: 880px)');
     const clamp = (v, a, b) => v < a ? a : v > b ? b : v;
     let current = 0;
