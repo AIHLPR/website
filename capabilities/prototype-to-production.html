@@ -27,7 +27,7 @@
     --container:1240px;
     --gutter:clamp(20px, 4.5vw, 56px);
     --section-y:clamp(72px, 8vw, 112px);
-    --c: var(--sky);
+    --c: var(--magenta);
   }
   * { box-sizing: border-box; }
   html { scroll-behavior: smooth; }
@@ -558,22 +558,22 @@
   <!-- Top strip -->
   <g font-size="9" letter-spacing="0.16em">
     <text x="20" y="22" fill="#8A8A8A">SERVICE · ai-router-prod</text>
-    <text x="900" y="22" text-anchor="end" fill="#5794EA">v1.4.2 live · 99.95% · p95 48ms</text>
+    <text x="900" y="22" text-anchor="end" fill="#CC418C">v1.4.2 live · 99.95% · p95 48ms</text>
   </g>
   <line x1="20" y1="30" x2="900" y2="30" stroke="rgba(31,31,31,0.08)" stroke-width="1"/>
 
   <!-- ── Release pipeline (top half) ── -->
-  <text x="20" y="58" font-size="10" letter-spacing="0.18em" fill="#5794EA" font-weight="600">RELEASE PIPELINE</text>
+  <text x="20" y="58" font-size="10" letter-spacing="0.18em" fill="#CC418C" font-weight="600">RELEASE PIPELINE</text>
 
   <!-- 5 stages: BUILD · TEST · CANARY · DEPLOY · MONITOR -->
-  <g stroke="#5794EA" stroke-width="1.2" fill="#fff">
+  <g stroke="#CC418C" stroke-width="1.2" fill="#fff">
     <rect x="20"  y="70" width="160" height="50" rx="3"/>
     <rect x="200" y="70" width="160" height="50" rx="3"/>
     <rect x="380" y="70" width="160" height="50" rx="3"/>
     <rect x="560" y="70" width="160" height="50" rx="3"/>
     <rect x="740" y="70" width="160" height="50" rx="3"/>
   </g>
-  <g font-size="10" letter-spacing="0.14em" font-weight="600" fill="#5794EA" text-anchor="middle">
+  <g font-size="10" letter-spacing="0.14em" font-weight="600" fill="#CC418C" text-anchor="middle">
     <text x="100" y="92">BUILD</text>
     <text x="280" y="92">TEST</text>
     <text x="460" y="92">CANARY</text>
@@ -588,7 +588,7 @@
     <text x="820" y="108">8m · stable</text>
   </g>
   <!-- Connector arrows between stages -->
-  <g stroke="#5794EA" stroke-width="0.9" fill="none">
+  <g stroke="#CC418C" stroke-width="0.9" fill="none">
     <line x1="180" y1="95" x2="200" y2="95"/>
     <line x1="360" y1="95" x2="380" y2="95"/>
     <line x1="540" y1="95" x2="560" y2="95"/>
@@ -597,21 +597,21 @@
 
   <!-- Status row under pipeline -->
   <g font-size="8.5" letter-spacing="0.12em">
-    <rect x="20"  y="132" width="40" height="14" rx="2" fill="#5794EA"/>
+    <rect x="20"  y="132" width="40" height="14" rx="2" fill="#CC418C"/>
     <text x="40"  y="142" text-anchor="middle" fill="#fff">DONE</text>
-    <rect x="200" y="132" width="40" height="14" rx="2" fill="#5794EA"/>
+    <rect x="200" y="132" width="40" height="14" rx="2" fill="#CC418C"/>
     <text x="220" y="142" text-anchor="middle" fill="#fff">DONE</text>
-    <rect x="380" y="132" width="40" height="14" rx="2" fill="#5794EA"/>
+    <rect x="380" y="132" width="40" height="14" rx="2" fill="#CC418C"/>
     <text x="400" y="142" text-anchor="middle" fill="#fff">DONE</text>
-    <rect x="560" y="132" width="56" height="14" rx="2" fill="#5794EA"/>
+    <rect x="560" y="132" width="56" height="14" rx="2" fill="#CC418C"/>
     <text x="588" y="142" text-anchor="middle" fill="#fff">ROLLING</text>
-    <rect x="740" y="132" width="44" height="14" rx="2" fill="#fff" stroke="#5794EA" stroke-width="1"/>
-    <text x="762" y="142" text-anchor="middle" fill="#5794EA">LIVE</text>
+    <rect x="740" y="132" width="44" height="14" rx="2" fill="#fff" stroke="#CC418C" stroke-width="1"/>
+    <text x="762" y="142" text-anchor="middle" fill="#CC418C">LIVE</text>
   </g>
 
   <!-- Rolling progress on DEPLOY -->
   <rect x="560" y="118" width="160" height="3" fill="rgba(31,31,31,0.08)"/>
-  <rect x="560" y="118" width="112" height="3" fill="#5794EA">
+  <rect x="560" y="118" width="112" height="3" fill="#CC418C">
     <animate attributeName="width" values="80;124;80" dur="3s" repeatCount="indefinite"/>
   </rect>
 
@@ -619,7 +619,7 @@
   <line x1="20" y1="180" x2="900" y2="180" stroke="rgba(31,31,31,0.08)" stroke-width="1"/>
 
   <!-- Latency trace (left) -->
-  <text x="20" y="206" font-size="10" letter-spacing="0.18em" fill="#5794EA" font-weight="600">P95 LATENCY · 24H</text>
+  <text x="20" y="206" font-size="10" letter-spacing="0.18em" fill="#CC418C" font-weight="600">P95 LATENCY · 24H</text>
   <text x="500" y="206" font-size="9" letter-spacing="0.10em" fill="#8A8A8A">target &lt; 80ms</text>
 
   <!-- Y-axis gridlines -->
@@ -638,27 +638,27 @@
   <!-- Latency line -->
   <polyline
     points="20,295 50,288 80,300 110,282 140,275 170,290 200,272 230,278 260,265 290,258 320,272 350,268 380,248 410,232 440,260 470,285 500,278 530,272"
-    fill="none" stroke="#5794EA" stroke-width="1.6"/>
+    fill="none" stroke="#CC418C" stroke-width="1.6"/>
   <!-- Spike at 410 -->
   <circle cx="410" cy="232" r="3.5" fill="#E63946"/>
   <text x="402" y="225" font-size="8.5" fill="#E63946" letter-spacing="0.10em">spike 92ms</text>
   <!-- Latest point pulse -->
-  <circle cx="530" cy="272" r="3.5" fill="#5794EA"/>
-  <circle cx="530" cy="272" r="8" fill="none" stroke="#5794EA" stroke-width="0.8" opacity="0.4">
+  <circle cx="530" cy="272" r="3.5" fill="#CC418C"/>
+  <circle cx="530" cy="272" r="8" fill="none" stroke="#CC418C" stroke-width="0.8" opacity="0.4">
     <animate attributeName="r" values="6;14;6" dur="2.4s" repeatCount="indefinite"/>
     <animate attributeName="opacity" values="0.4;0.05;0.4" dur="2.4s" repeatCount="indefinite"/>
   </circle>
 
   <!-- Bottom-left mini-grid (deploy log) -->
-  <text x="20" y="356" font-size="10" letter-spacing="0.18em" fill="#5794EA" font-weight="600">DEPLOY LOG</text>
+  <text x="20" y="356" font-size="10" letter-spacing="0.18em" fill="#CC418C" font-weight="600">DEPLOY LOG</text>
   <g font-size="9.5" letter-spacing="0.04em">
     <text x="20" y="378" fill="#8A8A8A">10:42:18</text>
     <text x="92" y="378" fill="#1F1F1F">release.cut(v1.4.2)</text>
-    <text x="270" y="378" fill="#5794EA">sealed</text>
+    <text x="270" y="378" fill="#CC418C">sealed</text>
 
     <text x="20" y="398" fill="#8A8A8A">10:43:01</text>
     <text x="92" y="398" fill="#1F1F1F">canary.promoted()</text>
-    <text x="270" y="398" fill="#5794EA">5% → 25%</text>
+    <text x="270" y="398" fill="#CC418C">5% → 25%</text>
 
     <text x="20" y="418" fill="#8A8A8A">10:43:44</text>
     <text x="92" y="418" fill="#1F1F1F">drift.detected()</text>
@@ -666,16 +666,16 @@
 
     <text x="20" y="438" fill="#8A8A8A">10:44:12</text>
     <text x="92" y="438" fill="#1F1F1F">rollback.armed()</text>
-    <text x="270" y="438" fill="#5794EA">window · 5m</text>
+    <text x="270" y="438" fill="#CC418C">window · 5m</text>
 
     <text x="20" y="458" fill="#8A8A8A">10:44:31</text>
     <text x="92" y="458" fill="#1F1F1F">deploy.completed()</text>
-    <text x="270" y="458" fill="#5794EA">100% · live</text>
+    <text x="270" y="458" fill="#CC418C">100% · live</text>
   </g>
 
   <!-- ── Right panel: release state board ── -->
   <line x1="580" y1="200" x2="580" y2="490" stroke="rgba(31,31,31,0.08)" stroke-width="1"/>
-  <text x="600" y="226" font-size="10" letter-spacing="0.18em" fill="#5794EA" font-weight="600">RELEASE STATE</text>
+  <text x="600" y="226" font-size="10" letter-spacing="0.18em" fill="#CC418C" font-weight="600">RELEASE STATE</text>
 
   <!-- Health tiles -->
   <g stroke="rgba(31,31,31,0.10)" stroke-width="1" fill="#fff">
@@ -698,15 +698,15 @@
     <text x="612" y="354">0.04%</text>
     <text x="762" y="354">92%</text>
   </g>
-  <g font-size="14" font-family="Poppins, system-ui" font-weight="600" fill="#5794EA" letter-spacing="-0.01em">
+  <g font-size="14" font-family="Poppins, system-ui" font-weight="600" fill="#CC418C" letter-spacing="-0.01em">
     <text x="612" y="416">5m · ready</text>
   </g>
   <!-- subtle progress bar in rollback row -->
   <rect x="730" y="406" width="148" height="3" fill="rgba(31,31,31,0.08)"/>
-  <rect x="730" y="406" width="96" height="3" fill="#5794EA"/>
+  <rect x="730" y="406" width="96" height="3" fill="#CC418C"/>
 
   <!-- One thread continues off-frame to the right (asymmetry) -->
-  <line x1="890" y1="270" x2="930" y2="270" stroke="#5794EA" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
+  <line x1="890" y1="270" x2="930" y2="270" stroke="#CC418C" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
 </svg>
       
       <div class="hero-visual-caption">
@@ -802,15 +802,15 @@
     <text x="280" y="32">CANARY · MONITORED</text>
     <text x="540" y="32">PRODUCTION GRADE</text>
   </g>
-  <g font-size="8.5" letter-spacing="0.12em" fill="#5794EA">
+  <g font-size="8.5" letter-spacing="0.12em" fill="#CC418C">
     <text x="40"  y="46">v0.1</text>
     <text x="280" y="46">v0.7</text>
     <text x="540" y="46">v1.0+</text>
   </g>
 
   <!-- STAGE 1 — bare deploy -->
-  <rect x="40" y="76" width="170" height="60" rx="2" fill="#fff" stroke="#5794EA" stroke-width="1.2" stroke-dasharray="4 3"/>
-  <text x="125" y="106" text-anchor="middle" font-size="11" fill="#5794EA" letter-spacing="0.14em" font-weight="600">DEPLOY</text>
+  <rect x="40" y="76" width="170" height="60" rx="2" fill="#fff" stroke="#CC418C" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="125" y="106" text-anchor="middle" font-size="11" fill="#CC418C" letter-spacing="0.14em" font-weight="600">DEPLOY</text>
   <text x="125" y="124" text-anchor="middle" font-size="9" fill="#8A8A8A">manual · no gates</text>
 
   <!-- STAGE 1 sub-row -->
@@ -825,13 +825,13 @@
   <polygon points="260,102 268,106 260,110" fill="rgba(87,148,234,0.55)"/>
 
   <!-- STAGE 2 — canary + observability tiles -->
-  <g stroke="#5794EA" stroke-width="1.1" fill="#fff">
+  <g stroke="#CC418C" stroke-width="1.1" fill="#fff">
     <rect x="280" y="68" width="170" height="40" rx="2"/>
     <rect x="280" y="112" width="80" height="36" rx="2"/>
     <rect x="370" y="112" width="80" height="36" rx="2"/>
     <rect x="280" y="152" width="170" height="36" rx="2"/>
   </g>
-  <g font-size="9.5" letter-spacing="0.12em" font-weight="600" fill="#5794EA" text-anchor="middle">
+  <g font-size="9.5" letter-spacing="0.12em" font-weight="600" fill="#CC418C" text-anchor="middle">
     <text x="365" y="92">CANARY · 5%</text>
   </g>
   <g font-size="8.5" letter-spacing="0.10em" fill="#8A8A8A" text-anchor="middle">
@@ -847,10 +847,10 @@
   <polygon points="508,124 516,128 508,132" fill="rgba(87,148,234,0.55)"/>
 
   <!-- STAGE 3 — full pipeline + gates -->
-  <g stroke="#5794EA" stroke-width="1.4" fill="#fff">
+  <g stroke="#CC418C" stroke-width="1.4" fill="#fff">
     <rect x="525" y="68" width="170" height="170" rx="2"/>
   </g>
-  <text x="610" y="92" text-anchor="middle" font-size="11" fill="#5794EA" letter-spacing="0.14em" font-weight="600">RELEASE PIPELINE</text>
+  <text x="610" y="92" text-anchor="middle" font-size="11" fill="#CC418C" letter-spacing="0.14em" font-weight="600">RELEASE PIPELINE</text>
 
   <!-- 5 gate rows -->
   <g font-size="9" letter-spacing="0.12em" fill="#8A8A8A">
@@ -861,7 +861,7 @@
     <text x="538" y="204">MONITOR · DRIFT</text>
   </g>
   <!-- check ticks -->
-  <g stroke="#5794EA" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <g stroke="#CC418C" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
     <polyline points="666,112 670,117 678,108"/>
     <polyline points="666,134 670,139 678,130"/>
     <polyline points="666,156 670,161 678,152"/>
@@ -869,7 +869,7 @@
   </g>
   <!-- bar at monitor (currently active) -->
   <rect x="660" y="198" width="24" height="3" fill="rgba(31,31,31,0.08)"/>
-  <rect x="660" y="198" width="14" height="3" fill="#5794EA">
+  <rect x="660" y="198" width="14" height="3" fill="#CC418C">
     <animate attributeName="width" values="8;22;8" dur="2.6s" repeatCount="indefinite"/>
   </rect>
 

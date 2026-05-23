@@ -31,12 +31,12 @@ handoff/
 
 Each capability page carries one accent colour, applied page-wide via `:root { --c: <hex>; }`:
 
-| Page                                  | Accent    |
-|---------------------------------------|-----------|
-| `ai-applications-and-platforms.html`  | `#3478E5` |
-| `ai-workflow-infrastructure.html`     | `#9B59B6` |
-| `enterprise-ai.html`                  | `#CC418C` |
-| `prototype-to-production.html`        | `#5794EA` |
+| Page                                  | Accent    | Virtue |
+|---------------------------------------|-----------|--------|
+| `ai-applications-and-platforms.html`  | `#6A9DF0` | Soft Sky Blue · harmony, innovation |
+| `ai-workflow-infrastructure.html`     | `#9B59B6` | Friendly Purple · friendly, creative |
+| `enterprise-ai.html`                  | `#3478E5` | Deep Trust Blue · reliability, trust |
+| `prototype-to-production.html`        | `#CC418C` | Vibrant Magenta · engaging, warm |
 
 The home page uses the shared system; each capability cap-strip card pulls the page's accent.
 
