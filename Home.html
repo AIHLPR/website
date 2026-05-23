@@ -1,8 +1,8 @@
-<span class="cap-strip-link">Read capability <span class="arrow">&rarr;</span></span>
-        </div>
-      </a>
-
-h, initial-scale=1.0">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
 <title>AIHLPR · Operational AI partner</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -575,9 +575,19 @@ h, initial-scale=1.0">
     position: relative;
     color: inherit;
     text-decoration: none;
-    transition: background 240ms var(--ease);
   }
-  .cap-strip:hover { background: var(--surface-2); }
+  .cap-strip::before {
+    content: "";
+    position: absolute;
+    top: 8px; bottom: 8px;
+    left: clamp(12px, 2vw, 28px);
+    right: clamp(12px, 2vw, 28px);
+    background: var(--surface-2);
+    border-radius: 16px;
+    opacity: 0;
+    transition: opacity 240ms var(--ease);
+  }
+  .cap-strip:hover::before { opacity: 1; }
   /* Asymmetric rhythm — alternating left/right plus column weight changes. */
   .cap-strip.l-right { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr); }
   .cap-strip.l-left  { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr); }
