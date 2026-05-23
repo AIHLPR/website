@@ -1,0 +1,999 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Prototype to Production Engineering · AIHLPR Capabilities</title>
+<meta name="description" content="Prototype to Production Engineering: scaling AI prototypes into production-ready systems with architecture, reliability, monitoring, and operational trust.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/aihlpr-logo-transparent.png">
+<style>
+  :root {
+    --pink:#E91E63; --magenta:#CC418C; --purple:#9B59B6;
+    --lavender:#7E6CE0; --sky:#5794EA; --blue:#3478E5;
+    --teal:#1D9E75;
+    --ink:#1F1F1F; --ink-soft:#4A4A4A; --ink-muted:#8A8A8A;
+    --white:#FFFFFF; --black:#0C0C0C;
+    --surface:#F8F8F6; --surface-2:#FAFAF8;
+    --hairline:rgba(31,31,31,0.10);
+    --hairline-strong:rgba(31,31,31,0.20);
+    --gradient: linear-gradient(90deg,#E91E63 0%,#CC418C 25%,#9B59B6 50%,#7E6CE0 70%,#5794EA 85%,#3478E5 100%);
+    --font-display:"Poppins", system-ui, sans-serif;
+    --font-body:"Roboto", system-ui, sans-serif;
+    --font-mono:"JetBrains Mono", ui-monospace, monospace;
+    --ease:cubic-bezier(0.22, 1, 0.36, 1);
+    --container:1240px;
+    --gutter:clamp(20px, 4.5vw, 56px);
+    --section-y:clamp(72px, 8vw, 112px);
+    --c: var(--sky);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    margin: 0; padding: 0; background: var(--white); color: var(--ink);
+    font-family: var(--font-body); font-size: 15px; line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--ink); color: var(--white); }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  button { font: inherit; cursor: pointer; background: none; border: none; padding: 0; color: inherit; }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display); margin: 0;
+    letter-spacing: -0.025em; line-height: 1.05;
+    font-weight: 600; color: var(--ink); text-wrap: balance;
+  }
+  h1 { font-size: clamp(44px, 5.4vw, 76px); letter-spacing: -0.035em; }
+  h2 { font-size: clamp(30px, 3.2vw, 44px); }
+  h3 { font-size: clamp(22px, 1.8vw, 28px); letter-spacing: -0.02em; }
+  h4 { font-size: clamp(15px, 1.1vw, 17px); letter-spacing: -0.01em; font-weight: 600; }
+  p  { margin: 0; }
+  .label-mono {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .label-mono .dot {
+    width: 7px; height: 7px; border-radius: 999px;
+    background: var(--c); flex: none;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 22px; border-radius: 999px;
+    font-family: var(--font-body); font-size: 14px; font-weight: 500;
+    cursor: pointer; border: 1px solid transparent;
+    transition: background 220ms var(--ease), color 220ms var(--ease), border-color 220ms var(--ease);
+  }
+  .btn-primary { background: var(--ink); color: var(--white); }
+  .btn-primary:hover { background: var(--c); }
+  .btn-secondary {
+    background: transparent; color: var(--ink);
+    border-color: var(--hairline-strong);
+  }
+  .btn-secondary:hover { border-color: var(--ink); background: var(--ink); color: var(--white); }
+  .btn .arrow { transition: transform 200ms var(--ease); }
+  .btn:hover .arrow { transform: translateX(3px); }
+
+  /* Nav */
+  .nav {
+    position: fixed; inset: 0 0 auto 0; height: 64px; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: inline-flex; align-items: center; gap: 12px; }
+  .nav-logo img { height: 22px; width: auto; display: block; }
+  .nav-crumb {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
+    border-left: 1px solid var(--hairline);
+    padding-left: 14px; margin-left: 4px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .nav-crumb a { color: var(--ink-muted); transition: color 200ms var(--ease); }
+  .nav-crumb a:hover { color: var(--ink); }
+  .nav-crumb .sep { opacity: 0.5; }
+  .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; color: var(--ink-soft); }
+  .nav-links a { transition: color 180ms var(--ease); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links .cta {
+    padding: 8px 14px; border: 1px solid var(--ink);
+    border-radius: 999px; color: var(--ink); font-size: 13px;
+    transition: background 180ms var(--ease), color 180ms var(--ease);
+  }
+  .nav-links .cta:hover { background: var(--ink); color: var(--white); }
+  @media (max-width: 760px) {
+    .nav-crumb { display: none; }
+    .nav-links a:not(.cta) { display: none; }
+  }
+  main { padding-top: 64px; }
+
+  /* Hero */
+  .hero {
+    padding: clamp(60px, 8vw, 112px) 0 clamp(40px, 5vw, 72px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(40px, 5vw, 72px); }
+  .hero-meta {
+    display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
+    font-family: var(--font-mono); font-size: 11.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
+    margin-bottom: 22px;
+  }
+  .hero-meta .sep { width: 4px; height: 4px; border-radius: 999px; background: var(--ink-muted); opacity: 0.5; }
+  .hero-meta .num { color: var(--c); font-weight: 600; }
+  .hero h1 { max-width: 18ch; margin-bottom: 22px; }
+  .hero-lede {
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.45; color: var(--ink-soft);
+    max-width: 56ch; margin-bottom: 18px;
+  }
+  .hero-sub {
+    font-size: clamp(15px, 1.1vw, 16.5px);
+    line-height: 1.6; color: var(--ink-muted);
+    max-width: 64ch; margin-bottom: 28px;
+  }
+  .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+  .hero-visual {
+    position: relative; width: 100%;
+    border: 1px solid var(--hairline); border-radius: 18px;
+    background: var(--surface-2);
+    padding: clamp(24px, 3vw, 48px);
+    min-height: clamp(360px, 42vw, 520px);
+    overflow: hidden;
+  }
+  .hero-visual::before {
+    content: ""; position: absolute; inset: 0;
+    background-image: radial-gradient(rgba(31,31,31,0.08) 1px, transparent 1px);
+    background-size: 22px 22px; opacity: 0.4; pointer-events: none;
+  }
+  .hero-visual svg {
+    position: relative; width: 100%; height: auto; display: block;
+    max-height: 480px; margin: 0 auto;
+  }
+  .hero-visual-caption {
+    position: absolute; bottom: 18px; left: 24px; right: 24px;
+    display: flex; justify-content: space-between; gap: 16px;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
+  }
+  .hero-visual-caption b { color: var(--ink); font-weight: 600; }
+
+  /* Section scaffolding */
+  section.block { padding: var(--section-y) 0; border-bottom: 1px solid var(--hairline); }
+  section.block:last-of-type { border-bottom: none; }
+  .block-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.6fr);
+    gap: clamp(28px, 4vw, 64px);
+    margin-bottom: clamp(40px, 5vw, 64px);
+    align-items: end;
+  }
+  @media (max-width: 880px) { .block-head { grid-template-columns: 1fr; gap: 22px; } }
+  .block-head .label-mono { margin-bottom: 14px; }
+  .block-head h2 { max-width: 22ch; }
+  .block-head .block-lede {
+    font-size: clamp(16px, 1.2vw, 18px);
+    line-height: 1.6; color: var(--ink-soft); max-width: 56ch;
+  }
+
+  /* Ecosystem */
+  .ecosystem {
+    border: 1px solid var(--hairline); border-radius: 16px;
+    background: var(--surface-2); padding: clamp(20px, 2.4vw, 32px);
+  }
+  .ecosystem-row {
+    display: grid; grid-template-columns: 160px 1fr;
+    gap: 24px; align-items: center; padding: 16px 0;
+    border-bottom: 1px dashed var(--hairline);
+  }
+  .ecosystem-row:last-of-type { border-bottom: none; }
+  .ecosystem-cat {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.18em; color: var(--ink-muted); font-weight: 600;
+  }
+  .ecosystem-items { display: flex; flex-wrap: wrap; gap: 8px; }
+  .ecosystem-items span {
+    font-family: var(--font-display); font-weight: 500;
+    font-size: 13.5px; color: var(--ink);
+    padding: 8px 14px;
+    border: 1px solid var(--hairline); border-radius: 999px;
+    background: var(--white);
+    transition: border-color 200ms var(--ease), color 200ms var(--ease);
+    cursor: default;
+  }
+  .ecosystem-items span:hover { border-color: var(--c); color: var(--c); }
+  .ecosystem-foot {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.12em; color: var(--ink-muted);
+    margin-top: 18px; text-align: right;
+  }
+  @media (max-width: 880px) {
+    .ecosystem-row { grid-template-columns: 1fr; gap: 10px; padding: 14px 0; }
+  }
+
+  /* Evolve visual */
+  .evolve-visual { max-width: 720px; margin: 0 auto; }
+  .evolve-visual svg { width: 100%; height: auto; display: block; }
+
+  /* Observability strip */
+  .visibility { background: var(--surface); }
+  .observability {
+    border: 1px solid var(--hairline); border-radius: 16px;
+    background: var(--white); overflow: hidden;
+  }
+  .obs-row {
+    padding: clamp(18px, 1.8vw, 24px) clamp(20px, 2vw, 28px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .obs-row:last-child { border-bottom: none; }
+  .obs-signals {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: clamp(20px, 2.6vw, 36px);
+  }
+  .obs-signal { display: flex; flex-direction: column; gap: 8px; }
+  .obs-signal-label {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted);
+  }
+  .obs-signal-value {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(20px, 1.8vw, 24px); color: var(--ink); letter-spacing: -0.015em;
+  }
+  .obs-signal-bar {
+    height: 4px; border-radius: 999px;
+    background: var(--hairline); overflow: hidden; display: block;
+  }
+  .obs-signal-bar span {
+    display: block; height: 100%; width: var(--p, 50%);
+    background: var(--c); border-radius: 999px;
+  }
+  .obs-audit {
+    display: flex; flex-direction: column; gap: 10px;
+    font-family: var(--font-mono); font-size: 12.5px;
+    background: var(--surface-2);
+  }
+  .obs-audit-row {
+    display: grid; grid-template-columns: 90px 180px 1fr auto;
+    gap: 18px; align-items: center;
+  }
+  .obs-audit-row .ts { color: var(--ink-muted); }
+  .obs-audit-row .ev { color: var(--ink); }
+  .obs-audit-row .meta { color: var(--ink-muted); }
+  .obs-audit-row .st {
+    color: var(--c); font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.14em; font-size: 10.5px; font-family: var(--font-mono);
+  }
+  .obs-audit-row .st.delta { color: var(--teal); }
+  .obs-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .obs-pills span {
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
+    padding: 8px 14px;
+    border: 1px solid var(--hairline-strong); border-radius: 999px;
+    background: var(--white);
+  }
+  @media (max-width: 880px) {
+    .obs-signals { grid-template-columns: repeat(2, 1fr); gap: 20px; }
+    .obs-audit-row { grid-template-columns: 80px 1fr auto; gap: 10px; }
+    .obs-audit-row .meta { display: none; }
+  }
+
+  /* Final CTA */
+  .final-cta { padding: var(--section-y) 0; background: var(--white); }
+  .final-cta-card {
+    background: var(--black); color: var(--white);
+    border-radius: 24px; padding: clamp(40px, 5vw, 72px);
+    position: relative; overflow: hidden;
+  }
+  .final-cta-card::before {
+    content: ""; position: absolute; inset: 0;
+    background:
+      radial-gradient(60% 60% at 20% 30%, color-mix(in oklab, var(--c) 24%, transparent), transparent 70%),
+      radial-gradient(50% 50% at 80% 80%, color-mix(in oklab, var(--c) 16%, transparent), transparent 70%);
+    pointer-events: none;
+  }
+  .final-cta-grid {
+    position: relative; display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 56px); align-items: end;
+  }
+  @media (max-width: 880px) { .final-cta-grid { grid-template-columns: 1fr; } }
+  .final-cta-card .label-mono { color: rgba(255,255,255,0.5); }
+  .final-cta-card .label-mono .dot { background: var(--c); }
+  .final-cta-card h2 {
+    color: var(--white); margin-top: 12px; margin-bottom: 18px;
+    font-size: clamp(32px, 3.4vw, 48px); max-width: 22ch;
+  }
+  .final-cta-card p {
+    color: rgba(255,255,255,0.75);
+    font-size: clamp(15px, 1.1vw, 17px); line-height: 1.6; max-width: 52ch;
+  }
+  .final-cta-card .btn-primary { background: var(--c); color: var(--white); border-color: var(--c); }
+  .final-cta-card .btn-primary:hover { background: var(--white); color: var(--ink); }
+  .final-cta-card .btn-ghost {
+    background: transparent; color: var(--white);
+    border: 1px solid rgba(255,255,255,0.25);
+  }
+  .final-cta-card .btn-ghost:hover { border-color: var(--white); background: var(--white); color: var(--ink); }
+  .final-cta-actions {
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end;
+  }
+  @media (max-width: 880px) { .final-cta-actions { justify-content: flex-start; } }
+
+  /* Footer */
+  .footer {
+    background: var(--black); color: rgba(255,255,255,0.75);
+    padding: clamp(40px, 4vw, 56px) 0 clamp(28px, 3vw, 40px);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+    gap: clamp(28px, 4vw, 56px);
+    margin-bottom: 32px;
+  }
+  @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  .footer-brand img { height: 22px; width: auto; filter: invert(1) brightness(1.1); opacity: 0.9; }
+  .footer-brand p {
+    margin-top: 14px; font-size: 13.5px; line-height: 1.55;
+    color: rgba(255,255,255,0.6); max-width: 36ch;
+  }
+  .footer-col h5 {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 14px;
+  }
+  .footer-col ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .footer-col a {
+    font-size: 13.5px; color: rgba(255,255,255,0.78);
+    transition: color 180ms var(--ease);
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  /* Hero diagram animation hook (per-page overrides --tracer-path) */
+  @keyframes tracer-flow {
+    0%   { opacity: 0; offset-distance: 0%; }
+    10%  { opacity: 1; }
+    90%  { opacity: 1; }
+    100% { opacity: 0; offset-distance: 100%; }
+  }
+  .hero-visual .tracer { offset-rotate: 0deg; animation: tracer-flow 3.4s linear infinite; }
+  @media (prefers-reduced-motion: reduce) { .hero-visual .tracer { animation: none; opacity: 0; } }
+
+  
+
+  /* Prototype-to-Prod — diagrams embedded into page structure */
+  .hero-visual {
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    min-height: 0 !important;
+  }
+  .hero-visual::before { display: none !important; }
+  .hero-visual-caption {
+    position: static !important;
+    margin-top: 18px;
+    padding-top: 16px;
+    border-top: 1px solid var(--hairline);
+    color: var(--ink-muted);
+  }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.78fr) minmax(0, 1.32fr);
+    gap: clamp(40px, 5vw, 80px);
+    align-items: center;
+  }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; } }
+  .hero { overflow: hidden; }
+  .hero-visual { margin-right: clamp(-80px, -4vw, -40px); }
+  .hero-visual svg {
+    max-height: none !important;
+    height: auto;
+    width: calc(100% + clamp(40px, 4vw, 80px));
+    margin-right: clamp(-40px, -4vw, -80px);
+  }
+  @media (max-width: 960px) {
+    .hero-visual { margin-right: 0; }
+    .hero-visual svg { width: 100%; margin-right: 0; }
+  }
+
+  /* Failure / scars panel — reuse Workflow language */
+  .failure-block {
+    display: grid;
+    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
+    gap: clamp(32px, 4vw, 64px);
+    align-items: flex-start;
+  }
+  @media (max-width: 960px) { .failure-block { grid-template-columns: 1fr; } }
+  .failure-block h2 { font-size: clamp(28px, 3vw, 40px); max-width: 16ch; }
+  .failure-block .block-lede {
+    font-size: clamp(15px, 1.1vw, 17px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 36ch;
+    margin-top: 14px;
+  }
+  .failure-panel {
+    border: 1px solid var(--hairline);
+    background: var(--white);
+  }
+  .failure-row {
+    display: grid;
+    grid-template-columns: 130px 1fr auto;
+    gap: 20px;
+    align-items: center;
+    padding: 18px 22px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .failure-row:last-child { border-bottom: none; }
+  .failure-row .fname {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    color: var(--c);
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  .failure-row .fdesc {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.45;
+    color: var(--ink-soft);
+  }
+  .failure-row .fdesc b { color: var(--ink); font-weight: 500; }
+  .failure-row .fmeta {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+  .failure-row.is-active .fmeta { color: var(--c); font-weight: 600; }
+  @media (max-width: 720px) {
+    .failure-row { grid-template-columns: 1fr; gap: 6px; }
+    .failure-row .fmeta { justify-self: start; }
+  }
+
+  /* Tighten Section 2 (Reality) and visibility */
+  section.block:nth-of-type(2) { padding: clamp(48px, 5vw, 76px) 0; }
+  section.block:nth-of-type(2) .block-head { margin-bottom: 0; }
+  section.block .block-head { margin-bottom: clamp(28px, 3vw, 44px); }
+
+  .visibility { background: var(--white); border-top: 1px solid var(--hairline); }
+  .observability { border-radius: 0; }
+
+  .evolve-visual {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  /* Asymmetric block-heads to match Workflow rhythm */
+  section.block .block-head {
+    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.85fr);
+  }
+  @media (max-width: 880px) {
+    section.block .block-head { grid-template-columns: 1fr; }
+  }
+
+</style>
+</head>
+
+<body>
+
+<nav class="nav" id="siteNav">
+  <div class="container nav-inner">
+    <div class="nav-logo">
+      <a href="../Home.html" aria-label="AIHLPR home">
+        <img src="../assets/aihlpr-logo-transparent.png" alt="AIHLPR">
+      </a>
+      <span class="nav-crumb">
+        <a href="../Home.html#capabilities">Capabilities</a>
+        <span class="sep">/</span>
+        <span>Prototype to Production Engineering</span>
+      </span>
+    </div>
+    <div class="nav-links">
+      <a href="../Home.html#capabilities">All capabilities</a>
+      <a href="../Home.html#work">Our work</a>
+      <a href="../Home.html#contact" class="cta">Discuss an AI workflow &rarr;</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <div class="hero-meta">
+        <span class="num">04</span>
+        <span class="sep"></span>
+        <span>Capabilities</span>
+        <span class="sep"></span>
+        <span>Prototype to Production</span>
+      </div>
+      <h1>Prototype to Production Engineering</h1>
+      <p class="hero-lede">Turning AI prototypes into scalable production systems.</p>
+      <p class="hero-sub">Many AI systems prove value in prototypes. Few are engineered for reliability, scalability, visibility, and operational deployment.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="../Home.html#contact">
+          Discuss production engineering <span class="arrow">&rarr;</span>
+        </a>
+        <a class="btn btn-secondary" href="../Home.html#capabilities">
+          Explore capabilities <span class="arrow">&rarr;</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-visual" aria-hidden="true">
+      <svg viewBox="0 0 920 500" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
+  <defs>
+    <pattern id="dp-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" stroke="rgba(31,31,31,0.05)" stroke-width="1" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="920" height="500" fill="url(#dp-grid)"/>
+
+  <!-- Top strip -->
+  <g font-size="9" letter-spacing="0.16em">
+    <text x="20" y="22" fill="#8A8A8A">SERVICE · ai-router-prod</text>
+    <text x="900" y="22" text-anchor="end" fill="#5794EA">v1.4.2 live · 99.95% · p95 48ms</text>
+  </g>
+  <line x1="20" y1="30" x2="900" y2="30" stroke="rgba(31,31,31,0.08)" stroke-width="1"/>
+
+  <!-- ── Release pipeline (top half) ── -->
+  <text x="20" y="58" font-size="10" letter-spacing="0.18em" fill="#5794EA" font-weight="600">RELEASE PIPELINE</text>
+
+  <!-- 5 stages: BUILD · TEST · CANARY · DEPLOY · MONITOR -->
+  <g stroke="#5794EA" stroke-width="1.2" fill="#fff">
+    <rect x="20"  y="70" width="160" height="50" rx="3"/>
+    <rect x="200" y="70" width="160" height="50" rx="3"/>
+    <rect x="380" y="70" width="160" height="50" rx="3"/>
+    <rect x="560" y="70" width="160" height="50" rx="3"/>
+    <rect x="740" y="70" width="160" height="50" rx="3"/>
+  </g>
+  <g font-size="10" letter-spacing="0.14em" font-weight="600" fill="#5794EA" text-anchor="middle">
+    <text x="100" y="92">BUILD</text>
+    <text x="280" y="92">TEST</text>
+    <text x="460" y="92">CANARY</text>
+    <text x="640" y="92">DEPLOY</text>
+    <text x="820" y="92">MONITOR</text>
+  </g>
+  <g font-size="9" fill="#8A8A8A" text-anchor="middle">
+    <text x="100" y="108">42s · sealed</text>
+    <text x="280" y="108">2m 14s · 92% cov</text>
+    <text x="460" y="108">5% traffic · ok</text>
+    <text x="640" y="108">100% · rolling</text>
+    <text x="820" y="108">8m · stable</text>
+  </g>
+  <!-- Connector arrows between stages -->
+  <g stroke="#5794EA" stroke-width="0.9" fill="none">
+    <line x1="180" y1="95" x2="200" y2="95"/>
+    <line x1="360" y1="95" x2="380" y2="95"/>
+    <line x1="540" y1="95" x2="560" y2="95"/>
+    <line x1="720" y1="95" x2="740" y2="95"/>
+  </g>
+
+  <!-- Status row under pipeline -->
+  <g font-size="8.5" letter-spacing="0.12em">
+    <rect x="20"  y="132" width="40" height="14" rx="2" fill="#5794EA"/>
+    <text x="40"  y="142" text-anchor="middle" fill="#fff">DONE</text>
+    <rect x="200" y="132" width="40" height="14" rx="2" fill="#5794EA"/>
+    <text x="220" y="142" text-anchor="middle" fill="#fff">DONE</text>
+    <rect x="380" y="132" width="40" height="14" rx="2" fill="#5794EA"/>
+    <text x="400" y="142" text-anchor="middle" fill="#fff">DONE</text>
+    <rect x="560" y="132" width="56" height="14" rx="2" fill="#5794EA"/>
+    <text x="588" y="142" text-anchor="middle" fill="#fff">ROLLING</text>
+    <rect x="740" y="132" width="44" height="14" rx="2" fill="#fff" stroke="#5794EA" stroke-width="1"/>
+    <text x="762" y="142" text-anchor="middle" fill="#5794EA">LIVE</text>
+  </g>
+
+  <!-- Rolling progress on DEPLOY -->
+  <rect x="560" y="118" width="160" height="3" fill="rgba(31,31,31,0.08)"/>
+  <rect x="560" y="118" width="112" height="3" fill="#5794EA">
+    <animate attributeName="width" values="80;124;80" dur="3s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- ── Bottom half: live trace + log + rollback state ── -->
+  <line x1="20" y1="180" x2="900" y2="180" stroke="rgba(31,31,31,0.08)" stroke-width="1"/>
+
+  <!-- Latency trace (left) -->
+  <text x="20" y="206" font-size="10" letter-spacing="0.18em" fill="#5794EA" font-weight="600">P95 LATENCY · 24H</text>
+  <text x="500" y="206" font-size="9" letter-spacing="0.10em" fill="#8A8A8A">target &lt; 80ms</text>
+
+  <!-- Y-axis gridlines -->
+  <g stroke="rgba(31,31,31,0.06)" stroke-width="0.6">
+    <line x1="20" y1="240" x2="540" y2="240"/>
+    <line x1="20" y1="280" x2="540" y2="280"/>
+    <line x1="20" y1="320" x2="540" y2="320"/>
+  </g>
+  <g font-size="8" letter-spacing="0.10em" fill="#8A8A8A">
+    <text x="14" y="244" text-anchor="end">100ms</text>
+    <text x="14" y="284" text-anchor="end">60ms</text>
+    <text x="14" y="324" text-anchor="end">20ms</text>
+  </g>
+  <!-- 80ms target line -->
+  <line x1="20" y1="252" x2="540" y2="252" stroke="#E63946" stroke-width="0.7" stroke-dasharray="3 3" opacity="0.55"/>
+  <!-- Latency line -->
+  <polyline
+    points="20,295 50,288 80,300 110,282 140,275 170,290 200,272 230,278 260,265 290,258 320,272 350,268 380,248 410,232 440,260 470,285 500,278 530,272"
+    fill="none" stroke="#5794EA" stroke-width="1.6"/>
+  <!-- Spike at 410 -->
+  <circle cx="410" cy="232" r="3.5" fill="#E63946"/>
+  <text x="402" y="225" font-size="8.5" fill="#E63946" letter-spacing="0.10em">spike 92ms</text>
+  <!-- Latest point pulse -->
+  <circle cx="530" cy="272" r="3.5" fill="#5794EA"/>
+  <circle cx="530" cy="272" r="8" fill="none" stroke="#5794EA" stroke-width="0.8" opacity="0.4">
+    <animate attributeName="r" values="6;14;6" dur="2.4s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0.4;0.05;0.4" dur="2.4s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- Bottom-left mini-grid (deploy log) -->
+  <text x="20" y="356" font-size="10" letter-spacing="0.18em" fill="#5794EA" font-weight="600">DEPLOY LOG</text>
+  <g font-size="9.5" letter-spacing="0.04em">
+    <text x="20" y="378" fill="#8A8A8A">10:42:18</text>
+    <text x="92" y="378" fill="#1F1F1F">release.cut(v1.4.2)</text>
+    <text x="270" y="378" fill="#5794EA">sealed</text>
+
+    <text x="20" y="398" fill="#8A8A8A">10:43:01</text>
+    <text x="92" y="398" fill="#1F1F1F">canary.promoted()</text>
+    <text x="270" y="398" fill="#5794EA">5% → 25%</text>
+
+    <text x="20" y="418" fill="#8A8A8A">10:43:44</text>
+    <text x="92" y="418" fill="#1F1F1F">drift.detected()</text>
+    <text x="270" y="418" fill="#E63946">+0.04 · monitoring</text>
+
+    <text x="20" y="438" fill="#8A8A8A">10:44:12</text>
+    <text x="92" y="438" fill="#1F1F1F">rollback.armed()</text>
+    <text x="270" y="438" fill="#5794EA">window · 5m</text>
+
+    <text x="20" y="458" fill="#8A8A8A">10:44:31</text>
+    <text x="92" y="458" fill="#1F1F1F">deploy.completed()</text>
+    <text x="270" y="458" fill="#5794EA">100% · live</text>
+  </g>
+
+  <!-- ── Right panel: release state board ── -->
+  <line x1="580" y1="200" x2="580" y2="490" stroke="rgba(31,31,31,0.08)" stroke-width="1"/>
+  <text x="600" y="226" font-size="10" letter-spacing="0.18em" fill="#5794EA" font-weight="600">RELEASE STATE</text>
+
+  <!-- Health tiles -->
+  <g stroke="rgba(31,31,31,0.10)" stroke-width="1" fill="#fff">
+    <rect x="600" y="240" width="140" height="56" rx="2"/>
+    <rect x="750" y="240" width="140" height="56" rx="2"/>
+    <rect x="600" y="306" width="140" height="56" rx="2"/>
+    <rect x="750" y="306" width="140" height="56" rx="2"/>
+    <rect x="600" y="372" width="290" height="56" rx="2"/>
+  </g>
+  <g font-size="9" letter-spacing="0.14em" fill="#8A8A8A">
+    <text x="612" y="260">UPTIME · 30D</text>
+    <text x="762" y="260">P95</text>
+    <text x="612" y="326">ERROR RATE</text>
+    <text x="762" y="326">TEST COV</text>
+    <text x="612" y="392">ROLLBACK · WINDOW</text>
+  </g>
+  <g font-size="20" font-family="Poppins, system-ui" font-weight="600" fill="#1F1F1F" letter-spacing="-0.02em">
+    <text x="612" y="288">99.95%</text>
+    <text x="762" y="288">48ms</text>
+    <text x="612" y="354">0.04%</text>
+    <text x="762" y="354">92%</text>
+  </g>
+  <g font-size="14" font-family="Poppins, system-ui" font-weight="600" fill="#5794EA" letter-spacing="-0.01em">
+    <text x="612" y="416">5m · ready</text>
+  </g>
+  <!-- subtle progress bar in rollback row -->
+  <rect x="730" y="406" width="148" height="3" fill="rgba(31,31,31,0.08)"/>
+  <rect x="730" y="406" width="96" height="3" fill="#5794EA"/>
+
+  <!-- One thread continues off-frame to the right (asymmetry) -->
+  <line x1="890" y1="270" x2="930" y2="270" stroke="#5794EA" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
+</svg>
+      
+      <div class="hero-visual-caption">
+        <span>production_hardening()</span>
+        <span><b>v0.1</b> &rarr; <b>v1.0</b> &middot; <b>hardened</b></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 2 — Operational Reality -->
+<section class="block">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Operational reality</span>
+        <h2 style="margin-top:14px;">From prototype to production.</h2>
+      </div>
+      <p class="block-lede">AI prototypes often begin as internal tools, AI copilots, workflow automations, experimental systems, vibe-coded products, or operational use cases. Production environments require significantly more structure.</p>
+    </div>
+  </div>
+</section>
+
+
+<!-- SECTION (new) — Engineering scars. Incident response + rollback. -->
+<section class="block">
+  <div class="container">
+    <div class="failure-block">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Engineering scars</span>
+        <h2 style="margin-top:14px;">Production is the boring engineering.</h2>
+        <p class="block-lede">
+          Rollbacks, fallbacks, drift, evaluation regressions, cost spikes, model switches. The systems people trust are the ones that have survived all of it.
+        </p>
+      </div>
+      <div class="failure-panel" aria-label="Engineering scars">
+        <div class="failure-row is-active">
+          <span class="fname">ROLLBACK</span>
+          <span class="fdesc">One-command revert. Last good build pre-warmed, replays cached for <b>5 minutes</b> after each deploy.</span>
+          <span class="fmeta">armed · 5m</span>
+        </div>
+        <div class="failure-row">
+          <span class="fname">CANARY</span>
+          <span class="fdesc">Releases promote on <b>5% → 25% → 100%</b> traffic with eval gates between each step.</span>
+          <span class="fmeta">3 gates · auto-promote</span>
+        </div>
+        <div class="failure-row is-active">
+          <span class="fname">EVAL DRIFT</span>
+          <span class="fdesc">Baseline regressed by <b>+0.04</b>. Monitoring extended, no auto-promote until cleared.</span>
+          <span class="fmeta">monitoring</span>
+        </div>
+        <div class="failure-row">
+          <span class="fname">FALLBACK MODEL</span>
+          <span class="fdesc">Provider outage triggers <b>tier-2 model</b>. Same prompt schema, capped at degraded SLA.</span>
+          <span class="fmeta">tier-2 · ready</span>
+        </div>
+        <div class="failure-row">
+          <span class="fname">COST CIRCUIT</span>
+          <span class="fdesc">Per-tenant token ceilings. <b>Hard stop</b> on cost runaway, alert on usage anomaly.</span>
+          <span class="fmeta">ceiling · enforced</span>
+        </div>
+        <div class="failure-row">
+          <span class="fname">INCIDENT MTTR</span>
+          <span class="fdesc">Pageable on-call, runbooks attached to every alert, post-mortems within <b>48h</b>.</span>
+          <span class="fmeta">avg 14m · q2</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- SECTION 4 — Designed to Evolve -->
+<section class="block">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Designed to evolve</span>
+        <h2 style="margin-top:14px;">Designed to evolve.</h2>
+      </div>
+      <p class="block-lede">Production AI systems expand over time. Prototype, production workflow, operational platform. Architecture needs to support that evolution.</p>
+    </div>
+    <div class="evolve-visual">
+      <svg viewBox="0 0 720 280" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
+  <defs>
+    <pattern id="dep-grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" stroke="rgba(31,31,31,0.04)" stroke-width="1" fill="none"/>
+    </pattern>
+  </defs>
+  <rect width="720" height="280" fill="url(#dep-grid)"/>
+
+  <!-- Stage labels -->
+  <g font-size="9" letter-spacing="0.18em" fill="#8A8A8A">
+    <text x="40"  y="32">PROTOTYPE</text>
+    <text x="280" y="32">CANARY · MONITORED</text>
+    <text x="540" y="32">PRODUCTION GRADE</text>
+  </g>
+  <g font-size="8.5" letter-spacing="0.12em" fill="#5794EA">
+    <text x="40"  y="46">v0.1</text>
+    <text x="280" y="46">v0.7</text>
+    <text x="540" y="46">v1.0+</text>
+  </g>
+
+  <!-- STAGE 1 — bare deploy -->
+  <rect x="40" y="76" width="170" height="60" rx="2" fill="#fff" stroke="#5794EA" stroke-width="1.2" stroke-dasharray="4 3"/>
+  <text x="125" y="106" text-anchor="middle" font-size="11" fill="#5794EA" letter-spacing="0.14em" font-weight="600">DEPLOY</text>
+  <text x="125" y="124" text-anchor="middle" font-size="9" fill="#8A8A8A">manual · no gates</text>
+
+  <!-- STAGE 1 sub-row -->
+  <g font-size="8.5" letter-spacing="0.10em" fill="#8A8A8A">
+    <text x="40" y="166">— no monitoring</text>
+    <text x="40" y="182">— no rollback</text>
+    <text x="40" y="198">— single environment</text>
+  </g>
+
+  <!-- → STAGE 2 -->
+  <line x1="220" y1="106" x2="266" y2="106" stroke="rgba(87,148,234,0.4)" stroke-width="0.8" stroke-dasharray="3 3"/>
+  <polygon points="260,102 268,106 260,110" fill="rgba(87,148,234,0.55)"/>
+
+  <!-- STAGE 2 — canary + observability tiles -->
+  <g stroke="#5794EA" stroke-width="1.1" fill="#fff">
+    <rect x="280" y="68" width="170" height="40" rx="2"/>
+    <rect x="280" y="112" width="80" height="36" rx="2"/>
+    <rect x="370" y="112" width="80" height="36" rx="2"/>
+    <rect x="280" y="152" width="170" height="36" rx="2"/>
+  </g>
+  <g font-size="9.5" letter-spacing="0.12em" font-weight="600" fill="#5794EA" text-anchor="middle">
+    <text x="365" y="92">CANARY · 5%</text>
+  </g>
+  <g font-size="8.5" letter-spacing="0.10em" fill="#8A8A8A" text-anchor="middle">
+    <text x="320" y="134">P95</text>
+    <text x="320" y="146">monitored</text>
+    <text x="410" y="134">DRIFT</text>
+    <text x="410" y="146">monitored</text>
+    <text x="365" y="172">ROLLBACK · 5M WINDOW</text>
+  </g>
+
+  <!-- → STAGE 3 -->
+  <line x1="465" y1="128" x2="514" y2="128" stroke="rgba(87,148,234,0.4)" stroke-width="0.8" stroke-dasharray="3 3"/>
+  <polygon points="508,124 516,128 508,132" fill="rgba(87,148,234,0.55)"/>
+
+  <!-- STAGE 3 — full pipeline + gates -->
+  <g stroke="#5794EA" stroke-width="1.4" fill="#fff">
+    <rect x="525" y="68" width="170" height="170" rx="2"/>
+  </g>
+  <text x="610" y="92" text-anchor="middle" font-size="11" fill="#5794EA" letter-spacing="0.14em" font-weight="600">RELEASE PIPELINE</text>
+
+  <!-- 5 gate rows -->
+  <g font-size="9" letter-spacing="0.12em" fill="#8A8A8A">
+    <text x="538" y="116">BUILD</text>
+    <text x="538" y="138">TEST · COV ≥ 90</text>
+    <text x="538" y="160">CANARY · EVAL OK</text>
+    <text x="538" y="182">DEPLOY · ROLLING</text>
+    <text x="538" y="204">MONITOR · DRIFT</text>
+  </g>
+  <!-- check ticks -->
+  <g stroke="#5794EA" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="666,112 670,117 678,108"/>
+    <polyline points="666,134 670,139 678,130"/>
+    <polyline points="666,156 670,161 678,152"/>
+    <polyline points="666,178 670,183 678,174"/>
+  </g>
+  <!-- bar at monitor (currently active) -->
+  <rect x="660" y="198" width="24" height="3" fill="rgba(31,31,31,0.08)"/>
+  <rect x="660" y="198" width="14" height="3" fill="#5794EA">
+    <animate attributeName="width" values="8;22;8" dur="2.6s" repeatCount="indefinite"/>
+  </rect>
+
+  <!-- Bottom labels -->
+  <g font-size="8.5" letter-spacing="0.10em" fill="#8A8A8A">
+    <text x="40"  y="262">1 deploy · manual</text>
+    <text x="280" y="262">5% canary · monitored</text>
+    <text x="540" y="262">5 gates · rolling · armed</text>
+  </g>
+</svg>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5 — Visibility (observability strip) -->
+<section class="block visibility">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Operational confidence</span>
+        <h2 style="margin-top:14px;">Visibility built into deployment.</h2>
+      </div>
+      <p class="block-lede">Reliable AI systems require operational visibility, measurable behaviour, logging, workflow monitoring, human override systems, and reviewability.</p>
+    </div>
+    <div class="observability">
+      <div class="obs-row obs-signals">
+        <div class="obs-signal">
+          <span class="obs-signal-label">Uptime (30d)</span>
+          <span class="obs-signal-value">99.95%</span>
+          <span class="obs-signal-bar"><span style="--p:99%"></span></span>
+        </div><div class="obs-signal">
+          <span class="obs-signal-label">P95 latency</span>
+          <span class="obs-signal-value">48ms</span>
+          <span class="obs-signal-bar"><span style="--p:18%"></span></span>
+        </div><div class="obs-signal">
+          <span class="obs-signal-label">Error rate</span>
+          <span class="obs-signal-value">0.04%</span>
+          <span class="obs-signal-bar"><span style="--p:4%"></span></span>
+        </div><div class="obs-signal">
+          <span class="obs-signal-label">Test coverage</span>
+          <span class="obs-signal-value">92%</span>
+          <span class="obs-signal-bar"><span style="--p:92%"></span></span>
+        </div>
+      </div>
+      <div class="obs-row obs-audit">
+        <div class="obs-audit-row"><span class="ts">10:42:18</span><span class="ev">release.cut()</span><span class="meta">tag &middot; v1.4.2</span><span class="st">live</span></div>
+        <div class="obs-audit-row"><span class="ts">10:43:01</span><span class="ev">rollback.armed()</span><span class="meta">window &middot; 5m</span><span class="st">ready</span></div>
+        <div class="obs-audit-row"><span class="ts">10:43:44</span><span class="ev">drift.detected()</span><span class="meta">infra &middot; eu-west-1</span><span class="st delta">+0.04</span></div>
+        <div class="obs-audit-row"><span class="ts">10:44:12</span><span class="ev">incident.closed()</span><span class="meta">mttr &middot; 14m</span><span class="st">resolved</span></div>
+      </div>
+      <div class="obs-row obs-pills">
+        <span>Deployment frequency</span><span>Rollback success</span><span>Test coverage</span><span>Incident response</span><span>Infra drift</span><span>Release state</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
+<section class="final-cta">
+  <div class="container">
+    <div class="final-cta-card">
+      <div class="final-cta-grid">
+        <div>
+          <span class="label-mono"><span class="dot"></span>Start here</span>
+          <h2>AI systems become valuable when they survive production environments.</h2>
+          <p>Fast AI prototypes are valuable. Production deployment introduces reliability requirements, system architecture, infrastructure scaling, workflow visibility, operational governance, and long-term maintainability.</p>
+        </div>
+        <div class="final-cta-actions">
+          <a class="btn btn-primary" href="../Home.html#contact">
+            Discuss a production deployment <span class="arrow">&rarr;</span>
+          </a>
+          <a class="btn btn-ghost" href="../Home.html#capabilities">
+            Explore capabilities <span class="arrow">&rarr;</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/aihlpr-logo-transparent.png" alt="AIHLPR">
+        <p>Operational AI partner. Building AI systems that fit how organisations already work, from one workflow to the whole organisation.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Capabilities</h5>
+        <ul>
+          <li><a href="operational-ai-systems.html">Operational AI Systems</a></li>
+          <li><a href="enterprise-ai-systems.html">Enterprise AI Systems</a></li>
+          <li><a href="ai-workflow-infrastructure.html">Workflow Infrastructure</a></li>
+          <li><a href="prototype-to-production.html">Prototype to Production</a></li>
+          <li><a href="ai-applications-and-platforms.html">Apps &amp; Platforms</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>The site</h5>
+        <ul>
+          <li><a href="../Home.html#capabilities">All capabilities</a></li>
+          <li><a href="../Home.html#how">How we work</a></li>
+          <li><a href="../Home.html#work">Our work</a></li>
+          <li><a href="../Home.html#compliance">Compliance</a></li>
+          <li><a href="../Home.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:brinda@moralitybytes.eu">brinda@moralitybytes.eu</a></li>
+          <li>Wibautstraat 129, Amsterdam</li>
+          <li>EU based &middot; NDA on request</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>AIHLPR &middot; A practice of MoralityBytes</span>
+      <span>&copy; 2026 &middot; AI engineering, built to last</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
