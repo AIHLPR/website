@@ -727,25 +727,44 @@
   .work-section .section-head h2 { max-width: 22ch; }
   .work-tabs {
     display: flex;
-    gap: 28px;
-    border-bottom: 1px solid var(--hairline);
-    margin-bottom: 32px;
+    gap: 8px;
+    margin-bottom: 36px;
     flex-wrap: wrap;
+    padding-bottom: 28px;
+    border-bottom: 1px solid var(--hairline);
   }
   .work-tab {
-    padding: 10px 0 14px;
-    font-size: 14px;
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 16px;
+    font-family: var(--font-display);
+    font-size: 13.5px;
     font-weight: 500;
+    letter-spacing: -0.005em;
     color: var(--ink-soft);
-    border-bottom: 2px solid transparent;
-    margin-bottom: -1px;
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
     cursor: pointer;
-    transition: color 180ms var(--ease), border-color 180ms var(--ease);
-    background: none;
-    font-family: inherit;
+    transition: color 180ms var(--ease), border-color 180ms var(--ease), background 180ms var(--ease), transform 180ms var(--ease);
   }
-  .work-tab.is-active { color: var(--ink); border-bottom-color: var(--ink); }
-  .work-tab:hover { color: var(--ink); }
+  .work-tab:hover {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .work-tab.is-active {
+    color: var(--white);
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .work-tab.is-active:hover {
+    background: var(--ink-soft);
+    border-color: var(--ink-soft);
+  }
+  .work-tab:focus-visible {
+    outline: 2px solid var(--ink);
+    outline-offset: 3px;
+  }
 
   .work-rows {
     display: flex;
@@ -1807,39 +1826,22 @@
     }
     .hero-pill .sep { display: none; }
 
-    /* Our work tabs: horizontal-scrolling pill chips on mobile. */
+    /* Our work tabs: horizontal-scrolling pills on mobile. */
     .work-tabs {
-      gap: 10px;
+      gap: 8px;
       overflow-x: auto;
       flex-wrap: nowrap;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
       scroll-snap-type: x mandatory;
-      border-bottom: none;
       margin-bottom: 24px;
-      padding: 4px 0 6px;
+      padding: 4px 0 22px;
     }
     .work-tabs::-webkit-scrollbar { display: none; }
     .work-tab {
       white-space: nowrap;
-      font-family: var(--font-mono);
-      font-size: 12px;
-      font-weight: 500;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      padding: 12px 20px;
-      border: 1px solid var(--hairline-strong);
-      border-radius: 999px;
-      background: var(--white);
-      color: var(--ink-soft);
-      margin-bottom: 0;
       scroll-snap-align: start;
-      transition: background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
-    }
-    .work-tab.is-active {
-      background: var(--ink);
-      color: var(--white);
-      border-color: var(--ink);
+      padding: 10px 16px;
     }
 
     /* Pipeline rail: 6 mono labels in a 6-col grid collide on narrow
