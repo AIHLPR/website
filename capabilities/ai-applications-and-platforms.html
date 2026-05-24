@@ -2810,11 +2810,11 @@
 <!-- SECTION 4 — The architecture of a decision (system diagram) -->
 <style>
   .decision-arch {
-    padding: clamp(56px, 6vw, 88px) 0;
+    padding: clamp(72px, 8vw, 104px) 0;
     border-top: 1px solid var(--hairline);
     background: var(--white);
   }
-  .decision-arch .block-head { margin-bottom: clamp(20px, 2.4vw, 36px); }
+  .decision-arch .block-head { margin-bottom: clamp(28px, 3vw, 44px); }
 
   .da-system {
     position: relative;
@@ -2870,9 +2870,9 @@
 
   .da-layer {
     display: grid;
-    grid-template-columns: minmax(220px, 1fr) 2fr;
-    gap: clamp(20px, 2.4vw, 36px);
-    padding: clamp(12px, 1.4vw, 18px) 0 clamp(12px, 1.4vw, 18px) 52px;
+    grid-template-columns: minmax(240px, 1fr) 1.5fr;
+    gap: clamp(24px, 2.8vw, 44px);
+    padding: clamp(18px, 2vw, 26px) 0 clamp(18px, 2vw, 26px) 52px;
     position: relative;
     --la-c: var(--ink);
   }
@@ -2882,9 +2882,9 @@
   .da-layer::before {
     content: "";
     position: absolute;
-    left: 19px;
-    top: clamp(20px, 2vw, 26px);
-    width: 14px; height: 14px;
+    left: 18px;
+    top: clamp(26px, 2.6vw, 36px);
+    width: 16px; height: 16px;
     border-radius: 999px;
     background: var(--white);
     border: 2px solid var(--la-c);
@@ -2902,60 +2902,54 @@
   .da-side .da-eyebrow { color: var(--ink-muted); }
   .da-side h3 {
     font-family: var(--font-display); font-weight: 500;
-    font-size: clamp(18px, 1.7vw, 22px);
+    font-size: clamp(20px, 1.9vw, 26px);
     letter-spacing: -0.02em; line-height: 1.15;
     color: var(--ink); margin: 0; max-width: 18ch;
   }
   .da-side .da-caption {
-    font-family: var(--font-body); font-size: 12.5px;
-    line-height: 1.4; color: var(--ink-soft); margin: 0;
-    max-width: 38ch;
+    font-family: var(--font-body); font-size: 13.5px;
+    line-height: 1.45; color: var(--ink-soft); margin: 0;
+    max-width: 36ch;
   }
 
-  /* Right side: channel cells, single horizontal row of 4 */
+  /* Right side: channel cells, 2x2 grid */
   .da-channels {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 6px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
     align-self: center;
   }
   .da-ch {
     display: grid;
-    grid-template-columns: 18px 1fr;
-    align-items: center; gap: 7px;
-    padding: 6px 9px 7px;
+    grid-template-columns: 22px 1fr auto;
+    align-items: center; gap: 10px;
+    padding: 10px 12px;
     border: 1px solid var(--hairline);
-    border-radius: 7px;
+    border-radius: 8px;
     background: var(--white);
     transition: border-color 220ms var(--ease);
-    grid-template-areas: "icon name" "icon state";
-    row-gap: 1px;
   }
-  .da-ch .ch-icon { grid-area: icon; }
-  .da-ch .ch-name { grid-area: name; }
-  .da-ch .ch-state { grid-area: state; }
   .da-ch:hover { border-color: var(--la-c); }
   .da-ch .ch-icon {
-    width: 18px; height: 18px;
+    width: 22px; height: 22px;
     display: grid; place-items: center;
     color: var(--la-c);
-    align-self: center;
   }
-  .da-ch .ch-icon svg { width: 14px; height: 14px; display: block; }
+  .da-ch .ch-icon svg { width: 16px; height: 16px; display: block; }
   .da-ch .ch-name {
-    font-family: var(--font-mono); font-size: 10.5px;
+    font-family: var(--font-mono); font-size: 11px;
     color: var(--ink); font-weight: 500;
     letter-spacing: 0.02em;
-    line-height: 1.2;
   }
   .da-ch .ch-state {
-    font-family: var(--font-mono); font-size: 8.5px;
-    font-weight: 700; letter-spacing: 0.12em;
+    font-family: var(--font-mono); font-size: 9px;
+    font-weight: 700; letter-spacing: 0.14em;
     text-transform: uppercase;
+    padding: 3px 7px; border-radius: 4px;
     color: var(--la-c);
+    background: color-mix(in oklab, var(--la-c) 8%, var(--white));
+    border: 1px solid color-mix(in oklab, var(--la-c) 28%, var(--hairline));
     white-space: nowrap;
-    overflow: hidden; text-overflow: ellipsis;
-    line-height: 1.2;
   }
 
   /* Feedback loop arc on the right side */
@@ -2989,21 +2983,17 @@
     text-transform: uppercase;
   }
 
-  @media (max-width: 1100px) {
-    .da-channels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  }
   @media (max-width: 960px) {
     .da-loop { display: none; }
     .da-system { padding-right: 0; }
     .da-layer {
       grid-template-columns: 1fr;
-      gap: 14px;
+      gap: 16px;
       padding-left: 44px;
     }
     .da-layers::before, .da-layers::after { left: 19px; }
-    .da-layer::before { left: 12px; top: clamp(20px, 2vw, 26px); }
+    .da-layer::before { left: 12px; top: clamp(22px, 2.2vw, 28px); }
     .da-end { padding-left: 44px; }
-    .da-channels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 540px) {
     .da-channels { grid-template-columns: 1fr; }
