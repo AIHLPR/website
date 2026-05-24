@@ -1798,6 +1798,24 @@
   .dash-cust .ai-bt.ghost   { background: var(--white); border: 1px solid var(--hairline-strong); color: var(--ink-soft); }
   .dash-cust .ai-bt.primary { background: var(--p-c); border: 1px solid var(--p-c); color: #fff; }
 
+  .dash-cust .cust-foot {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 10px 16px;
+    border-top: 1px solid var(--hairline);
+    background: var(--surface-2);
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--ink-soft); letter-spacing: 0.06em;
+  }
+  .dash-cust .cust-foot .cf-note b { color: var(--p-c); font-weight: 700; letter-spacing: 0.12em; margin-right: 4px; }
+  .dash-cust .cust-foot .acts { display: flex; gap: 8px; }
+  .dash-cust .cust-foot .bt {
+    padding: 5px 10px; border-radius: 5px;
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+  }
+  .dash-cust .cust-foot .bt.ghost   { background: var(--white); border: 1px solid var(--hairline-strong); color: var(--ink-soft); }
+  .dash-cust .cust-foot .bt.primary { background: var(--p-c); color: #fff; border: 1px solid var(--p-c); }
+
   /* ---------- Dash 04: Workflow pipeline ---------- */
   .dash-flow { --p-c: #9B59B6; }
   .dash-flow .flow-app { padding: 14px; display: flex; flex-direction: column; gap: 12px; }
@@ -1910,6 +1928,24 @@
   .dash-flow .log-row .lg-time { color: var(--ink-muted); }
   .dash-flow .log-row .lg-who { color: var(--ink); font-weight: 700; }
   .dash-flow .log-row .lg-act { color: var(--ink-soft); }
+
+  .dash-flow .flow-foot {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 10px 16px;
+    border-top: 1px solid var(--hairline);
+    background: var(--surface-2);
+    font-family: var(--font-mono); font-size: 10px;
+    color: var(--ink-soft); letter-spacing: 0.06em;
+  }
+  .dash-flow .flow-foot .ff-note b { color: var(--p-c); font-weight: 700; letter-spacing: 0.12em; margin-right: 4px; }
+  .dash-flow .flow-foot .acts { display: flex; gap: 8px; }
+  .dash-flow .flow-foot .bt {
+    padding: 5px 10px; border-radius: 5px;
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase; font-weight: 700;
+  }
+  .dash-flow .flow-foot .bt.ghost   { background: var(--white); border: 1px solid var(--hairline-strong); color: var(--ink-soft); }
+  .dash-flow .flow-foot .bt.primary { background: var(--p-c); color: #fff; border: 1px solid var(--p-c); }
 </style>
 
 <section class="possibilities">
@@ -2207,6 +2243,13 @@
                 </div>
               </div>
             </div>
+            <div class="cust-foot">
+              <span class="cf-note"><b>AIHLPR</b>14m avg first touch &middot; 92% AI-assisted &middot; 12 open</span>
+              <span class="acts">
+                <span class="bt ghost">Snooze</span>
+                <span class="bt primary">Reply</span>
+              </span>
+            </div>
           </div>
           <span class="stack-line"><b>Stack &middot;</b> AWS &middot; Lambda &middot; Postgres &middot; Whisper &middot; GPT-4o</span>
         </div>
@@ -2261,6 +2304,13 @@
                 <div class="log-row"><span class="lg-time">12:14</span><span class="lg-who">FN gate</span><span class="lg-act">approved, within Q3 envelope</span></div>
                 <div class="log-row"><span class="lg-time">11:58</span><span class="lg-who">AI</span><span class="lg-act">prepared, context + risk + policy cited</span></div>
               </div>
+            </div>
+            <div class="flow-foot">
+              <span class="ff-note"><b>AIHLPR</b>awaiting Legal review &middot; 2d 4h elapsed</span>
+              <span class="acts">
+                <span class="bt ghost">Nudge</span>
+                <span class="bt primary">Approve next</span>
+              </span>
             </div>
           </div>
           <span class="stack-line"><b>Stack &middot;</b> Azure &middot; Service Bus &middot; Postgres &middot; GPT-4o &middot; OIDC</span>
@@ -2528,6 +2578,13 @@
                 </div>
               </div>
             </div>
+            <div class="cust-foot">
+              <span class="cf-note"><b>AIHLPR</b>14m avg first touch &middot; 92% AI-assisted &middot; 12 open</span>
+              <span class="acts">
+                <span class="bt ghost">Snooze</span>
+                <span class="bt primary">Reply</span>
+              </span>
+            </div>
           </div>
                     <span class="stack-line"><b>Stack &middot;</b> AWS &middot; Lambda &middot; Postgres &middot; Whisper &middot; GPT-4o</span>
         </div>
@@ -2573,6 +2630,13 @@
                 <div class="log-row"><span class="lg-time">12:14</span><span class="lg-who">FN gate</span><span class="lg-act">approved, within Q3 envelope</span></div>
                 <div class="log-row"><span class="lg-time">11:58</span><span class="lg-who">AI</span><span class="lg-act">prepared, context + risk + policy cited</span></div>
               </div>
+            </div>
+            <div class="flow-foot">
+              <span class="ff-note"><b>AIHLPR</b>awaiting Legal review &middot; 2d 4h elapsed</span>
+              <span class="acts">
+                <span class="bt ghost">Nudge</span>
+                <span class="bt primary">Approve next</span>
+              </span>
             </div>
           </div>
                     <span class="stack-line"><b>Stack &middot;</b> Azure &middot; Service Bus &middot; Postgres &middot; GPT-4o &middot; OIDC</span>
