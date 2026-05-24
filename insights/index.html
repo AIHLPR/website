@@ -99,9 +99,55 @@
     transition: background 180ms var(--ease), color 180ms var(--ease);
   }
   .nav-links .cta:hover { background: var(--ink); color: var(--white); }
+  .nav-burger {
+    display: none;
+    position: relative;
+    width: 36px; height: 28px;
+    background: none; border: 0; padding: 0;
+    cursor: pointer; z-index: 60;
+  }
+  .nav-burger span {
+    position: absolute; left: 4px; right: 4px;
+    height: 2px; border-radius: 2px;
+    background: var(--ink);
+    transition: top 220ms var(--ease), transform 220ms var(--ease), opacity 180ms var(--ease);
+  }
+  .nav-burger span:nth-child(1) { top: 7px; }
+  .nav-burger span:nth-child(2) { top: 13px; }
+  .nav-burger span:nth-child(3) { top: 19px; }
+  .nav.is-open .nav-burger span:nth-child(1) { top: 13px; transform: rotate(45deg); }
+  .nav.is-open .nav-burger span:nth-child(2) { opacity: 0; }
+  .nav.is-open .nav-burger span:nth-child(3) { top: 13px; transform: rotate(-45deg); }
+  .nav-mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--hairline);
+    padding: 8px var(--gutter) 18px;
+    flex-direction: column;
+  }
+  .nav-mobile-menu a {
+    padding: 14px 0;
+    font-size: 16px; font-weight: 500;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; }
+  .nav-mobile-menu a.cta {
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 12px 18px;
+    color: var(--ink);
+    text-align: left;
+    margin-top: 10px;
+    width: fit-content;
+  }
+  .nav.is-open .nav-mobile-menu { display: flex; }
   @media (max-width: 760px) {
     .nav-crumb { display: none; }
-    .nav-links a:not(.cta) { display: none; }
+    .nav-links { display: none; }
+    .nav-burger { display: block; }
   }
   main { padding-top: 64px; }
 
@@ -533,7 +579,7 @@
 </head>
 <body>
 
-<nav class="nav">
+<nav class="nav" id="siteNav">
   <div class="container nav-inner">
     <div class="nav-logo">
       <a href="../Home.html" aria-label="AIHLPR home">
@@ -546,10 +592,22 @@
       </span>
     </div>
     <div class="nav-links">
-      <a href="../Home.html#capabilities">Capabilities</a>
-      <a href="../Home.html#work">Our work</a>
-      <a href="../Home.html#contact" class="cta">Discuss a use case &rarr;</a>
+    <a href="../Home.html#capabilities">Capabilities</a>
+    <a href="../Home.html#work">Work</a>
+    <a href="../Home.html#how">How we work</a>
+    <a href="index.html">Resources</a>
+    <a href="../Home.html#contact" class="cta">Book a call &rarr;</a>
     </div>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <a href="../Home.html#capabilities">Capabilities</a>
+    <a href="../Home.html#work">Work</a>
+    <a href="../Home.html#how">How we work</a>
+    <a href="index.html">Resources</a>
+    <a href="../Home.html#contact" class="cta">Book a call &rarr;</a>
   </div>
 </nav>
 
@@ -933,5 +991,22 @@
   </div>
 </footer>
 
+<script>
+(function () {
+  const nav = document.getElementById('siteNav');
+  const burger = document.getElementById('navBurger');
+  const menu = document.getElementById('navMobileMenu');
+  if (!nav || !burger || !menu) return;
+  function setOpen(open) {
+    nav.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-hidden', String(!open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  burger.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+})();
+</script>
 </body>
 </html>
