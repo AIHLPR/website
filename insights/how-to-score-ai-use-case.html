@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How to score an AI use case before you build it · AIHLPR Insights</title>
+<meta name="description" content="Before selecting models or vendors, enterprises need a framework for evaluating whether a workflow is actually a strong candidate for AI. Here's a practical scoring lens for AI use case assessment.">
+<meta name="keywords" content="AI use case assessment, enterprise AI implementation, AI workflow evaluation, AI readiness framework, how to evaluate AI use cases, AI operational fit, AI ROI scoring">
+
+<meta property="og:title" content="How to score an AI use case before you build it">
+<meta property="og:description" content="A practical framework for evaluating AI use cases on operational fit, not just technical feasibility.">
+<meta property="og:type" content="article">
+<meta property="article:author" content="Brinda Rajendran">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "How to score an AI use case before you build it",
+  "description": "A practical framework for evaluating AI use cases on operational fit before building. Covers workflow frequency, output structure, error cost, system fragmentation, and human oversight scalability.",
+  "author": {
+    "@type": "Person",
+    "name": "Brinda Rajendran",
+    "sameAs": "https://www.linkedin.com/in/brinda-rajendran/"
+  },
+  "publisher": { "@type": "Organization", "name": "AIHLPR" },
+  "articleSection": "Enterprise AI",
+  "keywords": "AI use case assessment, enterprise AI implementation, AI workflow evaluation, AI readiness framework"
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/aihlpr-logo-transparent.png">
+<style>
+  :root {
+    --pink:#E91E63; --magenta:#CC418C; --purple:#9B59B6;
+    --lavender:#7E6CE0; --sky:#5794EA; --blue:#3478E5;
+    --teal:#1D9E75;
+    --ink:#1F1F1F; --ink-soft:#4A4A4A; --ink-muted:#8A8A8A;
+    --white:#FFFFFF; --black:#0C0C0C;
+    --surface:#F8F8F6; --surface-2:#FAFAF8;
+    --hairline:rgba(31,31,31,0.10);
+    --hairline-strong:rgba(31,31,31,0.20);
+    --gradient: linear-gradient(90deg,#E91E63 0%,#CC418C 25%,#9B59B6 50%,#7E6CE0 70%,#5794EA 85%,#3478E5 100%);
+    --font-display:"Poppins", system-ui, sans-serif;
+    --font-body:"Roboto", system-ui, sans-serif;
+    --font-mono:"JetBrains Mono", ui-monospace, monospace;
+    --ease:cubic-bezier(0.22, 1, 0.36, 1);
+    --container:1240px;
+    --article:720px;
+    --gutter:clamp(20px, 4.5vw, 56px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    margin: 0; padding: 0; background: var(--white); color: var(--ink);
+    font-family: var(--font-body); font-size: 16px; line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--ink); color: var(--white); }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display); margin: 0;
+    letter-spacing: -0.025em; line-height: 1.1;
+    font-weight: 600; color: var(--ink); text-wrap: balance;
+  }
+  p { margin: 0 0 22px; color: var(--ink-soft); }
+  p:last-child { margin-bottom: 0; }
+  p b, p strong { color: var(--ink); font-weight: 600; }
+  .label-mono {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  /* Nav (matches capability pages) */
+  .nav {
+    position: fixed; inset: 0 0 auto 0; height: 64px; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: inline-flex; align-items: center; gap: 12px; }
+  .nav-logo img { height: 22px; width: auto; display: block; }
+  .nav-crumb {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
+    border-left: 1px solid var(--hairline);
+    padding-left: 14px; margin-left: 4px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .nav-crumb a { color: var(--ink-muted); transition: color 200ms var(--ease); }
+  .nav-crumb a:hover { color: var(--ink); }
+  .nav-crumb .sep { opacity: 0.5; }
+  .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; color: var(--ink-soft); }
+  .nav-links a { transition: color 180ms var(--ease); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links .cta {
+    padding: 8px 14px; border: 1px solid var(--ink);
+    border-radius: 999px; color: var(--ink); font-size: 13px;
+    transition: background 180ms var(--ease), color 180ms var(--ease);
+  }
+  .nav-links .cta:hover { background: var(--ink); color: var(--white); }
+  @media (max-width: 760px) {
+    .nav-crumb { display: none; }
+    .nav-links a:not(.cta) { display: none; }
+  }
+  main { padding-top: 64px; }
+
+  /* Article shell */
+  .article {
+    max-width: var(--article);
+    margin: 0 auto;
+    padding: clamp(48px, 7vw, 96px) var(--gutter) clamp(72px, 8vw, 120px);
+  }
+
+  .gradient-rule {
+    height: 2px; width: 64px; border-radius: 999px;
+    background: var(--gradient);
+    margin-bottom: 28px;
+  }
+
+  .article-meta {
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
+    margin-bottom: 28px;
+  }
+  .article-meta .tag {
+    background: var(--ink); color: var(--white);
+    padding: 5px 11px; border-radius: 999px;
+    font-size: 10px; letter-spacing: 0.14em;
+  }
+  .article-meta .sep { width: 3px; height: 3px; border-radius: 999px; background: var(--ink-muted); opacity: 0.55; }
+  .article-meta .byline a {
+    color: var(--ink); font-weight: 500;
+    border-bottom: 1px solid var(--hairline);
+    transition: border-color 180ms var(--ease);
+  }
+  .article-meta .byline a:hover { border-bottom-color: var(--ink); }
+
+  h1.article-title {
+    font-size: clamp(36px, 5vw, 60px);
+    letter-spacing: -0.03em; line-height: 1.05;
+    margin-bottom: 24px;
+    max-width: 22ch;
+  }
+
+  .standfirst {
+    font-family: var(--font-body); font-weight: 400;
+    font-size: clamp(18px, 1.5vw, 21px);
+    line-height: 1.55; color: var(--ink-soft);
+    padding-bottom: 36px; margin-bottom: 48px;
+    border-bottom: 1px solid var(--hairline);
+    max-width: 56ch;
+  }
+
+  .definition {
+    background: var(--surface-2);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: clamp(24px, 2.5vw, 32px);
+    margin: 0 0 44px;
+  }
+  .definition .label-mono { margin-bottom: 12px; }
+  .definition p {
+    font-size: 16px; color: var(--ink);
+    margin: 0; line-height: 1.65;
+  }
+  .definition p strong { font-weight: 600; }
+
+  .body p { font-size: 16.5px; }
+
+  h2.signal {
+    font-size: clamp(24px, 2.6vw, 32px);
+    letter-spacing: -0.02em;
+    margin: 56px 0 18px;
+    max-width: 22ch;
+  }
+  h2.signal .num {
+    display: block;
+    font-family: var(--font-mono); font-weight: 500;
+    font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+
+  .pull-quote {
+    border-left: 2px solid var(--ink);
+    padding: 6px 0 6px 28px;
+    margin: 44px 0;
+  }
+  .pull-quote p {
+    font-family: var(--font-display); font-weight: 500;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.35; color: var(--ink);
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  .chips {
+    list-style: none; padding: 0; margin: 0 0 28px;
+    display: flex; flex-wrap: wrap; gap: 8px;
+  }
+  .chips li {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-family: var(--font-display); font-weight: 500;
+    font-size: 13.5px; color: var(--ink);
+    transition: border-color 200ms var(--ease), color 200ms var(--ease);
+  }
+  .chips li:hover { border-color: var(--ink); }
+
+  .framework {
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--white);
+    margin: 44px 0;
+  }
+  .framework-head {
+    background: var(--ink); color: var(--white);
+    padding: 16px 24px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .fw-row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.55fr) minmax(0, 1.45fr);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .fw-row:last-child { border-bottom: none; }
+  .fw-signal {
+    padding: 18px 24px;
+    background: var(--surface-2);
+    border-right: 1px solid var(--hairline);
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 14px; color: var(--ink);
+    letter-spacing: -0.01em;
+    display: flex; align-items: center;
+  }
+  .fw-question {
+    padding: 18px 24px;
+    font-size: 14.5px; line-height: 1.55;
+    color: var(--ink-soft);
+    display: flex; align-items: center;
+  }
+  @media (max-width: 600px) {
+    .fw-row { grid-template-columns: 1fr; }
+    .fw-signal {
+      border-right: none;
+      border-bottom: 1px solid var(--hairline);
+    }
+  }
+
+  .checklist {
+    list-style: none; padding: 0; margin: 0 0 28px;
+    border-top: 1px solid var(--hairline);
+  }
+  .checklist li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--hairline);
+    font-size: 16px;
+    color: var(--ink-soft);
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 16px;
+    align-items: start;
+    line-height: 1.55;
+  }
+  .checklist li::before {
+    content: '';
+    display: block;
+    width: 16px; height: 16px;
+    border: 1.5px solid var(--ink-muted);
+    border-radius: 3px;
+    margin-top: 4px;
+  }
+  .checklist li strong { color: var(--ink); font-weight: 600; }
+
+  .references {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid var(--hairline);
+  }
+  .references .label-mono { margin-bottom: 18px; }
+  .references ol {
+    list-style: none; padding: 0; margin: 0;
+    counter-reset: ref-counter;
+  }
+  .references ol li {
+    counter-increment: ref-counter;
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 14px;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .references ol li:last-child { border-bottom: none; }
+  .references ol li::before {
+    content: counter(ref-counter);
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 500;
+    color: var(--ink-muted);
+    margin-top: 4px;
+  }
+  .references ol li em { font-style: italic; color: var(--ink-soft); }
+  .references ol li a {
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--hairline);
+    transition: color 180ms var(--ease), border-color 180ms var(--ease);
+  }
+  .references ol li a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  sup {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 500;
+    color: var(--ink-muted);
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 2px;
+  }
+
+  /* About the author card */
+  .about-author {
+    margin-top: 72px;
+    padding: clamp(24px, 3vw, 36px);
+    background: var(--surface-2);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: clamp(20px, 2.4vw, 28px);
+    align-items: start;
+  }
+  .about-author .aa-avatar {
+    width: 64px; height: 64px;
+    border-radius: 999px;
+    background: var(--ink); color: var(--white);
+    display: grid; place-items: center;
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 20px; letter-spacing: 0.04em;
+  }
+  .about-author .label-mono { margin-bottom: 8px; }
+  .about-author .aa-name {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 22px; line-height: 1.2;
+    color: var(--ink); letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .about-author .aa-bio {
+    font-size: 15px; line-height: 1.6;
+    color: var(--ink-soft); margin-bottom: 16px;
+  }
+  .about-author .aa-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-body); font-size: 14px; font-weight: 500;
+    color: var(--ink);
+    border-bottom: 1px solid var(--ink);
+    padding-bottom: 1px;
+    transition: color 180ms var(--ease), border-color 180ms var(--ease);
+  }
+  .about-author .aa-link:hover { color: var(--ink-soft); border-bottom-color: var(--ink-soft); }
+  .about-author .aa-link .arrow { transition: transform 180ms var(--ease); }
+  .about-author .aa-link:hover .arrow { transform: translateX(3px); }
+  @media (max-width: 560px) {
+    .about-author { grid-template-columns: 1fr; }
+  }
+
+  /* Footer (matches capability pages) */
+  .footer {
+    background: var(--black); color: rgba(255,255,255,0.75);
+    padding: clamp(40px, 4vw, 56px) 0 clamp(28px, 3vw, 40px);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+    gap: clamp(28px, 4vw, 56px);
+    margin-bottom: 32px;
+  }
+  @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  .footer-brand img { height: 22px; width: auto; filter: invert(1) brightness(1.1); opacity: 0.9; }
+  .footer-brand p {
+    margin-top: 14px; font-size: 13.5px; line-height: 1.55;
+    color: rgba(255,255,255,0.6); max-width: 36ch;
+  }
+  .footer-col h5 {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 14px;
+  }
+  .footer-col ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .footer-col a {
+    font-size: 13.5px; color: rgba(255,255,255,0.78);
+    transition: color 180ms var(--ease);
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    flex-wrap: wrap; gap: 12px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="siteNav">
+  <div class="container nav-inner">
+    <div class="nav-logo">
+      <a href="../Home.html" aria-label="AIHLPR home">
+        <img src="../assets/aihlpr-logo-transparent.png" alt="AIHLPR">
+      </a>
+      <span class="nav-crumb">
+        <a href="../Home.html#insights">Insights</a>
+        <span class="sep">/</span>
+        <span>AI use case scoring</span>
+      </span>
+    </div>
+    <div class="nav-links">
+      <a href="../Home.html#capabilities">Capabilities</a>
+      <a href="../Home.html#work">Our work</a>
+      <a href="../Home.html#contact" class="cta">Discuss a use case &rarr;</a>
+    </div>
+  </div>
+</nav>
+
+<main>
+
+<article class="article" itemscope itemtype="https://schema.org/Article">
+  <header>
+    <div class="gradient-rule" aria-hidden="true"></div>
+    <div class="article-meta">
+      <span class="tag">Field note</span>
+      <span class="sep"></span>
+      <span>Enterprise AI</span>
+      <span class="sep"></span>
+      <span class="byline" itemprop="author" itemscope itemtype="https://schema.org/Person">
+        By <a href="https://www.linkedin.com/in/brinda-rajendran/" target="_blank" rel="noopener" itemprop="url"><span itemprop="name">Brinda Rajendran</span></a>
+      </span>
+      <span class="sep"></span>
+      <span>7 min read</span>
+    </div>
+
+    <h1 class="article-title" itemprop="headline">How to score an AI use case before you build it</h1>
+
+    <p class="standfirst" itemprop="description">
+      Most AI initiatives don't stall because the model is weak. They stall because the surrounding system isn't designed to support reliable use at scale. Here's a practical framework for evaluating fit before you commit to building.
+    </p>
+  </header>
+
+  <div class="definition" itemscope itemtype="https://schema.org/DefinedTerm">
+    <span class="label-mono"><span class="dot" style="display:none"></span>Definition</span>
+    <p itemprop="description"><strong>AI use case scoring</strong> is the process of evaluating a workflow's readiness for AI support. It looks at task frequency, output structure, error cost, system fragmentation, and human oversight capacity before selecting models, vendors, or frameworks.</p>
+  </div>
+
+  <div class="body">
+    <p>Enterprise AI adoption has grown quickly. But scaled value remains uneven. McKinsey's 2025 global survey on AI found that while use has become significantly more widespread, only around one third of organisations report scaling AI across the enterprise.<sup>1</sup> The research points clearly to why: realised value depends less on isolated experimentation and more on workflow redesign, governance, and adoption.</p>
+
+    <p>This creates a real change in how organisations need to think about implementation.</p>
+
+    <p>The difficult question is no longer whether AI can produce outputs. In most cases, it clearly can. The harder question is whether the workflow surrounding that output is strong enough to support consistent use at scale.</p>
+
+    <div class="pull-quote">
+      <p>Many AI initiatives don't stall because the model is weak. They stall because the surrounding system is unclear.</p>
+    </div>
+
+    <p>Ownership is fragmented. Workflows are inconsistent. Validation is difficult. The cost of mistakes is poorly understood. Teams can't confidently put the output to work. Before selecting models, vendors, or frameworks, organisations need a way to evaluate whether a workflow is actually a strong candidate for AI support. Less about technical feasibility, more about practical fit.</p>
+
+    <h2 class="signal"><span class="num">Signal 01</span>Frequency matters more than novelty</h2>
+
+    <p>The strongest AI use cases are often not the most impressive demonstrations. They're usually repetitive, high-frequency workflows where friction already exists.</p>
+
+    <ul class="chips" aria-label="Example high-frequency AI use cases">
+      <li>Invoice and document processing</li>
+      <li>Multilingual content adaptation</li>
+      <li>Support triage</li>
+      <li>Structured compliance review</li>
+      <li>Internal knowledge retrieval</li>
+      <li>Product data enrichment</li>
+      <li>Repetitive reporting workflows</li>
+    </ul>
+
+    <p>These workflows build value over time because even small efficiency gains repeat continuously across teams and systems. Workflow automation, customer support, lead qualification, and data processing continue to emerge as the most commercially validated AI implementation categories.</p>
+
+    <p>Novelty alone is rarely a strong implementation criterion. A workflow that occurs thousands of times per month with moderate complexity often creates more durable value than a highly sophisticated but infrequent use case.</p>
+
+    <h2 class="signal"><span class="num">Signal 02</span>Strong workflows have semi-structured context</h2>
+
+    <p>AI systems perform more consistently when the surrounding environment contains enough structure for outputs to be evaluated and constrained. This doesn't mean the workflow must be fully deterministic. But strong candidates usually contain recurring patterns, known business rules, stable data sources, approval paths, and observable outcomes.</p>
+
+    <p>Take AI-assisted product content enrichment. The work involves variability in language and tone, but the surrounding constraints stay relatively stable. Required fields exist. Formatting standards exist. Product attributes are structured. Outputs can be reviewed.</p>
+
+    <p>The opposite matters equally. Workflows built around undefined judgment, shifting objectives, or unclear ownership tend to be difficult to run in production. Teams spend more time negotiating decisions around the system than benefiting from it.</p>
+
+    <p>This is one reason organisations are moving from "tool thinking" to "systems thinking." The value comes from how the pieces connect: governance, validation, workflow integration. Not model capability alone.</p>
+
+    <h2 class="signal"><span class="num">Signal 03</span>The cost of being wrong shapes the whole system</h2>
+
+    <p>Not all AI errors carry the same consequence. A formatting mistake in a low-risk internal workflow is very different from an incorrect financial recommendation, compliance decision, or customer-facing action.</p>
+
+    <p>The question isn't whether errors will occur. Human systems contain errors too. The more useful question is: <strong>what happens when the system is wrong?</strong></p>
+
+    <p>That question directly influences autonomy levels, escalation paths, review requirements, auditability, logging, rollback mechanisms, and the design of human oversight. Stanford's 2026 AI Index notes that AI capabilities are advancing faster than our ability to consistently measure and manage them.<sup>2</sup> As a result, safety increasingly becomes a systems responsibility rather than a model-only responsibility. The strongest implementations design human review intentionally, not as a symbolic safeguard added after the fact.</p>
+
+    <h2 class="signal"><span class="num">Signal 04</span>Workflow fragmentation is consistently underestimated</h2>
+
+    <p>Many AI prototypes work well in isolation. Live systems rarely behave that cleanly. Real environments contain multiple tools, approval layers, inconsistent inputs, edge cases, vendor dependencies, undocumented processes, and changing ownership structures. This is often where apparently successful pilots begin to struggle after deployment.</p>
+
+    <p>The challenge isn't generating outputs. It's maintaining consistency across fragmented environments.</p>
+
+    <p>McKinsey's research consistently connects enterprise-wide AI value to things like workflow redesign, governance structures, and operating model maturity, not isolated experimentation.<sup>1</sup> An AI workflow shouldn't only be evaluated on whether it functions technically. It should also be evaluated on whether the surrounding organisation can realistically sustain it over time.</p>
+
+    <h2 class="signal"><span class="num">Signal 05</span>Human oversight must remain realistic at scale</h2>
+
+    <p>Many organisations correctly introduce human oversight into AI systems. The harder question is whether that oversight remains practical as volume increases. A review process that works for 50 outputs per week may collapse under 50,000.</p>
+
+    <p>This creates a genuine tension. Too little oversight increases risk. Too much removes most of the efficiency gain. Strong AI workflows define what humans review, when they intervene, how exceptions escalate, which outputs require approval, and what confidence thresholds trigger validation. The objective isn't to remove humans from the system. It's to position human judgment where it matters most.</p>
+
+    <section aria-labelledby="framework-title">
+      <h2 class="signal" id="framework-title"><span class="num">A practical scoring lens</span>Five signals worth evaluating before you build</h2>
+
+      <div class="framework" itemscope itemtype="https://schema.org/HowTo">
+        <div class="framework-head" itemprop="name">Five signals for AI use case assessment</div>
+
+        <div class="fw-row" itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+          <div class="fw-signal" itemprop="name">Frequency</div>
+          <div class="fw-question" itemprop="text">Is this workflow frequent enough to build value over time?</div>
+        </div>
+        <div class="fw-row" itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+          <div class="fw-signal" itemprop="name">Structure</div>
+          <div class="fw-question" itemprop="text">Does the workflow contain enough recurring patterns and stable constraints to evaluate outputs dependably?</div>
+        </div>
+        <div class="fw-row" itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+          <div class="fw-signal" itemprop="name">Error cost</div>
+          <div class="fw-question" itemprop="text">What is the consequence of a mistake? Does the system design reflect that honestly?</div>
+        </div>
+        <div class="fw-row" itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+          <div class="fw-signal" itemprop="name">Fragmentation</div>
+          <div class="fw-question" itemprop="text">How many tools, approval layers, and ownership gaps does the surrounding system contain?</div>
+        </div>
+        <div class="fw-row" itemprop="step" itemscope itemtype="https://schema.org/HowToStep">
+          <div class="fw-signal" itemprop="name">Oversight</div>
+          <div class="fw-question" itemprop="text">Can human review realistically scale? Who owns the workflow after deployment?</div>
+        </div>
+      </div>
+    </section>
+
+    <h2 class="signal"><span class="num">In practice</span>The questions that actually matter</h2>
+
+    <p>These questions are less exciting than model benchmarks or product demos. But in practice, they're often the difference between a system that holds up and one that quietly gets abandoned.</p>
+
+    <ul class="checklist" role="list" aria-label="Pre-build AI evaluation checklist">
+      <li><span>Is this workflow frequent enough to build value over time?</span></li>
+      <li><span>Does the workflow contain enough structure to evaluate outputs dependably?</span></li>
+      <li><span><strong>What is the cost of a mistake?</strong></span></li>
+      <li><span>How fragmented is the surrounding system?</span></li>
+      <li><span>Can human oversight realistically scale?</span></li>
+      <li><span><strong>Who owns the workflow after deployment?</strong></span></li>
+      <li><span>How will performance be monitored over time?</span></li>
+    </ul>
+
+    <p>The strongest AI use cases are usually less about replacing human work and more about reducing friction around repetitive decisions, fragmented workflows, and high-volume coordination. In many organisations, the difficult part is no longer generating outputs. It's designing systems that teams can understand, review, govern, and maintain over time.</p>
+  </div>
+
+  <div class="references">
+    <span class="label-mono">References</span>
+    <ol>
+      <li>
+        McKinsey &amp; Company. <em>The State of AI: How organisations are rewiring to capture value.</em> McKinsey Global Survey, 2025. <a href="https://www.mckinsey.com/capabilities/quantumblack/our-insights/the-state-of-ai" target="_blank" rel="noopener">mckinsey.com</a>
+      </li>
+      <li>
+        Maslej, N. et al. <em>Artificial Intelligence Index Report 2026.</em> Stanford Institute for Human-Centered Artificial Intelligence (HAI), 2026. <a href="https://aiindex.stanford.edu/report/" target="_blank" rel="noopener">aiindex.stanford.edu</a>
+      </li>
+    </ol>
+  </div>
+
+  <aside class="about-author" itemscope itemtype="https://schema.org/Person" aria-label="About the author">
+    <div class="aa-avatar" aria-hidden="true">BR</div>
+    <div>
+      <span class="label-mono">About the author</span>
+      <p class="aa-name" itemprop="name">Brinda Rajendran</p>
+      <p class="aa-bio" itemprop="description">
+        Life sciences by training, technologist by curiosity. Brinda works at the intersection of enterprise AI and operational practice, with a long-standing interest in how new technologies actually take root inside organisations. She writes about the parts of AI that don't show up in demos: workflow fit, governance, adoption, and the systems that hold it all together.
+      </p>
+      <a class="aa-link" href="https://www.linkedin.com/in/brinda-rajendran/" target="_blank" rel="noopener" itemprop="url">
+        Connect on LinkedIn <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+  </aside>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/aihlpr-logo-transparent.png" alt="AIHLPR">
+        <p>Operational AI partner. Building AI systems that fit how organisations already work, from one workflow to the whole organisation.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Capabilities</h5>
+        <ul>
+          <li><a href="../capabilities/ai-applications-and-platforms.html">AI Products &amp; Platforms</a></li>
+          <li><a href="../capabilities/ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a></li>
+          <li><a href="../capabilities/enterprise-ai.html">Enterprise AI</a></li>
+          <li><a href="../capabilities/prototype-to-production.html">Prototype to Production</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>The site</h5>
+        <ul>
+          <li><a href="../Home.html#capabilities">All capabilities</a></li>
+          <li><a href="../Home.html#how">How we work</a></li>
+          <li><a href="../Home.html#work">Our work</a></li>
+          <li><a href="../Home.html#insights">Insights</a></li>
+          <li><a href="../Home.html#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:brinda@moralitybytes.eu">brinda@moralitybytes.eu</a></li>
+          <li>Wibautstraat 129, Amsterdam</li>
+          <li>EU based &middot; NDA on request</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>AIHLPR &middot; A practice of MoralityBytes</span>
+      <span>&copy; 2026 &middot; AI engineering, built to last</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
