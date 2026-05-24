@@ -33,7 +33,7 @@ Each capability page carries one accent colour, applied page-wide via `:root { -
 
 | Page                                  | Accent    | Virtue |
 |---------------------------------------|-----------|--------|
-| `ai-applications-and-platforms.html`  | `#6A9DF0` | Soft Sky Blue · harmony, innovation |
+| `ai-applications-and-platforms.html`  | `#E91E63` | Warm Pink · approachable, inviting |
 | `ai-workflow-infrastructure.html`     | `#9B59B6` | Friendly Purple · friendly, creative |
 | `enterprise-ai.html`                  | `#3478E5` | Deep Trust Blue · reliability, trust |
 | `prototype-to-production.html`        | `#CC418C` | Vibrant Magenta · engaging, warm |
