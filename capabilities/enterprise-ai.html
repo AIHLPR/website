@@ -1677,81 +1677,105 @@
     position: relative;
     display: grid; place-items: center;
     z-index: 1;
-    min-height: 200px;
+    min-height: 280px;
+  }
+  /* Sonar pulse rings expanding outward */
+  .pf-pulse {
+    position: absolute;
+    width: 60%; aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1.5px solid #3478E5;
+    opacity: 0;
+    transform: scale(0.4);
+    animation: pfPulse 4.5s ease-out infinite;
+    animation-delay: var(--pd, 0s);
+  }
+  @keyframes pfPulse {
+    0%   { transform: scale(0.4); opacity: 0; }
+    10%  { opacity: 0.55; }
+    100% { transform: scale(1.55); opacity: 0; }
   }
   .pf-glow {
-    position: absolute; inset: 12%;
+    position: absolute; inset: 4%;
     border-radius: 50%;
     background: radial-gradient(circle,
-      color-mix(in oklab, #3478E5 30%, transparent) 0%,
-      color-mix(in oklab, #3478E5 0%,  transparent) 70%);
+      color-mix(in oklab, #3478E5 38%, transparent) 0%,
+      color-mix(in oklab, #3478E5 10%, transparent) 40%,
+      color-mix(in oklab, #3478E5 0%,  transparent) 72%);
     animation: pfBreathe 5.4s ease-in-out infinite;
   }
   .pf-ring-out {
     position: absolute;
-    width: 64%; aspect-ratio: 1 / 1;
+    width: 78%; aspect-ratio: 1 / 1;
     border-radius: 50%;
-    border: 1px solid color-mix(in oklab, #3478E5 24%, var(--hairline-strong));
+    border: 1px solid color-mix(in oklab, #3478E5 30%, var(--hairline-strong));
+  }
+  .pf-ring-mid {
+    position: absolute;
+    width: 58%; aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1px solid color-mix(in oklab, #3478E5 44%, var(--hairline-strong));
   }
   .pf-ring-in {
     position: absolute;
-    width: 44%; aspect-ratio: 1 / 1;
+    width: 38%; aspect-ratio: 1 / 1;
     border-radius: 50%;
-    border: 1px solid color-mix(in oklab, #3478E5 38%, var(--hairline-strong));
+    border: 1.2px solid color-mix(in oklab, #3478E5 60%, var(--hairline-strong));
   }
   .pf-disc {
     position: relative;
-    width: clamp(40px, 4.4vw, 52px);
+    width: clamp(60px, 6.5vw, 80px);
     aspect-ratio: 1 / 1;
     border-radius: 50%;
-    background: linear-gradient(140deg, #5794EA, #3478E5 50%, #2A5BB8);
-    box-shadow: 0 4px 20px color-mix(in oklab, #3478E5 38%, transparent),
-                inset 0 1px 2px rgba(255, 255, 255, 0.45);
-    z-index: 1;
+    background: radial-gradient(circle at 35% 28%, #7DB1F7 0%, #5794EA 35%, #3478E5 65%, #2A5BB8 100%);
+    box-shadow: 0 6px 28px color-mix(in oklab, #3478E5 50%, transparent),
+                0 2px 8px color-mix(in oklab, #3478E5 30%, transparent),
+                inset 0 1px 3px rgba(255, 255, 255, 0.55),
+                inset 0 -2px 4px rgba(0, 0, 0, 0.18);
+    z-index: 2;
   }
   .pf-disc::after {
     content: "";
     position: absolute; top: 50%; left: 50%;
-    width: 14px; height: 14px;
-    margin: -7px 0 0 -7px;
+    width: 18px; height: 18px;
+    margin: -9px 0 0 -9px;
     border-radius: 50%;
-    background: #fff;
-    opacity: 0.88;
+    background: radial-gradient(circle, #fff 0%, rgba(255,255,255,0.6) 60%, transparent 100%);
   }
   .pf-label {
-    position: absolute; bottom: 14%; left: 50%;
+    position: absolute; bottom: 8%; left: 50%;
     transform: translateX(-50%);
-    font-family: var(--font-mono); font-size: 9.5px;
-    letter-spacing: 0.18em; text-transform: uppercase;
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.2em; text-transform: uppercase;
     color: var(--ink); font-weight: 700;
     white-space: nowrap;
     text-align: center;
   }
   @keyframes pfBreathe {
-    0%, 100% { transform: scale(1);    opacity: 0.55; }
-    50%      { transform: scale(1.08); opacity: 0.95; }
+    0%, 100% { transform: scale(1);    opacity: 0.65; }
+    50%      { transform: scale(1.06); opacity: 1; }
   }
 
   /* Strands radiating from each pillar to the focal */
   .pf-strands .trk {
     fill: none;
-    stroke: rgba(31, 31, 31, 0.16);
+    stroke: rgba(31, 31, 31, 0.22);
     stroke-width: 1;
   }
   .pf-strands .spark {
     fill: none;
     stroke: url(#pfGrad);
-    stroke-width: 1.6;
+    stroke-width: 2;
     stroke-linecap: round;
-    stroke-dasharray: 18 240;
-    stroke-dashoffset: 240;
-    animation: pfFlow 4.8s linear infinite;
+    stroke-dasharray: 26 180;
+    stroke-dashoffset: 180;
+    animation: pfFlow 3.6s linear infinite;
     animation-delay: var(--d, 0s);
   }
   @keyframes pfFlow {
-    0%   { stroke-dashoffset: 240; opacity: 0; }
-    10%  { opacity: 0.95; }
-    85%  { opacity: 0.95; }
+    0%   { stroke-dashoffset: 180; opacity: 0; }
+    10%  { opacity: 1; }
+    85%  { opacity: 1; }
     100% { stroke-dashoffset: 0; opacity: 0; }
   }
 
@@ -1765,8 +1789,9 @@
   .pillars-closing b { color: var(--ink); font-weight: 600; }
 
   @media (prefers-reduced-motion: reduce) {
-    .pf-glow, .pf-strands .spark { animation: none; }
-    .pf-strands .spark { stroke-dashoffset: 0; opacity: 0.5; }
+    .pf-glow, .pf-pulse, .pf-strands .spark { animation: none; }
+    .pf-pulse { opacity: 0; }
+    .pf-strands .spark { stroke-dashoffset: 0; opacity: 0.6; }
   }
 
   @media (max-width: 1100px) {
@@ -1834,8 +1859,12 @@
       <article class="pillar"><span class="p-num">08</span><h3>Multi-cloud deployment</h3><p class="p-body">AWS, Azure, GCP, on-prem, sovereign EU. Runs where the business already runs.</p><div class="p-tags"><span>AWS &middot; Azure &middot; GCP</span><span>On-prem</span><span>EU residency</span></div></article>
 
       <div class="pf-focal" aria-hidden="true">
+        <div class="pf-pulse" style="--pd:0s;"></div>
+        <div class="pf-pulse" style="--pd:1.5s;"></div>
+        <div class="pf-pulse" style="--pd:3s;"></div>
         <div class="pf-glow"></div>
         <div class="pf-ring-out"></div>
+        <div class="pf-ring-mid"></div>
         <div class="pf-ring-in"></div>
         <div class="pf-disc"></div>
         <div class="pf-label">One governed system</div>
