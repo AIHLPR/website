@@ -1002,12 +1002,12 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: clamp(24px, 2.4vw, 36px);
+    padding-top: 22px;
+    border-top: 1px solid var(--ink);
   }
   @media (max-width: 880px) { .behaviour-principles { grid-template-columns: 1fr; gap: 28px; } }
   .principle {
     display: flex; flex-direction: column; gap: 8px;
-    padding-top: 22px;
-    border-top: 1px solid var(--ink);
   }
   .principle .p-num {
     font-family: var(--font-mono); font-size: 10.5px;
