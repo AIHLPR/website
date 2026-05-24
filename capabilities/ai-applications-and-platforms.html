@@ -1284,7 +1284,7 @@
     grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
     gap: clamp(36px, 4.4vw, 80px);
     min-height: 86vh;
-    align-items: center;
+    align-items: start;
     padding: clamp(40px, 6vw, 96px) 0;
   }
   /* On wide screens: image stays pinned, copy scrolls past it.
@@ -1343,11 +1343,14 @@
     }
     .poss-stack-pinned .poss-stack-copy { grid-column: 1; }
     .poss-stack-pinned .poss-sticky { grid-column: 2; }
-    /* Copy panels stack normally inside copy column, each tall enough to feel like one screen */
+    /* Copy panels stack normally inside copy column, each tall enough to feel like one screen.
+       Top padding matches the sticky dashboard's 12vh offset so the heading lines up with
+       the top of the dashboard on the right. */
     .poss-stack-copy .poss-panel {
       grid-template-columns: 1fr;
       min-height: 88vh;
-      padding: clamp(40px, 8vh, 120px) 0;
+      padding: 12vh 0 clamp(40px, 8vh, 96px);
+      align-items: start;
     }
   }
 
@@ -1664,6 +1667,10 @@
   .dash-cust .cust-app { padding: 14px; display: flex; flex-direction: column; gap: 12px; }
   .dash-cust .cust-top {
     display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+    padding: 9px 12px;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    background: var(--surface-2);
   }
   .dash-cust .ct-pills { display: flex; gap: 6px; }
   .dash-cust .ct-pill {
