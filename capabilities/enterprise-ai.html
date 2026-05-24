@@ -1630,29 +1630,158 @@
 <!-- EIGHT PILLARS -->
 <style>
   .pillars { padding: clamp(100px, 12vw, 160px) 0; border-top: 1px solid var(--hairline); background: var(--surface-2); }
-  .pillars .block-head { margin-bottom: clamp(48px, 5vw, 72px); }
+  .pillars .block-head { margin-bottom: clamp(40px, 4vw, 56px); }
+
+  /* 3x3 grid with focal in the center cell */
   .pillars-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(16px, 1.6vw, 22px);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(14px, 1.4vw, 20px);
+    position: relative;
   }
-  @media (max-width: 1100px) { .pillars-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 540px)  { .pillars-grid { grid-template-columns: 1fr; } }
+  .pillars-grid > .pf-strands {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .pillar { position: relative; z-index: 1; }
+  .pillar:nth-of-type(1) { grid-column: 1; grid-row: 1; }
+  .pillar:nth-of-type(2) { grid-column: 2; grid-row: 1; }
+  .pillar:nth-of-type(3) { grid-column: 3; grid-row: 1; }
+  .pillar:nth-of-type(4) { grid-column: 3; grid-row: 2; }
+  .pillar:nth-of-type(5) { grid-column: 3; grid-row: 3; }
+  .pillar:nth-of-type(6) { grid-column: 2; grid-row: 3; }
+  .pillar:nth-of-type(7) { grid-column: 1; grid-row: 3; }
+  .pillar:nth-of-type(8) { grid-column: 1; grid-row: 2; }
+
   .pillar {
     background: var(--white);
     border: 1px solid var(--hairline-strong);
     border-radius: 10px;
-    padding: clamp(22px, 2vw, 28px);
-    display: flex; flex-direction: column; gap: 14px;
+    padding: clamp(18px, 1.8vw, 26px);
+    display: flex; flex-direction: column; gap: 12px;
     transition: border-color 200ms var(--ease);
     --c: #3478E5;
   }
   .pillar:hover { border-color: var(--ink); }
   .pillar .p-num { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.22em; text-transform: uppercase; color: var(--c); font-weight: 700; }
-  .pillar h3 { font-family: var(--font-display); font-weight: 500; font-size: clamp(19px, 1.55vw, 22px); letter-spacing: -0.02em; line-height: 1.2; color: var(--ink); margin: 0; max-width: 16ch; }
-  .pillar .p-body { font-size: 14px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
-  .pillar .p-tags { margin-top: auto; padding-top: 12px; border-top: 1px dashed var(--hairline); display: flex; flex-wrap: wrap; gap: 6px; }
-  .pillar .p-tags span { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink-soft); padding: 4px 8px; border: 1px solid var(--hairline); border-radius: 3px; }
+  .pillar h3 { font-family: var(--font-display); font-weight: 500; font-size: clamp(18px, 1.4vw, 21px); letter-spacing: -0.02em; line-height: 1.2; color: var(--ink); margin: 0; max-width: 16ch; }
+  .pillar .p-body { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); margin: 0; }
+  .pillar .p-tags { margin-top: auto; padding-top: 10px; border-top: 1px dashed var(--hairline); display: flex; flex-wrap: wrap; gap: 5px; }
+  .pillar .p-tags span { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.10em; text-transform: uppercase; color: var(--ink-soft); padding: 3px 7px; border: 1px solid var(--hairline); border-radius: 3px; }
+
+  /* Center focal node */
+  .pf-focal {
+    grid-column: 2; grid-row: 2;
+    position: relative;
+    display: grid; place-items: center;
+    z-index: 1;
+    min-height: 200px;
+  }
+  .pf-glow {
+    position: absolute; inset: 12%;
+    border-radius: 50%;
+    background: radial-gradient(circle,
+      color-mix(in oklab, #3478E5 30%, transparent) 0%,
+      color-mix(in oklab, #3478E5 0%,  transparent) 70%);
+    animation: pfBreathe 5.4s ease-in-out infinite;
+  }
+  .pf-ring-out {
+    position: absolute;
+    width: 64%; aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1px solid color-mix(in oklab, #3478E5 24%, var(--hairline-strong));
+  }
+  .pf-ring-in {
+    position: absolute;
+    width: 44%; aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 1px solid color-mix(in oklab, #3478E5 38%, var(--hairline-strong));
+  }
+  .pf-disc {
+    position: relative;
+    width: clamp(40px, 4.4vw, 52px);
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    background: linear-gradient(140deg, #5794EA, #3478E5 50%, #2A5BB8);
+    box-shadow: 0 4px 20px color-mix(in oklab, #3478E5 38%, transparent),
+                inset 0 1px 2px rgba(255, 255, 255, 0.45);
+    z-index: 1;
+  }
+  .pf-disc::after {
+    content: "";
+    position: absolute; top: 50%; left: 50%;
+    width: 14px; height: 14px;
+    margin: -7px 0 0 -7px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.88;
+  }
+  .pf-label {
+    position: absolute; bottom: 14%; left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-mono); font-size: 9.5px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink); font-weight: 700;
+    white-space: nowrap;
+    text-align: center;
+  }
+  @keyframes pfBreathe {
+    0%, 100% { transform: scale(1);    opacity: 0.55; }
+    50%      { transform: scale(1.08); opacity: 0.95; }
+  }
+
+  /* Strands radiating from each pillar to the focal */
+  .pf-strands .trk {
+    fill: none;
+    stroke: rgba(31, 31, 31, 0.16);
+    stroke-width: 1;
+  }
+  .pf-strands .spark {
+    fill: none;
+    stroke: url(#pfGrad);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+    stroke-dasharray: 18 240;
+    stroke-dashoffset: 240;
+    animation: pfFlow 4.8s linear infinite;
+    animation-delay: var(--d, 0s);
+  }
+  @keyframes pfFlow {
+    0%   { stroke-dashoffset: 240; opacity: 0; }
+    10%  { opacity: 0.95; }
+    85%  { opacity: 0.95; }
+    100% { stroke-dashoffset: 0; opacity: 0; }
+  }
+
+  .pillars-closing {
+    margin-top: clamp(28px, 3vw, 40px);
+    text-align: center;
+    font-family: var(--font-display); font-weight: 400;
+    font-size: clamp(15px, 1.3vw, 19px);
+    letter-spacing: -0.01em; color: var(--ink-soft);
+  }
+  .pillars-closing b { color: var(--ink); font-weight: 600; }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pf-glow, .pf-strands .spark { animation: none; }
+    .pf-strands .spark { stroke-dashoffset: 0; opacity: 0.5; }
+  }
+
+  @media (max-width: 1100px) {
+    /* 2-column fallback; focal moves to end */
+    .pillars-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .pillars-grid > .pf-strands { display: none; }
+    .pillar:nth-of-type(n) { grid-column: auto; grid-row: auto; }
+    .pf-focal {
+      grid-column: 1 / -1; grid-row: auto;
+      min-height: 160px;
+    }
+  }
+  @media (max-width: 560px) {
+    .pillars-grid { grid-template-columns: 1fr; }
+  }
 </style>
 
 <section class="pillars">
@@ -1665,209 +1794,55 @@
       <p class="block-lede">Enterprise AI is rarely one technology. It is a stack of disciplines that work together. Where one is missing, the rest fail in production.</p>
     </div>
     <div class="pillars-grid">
-      <article class="pillar"><span class="p-num">01</span><h3>Data management</h3><p class="p-body">Pipelines, catalogs, governance, access. The model needs the right data, scoped to the right user, available at the right moment.</p><div class="p-tags"><span>Pipelines</span><span>Catalog</span><span>Access control</span></div></article>
-      <article class="pillar"><span class="p-num">02</span><h3>Model training &amp; fine-tuning</h3><p class="p-body">Adapt general models to the language and shape of your domain. Train on your data, evaluate on your metrics.</p><div class="p-tags"><span>Fine-tuning</span><span>Domain adaptation</span><span>Eval suites</span></div></article>
-      <article class="pillar"><span class="p-num">03</span><h3>Model registry</h3><p class="p-body">A catalog of models, versions, and lineage. Know what is in production, when it changed, and how it performed before.</p><div class="p-tags"><span>Versioning</span><span>Lineage</span><span>Rollback</span></div></article>
-      <article class="pillar"><span class="p-num">04</span><h3>MLOps &amp; LLMOps</h3><p class="p-body">CI/CD for models. Automated lifecycle, drift detection, evaluation gates. The pipeline that keeps a system healthy after launch.</p><div class="p-tags"><span>CI/CD</span><span>Lifecycle</span><span>Eval gates</span></div></article>
-      <article class="pillar"><span class="p-num">05</span><h3>Monitoring</h3><p class="p-body">Observability for AI. Hallucination signals, latency, cost, drift, RLHF feedback. You see what the model does, in real time.</p><div class="p-tags"><span>Drift</span><span>Latency &amp; cost</span><span>Feedback loop</span></div></article>
-      <article class="pillar"><span class="p-num">06</span><h3>Generative AI</h3><p class="p-body">LLMs, RAG, agents, multi-modal. The capabilities most people associate with AI, engineered to operate on your data inside your guardrails.</p><div class="p-tags"><span>LLM</span><span>RAG</span><span>Agents</span></div></article>
-      <article class="pillar"><span class="p-num">07</span><h3>Governance</h3><p class="p-body">Role-based access, policy enforcement, audit logs, human-in-the-loop gates. The controls a regulator and a CIO both look for.</p><div class="p-tags"><span>RBAC</span><span>Policy</span><span>Audit</span></div></article>
-      <article class="pillar"><span class="p-num">08</span><h3>Multi-cloud deployment</h3><p class="p-body">AWS, Azure, GCP, on-prem, sovereign EU regions. The system runs where the rest of the business already runs. No data leaves your boundary.</p><div class="p-tags"><span>AWS &middot; Azure &middot; GCP</span><span>On-prem</span><span>EU residency</span></div></article>
-    </div>
+      <svg class="pf-strands" viewBox="0 0 300 300" preserveAspectRatio="none" aria-hidden="true">
+        <defs>
+          <linearGradient id="pfGrad" x1="0" y1="0" x2="0.5" y2="0.5">
+            <stop offset="0%"   stop-color="#E91E63"/>
+            <stop offset="40%"  stop-color="#9B59B6"/>
+            <stop offset="100%" stop-color="#3478E5"/>
+          </linearGradient>
+        </defs>
+        <g class="trk">
+          <path d="M 50  50  Q 120 120 150 150"/>
+          <path d="M 150 50  Q 150 120 150 150"/>
+          <path d="M 250 50  Q 180 120 150 150"/>
+          <path d="M 250 150 Q 180 150 150 150"/>
+          <path d="M 250 250 Q 180 180 150 150"/>
+          <path d="M 150 250 Q 150 180 150 150"/>
+          <path d="M 50  250 Q 120 180 150 150"/>
+          <path d="M 50  150 Q 120 150 150 150"/>
+        </g>
+        <g>
+          <path class="spark" style="--d:0s;"    d="M 50  50  Q 120 120 150 150"/>
+          <path class="spark" style="--d:.55s;"  d="M 150 50  Q 150 120 150 150"/>
+          <path class="spark" style="--d:1.1s;"  d="M 250 50  Q 180 120 150 150"/>
+          <path class="spark" style="--d:1.65s;" d="M 250 150 Q 180 150 150 150"/>
+          <path class="spark" style="--d:2.2s;"  d="M 250 250 Q 180 180 150 150"/>
+          <path class="spark" style="--d:2.75s;" d="M 150 250 Q 150 180 150 150"/>
+          <path class="spark" style="--d:3.3s;"  d="M 50  250 Q 120 180 150 150"/>
+          <path class="spark" style="--d:3.85s;" d="M 50  150 Q 120 150 150 150"/>
+        </g>
+      </svg>
 
-    <!-- Visual summary: 8 disciplines converge to 1 system -->
-    <style>
-      .eab-summary {
-        margin-top: clamp(40px, 4.5vw, 64px);
-        padding-top: clamp(28px, 3vw, 40px);
-        border-top: 1px dashed var(--hairline-strong);
-      }
-      .eab-band {
-        position: relative;
-        display: grid;
-        grid-template-columns: minmax(180px, 220px) minmax(0, 1fr) auto;
-        gap: clamp(18px, 2vw, 32px);
-        align-items: stretch;
-      }
-      .eab-pillars {
-        display: flex; flex-direction: column;
-        justify-content: space-between;
-        gap: 6px;
-        z-index: 3;
-        padding: 6px 0;
-      }
-      .eab-node {
-        display: grid;
-        grid-template-columns: 14px 1fr;
-        align-items: center; gap: 10px;
-        font-family: var(--font-mono); font-size: 11px;
-        color: var(--ink); font-weight: 500;
-        letter-spacing: 0.02em;
-        line-height: 1.2;
-      }
-      .eab-node .eab-dot {
-        width: 10px; height: 10px;
-        border-radius: 999px;
-        background: var(--c, var(--ink));
-        box-shadow: 0 0 0 4px color-mix(in oklab, var(--c, var(--ink)) 14%, transparent);
-        animation: eabDim 5s ease-in-out infinite;
-        animation-delay: var(--d, 0s);
-      }
-      @keyframes eabDim {
-        0%, 100% { opacity: 0.6; }
-        50%      { opacity: 1; }
-      }
+      <article class="pillar"><span class="p-num">01</span><h3>Data management</h3><p class="p-body">The right data, scoped to the right user, at the right moment.</p><div class="p-tags"><span>Pipelines</span><span>Catalog</span><span>Access control</span></div></article>
+      <article class="pillar"><span class="p-num">02</span><h3>Model training &amp; fine-tuning</h3><p class="p-body">Adapt general models to your domain. Train on your data, evaluate on your metrics.</p><div class="p-tags"><span>Fine-tuning</span><span>Domain adaptation</span><span>Eval suites</span></div></article>
+      <article class="pillar"><span class="p-num">03</span><h3>Model registry</h3><p class="p-body">What's in production, when it changed, how it performed.</p><div class="p-tags"><span>Versioning</span><span>Lineage</span><span>Rollback</span></div></article>
+      <article class="pillar"><span class="p-num">04</span><h3>MLOps &amp; LLMOps</h3><p class="p-body">CI/CD for models. Drift detection, evaluation gates, automated lifecycle.</p><div class="p-tags"><span>CI/CD</span><span>Lifecycle</span><span>Eval gates</span></div></article>
+      <article class="pillar"><span class="p-num">05</span><h3>Monitoring</h3><p class="p-body">Hallucinations, latency, cost, drift. What the model is doing, in real time.</p><div class="p-tags"><span>Drift</span><span>Latency &amp; cost</span><span>Feedback loop</span></div></article>
+      <article class="pillar"><span class="p-num">06</span><h3>Generative AI</h3><p class="p-body">LLMs, RAG, agents, multi-modal, engineered on your data, inside your boundaries.</p><div class="p-tags"><span>LLM</span><span>RAG</span><span>Agents</span></div></article>
+      <article class="pillar"><span class="p-num">07</span><h3>Governance</h3><p class="p-body">Role-based access, policy, audit, override gates. The controls a regulator and a CIO both look for.</p><div class="p-tags"><span>RBAC</span><span>Policy</span><span>Audit</span></div></article>
+      <article class="pillar"><span class="p-num">08</span><h3>Multi-cloud deployment</h3><p class="p-body">AWS, Azure, GCP, on-prem, sovereign EU. Runs where the business already runs.</p><div class="p-tags"><span>AWS &middot; Azure &middot; GCP</span><span>On-prem</span><span>EU residency</span></div></article>
 
-      .eab-mid {
-        position: relative;
-        align-self: stretch;
-        min-height: 280px;
-      }
-      .eab-svg { position: absolute; inset: 0; width: 100%; height: 100%; }
-      .eab-trk { fill: none; stroke: rgba(31, 31, 31, 0.16); stroke-width: 1; }
-      .eab-spark {
-        fill: none;
-        stroke: url(#eabGrad);
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-dasharray: 120 800;
-        stroke-dashoffset: 800;
-        animation: eabFlow 5.6s linear infinite;
-        animation-delay: var(--d, 0s);
-      }
-      @keyframes eabFlow {
-        0%   { stroke-dashoffset: 800; opacity: 0; }
-        8%   { opacity: 0.95; }
-        85%  { opacity: 0.95; }
-        100% { stroke-dashoffset: 0; opacity: 0; }
-      }
-
-      .eab-core {
-        position: relative;
-        width: clamp(96px, 11vw, 124px);
-        height: clamp(96px, 11vw, 124px);
-        align-self: center;
-        display: grid; place-items: center;
-        z-index: 3;
-      }
-      .eab-glow {
-        position: absolute; inset: 0;
-        border-radius: 50%;
-        background: radial-gradient(circle,
-          color-mix(in oklab, #3478E5 28%, transparent) 0%,
-          color-mix(in oklab, #3478E5 0%,  transparent) 70%);
-        animation: eabBreathe 5.6s ease-in-out infinite;
-      }
-      .eab-ring-out {
-        position: absolute; width: 80%; height: 80%;
-        border-radius: 50%;
-        border: 1px solid color-mix(in oklab, #3478E5 28%, var(--hairline-strong));
-      }
-      .eab-ring-in {
-        position: absolute; width: 56%; height: 56%;
-        border-radius: 50%;
-        border: 1px solid color-mix(in oklab, #3478E5 42%, var(--hairline-strong));
-      }
-      .eab-disc {
-        position: relative;
-        width: clamp(34px, 4vw, 42px);
-        height: clamp(34px, 4vw, 42px);
-        border-radius: 50%;
-        background: linear-gradient(140deg, #5794EA, #3478E5 50%, #2A5BB8);
-        box-shadow: 0 4px 18px color-mix(in oklab, #3478E5 38%, transparent),
-                    inset 0 1px 2px rgba(255, 255, 255, 0.45);
-        z-index: 1;
-      }
-      .eab-disc::after {
-        content: "";
-        position: absolute; top: 50%; left: 50%;
-        width: 12px; height: 12px;
-        margin: -6px 0 0 -6px;
-        border-radius: 50%;
-        background: #fff;
-        opacity: 0.88;
-      }
-      @keyframes eabBreathe {
-        0%, 100% { transform: scale(1);    opacity: 0.55; }
-        50%      { transform: scale(1.08); opacity: 0.95; }
-      }
-
-      .eab-summary-cap {
-        margin: clamp(20px, 2.4vw, 32px) 0 0;
-        text-align: center;
-        font-family: var(--font-display);
-        font-weight: 400;
-        font-size: clamp(15px, 1.3vw, 19px);
-        letter-spacing: -0.01em;
-        color: var(--ink-soft);
-      }
-      .eab-summary-cap b { color: var(--ink); font-weight: 600; }
-
-      @media (prefers-reduced-motion: reduce) {
-        .eab-dot, .eab-glow, .eab-spark { animation: none; }
-        .eab-spark { stroke-dashoffset: 0; opacity: 0.6; }
-      }
-
-      @media (max-width: 760px) {
-        .eab-band { grid-template-columns: minmax(0, 1fr); gap: 18px; }
-        .eab-mid { display: none; }
-        .eab-pillars { gap: 8px; }
-        .eab-core { justify-self: center; margin-top: 4px; }
-      }
-    </style>
-
-    <div class="eab-summary">
-      <div class="eab-band">
-        <div class="eab-pillars">
-          <span class="eab-node"><span class="eab-dot" style="--c:#3478E5; --d:0s;"></span>Data management</span>
-          <span class="eab-node"><span class="eab-dot" style="--c:#4F6FDC; --d:.35s;"></span>Model training</span>
-          <span class="eab-node"><span class="eab-dot" style="--c:#6864D3; --d:.7s;"></span>Model registry</span>
-          <span class="eab-node"><span class="eab-dot" style="--c:#7E6CE0; --d:1.05s;"></span>MLOps &amp; LLMOps</span>
-          <span class="eab-node"><span class="eab-dot" style="--c:#9B59B6; --d:1.4s;"></span>Monitoring</span>
-          <span class="eab-node"><span class="eab-dot" style="--c:#B94EA3; --d:1.75s;"></span>Generative AI</span>
-          <span class="eab-node"><span class="eab-dot" style="--c:#D03A8C; --d:2.1s;"></span>Governance</span>
-          <span class="eab-node"><span class="eab-dot" style="--c:#E91E63; --d:2.45s;"></span>Multi-cloud</span>
-        </div>
-
-        <div class="eab-mid">
-          <svg class="eab-svg" viewBox="0 0 600 280" preserveAspectRatio="none" aria-hidden="true">
-            <defs>
-              <linearGradient id="eabGrad" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"   stop-color="#E91E63"/>
-                <stop offset="32%"  stop-color="#9B59B6"/>
-                <stop offset="68%"  stop-color="#7E6CE0"/>
-                <stop offset="100%" stop-color="#3478E5"/>
-              </linearGradient>
-            </defs>
-            <g class="eab-trk">
-              <path d="M 0 14  C 180 28  300 160 580 140"/>
-              <path d="M 0 50  C 160 110 320 90  580 140"/>
-              <path d="M 0 86  C 200 64  340 120 580 140"/>
-              <path d="M 0 122 C 220 130 380 140 580 140"/>
-              <path d="M 0 158 C 220 150 380 140 580 140"/>
-              <path d="M 0 194 C 200 220 340 160 580 140"/>
-              <path d="M 0 230 C 160 170 320 190 580 140"/>
-              <path d="M 0 266 C 180 252 300 120 580 140"/>
-            </g>
-            <g>
-              <path class="eab-spark" style="--d:0s;"    d="M 0 14  C 180 28  300 160 580 140"/>
-              <path class="eab-spark" style="--d:1.4s;"  d="M 0 86  C 200 64  340 120 580 140"/>
-              <path class="eab-spark" style="--d:2.8s;"  d="M 0 194 C 200 220 340 160 580 140"/>
-              <path class="eab-spark" style="--d:4.2s;"  d="M 0 266 C 180 252 300 120 580 140"/>
-            </g>
-          </svg>
-        </div>
-
-        <div class="eab-core" aria-hidden="true">
-          <div class="eab-glow"></div>
-          <div class="eab-ring-out"></div>
-          <div class="eab-ring-in"></div>
-          <div class="eab-disc"></div>
-        </div>
+      <div class="pf-focal" aria-hidden="true">
+        <div class="pf-glow"></div>
+        <div class="pf-ring-out"></div>
+        <div class="pf-ring-in"></div>
+        <div class="pf-disc"></div>
+        <div class="pf-label">One governed system</div>
       </div>
-
-      <p class="eab-summary-cap">Eight disciplines. <b>One governed system.</b></p>
     </div>
+
+    <p class="pillars-closing">Eight disciplines. <b>One governed system.</b></p>
 
   </div>
 </section>
