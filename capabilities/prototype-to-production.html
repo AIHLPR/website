@@ -495,6 +495,56 @@
     section.block .block-head { grid-template-columns: 1fr; }
   }
 
+  /* Evolve spine — three-stage horizontal track */
+  .p2p-spine { width: 100%; max-width: 820px; margin: 0 auto; padding: 8px 0; }
+  .p2p-track { position: relative; display: flex; justify-content: space-between; gap: 0; }
+  .p2p-line {
+    position: absolute; top: 12px; left: 10%; right: 10%; height: 2px;
+    background: var(--gradient); opacity: 0.55; border-radius: 2px;
+  }
+  .p2p-stage {
+    position: relative; flex: 1 1 0;
+    display: flex; flex-direction: column; align-items: center;
+    text-align: center; padding: 0 14px; z-index: 2;
+  }
+  .p2p-node {
+    width: 26px; height: 26px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 18px; background: var(--white);
+    border: 1px solid var(--hairline-strong);
+  }
+  .p2p-node-core {
+    width: 11px; height: 11px; border-radius: 50%;
+    box-shadow: 0 0 0 3px rgba(255,255,255,0.9);
+  }
+  .p2p-ver {
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.16em; font-weight: 500;
+    color: var(--ink-muted); text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .p2p-name {
+    font-family: var(--font-display); font-size: 17px; font-weight: 600;
+    color: var(--ink); letter-spacing: -0.015em; margin-bottom: 8px;
+  }
+  .p2p-desc {
+    font-family: var(--font-body); font-size: 13.5px; line-height: 1.55;
+    color: var(--ink-soft); margin-bottom: 14px; max-width: 22ch;
+  }
+  .p2p-sig {
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 7px 12px; border-radius: 999px;
+    background: var(--white); border: 1px solid var(--hairline);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.08em; color: var(--ink-soft);
+  }
+  .p2p-sig-dot { width: 6px; height: 6px; border-radius: 50%; flex: 0 0 auto; }
+  @media (max-width: 620px) {
+    .p2p-track { flex-direction: column; gap: 28px; }
+    .p2p-line { display: none; }
+    .p2p-desc { max-width: 36ch; }
+  }
+
 </style>
 </head>
 
@@ -534,7 +584,7 @@
         <span>Prototype to Production</span>
       </div>
       <h1>Prototype to Production Engineering</h1>
-      <p class="hero-lede">Turning AI prototypes into scalable production systems.</p>
+      <p class="hero-lede">From vibe-coded prototype to production-grade system.</p>
       <p class="hero-sub">Many AI systems prove value in prototypes. Few are engineered for reliability, scalability, visibility, and operational deployment.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="../Home.html#contact">
@@ -788,98 +838,35 @@
       <p class="block-lede">Production AI systems expand over time. Prototype, production workflow, operational platform. Architecture needs to support that evolution.</p>
     </div>
     <div class="evolve-visual">
-      <svg viewBox="0 0 720 280" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-  <defs>
-    <pattern id="dep-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" stroke="rgba(31,31,31,0.04)" stroke-width="1" fill="none"/>
-    </pattern>
-  </defs>
-  <rect width="720" height="280" fill="url(#dep-grid)"/>
+      <div class="p2p-spine" aria-hidden="true">
+        <div class="p2p-track">
+          <div class="p2p-line"></div>
 
-  <!-- Stage labels -->
-  <g font-size="9" letter-spacing="0.18em" fill="#8A8A8A">
-    <text x="40"  y="32">PROTOTYPE</text>
-    <text x="280" y="32">CANARY · MONITORED</text>
-    <text x="540" y="32">PRODUCTION GRADE</text>
-  </g>
-  <g font-size="8.5" letter-spacing="0.12em" fill="#CC418C">
-    <text x="40"  y="46">v0.1</text>
-    <text x="280" y="46">v0.7</text>
-    <text x="540" y="46">v1.0+</text>
-  </g>
+          <div class="p2p-stage">
+            <div class="p2p-node"><span class="p2p-node-core" style="background:#3478E5;"></span></div>
+            <div class="p2p-ver">v0.1</div>
+            <div class="p2p-name">Prototype</div>
+            <div class="p2p-desc">Proves the value. Manual, ungoverned, single environment.</div>
+            <div class="p2p-sig"><span class="p2p-sig-dot" style="background:#3478E5;"></span>manual deploy &middot; no gates</div>
+          </div>
 
-  <!-- STAGE 1 — bare deploy -->
-  <rect x="40" y="76" width="170" height="60" rx="2" fill="#fff" stroke="#CC418C" stroke-width="1.2" stroke-dasharray="4 3"/>
-  <text x="125" y="106" text-anchor="middle" font-size="11" fill="#CC418C" letter-spacing="0.14em" font-weight="600">DEPLOY</text>
-  <text x="125" y="124" text-anchor="middle" font-size="9" fill="#8A8A8A">manual · no gates</text>
+          <div class="p2p-stage">
+            <div class="p2p-node"><span class="p2p-node-core" style="background:#9B59B6;"></span></div>
+            <div class="p2p-ver">v1.0</div>
+            <div class="p2p-name">Production engineering</div>
+            <div class="p2p-desc">Engineered for reliability, visibility, and operational trust.</div>
+            <div class="p2p-sig"><span class="p2p-sig-dot" style="background:#9B59B6;"></span>5 gates &middot; canary &middot; rollback armed</div>
+          </div>
 
-  <!-- STAGE 1 sub-row -->
-  <g font-size="8.5" letter-spacing="0.10em" fill="#8A8A8A">
-    <text x="40" y="166">— no monitoring</text>
-    <text x="40" y="182">— no rollback</text>
-    <text x="40" y="198">— single environment</text>
-  </g>
-
-  <!-- → STAGE 2 -->
-  <line x1="220" y1="106" x2="266" y2="106" stroke="rgba(87,148,234,0.4)" stroke-width="0.8" stroke-dasharray="3 3"/>
-  <polygon points="260,102 268,106 260,110" fill="rgba(87,148,234,0.55)"/>
-
-  <!-- STAGE 2 — canary + observability tiles -->
-  <g stroke="#CC418C" stroke-width="1.1" fill="#fff">
-    <rect x="280" y="68" width="170" height="40" rx="2"/>
-    <rect x="280" y="112" width="80" height="36" rx="2"/>
-    <rect x="370" y="112" width="80" height="36" rx="2"/>
-    <rect x="280" y="152" width="170" height="36" rx="2"/>
-  </g>
-  <g font-size="9.5" letter-spacing="0.12em" font-weight="600" fill="#CC418C" text-anchor="middle">
-    <text x="365" y="92">CANARY · 5%</text>
-  </g>
-  <g font-size="8.5" letter-spacing="0.10em" fill="#8A8A8A" text-anchor="middle">
-    <text x="320" y="134">P95</text>
-    <text x="320" y="146">monitored</text>
-    <text x="410" y="134">DRIFT</text>
-    <text x="410" y="146">monitored</text>
-    <text x="365" y="172">ROLLBACK · 5M WINDOW</text>
-  </g>
-
-  <!-- → STAGE 3 -->
-  <line x1="465" y1="128" x2="514" y2="128" stroke="rgba(87,148,234,0.4)" stroke-width="0.8" stroke-dasharray="3 3"/>
-  <polygon points="508,124 516,128 508,132" fill="rgba(87,148,234,0.55)"/>
-
-  <!-- STAGE 3 — full pipeline + gates -->
-  <g stroke="#CC418C" stroke-width="1.4" fill="#fff">
-    <rect x="525" y="68" width="170" height="170" rx="2"/>
-  </g>
-  <text x="610" y="92" text-anchor="middle" font-size="11" fill="#CC418C" letter-spacing="0.14em" font-weight="600">RELEASE PIPELINE</text>
-
-  <!-- 5 gate rows -->
-  <g font-size="9" letter-spacing="0.12em" fill="#8A8A8A">
-    <text x="538" y="116">BUILD</text>
-    <text x="538" y="138">TEST · COV ≥ 90</text>
-    <text x="538" y="160">CANARY · EVAL OK</text>
-    <text x="538" y="182">DEPLOY · ROLLING</text>
-    <text x="538" y="204">MONITOR · DRIFT</text>
-  </g>
-  <!-- check ticks -->
-  <g stroke="#CC418C" stroke-width="1.4" fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <polyline points="666,112 670,117 678,108"/>
-    <polyline points="666,134 670,139 678,130"/>
-    <polyline points="666,156 670,161 678,152"/>
-    <polyline points="666,178 670,183 678,174"/>
-  </g>
-  <!-- bar at monitor (currently active) -->
-  <rect x="660" y="198" width="24" height="3" fill="rgba(31,31,31,0.08)"/>
-  <rect x="660" y="198" width="14" height="3" fill="#CC418C">
-    <animate attributeName="width" values="8;22;8" dur="2.6s" repeatCount="indefinite"/>
-  </rect>
-
-  <!-- Bottom labels -->
-  <g font-size="8.5" letter-spacing="0.10em" fill="#8A8A8A">
-    <text x="40"  y="262">1 deploy · manual</text>
-    <text x="280" y="262">5% canary · monitored</text>
-    <text x="540" y="262">5 gates · rolling · armed</text>
-  </g>
-</svg>
+          <div class="p2p-stage">
+            <div class="p2p-node"><span class="p2p-node-core" style="background:#E91E63;"></span></div>
+            <div class="p2p-ver">v1.0+</div>
+            <div class="p2p-name">Evolution</div>
+            <div class="p2p-desc">Expands across functions and regions without breaking.</div>
+            <div class="p2p-sig"><span class="p2p-sig-dot" style="background:#E91E63;"></span>multi-region &middot; drift-monitored</div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
