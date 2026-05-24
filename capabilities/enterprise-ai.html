@@ -1894,30 +1894,129 @@
           <p>The model answers from <b>your data</b>, not its training set. Every answer carries source attribution, permissioned by the user asking.</p>
           <span class="gs-stack-hint"><b>Stack &middot;</b> Vector store &middot; permissioned retrieval &middot; LLM</span>
         </div>
-        <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 240" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <rect x="20" y="20" width="240" height="28" rx="4" fill="#fff" stroke="#8A8A8A" stroke-width="0.8"/>
-            <text x="32" y="38" font-size="10.5" fill="#1F1F1F">What is our refund window?</text>
-            <text x="20" y="62" font-size="9" letter-spacing="0.14em" fill="#8A8A8A">USER QUERY</text>
-            <line x1="280" y1="34" x2="320" y2="34" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="314,30 322,34 314,38" fill="#3478E5"/>
-            <rect x="330" y="14" width="130" height="42" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="340" y="30" font-size="9.5" font-weight="600" fill="#3478E5">refund-policy.md</text>
-            <text x="340" y="44" font-size="9" fill="#8A8A8A">&sect;3.2 &middot; v12</text>
-            <rect x="330" y="64" width="130" height="42" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="340" y="80" font-size="9.5" font-weight="600" fill="#3478E5">ticket #4612</text>
-            <text x="340" y="94" font-size="9" fill="#8A8A8A">precedent &middot; resolved</text>
-            <rect x="330" y="114" width="130" height="42" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="340" y="130" font-size="9.5" font-weight="600" fill="#3478E5">goodwill-tier.md</text>
-            <text x="340" y="144" font-size="9" fill="#8A8A8A">SOP &middot; finance</text>
-            <rect x="60" y="155" width="160" height="38" rx="4" fill="#3478E5" stroke="#3478E5"/>
-            <text x="140" y="178" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="0.14em">LLM</text>
-            <path d="M 330 35 Q 240 80 220 174" stroke="#3478E5" stroke-width="0.8" fill="none" stroke-dasharray="3 3"/>
-            <path d="M 330 85 Q 250 130 220 174" stroke="#3478E5" stroke-width="0.8" fill="none" stroke-dasharray="3 3"/>
-            <path d="M 330 135 Q 270 160 220 184" stroke="#3478E5" stroke-width="0.8" fill="none" stroke-dasharray="3 3"/>
-            <rect x="60" y="200" width="400" height="30" rx="4" fill="#fff" stroke="#8A8A8A" stroke-width="0.8"/>
-            <text x="72" y="219" font-size="10" fill="#1F1F1F">30 days, with damage-on-arrival exception</text>
-            <text x="318" y="219" font-size="10" font-weight="700" fill="#3478E5">[&sect;3.2]</text>
-            <text x="358" y="219" font-size="10" font-weight="700" fill="#3478E5">[#4612]</text>
+        <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 300" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
+            <defs>
+              <pattern id="ragGrid" width="20" height="20" patternUnits="userSpaceOnUse">
+                <path d="M 20 0 L 0 0 0 20" stroke="rgba(31,31,31,0.04)" stroke-width="1" fill="none"/>
+              </pattern>
+              <linearGradient id="ragLLM" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%"   stop-color="#5794EA"/>
+                <stop offset="100%" stop-color="#3478E5"/>
+              </linearGradient>
+            </defs>
+            <rect width="480" height="300" fill="url(#ragGrid)"/>
+
+            <!-- Section label, top -->
+            <text x="20" y="14" font-size="8.5" letter-spacing="0.16em" fill="#8A8A8A">EXTERNAL KNOWLEDGE LAYER</text>
+            <line x1="200" y1="11" x2="460" y2="11" stroke="rgba(31,31,31,0.10)" stroke-width="0.6"/>
+
+            <!-- USER + Question chip -->
+            <g transform="translate(20, 28)">
+              <circle cx="14" cy="14" r="13" fill="#fff" stroke="#3478E5" stroke-width="1.3"/>
+              <circle cx="14" cy="11" r="4" fill="none" stroke="#3478E5" stroke-width="1.3"/>
+              <path d="M 6 22 Q 14 17 22 22" fill="none" stroke="#3478E5" stroke-width="1.3" stroke-linecap="round"/>
+              <text x="36" y="11" font-size="8.5" letter-spacing="0.14em" fill="#8A8A8A">USER</text>
+              <rect x="36" y="16" width="210" height="18" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
+              <text x="44" y="28" font-size="10" fill="#1F1F1F">What is our refund window?</text>
+            </g>
+
+            <!-- Query arrow down to retriever -->
+            <line x1="40" y1="68" x2="40" y2="96" stroke="#3478E5" stroke-width="1"/>
+            <polygon points="36,92 40,100 44,92" fill="#3478E5"/>
+            <text x="48" y="86" font-size="8" letter-spacing="0.14em" fill="#8A8A8A">QUERY</text>
+
+            <!-- RETRIEVER box -->
+            <g transform="translate(20, 100)">
+              <rect x="0" y="0" width="208" height="50" rx="5" fill="#fff" stroke="#3478E5" stroke-width="1.2"/>
+              <g transform="translate(12, 16)">
+                <circle cx="9" cy="9" r="7" fill="none" stroke="#3478E5" stroke-width="1.4"/>
+                <line x1="14" y1="14" x2="20" y2="20" stroke="#3478E5" stroke-width="1.4" stroke-linecap="round"/>
+              </g>
+              <text x="44" y="20" font-size="10.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">RETRIEVER</text>
+              <text x="44" y="36" font-size="9" fill="#8A8A8A">embed &middot; cosine &middot; top-k 12</text>
+            </g>
+
+            <!-- Semantic search arrow right -->
+            <line x1="228" y1="125" x2="272" y2="125" stroke="#7E6CE0" stroke-width="1" stroke-dasharray="3 3"/>
+            <polygon points="268,121 276,125 268,129" fill="#7E6CE0"/>
+            <text x="232" y="118" font-size="7.5" letter-spacing="0.14em" fill="#7E6CE0">SEMANTIC SEARCH</text>
+
+            <!-- VECTOR STORE (cylinder) -->
+            <g transform="translate(280, 78)">
+              <rect x="6" y="14" width="68" height="72" fill="#fff" stroke="#7E6CE0" stroke-width="1.2"/>
+              <ellipse cx="40" cy="14" rx="34" ry="6" fill="#fff" stroke="#7E6CE0" stroke-width="1.2"/>
+              <ellipse cx="40" cy="86" rx="34" ry="6" fill="#fff" stroke="#7E6CE0" stroke-width="1.2"/>
+              <ellipse cx="40" cy="34" rx="34" ry="6" fill="none" stroke="#7E6CE0" stroke-width="0.6" opacity="0.55"/>
+              <ellipse cx="40" cy="54" rx="34" ry="6" fill="none" stroke="#7E6CE0" stroke-width="0.6" opacity="0.55"/>
+              <text x="40" y="50" text-anchor="middle" font-size="8" letter-spacing="0.16em" fill="#7E6CE0" font-weight="700">VECTOR</text>
+              <text x="40" y="64" text-anchor="middle" font-size="8" letter-spacing="0.16em" fill="#7E6CE0" font-weight="700">STORE</text>
+              <text x="40" y="106" text-anchor="middle" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">your corpus</text>
+            </g>
+
+            <!-- Source chips on the right -->
+            <g transform="translate(364, 78)">
+              <rect x="0" y="0" width="100" height="22" rx="3" fill="#fff" stroke="#7E6CE0" stroke-width="0.8"/>
+              <text x="8" y="14" font-size="9" font-weight="700" fill="#7E6CE0">refund-policy</text>
+              <text x="78" y="14" font-size="7.5" fill="#8A8A8A">md</text>
+
+              <rect x="0" y="28" width="100" height="22" rx="3" fill="#fff" stroke="#7E6CE0" stroke-width="0.8"/>
+              <text x="8" y="42" font-size="9" font-weight="700" fill="#7E6CE0">ticket #4612</text>
+              <text x="80" y="42" font-size="7.5" fill="#8A8A8A">log</text>
+
+              <rect x="0" y="56" width="100" height="22" rx="3" fill="#fff" stroke="#7E6CE0" stroke-width="0.8"/>
+              <text x="8" y="70" font-size="9" font-weight="700" fill="#7E6CE0">goodwill-tier</text>
+              <text x="80" y="70" font-size="7.5" fill="#8A8A8A">sop</text>
+
+              <line x1="-18" y1="11" x2="0" y2="11" stroke="#7E6CE0" stroke-width="0.7" stroke-dasharray="2 2"/>
+              <line x1="-18" y1="39" x2="0" y2="39" stroke="#7E6CE0" stroke-width="0.7" stroke-dasharray="2 2"/>
+              <line x1="-18" y1="67" x2="0" y2="67" stroke="#7E6CE0" stroke-width="0.7" stroke-dasharray="2 2"/>
+            </g>
+
+            <!-- Relevant chunks: arrow returning left -->
+            <path d="M 276 152 Q 250 168 228 152" stroke="#7E6CE0" stroke-width="1" fill="none" stroke-dasharray="3 3"/>
+            <polygon points="232,148 226,152 232,156" fill="#7E6CE0"/>
+            <text x="232" y="172" font-size="7.5" letter-spacing="0.14em" fill="#7E6CE0">RELEVANT CHUNKS</text>
+
+            <!-- Arrow from retriever down to LLM -->
+            <line x1="124" y1="150" x2="124" y2="188" stroke="#3478E5" stroke-width="1"/>
+            <polygon points="120,184 124,192 128,184" fill="#3478E5"/>
+            <text x="132" y="172" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">QUERY + CONTEXT</text>
+
+            <!-- LLM core (Trust Blue, the model itself) -->
+            <g transform="translate(20, 192)">
+              <rect x="0" y="0" width="208" height="52" rx="5" fill="url(#ragLLM)" stroke="#3478E5" stroke-width="1.2"/>
+              <g transform="translate(12, 12)" stroke="#fff" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 12 4 Q 4 4 4 13 Q 4 22 12 24 Q 20 22 20 13 Q 20 4 12 4 Z"/>
+                <path d="M 12 4 L 12 24"/>
+                <path d="M 6 11 Q 12 13 18 11"/>
+                <path d="M 6 17 Q 12 19 18 17"/>
+              </g>
+              <text x="44" y="22" font-size="11" font-weight="700" fill="#fff" letter-spacing="0.12em">LLM</text>
+              <text x="44" y="37" font-size="9" fill="rgba(255,255,255,0.88)">grounded generation</text>
+              <text x="200" y="14" text-anchor="end" font-size="8" letter-spacing="0.14em" fill="rgba(255,255,255,0.6)">UNCHANGED</text>
+            </g>
+
+            <!-- Arrow LLM -> Answer -->
+            <line x1="228" y1="218" x2="272" y2="218" stroke="#3478E5" stroke-width="1"/>
+            <polygon points="268,214 276,218 268,222" fill="#3478E5"/>
+
+            <!-- ANSWER chip with citation tags -->
+            <g transform="translate(280, 192)">
+              <rect x="0" y="0" width="184" height="52" rx="5" fill="#fff" stroke="#3478E5" stroke-width="1.2"/>
+              <text x="10" y="14" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">ANSWER &middot; CITED</text>
+              <text x="10" y="30" font-size="10" fill="#1F1F1F">30 days &middot; damage-on-arrival</text>
+              <g transform="translate(10, 36)">
+                <rect x="0"  y="0" width="40" height="12" rx="2" fill="color-mix(in oklab, #3478E5 8%, #fff)" stroke="#3478E5" stroke-width="0.8"/>
+                <text x="20" y="9" text-anchor="middle" font-size="7.5" fill="#3478E5" font-weight="700">&sect;3.2</text>
+                <rect x="46" y="0" width="48" height="12" rx="2" fill="color-mix(in oklab, #3478E5 8%, #fff)" stroke="#3478E5" stroke-width="0.8"/>
+                <text x="70" y="9" text-anchor="middle" font-size="7.5" fill="#3478E5" font-weight="700">#4612</text>
+                <rect x="100" y="0" width="44" height="12" rx="2" fill="color-mix(in oklab, #3478E5 8%, #fff)" stroke="#3478E5" stroke-width="0.8"/>
+                <text x="122" y="9" text-anchor="middle" font-size="7.5" fill="#3478E5" font-weight="700">SOP</text>
+              </g>
+            </g>
+
+            <!-- Caption footer -->
+            <text x="20" y="282" font-size="8" letter-spacing="0.16em" fill="#8A8A8A">DATA STAYS OUTSIDE THE MODEL &middot; ANSWERS CARRY SOURCES</text>
           </svg></div>
       </div>
 
