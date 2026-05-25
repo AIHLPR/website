@@ -903,96 +903,118 @@
 
     <figure class="diagram-wrap" itemscope itemtype="https://schema.org/ImageObject" aria-labelledby="dt-title">
       <div class="diagram-cap">Build, buy, wrap, or partner &mdash; decision tree</div>
-      <svg viewBox="0 0 800 620" font-family="Poppins, system-ui, sans-serif" role="img" aria-labelledby="dt-title dt-desc">
+      <svg viewBox="0 0 800 640" role="img" aria-labelledby="dt-title dt-desc">
         <title id="dt-title">Build, buy, wrap, or partner: a decision tree for enterprise AI tooling</title>
         <desc id="dt-desc">A vertical decision tree starting from One workflow. First question, is it specific to your business: if no, generic, the answer is Buy; if yes, specific, continue. Second question, are the right engineers free to build and maintain: if yes, the answer is Build; if no, continue. Third question, do you need a custom model or just custom behaviour: if behaviour only, the answer is Wrap; if a full system, the answer is Partner.</desc>
 
         <defs>
+          <linearGradient id="dtBrandGradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="#E91E63"/>
+            <stop offset="25%"  stop-color="#CC418C"/>
+            <stop offset="50%"  stop-color="#9B59B6"/>
+            <stop offset="70%"  stop-color="#7E6CE0"/>
+            <stop offset="100%" stop-color="#3478E5"/>
+          </linearGradient>
           <marker id="dtArrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto">
-            <path d="M 0 0 L 10 5 L 0 10 z" fill="#8A8A8A"/>
+            <path d="M 0 0 L 10 5 L 0 10 z" fill="#1F1F1F"/>
           </marker>
         </defs>
 
-        <!-- 1. One workflow (top pill) -->
+        <!-- Brand gradient eyebrow at the top -->
+        <rect x="376" y="14" width="48" height="2" rx="1" fill="url(#dtBrandGradient)"/>
+
+        <!-- One workflow pill (entry) -->
         <g>
-          <rect x="330" y="20" width="140" height="48" rx="24" fill="#F2F0E7" stroke="#D1CFC4" stroke-width="1.2"/>
-          <text x="400" y="50" text-anchor="middle" font-size="15" font-weight="600" fill="#1F1F1F">One workflow</text>
+          <rect x="316" y="26" width="168" height="44" rx="22" fill="#FFFFFF" stroke="#1F1F1F" stroke-width="1"/>
+          <circle cx="338" cy="48" r="3.5" fill="#1F1F1F"/>
+          <text x="350" y="53" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" letter-spacing="2.2" fill="#1F1F1F" font-weight="500">ONE WORKFLOW</text>
         </g>
 
         <!-- Arrow: One workflow → Q1 -->
-        <path d="M 400 70 L 400 108" stroke="#8A8A8A" stroke-width="1.6" fill="none" marker-end="url(#dtArrow)"/>
+        <path d="M 400 70 L 400 106" stroke="#1F1F1F" stroke-width="1.2" fill="none" marker-end="url(#dtArrow)"/>
 
-        <!-- Q1: Specific to your business? -->
+        <!-- Q1: Specificity -->
         <g>
-          <rect x="300" y="110" width="200" height="74" rx="12" fill="#ECE7FB" stroke="#7E6CE0" stroke-width="1.4"/>
-          <text x="400" y="142" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2A1B5C">Specific to your business?</text>
-          <text x="400" y="162" text-anchor="middle" font-size="11.5" fill="#5A4895">Is it your competitive edge</text>
+          <rect x="300" y="108" width="200" height="78" rx="10" fill="#FAFAF8" stroke="rgba(31,31,31,0.20)" stroke-width="1.2"/>
+          <text x="316" y="130" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" letter-spacing="1.8" fill="#8A8A8A" font-weight="500">Q1 &mdash; SPECIFICITY</text>
+          <text x="316" y="154" font-family="Poppins, system-ui, sans-serif" font-size="15" font-weight="600" fill="#1F1F1F" letter-spacing="-0.3">Specific to your business?</text>
+          <text x="316" y="172" font-family="Roboto, system-ui, sans-serif" font-size="11.5" fill="#4A4A4A">Is it your competitive edge</text>
         </g>
 
-        <!-- Q1 → BUY (left-down) -->
-        <path d="M 300 156 L 200 156 L 200 270" stroke="#8A8A8A" stroke-width="1.6" fill="none" marker-end="url(#dtArrow)"/>
-        <text x="220" y="148" font-size="11.5" font-weight="500" fill="#1F1F1F">No, generic</text>
+        <!-- Q1 → BUY (left branch) -->
+        <path d="M 300 147 L 190 147 L 190 268" stroke="#1F1F1F" stroke-width="1.2" fill="none" marker-end="url(#dtArrow)"/>
+        <text x="200" y="138" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" letter-spacing="1.6" fill="#1F1F1F" font-weight="500">NO &middot; GENERIC</text>
 
         <!-- Q1 → Q2 (down) -->
-        <path d="M 400 184 L 400 270" stroke="#8A8A8A" stroke-width="1.6" fill="none" marker-end="url(#dtArrow)"/>
-        <text x="410" y="222" font-size="11.5" font-weight="500" fill="#1F1F1F">Yes, specific</text>
+        <path d="M 400 186 L 400 268" stroke="#1F1F1F" stroke-width="1.2" fill="none" marker-end="url(#dtArrow)"/>
+        <text x="410" y="226" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" letter-spacing="1.6" fill="#1F1F1F" font-weight="500">YES &middot; SPECIFIC</text>
 
-        <!-- BUY -->
+        <!-- BUY (outcome) -->
         <g>
-          <rect x="110" y="272" width="180" height="74" rx="12" fill="#E0EBFE" stroke="#3478E5" stroke-width="1.4"/>
-          <text x="200" y="304" text-anchor="middle" font-size="16" font-weight="700" fill="#1B3A66">Buy</text>
-          <text x="200" y="324" text-anchor="middle" font-size="11.5" fill="#3478E5">Off-the-shelf product</text>
+          <rect x="90" y="270" width="200" height="78" rx="10" fill="#FFFFFF" stroke="rgba(31,31,31,0.20)" stroke-width="1.2"/>
+          <circle cx="106" cy="291" r="4" fill="#5794EA"/>
+          <text x="118" y="294" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" letter-spacing="1.8" fill="#8A8A8A" font-weight="500">OUTCOME</text>
+          <text x="106" y="320" font-family="Poppins, system-ui, sans-serif" font-size="20" font-weight="600" fill="#1F1F1F" letter-spacing="-0.5">Buy</text>
+          <text x="106" y="340" font-family="Roboto, system-ui, sans-serif" font-size="12" fill="#4A4A4A">Off-the-shelf product</text>
         </g>
 
-        <!-- Q2: Right engineers free? -->
+        <!-- Q2: Capacity -->
         <g>
-          <rect x="300" y="272" width="200" height="74" rx="12" fill="#ECE7FB" stroke="#7E6CE0" stroke-width="1.4"/>
-          <text x="400" y="304" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2A1B5C">Right engineers free?</text>
-          <text x="400" y="324" text-anchor="middle" font-size="11.5" fill="#5A4895">To build and to maintain</text>
+          <rect x="300" y="270" width="200" height="78" rx="10" fill="#FAFAF8" stroke="rgba(31,31,31,0.20)" stroke-width="1.2"/>
+          <text x="316" y="292" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" letter-spacing="1.8" fill="#8A8A8A" font-weight="500">Q2 &mdash; CAPACITY</text>
+          <text x="316" y="316" font-family="Poppins, system-ui, sans-serif" font-size="15" font-weight="600" fill="#1F1F1F" letter-spacing="-0.3">Right engineers free?</text>
+          <text x="316" y="334" font-family="Roboto, system-ui, sans-serif" font-size="11.5" fill="#4A4A4A">To build and to maintain</text>
         </g>
 
-        <!-- Q2 → BUILD (right) -->
-        <path d="M 500 309 L 600 309" stroke="#8A8A8A" stroke-width="1.6" fill="none" marker-end="url(#dtArrow)"/>
-        <text x="540" y="300" font-size="11.5" font-weight="500" fill="#1F1F1F">Yes, free</text>
+        <!-- Q2 → BUILD (right branch) -->
+        <path d="M 500 309 L 580 309" stroke="#1F1F1F" stroke-width="1.2" fill="none" marker-end="url(#dtArrow)"/>
+        <text x="510" y="300" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" letter-spacing="1.6" fill="#1F1F1F" font-weight="500">YES &middot; FREE</text>
 
         <!-- Q2 → Q3 (down) -->
-        <path d="M 400 346 L 400 432" stroke="#8A8A8A" stroke-width="1.6" fill="none" marker-end="url(#dtArrow)"/>
-        <text x="410" y="385" font-size="11.5" font-weight="500" fill="#1F1F1F">No, capacity gap</text>
+        <path d="M 400 348 L 400 438" stroke="#1F1F1F" stroke-width="1.2" fill="none" marker-end="url(#dtArrow)"/>
+        <text x="410" y="394" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" letter-spacing="1.6" fill="#1F1F1F" font-weight="500">NO &middot; GAP</text>
 
-        <!-- BUILD -->
+        <!-- BUILD (outcome) -->
         <g>
-          <rect x="600" y="272" width="170" height="74" rx="12" fill="#FAE2D5" stroke="#D17046" stroke-width="1.4"/>
-          <text x="685" y="304" text-anchor="middle" font-size="16" font-weight="700" fill="#6B2D14">Build</text>
-          <text x="685" y="324" text-anchor="middle" font-size="11.5" fill="#A14722">Your team owns it</text>
+          <rect x="582" y="270" width="198" height="78" rx="10" fill="#FFFFFF" stroke="rgba(31,31,31,0.20)" stroke-width="1.2"/>
+          <circle cx="598" cy="291" r="4" fill="#E91E63"/>
+          <text x="610" y="294" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" letter-spacing="1.8" fill="#8A8A8A" font-weight="500">OUTCOME</text>
+          <text x="598" y="320" font-family="Poppins, system-ui, sans-serif" font-size="20" font-weight="600" fill="#1F1F1F" letter-spacing="-0.5">Build</text>
+          <text x="598" y="340" font-family="Roboto, system-ui, sans-serif" font-size="12" fill="#4A4A4A">Your team owns it</text>
         </g>
 
-        <!-- Q3: Need a custom model? -->
+        <!-- Q3: Depth -->
         <g>
-          <rect x="300" y="434" width="200" height="74" rx="12" fill="#ECE7FB" stroke="#7E6CE0" stroke-width="1.4"/>
-          <text x="400" y="466" text-anchor="middle" font-size="14.5" font-weight="700" fill="#2A1B5C">Need a custom model?</text>
-          <text x="400" y="486" text-anchor="middle" font-size="11.5" fill="#5A4895">Or just custom behaviour</text>
+          <rect x="300" y="440" width="200" height="78" rx="10" fill="#FAFAF8" stroke="rgba(31,31,31,0.20)" stroke-width="1.2"/>
+          <text x="316" y="462" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" letter-spacing="1.8" fill="#8A8A8A" font-weight="500">Q3 &mdash; DEPTH</text>
+          <text x="316" y="486" font-family="Poppins, system-ui, sans-serif" font-size="15" font-weight="600" fill="#1F1F1F" letter-spacing="-0.3">Need a custom model?</text>
+          <text x="316" y="504" font-family="Roboto, system-ui, sans-serif" font-size="11.5" fill="#4A4A4A">Or just custom behaviour</text>
         </g>
 
-        <!-- Q3 → WRAP (left-down) -->
-        <path d="M 300 480 L 200 480 L 200 546" stroke="#8A8A8A" stroke-width="1.6" fill="none" marker-end="url(#dtArrow)"/>
-        <text x="210" y="472" font-size="11.5" font-weight="500" fill="#1F1F1F">No, behaviour only</text>
+        <!-- Q3 → WRAP (left branch) -->
+        <path d="M 300 479 L 190 479 L 190 552" stroke="#1F1F1F" stroke-width="1.2" fill="none" marker-end="url(#dtArrow)"/>
+        <text x="200" y="470" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" letter-spacing="1.6" fill="#1F1F1F" font-weight="500">BEHAVIOUR ONLY</text>
 
         <!-- Q3 → PARTNER (down) -->
-        <path d="M 400 508 L 400 546" stroke="#8A8A8A" stroke-width="1.6" fill="none" marker-end="url(#dtArrow)"/>
-        <text x="410" y="538" font-size="11.5" font-weight="500" fill="#1F1F1F">Yes, full system</text>
+        <path d="M 400 518 L 400 552" stroke="#1F1F1F" stroke-width="1.2" fill="none" marker-end="url(#dtArrow)"/>
+        <text x="410" y="540" font-family="JetBrains Mono, ui-monospace, monospace" font-size="10" letter-spacing="1.6" fill="#1F1F1F" font-weight="500">FULL SYSTEM</text>
 
-        <!-- WRAP -->
+        <!-- WRAP (outcome) -->
         <g>
-          <rect x="110" y="548" width="180" height="56" rx="12" fill="#D5EAD7" stroke="#1D9E75" stroke-width="1.4"/>
-          <text x="200" y="572" text-anchor="middle" font-size="16" font-weight="700" fill="#194A2A">Wrap</text>
-          <text x="200" y="590" text-anchor="middle" font-size="11.5" fill="#1D9E75">Thin layer on a vendor</text>
+          <rect x="90" y="554" width="200" height="78" rx="10" fill="#FFFFFF" stroke="rgba(31,31,31,0.20)" stroke-width="1.2"/>
+          <circle cx="106" cy="575" r="4" fill="#7E6CE0"/>
+          <text x="118" y="578" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" letter-spacing="1.8" fill="#8A8A8A" font-weight="500">OUTCOME</text>
+          <text x="106" y="604" font-family="Poppins, system-ui, sans-serif" font-size="20" font-weight="600" fill="#1F1F1F" letter-spacing="-0.5">Wrap</text>
+          <text x="106" y="624" font-family="Roboto, system-ui, sans-serif" font-size="12" fill="#4A4A4A">Thin layer on a vendor</text>
         </g>
 
-        <!-- PARTNER -->
+        <!-- PARTNER (outcome) -->
         <g>
-          <rect x="300" y="548" width="200" height="56" rx="12" fill="#D5EAD7" stroke="#1D9E75" stroke-width="1.4"/>
-          <text x="400" y="572" text-anchor="middle" font-size="16" font-weight="700" fill="#194A2A">Partner</text>
-          <text x="400" y="590" text-anchor="middle" font-size="11.5" fill="#1D9E75">Built with your team</text>
+          <rect x="300" y="554" width="200" height="78" rx="10" fill="#FFFFFF" stroke="rgba(31,31,31,0.20)" stroke-width="1.2"/>
+          <circle cx="316" cy="575" r="4" fill="#1D9E75"/>
+          <text x="328" y="578" font-family="JetBrains Mono, ui-monospace, monospace" font-size="9.5" letter-spacing="1.8" fill="#8A8A8A" font-weight="500">OUTCOME</text>
+          <text x="316" y="604" font-family="Poppins, system-ui, sans-serif" font-size="20" font-weight="600" fill="#1F1F1F" letter-spacing="-0.5">Partner</text>
+          <text x="316" y="624" font-family="Roboto, system-ui, sans-serif" font-size="12" fill="#4A4A4A">Built with your team</text>
         </g>
       </svg>
     </figure>
