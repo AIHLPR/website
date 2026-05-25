@@ -412,6 +412,16 @@
     color: rgba(255,255,255,0.4);
     flex-wrap: wrap; gap: 12px;
   }
+  .footer-bottom .footer-mb {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.55);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    transition: color 180ms var(--ease);
+  }
+  .footer-bottom .footer-mb:hover { color: var(--white); }
+  .footer-bottom .footer-mb img { opacity: 0.85; filter: invert(1); }
+  .footer-bottom .footer-mb strong { color: rgba(255,255,255,0.85); font-weight: 600; }
 
   /* Hero diagram animation hook (per-page overrides --tracer-path) */
   @keyframes tracer-flow {
@@ -577,27 +587,29 @@
         <img src="../assets/aihlpr-logo-transparent.png" alt="AIHLPR">
       </a>
       <span class="nav-crumb">
-        <a href="../Home.html#capabilities">Capabilities</a>
+        <a href="../Home.html#capabilities">Solutions</a>
         <span class="sep">/</span>
         <span>AI Workflows &amp; Operations</span>
       </span>
     </div>
     <div class="nav-links">
-    <a href="../Home.html#capabilities">Capabilities</a>
-    <a href="../Home.html#work">Work</a>
-    <a href="../Home.html#how">How we work</a>
-    <a href="../insights/index.html">Resources</a>
+    <a href="../Home.html#capabilities">Solutions</a>
+    <a href="../insights/index.html">Insights</a>
+    <a href="../about.html">About</a>
+    <a href="../Home.html#how">How We Work</a>
+    <a href="../Home.html#work">Case Studies</a>
     <a href="../Home.html#contact" class="cta">Book a call &rarr;</a>
-    </div>
+  </div>
     <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
-    <a href="../Home.html#capabilities">Capabilities</a>
-    <a href="../Home.html#work">Work</a>
-    <a href="../Home.html#how">How we work</a>
-    <a href="../insights/index.html">Resources</a>
+    <a href="../Home.html#capabilities">Solutions</a>
+    <a href="../insights/index.html">Insights</a>
+    <a href="../about.html">About</a>
+    <a href="../Home.html#how">How We Work</a>
+    <a href="../Home.html#work">Case Studies</a>
     <a href="../Home.html#contact" class="cta">Book a call &rarr;</a>
   </div>
 </nav>
@@ -1746,7 +1758,7 @@
         <p>Operational AI partner. Building AI systems that fit how organisations already work, from one workflow to the whole organisation.</p>
       </div>
       <div class="footer-col">
-        <h5>Capabilities</h5>
+        <h5>Solutions</h5>
         <ul>
           <li><a href="ai-applications-and-platforms.html">AI Products &amp; Platforms</a></li>
           <li><a href="ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a></li>
@@ -1757,11 +1769,11 @@
       <div class="footer-col">
         <h5>The site</h5>
         <ul>
-          <li><a href="../Home.html#capabilities">All capabilities</a></li>
-          <li><a href="../Home.html#how">How we work</a></li>
-          <li><a href="../Home.html#work">Our work</a></li>
-          <li><a href="../Home.html#compliance">Compliance</a></li>
-          <li><a href="../Home.html#contact">Contact</a></li>
+          <li><a href="../Home.html#capabilities">Solutions</a></li>
+          <li><a href="../insights/index.html">Insights</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../Home.html#how">How We Work</a></li>
+          <li><a href="../Home.html#work">Case studies</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -1774,8 +1786,11 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <span>AIHLPR &middot; A practice of MoralityBytes</span>
-      <span>&copy; 2026 &middot; AI engineering practice</span>
+      <a class="footer-mb" href="https://moralitybytes.eu" target="_blank" rel="noopener" aria-label="MoralityBytes">
+        <img src="../assets/moralitybytes-mark.svg" alt="" width="22" height="22">
+        <span>A practice of <strong>MORALITY BYTES</strong></span>
+      </a>
+      <span>&copy; 2026 AIHLPR &middot; AI engineering, built to last</span>
     </div>
   </div>
 </footer>

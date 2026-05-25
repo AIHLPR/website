@@ -533,18 +533,57 @@
   .next-arrow svg { width: 16px; height: 12px; }
 
   /* -------- Footer -------- */
+  /* ===== Footer (dark) ===== */
   .footer {
-    padding: 40px 0 28px;
-    border-top: 1px solid var(--hairline);
-    color: var(--ink-muted);
-    font-size: 13px;
+    background: var(--black); color: rgba(255,255,255,0.75);
+    padding: clamp(40px, 4vw, 56px) 0 clamp(28px, 3vw, 40px);
+    border-top: none;
   }
-  .footer-inner {
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    gap: 16px;
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+    gap: clamp(28px, 4vw, 56px);
+    margin-bottom: 32px;
   }
+  @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  .footer-brand img { height: 22px; width: auto; filter: invert(1) brightness(1.1); opacity: 0.9; }
+  .footer-brand p {
+    margin-top: 14px; font-size: 13.5px; line-height: 1.55;
+    color: rgba(255,255,255,0.6); max-width: 36ch;
+  }
+  .footer-col h5 {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 14px;
+  }
+  .footer-col ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .footer-col a {
+    font-size: 13.5px; color: rgba(255,255,255,0.78);
+    transition: color 180ms var(--ease);
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom .footer-mb {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.55);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    transition: color 180ms var(--ease);
+  }
+  .footer-bottom .footer-mb:hover { color: var(--white); }
+  .footer-bottom .footer-mb img { opacity: 0.85; filter: invert(1); }
+  .footer-bottom .footer-mb strong { color: rgba(255,255,255,0.85); font-weight: 600; }
 
   @media (max-width: 760px) {
     .case-hero h1 { font-size: 44px; }
@@ -561,10 +600,12 @@
       <img src="../assets/aihlpr-logo-transparent.png" alt="AIHLPR">
     </a>
     <div class="nav-links">
-      <a href="../Home.html">What we do</a>
-      <a href="../Home.html#work">Our work</a>
-      <a href="../Home.html">How we work</a>
-      <a class="nav-cta" href="../Home.html">Discuss your use case →</a>
+      <a href="../Home.html#capabilities">Solutions</a>
+      <a href="../insights/index.html">Insights</a>
+      <a href="../about.html">About</a>
+      <a href="../Home.html#how">How We Work</a>
+      <a href="../Home.html#work">Case Studies</a>
+      <a class="nav-cta" href="../Home.html#contact">Book a call &rarr;</a>
     </div>
   </div>
 </nav>
@@ -906,9 +947,47 @@
 
 <!-- Footer -->
 <footer class="footer">
-  <div class="container footer-inner">
-    <span>AIHLPR — Operational AI partner</span>
-    <span>A practice of MoralityBytes</span>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/aihlpr-logo-transparent.png" alt="AIHLPR">
+        <p>Operational AI partner. Building AI systems that fit how organisations already work, from one workflow to the whole organisation.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <ul>
+          <li><a href="../capabilities/ai-applications-and-platforms.html">AI Products &amp; Platforms</a></li>
+          <li><a href="../capabilities/ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a></li>
+          <li><a href="../capabilities/enterprise-ai.html">Enterprise AI</a></li>
+          <li><a href="../capabilities/prototype-to-production.html">Prototype to Production</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>The site</h5>
+        <ul>
+          <li><a href="../Home.html#capabilities">Solutions</a></li>
+          <li><a href="../insights/index.html">Insights</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../Home.html#how">How we work</a></li>
+          <li><a href="../Home.html#work">Case studies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:brinda@moralitybytes.eu">brinda@moralitybytes.eu</a></li>
+          <li>Wibautstraat 129, Amsterdam</li>
+          <li>EU based &middot; NDA on request</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <a class="footer-mb" href="https://moralitybytes.eu" target="_blank" rel="noopener" aria-label="MoralityBytes">
+        <img src="../assets/moralitybytes-mark.svg" alt="" width="22" height="22">
+        <span>A practice of <strong>MORALITY BYTES</strong></span>
+      </a>
+      <span>&copy; 2026 AIHLPR &middot; AI engineering, built to last</span>
+    </div>
   </div>
 </footer>
 
