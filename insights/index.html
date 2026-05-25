@@ -389,96 +389,109 @@
     transition: border-color 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
   }
   .post:not(.is-coming):hover {
-    border-color: var(--ink);
     transform: translateY(-3px);
-    box-shadow: 0 18px 40px -28px rgba(0,0,0,0.25);
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,0.45);
+    border-color: color-mix(in oklab, var(--accent) 45%, rgba(255,255,255,0.10));
   }
-  .post-thumb {
-    aspect-ratio: 16 / 9;
-    border-radius: 10px;
-    margin-bottom: 18px;
-    background: #373636;
-    position: relative;
+  /* Self-contained dark tile — ink background, brand-colour corner
+     glow, faint network constellation overlay tinted by --accent.
+     Per-section colour mapping further below. */
+  .post {
+    --accent: var(--blue);
+    background: var(--ink) !important;
+    border-color: rgba(255,255,255,0.06) !important;
+    color: rgba(255,255,255,0.85);
+    min-height: 320px;
     overflow: hidden;
+    isolation: isolate;
   }
-  /* Brand-colour gradient band at the bottom of each tile.
-     Per-section colour set via --tile-accent (see .post.* rules below). */
-  .post-thumb::after {
+  .post::before {
     content: '';
     position: absolute; inset: 0;
-    background: linear-gradient(to top, var(--tile-accent, #1F1F1F) -10%, transparent 55%);
-    z-index: 2;
+    background: radial-gradient(70% 65% at 90% 100%, color-mix(in oklab, var(--accent) 32%, transparent), transparent 65%);
+    z-index: 0;
+    pointer-events: none;
   }
-  .post-thumb .thumb-pattern {
+  .post .insight-net {
     position: absolute; inset: 0;
-    background:
-      repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 26px),
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 26px);
-    z-index: 1;
+    width: 100%; height: 100%;
+    color: color-mix(in oklab, var(--accent) 70%, rgba(255,255,255,0.15));
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
   }
-  .post-thumb .thumb-glyph {
-    position: absolute; inset: 0;
-    display: grid; place-items: center;
-    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(255,255,255,0.85);
-    z-index: 3;
-    text-align: center;
-    padding: 0 12px;
-  }
-  /* Per-section brand colours (no teal — picked from the 4 brand colours requested) */
-  .post.tech    .post-thumb { --tile-accent: #3478E5; }  /* blue     — Technical AI */
-  .post.biz     .post-thumb { --tile-accent: #9B59B6; }  /* purple   — Business AI */
-  .post.thought .post-thumb { --tile-accent: #E91E63; }  /* pink     — Plain talk */
-  .post.exp     .post-thumb { --tile-accent: #7E6CE0; }  /* lavender — Notes from production */
+  .post > *:not(.insight-net) { position: relative; z-index: 1; }
+
+  /* The old coloured thumb block is no longer used — the tile itself is the visual. */
+  .post-thumb { display: none; }
+
+  /* Per-section brand colours (kept in sync with home) */
+  .post.tech    { --accent: #7E6CE0; }  /* lavender - Technical AI */
+  .post.biz     { --accent: #9B59B6; }  /* purple   - Business AI */
+  .post.thought { --accent: #E91E63; }  /* pink     - Plain talk */
+  .post.exp     { --accent: #3478E5; }  /* blue     - Notes from production */
 
   .post-meta {
-    display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
-    margin-bottom: 12px;
+    display: flex; align-items: center; gap: 12px; justify-content: space-between;
+    margin-bottom: 0;
     font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink-muted);
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
   }
   .post-meta .cat {
-    padding: 4px 9px;
-    border-radius: 999px;
-    background: var(--ink);
-    color: var(--white);
-    font-size: 9.5px;
-    letter-spacing: 0.14em;
+    display: inline-flex; align-items: center; gap: 8px;
+    padding: 0; border-radius: 0; background: transparent !important;
+    color: var(--accent) !important;
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
   }
-  .post.tech    .post-meta .cat { background: var(--blue); }
-  .post.biz     .post-meta .cat { background: var(--purple); }
-  .post.thought .post-meta .cat { background: var(--pink); }
-  .post.exp     .post-meta .cat { background: var(--lavender); }
-  .post-meta .dot { width: 3px; height: 3px; border-radius: 999px; background: var(--ink-muted); opacity: 0.6; }
+  .post-meta .cat::before {
+    content: ''; width: 7px; height: 7px; border-radius: 999px; background: currentColor;
+  }
+  .post-meta .dot { display: none; }
+
   .post h3 {
-    font-size: 19px;
+    font-family: var(--font-display);
+    font-size: 22px;
     letter-spacing: -0.015em;
-    line-height: 1.25;
-    margin-bottom: 10px;
-    max-width: 24ch;
+    line-height: 1.2;
+    margin: 18px 0 10px;
+    max-width: 22ch;
+    color: var(--white);
   }
   .post p {
-    font-size: 14.5px;
+    font-size: 14px;
     line-height: 1.55;
-    color: var(--ink-soft);
-    margin-bottom: 18px;
+    color: rgba(255,255,255,0.68);
+    margin-bottom: 0;
+    max-width: 40ch;
   }
   .post-foot {
     margin-top: auto;
     display: flex; align-items: center; justify-content: space-between;
-    padding-top: 14px;
-    border-top: 1px solid var(--hairline);
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.08);
     font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink-muted);
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
   }
   .post-foot .read {
-    display: inline-flex; align-items: center; gap: 6px;
-    color: var(--ink);
+    display: inline-flex; align-items: center; gap: 8px;
+    color: var(--white);
     font-weight: 500;
     transition: color 180ms var(--ease);
+  }
+  .post-foot .read .arrow {
+    width: 30px; height: 30px; border-radius: 999px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--white);
+    transition: background 180ms var(--ease), border-color 180ms var(--ease), color 180ms var(--ease);
+  }
+  .post:not(.is-coming):hover .post-foot .read .arrow {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: var(--ink);
   }
   .post-foot .read .arrow { transition: transform 180ms var(--ease); }
   .post:not(.is-coming):hover .post-foot .read .arrow { transform: translateX(3px); }
@@ -629,6 +642,51 @@
 
 <main>
 
+<!-- Reusable faint network constellation for insight tiles. Defined once, used per card via <use href="#insight-net">. -->
+<svg width="0" height="0" style="position:absolute; pointer-events:none;" aria-hidden="true">
+  <symbol id="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice">
+    <g stroke="currentColor" stroke-width="0.6" fill="none" opacity="0.55">
+      <line x1="40" y1="60" x2="120" y2="40"/>
+      <line x1="120" y1="40" x2="210" y2="90"/>
+      <line x1="210" y1="90" x2="300" y2="50"/>
+      <line x1="300" y1="50" x2="395" y2="100"/>
+      <line x1="40" y1="60" x2="80" y2="150"/>
+      <line x1="80" y1="150" x2="180" y2="180"/>
+      <line x1="180" y1="180" x2="260" y2="130"/>
+      <line x1="260" y1="130" x2="345" y2="190"/>
+      <line x1="345" y1="190" x2="395" y2="100"/>
+      <line x1="60" y1="260" x2="140" y2="230"/>
+      <line x1="140" y1="230" x2="220" y2="290"/>
+      <line x1="220" y1="290" x2="320" y2="260"/>
+      <line x1="320" y1="260" x2="395" y2="320"/>
+      <line x1="80" y1="150" x2="60" y2="260"/>
+      <line x1="180" y1="180" x2="220" y2="290"/>
+      <line x1="345" y1="190" x2="320" y2="260"/>
+      <line x1="25" y1="340" x2="120" y2="350"/>
+      <line x1="120" y1="350" x2="220" y2="290"/>
+    </g>
+    <g fill="currentColor">
+      <circle cx="40"  cy="60"  r="1.6"/>
+      <circle cx="120" cy="40"  r="1.6"/>
+      <circle cx="210" cy="90"  r="1.6"/>
+      <circle cx="300" cy="50"  r="1.6"/>
+      <circle cx="395" cy="100" r="1.6"/>
+      <circle cx="80"  cy="150" r="1.6"/>
+      <circle cx="180" cy="180" r="1.6"/>
+      <circle cx="260" cy="130" r="1.6"/>
+      <circle cx="345" cy="190" r="1.6"/>
+      <circle cx="60"  cy="260" r="1.6"/>
+      <circle cx="140" cy="230" r="1.6"/>
+      <circle cx="220" cy="290" r="1.6"/>
+      <circle cx="320" cy="260" r="1.6"/>
+      <circle cx="395" cy="320" r="1.6"/>
+      <circle cx="25"  cy="340" r="1.6"/>
+      <circle cx="120" cy="350" r="1.6"/>
+    </g>
+  </symbol>
+</svg>
+
+
   <!-- ===== Hero ===== -->
   <section class="hero">
     <div class="container">
@@ -709,6 +767,7 @@
 
       <div class="post-grid">
         <article class="post tech is-coming">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="badge-soon">Coming soon</span>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">RAG &middot; Retrieval</span></div>
           <div class="post-meta">
@@ -725,6 +784,7 @@
         </article>
 
         <article class="post tech is-coming">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="badge-soon">Coming soon</span>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">Small Models</span></div>
           <div class="post-meta">
@@ -741,6 +801,7 @@
         </article>
 
         <article class="post tech is-coming">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="badge-soon">Coming soon</span>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">Eval &middot; LLM-as-Judge</span></div>
           <div class="post-meta">
@@ -773,6 +834,7 @@
 
       <div class="post-grid">
         <a class="post biz" href="how-to-score-ai-use-case.html">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">Use Case Scoring</span></div>
           <div class="post-meta">
             <span class="cat">Business AI</span>
@@ -788,6 +850,7 @@
         </a>
 
         <a class="post biz" href="ai-architecture-lock-in.html">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">Lock-in &middot; Reversibility</span></div>
           <div class="post-meta">
             <span class="cat">Business AI</span>
@@ -803,6 +866,7 @@
         </a>
 
         <a class="post biz" href="buy-build-partner-ai-tooling.html">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">Buy &middot; Build &middot; Partner</span></div>
           <div class="post-meta">
             <span class="cat">Business AI</span>
@@ -818,6 +882,7 @@
         </a>
 
         <article class="post biz is-coming">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="badge-soon">Coming soon</span>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">EU AI Act</span></div>
           <div class="post-meta">
@@ -851,6 +916,7 @@
       <!-- Article cards hidden for now — drop the `hidden` attribute on the post-grid below to re-enable when content is ready. -->
       <div class="post-grid" hidden>
         <article class="post thought is-coming">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="badge-soon">Coming soon</span>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">Tools &rarr; Systems</span></div>
           <div class="post-meta">
@@ -867,6 +933,7 @@
         </article>
 
         <article class="post thought is-coming">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="badge-soon">Coming soon</span>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">Cost &middot; Reality</span></div>
           <div class="post-meta">
@@ -883,6 +950,7 @@
         </article>
 
         <article class="post thought is-coming">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="badge-soon">Coming soon</span>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">Design Tools</span></div>
           <div class="post-meta">
@@ -916,6 +984,7 @@
       <!-- Article cards hidden for now — drop the `hidden` attribute on the post-grid below to re-enable when content is ready. -->
       <div class="post-grid" hidden>
         <article class="post exp is-coming">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="badge-soon">Coming soon</span>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">Regulated &middot; 6 Months</span></div>
           <div class="post-meta">
@@ -932,6 +1001,7 @@
         </article>
 
         <article class="post exp is-coming">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="badge-soon">Coming soon</span>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">HITL &middot; Week One</span></div>
           <div class="post-meta">
@@ -948,6 +1018,7 @@
         </article>
 
         <article class="post exp is-coming">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="badge-soon">Coming soon</span>
           <div class="post-thumb"><span class="thumb-pattern"></span><span class="thumb-glyph">Messy Middle</span></div>
           <div class="post-meta">
