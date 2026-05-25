@@ -1379,114 +1379,56 @@
   .closing-cta-secondary:hover { color: var(--ink); border-bottom-color: var(--ink); }
   @media (max-width: 900px) { .closing-grid { grid-template-columns: 1fr; gap: 32px; } }
 
-  /* ===== Footer (MoralityBytes block) ===== */
+  /* ===== Footer ===== */
   .footer {
-    background: var(--black);
-    color: rgba(255,255,255,0.7);
-    padding: clamp(56px, 7vw, 88px) 0 32px;
+    background: var(--black); color: rgba(255,255,255,0.75);
+    padding: clamp(40px, 4vw, 56px) 0 clamp(28px, 3vw, 40px);
   }
   .footer-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 64px;
-    align-items: start;
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+    gap: clamp(28px, 4vw, 56px);
+    margin-bottom: 32px;
   }
-  .footer-mb {
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
+  @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  .footer-brand img { height: 22px; width: auto; filter: invert(1) brightness(1.1); opacity: 0.9; }
+  .footer-brand p {
+    margin-top: 14px; font-size: 13.5px; line-height: 1.55;
+    color: rgba(255,255,255,0.6); max-width: 36ch;
   }
-  .mb-wordmark {
-    display: flex; align-items: center; gap: 14px;
-    font-family: var(--font-display);
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1;
-    color: var(--white);
-    letter-spacing: -0.02em;
+  .footer-col h5 {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 14px;
   }
-  .mb-mark {
-    width: 44px; height: 44px;
-    display: grid; place-items: center;
-    color: var(--white);
+  .footer-col ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 8px;
   }
-  .footer p { color: rgba(255,255,255,0.75); font-size: 14.5px; line-height: 1.6; max-width: 56ch; }
-  .footer-contact {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
+  .footer-col a {
+    font-size: 13.5px; color: rgba(255,255,255,0.78);
+    transition: color 180ms var(--ease);
   }
-  .footer-contact h3 {
-    color: var(--white);
-    font-family: var(--font-display);
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    margin-bottom: 6px;
-  }
-  .footer-email {
-    display: flex;
-    align-items: center;
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 4px;
-    background: rgba(255,255,255,0.05);
-    padding: 0 4px 0 14px;
-    max-width: 420px;
-  }
-  .footer-email input {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: var(--white);
-    padding: 14px 4px;
-    font-size: 14px;
-    font-family: var(--font-body);
-  }
-  .footer-email input::placeholder { color: rgba(255,255,255,0.5); }
-  .footer-email input:focus { outline: none; }
-  .footer-email button {
-    width: 44px; height: 44px;
-    display: grid; place-items: center;
-    color: var(--white);
-  }
-  .footer-meta {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    color: rgba(255,255,255,0.75);
-    font-size: 14px;
-  }
-  .footer-meta .row { display: flex; align-items: center; gap: 10px; }
-  .footer-meta a { color: rgba(255,255,255,0.75); }
-  .footer-meta a:hover { color: var(--white); }
-  .footer-social {
-    display: inline-grid; place-items: center;
-    width: 32px; height: 32px;
-    background: var(--white);
-    color: var(--black);
-    border-radius: 4px;
-    margin-top: 4px;
-  }
+  .footer-col a:hover { color: var(--white); }
   .footer-bottom {
-    margin-top: 48px;
-    padding-top: 22px;
-    border-top: 1px solid rgba(255,255,255,0.12);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 12.5px;
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom .footer-mb {
+    display: inline-flex; align-items: center; gap: 10px;
     color: rgba(255,255,255,0.55);
-    flex-wrap: wrap;
-    gap: 12px;
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    transition: color 180ms var(--ease);
   }
-  .footer-bottom .footer-brand {
-    display: flex; align-items: center; gap: 12px;
-  }
-  .footer-bottom img { height: 18px; width: auto; filter: invert(1) brightness(1.2); opacity: 0.85; }
-  @media (max-width: 760px) {
-    .footer-grid { grid-template-columns: 1fr; gap: 32px; }
-  }
+  .footer-bottom .footer-mb:hover { color: var(--white); }
+  .footer-bottom .footer-mb img { opacity: 0.85; filter: invert(1); }
+  .footer-bottom .footer-mb strong { color: rgba(255,255,255,0.85); font-weight: 600; }
 
   /* ============================================================
      HOW WE WORK — single animated pipeline strip.
@@ -1906,10 +1848,11 @@
       </a>
     </div>
     <div class="nav-links nav-fade">
-      <a href="#services">Capabilities</a>
-      <a href="#work">Work</a>
-      <a href="#how">How we work</a>
-      <a href="insights/index.html">Resources</a>
+      <a href="#services">Solutions</a>
+      <a href="insights/index.html">Insights</a>
+      <a href="about.html">About</a>
+      <a href="#how">How We Work</a>
+      <a href="#work">Case Studies</a>
       <a href="#contact" class="cta">Book a call &rarr;</a>
     </div>
     <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
@@ -1917,10 +1860,11 @@
     </button>
   </div>
   <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
-    <a href="#services">Capabilities</a>
-    <a href="#work">Work</a>
-    <a href="#how">How we work</a>
-    <a href="insights/index.html">Resources</a>
+    <a href="#services">Solutions</a>
+    <a href="insights/index.html">Insights</a>
+    <a href="about.html">About</a>
+    <a href="#how">How We Work</a>
+    <a href="#work">Case Studies</a>
     <a href="#contact" class="cta">Book a call &rarr;</a>
   </div>
 </nav>
@@ -2857,63 +2801,43 @@
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-mb">
-        <div class="mb-wordmark">
-          <span class="mb-mark">
-            <svg width="44" height="44" viewBox="0 0 44 44" fill="none">
-              <path d="M8 6 L18 6 L22 16 L26 6 L36 6 L36 38 L26 38 L26 22 L22 32 L18 22 L18 38 L8 38 Z"
-                    fill="currentColor"/>
-            </svg>
-          </span>
-          <span>MORALITY<br>BYTES</span>
-        </div>
-        <p>
-          We bring a decade of experience leading digital transformation for businesses across industries. Having successfully simplified and streamlined processes, we now focus on empowering organizations of all sizes with AI and automation solutions. Our mission is to help businesses work smarter, not harder.
-        </p>
-        <p>
-          AI HLPR, a natural extension of our work at Morality Bytes, carries this mission forward with a dedicated focus on intelligent automation.
-        </p>
-      </div>
-
-      <div class="footer-contact">
-        <h3>Contact us</h3>
-        <div class="footer-email">
-          <input type="email" placeholder="Email" aria-label="Email">
-          <button aria-label="Subscribe">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M3 10 L17 10 M12 5 L17 10 L12 15" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-            </svg>
-          </button>
-        </div>
-        <div class="footer-meta">
-          <div class="row">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <path d="M9 17 C5 13 2 10 2 7 A7 7 0 0 1 16 7 C16 10 13 13 9 17 Z" stroke="currentColor" stroke-width="1.3" fill="none"/>
-              <circle cx="9" cy="7" r="2.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
-            </svg>
-            <span>Wibautstraat 129, Amsterdam, 1091GL</span>
-          </div>
-          <div class="row">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-              <rect x="2" y="4" width="14" height="10" rx="1.5" stroke="currentColor" stroke-width="1.3" fill="none"/>
-              <path d="M2.5 5 L9 10 L15.5 5" stroke="currentColor" stroke-width="1.3" fill="none"/>
-            </svg>
-            <a href="/cdn-cgi/l/email-protection#187a6a71767c795875776a7974716c617a616c7d6b367d6d"><span class="__cf_email__" data-cfemail="4c2e3e2522282d0c21233e2d202538352e3538293f622939">[email&#160;protected]</span></a>
-          </div>
-          <a class="footer-social" href="#" aria-label="LinkedIn">
-            <svg width="18" height="18" viewBox="0 0 18 18" fill="currentColor">
-              <path d="M3 6 H5.5 V14.5 H3 Z M4.25 2.5 A1.5 1.5 0 1 1 4.249 5.5 A1.5 1.5 0 0 1 4.25 2.5 Z M7.5 6 H9.9 V7.1 C10.4 6.4 11.2 5.8 12.5 5.8 C14.7 5.8 15 7.4 15 9.4 V14.5 H12.5 V10 C12.5 8.9 12.5 7.7 11.1 7.7 C9.7 7.7 9.9 8.7 9.9 9.9 V14.5 H7.5 Z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="footer-bottom">
       <div class="footer-brand">
         <img src="assets/aihlpr-logo-transparent.png" alt="AIHLPR">
-        <span>A practice of MoralityBytes</span>
+        <p>Operational AI partner. Building AI systems that fit how organisations already work, from one workflow to the whole organisation.</p>
       </div>
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <ul>
+          <li><a href="capabilities/ai-applications-and-platforms.html">AI Products &amp; Platforms</a></li>
+          <li><a href="capabilities/ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a></li>
+          <li><a href="capabilities/enterprise-ai.html">Enterprise AI</a></li>
+          <li><a href="capabilities/prototype-to-production.html">Prototype to Production</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>The site</h5>
+        <ul>
+          <li><a href="#capabilities">Solutions</a></li>
+          <li><a href="insights/index.html">Insights</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="#how">How we work</a></li>
+          <li><a href="#work">Case studies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:brinda@moralitybytes.eu">brinda@moralitybytes.eu</a></li>
+          <li>Wibautstraat 129, Amsterdam</li>
+          <li>EU based &middot; NDA on request</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <a class="footer-mb" href="https://moralitybytes.eu" target="_blank" rel="noopener" aria-label="MoralityBytes">
+        <img src="assets/moralitybytes-mark.svg" alt="" width="22" height="22">
+        <span>A practice of <strong>MORALITY BYTES</strong></span>
+      </a>
       <span>&copy; 2026 AIHLPR &middot; AI engineering, built to last</span>
     </div>
   </div>
