@@ -651,12 +651,22 @@
   main section.archlayers .label-mono .dot {
     box-shadow: 0 0 0 5px #0b0b0c;
   }
-  /* Flow-spine: hidden everywhere. Decorative vertical line was
-     bleeding through H1/H2 titles because the dots sit in the same
-     x-range as text content. Keeping the JS + DOM so it can be
-     reinstated later if reworked into the gutter, but the line
-     itself does not render. */
-  .flow-spine { display: none; }
+  /* Flow-spine: lives in the LEFT GUTTER, outside the content column,
+     so it never crosses titles. The section-anchor dots are absolutely
+     positioned into the gutter via the .is-spine-anchor class (added
+     by the spine JS), and the rail JS picks up their relocated x
+     automatically through getBoundingClientRect. */
+  main section .label-mono { position: relative; }
+  main section .label-mono .dot.is-spine-anchor {
+    position: absolute;
+    left: clamp(-32px, -2.4vw, -16px);
+    top: 50%;
+    margin-top: -3px;
+  }
+  /* Hide on narrow screens — alignment-dependent */
+  @media (max-width: 880px) {
+    .flow-spine { display: none; }
+  }
 </style>
 
 <div class="flow-spine" aria-hidden="true"></div>
@@ -1659,7 +1669,12 @@
       const dots = [];
       sections.forEach(function(s) {
         const d = s.querySelector('.label-mono .dot');
-        if (d) dots.push(d);
+        if (d) {
+          // Tag so CSS can pull just this dot into the gutter where
+          // the rail lives, without affecting other label-mono dots.
+          d.classList.add('is-spine-anchor');
+          dots.push(d);
+        }
       });
       return dots;
     }
