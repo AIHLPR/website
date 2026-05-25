@@ -1,0 +1,1175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>AI architecture: what locks you in, and what doesn't | AIHLPR Insights</title>
+<meta name="description" content="An AI architecture decision is rarely a clean owner question. A reversibility lens for telling the costly architecture choices apart from the ones you can change later — four questions, the governance trade nobody names, and what to do if you're already deep in.">
+<meta name="keywords" content="AI architecture lock-in, AI vendor lock-in, AI architecture decisions, AI architecture reversibility, enterprise AI architecture, AI governance trade-off, AI buy build partner, AI architecture irreversibility, AI architecture eighteen month question, AI architecture business owner, AI architect business owner gap, AI lock-in framework, AI architecture decision framework">
+<meta name="author" content="Brinda Rajendran">
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1">
+<meta name="googlebot" content="index, follow, max-snippet:-1, max-image-preview:large">
+<meta name="theme-color" content="#1F1F1F">
+<meta name="format-detection" content="telephone=no">
+
+<link rel="canonical" href="https://aihlpr.github.io/website/insights/ai-architecture-lock-in.html">
+
+<!-- Open Graph -->
+<meta property="og:type" content="article">
+<meta property="og:site_name" content="AIHLPR Insights">
+<meta property="og:locale" content="en_US">
+<meta property="og:title" content="AI architecture: what locks you in, and what doesn't">
+<meta property="og:description" content="Most architecture decisions are reversible. A small number aren't, and on the day you make them they look identical. A four-question lens to tell them apart.">
+<meta property="og:url" content="https://aihlpr.github.io/website/insights/ai-architecture-lock-in.html">
+<meta property="og:image" content="https://aihlpr.github.io/website/assets/aihlpr-logo-transparent.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="AIHLPR — operational AI partner">
+<meta property="article:published_time" content="2026-05-25T08:00:00+02:00">
+<meta property="article:modified_time" content="2026-05-25T08:00:00+02:00">
+<meta property="article:author" content="https://www.linkedin.com/in/brinda-rajendran/">
+<meta property="article:section" content="Business AI">
+<meta property="article:tag" content="AI architecture">
+<meta property="article:tag" content="AI lock-in">
+<meta property="article:tag" content="AI governance">
+<meta property="article:tag" content="enterprise AI strategy">
+<meta property="article:tag" content="AI vendor dependency">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AI architecture: what locks you in, and what doesn't">
+<meta name="twitter:description" content="Most architecture decisions are reversible. A small number aren't, and on the day you make them they look identical. A four-question lens to tell them apart.">
+<meta name="twitter:image" content="https://aihlpr.github.io/website/assets/aihlpr-logo-transparent.png">
+<meta name="twitter:image:alt" content="AIHLPR — operational AI partner">
+
+<!-- Combined JSON-LD: Article + WebPage + Breadcrumb + Author + Publisher + FAQ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Article",
+      "@id": "https://aihlpr.github.io/website/insights/ai-architecture-lock-in.html#article",
+      "headline": "AI architecture: what locks you in, and what doesn't",
+      "alternativeHeadline": "A reversibility lens for AI architecture decisions",
+      "description": "An AI architecture decision is rarely a clean owner question. A reversibility lens for telling the costly architecture choices apart from the ones you can change later.",
+      "datePublished": "2026-05-25T08:00:00+02:00",
+      "dateModified": "2026-05-25T08:00:00+02:00",
+      "author": { "@id": "https://aihlpr.github.io/website/#brinda-rajendran" },
+      "publisher": { "@id": "https://aihlpr.github.io/website/#aihlpr" },
+      "mainEntityOfPage": { "@id": "https://aihlpr.github.io/website/insights/ai-architecture-lock-in.html#webpage" },
+      "image": {
+        "@type": "ImageObject",
+        "url": "https://aihlpr.github.io/website/assets/aihlpr-logo-transparent.png",
+        "width": 1200,
+        "height": 630
+      },
+      "articleSection": "Business AI",
+      "wordCount": 1500,
+      "timeRequired": "PT8M",
+      "inLanguage": "en",
+      "keywords": ["AI architecture lock-in", "AI vendor lock-in", "AI architecture decisions", "AI architecture reversibility", "enterprise AI architecture", "AI governance trade-off", "AI buy build partner", "AI architecture irreversibility", "AI lock-in framework", "AI architecture decision framework"],
+      "about": [
+        { "@type": "Thing", "name": "AI architecture" },
+        { "@type": "Thing", "name": "AI lock-in" },
+        { "@type": "Thing", "name": "AI governance" }
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://aihlpr.github.io/website/insights/ai-architecture-lock-in.html#webpage",
+      "url": "https://aihlpr.github.io/website/insights/ai-architecture-lock-in.html",
+      "name": "AI architecture: what locks you in, and what doesn't | AIHLPR Insights",
+      "description": "A reversibility lens for AI architecture decisions.",
+      "isPartOf": { "@id": "https://aihlpr.github.io/website/#website" },
+      "breadcrumb": { "@id": "https://aihlpr.github.io/website/insights/ai-architecture-lock-in.html#breadcrumb" },
+      "datePublished": "2026-05-25T08:00:00+02:00",
+      "dateModified": "2026-05-25T08:00:00+02:00",
+      "inLanguage": "en"
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://aihlpr.github.io/website/#website",
+      "url": "https://aihlpr.github.io/website/",
+      "name": "AIHLPR",
+      "description": "Operational AI partner. AI systems built for production.",
+      "publisher": { "@id": "https://aihlpr.github.io/website/#aihlpr" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://aihlpr.github.io/website/insights/ai-architecture-lock-in.html#breadcrumb",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://aihlpr.github.io/website/Home.html" },
+        { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://aihlpr.github.io/website/insights/" },
+        { "@type": "ListItem", "position": 3, "name": "AI architecture lock-in", "item": "https://aihlpr.github.io/website/insights/ai-architecture-lock-in.html" }
+      ]
+    },
+    {
+      "@type": "Person",
+      "@id": "https://aihlpr.github.io/website/#brinda-rajendran",
+      "name": "Brinda Rajendran",
+      "jobTitle": "Founder, AI Practitioner",
+      "url": "https://www.linkedin.com/in/brinda-rajendran/",
+      "sameAs": ["https://www.linkedin.com/in/brinda-rajendran/"],
+      "worksFor": { "@id": "https://aihlpr.github.io/website/#aihlpr" },
+      "memberOf": {
+        "@type": "Organization",
+        "name": "Women in AI",
+        "url": "https://womeninai.co"
+      },
+      "knowsAbout": ["Enterprise AI", "AI implementation", "AI governance", "AI workflow design", "Operational AI"]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://aihlpr.github.io/website/#aihlpr",
+      "name": "AIHLPR",
+      "alternateName": "AI HLPR",
+      "url": "https://aihlpr.github.io/website/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://aihlpr.github.io/website/assets/aihlpr-logo-transparent.png"
+      },
+      "description": "Operational AI partner. Building AI systems that fit how organisations already work.",
+      "email": "brinda@moralitybytes.eu",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Wibautstraat 129",
+        "addressLocality": "Amsterdam",
+        "addressCountry": "NL"
+      },
+      "parentOrganization": { "@type": "Organization", "name": "MoralityBytes" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://aihlpr.github.io/website/insights/ai-architecture-lock-in.html#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is AI architecture lock-in?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Lock-in is the cost of changing your mind about an architecture decision later. A decision is reversible if undoing it would take a known, bounded effort. It is locked in if undoing it would force you to rebuild things stacked on top of it. The same technical choice can be either, depending on how much else has grown around it."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I tell a reversible AI architecture decision from a locked-in one?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ask one question out loud: if we had to undo this in eighteen months, what would it take. A short, concrete answer means reversible. A long answer, or one that starts with \"it depends what else we've built by then\", means locked in."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are the four questions to ask before an AI architecture decision?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "One, if we had to undo this in eighteen months, what would it take. Two, what of ours gets shaped around this choice. Three, who else holds the keys. Four, what would have to be true for this to be the wrong choice. Asked together, they turn an architecture recommendation into a decision the business owner can actually weigh."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How should architects and business owners decide AI architecture together?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "By making the trade out loud. The architect prices a future risk; the business owner prices a present delay. Both are real, paid in different currencies. The goal isn't avoiding lock-in — every system has some. The goal is that every lock-in got there on purpose, with both sides knowing what it buys and what it would cost to undo."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What if we are already locked into an AI architecture we didn't fully decide on?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Run the same four questions in the present tense. Which parts has everything been built around. Who outside the room holds control, and over how much. What would have to change for one of these choices to become wrong. And honestly: which of these did we actually decide, and which did we end up with. You don't have to untangle the knots — you have to stop adding to them blindly."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is it bad to be locked into an AI vendor or framework?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Not in itself. Some of the best decisions a business makes are deeply irreversible. The principle isn't reversible-good, irreversible-bad. It is that every locked-in part of your system should be something you can point at and say what it buys, and what it would cost to undo. The parts you can speak to are decisions. The parts you can't are just things that happened."
+          }
+        }
+      ]
+    }
+  ]
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/png" href="../assets/aihlpr-logo-transparent.png">
+<style>
+  :root {
+    --pink:#E91E63; --magenta:#CC418C; --purple:#9B59B6;
+    --lavender:#7E6CE0; --sky:#5794EA; --blue:#3478E5;
+    --teal:#1D9E75;
+    --ink:#1F1F1F; --ink-soft:#4A4A4A; --ink-muted:#8A8A8A;
+    --white:#FFFFFF; --black:#0C0C0C;
+    --surface:#F8F8F6; --surface-2:#FAFAF8;
+    --hairline:rgba(31,31,31,0.10);
+    --hairline-strong:rgba(31,31,31,0.20);
+    --gradient: linear-gradient(90deg,#E91E63 0%,#CC418C 25%,#9B59B6 50%,#7E6CE0 70%,#5794EA 85%,#3478E5 100%);
+    --font-display:"Poppins", system-ui, sans-serif;
+    --font-body:"Roboto", system-ui, sans-serif;
+    --font-mono:"JetBrains Mono", ui-monospace, monospace;
+    --ease:cubic-bezier(0.22, 1, 0.36, 1);
+    --container:1240px;
+    --article:720px;
+    --gutter:clamp(20px, 4.5vw, 56px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    margin: 0; padding: 0; background: var(--white); color: var(--ink);
+    font-family: var(--font-body); font-size: 16px; line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection { background: var(--ink); color: var(--white); }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+  .container { max-width: var(--container); margin: 0 auto; padding: 0 var(--gutter); }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display); margin: 0;
+    letter-spacing: -0.025em; line-height: 1.1;
+    font-weight: 600; color: var(--ink); text-wrap: balance;
+  }
+  p { margin: 0 0 22px; color: var(--ink-soft); }
+  p:last-child { margin-bottom: 0; }
+  p b, p strong { color: var(--ink); font-weight: 600; }
+  .label-mono {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+
+  /* Nav */
+  .nav {
+    position: fixed; inset: 0 0 auto 0; height: 64px; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-inner { height: 100%; display: flex; align-items: center; justify-content: space-between; }
+  .nav-logo { display: inline-flex; align-items: center; gap: 12px; }
+  .nav-logo img { height: 22px; width: auto; display: block; }
+  .nav-crumb {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
+    border-left: 1px solid var(--hairline);
+    padding-left: 14px; margin-left: 4px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .nav-crumb a { color: var(--ink-muted); transition: color 200ms var(--ease); }
+  .nav-crumb a:hover { color: var(--ink); }
+  .nav-crumb .sep { opacity: 0.5; }
+  .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; color: var(--ink-soft); }
+  .nav-links a { transition: color 180ms var(--ease); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links .cta {
+    padding: 8px 14px; border: 1px solid var(--ink);
+    border-radius: 999px; color: var(--ink); font-size: 13px;
+    transition: background 180ms var(--ease), color 180ms var(--ease);
+  }
+  .nav-links .cta:hover { background: var(--ink); color: var(--white); }
+  .nav-burger {
+    display: none;
+    position: relative;
+    width: 36px; height: 28px;
+    background: none; border: 0; padding: 0;
+    cursor: pointer; z-index: 60;
+  }
+  .nav-burger span {
+    position: absolute; left: 4px; right: 4px;
+    height: 2px; border-radius: 2px;
+    background: var(--ink);
+    transition: top 220ms var(--ease), transform 220ms var(--ease), opacity 180ms var(--ease);
+  }
+  .nav-burger span:nth-child(1) { top: 7px; }
+  .nav-burger span:nth-child(2) { top: 13px; }
+  .nav-burger span:nth-child(3) { top: 19px; }
+  .nav.is-open .nav-burger span:nth-child(1) { top: 13px; transform: rotate(45deg); }
+  .nav.is-open .nav-burger span:nth-child(2) { opacity: 0; }
+  .nav.is-open .nav-burger span:nth-child(3) { top: 13px; transform: rotate(-45deg); }
+  .nav-mobile-menu {
+    display: none;
+    position: absolute;
+    top: 100%; left: 0; right: 0;
+    background: var(--white);
+    border-bottom: 1px solid var(--hairline);
+    padding: 8px var(--gutter) 18px;
+    flex-direction: column;
+  }
+  .nav-mobile-menu a {
+    padding: 14px 0;
+    font-size: 16px; font-weight: 500;
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-mobile-menu a:last-child { border-bottom: none; }
+  .nav-mobile-menu a.cta {
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    padding: 12px 18px;
+    color: var(--ink);
+    text-align: left;
+    margin-top: 10px;
+    width: fit-content;
+  }
+  .nav.is-open .nav-mobile-menu { display: flex; }
+  @media (max-width: 760px) {
+    .nav-crumb { display: none; }
+    .nav-links { display: none; }
+    .nav-burger { display: block; }
+  }
+  main { padding-top: 64px; }
+
+  /* Article shell */
+  .article {
+    max-width: var(--article);
+    margin: 0 auto;
+    padding: clamp(48px, 7vw, 96px) var(--gutter) clamp(72px, 8vw, 120px);
+  }
+
+  .gradient-rule {
+    height: 2px; width: 64px; border-radius: 999px;
+    background: var(--gradient);
+    margin-bottom: 28px;
+  }
+
+  .article-meta {
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
+    margin-bottom: 28px;
+  }
+  .article-meta .tag {
+    background: var(--ink); color: var(--white);
+    padding: 5px 11px; border-radius: 999px;
+    font-size: 10px; letter-spacing: 0.14em;
+  }
+  .article-meta .sep { width: 3px; height: 3px; border-radius: 999px; background: var(--ink-muted); opacity: 0.55; }
+  .article-meta .byline a {
+    color: var(--ink); font-weight: 500;
+    border-bottom: 1px solid var(--hairline);
+    transition: border-color 180ms var(--ease);
+  }
+  .article-meta .byline a:hover { border-bottom-color: var(--ink); }
+
+  h1.article-title {
+    font-size: clamp(36px, 5vw, 60px);
+    letter-spacing: -0.03em; line-height: 1.05;
+    margin-bottom: 24px;
+    max-width: 22ch;
+  }
+
+  .standfirst {
+    font-family: var(--font-body); font-weight: 400;
+    font-size: clamp(18px, 1.5vw, 21px);
+    line-height: 1.55; color: var(--ink-soft);
+    padding-bottom: 36px; margin-bottom: 48px;
+    border-bottom: 1px solid var(--hairline);
+    max-width: 56ch;
+  }
+
+  /* Key takeaways */
+  .takeaways {
+    position: relative;
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: clamp(24px, 2.5vw, 32px);
+    margin: 0 0 44px;
+    background:
+      linear-gradient(180deg, rgba(233,30,99,0.025), rgba(52,120,229,0.025)),
+      var(--white);
+  }
+  .takeaways::before {
+    content: '';
+    position: absolute;
+    top: -1px; left: 24px; right: 24px;
+    height: 2px;
+    background: var(--gradient);
+    border-radius: 999px;
+  }
+  .takeaways .label-mono { margin-bottom: 14px; }
+  .takeaways h2 {
+    font-size: 18px;
+    letter-spacing: -0.015em;
+    margin-bottom: 14px;
+    color: var(--ink);
+  }
+  .takeaways p {
+    font-size: 16px; line-height: 1.65;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+  .takeaways p strong { color: var(--ink); font-weight: 600; }
+
+  .body p { font-size: 16.5px; }
+
+  h2.section {
+    font-size: clamp(24px, 2.6vw, 32px);
+    letter-spacing: -0.02em;
+    margin: 56px 0 18px;
+    max-width: 22ch;
+  }
+  h2.section .num {
+    display: block;
+    font-family: var(--font-mono); font-weight: 500;
+    font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase; color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+
+  .pull-quote {
+    border-left: 2px solid var(--ink);
+    padding: 6px 0 6px 28px;
+    margin: 44px 0;
+  }
+  .pull-quote p {
+    font-family: var(--font-display); font-weight: 500;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.35; color: var(--ink);
+    letter-spacing: -0.015em;
+    margin: 0;
+  }
+
+  /* Signals list (4 signals block) */
+  .signals {
+    list-style: none; padding: 0; margin: 28px 0 0;
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--hairline);
+  }
+  .signals li {
+    padding: 22px 0;
+    border-bottom: 1px solid var(--hairline);
+    display: grid;
+    grid-template-columns: minmax(0, 160px) minmax(0, 1fr);
+    gap: 24px;
+    align-items: baseline;
+  }
+  .signals li .s-name {
+    font-family: var(--font-display);
+    font-weight: 600; font-size: 17px;
+    letter-spacing: -0.015em;
+    color: var(--ink);
+  }
+  .signals li .s-body {
+    font-size: 16px; line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  .signals li .s-body strong { color: var(--ink); font-weight: 600; }
+  @media (max-width: 620px) {
+    .signals li { grid-template-columns: 1fr; gap: 6px; }
+  }
+
+  /* Decision tree diagram wrapper */
+  .diagram-wrap {
+    margin: 36px 0;
+    padding: clamp(20px, 2vw, 28px);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    background: var(--surface-2);
+  }
+  .diagram-wrap .diagram-cap {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .diagram-wrap .diagram-cap::before {
+    content: ''; width: 6px; height: 6px; border-radius: 999px; background: var(--ink);
+  }
+  .diagram-wrap svg {
+    width: 100%; height: auto;
+    display: block;
+  }
+
+  /* Comparison table for the four options */
+  .options-table {
+    margin: 36px 0;
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--white);
+  }
+  .ot-row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.45fr) minmax(0, 1fr) minmax(0, 1fr);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .ot-row:last-child { border-bottom: none; }
+  .ot-row.is-head {
+    background: var(--ink); color: var(--white);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+  }
+  .ot-row.is-head > div {
+    padding: 14px 18px;
+    border-right: 1px solid rgba(255,255,255,0.12);
+  }
+  .ot-row.is-head > div:last-child { border-right: none; }
+  .ot-row:not(.is-head) > div {
+    padding: 16px 18px;
+    border-right: 1px solid var(--hairline);
+    font-size: 14.5px; line-height: 1.55;
+    color: var(--ink-soft);
+  }
+  .ot-row:not(.is-head) > div:last-child { border-right: none; }
+  .ot-row:not(.is-head) .ot-opt {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 16px; color: var(--ink);
+    letter-spacing: -0.01em;
+  }
+  .ot-row:not(.is-head) .ot-opt small {
+    display: block;
+    font-family: var(--font-mono); font-size: 10px;
+    font-weight: 500; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ink-muted);
+    margin-top: 4px;
+  }
+  @media (max-width: 720px) {
+    .ot-row { grid-template-columns: 1fr; }
+    .ot-row.is-head { display: none; }
+    .ot-row:not(.is-head) > div { border-right: none; border-bottom: 1px solid var(--hairline); }
+    .ot-row:not(.is-head) > div:last-child { border-bottom: none; }
+  }
+
+  /* FAQ */
+  .faq-section {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid var(--hairline);
+  }
+  .faq-section .label-mono { margin-bottom: 18px; }
+  .faq-section > h2 {
+    font-size: clamp(24px, 2.6vw, 32px);
+    letter-spacing: -0.02em;
+    margin-bottom: 28px;
+  }
+  .faq-list {
+    display: flex; flex-direction: column;
+    border-top: 1px solid var(--hairline);
+  }
+  .faq-item {
+    border-bottom: 1px solid var(--hairline);
+  }
+  .faq-item > summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 20px 0;
+    display: flex; align-items: flex-start; justify-content: space-between;
+    gap: 24px;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 17px;
+    line-height: 1.4;
+    color: var(--ink);
+    letter-spacing: -0.015em;
+    transition: color 180ms var(--ease);
+  }
+  .faq-item > summary::-webkit-details-marker { display: none; }
+  .faq-item > summary::after {
+    content: '+';
+    flex-shrink: 0;
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 24px;
+    line-height: 1;
+    color: var(--ink-muted);
+    transition: transform 220ms var(--ease), color 180ms var(--ease);
+  }
+  .faq-item[open] > summary::after { transform: rotate(45deg); color: var(--ink); }
+  .faq-item > summary:hover { color: var(--ink-soft); }
+  .faq-item .faq-answer {
+    padding: 0 0 22px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--ink-soft);
+    max-width: 64ch;
+  }
+  .faq-item .faq-answer p { margin: 0 0 14px; }
+  .faq-item .faq-answer p:last-child { margin-bottom: 0; }
+
+  /* Inline CTA */
+  .article-cta {
+    margin-top: 56px;
+    padding: clamp(28px, 3vw, 40px);
+    background: var(--ink); color: var(--white);
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) auto;
+    gap: 28px;
+    align-items: center;
+  }
+  @media (max-width: 640px) { .article-cta { grid-template-columns: 1fr; } }
+  .article-cta .label-mono { color: rgba(255,255,255,0.55); margin-bottom: 10px; }
+  .article-cta h3 {
+    color: var(--white);
+    font-size: clamp(22px, 2vw, 26px);
+    letter-spacing: -0.02em;
+    margin-bottom: 10px;
+    max-width: 22ch;
+  }
+  .article-cta p {
+    color: rgba(255,255,255,0.7);
+    font-size: 15px; line-height: 1.55;
+    margin: 0;
+    max-width: 48ch;
+  }
+  .article-cta .cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 22px;
+    background: var(--white); color: var(--ink);
+    border-radius: 999px;
+    font-family: var(--font-body); font-size: 14px; font-weight: 500;
+    transition: background 200ms var(--ease);
+    white-space: nowrap;
+  }
+  .article-cta .cta-btn:hover { background: rgba(255,255,255,0.85); }
+
+  .references {
+    margin-top: 64px;
+    padding-top: 28px;
+    border-top: 1px solid var(--hairline);
+  }
+  .references .label-mono { margin-bottom: 18px; }
+  .references ol {
+    list-style: none; padding: 0; margin: 0;
+    counter-reset: ref-counter;
+  }
+  .references ol li {
+    counter-increment: ref-counter;
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 14px;
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.6;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .references ol li:last-child { border-bottom: none; }
+  .references ol li::before {
+    content: counter(ref-counter);
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 500;
+    color: var(--ink-muted);
+    margin-top: 4px;
+  }
+  .references ol li em { font-style: italic; color: var(--ink-soft); }
+  .references ol li a {
+    color: var(--ink-soft);
+    border-bottom: 1px solid var(--hairline);
+    transition: color 180ms var(--ease), border-color 180ms var(--ease);
+  }
+  .references ol li a:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  /* About author card */
+  .about-author {
+    margin-top: 72px;
+    padding: clamp(24px, 3vw, 36px);
+    background: var(--surface-2);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    display: grid;
+    grid-template-columns: 64px 1fr;
+    gap: clamp(20px, 2.4vw, 28px);
+    align-items: start;
+  }
+  .about-author .aa-avatar {
+    width: 64px; height: 64px;
+    border-radius: 999px;
+    background: var(--ink); color: var(--white);
+    display: grid; place-items: center;
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 20px; letter-spacing: 0.04em;
+  }
+  .about-author .label-mono { margin-bottom: 8px; }
+  .about-author .aa-name {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: 22px; line-height: 1.2;
+    color: var(--ink); letter-spacing: -0.02em;
+    margin-bottom: 10px;
+  }
+  .about-author .aa-bio {
+    font-size: 15px; line-height: 1.6;
+    color: var(--ink-soft); margin-bottom: 18px;
+  }
+  .about-author .aa-bio a {
+    color: var(--ink); font-weight: 500;
+    border-bottom: 1px solid var(--hairline);
+    transition: border-color 180ms var(--ease);
+  }
+  .about-author .aa-bio a:hover { border-bottom-color: var(--ink); }
+  .about-author .aa-link {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-body); font-size: 13.5px; font-weight: 500;
+    color: var(--ink);
+    padding: 8px 14px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    transition: background 180ms var(--ease), color 180ms var(--ease);
+  }
+  .about-author .aa-link:hover { background: var(--ink); color: var(--white); }
+  .about-author .aa-link .arrow { transition: transform 180ms var(--ease); }
+  .about-author .aa-link:hover .arrow { transform: translateX(3px); }
+  @media (max-width: 560px) {
+    .about-author { grid-template-columns: 1fr; }
+  }
+
+  /* Footer */
+  .footer {
+    background: var(--black); color: rgba(255,255,255,0.75);
+    padding: clamp(40px, 4vw, 56px) 0 clamp(28px, 3vw, 40px);
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+    gap: clamp(28px, 4vw, 56px);
+    margin-bottom: 32px;
+  }
+  @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  .footer-brand img { height: 22px; width: auto; filter: invert(1) brightness(1.1); opacity: 0.9; }
+  .footer-brand p {
+    margin-top: 14px; font-size: 13.5px; line-height: 1.55;
+    color: rgba(255,255,255,0.6); max-width: 36ch;
+  }
+  .footer-col h5 {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 14px;
+  }
+  .footer-col ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .footer-col a {
+    font-size: 13.5px; color: rgba(255,255,255,0.78);
+    transition: color 180ms var(--ease);
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    flex-wrap: wrap; gap: 12px;
+  }
+
+  sup {
+    font-family: var(--font-mono);
+    font-size: 10px; font-weight: 500;
+    color: var(--ink-muted);
+    vertical-align: super;
+    line-height: 0;
+    margin-left: 2px;
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="siteNav">
+  <div class="container nav-inner">
+    <div class="nav-logo">
+      <a href="../Home.html" aria-label="AIHLPR home">
+        <img src="../assets/aihlpr-logo-transparent.png" alt="AIHLPR">
+      </a>
+      <span class="nav-crumb">
+        <a href="index.html">Insights</a>
+        <span class="sep">/</span>
+        <span>AI architecture lock-in</span>
+      </span>
+    </div>
+    <div class="nav-links">
+      <a href="../Home.html#capabilities">Capabilities</a>
+      <a href="../Home.html#work">Work</a>
+      <a href="../Home.html#how">How we work</a>
+      <a href="index.html">Resources</a>
+      <a href="../Home.html#contact" class="cta">Book a call &rarr;</a>
+    </div>
+    <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
+    <a href="../Home.html#capabilities">Capabilities</a>
+    <a href="../Home.html#work">Work</a>
+    <a href="../Home.html#how">How we work</a>
+    <a href="index.html">Resources</a>
+    <a href="../Home.html#contact" class="cta">Book a call &rarr;</a>
+  </div>
+</nav>
+
+<main>
+
+<article class="article" itemscope itemtype="https://schema.org/Article">
+  <header>
+    <div class="gradient-rule" aria-hidden="true"></div>
+    <div class="article-meta">
+      <span class="tag">The argument</span>
+      <span class="sep"></span>
+      <span>Business AI</span>
+      <span class="sep"></span>
+      <span class="byline" itemprop="author" itemscope itemtype="https://schema.org/Person">
+        By <a href="https://www.linkedin.com/in/brinda-rajendran/" target="_blank" rel="noopener" itemprop="url"><span itemprop="name">Brinda Rajendran</span></a>
+      </span>
+      <span class="sep"></span>
+      <span>8 min read</span>
+      <span class="sep"></span>
+      <time datetime="2026-05-25" itemprop="datePublished">Published May 25, 2026</time>
+    </div>
+
+    <h1 class="article-title" itemprop="headline">AI architecture: what locks you in, and what doesn't</h1>
+
+    <p class="standfirst" itemprop="description">
+      An AI architecture decision rarely has a clean owner. The architect recommends, the business owner decides, and the deciding happens in conditions nobody quite writes down. Most of what gets decided does not matter much later. A small number of choices do &mdash; and on the day you make them, they look exactly like the ones that don't.
+    </p>
+  </header>
+
+  <aside class="takeaways" aria-labelledby="takeaways-title">
+    <span class="label-mono">In short</span>
+    <h2 id="takeaways-title">Reversible vs locked in &mdash; and the four questions that tell them apart</h2>
+    <p>Most architecture choices are reversible &mdash; undo costs a migration. A small set aren't, and on the day you decide them they look identical. Four questions surface the difference before the cost is real: <strong>what would it take to undo this in eighteen months</strong>, what of ours bends around it, who else holds the keys, and what would have to be true for it to be the wrong call. The goal isn't zero lock-in. It's that every lock-in in your system got there because someone decided it, not because nobody noticed.</p>
+  </aside>
+
+  <div class="body">
+    <h2 class="section"><span class="num">Why this matters</span>Why the costly decisions don't look costly</h2>
+
+    <p>When a decision is easy to reverse, undoing it costs you a migration and some disruption, and then it is behind you. When a decision is hard to reverse, undoing it costs you years, because everything else in the system has been built on top of it.</p>
+
+    <p>That cost is not fixed, though. It grows with the size and age of the system around the decision. A small team can reverse a core dependency in a month, while a larger and older system takes a year to do the same thing, because far more has been stacked on top. This is why a startup changing its mind feels a bruise and an enterprise making the identical change feels a fracture.</p>
+
+    <p>One question separates the reversible decision from the locked-in one, and on the day you ask it the question carries no visible cost: if we had to undo this in eighteen months, what would it take. A short answer means the decision is reversible, and an answer that makes the room go quiet means it is not.</p>
+
+    <h2 class="section"><span class="num">The lens</span>Four questions that expose a lock-in</h2>
+
+    <p>The eighteen-month question is the first of a small set. None of them is technical. Each one can be asked by the business owner and answered by the architect, and the value is in asking them out loud, before the decision, while the cost of a wrong answer is still zero.</p>
+
+    <p><strong>If we had to undo this in eighteen months, what would it take.</strong> This is the core question, and the other three are ways of pressuring it. A reversible decision has a short, concrete answer. If the answer is long, vague, or starts with &lsquo;well, it depends what else we've built by then,&rsquo; that is the decision to slow down on.</p>
+
+    <p><strong>What of ours gets shaped around this choice.</strong> Some decisions stay contained. Others quietly become the thing everything else assumes. A model provider is not just a model provider once your prompts, your data formats, and your team's habits have all formed around it. The more of your own system bends to fit a choice, the more expensive that choice is to remove later.</p>
+
+    <p><strong>Who else holds the keys.</strong> Every architecture choice hands some control to someone outside the room. A vendor, a framework's maintainers, a provider's pricing team. The question is not whether that happens, because it always does. It is how much they control, and what it costs you if they change their mind.</p>
+
+    <p><strong>What would have to be true for this to be the wrong choice.</strong> This one is asked of the future, not the system. If the honest answer is &lsquo;nothing realistic,&rsquo; the decision is safe to make fast. If it is &lsquo;if our volume grows, or if the vendor changes terms, or if the regulation shifts,&rsquo; then you are not making a permanent decision. You are making a bet, and a bet should be sized and watched, not signed and forgotten.</p>
+
+    <p>Asked together, these four turn an architecture recommendation from something the owner approves on trust into something the two of them can actually weigh. The architect already knows most of these answers. The questions just get them into the room.</p>
+
+    <figure class="diagram-wrap" itemscope itemtype="https://schema.org/ImageObject" aria-labelledby="fq-title">
+      <div class="diagram-cap">Reversibility lens &mdash; four questions, two kinds of answer</div>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 612" role="img" aria-labelledby="fq-title fq-desc" preserveAspectRatio="xMidYMid meet">
+        <title id="fq-title">Four questions that expose a lock-in</title>
+        <desc id="fq-desc">A three-column matrix. Left column lists four questions to ask of any architecture decision. Middle column shows the kind of answer that means the decision is reversible. Right column shows the kind of answer that means it is locked in. Questions: Undo this in eighteen months. What bends around it. Who holds the keys. When is it wrong. A short, concrete answer means reversible; an answer that makes the room go quiet means locked in.</desc>
+
+        <defs>
+          <linearGradient id="fqBrandGradient" x1="0" y1="0" x2="1" y2="0">
+            <stop offset="0%"   stop-color="#E91E63"/>
+            <stop offset="25%"  stop-color="#CC418C"/>
+            <stop offset="50%"  stop-color="#9B59B6"/>
+            <stop offset="70%"  stop-color="#7E6CE0"/>
+            <stop offset="100%" stop-color="#3478E5"/>
+          </linearGradient>
+        </defs>
+
+        <!-- Brand gradient eyebrow rule -->
+        <rect x="24" y="14" width="48" height="2" rx="1" fill="url(#fqBrandGradient)"/>
+
+        <!-- Mono caption -->
+        <text x="24" y="40" font-family="JetBrains Mono, ui-monospace, monospace" font-size="11" letter-spacing="1.8" fill="#8A8A8A" font-weight="500">REVERSIBILITY LENS &#x00B7; FOUR QUESTIONS</text>
+
+        <!-- Headline -->
+        <text x="24" y="70" font-family="Poppins, system-ui, sans-serif" font-size="18" font-weight="600" fill="#1F1F1F" letter-spacing="-0.3">Four questions, and what the answers tell you</text>
+
+        <!-- Column headers -->
+        <!-- Reversible header pill -->
+        <g>
+          <rect x="300" y="92" width="260" height="42" rx="12" fill="#EEF6F1" stroke="#1D9E75" stroke-width="1"/>
+          <circle cx="320" cy="113" r="3.5" fill="#1D9E75"/>
+          <text x="332" y="117" font-family="Poppins, system-ui, sans-serif" font-size="13" font-weight="600" fill="#0F6B50" letter-spacing="-0.2">Reversible answer</text>
+        </g>
+        <!-- Locked-in header pill -->
+        <g>
+          <rect x="576" y="92" width="260" height="42" rx="12" fill="#FAEEF1" stroke="#BC2A52" stroke-width="1"/>
+          <circle cx="596" cy="113" r="3.5" fill="#BC2A52"/>
+          <text x="608" y="117" font-family="Poppins, system-ui, sans-serif" font-size="13" font-weight="600" fill="#761A36" letter-spacing="-0.2">Locked-in answer</text>
+        </g>
+
+        <!-- ============ ROW 1 ============ -->
+        <!-- Q1 -->
+        <g>
+          <rect x="24" y="150" width="260" height="92" rx="10" fill="#F4F4F2" stroke="rgba(31,31,31,0.12)" stroke-width="1"/>
+          <text x="42" y="180" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="600" fill="#1F1F1F" letter-spacing="-0.3">Undo this in 18 months?</text>
+          <text x="42" y="206" font-family="Roboto, system-ui, sans-serif" font-size="13" fill="#4A4A4A">What would it actually</text>
+          <text x="42" y="224" font-family="Roboto, system-ui, sans-serif" font-size="13" fill="#4A4A4A">take to reverse it</text>
+        </g>
+        <!-- R1 -->
+        <g>
+          <rect x="300" y="150" width="260" height="92" rx="10" fill="#F2F8F4" stroke="rgba(29,158,117,0.22)" stroke-width="1"/>
+          <text x="318" y="194" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#155B43">Short, concrete,</text>
+          <text x="318" y="216" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#155B43">a known job</text>
+        </g>
+        <!-- L1 -->
+        <g>
+          <rect x="576" y="150" width="260" height="92" rx="10" fill="#FBF2F4" stroke="rgba(188,42,82,0.22)" stroke-width="1"/>
+          <text x="594" y="194" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#761A36">&#x201C;It depends what</text>
+          <text x="594" y="216" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#761A36">we&#x2019;ve built by then&#x201D;</text>
+        </g>
+
+        <!-- ============ ROW 2 ============ -->
+        <!-- Q2 -->
+        <g>
+          <rect x="24" y="256" width="260" height="92" rx="10" fill="#F4F4F2" stroke="rgba(31,31,31,0.12)" stroke-width="1"/>
+          <text x="42" y="286" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="600" fill="#1F1F1F" letter-spacing="-0.3">What bends around it?</text>
+          <text x="42" y="312" font-family="Roboto, system-ui, sans-serif" font-size="13" fill="#4A4A4A">How much of our system</text>
+          <text x="42" y="330" font-family="Roboto, system-ui, sans-serif" font-size="13" fill="#4A4A4A">forms to fit this choice</text>
+        </g>
+        <!-- R2 -->
+        <g>
+          <rect x="300" y="256" width="260" height="92" rx="10" fill="#F2F8F4" stroke="rgba(29,158,117,0.22)" stroke-width="1"/>
+          <text x="318" y="300" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#155B43">Stays contained,</text>
+          <text x="318" y="322" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#155B43">touches little else</text>
+        </g>
+        <!-- L2 -->
+        <g>
+          <rect x="576" y="256" width="260" height="92" rx="10" fill="#FBF2F4" stroke="rgba(188,42,82,0.22)" stroke-width="1"/>
+          <text x="594" y="300" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#761A36">Prompts, data, habits</text>
+          <text x="594" y="322" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#761A36">all assume it</text>
+        </g>
+
+        <!-- ============ ROW 3 ============ -->
+        <!-- Q3 -->
+        <g>
+          <rect x="24" y="362" width="260" height="92" rx="10" fill="#F4F4F2" stroke="rgba(31,31,31,0.12)" stroke-width="1"/>
+          <text x="42" y="392" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="600" fill="#1F1F1F" letter-spacing="-0.3">Who holds the keys?</text>
+          <text x="42" y="418" font-family="Roboto, system-ui, sans-serif" font-size="13" fill="#4A4A4A">How much control sits</text>
+          <text x="42" y="436" font-family="Roboto, system-ui, sans-serif" font-size="13" fill="#4A4A4A">outside the room</text>
+        </g>
+        <!-- R3 -->
+        <g>
+          <rect x="300" y="362" width="260" height="92" rx="10" fill="#F2F8F4" stroke="rgba(29,158,117,0.22)" stroke-width="1"/>
+          <text x="318" y="406" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#155B43">Little, and cheap</text>
+          <text x="318" y="428" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#155B43">to walk away from</text>
+        </g>
+        <!-- L3 -->
+        <g>
+          <rect x="576" y="362" width="260" height="92" rx="10" fill="#FBF2F4" stroke="rgba(188,42,82,0.22)" stroke-width="1"/>
+          <text x="594" y="406" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#761A36">A vendor sets terms,</text>
+          <text x="594" y="428" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#761A36">pricing, direction</text>
+        </g>
+
+        <!-- ============ ROW 4 ============ -->
+        <!-- Q4 -->
+        <g>
+          <rect x="24" y="468" width="260" height="92" rx="10" fill="#F4F4F2" stroke="rgba(31,31,31,0.12)" stroke-width="1"/>
+          <text x="42" y="498" font-family="Poppins, system-ui, sans-serif" font-size="16" font-weight="600" fill="#1F1F1F" letter-spacing="-0.3">When is it wrong?</text>
+          <text x="42" y="524" font-family="Roboto, system-ui, sans-serif" font-size="13" fill="#4A4A4A">What would have to be</text>
+          <text x="42" y="542" font-family="Roboto, system-ui, sans-serif" font-size="13" fill="#4A4A4A">true for this to fail</text>
+        </g>
+        <!-- R4 -->
+        <g>
+          <rect x="300" y="468" width="260" height="92" rx="10" fill="#F2F8F4" stroke="rgba(29,158,117,0.22)" stroke-width="1"/>
+          <text x="318" y="512" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#155B43">Nothing realistic,</text>
+          <text x="318" y="534" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#155B43">safe to decide fast</text>
+        </g>
+        <!-- L4 -->
+        <g>
+          <rect x="576" y="468" width="260" height="92" rx="10" fill="#FBF2F4" stroke="rgba(188,42,82,0.22)" stroke-width="1"/>
+          <text x="594" y="512" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#761A36">Growth or new terms,</text>
+          <text x="594" y="534" font-family="Roboto, system-ui, sans-serif" font-size="14" fill="#761A36">it&#x2019;s a bet, not a call</text>
+        </g>
+
+        <!-- Footer caption -->
+        <text x="24" y="592" font-family="Roboto, system-ui, sans-serif" font-size="13" fill="#4A4A4A" font-style="italic">A short answer means reversible. An answer that makes the room go quiet means locked in.</text>
+      </svg>
+    </figure>
+
+    <h2 class="section"><span class="num">The sharpest tension</span>Where the two sides pull hardest: governance and security</h2>
+
+    <p>This is the sharpest tension in any architecture decision, and both sides usually pretend it is not there.</p>
+
+    <p>The architect wants boundaries: data controlled, access narrowed, vendors held at a distance. Every one of those is correct, and every one costs something the architect does not feel: slower to build, more expensive to run, fewer options. The owner feels exactly those costs, and pushes back, not out of recklessness but because the cost of caution is visible today while the risk is hypothetical and later. The architect is pricing a risk. The owner is pricing a delay. Both prices are real, just paid in different currencies, which is why the disagreement so often goes unspoken.</p>
+
+    <p>That silence is the failure, because a governance choice is the most irreversible architecture decision there is. Where data lives and who can reach it is poured into the foundation. Undoing it later is not a migration, it is a rebuild. A tension settled silently becomes a permanent feature of the business.</p>
+
+    <p>So make the trade out loud. The owner says what risk is being accepted and what it costs if it lands. The architect says what the safe version adds in delay or expense. Said openly, it is a decision the business made on purpose. Left to the architecture, it is one the business discovers it made, years later, when changing it is no longer cheap.</p>
+
+    <h2 class="section"><span class="num">The principle</span>How to actually make the choice</h2>
+
+    <p>There is no formula here, and any article that hands you one is selling something. What there is, is a principle: you do not avoid lock-in, you choose it on purpose, or you do not choose it at all.</p>
+
+    <p>Avoiding lock-in entirely is not an option. Every architecture decision hands some control to something outside the room, and a system built to depend on nothing depends on so little that it can barely do anything. The goal was never zero lock-in. The goal is that every lock-in in your system got there because someone looked at it, named what it would cost to reverse, and decided the payoff was worth it.</p>
+
+    <blockquote class="pull-quote">
+      <p>A lock-in chosen deliberately is a strategy. The same lock-in arrived at by drift is a liability that happens to be sitting in your foundation.</p>
+    </blockquote>
+
+    <p>That is the whole move. The same technical choice can be either. What separates them is whether anyone decided it.</p>
+
+    <p>So the principle is not &lsquo;reversible good, irreversible bad.&rsquo; Some of the best decisions a business makes are deeply irreversible, and that is fine, because they were made with the price in view. The principle is that the architect and the owner should be able to point at every locked-in part of their system and say what it buys and what it would cost to undo. The parts they can speak to are decisions. The parts they cannot are just things that happened.</p>
+
+    <h2 class="section"><span class="num">If it's already done</span>If you are already deep in it</h2>
+
+    <p>Most of this article assumes the decision is still ahead of you. For many readers it is not. The architecture is built, the dependencies are set, and some of them were never decided so much as drifted into. The eighteen-month question is not much use when the eighteen months have already passed.</p>
+
+    <p>It is still worth asking, just in a different tense. Not &lsquo;what would this cost to undo&rsquo; but &lsquo;what is already expensive to undo, and did we ever actually choose it.&rsquo; You cannot un-make those past decisions. You can do something more useful: find out which ones they are, before the next decision gets stacked on top of them.</p>
+
+    <p>The exercise is the same four questions, turned to face the present. Which parts of our system has everything else been built around. Who outside the room currently holds control, and over how much. What would have to change in our business for one of these choices to become the wrong one. And the honest one: which of these did we decide, and which did we just end up with.</p>
+
+    <p>What comes back will not be a clean map. In a system that has been running for a while, the dependencies are tangled into each other, and pulling on one moves three others. That is normal, and it is not a sign you did something wrong. It is the point. The goal of the exercise is not a tidy diagram, it is knowing where the knots are. You do not have to untangle them. You have to stop adding to them blindly. <strong>The worst lock-ins are not the expensive ones, they are the expensive ones nobody knew were there.</strong> Even a rough sense of where your system is knotted does not cost you anything, and it changes every decision that comes after it.</p>
+
+    <h2 class="section"><span class="num">The close</span>The decision under the decision</h2>
+
+    <p>Architecture sounds like a technical subject, and most of it is. But underneath the technical choices sits a business one that never gets named: how much of your future are you willing to commit, and to whom. That question does not belong to the architect alone, and it does not belong to the owner alone. It sits in the gap between them, and it gets answered either way, by conversation or by default.</p>
+
+    <p>The buy, build, wrap, or partner decision carries this same weight. Buying and wrapping both hand control to a vendor. The point was never to avoid that. It is to know, at the time, what you handed over and what it would cost to take back. <a href="buy-build-partner-ai-tooling.html">A separate piece walks through that decision in detail.</a></p>
+
+    <p>So the work is not to make every decision reversible. It is to make sure that every irreversible one was actually decided. An architecture you can speak to, point at any locked-in part and say what it buys and what it would cost to undo, is a business that knows what it has committed to. An architecture nobody can fully speak to is a set of commitments the business made without noticing. Same system. The only difference is whether anyone was in the room.</p>
+  </div>
+
+  <section class="faq-section" aria-labelledby="faq-title">
+    <span class="label-mono">Frequently asked questions</span>
+    <h2 id="faq-title">AI architecture lock-in &mdash; answered</h2>
+
+    <div class="faq-list">
+      <details class="faq-item">
+        <summary>What is AI architecture lock-in?</summary>
+        <div class="faq-answer">
+          <p>Lock-in is the cost of changing your mind about an architecture decision later. A decision is reversible if undoing it would take a known, bounded effort. It is locked in if undoing it would force you to rebuild things stacked on top of it. The same technical choice can be either, depending on how much else has grown around it.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How do I tell a reversible AI architecture decision from a locked-in one?</summary>
+        <div class="faq-answer">
+          <p>Ask one question out loud: if we had to undo this in eighteen months, what would it take. A short, concrete answer means reversible. A long answer, or one that starts with &ldquo;it depends what else we've built by then&rdquo;, means locked in.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What are the four questions to ask before an AI architecture decision?</summary>
+        <div class="faq-answer">
+          <p>One, if we had to undo this in eighteen months, what would it take. Two, what of ours gets shaped around this choice. Three, who else holds the keys. Four, what would have to be true for this to be the wrong choice. Asked together, they turn an architecture recommendation into a decision the business owner can actually weigh.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>How should architects and business owners decide AI architecture together?</summary>
+        <div class="faq-answer">
+          <p>By making the trade out loud. The architect prices a future risk; the business owner prices a present delay. Both are real, paid in different currencies. The goal isn't avoiding lock-in &mdash; every system has some. The goal is that every lock-in got there on purpose, with both sides knowing what it buys and what it would cost to undo.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>What if we are already locked into an AI architecture we didn't fully decide on?</summary>
+        <div class="faq-answer">
+          <p>Run the same four questions in the present tense. Which parts has everything been built around. Who outside the room holds control, and over how much. What would have to change for one of these choices to become wrong. And honestly: which of these did we actually decide, and which did we end up with. You don't have to untangle the knots &mdash; you have to stop adding to them blindly.</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Is it bad to be locked into an AI vendor or framework?</summary>
+        <div class="faq-answer">
+          <p>Not in itself. Some of the best decisions a business makes are deeply irreversible. The principle isn't reversible-good, irreversible-bad. It is that every locked-in part of your system should be something you can point at and say what it buys, and what it would cost to undo. The parts you can speak to are decisions. The parts you can't are just things that happened.</p>
+        </div>
+      </details>
+    </div>
+  </section>
+
+  <aside class="article-cta" aria-label="Talk to AIHLPR about an architecture decision">
+    <div>
+      <span class="label-mono">Working through this</span>
+      <h3>Stuck deciding what to lock in?</h3>
+      <p>If you're staring at an architecture decision and not sure which kind it is, that's the conversation we run with teams every week. Two-week diagnostic, no commitment beyond it.</p>
+    </div>
+    <a href="../Home.html#contact" class="cta-btn">Book a working session <span class="arrow">&rarr;</span></a>
+  </aside>
+
+  <aside class="about-author" itemscope itemtype="https://schema.org/Person" aria-label="About the author">
+    <div class="aa-avatar" aria-hidden="true">BR</div>
+    <div>
+      <span class="label-mono">About the author</span>
+      <p class="aa-name" itemprop="name">Brinda Rajendran</p>
+      <p class="aa-bio" itemprop="description">
+        Life sciences by training, technologist by curiosity. Brinda works at the intersection of enterprise AI and operational practice, with a long-standing interest in how new technologies actually take root inside organisations. She writes about the parts of AI that don't show up in demos: workflow fit, governance, adoption, and the systems that hold it all together. She is an active member of <a href="https://womeninai.co" target="_blank" rel="noopener" itemprop="memberOf">Women in AI</a>, where she contributes to community building and supporting women working across the field.
+      </p>
+      <a class="aa-link" href="https://www.linkedin.com/in/brinda-rajendran/" target="_blank" rel="noopener" itemprop="url">
+        Connect on LinkedIn <span class="arrow">&rarr;</span>
+      </a>
+    </div>
+  </aside>
+</article>
+
+</main>
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/aihlpr-logo-transparent.png" alt="AIHLPR">
+        <p>Operational AI partner. Building AI systems that fit how organisations already work, from one workflow to the whole organisation.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Capabilities</h5>
+        <ul>
+          <li><a href="../capabilities/ai-applications-and-platforms.html">AI Products &amp; Platforms</a></li>
+          <li><a href="../capabilities/ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a></li>
+          <li><a href="../capabilities/enterprise-ai.html">Enterprise AI</a></li>
+          <li><a href="../capabilities/prototype-to-production.html">Prototype to Production</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Insights</h5>
+        <ul>
+          <li><a href="index.html">All insights</a></li>
+          <li><a href="index.html#technical-ai">Technical AI</a></li>
+          <li><a href="index.html#business-ai">Business AI</a></li>
+          <li><a href="index.html#plain-talk">Plain talk</a></li>
+          <li><a href="index.html#notes-from-production">Notes from production</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:brinda@moralitybytes.eu">brinda@moralitybytes.eu</a></li>
+          <li>Wibautstraat 129, Amsterdam</li>
+          <li>EU based &middot; NDA on request</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>AIHLPR &middot; A practice of MoralityBytes</span>
+      <span>&copy; 2026 &middot; AI engineering, built to last</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  const nav = document.getElementById('siteNav');
+  const burger = document.getElementById('navBurger');
+  const menu = document.getElementById('navMobileMenu');
+  if (!nav || !burger || !menu) return;
+  function setOpen(open) {
+    nav.classList.toggle('is-open', open);
+    burger.setAttribute('aria-expanded', String(open));
+    menu.setAttribute('aria-hidden', String(!open));
+    burger.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  }
+  burger.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
+  menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+})();
+</script>
+</body>
+</html>
