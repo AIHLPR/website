@@ -397,22 +397,24 @@
     aspect-ratio: 16 / 9;
     border-radius: 10px;
     margin-bottom: 18px;
-    background: var(--ink);
+    background: #373636;
     position: relative;
     overflow: hidden;
   }
+  /* Brand-colour gradient band at the bottom of each tile.
+     Per-section colour set via --tile-accent (see .post.* rules below). */
   .post-thumb::after {
     content: '';
     position: absolute; inset: 0;
-    background: var(--thumb-grad, linear-gradient(135deg, #1F1F1F, #4A4A4A));
-    opacity: 1;
+    background: linear-gradient(to top, var(--tile-accent, #1F1F1F) -10%, transparent 55%);
+    z-index: 2;
   }
   .post-thumb .thumb-pattern {
     position: absolute; inset: 0;
     background:
-      repeating-linear-gradient(0deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 20px),
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.06) 0 1px, transparent 1px 20px);
-    z-index: 2;
+      repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 26px);
+    z-index: 1;
   }
   .post-thumb .thumb-glyph {
     position: absolute; inset: 0;
@@ -424,10 +426,11 @@
     text-align: center;
     padding: 0 12px;
   }
-  .post.tech .post-thumb { --thumb-grad: linear-gradient(135deg, #3478E5 0%, #1F1F1F 100%); }
-  .post.biz  .post-thumb { --thumb-grad: linear-gradient(135deg, #1D9E75 0%, #1F1F1F 100%); }
-  .post.thought .post-thumb { --thumb-grad: linear-gradient(135deg, #9B59B6 0%, #1F1F1F 100%); }
-  .post.exp .post-thumb { --thumb-grad: linear-gradient(135deg, #E91E63 0%, #1F1F1F 100%); }
+  /* Per-section brand colours (no teal — picked from the 4 brand colours requested) */
+  .post.tech    .post-thumb { --tile-accent: #3478E5; }  /* blue     — Technical AI */
+  .post.biz     .post-thumb { --tile-accent: #9B59B6; }  /* purple   — Business AI */
+  .post.thought .post-thumb { --tile-accent: #E91E63; }  /* pink     — Plain talk */
+  .post.exp     .post-thumb { --tile-accent: #7E6CE0; }  /* lavender — Notes from production */
 
   .post-meta {
     display: flex; align-items: center; gap: 8px; flex-wrap: wrap;
@@ -444,10 +447,10 @@
     font-size: 9.5px;
     letter-spacing: 0.14em;
   }
-  .post.tech .post-meta .cat { background: var(--blue); }
-  .post.biz  .post-meta .cat { background: var(--teal); }
-  .post.thought .post-meta .cat { background: var(--purple); }
-  .post.exp .post-meta .cat { background: var(--pink); }
+  .post.tech    .post-meta .cat { background: var(--blue); }
+  .post.biz     .post-meta .cat { background: var(--purple); }
+  .post.thought .post-meta .cat { background: var(--pink); }
+  .post.exp     .post-meta .cat { background: var(--lavender); }
   .post-meta .dot { width: 3px; height: 3px; border-radius: 999px; background: var(--ink-muted); opacity: 0.6; }
   .post h3 {
     font-size: 19px;
