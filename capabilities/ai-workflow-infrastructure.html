@@ -651,10 +651,12 @@
   main section.archlayers .label-mono .dot {
     box-shadow: 0 0 0 5px #0b0b0c;
   }
-  /* Hide on narrow screens — alignment-dependent */
-  @media (max-width: 880px) {
-    .flow-spine { display: none; }
-  }
+  /* Flow-spine: hidden everywhere. Decorative vertical line was
+     bleeding through H1/H2 titles because the dots sit in the same
+     x-range as text content. Keeping the JS + DOM so it can be
+     reinstated later if reworked into the gutter, but the line
+     itself does not render. */
+  .flow-spine { display: none; }
 </style>
 
 <div class="flow-spine" aria-hidden="true"></div>
