@@ -1191,24 +1191,35 @@
     box-shadow: 0 10px 24px rgba(0, 0, 0, 0.10);
     border-color: var(--hairline-strong);
   }
+  /* Insight tile — matches the per-section brand-band system on the
+     /insights index. Base dark grey, subtle grid pattern, brand-colour
+     gradient band at the bottom set via --tile-accent per .insight.is-* */
   .insight .insight-image {
     aspect-ratio: 4 / 3;
     border-radius: 10px;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: #373636;
     overflow: hidden;
     position: relative;
   }
-  .insight .insight-image::after {
-    content: "Image placeholder";
-    position: absolute;
-    bottom: 10px; left: 14px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: rgba(255, 255, 255, 0.4);
+  .insight .insight-image::before {
+    content: '';
+    position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(0deg,  rgba(255,255,255,0.05) 0 1px, transparent 1px 26px),
+      repeating-linear-gradient(90deg, rgba(255,255,255,0.05) 0 1px, transparent 1px 26px);
+    z-index: 1;
   }
+  .insight .insight-image::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: linear-gradient(to top, var(--tile-accent, #1F1F1F) -10%, transparent 55%);
+    z-index: 2;
+  }
+  /* Per-section brand colours (kept in sync with /insights index) */
+  .insight.is-tech   .insight-image { --tile-accent: #3478E5; }  /* blue     — Technical AI */
+  .insight.is-biz    .insight-image { --tile-accent: #9B59B6; }  /* purple   — Business AI */
+  .insight.is-plain  .insight-image { --tile-accent: #E91E63; }  /* pink     — Plain talk */
+  .insight.is-notes  .insight-image { --tile-accent: #7E6CE0; }  /* lavender — Notes from production */
   .insight .insight-meta {
     display: flex; gap: 12px; align-items: center;
     font-family: var(--font-mono);
@@ -2632,7 +2643,7 @@
     </div>
 
     <div class="insights-grid">
-      <a class="insight" href="insights/index.html#plain-talk">
+      <a class="insight is-plain" href="insights/index.html#plain-talk">
         <div class="insight-image"></div>
         <div class="insight-meta">
           <span>Plain talk</span>
@@ -2642,7 +2653,7 @@
         <h3>What changes when AI sits inside the design tool.</h3>
         <p>An architect modelled a commercial massing study by prompt, in Rhino, under hard urban constraints. Here is what we learned about where AI helps and where it gets out of the way.</p>
       </a>
-      <a class="insight" href="insights/how-to-score-ai-use-case.html">
+      <a class="insight is-biz" href="insights/how-to-score-ai-use-case.html">
         <div class="insight-image"></div>
         <div class="insight-meta">
           <span>Business AI</span>
@@ -2652,7 +2663,7 @@
         <h3>How to score an AI use case before you build it.</h3>
         <p>Most AI projects fail because they were the wrong project. A short framework for scoring impact against feasibility, with the questions we ask before we touch any code.</p>
       </a>
-      <a class="insight" href="insights/ai-architecture-lock-in.html">
+      <a class="insight is-biz" href="insights/ai-architecture-lock-in.html">
         <div class="insight-image"></div>
         <div class="insight-meta">
           <span>Business AI</span>
