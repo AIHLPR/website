@@ -181,10 +181,11 @@
     border-top: 1px solid var(--hairline);
   }
   .hero-stats .stat {
-    padding: 20px 24px 0 0;
+    padding: 22px 24px 22px 24px;
     border-right: 1px solid var(--hairline);
   }
-  .hero-stats .stat:last-child { border-right: none; }
+  .hero-stats .stat:first-child { padding-left: 0; }
+  .hero-stats .stat:last-child { border-right: none; padding-right: 0; }
   .hero-stats .stat .num {
     font-family: var(--font-display); font-weight: 600;
     font-size: clamp(28px, 2.8vw, 36px);
