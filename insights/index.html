@@ -525,19 +525,42 @@
     border-style: dashed;
     border-color: var(--hairline-strong);
   }
-  .post.is-coming .post-thumb { opacity: 0.78; }
-  .post.is-coming .post-foot .read { color: var(--ink-muted); }
+  /* Fade only the body of "coming soon" cards — leave the In-progress
+     and Coming-soon labels at full strength so they still draw the eye. */
+  .post.is-coming .insight-net,
+  .post.is-coming .post-thumb,
+  .post.is-coming .post-meta,
+  .post.is-coming h3,
+  .post.is-coming p,
+  .post.is-coming .post-foot > span:first-child {
+    opacity: 0.38;
+    transition: opacity 220ms var(--ease);
+  }
+  .post.is-coming:hover .insight-net,
+  .post.is-coming:hover .post-thumb,
+  .post.is-coming:hover .post-meta,
+  .post.is-coming:hover h3,
+  .post.is-coming:hover p,
+  .post.is-coming:hover .post-foot > span:first-child {
+    opacity: 0.72;
+  }
+  .post.is-coming .post-foot .read {
+    color: var(--pink);
+    font-weight: 500;
+    opacity: 1;
+  }
   .post.is-coming .badge-soon {
     position: absolute; top: 14px; right: 14px;
     z-index: 4;
-    background: rgba(255,255,255,0.94);
-    color: var(--ink);
+    background: rgba(233, 30, 99, 0.10);
+    color: var(--pink);
     padding: 5px 10px;
     border-radius: 999px;
     font-family: var(--font-mono); font-size: 9.5px;
     letter-spacing: 0.16em; text-transform: uppercase;
-    font-weight: 500;
-    border: 1px solid var(--hairline);
+    font-weight: 600;
+    border: 1px solid rgba(233, 30, 99, 0.30);
+    opacity: 1;
   }
 
   /* ===== Newsletter CTA ===== */
