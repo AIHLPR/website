@@ -251,37 +251,62 @@
     align-items: center;
   }
   @media (max-width: 880px) { .featured-card { grid-template-columns: 1fr; } }
+  /* Featured tile — same dark + brand-glow + constellation system as the
+     regular .post cards, just bigger. Section is set via --accent on the
+     .featured-visual itself (default: purple for Business AI). */
   .featured-visual {
+    --accent: #9B59B6;
     aspect-ratio: 4 / 3;
     border-radius: 16px;
     background: var(--ink);
-    background-image:
-      radial-gradient(at 22% 18%, rgba(233,30,99,0.55) 0, transparent 45%),
-      radial-gradient(at 78% 26%, rgba(155,89,182,0.55) 0, transparent 45%),
-      radial-gradient(at 60% 80%, rgba(87,148,234,0.55) 0, transparent 50%),
-      radial-gradient(at 18% 80%, rgba(126,108,224,0.45) 0, transparent 50%);
     position: relative;
     overflow: hidden;
-    border: 1px solid var(--hairline);
+    isolation: isolate;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
   }
-  .featured-visual::after {
+  /* Per-section accent override on the featured tile (matches /insights cards) */
+  .featured-visual.is-tech   { --accent: #7E6CE0; }
+  .featured-visual.is-biz    { --accent: #9B59B6; }
+  .featured-visual.is-plain  { --accent: #E91E63; }
+  .featured-visual.is-notes  { --accent: #3478E5; }
+  /* Brand-colour corner glow */
+  .featured-visual::before {
     content: '';
     position: absolute; inset: 0;
-    background:
-      linear-gradient(180deg, transparent 55%, rgba(0,0,0,0.45) 100%),
-      repeating-linear-gradient(0deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 24px),
-      repeating-linear-gradient(90deg, rgba(255,255,255,0.04) 0 1px, transparent 1px 24px);
+    background: radial-gradient(70% 65% at 90% 100%, color-mix(in oklab, var(--accent) 38%, transparent), transparent 65%);
+    z-index: 0;
+    pointer-events: none;
+  }
+  /* Faint constellation overlay, tinted by --accent */
+  .featured-visual .insight-net {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    color: color-mix(in oklab, var(--accent) 70%, rgba(255,255,255,0.15));
+    opacity: 0.5;
+    z-index: 0;
+    pointer-events: none;
+  }
+  .featured-visual:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -22px rgba(0,0,0,0.45);
+    border-color: color-mix(in oklab, var(--accent) 45%, rgba(255,255,255,0.10));
   }
   .featured-visual .fv-label {
     position: absolute; top: 22px; left: 22px;
+    z-index: 1;
+    display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--font-mono); font-size: 10.5px;
     letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--white);
-    padding: 6px 11px;
+    color: var(--accent);
+    padding: 6px 12px;
     border-radius: 999px;
-    background: rgba(0,0,0,0.4);
+    background: rgba(0,0,0,0.45);
     backdrop-filter: blur(6px);
-    z-index: 2;
+    border: 1px solid color-mix(in oklab, var(--accent) 35%, transparent);
+  }
+  .featured-visual .fv-label::before {
+    content: ''; width: 7px; height: 7px; border-radius: 999px; background: currentColor;
   }
   .featured-meta {
     display: flex; align-items: center; gap: 10px;
@@ -733,7 +758,8 @@
   <section class="featured" id="all">
     <div class="container">
       <div class="featured-card">
-        <a href="how-to-score-ai-use-case.html" class="featured-visual" aria-label="Read featured article">
+        <a href="how-to-score-ai-use-case.html" class="featured-visual is-biz" aria-label="Read featured article">
+          <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
           <span class="fv-label">Featured &middot; Business AI</span>
         </a>
         <div>

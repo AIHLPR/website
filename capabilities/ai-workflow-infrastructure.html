@@ -799,10 +799,13 @@
   <path d="M 460 348 L 460 408 L 880 408" stroke="#E63946" stroke-width="0.9" fill="none" stroke-dasharray="3 3" opacity="0.55"/>
   <text x="495" y="368" font-size="8.5" fill="#E63946" letter-spacing="0.12em" opacity="0.85">on SLA breach</text>
 
-  <!-- Animated tracer dot moving along the success path -->
+  <!-- Animated tracer dot moving along the success path.
+       Waypoints match the exact L-shaped connectors between boxes
+       (TRIGGER → CLASSIFY → ENRICH → DRAFT → HUMAN REVIEW → CRM UPDATED)
+       so the dot rides the purple lines instead of cutting diagonals. -->
   <circle r="3.5" fill="#9B59B6">
     <animateMotion dur="6s" repeatCount="indefinite" begin="0s"
-      path="M 110 56 L 110 140 L 110 216 L 280 240 L 520 220 L 590 244 L 460 290 L 540 320 L 700 320"/>
+      path="M 110 56 L 110 240 L 510 240 L 510 220 L 590 220 L 590 268 L 460 268 L 460 320 L 700 320"/>
   </circle>
 </svg>
       <div class="hero-visual-caption">
