@@ -1371,18 +1371,16 @@
   .apps-section .block-lede { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--ink-soft); line-height: 1.7; max-width: 50ch; }
 
   .apps-list { display: flex; flex-direction: column; }
-  .app-row { display: grid; grid-template-columns: 110px 1fr 1.5fr; gap: 36px; align-items: start; padding: 32px 0; border-top: 1px solid var(--hairline); position: relative; }
-  .app-row .app-num { padding-top: 6px; }
-  .app-row > div:last-of-type { padding-top: 4px; }
+  .app-row { display: grid; grid-template-columns: 150px 1fr 1.5fr; gap: 28px; align-items: baseline; padding: 32px 0; border-top: 1px solid var(--hairline); position: relative; }
   .app-row:last-child { border-bottom: 1px solid var(--hairline); }
-  .app-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-muted); }
-  .app-num b { display: block; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 4px; letter-spacing: 0; font-family: var(--font-display); }
+  .app-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-muted); display: flex; align-items: baseline; gap: 12px; }
+  .app-num b { display: inline; font-size: 13px; font-weight: 500; color: var(--ink); margin: 0; letter-spacing: 0.14em; text-transform: uppercase; font-family: var(--font-mono); }
+  .app-num b::before { content: "· "; color: var(--ink-muted); margin-right: 2px; }
   .app-row h3 { font-size: clamp(20px, 1.8vw, 24px); max-width: 18ch; }
   .app-row p { color: var(--ink-soft); font-size: 14.5px; }
   .app-row .app-stack { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-muted); margin-top: 10px; }
   .app-row .app-stack b { color: var(--ink); font-weight: 500; margin-right: 4px; }
-  .app-row .app-arrow { position: absolute; right: 0; top: 30px; color: var(--ink-muted); opacity: 0; transition: opacity 200ms var(--ease), transform 200ms var(--ease); }
-  .app-row:hover .app-arrow { opacity: 1; transform: translateX(4px); }
+  .app-row .app-arrow { display: none; }
   @media (max-width: 760px) {
     .app-row { grid-template-columns: 1fr; gap: 10px; padding: 22px 0; }
     .app-row h3 { max-width: 100%; }
