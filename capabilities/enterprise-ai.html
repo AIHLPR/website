@@ -1350,35 +1350,17 @@
   .pillar-aside li::before { content: ""; width: 4px; height: 4px; background: var(--ink-muted); border-radius: 999px; }
   .pillar-row:hover .pillar-aside li::before { background: var(--accent); }
 
-  .pillars-carousel { display: none; }
   @media (max-width: 760px) {
-    .pillars-spine { display: none; }
-    .pillars-carousel {
-      display: block;
-      margin: 0 calc(-1 * var(--gutter));
-      padding: 0 var(--gutter) 8px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-    }
-    .pillars-carousel-track { display: flex; gap: 14px; }
-    .pillars-carousel .pillar-card {
-      flex: 0 0 78%;
-      scroll-snap-align: start;
-      background: var(--white);
-      border: 1px solid var(--hairline);
-      border-radius: 12px;
-      padding: 20px 20px 22px;
-      display: flex; flex-direction: column; gap: 12px;
-      min-height: 220px;
-    }
-    .pillar-card .p-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--accent); }
-    .pillar-card h4 { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.015em; }
-    .pillar-card p { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
-    .pillar-card .p-tags { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 1px dashed var(--hairline); }
-    .pillar-card .p-tags span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); padding: 3px 8px; border: 1px solid var(--hairline); border-radius: 4px; }
-    .pillar-scroll-hint { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-top: 14px; display: flex; align-items: center; gap: 8px; }
-    .pillar-scroll-hint::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+    .pillars-spine { padding-left: 52px; }
+    .pillars-spine::before { left: 14px; }
+    .pillar-row { grid-template-columns: 1fr; gap: 14px; padding: 22px 0 24px; }
+    .pillar-row::before { left: -42px; top: 26px; }
+    .pillar-row::after { left: -32px; top: 30px; width: 18px; }
+    .pillar-num { left: -52px; top: 24px; }
+    .pillar-body h3 { font-size: 21px; }
+    .pillar-body p { font-size: 14.5px; max-width: 100%; }
+    .pillar-aside { padding-top: 4px; }
+    .pillar-aside ul { flex-direction: row; flex-wrap: wrap; gap: 6px 14px; }
   }
 
   /* ===================== 02 · APPLICATIONS — alternating offset row list ===================== */
@@ -1389,7 +1371,9 @@
   .apps-section .block-lede { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--ink-soft); line-height: 1.7; max-width: 50ch; }
 
   .apps-list { display: flex; flex-direction: column; }
-  .app-row { display: grid; grid-template-columns: 80px 1fr 1.5fr; gap: 32px; align-items: center; padding: 28px 0; border-top: 1px solid var(--hairline); position: relative; }
+  .app-row { display: grid; grid-template-columns: 110px 1fr 1.5fr; gap: 36px; align-items: start; padding: 32px 0; border-top: 1px solid var(--hairline); position: relative; }
+  .app-row .app-num { padding-top: 6px; }
+  .app-row > div:last-of-type { padding-top: 4px; }
   .app-row:last-child { border-bottom: 1px solid var(--hairline); }
   .app-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-muted); }
   .app-num b { display: block; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 4px; letter-spacing: 0; font-family: var(--font-display); }
@@ -1423,10 +1407,13 @@
   .integ-perm { display: flex; flex-direction: column; gap: 4px; }
   .integ-perm span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); padding: 3px 8px; border: 1px solid var(--hairline); border-radius: 4px; display: inline-block; align-self: flex-start; }
   @media (max-width: 880px) {
-    .integ-row { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
+    .integ-row { grid-template-columns: 1fr; gap: 10px; padding: 22px 20px; }
     .integ-row:first-child { display: none; }
     .integ-row + .integ-row { border-top: 1px solid var(--hairline); }
-    .integ-perm { flex-direction: row; flex-wrap: wrap; }
+    .integ-examples { display: none; }
+    .integ-perm { display: none; }
+    .integ-system { font-size: 17px; }
+    .integ-role { font-size: 14.5px; line-height: 1.6; }
   }
 
   /* ===================== BREATH SENTENCE BAND ===================== */
@@ -1435,37 +1422,6 @@
   .breath-sentence p span { color: var(--ink-muted); }
   .breath-sentence .bs-attr { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-top: 24px; }
 
-  /* ===================== GENERATIVE — mobile carousel only ===================== */
-  .gen-carousel { display: none; }
-  @media (max-width: 760px) {
-    .genai-stack .gs-stack { display: none; }
-    .gen-carousel {
-      display: block;
-      margin: 0 calc(-1 * var(--gutter));
-      padding: 0 var(--gutter) 8px;
-      overflow-x: auto;
-      -webkit-overflow-scrolling: touch;
-      scroll-snap-type: x mandatory;
-    }
-    .gen-carousel-track { display: flex; gap: 14px; }
-    .gen-carousel .gen-card {
-      flex: 0 0 78%;
-      scroll-snap-align: start;
-      background: var(--white);
-      border: 1px solid var(--hairline);
-      border-radius: 12px;
-      padding: 20px 20px 22px;
-      display: flex; flex-direction: column; gap: 12px;
-      min-height: 220px;
-    }
-    .gen-card .g-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--accent); }
-    .gen-card h4 { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.015em; }
-    .gen-card p { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
-    .gen-card .g-tags { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 1px dashed var(--hairline); }
-    .gen-card .g-tags span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); padding: 3px 8px; border: 1px solid var(--hairline); border-radius: 4px; }
-    .gen-scroll-hint { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-top: 14px; display: flex; align-items: center; gap: 8px; }
-    .gen-scroll-hint::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
-  }
 
 </style>
 
@@ -2112,20 +2068,6 @@
       </div>
     </div>
 
-    <!-- Mobile: Horizontal carousel -->
-    <div class="pillars-carousel" id="pillarsCarousel">
-      <div class="pillars-carousel-track">
-        <article class="pillar-card"><span class="p-num">01</span><h4>Data management</h4><p>Right data, right user, right moment.</p><div class="p-tags"><span>Pipelines</span><span>Catalog</span></div></article>
-        <article class="pillar-card"><span class="p-num">02</span><h4>Training &amp; fine-tuning</h4><p>Adapt general models to your domain.</p><div class="p-tags"><span>Fine-tuning</span><span>Eval</span></div></article>
-        <article class="pillar-card"><span class="p-num">03</span><h4>Model registry</h4><p>What is in prod, when it changed, how it performed.</p><div class="p-tags"><span>Versioning</span><span>Lineage</span></div></article>
-        <article class="pillar-card"><span class="p-num">04</span><h4>MLOps &amp; LLMOps</h4><p>CI/CD for models. Drift, eval gates, lifecycle.</p><div class="p-tags"><span>CI/CD</span><span>Gates</span></div></article>
-        <article class="pillar-card"><span class="p-num">05</span><h4>Monitoring</h4><p>Hallucinations, latency, cost, drift. In real time.</p><div class="p-tags"><span>Drift</span><span>Feedback</span></div></article>
-        <article class="pillar-card"><span class="p-num">06</span><h4>Generative AI</h4><p>LLMs, RAG, agents inside your boundaries.</p><div class="p-tags"><span>LLM</span><span>RAG</span></div></article>
-        <article class="pillar-card"><span class="p-num">07</span><h4>Governance</h4><p>RBAC, policy, audit, override gates.</p><div class="p-tags"><span>RBAC</span><span>Audit</span></div></article>
-        <article class="pillar-card"><span class="p-num">08</span><h4>Multi-cloud</h4><p>AWS, Azure, GCP, on-prem, sovereign EU.</p><div class="p-tags"><span>EU</span><span>On-prem</span></div></article>
-      </div>
-      <div class="pillar-scroll-hint">Swipe &rarr; 8 disciplines</div>
-    </div>
   </div>
 </section>
 
@@ -2923,17 +2865,6 @@
       </div>
     </div>
 
-    <!-- Mobile: Horizontal carousel of the 5 generative capabilities -->
-    <div class="gen-carousel" id="genCarousel">
-      <div class="gen-carousel-track">
-        <article class="gen-card"><span class="g-num">01</span><h4>RAG</h4><p>The model answers from your data, not its training set. Every answer carries source attribution.</p><div class="g-tags"><span>Vector</span><span>Retrieval</span><span>LLM</span></div></article>
-        <article class="gen-card"><span class="g-num">02</span><h4>Fine-tuning</h4><p>Adapt open or closed models on your documents, decisions, voice. The model speaks your language.</p><div class="g-tags"><span>LoRA</span><span>Eval</span><span>Registry</span></div></article>
-        <article class="gen-card"><span class="g-num">03</span><h4>Agents</h4><p>Long-running AI processes that carry tasks across systems and hand back to a person when judgement is needed.</p><div class="g-tags"><span>Tools</span><span>Planner</span><span>HIL</span></div></article>
-        <article class="gen-card"><span class="g-num">04</span><h4>Vector search</h4><p>Find by meaning, not keywords. Documents, prior decisions, customer cases, searchable by what they mean.</p><div class="g-tags"><span>pgvector</span><span>Pinecone</span></div></article>
-        <article class="gen-card"><span class="g-num">05</span><h4>Multi-modal</h4><p>Vision classifies and extracts. Speech transcribes. Language reasons. All under one governance frame.</p><div class="g-tags"><span>CLIP</span><span>Whisper</span><span>LLM</span></div></article>
-      </div>
-      <div class="gen-scroll-hint">Swipe &rarr; 5 capabilities</div>
-    </div>
   </div>
 </section>
 
