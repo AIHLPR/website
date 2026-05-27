@@ -1371,19 +1371,16 @@
   .apps-section .block-lede { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--ink-soft); line-height: 1.7; max-width: 50ch; }
 
   .apps-list { display: flex; flex-direction: column; }
-  .app-row { display: grid; grid-template-columns: 150px 1fr 1.5fr; gap: 28px; align-items: baseline; padding: 32px 0; border-top: 1px solid var(--hairline); position: relative; }
+  .app-row { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; align-items: baseline; padding: 36px 0; border-top: 1px solid var(--hairline); }
   .app-row:last-child { border-bottom: 1px solid var(--hairline); }
-  .app-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-muted); display: flex; align-items: baseline; gap: 12px; }
-  .app-num b { display: inline; font-size: 13px; font-weight: 500; color: var(--ink); margin: 0; letter-spacing: 0.14em; text-transform: uppercase; font-family: var(--font-mono); }
-  .app-num b::before { content: "· "; color: var(--ink-muted); margin-right: 2px; }
-  .app-row h3 { font-size: clamp(20px, 1.8vw, 24px); max-width: 18ch; }
-  .app-row p { color: var(--ink-soft); font-size: 14.5px; }
-  .app-row .app-arrow { display: none; }
+  .app-row h3 { font-size: clamp(22px, 1.9vw, 26px); max-width: 22ch; letter-spacing: -0.02em; }
+  .app-row h3 .app-num { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; color: var(--ink-muted); margin-right: 8px; font-weight: 400; display: inline-block; vertical-align: 2px; }
+  .app-row p { color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
+  .app-row .app-tags { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--ink-muted); margin-top: 14px; }
   @media (max-width: 760px) {
-    .app-row { grid-template-columns: 1fr; gap: 10px; padding: 22px 0; }
-    .app-row h3 { max-width: 100%; }
-    .app-num { display: flex; align-items: baseline; gap: 14px; }
-    .app-num b { display: inline; font-size: 13px; margin: 0; }
+    .app-row { grid-template-columns: 1fr; gap: 12px; padding: 26px 0; }
+    .app-row h3 { max-width: 100%; font-size: 21px; }
+    .app-row p { font-size: 14.5px; }
   }
 
   /* ===================== 04 · INFRASTRUCTURE (data table card) ===================== */
@@ -2090,60 +2087,40 @@
   <div class="container">
     <div class="sec-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>02 &middot; Applications</span>
-        <h2>Where enterprise AI lives.</h2>
+        <span class="label-mono"><span class="dot"></span>02 &middot; Operational Applications</span>
+        <h2>Where AI becomes part of enterprise workflows.</h2>
       </div>
-      <p class="block-lede">The shape of an engagement varies, the engineering is consistent. These are the kinds of work we take on most often.</p>
+      <p class="block-lede">Different operational environments require different workflows, integrations, and controls, while the engineering principles underneath remain consistent.</p>
     </div>
 
     <div class="apps-list">
       <div class="app-row">
-        <div class="app-num">01<b>Vision</b></div>
-        <h3>Asset operations &amp; classification.</h3>
+        <h3><span class="app-num">01 &middot;</span> Asset operations &amp; classification.</h3>
         <div>
           <p>A vision model classifies marketing assets, products, or documents. A workflow layer routes for review. The system handles volume, people handle judgement.</p>
+          <p class="app-tags">Vision &middot; classification &middot; routing &middot; review queues</p>
         </div>
-        <span class="app-arrow">&rarr;</span>
       </div>
       <div class="app-row">
-        <div class="app-num">02<b>Knowledge</b></div>
-        <h3>Document intelligence.</h3>
+        <h3><span class="app-num">02 &middot;</span> Document intelligence.</h3>
         <div>
-          <p>Extract, classify, and search across contracts, policies, SOPs, prior decisions. AI answers questions and cites the source so people can verify before acting.</p>
+          <p>Extract, classify, and search across contracts, policies, SOPs, and prior decisions. AI answers questions and cites the source so people can verify before acting.</p>
+          <p class="app-tags">Retrieval &middot; OCR &middot; citations &middot; access control</p>
         </div>
-        <span class="app-arrow">&rarr;</span>
       </div>
       <div class="app-row">
-        <div class="app-num">03<b>Service</b></div>
-        <h3>Customer service intelligence.</h3>
+        <h3><span class="app-num">03 &middot;</span> Customer service intelligence.</h3>
         <div>
           <p>Triage tickets, draft responses, route escalations, monitor sentiment across languages. Agents stay in the loop. Volume scales without proportional headcount.</p>
+          <p class="app-tags">Workflow agents &middot; escalation &middot; multilingual &middot; sentiment</p>
         </div>
-        <span class="app-arrow">&rarr;</span>
       </div>
       <div class="app-row">
-        <div class="app-num">04<b>Research</b></div>
-        <h3>R&amp;D acceleration.</h3>
+        <h3><span class="app-num">04 &middot;</span> R&amp;D acceleration.</h3>
         <div>
-          <p>Mine prior research, prior patents, prior trials. Surface relevant, summarise decided, flag missing. Researchers spend more time researching.</p>
+          <p>Mine prior research, patents, and trial data. Surface relevant findings, summarise decisions, and identify gaps so researchers spend more time researching.</p>
+          <p class="app-tags">Retrieval &middot; summarisation &middot; knowledge search &middot; synthesis</p>
         </div>
-        <span class="app-arrow">&rarr;</span>
-      </div>
-      <div class="app-row">
-        <div class="app-num">05<b>Decision</b></div>
-        <h3>Decision support &amp; forecasting.</h3>
-        <div>
-          <p>Predict the next move. Demand, churn, payment timing, inventory pressure, support volume. AI prepares the recommendation, a person signs it off.</p>
-        </div>
-        <span class="app-arrow">&rarr;</span>
-      </div>
-      <div class="app-row">
-        <div class="app-num">06<b>Operations</b></div>
-        <h3>Operations intelligence.</h3>
-        <div>
-          <p>Across approvals, finance, procurement, compliance, AI handles lookup, prep, routing. People keep the decision. Every action recorded.</p>
-        </div>
-        <span class="app-arrow">&rarr;</span>
       </div>
     </div>
   </div>
