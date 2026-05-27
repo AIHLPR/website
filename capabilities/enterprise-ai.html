@@ -1272,6 +1272,201 @@
   }
   @media (max-width: 880px) { .strong-list { grid-template-columns: 1fr; } }
 
+  /* ===================== BLUEPRINT ADDITIONS — TOC, spine, apps, integ, breath, carousel ===================== */
+  :root {
+    --accent: var(--c);
+    --accent-soft: rgba(52,120,229,0.10);
+    --toc-w: 200px;
+  }
+
+  /* Page shell — TOC rail layout */
+  .shell { display: grid; grid-template-columns: var(--toc-w) 1fr; gap: 0; max-width: 1480px; margin: 0 auto; }
+  @media (max-width: 980px) { .shell { grid-template-columns: 1fr; } }
+  .shell .main-col { min-width: 0; }
+
+  .toc-rail { position: relative; }
+  .toc-sticky { position: sticky; top: 80px; padding: 40px 0 40px 28px; }
+  .toc-rail .toc-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 16px; }
+  .toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; border-left: 1px solid var(--hairline); }
+  .toc-list a {
+    display: flex; align-items: baseline; gap: 10px;
+    padding: 8px 14px;
+    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    border-left: 1px solid transparent;
+    margin-left: -1px;
+    transition: color 180ms var(--ease), border-color 180ms var(--ease);
+  }
+  .toc-list a:hover { color: var(--ink); }
+  .toc-list a.is-active { color: var(--ink); border-left-color: var(--accent); }
+  .toc-list a .num { color: var(--ink-muted); }
+  .toc-list a.is-active .num { color: var(--accent); }
+  @media (max-width: 980px) { .toc-rail { display: none; } }
+
+  /* Mobile sticky bottom section chips */
+  .mobile-toc {
+    display: none;
+    position: sticky; bottom: 0; z-index: 40;
+    background: rgba(255,255,255,0.96);
+    backdrop-filter: blur(10px);
+    border-top: 1px solid var(--hairline);
+    padding: 10px var(--gutter);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .mobile-toc-track { display: flex; gap: 8px; white-space: nowrap; }
+  .mobile-toc a {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 8px 12px; border: 1px solid var(--hairline); border-radius: 999px; color: var(--ink-soft);
+    flex: none;
+  }
+  .mobile-toc a.is-active { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  @media (max-width: 980px) { .mobile-toc { display: block; } }
+
+  /* Scroll-margin so section anchors clear the 64px fixed nav */
+  section[id] { scroll-margin-top: 80px; }
+
+  /* ===================== 01 · PILLARS (Spine + horizontal carousel on mobile) ===================== */
+  .pillars-bp { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--surface); }
+  .pillars-bp .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
+  @media (max-width: 760px) { .pillars-bp .sec-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
+  .pillars-bp .sec-head h2 { margin-top: 14px; }
+  .pillars-bp .block-lede { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--ink-soft); line-height: 1.7; max-width: 50ch; }
+
+  .pillars-spine { position: relative; padding-left: 88px; }
+  .pillars-spine::before { content: ""; position: absolute; left: 24px; top: 8px; bottom: 8px; width: 1px; background: var(--hairline-strong); }
+  .pillar-row { position: relative; padding: 22px 0 26px; border-bottom: 1px solid var(--hairline); display: grid; grid-template-columns: 1.1fr 1.4fr; gap: 36px; align-items: start; }
+  .pillar-row:last-child { border-bottom: 0; }
+  .pillar-row::before { content: ""; position: absolute; left: -68px; top: 30px; width: 9px; height: 9px; border-radius: 999px; background: var(--white); border: 1px solid var(--hairline-strong); transition: background 180ms var(--ease), border-color 180ms var(--ease), transform 180ms var(--ease); }
+  .pillar-row:hover::before { background: var(--accent); border-color: var(--accent); transform: scale(1.15); }
+  .pillar-row::after { content: ""; position: absolute; left: -52px; top: 34px; width: 28px; height: 1px; background: var(--hairline-strong); }
+  .pillar-num { position: absolute; left: -88px; top: 28px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-muted); background: var(--surface); padding: 2px 0; }
+  .pillar-body h3 { font-size: clamp(20px, 1.8vw, 26px); }
+  .pillar-body p { margin-top: 8px; color: var(--ink-soft); max-width: 46ch; }
+  .pillar-aside { display: flex; flex-direction: column; gap: 8px; padding-top: 6px; }
+  .pillar-aside .aside-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 6px; }
+  .pillar-aside ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .pillar-aside li { font-family: var(--font-mono); font-size: 12.5px; color: var(--ink-soft); display: flex; align-items: center; gap: 10px; }
+  .pillar-aside li::before { content: ""; width: 4px; height: 4px; background: var(--ink-muted); border-radius: 999px; }
+  .pillar-row:hover .pillar-aside li::before { background: var(--accent); }
+
+  .pillars-carousel { display: none; }
+  @media (max-width: 760px) {
+    .pillars-spine { display: none; }
+    .pillars-carousel {
+      display: block;
+      margin: 0 calc(-1 * var(--gutter));
+      padding: 0 var(--gutter) 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+    .pillars-carousel-track { display: flex; gap: 14px; }
+    .pillars-carousel .pillar-card {
+      flex: 0 0 78%;
+      scroll-snap-align: start;
+      background: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 20px 20px 22px;
+      display: flex; flex-direction: column; gap: 12px;
+      min-height: 220px;
+    }
+    .pillar-card .p-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--accent); }
+    .pillar-card h4 { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.015em; }
+    .pillar-card p { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+    .pillar-card .p-tags { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 1px dashed var(--hairline); }
+    .pillar-card .p-tags span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); padding: 3px 8px; border: 1px solid var(--hairline); border-radius: 4px; }
+    .pillar-scroll-hint { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-top: 14px; display: flex; align-items: center; gap: 8px; }
+    .pillar-scroll-hint::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+  }
+
+  /* ===================== 02 · APPLICATIONS — alternating offset row list ===================== */
+  .apps-section { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--white); }
+  .apps-section .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
+  @media (max-width: 760px) { .apps-section .sec-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
+  .apps-section .sec-head h2 { margin-top: 14px; }
+  .apps-section .block-lede { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--ink-soft); line-height: 1.7; max-width: 50ch; }
+
+  .apps-list { display: flex; flex-direction: column; }
+  .app-row { display: grid; grid-template-columns: 80px 1fr 1.5fr; gap: 32px; align-items: center; padding: 28px 0; border-top: 1px solid var(--hairline); position: relative; }
+  .app-row:last-child { border-bottom: 1px solid var(--hairline); }
+  .app-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-muted); }
+  .app-num b { display: block; font-size: 22px; font-weight: 500; color: var(--ink); margin-bottom: 4px; letter-spacing: 0; font-family: var(--font-display); }
+  .app-row h3 { font-size: clamp(20px, 1.8vw, 24px); max-width: 18ch; }
+  .app-row p { color: var(--ink-soft); font-size: 14.5px; }
+  .app-row .app-stack { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-muted); margin-top: 10px; }
+  .app-row .app-stack b { color: var(--ink); font-weight: 500; margin-right: 4px; }
+  .app-row .app-arrow { position: absolute; right: 0; top: 30px; color: var(--ink-muted); opacity: 0; transition: opacity 200ms var(--ease), transform 200ms var(--ease); }
+  .app-row:hover .app-arrow { opacity: 1; transform: translateX(4px); }
+  @media (max-width: 760px) {
+    .app-row { grid-template-columns: 1fr; gap: 10px; padding: 22px 0; }
+    .app-row h3 { max-width: 100%; }
+    .app-num { display: flex; align-items: baseline; gap: 14px; }
+    .app-num b { display: inline; font-size: 13px; margin: 0; }
+  }
+
+  /* ===================== 04 · INFRASTRUCTURE (data table card) ===================== */
+  .integ-section-bp { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--surface); }
+  .integ-section-bp .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
+  @media (max-width: 760px) { .integ-section-bp .sec-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
+  .integ-section-bp .sec-head h2 { margin-top: 14px; }
+  .integ-section-bp .block-lede { font-family: var(--font-mono); font-size: 12.5px; letter-spacing: 0.04em; color: var(--ink-soft); line-height: 1.7; max-width: 50ch; }
+
+  .integ-table-bp { background: var(--white); border: 1px solid var(--hairline); border-radius: 12px; overflow: hidden; }
+  .integ-row { display: grid; grid-template-columns: 220px 1fr 1.5fr 130px; gap: 24px; padding: 22px 28px; border-top: 1px solid var(--hairline); align-items: start; }
+  .integ-row:first-child { border-top: 0; background: var(--surface-2); font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); padding-top: 16px; padding-bottom: 16px; }
+  .integ-system { font-family: var(--font-display); font-weight: 600; font-size: 16px; letter-spacing: -0.01em; }
+  .integ-system .integ-eyebrow { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 4px; font-weight: 500; }
+  .integ-examples { font-family: var(--font-mono); font-size: 12px; color: var(--ink-soft); letter-spacing: 0.02em; line-height: 1.7; }
+  .integ-role { font-size: 14px; color: var(--ink-soft); line-height: 1.55; }
+  .integ-perm { display: flex; flex-direction: column; gap: 4px; }
+  .integ-perm span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-soft); padding: 3px 8px; border: 1px solid var(--hairline); border-radius: 4px; display: inline-block; align-self: flex-start; }
+  @media (max-width: 880px) {
+    .integ-row { grid-template-columns: 1fr; gap: 12px; padding: 20px; }
+    .integ-row:first-child { display: none; }
+    .integ-row + .integ-row { border-top: 1px solid var(--hairline); }
+    .integ-perm { flex-direction: row; flex-wrap: wrap; }
+  }
+
+  /* ===================== BREATH SENTENCE BAND ===================== */
+  .breath-sentence { padding: clamp(56px, 7vw, 96px) 0; background: var(--surface); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); text-align: center; }
+  .breath-sentence p { font-family: var(--font-display); font-weight: 500; font-size: clamp(22px, 2.4vw, 32px); letter-spacing: -0.02em; line-height: 1.3; max-width: 26ch; margin: 0 auto; color: var(--ink); }
+  .breath-sentence p span { color: var(--ink-muted); }
+  .breath-sentence .bs-attr { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-top: 24px; }
+
+  /* ===================== GENERATIVE — mobile carousel only ===================== */
+  .gen-carousel { display: none; }
+  @media (max-width: 760px) {
+    .genai-stack .gs-stack { display: none; }
+    .gen-carousel {
+      display: block;
+      margin: 0 calc(-1 * var(--gutter));
+      padding: 0 var(--gutter) 8px;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x mandatory;
+    }
+    .gen-carousel-track { display: flex; gap: 14px; }
+    .gen-carousel .gen-card {
+      flex: 0 0 78%;
+      scroll-snap-align: start;
+      background: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: 12px;
+      padding: 20px 20px 22px;
+      display: flex; flex-direction: column; gap: 12px;
+      min-height: 220px;
+    }
+    .gen-card .g-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--accent); }
+    .gen-card h4 { font-family: var(--font-display); font-weight: 600; font-size: 18px; letter-spacing: -0.015em; }
+    .gen-card p { font-size: 13.5px; color: var(--ink-soft); margin: 0; }
+    .gen-card .g-tags { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px; padding-top: 10px; border-top: 1px dashed var(--hairline); }
+    .gen-card .g-tags span { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); padding: 3px 8px; border: 1px solid var(--hairline); border-radius: 4px; }
+    .gen-scroll-hint { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-top: 14px; display: flex; align-items: center; gap: 8px; }
+    .gen-scroll-hint::after { content: ""; flex: 1; height: 1px; background: var(--hairline); }
+  }
+
 </style>
 
 <!-- Borrowed CSS from hidden enterprise-ai-systems page -->
@@ -1672,6 +1867,27 @@
 
 <main>
 
+<div class="shell">
+
+  <!-- LEFT RAIL TOC (desktop only) -->
+  <aside class="toc-rail" aria-label="Section navigation">
+    <div class="toc-sticky">
+      <div class="toc-label">On this page</div>
+      <ol class="toc-list" id="tocList">
+        <li><a href="#pillars"><span class="num">01</span> Pillars</a></li>
+        <li><a href="#applications"><span class="num">02</span> Applications</a></li>
+        <li><a href="#generative"><span class="num">03</span> Generative</a></li>
+        <li><a href="#infrastructure"><span class="num">04</span> Infrastructure</a></li>
+        <li><a href="#governance"><span class="num">05</span> Governance</a></li>
+        <li><a href="#regions"><span class="num">06</span> Regions</a></li>
+        <li><a href="#roles"><span class="num">07</span> Roles</a></li>
+        <li><a href="#expansion"><span class="num">08</span> Expansion</a></li>
+      </ol>
+    </div>
+  </aside>
+
+  <div class="main-col">
+
 <!-- HERO -->
 <section class="hero">
   <div class="container hero-grid">
@@ -1842,66 +2058,74 @@
   }
 </style>
 
-<section class="pillars">
+<section class="pillars-bp" data-sec="pillars" id="pillars">
   <div class="container">
-    <div class="block-head">
+    <div class="sec-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>The discipline</span>
-        <h2 style="margin-top:14px;">The pillars of enterprise AI.</h2>
+        <span class="label-mono"><span class="dot"></span>01 &middot; The discipline</span>
+        <h2>The pillars of enterprise AI.</h2>
       </div>
       <p class="block-lede">Enterprise AI is rarely one technology. It is a stack of disciplines that work together. Where one is missing, the rest fail in production.</p>
     </div>
-    <div class="pillars-grid">
-      <svg class="pf-strands" viewBox="0 0 300 300" preserveAspectRatio="none" aria-hidden="true">
-        <defs>
-          <linearGradient id="pfGrad" x1="0" y1="0" x2="0.5" y2="0.5">
-            <stop offset="0%"   stop-color="#E91E63"/>
-            <stop offset="40%"  stop-color="#9B59B6"/>
-            <stop offset="100%" stop-color="#3478E5"/>
-          </linearGradient>
-        </defs>
-        <g class="trk">
-          <path d="M 50  50  Q 120 120 150 150"/>
-          <path d="M 150 50  Q 150 120 150 150"/>
-          <path d="M 250 50  Q 180 120 150 150"/>
-          <path d="M 250 150 Q 180 150 150 150"/>
-          <path d="M 250 250 Q 180 180 150 150"/>
-          <path d="M 150 250 Q 150 180 150 150"/>
-          <path d="M 50  250 Q 120 180 150 150"/>
-          <path d="M 50  150 Q 120 150 150 150"/>
-        </g>
-        <g>
-          <path class="spark" style="--d:0s;"    d="M 50  50  Q 120 120 150 150"/>
-          <path class="spark" style="--d:.55s;"  d="M 150 50  Q 150 120 150 150"/>
-          <path class="spark" style="--d:1.1s;"  d="M 250 50  Q 180 120 150 150"/>
-          <path class="spark" style="--d:1.65s;" d="M 250 150 Q 180 150 150 150"/>
-          <path class="spark" style="--d:2.2s;"  d="M 250 250 Q 180 180 150 150"/>
-          <path class="spark" style="--d:2.75s;" d="M 150 250 Q 150 180 150 150"/>
-          <path class="spark" style="--d:3.3s;"  d="M 50  250 Q 120 180 150 150"/>
-          <path class="spark" style="--d:3.85s;" d="M 50  150 Q 120 150 150 150"/>
-        </g>
-      </svg>
 
-      <article class="pillar"><span class="p-num">01</span><h3>Data management</h3><p class="p-body">The right data, scoped to the right user, at the right moment.</p><div class="p-tags"><span>Pipelines</span><span>Catalog</span><span>Access control</span></div></article>
-      <article class="pillar"><span class="p-num">02</span><h3>Model training &amp; fine-tuning</h3><p class="p-body">Adapt general models to your domain. Train on your data, evaluate on your metrics.</p><div class="p-tags"><span>Fine-tuning</span><span>Domain adaptation</span><span>Eval suites</span></div></article>
-      <article class="pillar"><span class="p-num">03</span><h3>Model registry</h3><p class="p-body">What's in production, when it changed, how it performed.</p><div class="p-tags"><span>Versioning</span><span>Lineage</span><span>Rollback</span></div></article>
-      <article class="pillar"><span class="p-num">04</span><h3>MLOps &amp; LLMOps</h3><p class="p-body">CI/CD for models. Drift detection, evaluation gates, automated lifecycle.</p><div class="p-tags"><span>CI/CD</span><span>Lifecycle</span><span>Eval gates</span></div></article>
-      <article class="pillar"><span class="p-num">05</span><h3>Monitoring</h3><p class="p-body">Hallucinations, latency, cost, drift. What the model is doing, in real time.</p><div class="p-tags"><span>Drift</span><span>Latency &amp; cost</span><span>Feedback loop</span></div></article>
-      <article class="pillar"><span class="p-num">06</span><h3>Generative AI</h3><p class="p-body">LLMs, RAG, agents, multi-modal, engineered on your data, inside your boundaries.</p><div class="p-tags"><span>LLM</span><span>RAG</span><span>Agents</span></div></article>
-      <article class="pillar"><span class="p-num">07</span><h3>Governance</h3><p class="p-body">Role-based access, policy, audit, override gates. The controls a regulator and a CIO both look for.</p><div class="p-tags"><span>RBAC</span><span>Policy</span><span>Audit</span></div></article>
-      <article class="pillar"><span class="p-num">08</span><h3>Multi-cloud deployment</h3><p class="p-body">AWS, Azure, GCP, on-prem, sovereign EU. Runs where the business already runs.</p><div class="p-tags"><span>AWS &middot; Azure &middot; GCP</span><span>On-prem</span><span>EU residency</span></div></article>
-
-      <div class="pf-focal" aria-hidden="true">
-        <div class="pf-glow"></div>
-        <div class="pf-ring-out"></div>
-        <div class="pf-ring-in"></div>
-        <div class="pf-disc"></div>
-        <div class="pf-label">One governed system</div>
+    <!-- Desktop: Spine -->
+    <div class="pillars-spine">
+      <div class="pillar-row">
+        <div class="pillar-num">01</div>
+        <div class="pillar-body"><h3>Data management</h3><p>The right data, scoped to the right user, at the right moment.</p></div>
+        <div class="pillar-aside"><div class="aside-label">Surfaces</div><ul><li>Pipelines</li><li>Catalog</li><li>Access control</li></ul></div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">02</div>
+        <div class="pillar-body"><h3>Model training &amp; fine-tuning</h3><p>Adapt general models to your domain. Train on your data, evaluate on your metrics.</p></div>
+        <div class="pillar-aside"><div class="aside-label">Surfaces</div><ul><li>Fine-tuning</li><li>Domain adaptation</li><li>Eval suites</li></ul></div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">03</div>
+        <div class="pillar-body"><h3>Model registry</h3><p>What is in production, when it changed, how it performed.</p></div>
+        <div class="pillar-aside"><div class="aside-label">Surfaces</div><ul><li>Versioning</li><li>Lineage</li><li>Rollback</li></ul></div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">04</div>
+        <div class="pillar-body"><h3>MLOps &amp; LLMOps</h3><p>CI/CD for models. Drift detection, evaluation gates, automated lifecycle.</p></div>
+        <div class="pillar-aside"><div class="aside-label">Surfaces</div><ul><li>CI/CD</li><li>Lifecycle</li><li>Eval gates</li></ul></div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">05</div>
+        <div class="pillar-body"><h3>Monitoring</h3><p>Hallucinations, latency, cost, drift. What the model is doing, in real time.</p></div>
+        <div class="pillar-aside"><div class="aside-label">Surfaces</div><ul><li>Drift</li><li>Latency &amp; cost</li><li>Feedback loop</li></ul></div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">06</div>
+        <div class="pillar-body"><h3>Generative AI</h3><p>LLMs, RAG, agents, multi-modal. Engineered on your data, inside your boundaries.</p></div>
+        <div class="pillar-aside"><div class="aside-label">Surfaces</div><ul><li>LLM</li><li>RAG</li><li>Agents</li></ul></div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">07</div>
+        <div class="pillar-body"><h3>Governance</h3><p>Role-based access, policy, audit, override gates. The controls a regulator and a CIO both look for.</p></div>
+        <div class="pillar-aside"><div class="aside-label">Surfaces</div><ul><li>RBAC</li><li>Policy</li><li>Audit</li></ul></div>
+      </div>
+      <div class="pillar-row">
+        <div class="pillar-num">08</div>
+        <div class="pillar-body"><h3>Multi-cloud deployment</h3><p>AWS, Azure, GCP, on-prem, sovereign EU. Runs where the business already runs.</p></div>
+        <div class="pillar-aside"><div class="aside-label">Surfaces</div><ul><li>AWS &middot; Azure &middot; GCP</li><li>On-prem</li><li>EU residency</li></ul></div>
       </div>
     </div>
 
-    <p class="pillars-closing">Eight disciplines. <b>One governed system.</b></p>
-
+    <!-- Mobile: Horizontal carousel -->
+    <div class="pillars-carousel" id="pillarsCarousel">
+      <div class="pillars-carousel-track">
+        <article class="pillar-card"><span class="p-num">01</span><h4>Data management</h4><p>Right data, right user, right moment.</p><div class="p-tags"><span>Pipelines</span><span>Catalog</span></div></article>
+        <article class="pillar-card"><span class="p-num">02</span><h4>Training &amp; fine-tuning</h4><p>Adapt general models to your domain.</p><div class="p-tags"><span>Fine-tuning</span><span>Eval</span></div></article>
+        <article class="pillar-card"><span class="p-num">03</span><h4>Model registry</h4><p>What is in prod, when it changed, how it performed.</p><div class="p-tags"><span>Versioning</span><span>Lineage</span></div></article>
+        <article class="pillar-card"><span class="p-num">04</span><h4>MLOps &amp; LLMOps</h4><p>CI/CD for models. Drift, eval gates, lifecycle.</p><div class="p-tags"><span>CI/CD</span><span>Gates</span></div></article>
+        <article class="pillar-card"><span class="p-num">05</span><h4>Monitoring</h4><p>Hallucinations, latency, cost, drift. In real time.</p><div class="p-tags"><span>Drift</span><span>Feedback</span></div></article>
+        <article class="pillar-card"><span class="p-num">06</span><h4>Generative AI</h4><p>LLMs, RAG, agents inside your boundaries.</p><div class="p-tags"><span>LLM</span><span>RAG</span></div></article>
+        <article class="pillar-card"><span class="p-num">07</span><h4>Governance</h4><p>RBAC, policy, audit, override gates.</p><div class="p-tags"><span>RBAC</span><span>Audit</span></div></article>
+        <article class="pillar-card"><span class="p-num">08</span><h4>Multi-cloud</h4><p>AWS, Azure, GCP, on-prem, sovereign EU.</p><div class="p-tags"><span>EU</span><span>On-prem</span></div></article>
+      </div>
+      <div class="pillar-scroll-hint">Swipe &rarr; 8 disciplines</div>
+    </div>
   </div>
 </section>
 
@@ -1924,27 +2148,76 @@
   .uc .uc-stack b { color: var(--ink); font-weight: 700; letter-spacing: 0.04em; margin-right: 4px; }
 </style>
 
-<section class="usecases">
+<section class="apps-section" data-sec="applications" id="applications">
   <div class="container">
-    <div class="block-head">
+    <div class="sec-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>Applications</span>
-        <h2 style="margin-top:14px;">Where enterprise AI lives.</h2>
+        <span class="label-mono"><span class="dot"></span>02 &middot; Applications</span>
+        <h2>Where enterprise AI lives.</h2>
       </div>
-      <p class="block-lede">The shape of an engagement varies, but the underlying engineering is consistent. Below are the kinds of work we take on most often.</p>
+      <p class="block-lede">The shape of an engagement varies, the engineering is consistent. These are the kinds of work we take on most often.</p>
     </div>
-    <div class="uc-grid">
-      <article class="uc"><div class="uc-head"><span class="num">01</span><span>Vision</span></div><h3>Asset operations &amp; classification.</h3><p class="uc-body">A vision model classifies marketing assets, products, or documents. A workflow layer routes them for human review. The system handles the volume; people handle the judgement.</p><p class="uc-stack"><b>Stack &middot;</b> Vision model &middot; fine-tuned &middot; routing &middot; review queue</p></article>
-      <article class="uc"><div class="uc-head"><span class="num">02</span><span>Knowledge</span></div><h3>Document intelligence.</h3><p class="uc-body">Extract, classify, and search across contracts, policies, SOPs, and prior decisions. The AI answers questions and cites the source so people can verify before acting.</p><p class="uc-stack"><b>Stack &middot;</b> RAG &middot; vector search &middot; OCR &middot; permissioned retrieval</p></article>
-      <article class="uc"><div class="uc-head"><span class="num">03</span><span>Service</span></div><h3>Customer service intelligence.</h3><p class="uc-body">Triage tickets, draft responses, route escalations, monitor sentiment across languages. Agents stay in the loop. Volume scales without proportional headcount.</p><p class="uc-stack"><b>Stack &middot;</b> LLM &middot; multilingual &middot; sentiment &middot; SLA monitoring</p></article>
-      <article class="uc"><div class="uc-head"><span class="num">04</span><span>Research</span></div><h3>R&amp;D acceleration.</h3><p class="uc-body">Mine prior research, prior patents, prior trials. Surface what is relevant, summarise what is decided, flag what is missing. Researchers spend more time researching.</p><p class="uc-stack"><b>Stack &middot;</b> Retrieval &middot; summarisation &middot; structured extraction</p></article>
-      <article class="uc"><div class="uc-head"><span class="num">05</span><span>Decision</span></div><h3>Decision support &amp; forecasting.</h3><p class="uc-body">Predict the next move. Demand, churn, payment timing, inventory pressure, support volume. The AI prepares the recommendation, a person signs it off.</p><p class="uc-stack"><b>Stack &middot;</b> Forecasting &middot; explainable signals &middot; approval gate</p></article>
-      <article class="uc"><div class="uc-head"><span class="num">06</span><span>Operations</span></div><h3>Operations intelligence.</h3><p class="uc-body">Across approvals, finance, procurement, compliance, the AI handles the lookup, the prep, the routing. People keep the decision. Every action recorded.</p><p class="uc-stack"><b>Stack &middot;</b> Agents &middot; ERP integration &middot; policy enforcement &middot; audit</p></article>
+
+    <div class="apps-list">
+      <div class="app-row">
+        <div class="app-num">01<b>Vision</b></div>
+        <h3>Asset operations &amp; classification.</h3>
+        <div>
+          <p>A vision model classifies marketing assets, products, or documents. A workflow layer routes for review. The system handles volume, people handle judgement.</p>
+          <p class="app-stack"><b>Stack &middot;</b> Vision &middot; fine-tuned &middot; routing &middot; review queue</p>
+        </div>
+        <span class="app-arrow">&rarr;</span>
+      </div>
+      <div class="app-row">
+        <div class="app-num">02<b>Knowledge</b></div>
+        <h3>Document intelligence.</h3>
+        <div>
+          <p>Extract, classify, and search across contracts, policies, SOPs, prior decisions. AI answers questions and cites the source so people can verify before acting.</p>
+          <p class="app-stack"><b>Stack &middot;</b> RAG &middot; vector &middot; OCR &middot; permissioned retrieval</p>
+        </div>
+        <span class="app-arrow">&rarr;</span>
+      </div>
+      <div class="app-row">
+        <div class="app-num">03<b>Service</b></div>
+        <h3>Customer service intelligence.</h3>
+        <div>
+          <p>Triage tickets, draft responses, route escalations, monitor sentiment across languages. Agents stay in the loop. Volume scales without proportional headcount.</p>
+          <p class="app-stack"><b>Stack &middot;</b> LLM &middot; multilingual &middot; sentiment &middot; SLA</p>
+        </div>
+        <span class="app-arrow">&rarr;</span>
+      </div>
+      <div class="app-row">
+        <div class="app-num">04<b>Research</b></div>
+        <h3>R&amp;D acceleration.</h3>
+        <div>
+          <p>Mine prior research, prior patents, prior trials. Surface relevant, summarise decided, flag missing. Researchers spend more time researching.</p>
+          <p class="app-stack"><b>Stack &middot;</b> Retrieval &middot; summarisation &middot; extraction</p>
+        </div>
+        <span class="app-arrow">&rarr;</span>
+      </div>
+      <div class="app-row">
+        <div class="app-num">05<b>Decision</b></div>
+        <h3>Decision support &amp; forecasting.</h3>
+        <div>
+          <p>Predict the next move. Demand, churn, payment timing, inventory pressure, support volume. AI prepares the recommendation, a person signs it off.</p>
+          <p class="app-stack"><b>Stack &middot;</b> Forecasting &middot; explainable signals &middot; approval</p>
+        </div>
+        <span class="app-arrow">&rarr;</span>
+      </div>
+      <div class="app-row">
+        <div class="app-num">06<b>Operations</b></div>
+        <h3>Operations intelligence.</h3>
+        <div>
+          <p>Across approvals, finance, procurement, compliance, AI handles lookup, prep, routing. People keep the decision. Every action recorded.</p>
+          <p class="app-stack"><b>Stack &middot;</b> Agents &middot; ERP &middot; policy &middot; audit</p>
+        </div>
+        <span class="app-arrow">&rarr;</span>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="genai-stack" data-rev="rag-v2">
+<section class="genai-stack" data-rev="rag-v2" data-sec="generative" id="generative">
   <div class="container">
     <div class="block-head">
       <div>
@@ -2649,6 +2922,18 @@
         </aside>
       </div>
     </div>
+
+    <!-- Mobile: Horizontal carousel of the 5 generative capabilities -->
+    <div class="gen-carousel" id="genCarousel">
+      <div class="gen-carousel-track">
+        <article class="gen-card"><span class="g-num">01</span><h4>RAG</h4><p>The model answers from your data, not its training set. Every answer carries source attribution.</p><div class="g-tags"><span>Vector</span><span>Retrieval</span><span>LLM</span></div></article>
+        <article class="gen-card"><span class="g-num">02</span><h4>Fine-tuning</h4><p>Adapt open or closed models on your documents, decisions, voice. The model speaks your language.</p><div class="g-tags"><span>LoRA</span><span>Eval</span><span>Registry</span></div></article>
+        <article class="gen-card"><span class="g-num">03</span><h4>Agents</h4><p>Long-running AI processes that carry tasks across systems and hand back to a person when judgement is needed.</p><div class="g-tags"><span>Tools</span><span>Planner</span><span>HIL</span></div></article>
+        <article class="gen-card"><span class="g-num">04</span><h4>Vector search</h4><p>Find by meaning, not keywords. Documents, prior decisions, customer cases, searchable by what they mean.</p><div class="g-tags"><span>pgvector</span><span>Pinecone</span></div></article>
+        <article class="gen-card"><span class="g-num">05</span><h4>Multi-modal</h4><p>Vision classifies and extracts. Speech transcribes. Language reasons. All under one governance frame.</p><div class="g-tags"><span>CLIP</span><span>Whisper</span><span>LLM</span></div></article>
+      </div>
+      <div class="gen-scroll-hint">Swipe &rarr; 5 capabilities</div>
+    </div>
   </div>
 </section>
 
@@ -2763,107 +3048,60 @@
   }
 </style>
 
-<section class="integ-table-section">
+<section class="integ-section-bp" data-sec="infrastructure" id="infrastructure">
   <div class="container">
-    <div class="block-head">
+    <div class="sec-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>Enterprise infrastructure</span>
-        <h2 style="margin-top:14px;">Fits the systems already running your business.</h2>
+        <span class="label-mono"><span class="dot"></span>04 &middot; Enterprise infrastructure</span>
+        <h2>Fits the systems already running your business.</h2>
       </div>
-      <p class="block-lede">The layer lands inside a working environment. It plugs into the systems that already hold the data, the workflows, and the records of decision. Each connection is described by its operational role.</p>
+      <p class="block-lede">The layer lands inside a working environment, plugging into systems that hold the data, the workflows, and the records of decision.</p>
     </div>
 
-    <!-- Editorial table -->
-    <table class="integ-table">
-      <thead>
-        <tr>
-          <th style="width: 22%;">System</th>
-          <th style="width: 32%;">Examples</th>
-          <th style="width: 28%;">AIHLPR's role</th>
-          <th style="width: 18%;">Permission</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td class="system-cell">
-            <div class="system-name">Identity</div>
-            <div class="system-title">SSO &amp; directory</div>
-          </td>
-          <td class="examples" data-label="Examples">Okta &middot; Azure AD &middot; Google Workspace &middot; Ping</td>
-          <td class="role" data-label="Role">Federated authentication, group sync, regional scopes. The same identity follows a user across every AI surface.</td>
-          <td data-label="Permission"><div class="perms"><span class="active">federate</span><span>sync</span><span class="gov">enforce</span></div></td>
-        </tr>
-        <tr>
-          <td class="system-cell">
-            <div class="system-name">Knowledge</div>
-            <div class="system-title">Document &amp; wiki</div>
-          </td>
-          <td class="examples" data-label="Examples">SharePoint &middot; Confluence &middot; Notion &middot; internal drives</td>
-          <td class="role" data-label="Role">Indexed, permissioned reads. Writes pass through review.</td>
-          <td data-label="Permission"><div class="perms"><span class="active">read</span><span>index</span><span>write &middot; gated</span></div></td>
-        </tr>
-        <tr>
-          <td class="system-cell">
-            <div class="system-name">Communication</div>
-            <div class="system-title">Email &amp; chat</div>
-          </td>
-          <td class="examples" data-label="Examples">Slack &middot; Teams &middot; M365 &middot; Gmail</td>
-          <td class="role" data-label="Role">Assistive drafting, routing, summarisation. Outbound sends require human confirmation.</td>
-          <td data-label="Permission"><div class="perms"><span class="active">assist</span><span>route</span><span>send &middot; gated</span></div></td>
-        </tr>
-        <tr>
-          <td class="system-cell">
-            <div class="system-name">Operations</div>
-            <div class="system-title">ERP &amp; finance</div>
-          </td>
-          <td class="examples" data-label="Examples">SAP &middot; NetSuite &middot; Oracle &middot; Workday</td>
-          <td class="role" data-label="Role">Read context, propose actions, route to approvers. No write to system-of-record without dual sign-off.</td>
-          <td data-label="Permission"><div class="perms"><span class="active">read</span><span>propose</span><span class="gov">approval</span></div></td>
-        </tr>
-        <tr>
-          <td class="system-cell">
-            <div class="system-name">Customer</div>
-            <div class="system-title">CRM &amp; support</div>
-          </td>
-          <td class="examples" data-label="Examples">Salesforce &middot; HubSpot &middot; Zendesk &middot; ServiceNow</td>
-          <td class="role" data-label="Role">Conversation context, account history, ticket routing, escalation triggers.</td>
-          <td data-label="Permission"><div class="perms"><span class="active">read</span><span>route</span><span>update &middot; scoped</span></div></td>
-        </tr>
-        <tr>
-          <td class="system-cell">
-            <div class="system-name">Workflow</div>
-            <div class="system-title">Tickets &amp; orchestration</div>
-          </td>
-          <td class="examples" data-label="Examples">Jira &middot; ServiceNow &middot; internal workflow systems</td>
-          <td class="role" data-label="Role">AI participates as a routable actor with its own role and SLA.</td>
-          <td data-label="Permission"><div class="perms"><span class="active">trigger</span><span>route</span><span>resolve &middot; gated</span></div></td>
-        </tr>
-        <tr>
-          <td class="system-cell">
-            <div class="system-name">Data</div>
-            <div class="system-title">Warehouse &amp; lake</div>
-          </td>
-          <td class="examples" data-label="Examples">Snowflake &middot; Databricks &middot; Postgres &middot; Redshift</td>
-          <td class="role" data-label="Role">Scoped query access, joined operational context, no raw export.</td>
-          <td data-label="Permission"><div class="perms"><span class="active">query</span><span>join</span><span class="gov">no export</span></div></td>
-        </tr>
-        <tr>
-          <td class="system-cell">
-            <div class="system-name">Cloud</div>
-            <div class="system-title">Infrastructure</div>
-          </td>
-          <td class="examples" data-label="Examples">AWS &middot; Azure &middot; GCP &middot; on-prem</td>
-          <td class="role" data-label="Role">Runs inside your perimeter. Region-pinned, tenant-isolated, private networking, customer-held keys on request.</td>
-          <td data-label="Permission"><div class="perms"><span class="active">deploy</span><span>monitor</span><span class="gov">key-held</span></div></td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="integ-table-bp">
+      <div class="integ-row">
+        <div>System</div>
+        <div>Examples</div>
+        <div>AIHLPR's role</div>
+        <div>Permission</div>
+      </div>
+      <div class="integ-row">
+        <div class="integ-system"><span class="integ-eyebrow">Identity</span>SSO &amp; directory</div>
+        <div class="integ-examples">Okta &middot; Azure AD &middot; Google Workspace &middot; Ping</div>
+        <div class="integ-role">Federated auth, group sync, regional scopes. Same identity across every AI surface.</div>
+        <div class="integ-perm"><span>federate</span><span>sync</span><span>enforce</span></div>
+      </div>
+      <div class="integ-row">
+        <div class="integ-system"><span class="integ-eyebrow">Knowledge</span>Document &amp; wiki</div>
+        <div class="integ-examples">SharePoint &middot; Confluence &middot; Notion &middot; drives</div>
+        <div class="integ-role">Indexed, permissioned reads. Writes pass through review.</div>
+        <div class="integ-perm"><span>read</span><span>index</span><span>write &middot; gated</span></div>
+      </div>
+      <div class="integ-row">
+        <div class="integ-system"><span class="integ-eyebrow">Communication</span>Email &amp; chat</div>
+        <div class="integ-examples">Slack &middot; Teams &middot; M365 &middot; Gmail</div>
+        <div class="integ-role">Assistive drafting, routing, summarisation. Outbound requires human confirmation.</div>
+        <div class="integ-perm"><span>assist</span><span>route</span><span>send &middot; gated</span></div>
+      </div>
+      <div class="integ-row">
+        <div class="integ-system"><span class="integ-eyebrow">Operations</span>ERP &amp; finance</div>
+        <div class="integ-examples">SAP &middot; NetSuite &middot; Oracle &middot; Workday</div>
+        <div class="integ-role">Read context, propose actions, route to approvers. No write to record without dual sign-off.</div>
+        <div class="integ-perm"><span>read</span><span>propose</span><span>approval</span></div>
+      </div>
+      <div class="integ-row">
+        <div class="integ-system"><span class="integ-eyebrow">Cloud</span>Infrastructure</div>
+        <div class="integ-examples">AWS &middot; Azure &middot; GCP &middot; on-prem</div>
+        <div class="integ-role">Runs inside your perimeter. Region-pinned, tenant-isolated, customer-held keys on request.</div>
+        <div class="integ-perm"><span>deploy</span><span>monitor</span><span>key-held</span></div>
+      </div>
+    </div>
   </div>
 </section>
 
 
 <!-- BORROWED — Governance stack -->
-<section class="block borrowed">
+<section class="block borrowed" data-sec="governance" id="governance">
   <div class="container">
     <div class="block-head">
       <div>
@@ -2919,8 +3157,16 @@
 </section>
 
 
+<!-- BREATH — Working principle sentence band -->
+<div class="breath-sentence">
+  <div class="container">
+    <p>If a regulator and a CIO read the same trail and reach the same conclusion, the system <span>is working.</span></p>
+    <div class="bs-attr">Working principle &middot; AIHLPR</div>
+  </div>
+</div>
+
 <!-- BORROWED — Multi-region deployment -->
-<section class="block borrowed">
+<section class="block borrowed" data-sec="regions" id="regions">
   <div class="container">
     <div class="block-head">
       <div>
@@ -2981,7 +3227,7 @@
 
 
 <!-- BORROWED — Clear ownership across the chain -->
-<section class="block borrowed">
+<section class="block borrowed" data-sec="roles" id="roles">
   <div class="container">
     <div class="block-head">
       <div>
@@ -3026,7 +3272,7 @@
 
 
 <!-- BORROWED — Designed to evolve / Expands outward -->
-<section class="block borrowed">
+<section class="block borrowed" data-sec="expansion" id="expansion">
   <div class="container">
     <div class="block-head">
       <div>
@@ -3158,7 +3404,24 @@
   </div>
 </section>
 
+  </div><!-- /.main-col -->
+</div><!-- /.shell -->
+
 </main>
+
+<!-- Mobile sticky TOC chip strip -->
+<nav class="mobile-toc" aria-label="Section navigation">
+  <div class="mobile-toc-track">
+    <a href="#pillars">01 Pillars</a>
+    <a href="#applications">02 Applications</a>
+    <a href="#generative">03 Generative</a>
+    <a href="#infrastructure">04 Infra</a>
+    <a href="#governance">05 Governance</a>
+    <a href="#regions">06 Regions</a>
+    <a href="#roles">07 Roles</a>
+    <a href="#expansion">08 Expansion</a>
+  </div>
+</nav>
 
 <footer class="footer">
   <div class="container">
@@ -3300,6 +3563,40 @@
   burger.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+})();
+</script>
+
+<!-- TOC active-state observer (blueprint) -->
+<script>
+(function () {
+  const sections = document.querySelectorAll('section[data-sec]');
+  const tocLinks = document.querySelectorAll('#tocList a, .mobile-toc a');
+  if (!sections.length || !tocLinks.length) return;
+  function activate(id) {
+    tocLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
+  }
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) activate(e.target.id);
+    });
+  }, { rootMargin: '-30% 0px -60% 0px' });
+  sections.forEach(s => io.observe(s));
+
+  // Mobile-toc auto-scroll active chip into view
+  const mobToc = document.querySelector('.mobile-toc');
+  if (mobToc) {
+    const obsMob = new MutationObserver(() => {
+      const active = mobToc.querySelector('a.is-active');
+      if (active) {
+        const rect = active.getBoundingClientRect();
+        const parentRect = mobToc.getBoundingClientRect();
+        if (rect.left < parentRect.left || rect.right > parentRect.right) {
+          mobToc.scrollTo({ left: active.offsetLeft - 20, behavior: 'smooth' });
+        }
+      }
+    });
+    obsMob.observe(mobToc, { subtree: true, attributes: true, attributeFilter: ['class'] });
+  }
 })();
 </script>
 </body>
