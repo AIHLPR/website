@@ -1378,8 +1378,6 @@
   .app-num b::before { content: "· "; color: var(--ink-muted); margin-right: 2px; }
   .app-row h3 { font-size: clamp(20px, 1.8vw, 24px); max-width: 18ch; }
   .app-row p { color: var(--ink-soft); font-size: 14.5px; }
-  .app-row .app-stack { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.06em; color: var(--ink-muted); margin-top: 10px; }
-  .app-row .app-stack b { color: var(--ink); font-weight: 500; margin-right: 4px; }
   .app-row .app-arrow { display: none; }
   @media (max-width: 760px) {
     .app-row { grid-template-columns: 1fr; gap: 10px; padding: 22px 0; }
@@ -2104,7 +2102,6 @@
         <h3>Asset operations &amp; classification.</h3>
         <div>
           <p>A vision model classifies marketing assets, products, or documents. A workflow layer routes for review. The system handles volume, people handle judgement.</p>
-          <p class="app-stack"><b>Stack &middot;</b> Vision &middot; fine-tuned &middot; routing &middot; review queue</p>
         </div>
         <span class="app-arrow">&rarr;</span>
       </div>
@@ -2113,7 +2110,6 @@
         <h3>Document intelligence.</h3>
         <div>
           <p>Extract, classify, and search across contracts, policies, SOPs, prior decisions. AI answers questions and cites the source so people can verify before acting.</p>
-          <p class="app-stack"><b>Stack &middot;</b> RAG &middot; vector &middot; OCR &middot; permissioned retrieval</p>
         </div>
         <span class="app-arrow">&rarr;</span>
       </div>
@@ -2122,7 +2118,6 @@
         <h3>Customer service intelligence.</h3>
         <div>
           <p>Triage tickets, draft responses, route escalations, monitor sentiment across languages. Agents stay in the loop. Volume scales without proportional headcount.</p>
-          <p class="app-stack"><b>Stack &middot;</b> LLM &middot; multilingual &middot; sentiment &middot; SLA</p>
         </div>
         <span class="app-arrow">&rarr;</span>
       </div>
@@ -2131,7 +2126,6 @@
         <h3>R&amp;D acceleration.</h3>
         <div>
           <p>Mine prior research, prior patents, prior trials. Surface relevant, summarise decided, flag missing. Researchers spend more time researching.</p>
-          <p class="app-stack"><b>Stack &middot;</b> Retrieval &middot; summarisation &middot; extraction</p>
         </div>
         <span class="app-arrow">&rarr;</span>
       </div>
@@ -2140,7 +2134,6 @@
         <h3>Decision support &amp; forecasting.</h3>
         <div>
           <p>Predict the next move. Demand, churn, payment timing, inventory pressure, support volume. AI prepares the recommendation, a person signs it off.</p>
-          <p class="app-stack"><b>Stack &middot;</b> Forecasting &middot; explainable signals &middot; approval</p>
         </div>
         <span class="app-arrow">&rarr;</span>
       </div>
@@ -2149,7 +2142,6 @@
         <h3>Operations intelligence.</h3>
         <div>
           <p>Across approvals, finance, procurement, compliance, AI handles lookup, prep, routing. People keep the decision. Every action recorded.</p>
-          <p class="app-stack"><b>Stack &middot;</b> Agents &middot; ERP &middot; policy &middot; audit</p>
         </div>
         <span class="app-arrow">&rarr;</span>
       </div>
