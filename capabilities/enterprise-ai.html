@@ -1373,13 +1373,15 @@
   .apps-list { display: flex; flex-direction: column; }
   .app-row { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; align-items: baseline; padding: 36px 0; border-top: 1px solid var(--hairline); }
   .app-row:last-child { border-bottom: 1px solid var(--hairline); }
-  .app-row h3 { font-size: clamp(22px, 1.9vw, 26px); max-width: 22ch; letter-spacing: -0.02em; }
+  .app-row h3 { font-size: clamp(22px, 1.9vw, 26px); max-width: 22ch; letter-spacing: -0.02em; position: relative; padding-right: 36px; }
   .app-row h3 .app-num { font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.16em; color: var(--ink-muted); margin-right: 8px; font-weight: 400; display: inline-block; vertical-align: 2px; }
+  .app-row h3 .app-icon { position: absolute; top: 4px; right: 0; width: 22px; height: 22px; color: var(--ink-muted); flex: none; }
   .app-row p { color: var(--ink-soft); font-size: 15px; line-height: 1.6; }
   .app-row .app-tags { font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em; color: var(--ink-muted); margin-top: 14px; }
   @media (max-width: 760px) {
     .app-row { grid-template-columns: 1fr; gap: 12px; padding: 26px 0; }
-    .app-row h3 { max-width: 100%; font-size: 21px; }
+    .app-row h3 { max-width: 100%; font-size: 21px; padding-right: 30px; }
+    .app-row h3 .app-icon { width: 20px; height: 20px; top: 2px; }
     .app-row p { font-size: 14.5px; }
   }
 
@@ -2095,28 +2097,58 @@
 
     <div class="apps-list">
       <div class="app-row">
-        <h3><span class="app-num">01 &middot;</span> Asset operations &amp; classification.</h3>
+        <h3>
+          <span class="app-num">01 &middot;</span> Asset operations &amp; classification.
+          <svg class="app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <rect x="3.5" y="4.5" width="17" height="15" rx="1.5"/>
+            <circle cx="9" cy="10" r="1.5"/>
+            <path d="M3.5 16 L8.5 11.5 L13 15 L16 13 L20.5 17"/>
+          </svg>
+        </h3>
         <div>
           <p>A vision model classifies marketing assets, products, or documents. A workflow layer routes for review. The system handles volume, people handle judgement.</p>
           <p class="app-tags">Vision &middot; classification &middot; routing &middot; review queues</p>
         </div>
       </div>
       <div class="app-row">
-        <h3><span class="app-num">02 &middot;</span> Document intelligence.</h3>
+        <h3>
+          <span class="app-num">02 &middot;</span> Document intelligence.
+          <svg class="app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M14 3 H6.5 a1.5 1.5 0 0 0 -1.5 1.5 V19.5 a1.5 1.5 0 0 0 1.5 1.5 H17.5 a1.5 1.5 0 0 0 1.5 -1.5 V8 Z"/>
+            <path d="M14 3 V8 H19"/>
+            <line x1="8.5" y1="13" x2="15.5" y2="13"/>
+            <line x1="8.5" y1="17" x2="13.5" y2="17"/>
+          </svg>
+        </h3>
         <div>
           <p>Extract, classify, and search across contracts, policies, SOPs, and prior decisions. AI answers questions and cites the source so people can verify before acting.</p>
           <p class="app-tags">Retrieval &middot; OCR &middot; citations &middot; access control</p>
         </div>
       </div>
       <div class="app-row">
-        <h3><span class="app-num">03 &middot;</span> Customer service intelligence.</h3>
+        <h3>
+          <span class="app-num">03 &middot;</span> Customer service intelligence.
+          <svg class="app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M4 5.5 a1.5 1.5 0 0 1 1.5 -1.5 H18.5 a1.5 1.5 0 0 1 1.5 1.5 V15 a1.5 1.5 0 0 1 -1.5 1.5 H11 L7 20 V16.5 H5.5 a1.5 1.5 0 0 1 -1.5 -1.5 Z"/>
+            <circle cx="9" cy="10.5" r="0.9" fill="currentColor" stroke="none"/>
+            <circle cx="12" cy="10.5" r="0.9" fill="currentColor" stroke="none"/>
+            <circle cx="15" cy="10.5" r="0.9" fill="currentColor" stroke="none"/>
+          </svg>
+        </h3>
         <div>
           <p>Triage tickets, draft responses, route escalations, monitor sentiment across languages. Agents stay in the loop. Volume scales without proportional headcount.</p>
           <p class="app-tags">Workflow agents &middot; escalation &middot; multilingual &middot; sentiment</p>
         </div>
       </div>
       <div class="app-row">
-        <h3><span class="app-num">04 &middot;</span> R&amp;D acceleration.</h3>
+        <h3>
+          <span class="app-num">04 &middot;</span> R&amp;D acceleration.
+          <svg class="app-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M9.5 3 V9 L4.8 17 a1.8 1.8 0 0 0 1.55 2.7 H17.65 a1.8 1.8 0 0 0 1.55 -2.7 L14.5 9 V3"/>
+            <line x1="8.5" y1="3" x2="15.5" y2="3"/>
+            <line x1="7.2" y1="14" x2="16.8" y2="14"/>
+          </svg>
+        </h3>
         <div>
           <p>Mine prior research, patents, and trial data. Surface relevant findings, summarise decisions, and identify gaps so researchers spend more time researching.</p>
           <p class="app-tags">Retrieval &middot; summarisation &middot; knowledge search &middot; synthesis</p>
