@@ -1464,19 +1464,19 @@
   }
 
   /* ===================== 03 · WHERE IT STALLS ===================== */
-  .stalls { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--surface); }
-  .stalls .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
-  @media (max-width: 760px) { .stalls .sec-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
-  .stalls .sec-head h2 { margin-top: 14px; }
-  .stalls .sec-head .block-lede { font-size: clamp(15px, 1.1vw, 17px); line-height: 1.65; color: var(--ink-soft); max-width: 56ch; }
-  .stalls .sec-head .block-lede p + p { margin-top: 14px; }
+  .stalls { padding: clamp(56px, 6vw, 88px) 0; border-top: 1px solid var(--hairline); background: var(--surface); }
+  .stalls .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(32px, 3.5vw, 48px); }
+  @media (max-width: 760px) { .stalls .sec-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 28px; } }
+  .stalls .sec-head h2 { margin-top: 12px; font-size: clamp(24px, 2.4vw, 34px); letter-spacing: -0.025em; line-height: 1.12; max-width: 18ch; }
+  .stalls .sec-head .block-lede { font-size: clamp(14px, 1vw, 15.5px); line-height: 1.6; color: var(--ink-soft); max-width: 52ch; }
+  .stalls .sec-head .block-lede p + p { margin-top: 10px; }
 
   .stalls-list { display: flex; flex-direction: column; }
   .stall-row {
     display: grid;
-    grid-template-columns: 72px minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: clamp(20px, 2.5vw, 40px);
-    padding: clamp(32px, 4vw, 48px) 0;
+    grid-template-columns: 56px minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(16px, 2vw, 32px);
+    padding: clamp(22px, 2.6vw, 32px) 0;
     border-top: 1px solid var(--hairline);
     align-items: start;
   }
@@ -1484,29 +1484,29 @@
 
   .stall-num {
     font-family: var(--font-display);
-    font-size: clamp(40px, 4.5vw, 64px);
+    font-size: clamp(28px, 3vw, 40px);
     font-weight: 300;
-    color: rgba(31,31,31,0.18);
+    color: rgba(31,31,31,0.20);
     letter-spacing: -0.04em;
     line-height: 1;
   }
 
   .stall-body h3 {
     font-family: var(--font-display);
-    font-size: clamp(20px, 1.7vw, 24px);
+    font-size: clamp(17px, 1.4vw, 20px);
     font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    letter-spacing: -0.015em;
+    line-height: 1.25;
     color: var(--ink);
-    margin: 0 0 14px;
+    margin: 0 0 10px;
     max-width: 28ch;
   }
-  .stall-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .stall-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
   .stall-chips span {
     display: inline-block;
-    padding: 4px 10px;
+    padding: 3px 8px;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 10px;
     letter-spacing: 0.10em;
     color: var(--ink-muted);
     border: 1px solid var(--hairline);
@@ -1517,54 +1517,54 @@
   }
   .stall-body p {
     color: var(--ink-soft);
-    font-size: 15.5px;
-    line-height: 1.6;
+    font-size: 14.5px;
+    line-height: 1.55;
     margin: 0;
-    max-width: 50ch;
+    max-width: 48ch;
   }
 
   .stall-cost {
     border-left: 2px solid var(--accent);
-    padding: 4px 0 4px 18px;
+    padding: 2px 0 2px 14px;
   }
   .stall-cost .lbl {
     display: block;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 10px;
     letter-spacing: 0.18em;
     text-transform: uppercase;
     color: var(--ink-muted);
-    margin-bottom: 10px;
+    margin-bottom: 6px;
   }
   .stall-cost p {
     font-family: var(--font-body);
-    font-size: 14.5px;
-    line-height: 1.55;
+    font-size: 13.5px;
+    line-height: 1.5;
     color: var(--ink);
     margin: 0;
-    max-width: 34ch;
+    max-width: 32ch;
   }
 
   .stalls-bridge {
-    margin-top: clamp(40px, 5vw, 56px);
-    padding: clamp(24px, 3vw, 32px) 0 0;
-    max-width: 72ch;
+    margin-top: clamp(28px, 3.5vw, 40px);
+    padding: clamp(18px, 2vw, 24px) 0 0;
+    max-width: 70ch;
     font-family: var(--font-mono);
-    font-size: 12.5px;
+    font-size: 12px;
     letter-spacing: 0.02em;
-    line-height: 1.75;
+    line-height: 1.7;
     color: var(--ink-soft);
   }
   .stalls-bridge b { color: var(--ink); font-weight: 500; }
 
   @media (max-width: 880px) {
-    .stall-row { grid-template-columns: 1fr; gap: 14px; padding: 28px 0; }
-    .stall-num { font-size: 36px; }
-    .stall-cost { margin-top: 4px; padding-left: 14px; }
-    .stall-body h3 { max-width: 100%; font-size: 20px; }
-    .stall-body p { font-size: 14.5px; }
-    .stall-cost p { font-size: 14px; max-width: 100%; }
-    .stalls-bridge { font-size: 12px; }
+    .stall-row { grid-template-columns: 1fr; gap: 10px; padding: 22px 0; }
+    .stall-num { font-size: 28px; }
+    .stall-cost { margin-top: 2px; padding-left: 12px; }
+    .stall-body h3 { max-width: 100%; font-size: 18px; }
+    .stall-body p { font-size: 14px; }
+    .stall-cost p { font-size: 13.5px; max-width: 100%; }
+    .stalls-bridge { font-size: 11.5px; }
   }
 
   /* ===================== 04 · INFRASTRUCTURE (data table card) ===================== */
