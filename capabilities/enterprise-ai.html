@@ -1464,109 +1464,122 @@
     .thesis-band .thesis-caption { font-size: 11.5px; }
   }
 
-  /* ===================== 03 · WHERE IT STALLS ===================== */
-  .stalls { padding: clamp(56px, 6vw, 88px) 0; border-top: 1px solid var(--hairline); background: var(--surface); }
-  .stalls .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(32px, 3.5vw, 48px); }
-  @media (max-width: 760px) { .stalls .sec-head { grid-template-columns: 1fr; gap: 16px; margin-bottom: 28px; } }
-  .stalls .sec-head h2 { margin-top: 12px; font-size: clamp(24px, 2.4vw, 34px); letter-spacing: -0.025em; line-height: 1.12; max-width: 18ch; }
-  .stalls .sec-head .block-lede { font-size: clamp(14px, 1vw, 15.5px); line-height: 1.6; color: var(--ink-soft); max-width: 52ch; }
-  .stalls .sec-head .block-lede p + p { margin-top: 10px; }
+  /* ===================== SHARED · ICONS / CHIPS / REVEAL ===================== */
+  .sec-icon { width: 30px; height: 30px; display: inline-flex; align-items: center; justify-content: center; color: var(--ink); flex: none; }
+  .sec-icon svg { width: 26px; height: 26px; display: block; }
 
-  .stalls-list { display: flex; flex-direction: column; }
-  .stall-row {
-    display: grid;
-    grid-template-columns: 56px minmax(0, 1.4fr) minmax(0, 1fr);
-    gap: clamp(16px, 2vw, 32px);
-    padding: clamp(22px, 2.6vw, 32px) 0;
-    border-top: 1px solid var(--hairline);
-    align-items: start;
-  }
-  .stall-row:last-of-type { border-bottom: 1px solid var(--hairline); }
-
-  .stall-num {
-    font-family: var(--font-display);
-    font-size: clamp(28px, 3vw, 40px);
-    font-weight: 300;
-    color: rgba(31,31,31,0.20);
-    letter-spacing: -0.04em;
-    line-height: 1;
-  }
-
-  .stall-body h3 {
-    font-family: var(--font-display);
-    font-size: clamp(17px, 1.4vw, 20px);
-    font-weight: 500;
-    letter-spacing: -0.015em;
-    line-height: 1.25;
-    color: var(--ink);
-    margin: 0 0 10px;
-    max-width: 28ch;
-  }
-  .stall-chips { display: flex; flex-wrap: wrap; gap: 5px; margin-bottom: 12px; }
-  .stall-chips span {
-    display: inline-block;
-    padding: 3px 8px;
+  .chip-row { display: flex; flex-wrap: wrap; gap: 7px; }
+  .chip-row span {
     font-family: var(--font-mono);
     font-size: 10px;
-    letter-spacing: 0.10em;
-    color: var(--ink-muted);
-    border: 1px solid var(--hairline);
-    border-radius: 2px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 4px 9px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 5px;
     white-space: nowrap;
     background: var(--white);
   }
-  .stall-body p {
-    color: var(--ink-soft);
-    font-size: 14.5px;
-    line-height: 1.55;
-    margin: 0;
-    max-width: 48ch;
+
+  [data-reveal] { opacity: 0; transform: translateY(14px); transition: opacity 640ms var(--ease), transform 640ms var(--ease); }
+  [data-reveal].is-in { opacity: 1; transform: none; }
+  @media (prefers-reduced-motion: reduce) { [data-reveal] { opacity: 1 !important; transform: none !important; transition: none !important; } }
+
+  /* ===================== 01 · WHERE AI ENTERS — bordered quadrant ===================== */
+  .enter-quad { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--hairline); border-left: 1px solid var(--hairline); }
+  .enter-cell {
+    border-right: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding: clamp(24px, 2.6vw, 38px);
+    display: flex; flex-direction: column; gap: 14px;
+    position: relative;
+    transition: background 240ms var(--ease);
+    min-height: 220px;
   }
+  .enter-cell:hover { background: var(--surface); }
+  .enter-cell .ec-top { display: flex; align-items: center; justify-content: space-between; }
+  .enter-cell .ec-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--ink-muted); }
+  .enter-cell:hover .ec-num { color: var(--accent); }
+  .enter-cell h3 { font-size: clamp(19px, 1.7vw, 24px); letter-spacing: -0.02em; max-width: 26ch; }
+  .enter-cell p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; max-width: 42ch; }
+  @media (max-width: 760px) { .enter-quad { grid-template-columns: 1fr; } .enter-cell { min-height: 0; } }
+
+  /* ===================== 02 · WHERE IT STALLS — numbered rows + icon + cost callout ===================== */
+  .stalls { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--white); }
+  .stalls .sec-head { align-items: start; }
+  .stalls .sec-head h2 { max-width: 18ch; }
+  .stalls .sec-head .block-lede { font-size: clamp(15px, 1.1vw, 16.5px); line-height: 1.65; color: var(--ink-soft); max-width: 52ch; font-family: var(--font-body); letter-spacing: normal; }
+  .stalls .sec-head .block-lede p + p { margin-top: 12px; }
+
+  .stall-list { display: flex; flex-direction: column; border-top: 1px solid var(--hairline); }
+  .stall-row {
+    display: grid;
+    grid-template-columns: 64px 1.5fr 1fr;
+    gap: clamp(24px, 3vw, 52px);
+    padding: clamp(28px, 3.4vw, 44px) 0;
+    border-bottom: 1px solid var(--hairline);
+    align-items: start;
+  }
+  .stall-row .sr-num {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 30px;
+    letter-spacing: -0.02em;
+    color: var(--ink-muted);
+    opacity: 0.55;
+    line-height: 1;
+  }
+  .stall-main { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
+  .stall-main .sr-titleline { display: flex; align-items: flex-start; gap: 14px; }
+  .stall-main .sr-icon { color: var(--ink); margin-top: 2px; }
+  .stall-main h3 { font-size: clamp(20px, 1.9vw, 26px); letter-spacing: -0.02em; max-width: 18ch; }
+  .stall-main p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; max-width: 48ch; margin: 0; }
 
   .stall-cost {
     border-left: 2px solid var(--accent);
-    padding: 2px 0 2px 14px;
+    padding: 4px 0 4px 18px;
+    background: linear-gradient(90deg, var(--accent-soft, rgba(52,120,229,0.10)), transparent 80%);
   }
-  .stall-cost .lbl {
-    display: block;
+  .stall-cost .sc-label { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .stall-cost p { font-size: 14px; color: var(--ink); line-height: 1.55; margin: 0; }
+
+  .stall-close {
+    margin-top: clamp(32px, 4vw, 52px);
     font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    margin-bottom: 6px;
-  }
-  .stall-cost p {
-    font-family: var(--font-body);
     font-size: 13.5px;
-    line-height: 1.5;
-    color: var(--ink);
-    margin: 0;
-    max-width: 32ch;
-  }
-
-  .stalls-bridge {
-    margin-top: clamp(28px, 3.5vw, 40px);
-    padding: clamp(18px, 2vw, 24px) 0 0;
-    max-width: 70ch;
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.02em;
-    line-height: 1.7;
+    line-height: 1.75;
     color: var(--ink-soft);
+    max-width: 70ch;
+    padding-left: 18px;
+    border-left: 1px solid var(--hairline-strong);
   }
-  .stalls-bridge b { color: var(--ink); font-weight: 500; }
+  .stall-close b { color: var(--ink); font-weight: 500; }
 
-  @media (max-width: 880px) {
-    .stall-row { grid-template-columns: 1fr; gap: 10px; padding: 22px 0; }
-    .stall-num { font-size: 28px; }
-    .stall-cost { margin-top: 2px; padding-left: 12px; }
-    .stall-body h3 { max-width: 100%; font-size: 18px; }
-    .stall-body p { font-size: 14px; }
-    .stall-cost p { font-size: 13.5px; max-width: 100%; }
-    .stalls-bridge { font-size: 11.5px; }
+  @media (max-width: 860px) {
+    .stall-row { grid-template-columns: 40px 1fr; gap: 16px 18px; }
+    .stall-cost { grid-column: 1 / -1; margin-top: 4px; }
   }
+
+  /* ===================== DARK BREATH (between 02 and 03) ===================== */
+  .breath-dark { background: #1F1F1F; color: var(--white); padding: clamp(64px, 9vw, 120px) 0; }
+  .breath-dark .bd-eyebrow {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin-bottom: 28px;
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .breath-dark .bd-eyebrow::before { content: ""; width: 7px; height: 7px; border-radius: 999px; background: var(--accent); }
+  .breath-dark p {
+    font-family: var(--font-display); font-weight: 500;
+    font-size: clamp(24px, 3.2vw, 42px);
+    line-height: 1.28; letter-spacing: -0.02em;
+    max-width: 30ch; color: var(--white); margin: 0;
+  }
+  .breath-dark p b { color: var(--white); font-weight: 500; }
+  .breath-dark p em { font-style: normal; color: rgba(255,255,255,0.55); }
+  .breath-dark .bd-mark { width: 36px; height: 1px; background: rgba(255,255,255,0.4); margin-top: 32px; }
 
   /* ===================== 04 · INFRASTRUCTURE (data table card) ===================== */
   .integ-section-bp { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--surface); }
@@ -2077,20 +2090,36 @@
       </div>
     </div>
 
-    <div class="apps-list">
-      <div class="app-row">
+    <div class="enter-quad" data-reveal>
+      <div class="enter-cell">
+        <div class="ec-top">
+          <span class="ec-num">01</span>
+          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11a8.5 8.5 0 0 0-14.6-5.3M3.5 13a8.5 8.5 0 0 0 14.6 5.3"/><path d="M5 2.5v3.2h3.2M19 21.5v-3.2h-3.2"/></svg></span>
+        </div>
         <h3>Operational workflows.</h3>
         <p>AI-assisted processes for repetitive, high-volume work where teams need speed, consistency, and review.</p>
       </div>
-      <div class="app-row">
+      <div class="enter-cell">
+        <div class="ec-top">
+          <span class="ec-num">02</span>
+          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7l5 5v13H6z"/><path d="M13 3v5h5"/><path d="M9 13h6M9 16.5h4"/></svg></span>
+        </div>
         <h3>Document &amp; data workflows.</h3>
         <p>Systems that extract, structure, compare, summarise, and route information from documents, files, forms, and internal data.</p>
       </div>
-      <div class="app-row">
+      <div class="enter-cell">
+        <div class="ec-top">
+          <span class="ec-num">03</span>
+          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="12" height="12" rx="1.3"/><path d="M9 21h12V9"/><path d="M3 9h12M9 3v12"/></svg></span>
+        </div>
         <h3>Content &amp; market operations.</h3>
         <p>Workflows for product content, localisation, marketplace assets, campaign material, and brand-sensitive review.</p>
       </div>
-      <div class="app-row">
+      <div class="enter-cell">
+        <div class="ec-top">
+          <span class="ec-num">04</span>
+          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5.5" r="2.2"/><circle cx="18" cy="5.5" r="2.2"/><circle cx="12" cy="18.5" r="2.2"/><path d="M8 5.5h8M7.4 7.4 11 16.4M16.6 7.4 13 16.4"/></svg></span>
+        </div>
         <h3>Decision-support systems.</h3>
         <p>Internal tools that help teams query information, prepare recommendations, surface risks, and act with better context.</p>
       </div>
@@ -2111,83 +2140,84 @@
       </div>
     </div>
 
-    <div class="stalls-list">
-      <div class="stall-row">
-        <div class="stall-num">01</div>
-        <div class="stall-body">
-          <h3>The work lives outside the organisation.</h3>
-          <div class="stall-chips">
-            <span>Content</span>
-            <span>Localisation</span>
-            <span>Reporting</span>
-            <span>Review</span>
+    <div class="stall-list">
+      <div class="stall-row" data-reveal>
+        <div class="sr-num">01</div>
+        <div class="stall-main">
+          <div class="sr-titleline">
+            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="9" height="12" rx="1"/><path d="M3 8 7.5 3.5 12 8"/><path d="M6.5 20v-4h2.5v4"/><path d="M14.5 13h6.5M18.5 10.5 21 13l-2.5 2.5"/></svg></span>
+            <h3>The work lives outside the organisation.</h3>
           </div>
+          <div class="chip-row"><span>Content</span><span>Localisation</span><span>Reporting</span><span>Review</span></div>
           <p>External agencies, vendors, and disconnected tools deliver the output. The operating knowledge doesn&rsquo;t stay with the organisation.</p>
         </div>
         <div class="stall-cost">
-          <span class="lbl">What it costs</span>
+          <div class="sc-label">What it costs</div>
           <p>You keep paying per output, per market, per handover. Capability never accrues internally.</p>
         </div>
       </div>
 
-      <div class="stall-row">
-        <div class="stall-num">02</div>
-        <div class="stall-body">
-          <h3>The tool doesn&rsquo;t connect to the workflow.</h3>
-          <div class="stall-chips">
-            <span>ERP</span>
-            <span>CRM</span>
-            <span>Asset library</span>
-            <span>Approval chain</span>
+      <div class="stall-row" data-reveal>
+        <div class="sr-num">02</div>
+        <div class="stall-main">
+          <div class="sr-titleline">
+            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 9 6.6 5.6a3 3 0 0 0-4.2 4.2L5.5 13"/><path d="M14 15l3.4 3.4a3 3 0 0 0 4.2-4.2L18.5 11"/><path d="M14.5 6.5 16 5M6.5 14.5 5 16M19 9.5 20.5 8M9.5 19 8 20.5"/></svg></span>
+            <h3>The tool doesn&rsquo;t connect to the workflow.</h3>
           </div>
+          <div class="chip-row"><span>ERP</span><span>CRM</span><span>Asset library</span><span>Approval chain</span></div>
           <p>AI works in the demo. Inside the real environment, it doesn&rsquo;t reach the place where work happens.</p>
         </div>
         <div class="stall-cost">
-          <span class="lbl">What it costs</span>
+          <div class="sc-label">What it costs</div>
           <p>A useful screen, not a usable operating system.</p>
         </div>
       </div>
 
-      <div class="stall-row">
-        <div class="stall-num">03</div>
-        <div class="stall-body">
-          <h3>The system is hard to inspect.</h3>
-          <div class="stall-chips">
-            <span>Traceable</span>
-            <span>Reviewable</span>
-            <span>GDPR</span>
-            <span>EU AI Act</span>
+      <div class="stall-row" data-reveal>
+        <div class="sr-num">03</div>
+        <div class="stall-main">
+          <div class="sr-titleline">
+            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20.5 20.5 16 16"/><path d="M7.5 10.5 9.5 12.5 13 8.5" stroke-dasharray="1.5 2.2"/></svg></span>
+            <h3>The system is hard to inspect.</h3>
           </div>
+          <div class="chip-row"><span>Traceable</span><span>Reviewable</span><span>GDPR</span><span>EU AI Act</span></div>
           <p>Outputs that can&rsquo;t be traced, reviewed, or explained don&rsquo;t get trusted. For European organisations, that becomes a compliance question.</p>
         </div>
         <div class="stall-cost">
-          <span class="lbl">What it costs</span>
+          <div class="sc-label">What it costs</div>
           <p>Every output needs manual confidence-building. Speed makes visibility more important, not less.</p>
         </div>
       </div>
 
-      <div class="stall-row">
-        <div class="stall-num">04</div>
-        <div class="stall-body">
-          <h3>The cost scales with the bottleneck.</h3>
-          <div class="stall-chips">
-            <span>New SKU</span>
-            <span>New market</span>
-            <span>New language</span>
-            <span>New rule</span>
+      <div class="stall-row" data-reveal>
+        <div class="sr-num">04</div>
+        <div class="stall-main">
+          <div class="sr-titleline">
+            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20.5h16"/><rect x="5" y="13" width="3" height="6"/><rect x="10.5" y="9" width="3" height="10"/><rect x="16" y="4.5" width="3" height="14.5"/></svg></span>
+            <h3>The cost scales with the bottleneck.</h3>
           </div>
+          <div class="chip-row"><span>New SKU</span><span>New market</span><span>New language</span><span>New rule</span></div>
           <p>Every new variant adds manual work when the process isn&rsquo;t systematised. Growth increases workload instead of improving the operating model.</p>
         </div>
         <div class="stall-cost">
-          <span class="lbl">What it costs</span>
+          <div class="sc-label">What it costs</div>
           <p>The organisation scales. The workflow scales with people, hours, and review cycles.</p>
         </div>
       </div>
     </div>
 
-    <p class="stalls-bridge">These aren&rsquo;t four separate problems. They&rsquo;re four signs that the work <b>around</b> the AI isn&rsquo;t ready. AIHLPR builds that layer &mdash; where AI workflows are owned, integrated, reviewed, measured, and improved inside the organisation.</p>
+    <p class="stall-close">These aren&rsquo;t four separate problems. They&rsquo;re four signs that the work <b>around</b> the AI isn&rsquo;t ready. AIHLPR builds that layer &mdash; where AI workflows are owned, integrated, reviewed, measured, and improved inside the organisation.</p>
   </div>
 </section>
+
+<!-- DARK BREATH (between 02 Stalls and 03 How we build) -->
+<div class="breath-dark">
+  <div class="container">
+    <span class="bd-eyebrow">The operational difference</span>
+    <p>Pilots prove what&rsquo;s <em>possible.</em> Production proves what&rsquo;s <b>real.</b></p>
+    <div class="bd-mark"></div>
+  </div>
+</div>
 
 <section class="genai-stack" data-rev="rag-v2" data-sec="generative" id="generative">
   <div class="container">
@@ -2899,70 +2929,79 @@
 </section>
 
 
-<!-- 04 · HOW AI BECOMES OPERATIONAL + 05 · GOVERNANCE — shared layer-block pattern -->
+<!-- 04 · HOW AI BECOMES OPERATIONAL + 05 · GOVERNANCE + EU MAP -->
 <style>
   .layer-section { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--white); }
   .layer-section.is-tinted { background: var(--surface); }
-  .layer-section .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
+  .layer-section .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: start; margin-bottom: clamp(40px, 5vw, 64px); }
   @media (max-width: 760px) { .layer-section .sec-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
   .layer-section .sec-head h2 { margin-top: 14px; max-width: 22ch; }
-  .layer-section .sec-head .block-lede { font-size: clamp(15px, 1.1vw, 16.5px); line-height: 1.65; color: var(--ink-soft); max-width: 52ch; }
+  .layer-section .sec-head .block-lede { font-size: clamp(15px, 1.1vw, 16.5px); line-height: 1.65; color: var(--ink-soft); max-width: 52ch; font-family: var(--font-body); letter-spacing: normal; }
   .layer-section .sec-head .block-lede p + p { margin-top: 12px; }
 
-  .layer-list { display: flex; flex-direction: column; }
-  .layer-row {
+  /* 04 · OPERATIONAL — stacked bordered cards with vertical rail */
+  .ops-layers { display: flex; flex-direction: column; gap: 16px; }
+  .ops-layer {
     display: grid;
-    grid-template-columns: 64px minmax(0, 1fr);
-    gap: clamp(18px, 2vw, 32px);
-    padding: clamp(24px, 2.8vw, 36px) 0;
-    border-top: 1px solid var(--hairline);
-    align-items: start;
-  }
-  .layer-row:last-of-type { border-bottom: 1px solid var(--hairline); }
-  .layer-num {
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.18em;
-    color: var(--c);
-    font-weight: 600;
-    padding-top: 6px;
-  }
-  .layer-body h3 {
-    font-family: var(--font-display);
-    font-size: clamp(20px, 1.7vw, 24px);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    line-height: 1.25;
-    color: var(--ink);
-    margin: 0 0 12px;
-    max-width: 32ch;
-  }
-  .layer-body p {
-    color: var(--ink-soft);
-    font-size: 15px;
-    line-height: 1.6;
-    margin: 0 0 14px;
-    max-width: 66ch;
-  }
-  .layer-tags { display: flex; flex-wrap: wrap; gap: 5px; }
-  .layer-tags span {
-    display: inline-block;
-    padding: 3px 8px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.10em;
-    color: var(--ink-muted);
-    border: 1px solid var(--hairline);
-    border-radius: 2px;
-    text-transform: uppercase;
-    white-space: nowrap;
+    grid-template-columns: 64px 1fr;
+    gap: clamp(20px, 2.4vw, 36px);
     background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: clamp(24px, 2.6vw, 36px);
+    transition: box-shadow 240ms var(--ease), border-color 240ms var(--ease);
   }
-  @media (max-width: 760px) {
-    .layer-row { grid-template-columns: 1fr; gap: 8px; padding: 22px 0; }
-    .layer-num { padding-top: 0; }
-    .layer-body h3 { max-width: 100%; font-size: 19px; }
-    .layer-body p { font-size: 14.5px; }
+  .ops-layer:hover { box-shadow: 0 24px 48px -32px rgba(31,31,31,0.30); border-color: var(--hairline-strong); }
+  .ops-layer .ol-rail { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .ops-layer .ol-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--accent); font-weight: 600; }
+  .ops-layer .ol-line { flex: 1; width: 1px; background: var(--hairline-strong); min-height: 18px; }
+  .ops-layer:last-child .ol-line { display: none; }
+  .ops-body { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
+  .ops-body h3 { font-size: clamp(20px, 1.9vw, 26px); letter-spacing: -0.02em; margin: 0; }
+  .ops-body p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; max-width: 62ch; margin: 0; }
+  @media (max-width: 620px) {
+    .ops-layer { grid-template-columns: 1fr; gap: 14px; }
+    .ops-layer .ol-rail { flex-direction: row; }
+    .ops-layer .ol-line { display: none; }
+  }
+
+  /* 05 · GOVERNANCE — 2x2 bordered cards */
+  .gov2-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .gov2-cell {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: clamp(24px, 2.6vw, 34px);
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color 240ms var(--ease), box-shadow 240ms var(--ease);
+  }
+  .gov2-cell:hover { border-color: var(--hairline-strong); box-shadow: 0 24px 48px -34px rgba(31,31,31,0.28); }
+  .gov2-cell .gc-top { display: flex; align-items: center; gap: 14px; }
+  .gov2-cell .gc-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--accent); font-weight: 600; }
+  .gov2-cell h3 { font-size: clamp(19px, 1.7vw, 23px); letter-spacing: -0.02em; margin: 0; }
+  .gov2-cell p { color: var(--ink-soft); font-size: 14px; line-height: 1.58; margin: 0; }
+  .gov2-cell .gc-foot { margin-top: auto; padding-top: 6px; }
+  @media (max-width: 760px) { .gov2-grid { grid-template-columns: 1fr; } }
+
+  /* EU residency dot-grid map (Compliance card) */
+  .eu-map { margin-top: 8px; display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
+  .eu-dots { display: grid; gap: 3px; }
+  .eu-dots .eu-dot { width: 4px; height: 4px; border-radius: 999px; background: transparent; }
+  .eu-dots .eu-dot.land { background: var(--ink-muted); opacity: 0.5; }
+  .eu-dots .eu-dot.city {
+    background: var(--accent); width: 6px; height: 6px;
+    margin: -1px;
+    box-shadow: 0 0 0 3px var(--accent-soft, rgba(52,120,229,0.10));
+    opacity: 1;
+  }
+  .eu-legend { display: flex; flex-direction: column; gap: 10px; }
+  .eu-legend .el-cap { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); }
+  .eu-legend .el-item { display: flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink); letter-spacing: 0.04em; }
+  .eu-legend .el-item .el-pin {
+    width: 7px; height: 7px; border-radius: 999px;
+    background: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft, rgba(52,120,229,0.10));
+    flex: none;
   }
 </style>
 
@@ -2976,46 +3015,41 @@
       <p class="block-lede">AI becomes useful when it runs inside the organisation, not beside it. The workflow has to connect with existing systems, handle real data, support human review, and stay visible after deployment.</p>
     </div>
 
-    <div class="layer-list">
-      <div class="layer-row">
-        <div class="layer-num">01</div>
-        <div class="layer-body">
+    <div class="ops-layers">
+      <div class="ops-layer" data-reveal>
+        <div class="ol-rail">
+          <span class="ol-num">01</span>
+          <span class="sec-icon ol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h5a5 5 0 0 1 5 5M7 18h5a5 5 0 0 0 5-5"/></svg></span>
+          <span class="ol-line"></span>
+        </div>
+        <div class="ops-body">
           <h3>Built around the workflow.</h3>
           <p>Each AI workflow is designed around the process first: inputs, decisions, handovers, exceptions, approvals, and outputs. The model is only one part of the system.</p>
-          <div class="layer-tags">
-            <span>Workflow logic</span>
-            <span>Human review</span>
-            <span>Exceptions</span>
-            <span>Outputs</span>
-          </div>
+          <div class="chip-row"><span>Workflow logic</span><span>Human review</span><span>Exceptions</span><span>Outputs</span></div>
         </div>
       </div>
-      <div class="layer-row">
-        <div class="layer-num">02</div>
-        <div class="layer-body">
+      <div class="ops-layer" data-reveal>
+        <div class="ol-rail">
+          <span class="ol-num">02</span>
+          <span class="sec-icon ol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6M4 11.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+          <span class="ol-line"></span>
+        </div>
+        <div class="ops-body">
           <h3>Connected to the enterprise stack.</h3>
           <p>The system works with the tools and data already in place: CRMs, ERPs, document stores, asset libraries, internal databases, APIs, cloud environments, and approval tools.</p>
-          <div class="layer-tags">
-            <span>Data sources</span>
-            <span>APIs</span>
-            <span>Cloud</span>
-            <span>Integrations</span>
-            <span>Access control</span>
-          </div>
+          <div class="chip-row"><span>Data sources</span><span>APIs</span><span>Cloud</span><span>Integrations</span><span>Access control</span></div>
         </div>
       </div>
-      <div class="layer-row">
-        <div class="layer-num">03</div>
-        <div class="layer-body">
+      <div class="ops-layer" data-reveal>
+        <div class="ol-rail">
+          <span class="ol-num">03</span>
+          <span class="sec-icon ol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="1.4"/><path d="M6 12l2.6-3.2 2 2 2.6-4 2 3.2H18"/><path d="M9 21h6M12 17v4"/></svg></span>
+          <span class="ol-line"></span>
+        </div>
+        <div class="ops-body">
           <h3>Ready to monitor and scale.</h3>
           <p>Production systems need visibility after launch. Monitoring, evaluation, versioning, rollout controls, fallback paths, and cost guardrails are built into the operating model.</p>
-          <div class="layer-tags">
-            <span>Monitoring</span>
-            <span>Evals</span>
-            <span>Versioning</span>
-            <span>Rollback</span>
-            <span>Cost control</span>
-          </div>
+          <div class="chip-row"><span>Monitoring</span><span>Evals</span><span>Versioning</span><span>Rollback</span><span>Cost control</span></div>
         </div>
       </div>
     </div>
@@ -3035,58 +3069,50 @@
       </div>
     </div>
 
-    <div class="layer-list">
-      <div class="layer-row">
-        <div class="layer-num">01</div>
-        <div class="layer-body">
-          <h3>Clear system boundaries.</h3>
-          <p>What AI can draft, suggest, classify, retrieve, or prepare is defined separately from what humans must approve, publish, escalate, or override.</p>
-          <div class="layer-tags">
-            <span>Model limits</span>
-            <span>Approval rules</span>
-            <span>Escalation paths</span>
-          </div>
+    <div class="gov2-grid" data-reveal>
+      <div class="gov2-cell">
+        <div class="gc-top">
+          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4H4v16h2M18 4h2v16h-2"/><path d="M12 4v16" stroke-dasharray="2 3"/></svg></span>
+          <span class="gc-num">01</span>
         </div>
+        <h3>Clear system boundaries.</h3>
+        <p>What AI can draft, suggest, classify, retrieve, or prepare is defined separately from what humans must approve, publish, escalate, or override.</p>
+        <div class="gc-foot"><div class="chip-row"><span>Model limits</span><span>Approval rules</span><span>Escalation paths</span></div></div>
       </div>
-      <div class="layer-row">
-        <div class="layer-num">02</div>
-        <div class="layer-body">
-          <h3>Human accountability.</h3>
-          <p>Each workflow has named roles: owner, operator, reviewer, approver, and auditor. People know who maintains the system, who reviews outputs, and who signs off before operational use.</p>
-          <div class="layer-tags">
-            <span>Owner</span>
-            <span>Operator</span>
-            <span>Reviewer</span>
-            <span>Approver</span>
-            <span>Auditor</span>
-          </div>
+      <div class="gov2-cell">
+        <div class="gc-top">
+          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.3"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span>
+          <span class="gc-num">02</span>
         </div>
+        <h3>Human accountability.</h3>
+        <p>Each workflow has named roles: owner, operator, reviewer, approver, and auditor. People know who maintains the system, who reviews outputs, and who signs off before operational use.</p>
+        <div class="gc-foot"><div class="chip-row"><span>Owner</span><span>Operator</span><span>Reviewer</span><span>Approver</span><span>Auditor</span></div></div>
       </div>
-      <div class="layer-row">
-        <div class="layer-num">03</div>
-        <div class="layer-body">
-          <h3>Reviewable outputs.</h3>
-          <p>Outputs should be traceable enough for teams to understand what was generated, what changed, who reviewed it, and what was approved.</p>
-          <div class="layer-tags">
-            <span>Logs</span>
-            <span>Version history</span>
-            <span>Review trails</span>
-            <span>Evidence</span>
-          </div>
+      <div class="gov2-cell">
+        <div class="gc-top">
+          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><path d="M9.4 12l1.8 1.8 3.4-3.8"/></svg></span>
+          <span class="gc-num">03</span>
         </div>
+        <h3>Reviewable outputs.</h3>
+        <p>Outputs should be traceable enough for teams to understand what was generated, what changed, who reviewed it, and what was approved.</p>
+        <div class="gc-foot"><div class="chip-row"><span>Logs</span><span>Version history</span><span>Review trails</span><span>Evidence</span></div></div>
       </div>
-      <div class="layer-row">
-        <div class="layer-num">04</div>
-        <div class="layer-body">
-          <h3>Compliance readiness.</h3>
-          <p>GDPR, EU AI Act, security, and internal policy requirements are easier to manage when data boundaries, human oversight, and auditability are built into the workflow from the start.</p>
-          <div class="layer-tags">
-            <span>GDPR</span>
-            <span>EU AI Act</span>
-            <span>Access control</span>
-            <span>Auditability</span>
+      <div class="gov2-cell">
+        <div class="gc-top">
+          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 3 7.6 7 9 4-1.4 7-4.4 7-9V6Z"/><path d="M9 11.5l2 2 4-4.4"/></svg></span>
+          <span class="gc-num">04</span>
+        </div>
+        <h3>Compliance readiness.</h3>
+        <p>GDPR, EU AI Act, security, and internal policy requirements are easier to manage when data boundaries, human oversight, and auditability are built into the workflow from the start.</p>
+        <div class="eu-map">
+          <div class="eu-dots" style="grid-template-columns: repeat(13, 4px);"><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot city" title="Amsterdam"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot city" title="Frankfurt"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i></div>
+          <div class="eu-legend">
+            <span class="el-cap">EU residency</span>
+            <span class="el-item"><span class="el-pin"></span>Amsterdam</span>
+            <span class="el-item"><span class="el-pin"></span>Frankfurt</span>
           </div>
         </div>
+        <div class="gc-foot"><div class="chip-row"><span>GDPR</span><span>EU AI Act</span><span>Access control</span><span>Auditability</span></div></div>
       </div>
     </div>
   </div>
@@ -3308,6 +3334,30 @@
     obsMob.observe(mobToc, { subtree: true, attributes: true, attributeFilter: ['class'] });
   }
 })();
+</script>
+
+<script>
+  /* Scroll-reveal for [data-reveal] elements: fade + lift with sibling stagger. */
+  (function () {
+    var revealEls = document.querySelectorAll('[data-reveal]');
+    if (!revealEls.length) return;
+    if (!('IntersectionObserver' in window)) {
+      revealEls.forEach(function (el) { el.classList.add('is-in'); });
+      return;
+    }
+    var ro = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        var el = e.target;
+        var siblings = Array.prototype.slice.call(el.parentNode.querySelectorAll(':scope > [data-reveal]'));
+        var idx = Math.max(0, siblings.indexOf(el));
+        el.style.transitionDelay = (idx * 90) + 'ms';
+        el.classList.add('is-in');
+        ro.unobserve(el);
+      });
+    }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
+    revealEls.forEach(function (el) { ro.observe(el); });
+  })();
 </script>
 </body>
 </html>
