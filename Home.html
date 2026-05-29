@@ -951,10 +951,19 @@
     --ct-green: #0F7A4E;
     background: var(--white);
     color: var(--ink);
-    padding: clamp(56px, 7vw, 96px) 0;
+    padding: clamp(72px, 9vw, 120px) 0;
     position: relative;
+    overflow: hidden;
   }
   .compliance-section > .container { position: relative; z-index: 1; }
+
+  /* Europe dot-grid watermark canvas */
+  .ct-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+  }
 
   .ct-grid {
     display: grid;
@@ -2640,6 +2649,7 @@
 
 <!-- ============= COMPLIANCE — animated audit terminal ============= -->
 <section class="compliance-section" id="compliance">
+  <canvas class="ct-bg" id="ctBg"></canvas>
   <div class="container">
     <div class="ct-grid">
       <div class="ct-left">
@@ -3114,6 +3124,84 @@
       });
     }, { threshold: 0.2 });
     io.observe(root);
+  })();
+
+  // ===== Compliance — Europe dot-grid watermark engine =====
+  (function () {
+    const section = document.getElementById('compliance');
+    const canvas  = document.getElementById('ctBg');
+    if (!section || !canvas) return;
+    const ctx = canvas.getContext('2d');
+
+    const opts = {
+      shape: 'europe',
+      anchor: 'center',
+      opacity: 0.08,
+      scale: 1.15,
+      dot: 2.5,
+      gap: 14,
+      color: '31,31,31',
+    };
+
+    function buildMask(shape, size) {
+      const off = document.createElement('canvas');
+      off.width = off.height = size;
+      const o = off.getContext('2d');
+      o.clearRect(0, 0, size, size);
+      o.fillStyle = '#fff';
+      o.strokeStyle = '#fff';
+      o.lineCap = 'round';
+      o.lineJoin = 'round';
+      const s = size / 100;
+      if (shape === 'europe') {
+        const p = new Path2D('M18 30 L34 24 L40 30 L52 22 L58 30 L54 38 L64 36 L72 30 L84 34 L80 44 L70 46 L74 54 L66 58 L70 66 L60 70 L62 80 L52 78 L50 88 L44 80 L36 84 L34 74 L24 72 L30 62 L20 58 L28 50 L18 46 L26 40 Z');
+        o.save(); o.scale(s, s); o.fill(p); o.restore();
+      }
+      return { off, size };
+    }
+
+    function draw() {
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      const W = section.clientWidth, H = section.clientHeight;
+      canvas.width = W * dpr; canvas.height = H * dpr;
+      canvas.style.width = W + 'px'; canvas.style.height = H + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      ctx.clearRect(0, 0, W, H);
+
+      const fill = 'rgba(' + opts.color + ',' + opts.opacity + ')';
+      const box = Math.min(H, W) * opts.scale * 1.15;
+      const bx = (W - box) / 2;
+      const by = (H - box) / 2;
+      const maskSize = 300;
+      const { off } = buildMask(opts.shape, maskSize);
+      const img = off.getContext('2d').getImageData(0, 0, maskSize, maskSize).data;
+      const sample = (nx, ny) => {
+        const px = Math.max(0, Math.min(maskSize - 1, Math.floor(nx * maskSize)));
+        const py = Math.max(0, Math.min(maskSize - 1, Math.floor(ny * maskSize)));
+        return img[(py * maskSize + px) * 4 + 3];
+      };
+      ctx.fillStyle = fill;
+      for (let y = 0; y <= box; y += opts.gap) {
+        for (let x = 0; x <= box; x += opts.gap) {
+          if (sample(x / box, y / box) > 90) {
+            ctx.beginPath();
+            ctx.arc(bx + x, by + y, opts.dot, 0, Math.PI * 2);
+            ctx.fill();
+          }
+        }
+      }
+    }
+
+    window.addEventListener('resize', draw);
+    if (window.ResizeObserver) {
+      let rafId = null;
+      const ro = new ResizeObserver(() => {
+        cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(draw);
+      });
+      ro.observe(section);
+    }
+    requestAnimationFrame(() => { draw(); setTimeout(draw, 300); });
   })();
 
   // Mobile hamburger menu
