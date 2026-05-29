@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Prototype to Production Engineering · AIHLPR Capabilities</title>
-<meta name="description" content="Prototype to Production Engineering: scaling AI prototypes into production-ready systems with architecture, reliability, monitoring, and operational trust.">
+<title>AI Pilot to Production | AIHLPR</title>
+<meta name="description" content="AIHLPR helps enterprise teams move AI pilots, copilots, workflow automations, and internal tools into reliable production systems with architecture, monitoring, evaluation, governance, and human oversight.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -356,6 +356,19 @@
     color: var(--white); margin-top: 12px; margin-bottom: 18px;
     font-size: clamp(32px, 3.4vw, 48px); max-width: 22ch;
   }
+  .final-cta-card .outcome-questions {
+    list-style: none; padding: 0; margin: 14px 0 0; max-width: 52ch;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .final-cta-card .outcome-questions li {
+    color: rgba(255,255,255,0.85);
+    font-size: clamp(15px, 1.1vw, 17px); line-height: 1.5;
+    padding-left: 18px; position: relative;
+  }
+  .final-cta-card .outcome-questions li::before {
+    content: ""; position: absolute; left: 0; top: 0.7em;
+    width: 6px; height: 1px; background: var(--c);
+  }
   .final-cta-card p {
     color: rgba(255,255,255,0.75);
     font-size: clamp(15px, 1.1vw, 17px); line-height: 1.6; max-width: 52ch;
@@ -615,7 +628,7 @@
       <span class="nav-crumb">
         <a href="../Home.html#capabilities">Solutions</a>
         <span class="sep">/</span>
-        <span>Prototype to Production Engineering</span>
+        <span>AI Pilot to Production</span>
       </span>
     </div>
     <div class="nav-links">
@@ -651,14 +664,16 @@
         <span class="sep"></span>
         <span>Capabilities</span>
         <span class="sep"></span>
-        <span>Prototype to Production</span>
+        <span>AI Pilot to Production</span>
       </div>
-      <h1>Prototype to Production Engineering</h1>
-      <p class="hero-lede">From vibe-coded prototype to production-grade system.</p>
-      <p class="hero-sub">Many AI systems prove value in prototypes. Few are engineered for reliability, scalability, visibility, and operational deployment.</p>
+      <h1>AI Pilot to Production</h1>
+      <p class="hero-lede">From promising AI initiative to reliable operational system.</p>
+      <p class="hero-sub">Many enterprise AI initiatives begin as pilots: an internal copilot, workflow automation, notebook, vendor demo, department-level tool, or experimental system. The first version proves that something is possible. Production requires a different question: can the business rely on it every day?</p>
+      <p class="hero-sub">AIHLPR helps teams move from useful experiment to operational AI system. We review what has been built, identify what is ready to scale, and harden the workflow across architecture, data flow, deployment, monitoring, evaluation, security, and human oversight.</p>
+      <p class="hero-sub">This is not about making the prototype more polished. It is about making the system dependable enough for real users, real exceptions, real data, and real business decisions.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="../Home.html#contact">
-          Discuss production engineering <span class="arrow">&rarr;</span>
+          Discuss production readiness <span class="arrow">&rarr;</span>
         </a>
         <a class="btn btn-secondary" href="../Home.html#capabilities">
           Explore capabilities <span class="arrow">&rarr;</span>
@@ -837,61 +852,67 @@
   </div>
 </section>
 
-<!-- SECTION 2 — Operational Reality -->
+<!-- SECTION 2 — What we help productionise -->
 <section class="block">
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>Operational reality</span>
-        <h2 style="margin-top:14px;">From prototype to production.</h2>
+        <span class="label-mono"><span class="dot"></span>Scope</span>
+        <h2 style="margin-top:14px;">What we help productionise.</h2>
       </div>
-      <p class="block-lede">AI prototypes often begin as internal tools, AI copilots, workflow automations, experimental systems, vibe-coded products, or operational use cases. Production environments require significantly more structure.</p>
+      <div class="block-lede">
+        <p>AI pilots usually become valuable when they move beyond the demo environment. We help teams take the working parts of an experiment and turn them into a system that can be operated, reviewed, improved, and trusted.</p>
+        <p style="margin-top:14px;">This can include internal copilots, document workflows, decision-support tools, AI-enabled dashboards, content operations, translation systems, support workflows, or custom applications where AI is part of a larger business process.</p>
+        <p style="margin-top:14px;">The goal is simple: keep what works, remove what is fragile, and build the operational layer around it.</p>
+      </div>
     </div>
   </div>
 </section>
 
 
-<!-- SECTION (new) — Engineering scars. Incident response + rollback. -->
+<!-- SECTION — Production readiness + What we strengthen -->
 <section class="block">
   <div class="container">
     <div class="failure-block">
       <div>
-        <span class="label-mono"><span class="dot"></span>Engineering scars</span>
-        <h2 style="margin-top:14px;">Production is the boring engineering.</h2>
-        <p class="block-lede">
-          Rollbacks, fallbacks, drift, evaluation regressions, cost spikes, model switches. The systems people trust are the ones that have survived all of it.
-        </p>
+        <span class="label-mono"><span class="dot"></span>Production readiness</span>
+        <h2 style="margin-top:14px;">Production readiness is where AI becomes useful.</h2>
+        <div class="block-lede">
+          <p>A pilot can show potential with a small dataset, a narrow user group, or a controlled workflow. Production has to handle more variation. Users make mistakes. Inputs are messy. Costs fluctuate. Models behave differently across edge cases. Business teams need visibility, not just outputs.</p>
+          <p style="margin-top:14px;">We focus on the parts that make AI usable in daily operations: clear data boundaries, structured workflows, evaluation checks, fallback paths, deployment discipline, observability, access control, and human approval points.</p>
+          <p style="margin-top:14px;">The work is practical, but important. It turns AI from a promising experiment into something the organisation can actually use.</p>
+        </div>
       </div>
-      <div class="failure-panel" aria-label="Engineering scars">
+      <div class="failure-panel" aria-label="What we strengthen">
         <div class="failure-row is-active">
-          <span class="fname">ROLLBACK</span>
-          <span class="fdesc">One-command revert. Last good build pre-warmed, replays cached for <b>5 minutes</b> after each deploy.</span>
-          <span class="fmeta">armed · 5m</span>
+          <span class="fname">ARCHITECTURE</span>
+          <span class="fdesc">We review the current build and define a cleaner structure for <b>data, logic, model calls, tools, storage, and integrations</b>.</span>
+          <span class="fmeta">review &middot; structure</span>
         </div>
         <div class="failure-row">
-          <span class="fname">CANARY</span>
-          <span class="fdesc">Releases promote on <b>5% → 25% → 100%</b> traffic with eval gates between each step.</span>
-          <span class="fmeta">3 gates · auto-promote</span>
+          <span class="fname">RELIABILITY</span>
+          <span class="fdesc">We add <b>checks, fallbacks, error handling, retry logic, and review points</b> so the workflow does not break silently.</span>
+          <span class="fmeta">checks &middot; fallbacks</span>
         </div>
         <div class="failure-row is-active">
-          <span class="fname">EVAL DRIFT</span>
-          <span class="fdesc">Baseline regressed by <b>+0.04</b>. Monitoring extended, no auto-promote until cleared.</span>
-          <span class="fmeta">monitoring</span>
+          <span class="fname">EVALUATION</span>
+          <span class="fdesc">We define what good output looks like, where the system should be <b>measured</b>, and how teams can review performance over time.</span>
+          <span class="fmeta">good &middot; measurable</span>
         </div>
         <div class="failure-row">
-          <span class="fname">FALLBACK MODEL</span>
-          <span class="fdesc">Provider outage triggers <b>tier-2 model</b>. Same prompt schema, capped at degraded SLA.</span>
-          <span class="fmeta">tier-2 · ready</span>
+          <span class="fname">DEPLOYMENT</span>
+          <span class="fdesc">We prepare the system for controlled rollout: <b>environments, versioning, release process, monitoring, and rollback planning</b>.</span>
+          <span class="fmeta">envs &middot; rollout</span>
         </div>
         <div class="failure-row">
-          <span class="fname">COST CIRCUIT</span>
-          <span class="fdesc">Per-tenant token ceilings. <b>Hard stop</b> on cost runaway, alert on usage anomaly.</span>
-          <span class="fmeta">ceiling · enforced</span>
+          <span class="fname">GOVERNANCE</span>
+          <span class="fdesc">We make the human checkpoints explicit: what AI can <b>draft</b>, what it can <b>recommend</b>, what it cannot decide, and where approval is required.</span>
+          <span class="fmeta">draft &middot; approve</span>
         </div>
         <div class="failure-row">
-          <span class="fname">INCIDENT MTTR</span>
-          <span class="fdesc">Pageable on-call, runbooks attached to every alert, post-mortems within <b>48h</b>.</span>
-          <span class="fmeta">avg 14m · q2</span>
+          <span class="fname">COST CONTROL</span>
+          <span class="fdesc">We identify where usage can grow unexpectedly and add <b>guardrails around model calls, storage, retries, and unnecessary processing</b>.</span>
+          <span class="fmeta">guardrails &middot; ceilings</span>
         </div>
       </div>
     </div>
@@ -902,10 +923,13 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>Designed to evolve</span>
-        <h2 style="margin-top:14px;">Designed to evolve.</h2>
+        <span class="label-mono"><span class="dot"></span>Built for change</span>
+        <h2 style="margin-top:14px;">Built for change, not one-time launch.</h2>
       </div>
-      <p class="block-lede">Production AI systems expand over time. Prototype, production workflow, operational platform. Architecture needs to support that evolution.</p>
+      <div class="block-lede">
+        <p>AI systems change after launch. Teams discover new edge cases. Models improve. Business rules shift. Data sources expand. A production-ready system should make that change manageable.</p>
+        <p style="margin-top:14px;">We design the system so teams can update prompts, workflows, evaluation criteria, approval rules, and integrations without rebuilding everything from scratch. The aim is not full autonomy. The aim is a controlled system that can improve safely.</p>
+      </div>
     </div>
     <div class="evolve-visual">
       <div class="p2p-spine" aria-hidden="true">
@@ -990,16 +1014,22 @@
     <div class="final-cta-card">
       <div class="final-cta-grid">
         <div>
-          <span class="label-mono"><span class="dot"></span>Start here</span>
-          <h2>AI systems become valuable when they survive production environments.</h2>
-          <p>Fast AI prototypes are valuable. Production deployment introduces reliability requirements, system architecture, infrastructure scaling, workflow visibility, operational governance, and long-term maintainability.</p>
+          <span class="label-mono"><span class="dot"></span>The outcome</span>
+          <h2>The outcome.</h2>
+          <p>By the end of the engagement, the team has a clearer answer to three questions:</p>
+          <ul class="outcome-questions">
+            <li>Can this AI pilot be trusted in real operations?</li>
+            <li>What needs to change before wider rollout?</li>
+            <li>How should the system be monitored, improved, and governed after launch?</li>
+          </ul>
+          <p style="margin-top:18px;">The result is a practical path from pilot to production: fewer fragile pieces, clearer ownership, better visibility, and a system that is easier for business, technical, and governance teams to support.</p>
         </div>
         <div class="final-cta-actions">
           <a class="btn btn-primary" href="../Home.html#contact">
-            Discuss a production deployment <span class="arrow">&rarr;</span>
+            Discuss production readiness <span class="arrow">&rarr;</span>
           </a>
-          <a class="btn btn-ghost" href="../Home.html#capabilities">
-            Explore capabilities <span class="arrow">&rarr;</span>
+          <a class="btn btn-ghost" href="../Home.html#contact">
+            Book a pilot review <span class="arrow">&rarr;</span>
           </a>
         </div>
       </div>
@@ -1022,7 +1052,7 @@
           <li><a href="ai-applications-and-platforms.html">AI Products &amp; Platforms</a></li>
           <li><a href="ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a></li>
           <li><a href="enterprise-ai.html">Enterprise AI</a></li>
-          <li><a href="prototype-to-production.html">Prototype to Production</a></li>
+          <li><a href="prototype-to-production.html">AI Pilot to Production</a></li>
         </ul>
       </div>
       <div class="footer-col">
