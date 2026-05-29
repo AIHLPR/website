@@ -1314,30 +1314,968 @@
 <main>
 
 <!-- HERO -->
-<section class="hero">
-  <div class="container hero-grid">
-    <div class="hero-copy">
-      <div class="hero-meta">
+<style id="apps-hero-css">
+  /* =====================================================================
+     APPS HERO — scoped under .apps-hero so it cannot leak into the page
+     ===================================================================== */
+  .apps-hero {
+    --ah-ink: #2D2D2D;
+    --ah-ink-soft: #5A5A5A;
+    --ah-ink-muted: #8A8A8A;
+    --ah-ink-faint: #B5B5B5;
+    --ah-white: #FFFFFF;
+    --ah-surface: #FBFBFA;
+    --ah-surface-2: #F6F6F4;
+    --ah-card: #F2F2F0;
+    --ah-hairline: rgba(45,45,45,0.10);
+    --ah-hairline-strong: rgba(45,45,45,0.18);
+
+    --ah-pink: #E91E63;
+    --ah-pink-soft: rgba(233,30,99,0.10);
+    --ah-pink-softer: rgba(233,30,99,0.05);
+
+    --ah-font-display: "Poppins", system-ui, sans-serif;
+    --ah-font-body: "Roboto", system-ui, sans-serif;
+    --ah-font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --ah-ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    background: var(--ah-white);
+    color: var(--ah-ink);
+    font-family: var(--ah-font-body);
+    padding: clamp(56px, 8vw, 120px) 0 clamp(48px, 7vw, 96px);
+  }
+
+  .apps-hero__container {
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 0 clamp(20px, 4.5vw, 56px);
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+    gap: clamp(40px, 5vw, 80px);
+    align-items: center;
+  }
+
+  /* ---------- Left copy column ---------- */
+  .apps-hero__copy { display: flex; flex-direction: column; gap: 22px; max-width: 520px; }
+
+  .apps-hero__eyebrow {
+    font-family: var(--ah-font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ah-ink-muted);
+    display: inline-flex; align-items: center; gap: 12px;
+  }
+  .apps-hero__eyebrow .num { color: var(--ah-pink); font-weight: 500; }
+  .apps-hero__eyebrow .sep { color: var(--ah-ink-faint); }
+
+  .apps-hero__h1 {
+    font-family: var(--ah-font-display);
+    font-weight: 600;
+    font-size: clamp(36px, 4.6vw, 64px);
+    letter-spacing: -0.03em;
+    line-height: 1.04;
+    color: var(--ah-ink);
+    margin: 0;
+    text-wrap: balance;
+  }
+
+  .apps-hero__lede { font-size: clamp(16px, 1.3vw, 19px); color: var(--ah-ink); margin: 0; max-width: 44ch; line-height: 1.55; }
+  .apps-hero__sub  { font-size: 15px; color: var(--ah-ink-soft); margin: 0; max-width: 48ch; line-height: 1.6; }
+
+  .apps-hero__ctas { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .apps-hero__cta {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--ah-font-body);
+    font-size: 14px; font-weight: 500;
+    padding: 12px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--ah-hairline-strong);
+    background: var(--ah-white);
+    color: var(--ah-ink);
+    text-decoration: none;
+    transition: background 200ms var(--ah-ease), color 200ms var(--ah-ease), border-color 200ms var(--ah-ease);
+  }
+  .apps-hero__cta:hover { background: var(--ah-card); }
+  .apps-hero__cta.is-primary {
+    background: var(--ah-ink);
+    color: var(--ah-white);
+    border-color: var(--ah-ink);
+  }
+  .apps-hero__cta.is-primary:hover { background: #1F1F1F; }
+
+  /* =====================================================================
+     OPERATOR CONSOLE (right column)
+     ===================================================================== */
+  .apps-hero__stage {
+    position: relative;
+    isolation: isolate;
+  }
+
+  /* Two-screen container: home + console stack absolutely, slide horizontally */
+  .apps-hero__screens {
+    position: relative;
+    overflow: hidden;
+    height: 560px;
+    background: var(--ah-white);
+    border: 1px solid var(--ah-hairline);
+    border-radius: 14px;
+    box-shadow: 0 1px 0 rgba(45,45,45,0.02), 0 30px 60px -40px rgba(45,45,45,0.18);
+  }
+  .scr {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: var(--ah-white);
+    overflow: hidden;
+    will-change: transform;
+    transition: transform 700ms var(--ah-ease);
+  }
+  .scr--home    { transform: translateX(0); }
+  .scr--console { transform: translateX(100%); }
+  .scr--home.is-past   { transform: translateX(-100%); }
+  .scr--console.is-active { transform: translateX(0); }
+
+  .apps-hero__console {
+    font-family: var(--ah-font-body);
+    position: relative;
+  }
+
+  /* ---- top chrome (menubar: brand + crumbs left, bell + counter + avatar right) ---- */
+  .oc-chrome {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    padding: 9px 14px;
+    background: var(--ah-surface-2);
+    border-bottom: 1px solid var(--ah-hairline);
+  }
+  .oc-chrome__left, .oc-chrome__right {
+    display: inline-flex; align-items: center; gap: 10px;
+    min-width: 0;
+  }
+  .oc-brand { display: inline-flex; align-items: center; gap: 7px; }
+  .oc-brand__mark {
+    width: 18px; height: 18px; border-radius: 5px;
+    background: var(--ah-ink); color: var(--ah-white);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-family: var(--ah-font-display); font-weight: 700; font-size: 10px;
+    letter-spacing: 0;
+  }
+  .oc-brand__name {
+    font-family: var(--ah-font-display);
+    font-weight: 600; font-size: 12px; color: var(--ah-ink); letter-spacing: -0.005em;
+  }
+  .oc-crumbs {
+    font-family: var(--ah-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ah-ink-muted);
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .oc-crumbs__sep { color: var(--ah-ink-faint); font-weight: 300; }
+  .oc-crumbs__current { color: var(--ah-ink-soft); font-weight: 500; }
+
+  .oc-counter {
+    font-family: var(--ah-font-mono);
+    font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--ah-ink-muted); font-feature-settings: "tnum";
+  }
+  .oc-counter .num { color: var(--ah-ink); font-weight: 500; }
+  .oc-avatar {
+    width: 22px; height: 22px; border-radius: 999px;
+    background: linear-gradient(135deg, #E5C7D7, #C7D7E5);
+    color: var(--ah-ink);
+    font-family: var(--ah-font-display); font-weight: 600; font-size: 9.5px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--ah-hairline);
+  }
+
+  /* ---- bell button + pulsing badge ---- */
+  .oc-bell {
+    position: relative;
+    width: 28px; height: 28px;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1px solid var(--ah-hairline);
+    border-radius: 8px;
+    background: var(--ah-white);
+    color: var(--ah-ink-soft);
+    cursor: default;
+    padding: 0;
+    transition: background 200ms var(--ah-ease), color 200ms var(--ah-ease), border-color 200ms var(--ah-ease);
+  }
+  .oc-bell:hover { background: var(--ah-surface); color: var(--ah-ink); }
+  .oc-bell.is-armed { color: var(--ah-ink); border-color: var(--ah-hairline-strong); }
+  .oc-bell svg { width: 13px; height: 13px; display: block; }
+  .oc-bell__badge {
+    position: absolute;
+    top: -4px; right: -4px;
+    min-width: 14px; height: 14px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background: var(--ah-pink); color: var(--ah-white);
+    font-family: var(--ah-font-mono);
+    font-size: 8.5px; font-weight: 600;
+    display: inline-flex; align-items: center; justify-content: center;
+    border: 1.5px solid var(--ah-surface-2);
+    animation: oc-live 1.6s ease-in-out infinite;
+  }
+  .oc-bell__badge.is-off { opacity: 0; transform: scale(0.6); transition: opacity 220ms var(--ah-ease), transform 220ms var(--ah-ease); animation: none; }
+
+  /* ---- notifications popover ---- */
+  .oc-popover {
+    position: absolute;
+    top: 44px;
+    right: 14px;
+    width: 288px;
+    background: var(--ah-white);
+    border: 1px solid var(--ah-hairline-strong);
+    border-radius: 12px;
+    box-shadow: 0 24px 48px -20px rgba(45,45,45,0.32), 0 2px 6px -2px rgba(45,45,45,0.06);
+    z-index: 24;
+    opacity: 0;
+    transform: translateY(-6px) scale(0.98);
+    transform-origin: top right;
+    transition: opacity 220ms var(--ah-ease), transform 240ms var(--ah-ease);
+    pointer-events: none;
+    overflow: hidden;
+  }
+  .oc-popover.is-on { opacity: 1; transform: translateY(0) scale(1); }
+  .oc-popover.is-off { opacity: 0; transform: translateY(-6px) scale(0.98); }
+  .oc-popover__head {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--ah-hairline);
+    font-family: var(--ah-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ah-ink-muted);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .oc-popover__head b { color: var(--ah-ink); font-weight: 500; }
+  .oc-pop-item {
+    display: grid;
+    grid-template-columns: 8px 1fr auto;
+    gap: 10px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--ah-hairline);
+    background: var(--ah-white);
+    cursor: default;
+    text-align: left;
+    border-left: 0; border-right: 0; border-top: 0;
+    transition: background 200ms var(--ah-ease);
+    align-items: start;
+  }
+  .oc-pop-item:last-child { border-bottom: 0; }
+  .oc-pop-item:hover, .oc-pop-item.is-hover { background: var(--ah-surface); }
+  .oc-pop-item__dot {
+    width: 7px; height: 7px; border-radius: 999px;
+    background: var(--ah-pink); margin-top: 5px;
+  }
+  .oc-pop-item__dot.is-faint { background: var(--ah-ink-faint); }
+  .oc-pop-item__body { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .oc-pop-item__title {
+    font-family: var(--ah-font-display);
+    font-weight: 500; font-size: 12.5px;
+    color: var(--ah-ink); letter-spacing: -0.005em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .oc-pop-item__meta {
+    font-family: var(--ah-font-mono);
+    font-size: 10px; color: var(--ah-ink-muted); letter-spacing: 0.04em;
+  }
+  .oc-pop-item__time {
+    font-family: var(--ah-font-mono);
+    font-size: 9.5px; color: var(--ah-ink-faint); letter-spacing: 0.04em;
+    align-self: start; margin-top: 4px;
+  }
+
+  @keyframes oc-live {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(233,30,99,0.45); }
+    60% { box-shadow: 0 0 0 5px rgba(233,30,99,0.0); }
+  }
+
+  /* ---- queue strip ---- */
+  .oc-queue {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0,1fr));
+    border-bottom: 1px solid var(--ah-hairline);
+    background: var(--ah-surface);
+  }
+  .oc-q {
+    padding: 11px 12px 10px;
+    border-right: 1px solid var(--ah-hairline);
+    display: flex; flex-direction: column; gap: 4px;
+    cursor: default;
+    position: relative;
+    transition: background 320ms var(--ah-ease), opacity 320ms var(--ah-ease);
+  }
+  .oc-q:last-child { border-right: 0; }
+  .oc-q .id { font-family: var(--ah-font-mono); font-size: 10px; color: var(--ah-ink-muted); letter-spacing: 0.10em; }
+  .oc-q .title { font-family: var(--ah-font-display); font-weight: 500; font-size: 12.5px; color: var(--ah-ink); line-height: 1.3; letter-spacing: -0.005em; }
+  .oc-q .meta { font-family: var(--ah-font-mono); font-size: 10px; color: var(--ah-ink-muted); letter-spacing: 0.02em; }
+  .oc-q.is-active { background: var(--ah-white); }
+  .oc-q.is-active::before {
+    content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px;
+    background: var(--ah-pink);
+  }
+  .oc-q.is-active .id { color: var(--ah-pink); }
+  .oc-q.is-done { opacity: 0.55; }
+  .oc-q.is-done .title { text-decoration: line-through; text-decoration-color: var(--ah-ink-faint); }
+
+  /* ---- main detail grid ---- */
+  .oc-detail {
+    padding: 18px 18px 16px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+    border-bottom: 1px solid var(--ah-hairline);
+    background: var(--ah-white);
+  }
+
+  .oc-detail-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+  .oc-detail-eyebrow {
+    font-family: var(--ah-font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ah-ink-muted);
+  }
+  .oc-detail-eyebrow b { color: var(--ah-ink); font-weight: 500; }
+
+  .oc-status {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--ah-font-mono); font-size: 10px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 5px 10px;
+    background: var(--ah-card); color: var(--ah-ink-soft);
+    border-radius: 999px; border: 1px solid var(--ah-hairline);
+    transition: background 320ms var(--ah-ease), color 320ms var(--ah-ease), border-color 320ms var(--ah-ease);
+  }
+  .oc-status .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--ah-ink-faint); transition: background 320ms var(--ah-ease); }
+  .oc-status.is-pending .dot { background: var(--ah-pink); animation: oc-live 1.8s ease-in-out infinite; }
+  .oc-status.is-approved { background: var(--ah-pink-soft); color: var(--ah-pink); border-color: rgba(233,30,99,0.30); }
+  .oc-status.is-approved .dot { background: var(--ah-pink); animation: none; box-shadow: none; }
+
+  .oc-detail-title {
+    font-family: var(--ah-font-display);
+    font-weight: 600;
+    font-size: 17px;
+    letter-spacing: -0.01em;
+    color: var(--ah-ink);
+    margin: 0;
+  }
+
+  .oc-kvs {
+    display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 10px;
+  }
+  .oc-kv {
+    background: var(--ah-surface);
+    border: 1px solid var(--ah-hairline);
+    border-radius: 8px;
+    padding: 9px 11px;
+    display: flex; flex-direction: column; gap: 3px;
+    min-width: 0;
+    transition: opacity 360ms var(--ah-ease), transform 360ms var(--ah-ease);
+  }
+  .oc-kv .v.is-loading { color: var(--ah-ink-faint); }
+  .oc-kv .v.is-loading::before { content: "—"; }
+  .oc-kv .k { font-family: var(--ah-font-mono); font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ah-ink-muted); }
+  .oc-kv .v { font-family: var(--ah-font-mono); font-size: 11.5px; color: var(--ah-ink); letter-spacing: 0.02em; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .oc-kv .v b { color: var(--ah-ink); font-weight: 500; }
+  .oc-kv .risk-low { color: var(--ah-ink-muted); margin-left: 4px; font-style: italic; }
+
+  .oc-rec {
+    background: var(--ah-surface);
+    border: 1px solid var(--ah-hairline);
+    border-radius: 8px;
+    padding: 11px 13px;
+    display: flex; flex-direction: column; gap: 4px;
+    min-height: 60px;
+  }
+  .oc-rec .lbl {
+    font-family: var(--ah-font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ah-ink-muted);
+  }
+  .oc-rec .lbl::before { content: ""; display: inline-block; width: 6px; height: 6px; border-radius: 999px; background: var(--ah-pink); margin-right: 8px; vertical-align: middle; }
+  .oc-rec .txt {
+    font-family: var(--ah-font-mono);
+    font-size: 12.5px;
+    color: var(--ah-ink);
+    line-height: 1.55;
+    min-height: 1.55em;
+  }
+  .oc-rec .txt b { color: var(--ah-ink); font-weight: 500; }
+  .oc-rec .caret {
+    display: inline-block; width: 6px; height: 13px; vertical-align: -2px; margin-left: 1px;
+    background: var(--ah-pink); opacity: 0;
+    animation: caret-blink 0.9s steps(2, end) infinite;
+  }
+  .oc-rec.is-typing .caret { opacity: 1; }
+  @keyframes caret-blink { 0%,49% { opacity: 1; } 50%,100% { opacity: 0; } }
+
+  .oc-actions { display: inline-flex; flex-wrap: wrap; gap: 8px; }
+  .oc-btn {
+    font-family: var(--ah-font-body); font-size: 12.5px; font-weight: 500;
+    padding: 8px 14px; border-radius: 999px;
+    border: 1px solid var(--ah-hairline-strong);
+    background: var(--ah-white); color: var(--ah-ink);
+    cursor: default;
+    display: inline-flex; align-items: center; gap: 6px;
+  }
+  .oc-btn.is-primary { background: var(--ah-pink); color: var(--ah-white); border-color: var(--ah-pink); }
+  .oc-btn.is-ghost { color: var(--ah-ink-soft); border-color: var(--ah-hairline); }
+
+  /* ---- audit trail strip ---- */
+  .oc-audit {
+    padding: 12px 18px 14px;
+    background: var(--ah-surface-2);
+    display: flex; flex-direction: column; gap: 7px;
+  }
+  .oc-audit .lbl {
+    font-family: var(--ah-font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ah-ink-muted);
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .oc-audit .lbl .right { letter-spacing: 0.12em; color: var(--ah-ink-faint); }
+  .oc-a-row {
+    display: grid; grid-template-columns: 50px 110px 1fr;
+    gap: 14px; align-items: baseline;
+    font-family: var(--ah-font-mono); font-size: 11px;
+    color: var(--ah-ink-soft);
+    border-bottom: 1px dashed var(--ah-hairline);
+    padding-bottom: 6px;
+  }
+  .oc-a-row:last-child { border-bottom: 0; padding-bottom: 0; }
+  .oc-a-row .t { color: var(--ah-ink-muted); }
+  .oc-a-row .who { color: var(--ah-ink); font-weight: 500; }
+  .oc-a-row .who.is-ai { color: var(--ah-ink-soft); font-weight: 400; }
+  .oc-a-row .msg { color: var(--ah-ink-soft); letter-spacing: 0.01em; }
+  .oc-a-row .msg b { color: var(--ah-ink); font-weight: 500; }
+  .oc-a-row.is-hidden {
+    opacity: 0; transform: translateY(2px); pointer-events: none;
+    height: 0; padding: 0; border-bottom: 0; overflow: hidden;
+    transition: opacity 320ms var(--ah-ease), transform 320ms var(--ah-ease);
+  }
+  .oc-a-row.is-reveal {
+    opacity: 1; transform: none; height: auto; padding-bottom: 6px;
+    border-bottom: 1px dashed var(--ah-hairline);
+  }
+
+  /* ---- queue transition animations ---- */
+  .oc-q { transition: opacity 360ms var(--ah-ease), background 360ms var(--ah-ease); }
+
+
+  /* Each screen is a flex column that fills the fixed-height stage */
+  .apps-hero__home, .apps-hero__console {
+    display: flex; flex-direction: column;
+    height: 100%;
+  }
+  .apps-hero__home { font-family: var(--ah-font-body); }
+  .home-nav {
+    display: inline-flex; align-items: center; gap: 2px;
+    margin-left: 6px;
+    padding-left: 10px;
+    border-left: 1px solid var(--ah-hairline);
+  }
+  .home-nav__item {
+    font-size: 11.5px; font-weight: 500;
+    color: var(--ah-ink-muted);
+    padding: 5px 9px;
+    border-radius: 6px;
+    cursor: default;
+    letter-spacing: -0.005em;
+    transition: background 200ms var(--ah-ease), color 200ms var(--ah-ease);
+  }
+  .home-nav__item:hover { color: var(--ah-ink); }
+  .home-nav__item.is-active { background: var(--ah-card); color: var(--ah-ink); }
+
+  .home-body {
+    padding: 16px 18px 18px;
+    display: flex; flex-direction: column; gap: 14px;
+    flex: 1;
+  }
+  .home-stats {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .home-stat {
+    background: var(--ah-surface);
+    border: 1px solid var(--ah-hairline);
+    border-radius: 10px;
+    padding: 12px 14px;
+    display: flex; flex-direction: column; gap: 3px;
+    min-width: 0;
+  }
+  .home-stat__num {
+    font-family: var(--ah-font-display);
+    font-weight: 600; font-size: 22px;
+    letter-spacing: -0.015em;
+    color: var(--ah-ink);
+    font-variant-numeric: tabular-nums;
+    line-height: 1.1;
+  }
+  .home-stat__num.is-flagged { color: var(--ah-pink); }
+  .home-stat__lbl {
+    font-family: var(--ah-font-mono);
+    font-size: 9.5px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ah-ink-muted);
+  }
+
+  .home-table {
+    background: var(--ah-white);
+    border: 1px solid var(--ah-hairline);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .home-table__head {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 9px 14px;
+    background: var(--ah-surface-2);
+    border-bottom: 1px solid var(--ah-hairline);
+    font-family: var(--ah-font-mono);
+    font-size: 10px; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--ah-ink-muted);
+  }
+  .home-table__h-meta { color: var(--ah-ink-faint); letter-spacing: 0.08em; font-weight: 400; }
+  .home-table__row {
+    display: grid;
+    grid-template-columns: 76px minmax(0,1fr) 104px 78px 86px 38px;
+    gap: 14px;
+    align-items: center;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--ah-hairline);
+    font-size: 12.5px; color: var(--ah-ink-soft);
+  }
+  .home-table__row:last-child { border-bottom: 0; }
+  .home-table__row.is-flagged { background: rgba(233,30,99,0.04); }
+  .home-table__id {
+    font-family: var(--ah-font-mono);
+    font-size: 10.5px; color: var(--ah-ink); letter-spacing: 0.04em;
+  }
+  .home-table__row.is-flagged .home-table__id { color: var(--ah-pink); font-weight: 500; }
+  .home-table__title {
+    font-family: var(--ah-font-display);
+    font-weight: 500; font-size: 12.5px;
+    color: var(--ah-ink); letter-spacing: -0.005em;
+    white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  }
+  .home-table__badge {
+    font-family: var(--ah-font-mono);
+    font-size: 9px; letter-spacing: 0.14em; text-transform: uppercase;
+    padding: 3px 8px; border-radius: 999px;
+    background: var(--ah-card); color: var(--ah-ink-soft);
+    text-align: center; border: 1px solid transparent;
+    justify-self: start; white-space: nowrap;
+  }
+  .home-table__badge.is-pink {
+    background: var(--ah-pink-soft); color: var(--ah-pink);
+    border-color: rgba(233,30,99,0.20);
+  }
+  .home-table__badge.is-done {
+    background: transparent; color: var(--ah-ink-muted);
+    border-color: var(--ah-hairline);
+  }
+  .home-table__amt {
+    font-family: var(--ah-font-mono);
+    font-size: 11px; color: var(--ah-ink);
+    text-align: right; font-variant-numeric: tabular-nums;
+  }
+  .home-table__dept {
+    font-family: var(--ah-font-mono);
+    font-size: 10px; color: var(--ah-ink-muted);
+    letter-spacing: 0.06em; text-transform: uppercase;
+  }
+  .home-table__time {
+    font-family: var(--ah-font-mono);
+    font-size: 10px; color: var(--ah-ink-faint);
+    letter-spacing: 0.04em; text-align: right;
+  }
+
+
+  /* =====================================================================
+     CURSOR + CLICK RIPPLE
+     ===================================================================== */
+  .oc-cursor {
+    position: absolute; left: 0; top: 0;
+    width: 16px; height: 22px;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate3d(0,0,0);
+    transition: transform 580ms var(--ah-ease), opacity 280ms var(--ah-ease);
+    z-index: 30;
+    will-change: transform;
+    filter: drop-shadow(0 2px 4px rgba(45,45,45,0.22));
+  }
+  .oc-cursor.is-on { opacity: 1; }
+  .oc-cursor.fast { transition: transform 420ms var(--ah-ease), opacity 280ms var(--ah-ease); }
+  .oc-cursor svg { width: 100%; height: 100%; display: block; }
+
+  .oc-ripple {
+    position: absolute; left: 0; top: 0;
+    width: 22px; height: 22px;
+    margin-left: -11px; margin-top: -11px;
+    border-radius: 999px;
+    border: 1.5px solid var(--ah-pink);
+    pointer-events: none;
+    opacity: 0;
+    z-index: 29;
+  }
+  .oc-ripple.fire { animation: oc-rip 520ms var(--ah-ease) 1; }
+  @keyframes oc-rip {
+    0% { opacity: 0.9; transform: scale(0.3); }
+    80% { opacity: 0; transform: scale(1.6); }
+    100% { opacity: 0; transform: scale(1.7); }
+  }
+
+
+  /* =====================================================================
+     RESPONSIVE
+     ===================================================================== */
+  @media (max-width: 980px) {
+    .apps-hero__container { grid-template-columns: 1fr; gap: 40px; }
+    .apps-hero__copy { max-width: 100%; }
+    .apps-hero__screens { height: 520px; }
+    .oc-kvs { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .apps-hero__screens { height: auto; min-height: 620px; }
+    .oc-queue { grid-template-columns: repeat(2, minmax(0,1fr)); }
+    .oc-q:nth-child(2) { border-right: 0; }
+    .oc-q:nth-child(1), .oc-q:nth-child(2) { border-bottom: 1px solid var(--ah-hairline); }
+    .oc-a-row { grid-template-columns: 46px 92px 1fr; gap: 10px; font-size: 10.5px; }
+  }
+
+  /* Reduced-motion: don't slide screens, jump straight to settled console */
+  @media (prefers-reduced-motion: reduce) {
+    .scr { transition: none !important; }
+    .scr--home { transform: translateX(-100%); }
+    .scr--console { transform: translateX(0); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .oc-status.is-pending .dot,
+    .oc-rec .caret,
+    .oc-bell__badge { animation: none !important; }
+    .oc-a-row.is-hidden { transition: none !important; }
+    .oc-cursor, .oc-ripple, .oc-popover { display: none !important; }
+  }
+</style>
+
+<section class="apps-hero" data-apps-hero>
+  <div class="apps-hero__container">
+
+    <!-- ============ LEFT · Copy ============ -->
+    <div class="apps-hero__copy">
+      <span class="apps-hero__eyebrow">
         <span class="num">05</span>
-        <span class="sep"></span>
+        <span class="sep">&middot;</span>
         <span>Capabilities</span>
-        <span class="sep"></span>
-        <span>Apps & Platforms</span>
-      </div>
-      <h1>AI Applications &amp; Internal Platforms</h1>
-      <p class="hero-lede">Internal AI systems designed around real operational environments.</p>
-      <p class="hero-sub">AI applications become more effective when designed around how organisations already work, coordinate, review, and operate internally.</p>
-      <div class="hero-ctas">
-        <a class="btn btn-primary" href="../Home.html#contact">
-          Discuss internal AI systems <span class="arrow">&rarr;</span>
-        </a>
-        <a class="btn btn-secondary" href="../Home.html#capabilities">
-          Explore capabilities <span class="arrow">&rarr;</span>
-        </a>
+        <span class="sep">&middot;</span>
+        <span>Apps &amp; Platforms</span>
+      </span>
+
+      <h1 class="apps-hero__h1">AI Applications &amp; Internal Platforms</h1>
+
+      <p class="apps-hero__lede">Internal AI systems designed around real operational environments.</p>
+
+      <p class="apps-hero__sub">Every business runs on small decisions &mdash; approvals, reviews, sign-offs &mdash; moving through queues. We build the operator surface where they happen: AI assembles the context, the person decides, every action is recorded.</p>
+
+      <div class="apps-hero__ctas">
+        <a class="apps-hero__cta is-primary" href="../Home.html#contact">Discuss internal AI systems &rarr;</a>
+        <a class="apps-hero__cta" href="../Home.html#capabilities">Explore capabilities &rarr;</a>
       </div>
     </div>
-    <!-- hero visual removed pending rethink -->
-  </div>
+
+    <!-- ============ RIGHT · Operator console + cursor stage ============ -->
+    <div class="apps-hero__stage" data-stage>
+
+      <!-- Both screens stack in the same grid cell, slide horizontally on click -->
+      <div class="apps-hero__screens" data-screens>
+
+        <!-- ============ SCREEN 1 · Home dashboard (initial view) ============ -->
+        <section class="apps-hero__home scr scr--home is-active" data-screen="home" aria-label="Home dashboard">
+
+          <!-- Home menubar -->
+          <div class="oc-chrome home-chrome">
+            <div class="oc-chrome__left">
+              <span class="oc-brand">
+                <span class="oc-brand__mark">A</span>
+                <span class="oc-brand__name">AIHLPR</span>
+              </span>
+              <nav class="home-nav">
+                <span class="home-nav__item is-active">Dashboard</span>
+                <span class="home-nav__item">Reviews</span>
+                <span class="home-nav__item">Reports</span>
+                <span class="home-nav__item">Settings</span>
+              </nav>
+            </div>
+            <div class="oc-chrome__right">
+              <button class="oc-bell" data-bell type="button" aria-label="Notifications">
+                <svg viewBox="0 0 16 16" aria-hidden="true" fill="none">
+                  <path d="M3.5 11 V8 a4.5 4.5 0 1 1 9 0 V11 l1 1.5 H2.5 L3.5 11 Z" stroke="currentColor" stroke-width="1.2" stroke-linejoin="round"/>
+                  <path d="M6.5 13.5 a1.5 1.5 0 0 0 3 0" stroke="currentColor" stroke-width="1.2"/>
+                </svg>
+                <span class="oc-bell__badge" data-bell-badge aria-hidden="true">1</span>
+              </button>
+              <span class="oc-avatar" aria-hidden="true">RM</span>
+            </div>
+          </div>
+
+          <!-- Home body: stats + activity table -->
+          <div class="home-body">
+
+            <!-- Stat cards -->
+            <div class="home-stats">
+              <div class="home-stat">
+                <span class="home-stat__num is-flagged">12</span>
+                <span class="home-stat__lbl">Pending reviews</span>
+              </div>
+              <div class="home-stat">
+                <span class="home-stat__num">&euro; 184K</span>
+                <span class="home-stat__lbl">Value in queue</span>
+              </div>
+              <div class="home-stat">
+                <span class="home-stat__num">3</span>
+                <span class="home-stat__lbl">Flagged</span>
+              </div>
+              <div class="home-stat">
+                <span class="home-stat__num">99%</span>
+                <span class="home-stat__lbl">SLA &middot; 7d</span>
+              </div>
+            </div>
+
+            <!-- Recent activity table -->
+            <div class="home-table">
+              <div class="home-table__head">
+                <span>Recent activity</span>
+                <span class="home-table__h-meta">6 shown &middot; 12 in queue</span>
+              </div>
+              <div class="home-table__row is-flagged">
+                <span class="home-table__id">REQ-4218</span>
+                <span class="home-table__title">Vendor sign-off &middot; Tier 2</span>
+                <span class="home-table__badge is-pink">Needs review</span>
+                <span class="home-table__amt">&euro; 42,800</span>
+                <span class="home-table__dept">Procurement</span>
+                <span class="home-table__time">1m</span>
+              </div>
+              <div class="home-table__row">
+                <span class="home-table__id">REQ-4219</span>
+                <span class="home-table__title">Expense override</span>
+                <span class="home-table__badge">Queued</span>
+                <span class="home-table__amt">&euro; 1,240</span>
+                <span class="home-table__dept">Finance</span>
+                <span class="home-table__time">5m</span>
+              </div>
+              <div class="home-table__row">
+                <span class="home-table__id">REQ-4220</span>
+                <span class="home-table__title">Refund &middot; order #88412</span>
+                <span class="home-table__badge">Queued</span>
+                <span class="home-table__amt">&euro; 184</span>
+                <span class="home-table__dept">Support</span>
+                <span class="home-table__time">12m</span>
+              </div>
+              <div class="home-table__row">
+                <span class="home-table__id">REQ-4217</span>
+                <span class="home-table__title">Policy clarification &middot; GDPR</span>
+                <span class="home-table__badge is-done">Approved</span>
+                <span class="home-table__amt">&mdash;</span>
+                <span class="home-table__dept">Legal</span>
+                <span class="home-table__time">28m</span>
+              </div>
+              <div class="home-table__row">
+                <span class="home-table__id">REQ-4216</span>
+                <span class="home-table__title">Discount approval &middot; enterprise</span>
+                <span class="home-table__badge is-done">Approved</span>
+                <span class="home-table__amt">&euro; 8,400</span>
+                <span class="home-table__dept">Sales</span>
+                <span class="home-table__time">42m</span>
+              </div>
+              <div class="home-table__row">
+                <span class="home-table__id">REQ-4215</span>
+                <span class="home-table__title">Refund &middot; order #88401</span>
+                <span class="home-table__badge is-done">Approved</span>
+                <span class="home-table__amt">&euro; 240</span>
+                <span class="home-table__dept">Support</span>
+                <span class="home-table__time">1h</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Notifications dropdown (anchored to bell on this screen) -->
+          <div class="oc-popover" data-popover aria-hidden="true">
+            <div class="oc-popover__head">
+              <span>Notifications</span>
+              <b>3 new</b>
+            </div>
+            <button class="oc-pop-item is-new" data-pop-item="4218" type="button">
+              <span class="oc-pop-item__dot" aria-hidden="true"></span>
+              <span class="oc-pop-item__body">
+                <span class="oc-pop-item__title">Review pending &middot; vendor sign-off</span>
+                <span class="oc-pop-item__meta">REQ-4218 &middot; &euro; 42,800</span>
+              </span>
+              <span class="oc-pop-item__time">1m</span>
+            </button>
+            <div class="oc-pop-item">
+              <span class="oc-pop-item__dot is-faint" aria-hidden="true"></span>
+              <span class="oc-pop-item__body">
+                <span class="oc-pop-item__title">Expense override</span>
+                <span class="oc-pop-item__meta">REQ-4219 &middot; &euro; 1,240</span>
+              </span>
+              <span class="oc-pop-item__time">5m</span>
+            </div>
+            <div class="oc-pop-item">
+              <span class="oc-pop-item__dot is-faint" aria-hidden="true"></span>
+              <span class="oc-pop-item__body">
+                <span class="oc-pop-item__title">Refund &middot; order #88412</span>
+                <span class="oc-pop-item__meta">REQ-4220 &middot; &euro; 184</span>
+              </span>
+              <span class="oc-pop-item__time">12m</span>
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ============ SCREEN 2 · Review queue console ============ -->
+        <div class="apps-hero__console scr scr--console" data-screen="console" data-console aria-label="Operator console preview">
+
+          <!-- Chrome — review queue menubar -->
+          <div class="oc-chrome">
+            <div class="oc-chrome__left">
+              <span class="oc-brand">
+                <span class="oc-brand__mark">A</span>
+                <span class="oc-brand__name">AIHLPR</span>
+              </span>
+              <span class="oc-crumbs">
+                <span class="oc-crumbs__sep">/</span>
+                <span class="oc-crumbs__current">Review queue</span>
+              </span>
+            </div>
+            <div class="oc-chrome__right">
+              <span class="oc-counter"><span class="num" data-counter>3</span> in queue</span>
+              <span class="oc-avatar" aria-hidden="true">RM</span>
+            </div>
+          </div>
+
+          <!-- Queue strip -->
+          <div class="oc-queue" data-queue>
+            <div class="oc-q is-active" data-item="4218">
+              <span class="id">REQ-4218</span>
+              <span class="title">Vendor sign-off &middot; Tier 2</span>
+              <span class="meta">&euro; 42,800 &middot; procurement</span>
+            </div>
+            <div class="oc-q" data-item="4219">
+              <span class="id">REQ-4219</span>
+              <span class="title">Expense override</span>
+              <span class="meta">&euro; 1,240 &middot; finance</span>
+            </div>
+            <div class="oc-q" data-item="4220">
+              <span class="id">REQ-4220</span>
+              <span class="title">Refund &middot; order #88412</span>
+              <span class="meta">&euro; 184 &middot; support</span>
+            </div>
+            <div class="oc-q" data-item="4221">
+              <span class="id">REQ-4221</span>
+              <span class="title">Policy clarification</span>
+              <span class="meta">GDPR &middot; legal</span>
+            </div>
+          </div>
+
+          <!-- Active item detail -->
+          <div class="oc-detail">
+
+            <div class="oc-detail-head">
+              <span class="oc-detail-eyebrow">Active &middot; <b data-active-id>REQ-4218</b> &middot; vendor sign-off</span>
+              <span class="oc-status is-pending" data-status>
+                <span class="dot"></span>
+                <span class="lbl" data-status-lbl>Awaiting reviewer</span>
+              </span>
+            </div>
+
+            <h3 class="oc-detail-title" data-active-title>Tier-2 vendor sign-off &middot; master agreement v3</h3>
+
+            <div class="oc-kvs" data-kvs>
+              <div class="oc-kv" data-kv="1">
+                <span class="k">Requester</span>
+                <span class="v">M. Halverson</span>
+              </div>
+              <div class="oc-kv" data-kv="2">
+                <span class="k">Value</span>
+                <span class="v">&euro; 42,800</span>
+              </div>
+              <div class="oc-kv" data-kv="3">
+                <span class="k">Risk</span>
+                <span class="v">0.18 <span class="risk-low">low</span></span>
+              </div>
+              <div class="oc-kv" data-kv="4">
+                <span class="k">Policy</span>
+                <span class="v">&sect;4.1 &middot; tier-2</span>
+              </div>
+            </div>
+
+            <div class="oc-rec" data-rec-card>
+              <span class="lbl">AI recommendation</span>
+              <p class="txt"><span data-rec></span><span class="caret"></span></p>
+            </div>
+
+            <div class="oc-actions">
+              <button class="oc-btn is-primary">Approve next &rarr;</button>
+              <button class="oc-btn is-ghost">Hold</button>
+              <button class="oc-btn is-ghost">Comment</button>
+            </div>
+
+          </div>
+
+          <!-- Audit trail -->
+          <div class="oc-audit">
+            <span class="lbl">
+              Audit trail
+              <span class="right">immutable &middot; scoped</span>
+            </span>
+
+            <div class="oc-a-row is-reveal" data-ev="1">
+              <span class="t">14:02</span>
+              <span class="who is-ai">AIHLPR</span>
+              <span class="msg">context assembled &middot; <b>4 sources cited</b></span>
+            </div>
+            <div class="oc-a-row is-reveal" data-ev="2">
+              <span class="t">14:03</span>
+              <span class="who is-ai">AIHLPR</span>
+              <span class="msg">routed to reviewer &middot; <b>K. M&uuml;ller</b></span>
+            </div>
+            <div class="oc-a-row is-hidden" data-ev="3">
+              <span class="t">14:04</span>
+              <span class="who">K. M&uuml;ller</span>
+              <span class="msg">opened review &middot; 6s read</span>
+            </div>
+            <div class="oc-a-row is-hidden" data-ev="4">
+              <span class="t">14:04</span>
+              <span class="who">K. M&uuml;ller</span>
+              <span class="msg"><b>approved</b> &middot; within Q3 envelope</span>
+            </div>
+          </div>
+
+        </div><!-- /.apps-hero__console -->
+
+      </div><!-- /.apps-hero__screens -->
+
+      <!-- Cursor + click ripple -->
+      <div class="oc-cursor" data-cursor aria-hidden="true">
+        <svg viewBox="0 0 18 24" fill="none">
+          <path d="M2 2 L2 18.5 L6.4 14.2 L9.3 21.3 L11.4 20.4 L8.6 13.4 L14.8 13 Z"
+                fill="#2D2D2D" stroke="#FFFFFF" stroke-width="1.2" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="oc-ripple" data-ripple aria-hidden="true"></div>
+
+    </div><!-- /.apps-hero__stage -->
+
+  </div><!-- /.apps-hero__container -->
 </section>
 
 <!-- SECTION 2 — AI applications, shaped to the work (4 vertical panels w/ dashboards) -->
@@ -3440,6 +4378,217 @@
   burger.addEventListener('click', () => setOpen(!nav.classList.contains('is-open')));
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
+})();
+</script>
+
+<script id="apps-hero-js">
+(function () {
+  'use strict';
+
+  /* ----------------------------------------------------------------
+     AI APPS HERO — animation sequence
+     Plays once when the hero scrolls into view. Settles at the end.
+     prefers-reduced-motion / mobile-narrow → jump to settled state.
+     ---------------------------------------------------------------- */
+
+  var hero = document.querySelector('[data-apps-hero]');
+  if (!hero) return;
+
+  var prefersReduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var isNarrow = window.matchMedia('(max-width: 560px)').matches;
+
+  var $stage    = hero.querySelector('[data-stage]');
+  var $console  = hero.querySelector('[data-console]');
+  var $home     = hero.querySelector('[data-screen="home"]');
+  var $consoleScr = hero.querySelector('[data-screen="console"]');
+  var $bell     = hero.querySelector('[data-bell]');
+  var $bellBadge= hero.querySelector('[data-bell-badge]');
+  var $popover  = hero.querySelector('[data-popover]');
+  var $popItem  = hero.querySelector('[data-pop-item]');
+  var $cursor   = hero.querySelector('[data-cursor]');
+  var $ripple   = hero.querySelector('[data-ripple]');
+  var $rec      = hero.querySelector('[data-rec]');
+  var $recCard  = hero.querySelector('[data-rec-card]');
+  var $status   = hero.querySelector('[data-status]');
+  var $statusLb = hero.querySelector('[data-status-lbl]');
+  var $counter  = hero.querySelector('[data-counter]');
+  var $activeId = hero.querySelector('[data-active-id]');
+  var $queue    = hero.querySelector('[data-queue]');
+  var $approve  = hero.querySelector('.oc-actions .oc-btn.is-primary');
+
+  var NEXT = { id: 'REQ-4219', title: 'Expense override · Q3 budget' };
+
+  var RECOMMENDATION =
+    'Approve · matches MSA v3 · risk low · within Q3 envelope.';
+
+  function moveCursorTo(el, opts) {
+    if (!el || !$cursor || !$stage) return null;
+    var sRect = $stage.getBoundingClientRect();
+    var r = el.getBoundingClientRect();
+    var fx = (opts && opts.fx !== undefined) ? opts.fx : 0.5;
+    var fy = (opts && opts.fy !== undefined) ? opts.fy : 0.5;
+    var x = (r.left - sRect.left) + r.width * fx;
+    var y = (r.top  - sRect.top ) + r.height * fy;
+    $cursor.classList.toggle('fast', !!(opts && opts.fast));
+    $cursor.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+    return { x: x, y: y };
+  }
+  function parkCursor(corner) {
+    if (!$cursor || !$stage) return;
+    var sRect = $stage.getBoundingClientRect();
+    var x = sRect.width * (corner === 'in' ? 0.78 : 0.85);
+    var y = sRect.height * (corner === 'in' ? 1.05 : 1.10);
+    $cursor.style.transform = 'translate3d(' + x + 'px,' + y + 'px,0)';
+  }
+  function clickRipple(pos) {
+    if (!$ripple || !pos) return;
+    $ripple.style.transform = 'translate3d(' + pos.x + 'px,' + pos.y + 'px,0)';
+    $ripple.classList.remove('fire');
+    void $ripple.offsetWidth;
+    $ripple.classList.add('fire');
+  }
+
+  var timers = [];
+  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function clearAll() { timers.forEach(clearTimeout); timers = []; }
+
+  function typewrite(el, text, perChar, doneCb) {
+    el.textContent = '';
+    var i = 0;
+    function tick() {
+      el.textContent = text.slice(0, ++i);
+      if (i < text.length) timers.push(setTimeout(tick, perChar));
+      else if (doneCb) doneCb();
+    }
+    tick();
+  }
+
+  function revealAuditRow(idx) {
+    var row = hero.querySelector('.oc-a-row[data-ev="' + idx + '"]');
+    if (!row) return;
+    row.classList.remove('is-hidden');
+    row.classList.add('is-reveal');
+  }
+
+  function flipStatus(state) {
+    $status.classList.remove('is-pending');
+    $status.classList.add('is-' + state);
+    if (state === 'approved') $statusLb.textContent = 'Approved';
+  }
+
+  function revealKv(idx) {
+    var el = hero.querySelector('.oc-kv[data-kv="' + idx + '"]');
+    if (el) el.classList.add('is-on');
+  }
+  function revealAllKvs() {
+    for (var i = 1; i <= 4; i++) revealKv(i);
+  }
+
+  function settleFinal() {
+    if ($home) { $home.classList.remove('is-active'); $home.classList.add('is-past'); }
+    if ($consoleScr) $consoleScr.classList.add('is-active');
+    $rec.textContent = RECOMMENDATION;
+    $recCard.classList.remove('is-typing');
+    revealAuditRow(3);
+    revealAuditRow(4);
+    flipStatus('approved');
+    if ($bellBadge) $bellBadge.classList.add('is-off');
+  }
+
+  function runSequence() {
+    clearAll();
+    if (prefersReduce || isNarrow) { settleFinal(); return; }
+
+    $rec.textContent = '';
+    $recCard.classList.add('is-typing');
+    parkCursor('in');
+
+    at(500, function () { $cursor.classList.add('is-on'); });
+
+    at(900, function () { if ($bell) moveCursorTo($bell, { fx: 0.5, fy: 0.55 }); });
+
+    at(1500, function () {
+      var pos = $bell ? moveCursorTo($bell, { fx: 0.5, fy: 0.55 }) : null;
+      clickRipple(pos);
+    });
+    at(1600, function () {
+      if ($popover) $popover.classList.add('is-on');
+      if ($bellBadge) $bellBadge.classList.add('is-off');
+      if ($bell) $bell.classList.add('is-armed');
+    });
+
+    at(2100, function () {
+      if ($popItem) {
+        $popItem.classList.add('is-hover');
+        moveCursorTo($popItem, { fx: 0.5, fy: 0.55 });
+      }
+    });
+
+    at(2700, function () {
+      var pos = $popItem ? moveCursorTo($popItem, { fx: 0.5, fy: 0.55 }) : null;
+      clickRipple(pos);
+    });
+    at(2800, function () {
+      if ($popover) { $popover.classList.remove('is-on'); $popover.classList.add('is-off'); }
+    });
+
+    at(2900, function () {
+      if ($home) { $home.classList.remove('is-active'); $home.classList.add('is-past'); }
+      if ($consoleScr) $consoleScr.classList.add('is-active');
+    });
+
+    at(3700, function () {
+      typewrite($rec, RECOMMENDATION, 22, function () {
+        $recCard.classList.remove('is-typing');
+      });
+    });
+
+    at(5100, function () {
+      if ($approve) moveCursorTo($approve, { fx: 0.5, fy: 0.5, fast: true });
+    });
+
+    at(5600, function () {
+      var pos = $approve ? moveCursorTo($approve, { fx: 0.5, fy: 0.5, fast: true }) : null;
+      clickRipple(pos);
+    });
+
+    at(5750, function () { revealAuditRow(3); });
+    at(5950, function () {
+      revealAuditRow(4);
+      flipStatus('approved');
+    });
+
+    at(6400, function () {
+      var active = $queue.querySelector('.oc-q.is-active');
+      if (active) {
+        active.classList.remove('is-active');
+        active.classList.add('is-done');
+      }
+    });
+    at(6600, function () {
+      var next = $queue.querySelector('.oc-q[data-item="4219"]');
+      if (next) next.classList.add('is-active');
+      if ($activeId) $activeId.textContent = 'REQ-4219';
+      if ($counter) $counter.textContent = '2';
+    });
+
+    at(6900, function () { parkCursor('out'); $cursor.classList.remove('is-on'); });
+  }
+
+  var played = false;
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting && !played) {
+          played = true;
+          setTimeout(runSequence, 200);
+        }
+      });
+    }, { threshold: 0.35 });
+    io.observe(hero);
+  } else {
+    setTimeout(runSequence, 400);
+  }
 })();
 </script>
 </body>
