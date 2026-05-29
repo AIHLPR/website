@@ -1463,6 +1463,110 @@
     .thesis-band .thesis-caption { font-size: 11.5px; }
   }
 
+  /* ===================== 03 · WHERE IT STALLS ===================== */
+  .stalls { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--surface); }
+  .stalls .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
+  @media (max-width: 760px) { .stalls .sec-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
+  .stalls .sec-head h2 { margin-top: 14px; }
+  .stalls .sec-head .block-lede { font-size: clamp(15px, 1.1vw, 17px); line-height: 1.65; color: var(--ink-soft); max-width: 56ch; }
+  .stalls .sec-head .block-lede p + p { margin-top: 14px; }
+
+  .stalls-list { display: flex; flex-direction: column; }
+  .stall-row {
+    display: grid;
+    grid-template-columns: 72px minmax(0, 1.4fr) minmax(0, 1fr);
+    gap: clamp(20px, 2.5vw, 40px);
+    padding: clamp(32px, 4vw, 48px) 0;
+    border-top: 1px solid var(--hairline);
+    align-items: start;
+  }
+  .stall-row:last-of-type { border-bottom: 1px solid var(--hairline); }
+
+  .stall-num {
+    font-family: var(--font-display);
+    font-size: clamp(40px, 4.5vw, 64px);
+    font-weight: 300;
+    color: rgba(31,31,31,0.18);
+    letter-spacing: -0.04em;
+    line-height: 1;
+  }
+
+  .stall-body h3 {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 1.7vw, 24px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    color: var(--ink);
+    margin: 0 0 14px;
+    max-width: 28ch;
+  }
+  .stall-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 16px; }
+  .stall-chips span {
+    display: inline-block;
+    padding: 4px 10px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.10em;
+    color: var(--ink-muted);
+    border: 1px solid var(--hairline);
+    border-radius: 2px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    background: var(--white);
+  }
+  .stall-body p {
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    line-height: 1.6;
+    margin: 0;
+    max-width: 50ch;
+  }
+
+  .stall-cost {
+    border-left: 2px solid var(--accent);
+    padding: 4px 0 4px 18px;
+  }
+  .stall-cost .lbl {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 10px;
+  }
+  .stall-cost p {
+    font-family: var(--font-body);
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+    max-width: 34ch;
+  }
+
+  .stalls-bridge {
+    margin-top: clamp(40px, 5vw, 56px);
+    padding: clamp(24px, 3vw, 32px) 0 0;
+    max-width: 72ch;
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    letter-spacing: 0.02em;
+    line-height: 1.75;
+    color: var(--ink-soft);
+  }
+  .stalls-bridge b { color: var(--ink); font-weight: 500; }
+
+  @media (max-width: 880px) {
+    .stall-row { grid-template-columns: 1fr; gap: 14px; padding: 28px 0; }
+    .stall-num { font-size: 36px; }
+    .stall-cost { margin-top: 4px; padding-left: 14px; }
+    .stall-body h3 { max-width: 100%; font-size: 20px; }
+    .stall-body p { font-size: 14.5px; }
+    .stall-cost p { font-size: 14px; max-width: 100%; }
+    .stalls-bridge { font-size: 12px; }
+  }
+
   /* ===================== 04 · INFRASTRUCTURE (data table card) ===================== */
   .integ-section-bp { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--surface); }
   .integ-section-bp .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
@@ -1905,12 +2009,13 @@
       <ol class="toc-list" id="tocList">
         <li><a href="#pillars"><span class="num">01</span> Enterprise AI</a></li>
         <li><a href="#applications"><span class="num">02</span> What we build</a></li>
-        <li><a href="#generative"><span class="num">03</span> How we build</a></li>
-        <li><a href="#infrastructure"><span class="num">04</span> Where it runs</a></li>
-        <li><a href="#governance"><span class="num">05</span> How it is governed</a></li>
-        <li><a href="#regions"><span class="num">06</span> How it scales</a></li>
-        <li><a href="#roles"><span class="num">07</span> How it stays accountable</a></li>
-        <li><a href="#expansion"><span class="num">08</span> How it expands</a></li>
+        <li><a href="#stalls"><span class="num">03</span> Where it stalls</a></li>
+        <li><a href="#generative"><span class="num">04</span> How we build</a></li>
+        <li><a href="#infrastructure"><span class="num">05</span> Where it runs</a></li>
+        <li><a href="#governance"><span class="num">06</span> How it is governed</a></li>
+        <li><a href="#regions"><span class="num">07</span> How it scales</a></li>
+        <li><a href="#roles"><span class="num">08</span> How it stays accountable</a></li>
+        <li><a href="#expansion"><span class="num">09</span> How it expands</a></li>
       </ol>
     </div>
   </aside>
@@ -2214,11 +2319,94 @@
   </div>
 </section>
 
-<section class="thesis-band" aria-label="Operational difference">
-  <div class="thesis-inner">
-    <span class="thesis-eyebrow"><span class="dot"></span>The operational difference</span>
-    <h2 class="thesis-headline">&ldquo;Pilots prove what&rsquo;s possible. Production proves what&rsquo;s real.&rdquo;</h2>
-    <p class="thesis-caption">AIHLPR is engineered for the second one &mdash; the layer where governance, observability, and accountability stop being slides and start being how the business runs on AI.</p>
+<section class="stalls" data-sec="stalls" id="stalls">
+  <div class="container">
+    <div class="sec-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>03 &middot; Where it stalls</span>
+        <h2>Where enterprise AI actually stalls.</h2>
+      </div>
+      <div class="block-lede">
+        <p>Enterprise AI rarely slows down because the model can&rsquo;t produce an answer. It slows down when the work <em>around</em> the model isn&rsquo;t ready: ownership, integration, visibility, governance, and cost structure.</p>
+        <p>These are the patterns we see most often when AI has to move from an idea, pilot, vendor workflow, or manual process into daily operations.</p>
+      </div>
+    </div>
+
+    <div class="stalls-list">
+      <div class="stall-row">
+        <div class="stall-num">01</div>
+        <div class="stall-body">
+          <h3>The work lives outside the organisation.</h3>
+          <div class="stall-chips">
+            <span>Content</span>
+            <span>Localisation</span>
+            <span>Reporting</span>
+            <span>Review</span>
+          </div>
+          <p>External agencies, vendors, and disconnected tools deliver the output. The operating knowledge doesn&rsquo;t stay with the organisation.</p>
+        </div>
+        <div class="stall-cost">
+          <span class="lbl">What it costs</span>
+          <p>You keep paying per output, per market, per handover. Capability never accrues internally.</p>
+        </div>
+      </div>
+
+      <div class="stall-row">
+        <div class="stall-num">02</div>
+        <div class="stall-body">
+          <h3>The tool doesn&rsquo;t connect to the workflow.</h3>
+          <div class="stall-chips">
+            <span>ERP</span>
+            <span>CRM</span>
+            <span>Asset library</span>
+            <span>Approval chain</span>
+          </div>
+          <p>AI works in the demo. Inside the real environment, it doesn&rsquo;t reach the place where work happens.</p>
+        </div>
+        <div class="stall-cost">
+          <span class="lbl">What it costs</span>
+          <p>A useful screen, not a usable operating system.</p>
+        </div>
+      </div>
+
+      <div class="stall-row">
+        <div class="stall-num">03</div>
+        <div class="stall-body">
+          <h3>The system is hard to inspect.</h3>
+          <div class="stall-chips">
+            <span>Traceable</span>
+            <span>Reviewable</span>
+            <span>GDPR</span>
+            <span>EU AI Act</span>
+          </div>
+          <p>Outputs that can&rsquo;t be traced, reviewed, or explained don&rsquo;t get trusted. For European organisations, that becomes a compliance question.</p>
+        </div>
+        <div class="stall-cost">
+          <span class="lbl">What it costs</span>
+          <p>Every output needs manual confidence-building. Speed makes visibility more important, not less.</p>
+        </div>
+      </div>
+
+      <div class="stall-row">
+        <div class="stall-num">04</div>
+        <div class="stall-body">
+          <h3>The cost scales with the bottleneck.</h3>
+          <div class="stall-chips">
+            <span>New SKU</span>
+            <span>New market</span>
+            <span>New language</span>
+            <span>New rule</span>
+          </div>
+          <p>Every new variant adds manual work when the process isn&rsquo;t systematised. Growth increases workload instead of improving the operating model.</p>
+        </div>
+        <div class="stall-cost">
+          <span class="lbl">What it costs</span>
+          <p>The organisation scales. The workflow scales with people, hours, and review cycles.</p>
+        </div>
+      </div>
+    </div>
+
+    <p class="stalls-bridge">These aren&rsquo;t four separate problems. They&rsquo;re four signs that the work <b>around</b> the AI isn&rsquo;t ready. AIHLPR builds that layer &mdash; where AI workflows are owned, integrated, reviewed, measured, and improved inside the organisation.</p>
   </div>
 </section>
 
@@ -2226,7 +2414,7 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>03 &middot; How we build</span>
+        <span class="label-mono"><span class="dot"></span>04 &middot; How we build</span>
         <h2 style="margin-top:14px;">Generative systems engineered for production.</h2>
       </div>
       <p class="block-lede">The capabilities people associate with AI today, engineered to run inside an enterprise: retrieval-grounded, evaluated, governed, swappable across models as the landscape shifts.</p>
@@ -3046,7 +3234,7 @@
   <div class="container">
     <div class="sec-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>04 &middot; Where it runs</span>
+        <span class="label-mono"><span class="dot"></span>05 &middot; Where it runs</span>
         <h2>Inside the systems already running your business.</h2>
       </div>
       <p class="block-lede">The layer lands inside a working environment, plugging into systems that hold the data, the workflows, and the records of decision.</p>
@@ -3099,7 +3287,7 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>05 &middot; How it is governed</span>
+        <span class="label-mono"><span class="dot"></span>06 &middot; How it is governed</span>
         <h2 style="margin-top:14px;">Governance lives in the stack.</h2>
       </div>
       <p class="block-lede">Trust is a stack: policy at the top, identity in the middle, review in the workflow, audit at the bottom. Each layer is enforced, observed, and exportable.</p>
@@ -3164,7 +3352,7 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>06 &middot; How it scales</span>
+        <span class="label-mono"><span class="dot"></span>07 &middot; How it scales</span>
         <h2 style="margin-top:14px;">Multi-region, locally governed.</h2>
       </div>
       <p class="block-lede">Enterprises operate across jurisdictions. Each region runs the same operational layer with its own residency, its own reviewers, and its own regulatory overlay, while the rest of the organisation sees one consistent system.</p>
@@ -3225,7 +3413,7 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>07 &middot; How people stay accountable</span>
+        <span class="label-mono"><span class="dot"></span>08 &middot; How people stay accountable</span>
         <h2 style="margin-top:14px;">Clear ownership across the chain.</h2>
       </div>
       <p class="block-lede">Across the organisation, AI runs under people. Each role carries defined responsibility, a defined escalation, and a defined trace, so accountability stays human even when the work moves through machines.</p>
@@ -3270,7 +3458,7 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>08 &middot; How it expands</span>
+        <span class="label-mono"><span class="dot"></span>09 &middot; How it expands</span>
         <h2 style="margin-top:14px;">From one workflow to an operational layer.</h2>
       </div>
       <p class="block-lede">The system grows in surface area. One division becomes cross-functional, cross-functional becomes regional, regional becomes the operational layer of the whole organisation, on the same foundation.</p>
@@ -3408,12 +3596,13 @@
   <div class="mobile-toc-track">
     <a href="#pillars">01 Enterprise AI</a>
     <a href="#applications">02 What we build</a>
-    <a href="#generative">03 How we build</a>
-    <a href="#infrastructure">04 Where it runs</a>
-    <a href="#governance">05 How governed</a>
-    <a href="#regions">06 How scales</a>
-    <a href="#roles">07 Accountability</a>
-    <a href="#expansion">08 How expands</a>
+    <a href="#stalls">03 Where it stalls</a>
+    <a href="#generative">04 How we build</a>
+    <a href="#infrastructure">05 Where it runs</a>
+    <a href="#governance">06 How governed</a>
+    <a href="#regions">07 How scales</a>
+    <a href="#roles">08 Accountability</a>
+    <a href="#expansion">09 How expands</a>
   </div>
 </nav>
 
