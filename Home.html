@@ -569,6 +569,7 @@
   .cap-strips { border-top: 1px solid var(--hairline); }
   .cap-strip {
     display: grid;
+    grid-template-columns: 1fr;
     align-items: center;
     gap: clamp(32px, 5vw, 80px);
     padding: clamp(40px, 5vw, 72px) 0;
@@ -577,15 +578,8 @@
     color: inherit;
     text-decoration: none;
   }
-  /* Asymmetric rhythm — alternating left/right plus column weight changes. */
-  .cap-strip.l-right { grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.25fr); }
-  .cap-strip.l-left  { grid-template-columns: minmax(0, 1.25fr) minmax(0, 0.85fr); }
-  .cap-strip.l-right .cap-strip-text  { grid-column: 1; }
-  .cap-strip.l-right .cap-strip-visual { grid-column: 2; }
-  .cap-strip.l-left  .cap-strip-visual { grid-column: 1; }
-  .cap-strip.l-left  .cap-strip-text   { grid-column: 2; }
 
-  .cap-strip-text { display: flex; flex-direction: column; gap: 14px; max-width: 42ch; }
+  .cap-strip-text { display: flex; flex-direction: column; gap: 14px; max-width: 64ch; }
   .cap-strip-chips {
     display: flex; flex-wrap: wrap; gap: 6px;
     margin-top: 4px;
@@ -622,7 +616,7 @@
     line-height: 1.55;
     color: var(--ink-soft);
     margin: 0;
-    max-width: 38ch;
+    max-width: 60ch;
   }
   .cap-strip-link {
     font-family: var(--font-mono);
@@ -927,21 +921,13 @@
     font-size: 14.5px;
     line-height: 1.55;
   }
-  .stack-tools {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    padding-top: 8px;
+  .stack-note {
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--ink-muted);
+    padding-top: 12px;
     border-top: 1px solid var(--hairline);
-  }
-  .stack-tool {
-    font-size: 12px;
-    padding: 5px 10px;
-    border-radius: 6px;
-    background: var(--surface);
-    color: var(--ink-soft);
-    font-family: var(--font-mono);
-    letter-spacing: 0.02em;
+    font-style: italic;
   }
   @media (max-width: 900px) { .stack-grid { grid-template-columns: 1fr; } }
 
@@ -970,6 +956,36 @@
     grid-template-columns: minmax(0, 1fr) clamp(260px, 24vw, 340px);
     gap: clamp(28px, 4vw, 56px);
     align-items: start;
+  }
+  .ct-static { max-width: 64ch; }
+  .ct-lede {
+    font-size: clamp(15px, 1.1vw, 17px);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 18px 0 24px;
+  }
+  .ct-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .ct-list li {
+    position: relative;
+    padding-left: 22px;
+    font-size: 15.5px;
+    line-height: 1.55;
+    color: var(--ink);
+  }
+  .ct-list li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.62em;
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: var(--ct-blue);
   }
 
   .ct-eyebrow {
@@ -1526,6 +1542,24 @@
     letter-spacing: 0.14em; text-transform: uppercase;
     color: rgba(255,255,255,0.5);
   }
+  .pipe-title {
+    font-family: var(--font-display);
+    font-size: clamp(34px, 3.6vw, 50px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--white);
+    margin: 14px 0 0;
+    max-width: 18ch;
+    text-wrap: balance;
+  }
+  .pipe-intro {
+    font-size: clamp(15px, 1.1vw, 17px);
+    line-height: 1.55;
+    color: rgba(255,255,255,0.6);
+    margin: 12px 0 0;
+    max-width: 56ch;
+  }
 
   .pipe-status-dot {
     width: 7px; height: 7px;
@@ -1677,19 +1711,15 @@
     transform: translateY(0);
     pointer-events: auto;
   }
-  .stage-tag {
-    display: inline-flex; align-items: center; gap: 10px;
+  .stage-num {
+    display: inline-flex; align-items: center;
     font-family: var(--font-mono);
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 500;
-    letter-spacing: 0.10em;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
     color: var(--accent);
-    text-transform: lowercase;
     width: fit-content;
-  }
-  .stage-tag::before {
-    content: "\25B8";
-    opacity: 0.8;
   }
   .stage-title {
     font-family: var(--font-display);
@@ -1930,17 +1960,17 @@
       <!-- LEFT: text -->
       <div class="hero-left">
         <div class="hero-meta">
-          <span>AI for production</span>
+          <span>Built around your workflows</span>
         </div>
 
         <h1>
-          AI that's built<br>
-          to last in<br>
-          <em class="grad brand-gradient-text">production.</em>
+          AI built around<br>
+          how you<br>
+          <em class="grad brand-gradient-text">already work.</em>
         </h1>
 
         <p class="hero-sub">
-          AI built into the work itself. Across systems, workflows, and the decisions that shape how organisations operate.
+          Most AI adds another tool to manage. We build AI into the work itself, across the systems, workflows, and decisions your business already runs on.
         </p>
 
         <div class="hero-pill">
@@ -1988,8 +2018,8 @@
 <section class="clients" id="clients">
   <div class="container">
     <div class="clients-head">
-      <span class="label-mono"><span class="dot"></span>Working with</span>
-      <span class="label-mono" style="text-transform: none; letter-spacing: 0.04em; color: var(--ink-muted); font-style: italic;">Teams that ship.</span>
+      <span class="label-mono"><span class="dot"></span>Trusted by</span>
+      <span class="label-mono" style="text-transform: none; letter-spacing: 0.04em; color: var(--ink-muted); font-style: italic;">teams across retail, sport, publishing, and development.</span>
     </div>
   </div>
   <!-- Marquee lives outside the container so it can stretch edge-to-edge.
@@ -2024,21 +2054,21 @@
     <div class="cap-section-head">
       <div>
         <span class="label-mono"><span class="dot"></span>Capabilities</span>
-        <h2 class="cap-title">What we ship.</h2>
+        <h2 class="cap-title">What we build.</h2>
       </div>
       <p class="cap-subtitle">
-        Internal AI products people use every day, and the workflow layer they sit inside. Both engineered to enterprise-grade standards.
+        AI products your team uses every day, and the workflow layer underneath them. Both built to enterprise standards.
       </p>
     </div>
 
     <div class="cap-strips">
 
-      <!-- 01 — AI Products & Platforms (interface snippet, visual right) -->
+      <!-- 01 — AI Products & Platforms -->
       <a class="cap-strip l-right" style="--c:#E91E63" href="capabilities/ai-applications-and-platforms.html">
         <div class="cap-strip-text">
           <span class="cap-strip-num">01 &middot; Products &amp; Platforms</span>
           <h3>AI Products &amp; Platforms</h3>
-          <p>AI tools your team actually uses every day. Assistants, custom apps, knowledge search, approval screens, dashboards.</p>
+          <p>AI tools your team actually uses. Assistants, custom apps, knowledge search, approval screens, dashboards, built into the way you already work.</p>
           <div class="cap-strip-chips">
             <span>AI assistants</span>
             <span>Custom AI apps</span>
@@ -2048,89 +2078,14 @@
           </div>
           <span class="cap-strip-link">Read capability <span class="arrow">&rarr;</span></span>
         </div>
-        <div class="cap-strip-visual">
-          <svg viewBox="0 0 480 200" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <!-- Window chrome -->
-            <rect x="20" y="20" width="440" height="160" rx="6" fill="#fff" stroke="#8A8A8A" stroke-width="0.9"/>
-            <rect x="20" y="20" width="440" height="22" rx="6" fill="#F4F2EC"/>
-            <rect x="20" y="34" width="440" height="8" fill="#F4F2EC"/>
-            <g>
-              <circle cx="36" cy="31" r="3" fill="#E63946"/>
-              <circle cx="50" cy="31" r="3" fill="#F4B400"/>
-              <circle cx="64" cy="31" r="3" fill="#1D9E75"/>
-            </g>
-            <text x="240" y="35" text-anchor="middle" font-size="8.5" fill="#8A8A8A" letter-spacing="0.14em">internal-platform.aihlpr.eu</text>
-            <!-- Sidebar -->
-            <rect x="20" y="42" width="110" height="138" fill="#FAFAF8" stroke="#8A8A8A" stroke-width="0.5"/>
-            <g font-size="8.5" font-family="JetBrains Mono, monospace" letter-spacing="0.10em">
-              <text x="32" y="60" fill="#1F1F1F">&#9656; Approvals</text>
-              <text x="32" y="78" fill="#8A8A8A">  Drafts</text>
-              <text x="32" y="96" fill="#8A8A8A">  Knowledge</text>
-              <text x="32" y="114" fill="#8A8A8A">  Tickets</text>
-              <text x="32" y="132" fill="#8A8A8A">  Trail</text>
-            </g>
-            <!-- User message -->
-            <rect x="146" y="54" width="296" height="24" rx="4" fill="#F4F2EC" stroke="#8A8A8A" stroke-width="0.5"/>
-            <text x="156" y="70" font-size="9" fill="#1F1F1F">Draft a response to ticket #4831</text>
-            <!-- AI reply -->
-            <circle cx="156" cy="100" r="5" fill="#E91E63"/>
-            <text x="168" y="103" font-size="8.5" fill="#E91E63" letter-spacing="0.14em" font-weight="600">AIHLPR</text>
-            <g font-size="8.5" fill="#1F1F1F">
-              <text x="156" y="120">Draft prepared. Cited 3 prior tickets.</text>
-              <text x="156" y="134">Suggested SLA: 24h. Review before sending.</text>
-            </g>
-            <!-- Action chips -->
-            <g stroke="#8A8A8A" stroke-width="0.7" fill="#fff">
-              <rect x="156" y="148" width="50" height="18" rx="9"/>
-              <rect x="212" y="148" width="56" height="18" rx="9"/>
-              <rect x="274" y="148" width="46" height="18" rx="9"/>
-            </g>
-            <g font-size="8" letter-spacing="0.08em" text-anchor="middle">
-              <text x="181" y="161" fill="#1F1F1F">SEND</text>
-              <text x="240" y="161" fill="#1F1F1F">REVISE</text>
-              <text x="297" y="161" fill="#1F1F1F">FLAG</text>
-            </g>
-            <!-- cursor blink near Send -->
-            <rect x="206" y="151" width="1.5" height="12" fill="#E91E63">
-              <animate attributeName="opacity" values="1;0;1" dur="1.2s" repeatCount="indefinite"/>
-            </rect>
-          </svg>
-        </div>
       </a>
 
-      <!-- 02 — AI Workflows & Operations (branching graph snippet, visual left) -->
-      <a class="cap-strip l-left" style="--c:#9B59B6" href="capabilities/ai-workflow-infrastructure.html">
-        <div class="cap-strip-visual">
-          <svg viewBox="0 0 480 200" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <!-- TRIGGER -->
-            <rect x="20" y="86" width="92" height="28" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1"/>
-            <text x="66" y="104" text-anchor="middle" font-size="9.5" font-weight="600" fill="#9B59B6" letter-spacing="0.12em">TRIGGER</text>
-            <!-- Connector to CLASSIFY -->
-            <path d="M 112 100 L 148 100" stroke="#9B59B6" stroke-width="1" fill="none"/>
-            <polygon points="142,96 150,100 142,104" fill="#9B59B6"/>
-            <!-- CLASSIFY -->
-            <rect x="150" y="86" width="92" height="28" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1"/>
-            <text x="196" y="104" text-anchor="middle" font-size="9.5" font-weight="600" fill="#9B59B6" letter-spacing="0.12em">CLASSIFY</text>
-            <!-- Retry loop -->
-            <path d="M 242 96 Q 280 76 280 100 Q 280 124 242 108" stroke="#9B59B6" stroke-width="0.8" fill="none" stroke-dasharray="3 3"/>
-            <text x="294" y="104" font-size="8" fill="#9B59B6" letter-spacing="0.10em">retry &times; 2</text>
-            <!-- Branch up to APPROVE -->
-            <path d="M 242 90 L 270 90 L 270 50 L 348 50" stroke="#9B59B6" stroke-width="1" fill="none"/>
-            <polygon points="342,46 350,50 342,54" fill="#9B59B6"/>
-            <rect x="350" y="36" width="100" height="28" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1"/>
-            <text x="400" y="54" text-anchor="middle" font-size="9.5" font-weight="600" fill="#9B59B6" letter-spacing="0.12em">APPROVE</text>
-            <!-- Branch down to DLQ (dashed grey) -->
-            <path d="M 242 110 L 270 110 L 270 160 L 348 160" stroke="#8A8A8A" stroke-width="0.8" fill="none" stroke-dasharray="3 3"/>
-            <polygon points="342,156 350,160 342,164" fill="#8A8A8A"/>
-            <rect x="350" y="146" width="100" height="28" rx="3" fill="#FAFAF8" stroke="#8A8A8A" stroke-width="0.8" stroke-dasharray="3 3"/>
-            <text x="400" y="164" text-anchor="middle" font-size="9" font-weight="600" fill="#8A8A8A" letter-spacing="0.14em">DLQ &middot; 3</text>
-            <text x="20" y="190" font-size="8.5" letter-spacing="0.14em" fill="#8A8A8A">ROUTING &middot; RETRIES &middot; DLQ</text>
-          </svg>
-        </div>
+      <!-- 02 — AI Workflows & Operations -->
+      <a class="cap-strip" style="--c:#9B59B6" href="capabilities/ai-workflow-infrastructure.html">
         <div class="cap-strip-text">
           <span class="cap-strip-num">02 &middot; Workflows &amp; Operations</span>
           <h3>AI Workflows &amp; Operations</h3>
-          <p>The workflow layer that lets AI actually run across your business. Trigger steps, route documents, escalate decisions, integrate with the tools you already use.</p>
+          <p>The layer that lets AI run across your business. It triggers steps, routes documents, escalates the calls that need a human, and connects to the tools you already use.</p>
           <div class="cap-strip-chips">
             <span>Process automation</span>
             <span>Document automation</span>
@@ -2142,12 +2097,12 @@
         </div>
       </a>
 
-      <!-- 03 — Enterprise AI (4-layer topology, visual right) -->
-      <a class="cap-strip l-right" style="--c:#3478E5" href="capabilities/enterprise-ai.html">
+      <!-- 03 — Enterprise AI -->
+      <a class="cap-strip" style="--c:#3478E5" href="capabilities/enterprise-ai.html">
         <div class="cap-strip-text">
           <span class="cap-strip-num">03 &middot; Enterprise AI</span>
           <h3>Enterprise AI</h3>
-          <p>Production-grade AI engineered into the systems your business already runs on. Data, models, governance, deployment, all in one stack.</p>
+          <p>Production-grade AI built into the systems your business already runs on. Data, models, governance, and deployment in one stack you control.</p>
           <div class="cap-strip-chips">
             <span>RAG &amp; fine-tuning</span>
             <span>Vector search</span>
@@ -2157,100 +2112,14 @@
           </div>
           <span class="cap-strip-link">Read capability <span class="arrow">&rarr;</span></span>
         </div>
-        <div class="cap-strip-visual">
-          <svg viewBox="0 0 480 200" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <!-- 4 stacked layers -->
-            <g stroke="#3478E5" stroke-width="1" fill="#fff">
-              <rect x="20" y="24"  width="440" height="34" rx="3"/>
-              <rect x="20" y="62"  width="440" height="34" rx="3"/>
-              <rect x="20" y="100" width="440" height="34" rx="3"/>
-              <rect x="20" y="138" width="440" height="34" rx="3"/>
-            </g>
-            <g font-size="9.5" letter-spacing="0.14em" font-weight="600" fill="#3478E5">
-              <text x="32" y="45">IDENTITY</text>
-              <text x="32" y="83">ORCHESTRATION</text>
-              <text x="32" y="121">MODELS</text>
-              <text x="32" y="159">INFRASTRUCTURE</text>
-            </g>
-            <!-- module chips per layer (right side) -->
-            <g stroke="#8A8A8A" stroke-width="0.8" fill="#FAFAF8">
-              <rect x="180" y="32" width="60" height="18" rx="2"/>
-              <rect x="248" y="32" width="60" height="18" rx="2"/>
-              <rect x="316" y="32" width="80" height="18" rx="2"/>
-              <rect x="404" y="32" width="50" height="18" rx="2"/>
-              <rect x="180" y="70" width="60" height="18" rx="2"/>
-              <rect x="248" y="70" width="60" height="18" rx="2"/>
-              <rect x="316" y="70" width="80" height="18" rx="2"/>
-              <rect x="404" y="70" width="50" height="18" rx="2"/>
-              <rect x="180" y="108" width="60" height="18" rx="2"/>
-              <rect x="248" y="108" width="60" height="18" rx="2"/>
-              <rect x="316" y="108" width="80" height="18" rx="2"/>
-              <rect x="404" y="108" width="50" height="18" rx="2"/>
-              <rect x="180" y="146" width="60" height="18" rx="2"/>
-              <rect x="248" y="146" width="60" height="18" rx="2"/>
-              <rect x="316" y="146" width="80" height="18" rx="2"/>
-              <rect x="404" y="146" width="50" height="18" rx="2"/>
-            </g>
-            <!-- layer separators with subtle vertical dashed connectors -->
-            <g stroke="#3478E5" stroke-width="0.6" opacity="0.4" stroke-dasharray="3 3" fill="none">
-              <line x1="220" y1="58" x2="220" y2="62"/>
-              <line x1="220" y1="96" x2="220" y2="100"/>
-              <line x1="220" y1="134" x2="220" y2="138"/>
-            </g>
-            <text x="32" y="190" font-size="8.5" letter-spacing="0.14em" fill="#8A8A8A">EU-WEST &middot; POLICY ENFORCED &middot; SSO + SCIM</text>
-          </svg>
-        </div>
       </a>
 
-      <!-- 04 — AI Pilot to Production (deploy strip snippet, visual left) -->
-      <a class="cap-strip l-left" style="--c:#CC418C" href="capabilities/prototype-to-production.html">
-        <div class="cap-strip-visual">
-          <svg viewBox="0 0 480 200" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <!-- Pipeline strip -->
-            <g stroke="#CC418C" stroke-width="1.1" fill="#fff">
-              <rect x="20"  y="30" width="84" height="32" rx="2"/>
-              <rect x="112" y="30" width="84" height="32" rx="2"/>
-              <rect x="204" y="30" width="84" height="32" rx="2"/>
-              <rect x="296" y="30" width="84" height="32" rx="2"/>
-              <rect x="388" y="30" width="72" height="32" rx="2"/>
-            </g>
-            <g font-size="9" letter-spacing="0.12em" font-weight="600" fill="#CC418C" text-anchor="middle">
-              <text x="62"  y="50">BUILD</text>
-              <text x="154" y="50">TEST</text>
-              <text x="246" y="50">CANARY</text>
-              <text x="338" y="50">DEPLOY</text>
-              <text x="424" y="50">LIVE</text>
-            </g>
-            <g font-size="7.5" fill="#8A8A8A" text-anchor="middle">
-              <text x="62"  y="76">sealed</text>
-              <text x="154" y="76">92% cov</text>
-              <text x="246" y="76">5% &rarr; 100%</text>
-              <text x="338" y="76">rolling</text>
-              <text x="424" y="76">99.95%</text>
-            </g>
-            <!-- progress on DEPLOY -->
-            <rect x="296" y="64" width="84" height="2" fill="rgba(31,31,31,0.08)"/>
-            <rect x="296" y="64" width="60" height="2" fill="#CC418C">
-              <animate attributeName="width" values="40;72;40" dur="2.8s" repeatCount="indefinite"/>
-            </rect>
-            <!-- Latency trace -->
-            <line x1="20" y1="130" x2="460" y2="130" stroke="rgba(31,31,31,0.06)" stroke-width="0.7"/>
-            <line x1="20" y1="160" x2="460" y2="160" stroke="rgba(31,31,31,0.06)" stroke-width="0.7"/>
-            <line x1="20" y1="120" x2="460" y2="120" stroke="#E63946" stroke-width="0.6" stroke-dasharray="3 3" opacity="0.5"/>
-            <text x="14" y="124" text-anchor="end" font-size="7.5" fill="#E63946">target</text>
-            <polyline
-              points="20,148 60,142 100,150 140,140 180,144 220,134 260,138 300,128 340,122 380,150 420,140 460,134"
-              fill="none" stroke="#CC418C" stroke-width="1.4"/>
-            <circle cx="460" cy="134" r="3" fill="#CC418C">
-              <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
-            </circle>
-            <text x="20" y="190" font-size="8.5" letter-spacing="0.14em" fill="#8A8A8A">RELEASE PIPELINE &middot; P95 48MS</text>
-          </svg>
-        </div>
+      <!-- 04 — From Pilot to Production -->
+      <a class="cap-strip" style="--c:#CC418C" href="capabilities/prototype-to-production.html">
         <div class="cap-strip-text">
-          <span class="cap-strip-num">04 &middot; AI Pilot to Production</span>
-          <h3>Turn promising AI pilots into reliable operational systems.</h3>
-          <p>Enterprise AI often starts as a pilot, internal tool, workflow automation, copilot, or department-level experiment. We help teams decide what is ready to scale, then harden it for real business use: architecture, deployment, monitoring, evaluation, governance, and human review.</p>
+          <span class="cap-strip-num">04 &middot; From Pilot to Production</span>
+          <h3>From Pilot to Production</h3>
+          <p>Most AI starts as a pilot or a department experiment. We decide what is ready to scale, then make it reliable enough for real business use: architecture, deployment, monitoring, governance, and human review.</p>
           <div class="cap-strip-chips">
             <span>Pilot review</span>
             <span>Production readiness</span>
@@ -2274,6 +2143,8 @@
     <!-- section header -->
     <div class="pipe-header">
       <span class="pipe-eyebrow"><span class="pipe-status-dot" aria-hidden="true"></span>How we work</span>
+      <h2 class="pipe-title">How we work.</h2>
+      <p class="pipe-intro">Six stages, from first check to live system. No code until the first three are done.</p>
     </div>
 
     <!-- the rail -->
@@ -2316,83 +2187,37 @@
     <div class="stage-display">
       <div class="stage-display-main" id="stageDisplay">
         <div class="stage-frame is-active" data-stage="0">
-          <span class="stage-tag">stage_00.feasibility_check()</span>
+          <span class="stage-num">Stage 00</span>
           <h2 class="stage-title">Feasibility check</h2>
-          <p class="stage-desc">Legal, technical, and organisational readiness before a single line of code.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <p class="stage-desc">Legal, technical, and organisational readiness, before a single line of code.</p>
         </div>
         <div class="stage-frame" data-stage="1">
-          <span class="stage-tag">stage_01.architecture_design()</span>
+          <span class="stage-num">Stage 01</span>
           <h2 class="stage-title">Architecture design</h2>
-          <p class="stage-desc">Good architecture solves problems before AI has to.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <p class="stage-desc">Good architecture solves problems before AI has to.</p>
         </div>
         <div class="stage-frame" data-stage="2">
-          <span class="stage-tag">stage_02.data_preparation()</span>
+          <span class="stage-num">Stage 02</span>
           <h2 class="stage-title">Data preparation</h2>
-          <p class="stage-desc">Your data, structured for what comes next.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <p class="stage-desc">Your data, structured for what comes next.</p>
         </div>
         <div class="stage-frame" data-stage="3">
-          <span class="stage-tag">stage_03.model_training()</span>
+          <span class="stage-num">Stage 03</span>
           <h2 class="stage-title">Model training</h2>
-          <p class="stage-desc">Trained on your domain. Speaks your language.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <p class="stage-desc">Trained on your domain. Speaks your language.</p>
         </div>
         <div class="stage-frame" data-stage="4">
-          <span class="stage-tag">stage_04.retrieval_pipeline()</span>
+          <span class="stage-num">Stage 04</span>
           <h2 class="stage-title">Retrieval pipeline</h2>
-          <p class="stage-desc">Your knowledge, retrieved precisely.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <p class="stage-desc">Your knowledge, retrieved precisely.</p>
         </div>
         <div class="stage-frame" data-stage="5">
-          <span class="stage-tag">stage_05.eval_guardrails()</span>
+          <span class="stage-num">Stage 05</span>
           <h2 class="stage-title">Eval guardrails</h2>
-          <p class="stage-desc">Built in from the start. Still running at the end.<span class="stage-cursor" aria-hidden="true"></span></p>
+          <p class="stage-desc">Built in from the start. Still running at the end.</p>
         </div>
       </div>
 
-      <aside class="stage-console" aria-hidden="true">
-        <div class="row is-active" data-stage="0">
-          <span class="ix">00</span>
-          <span class="nm">feasibility_check</span>
-          <span class="st">run</span>
-        </div>
-        <div class="row" data-stage="1">
-          <span class="ix">01</span>
-          <span class="nm">architecture_design</span>
-          <span class="st">idle</span>
-        </div>
-        <div class="row" data-stage="2">
-          <span class="ix">02</span>
-          <span class="nm">data_preparation</span>
-          <span class="st">idle</span>
-        </div>
-        <div class="row" data-stage="3">
-          <span class="ix">03</span>
-          <span class="nm">model_training</span>
-          <span class="st">idle</span>
-        </div>
-        <div class="row" data-stage="4">
-          <span class="ix">04</span>
-          <span class="nm">retrieval_pipeline</span>
-          <span class="st">idle</span>
-        </div>
-        <div class="row" data-stage="5">
-          <span class="ix">05</span>
-          <span class="nm">eval_guardrails</span>
-          <span class="st">idle</span>
-        </div>
-        <div class="tickline">
-          <span id="consoleUptime">00:00:00</span>
-        </div>
-        <p class="console-hint">Click any node to jump</p>
-      </aside>
-    </div>
-
-    <!-- controls -->
-    <div class="pipe-controls">
-      <button class="pipe-play" id="pipePlayBtn" aria-pressed="false">
-        <span class="icon" id="pipePlayIcon" aria-hidden="true">
-          <svg width="10" height="10" viewBox="0 0 10 10" fill="currentColor"><rect x="2" y="1" width="2" height="8"/><rect x="6" y="1" width="2" height="8"/></svg>
-        </span>
-        <span id="pipePlayLabel">Pause</span>
-      </button>
     </div>
   </div>
 </section>
@@ -2596,82 +2421,48 @@
         <span class="label-mono"><span class="dot"></span>The stack</span>
         <h2 style="margin-top: 14px;">We pick the stack that fits the problem.</h2>
       </div>
-      <p class="head-aside">Three layers. Always.</p>
+      <p class="head-aside">Three layers, every time.</p>
     </div>
 
     <div class="stack-grid">
       <div class="stack-col">
         <span class="label-mono">01 The brain</span>
-        <h3>Models &amp; reasoning.</h3>
-        <p>Frontier or open source, closed or fine tuned. We pick the model for the job and switch when the job changes.</p>
-        <div class="stack-tools">
-          <span class="stack-tool">OpenAI</span>
-          <span class="stack-tool">Anthropic</span>
-          <span class="stack-tool">Google Gemini</span>
-          <span class="stack-tool">Meta</span>
-          <span class="stack-tool">Mistral</span>
-          <span class="stack-tool">Cohere</span>
-          <span class="stack-tool">Hugging Face</span>
-        </div>
+        <h3>Models and reasoning.</h3>
+        <p>Frontier or open source, closed or fine-tuned. We pick the model for the job and switch when the job changes.</p>
+        <p class="stack-note">We work across the major model providers, open and closed.</p>
       </div>
       <div class="stack-col">
         <span class="label-mono">02 The memory</span>
-        <h3>Data &amp; retrieval.</h3>
-        <p>Relational, vector, or hybrid. We design the store the answers come from, not just the model that generates them.</p>
-        <div class="stack-tools">
-          <span class="stack-tool">PostgreSQL</span>
-          <span class="stack-tool">Pinecone</span>
-          <span class="stack-tool">Weaviate</span>
-          <span class="stack-tool">Qdrant</span>
-          <span class="stack-tool">Chroma</span>
-          <span class="stack-tool">Supabase</span>
-          <span class="stack-tool">MongoDB</span>
-          <span class="stack-tool">Elasticsearch</span>
-        </div>
+        <h3>Data and retrieval.</h3>
+        <p>Relational, vector, or hybrid. We design where the answers come from, not just the model that generates them.</p>
+        <p class="stack-note">Relational, vector, and hybrid stores, matched to the data.</p>
       </div>
       <div class="stack-col">
         <span class="label-mono">03 The deployment</span>
-        <h3>Cloud &amp; infra.</h3>
-        <p>Wherever your systems already live. Inside your tenancy or on prem. Nothing leaves your environment.</p>
-        <div class="stack-tools">
-          <span class="stack-tool">AWS</span>
-          <span class="stack-tool">Azure</span>
-          <span class="stack-tool">Google Cloud</span>
-          <span class="stack-tool">Cloudflare</span>
-          <span class="stack-tool">Vercel</span>
-          <span class="stack-tool">Docker</span>
-          <span class="stack-tool">Kubernetes</span>
-        </div>
+        <h3>Cloud and deployment.</h3>
+        <p>Wherever your systems already live. Inside your own environment or on-prem. Nothing leaves without your say.</p>
+        <p class="stack-note">Deployed in your environment, your cloud, or on-prem.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============= COMPLIANCE — animated audit terminal ============= -->
+<!-- ============= COMPLIANCE ============= -->
 <section class="compliance-section" id="compliance">
   <canvas class="ct-bg" id="ctBg"></canvas>
   <div class="container">
-    <div class="ct-grid">
-      <div class="ct-left">
-        <span class="ct-eyebrow">Compliance</span>
-        <h2 class="ct-headline">Safety and trust by design.</h2>
-        <div class="ct-sub">// compliance_audit &middot; 4 checks &middot; running</div>
-        <div class="ct-checks" id="ctChecks"></div>
-        <div class="ct-foot">
-          <span id="ctFootLeft">// awaiting results</span>
-          <span class="ct-foot-ok" id="ctFootOk">ALL CLEAR</span>
-        </div>
-      </div>
-      <aside class="ct-right" aria-hidden="true">
-        <div class="ct-right-head">
-          <span class="ct-dot" style="background:#FF5F56"></span>
-          <span class="ct-dot" style="background:#FFBD2E"></span>
-          <span class="ct-dot" style="background:#27C93F"></span>
-          <span class="ct-right-title">compliance_audit.log</span>
-        </div>
-        <div id="ctLogLines"></div>
-        <div class="ct-timer">elapsed: <span id="ctTimer">00:00:00</span></div>
-      </aside>
+    <div class="ct-static">
+      <span class="ct-eyebrow">Compliance</span>
+      <h2 class="ct-headline">Safety and trust, by design.</h2>
+      <p class="ct-lede">
+        Compliance is built into how we design, not bolted on after. Every system ships with the controls enterprise buyers need:
+      </p>
+      <ul class="ct-list">
+        <li>GDPR and EU-hosted infrastructure, with regional data boundaries.</li>
+        <li>EU AI Act readiness: human review, approval chains, and traceability where required.</li>
+        <li>Scoped access, audit trails, and customer-controlled data policies.</li>
+        <li>Your IP, your systems. Ownership stays with you.</li>
+      </ul>
     </div>
   </div>
 </section>
@@ -3325,12 +3116,12 @@
 
     function setPlaying(v) {
       playing = v;
-      playBtn.setAttribute('aria-pressed', String(!v));
-      playLabel.textContent = v ? 'Pause' : 'Play';
-      playIcon.innerHTML = v ? ICON_PAUSE : ICON_PLAY;
+      if (playBtn)   playBtn.setAttribute('aria-pressed', String(!v));
+      if (playLabel) playLabel.textContent = v ? 'Pause' : 'Play';
+      if (playIcon)  playIcon.innerHTML = v ? ICON_PAUSE : ICON_PLAY;
       if (v) stageStartedAt = performance.now();
     }
-    playBtn.addEventListener('click', () => setPlaying(!playing));
+    if (playBtn) playBtn.addEventListener('click', () => setPlaying(!playing));
 
     const io = new IntersectionObserver((entries) => {
       entries.forEach((e) => {
