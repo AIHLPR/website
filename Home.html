@@ -1614,7 +1614,7 @@
   .rail-stops {
     position: absolute; inset: 0;
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     pointer-events: none;
   }
   .rail-stop {
@@ -1668,20 +1668,28 @@
 
   .rail-labels {
     display: grid;
-    grid-template-columns: repeat(6, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     margin-top: 22px;
+    gap: 12px;
   }
   .rail-label {
     text-align: center;
     font-family: var(--font-mono);
     font-size: 10.5px;
     font-weight: 500;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.16em;
     text-transform: uppercase;
     color: rgba(255,255,255,0.4);
     transition: color 320ms var(--ease);
+    line-height: 1.4;
+  }
+  .rail-label em {
+    font-style: normal;
+    color: rgba(255,255,255,0.55);
+    margin-right: 6px;
   }
   .rail-label.is-active { color: var(--accent); }
+  .rail-label.is-active em { color: var(--accent); }
 
   .stage-display {
     margin-top: clamp(32px, 4vw, 52px);
@@ -1738,6 +1746,16 @@
     color: rgba(255,255,255,0.7);
     max-width: 48ch;
   }
+  .pipe-footer {
+    font-family: var(--font-body);
+    font-size: clamp(15px, 1.2vw, 17px);
+    line-height: 1.6;
+    color: rgba(255,255,255,0.6);
+    max-width: 60ch;
+    margin: 0;
+    padding-top: clamp(16px, 2vw, 28px);
+    border-top: 1px dashed rgba(255,255,255,0.12);
+  }
   .stage-cursor {
     display: inline-block;
     width: 8px; height: 1.05em;
@@ -1751,9 +1769,8 @@
     50.01%, 100% { opacity: 0; }
   }
   .stage-console {
-    width: clamp(220px, 22vw, 280px);
+    width: clamp(280px, 28vw, 360px);
     align-self: start;
-    transform: translateY(clamp(56px, 8vw, 120px));
     border-left: 1px solid rgba(255,255,255,0.10);
     padding-left: clamp(20px, 2vw, 28px);
     font-family: var(--font-mono);
@@ -2142,9 +2159,9 @@
 
     <!-- section header -->
     <div class="pipe-header">
-      <span class="pipe-eyebrow"><span class="pipe-status-dot" aria-hidden="true"></span>How we work</span>
-      <h2 class="pipe-title">How we work.</h2>
-      <p class="pipe-intro">Six stages, from first check to live system. No code until the first three are done.</p>
+      <span class="pipe-eyebrow"><span class="pipe-status-dot" aria-hidden="true"></span>How we usually start</span>
+      <h2 class="pipe-title">Map one real workflow.</h2>
+      <p class="pipe-intro">We start with one workflow your team already runs. Then we identify where AI can safely reduce manual work, improve consistency, or speed up a decision without removing human control.</p>
     </div>
 
     <!-- the rail -->
@@ -2152,22 +2169,19 @@
       <div class="rail-line" aria-hidden="true"></div>
       <div class="rail-head" id="pipeHead" aria-hidden="true"></div>
       <div class="rail-stops" role="tablist" aria-label="Pipeline stages">
-        <button class="rail-stop is-active" data-stage="0" role="tab" aria-selected="true" aria-label="Stage 00 Feasibility check">
+        <button class="rail-stop is-active" data-stage="0" role="tab" aria-selected="true" aria-label="Step 01 Map the workflow">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="1" role="tab" aria-label="Stage 01 Architecture design">
+        <button class="rail-stop" data-stage="1" role="tab" aria-label="Step 02 Find the AI-ready step">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="2" role="tab" aria-label="Stage 02 Data preparation">
+        <button class="rail-stop" data-stage="2" role="tab" aria-label="Step 03 Build a working version">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="3" role="tab" aria-label="Stage 03 Model training">
+        <button class="rail-stop" data-stage="3" role="tab" aria-label="Step 04 Add human review">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="4" role="tab" aria-label="Stage 04 Retrieval pipeline">
-          <span class="rail-node" aria-hidden="true"></span>
-        </button>
-        <button class="rail-stop" data-stage="5" role="tab" aria-label="Stage 05 Eval guardrails">
+        <button class="rail-stop" data-stage="4" role="tab" aria-label="Step 05 Scale what works">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
       </div>
@@ -2175,42 +2189,46 @@
 
     <!-- rail labels -->
     <div class="rail-labels" aria-hidden="true">
-      <span class="rail-label is-active" data-stage="0">Stage 00</span>
-      <span class="rail-label" data-stage="1">Stage 01</span>
-      <span class="rail-label" data-stage="2">Stage 02</span>
-      <span class="rail-label" data-stage="3">Stage 03</span>
-      <span class="rail-label" data-stage="4">Stage 04</span>
-      <span class="rail-label" data-stage="5">Stage 05</span>
+      <span class="rail-label is-active" data-stage="0"><em>01</em> Map the workflow</span>
+      <span class="rail-label" data-stage="1"><em>02</em> Find the AI-ready step</span>
+      <span class="rail-label" data-stage="2"><em>03</em> Build a working version</span>
+      <span class="rail-label" data-stage="3"><em>04</em> Add human review</span>
+      <span class="rail-label" data-stage="4"><em>05</em> Scale what works</span>
     </div>
 
-    <!-- stage display + console -->
+    <!-- footer line + console -->
     <div class="stage-display">
-      <div class="stage-display-main" id="stageDisplay">
-        <div class="stage-frame is-active" data-stage="0">
-          <h2 class="stage-title">Feasibility check</h2>
-          <p class="stage-desc">Legal, technical, and organisational readiness, before a single line of code.</p>
-        </div>
-        <div class="stage-frame" data-stage="1">
-          <h2 class="stage-title">Architecture design</h2>
-          <p class="stage-desc">Good architecture solves problems before AI has to.</p>
-        </div>
-        <div class="stage-frame" data-stage="2">
-          <h2 class="stage-title">Data preparation</h2>
-          <p class="stage-desc">Your data, structured for what comes next.</p>
-        </div>
-        <div class="stage-frame" data-stage="3">
-          <h2 class="stage-title">Model training</h2>
-          <p class="stage-desc">Trained on your domain. Speaks your language.</p>
-        </div>
-        <div class="stage-frame" data-stage="4">
-          <h2 class="stage-title">Retrieval pipeline</h2>
-          <p class="stage-desc">Your knowledge, retrieved precisely.</p>
-        </div>
-        <div class="stage-frame" data-stage="5">
-          <h2 class="stage-title">Eval guardrails</h2>
-          <p class="stage-desc">Built in from the start. Still running at the end.</p>
-        </div>
+      <div class="stage-display-main">
+        <p class="pipe-footer">The goal is not to automate everything. The goal is to prove one useful result, then expand with confidence.</p>
       </div>
+
+      <aside class="stage-console" aria-hidden="true">
+        <div class="row is-active" data-stage="0">
+          <span class="ix">01</span>
+          <span class="nm">map_workflow</span>
+          <span class="st">in progress</span>
+        </div>
+        <div class="row" data-stage="1">
+          <span class="ix">02</span>
+          <span class="nm">identify_ai_ready_step</span>
+          <span class="st">next</span>
+        </div>
+        <div class="row" data-stage="2">
+          <span class="ix">03</span>
+          <span class="nm">build_working_version</span>
+          <span class="st">next</span>
+        </div>
+        <div class="row" data-stage="3">
+          <span class="ix">04</span>
+          <span class="nm">add_human_review</span>
+          <span class="st">next</span>
+        </div>
+        <div class="row" data-stage="4">
+          <span class="ix">05</span>
+          <span class="nm">scale_after_useful</span>
+          <span class="st">next</span>
+        </div>
+      </aside>
 
     </div>
   </div>
@@ -3029,7 +3047,6 @@
       { accent: '#CC418C' },
       { accent: '#9B59B6' },
       { accent: '#7E6CE0' },
-      { accent: '#5794EA' },
       { accent: '#3478E5' },
     ];
     const N = STAGES.length;
@@ -3078,8 +3095,8 @@
         const st = r.querySelector('.st');
         if (!st) return;
         if (i < current)        st.textContent = 'done';
-        else if (i === current) st.textContent = 'run';
-        else                    st.textContent = 'idle';
+        else if (i === current) st.textContent = 'in progress';
+        else                    st.textContent = 'next';
       });
     }
 
