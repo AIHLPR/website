@@ -1561,6 +1561,34 @@
     max-width: 56ch;
   }
 
+  /* Cycling per-step display in the header */
+  .pipe-display {
+    position: relative;
+    margin-top: 18px;
+    min-height: clamp(140px, 14vw, 180px);
+    max-width: 64ch;
+  }
+  .pipe-display .stage-title {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 3.2vw, 46px);
+    font-weight: 600;
+    letter-spacing: -0.025em;
+    line-height: 1.05;
+    color: var(--white);
+    margin: 0;
+    text-wrap: balance;
+  }
+  .pipe-display .stage-desc {
+    font-size: clamp(15px, 1.15vw, 17.5px);
+    line-height: 1.55;
+    color: rgba(255,255,255,0.7);
+    margin: 0;
+    max-width: 56ch;
+  }
+  @media (max-width: 880px) {
+    .pipe-display { min-height: 170px; }
+  }
+
   .pipe-status-dot {
     width: 7px; height: 7px;
     border-radius: 999px;
@@ -1669,56 +1697,19 @@
   .rail-labels {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    margin-top: 28px;
-    gap: clamp(12px, 1.5vw, 24px);
+    margin-top: 18px;
   }
   .rail-label {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    padding: 0 4px;
-    text-align: left;
-    transition: opacity 320ms var(--ease);
-    opacity: 0.7;
-  }
-  .rail-label.is-active { opacity: 1; }
-
-  .rl-step {
+    text-align: center;
     font-family: var(--font-mono);
-    font-size: 10.5px;
+    font-size: 11px;
     font-weight: 500;
     letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
+    color: rgba(255,255,255,0.4);
     transition: color 320ms var(--ease);
   }
-  .rail-label.is-active .rl-step { color: var(--accent); }
-
-  .rl-title {
-    font-family: var(--font-display);
-    font-size: clamp(14px, 1.15vw, 17px);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.25;
-    color: var(--white);
-    text-wrap: balance;
-  }
-
-  .rl-desc {
-    font-family: var(--font-body);
-    font-size: clamp(12px, 0.92vw, 13.5px);
-    line-height: 1.5;
-    color: rgba(255,255,255,0.55);
-  }
-
-  @media (max-width: 880px) {
-    .rail-labels {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-    .rl-title { font-size: 16px; }
-    .rl-desc  { font-size: 13.5px; }
-  }
+  .rail-label.is-active { color: var(--accent); }
 
   .stage-display {
     margin-top: clamp(32px, 4vw, 52px);
@@ -2176,11 +2167,32 @@
 <section class="pipeline" id="how">
   <div class="container">
 
-    <!-- section header -->
+    <!-- section header (with cycling per-step content) -->
     <div class="pipe-header">
       <span class="pipe-eyebrow"><span class="pipe-status-dot" aria-hidden="true"></span>How we usually start</span>
-      <h2 class="pipe-title">Map one real workflow.</h2>
-      <p class="pipe-intro">We start with one workflow your team already runs. Then we identify where AI can safely reduce manual effort, improve consistency, or speed up a decision without removing human control.</p>
+
+      <div class="pipe-display" id="stageDisplay">
+        <div class="stage-frame is-active" data-stage="0">
+          <h2 class="stage-title">Map the workflow</h2>
+          <p class="stage-desc">We map the workflow your team already runs, including inputs, handovers, tools, decisions, and exceptions.</p>
+        </div>
+        <div class="stage-frame" data-stage="1">
+          <h2 class="stage-title">Find the AI-ready step</h2>
+          <p class="stage-desc">We identify the point where AI can safely reduce manual effort, improve consistency, or speed up a decision.</p>
+        </div>
+        <div class="stage-frame" data-stage="2">
+          <h2 class="stage-title">Build a working version</h2>
+          <p class="stage-desc">We create a focused first version that proves the workflow can work in real conditions.</p>
+        </div>
+        <div class="stage-frame" data-stage="3">
+          <h2 class="stage-title">Add human review</h2>
+          <p class="stage-desc">We add approval points, confidence checks, fallbacks, and controls so people stay in charge.</p>
+        </div>
+        <div class="stage-frame" data-stage="4">
+          <h2 class="stage-title">Scale what works</h2>
+          <p class="stage-desc">We expand only after the result is useful, reliable, and clear enough for the team to trust.</p>
+        </div>
+      </div>
     </div>
 
     <!-- the rail -->
@@ -2208,31 +2220,11 @@
 
     <!-- rail labels -->
     <div class="rail-labels" aria-hidden="true">
-      <div class="rail-label is-active" data-stage="0">
-        <span class="rl-step">Step 1</span>
-        <span class="rl-title">Map the workflow</span>
-        <span class="rl-desc">We map the workflow your team already runs, including inputs, handovers, tools, decisions, and exceptions.</span>
-      </div>
-      <div class="rail-label" data-stage="1">
-        <span class="rl-step">Step 2</span>
-        <span class="rl-title">Find the AI-ready step</span>
-        <span class="rl-desc">We identify the point where AI can safely reduce manual effort, improve consistency, or speed up a decision.</span>
-      </div>
-      <div class="rail-label" data-stage="2">
-        <span class="rl-step">Step 3</span>
-        <span class="rl-title">Build a working version</span>
-        <span class="rl-desc">We create a focused first version that proves the workflow can work in real conditions.</span>
-      </div>
-      <div class="rail-label" data-stage="3">
-        <span class="rl-step">Step 4</span>
-        <span class="rl-title">Add human review</span>
-        <span class="rl-desc">We add approval points, confidence checks, fallbacks, and controls so people stay in charge.</span>
-      </div>
-      <div class="rail-label" data-stage="4">
-        <span class="rl-step">Step 5</span>
-        <span class="rl-title">Scale what works</span>
-        <span class="rl-desc">We expand only after the result is useful, reliable, and clear enough for the team to trust.</span>
-      </div>
+      <span class="rail-label is-active" data-stage="0">Step 1</span>
+      <span class="rail-label" data-stage="1">Step 2</span>
+      <span class="rail-label" data-stage="2">Step 3</span>
+      <span class="rail-label" data-stage="3">Step 4</span>
+      <span class="rail-label" data-stage="4">Step 5</span>
     </div>
 
     <!-- footer line + console -->
