@@ -1669,27 +1669,56 @@
   .rail-labels {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
-    margin-top: 22px;
-    gap: 12px;
+    margin-top: 28px;
+    gap: clamp(12px, 1.5vw, 24px);
   }
   .rail-label {
-    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 4px;
+    text-align: left;
+    transition: opacity 320ms var(--ease);
+    opacity: 0.7;
+  }
+  .rail-label.is-active { opacity: 1; }
+
+  .rl-step {
     font-family: var(--font-mono);
     font-size: 10.5px;
     font-weight: 500;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.4);
+    color: rgba(255,255,255,0.45);
     transition: color 320ms var(--ease);
-    line-height: 1.4;
   }
-  .rail-label em {
-    font-style: normal;
+  .rail-label.is-active .rl-step { color: var(--accent); }
+
+  .rl-title {
+    font-family: var(--font-display);
+    font-size: clamp(14px, 1.15vw, 17px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--white);
+    text-wrap: balance;
+  }
+
+  .rl-desc {
+    font-family: var(--font-body);
+    font-size: clamp(12px, 0.92vw, 13.5px);
+    line-height: 1.5;
     color: rgba(255,255,255,0.55);
-    margin-right: 6px;
   }
-  .rail-label.is-active { color: var(--accent); }
-  .rail-label.is-active em { color: var(--accent); }
+
+  @media (max-width: 880px) {
+    .rail-labels {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .rl-title { font-size: 16px; }
+    .rl-desc  { font-size: 13.5px; }
+  }
 
   .stage-display {
     margin-top: clamp(32px, 4vw, 52px);
@@ -1845,7 +1874,6 @@
       padding-left: 0; padding-top: 20px;
     }
     .stage-display-main { min-height: 260px; }
-    .rail-label { font-size: 9.5px; letter-spacing: 0.12em; }
   }
   @media (prefers-reduced-motion: reduce) {
     .pipe-status-dot, .rail-stop.is-active .rail-node::before,
@@ -1887,16 +1915,7 @@
       padding: 10px 16px;
     }
 
-    /* Pipeline rail: 6 mono labels in a 6-col grid collide on narrow
-       phones. Shrink font + letter-spacing so each label fits its cell. */
-    .rail-labels { margin-top: 16px; }
-    .rail-label {
-      font-size: 8px;
-      letter-spacing: 0.04em;
-      line-height: 1.2;
-    }
-    /* Free the stage display from the floating console overlap: stack
-       and drop the absolute-positioned console out of overflow. */
+    /* Stack the stage display and console on phones. */
     .stage-display { gap: 24px; }
     .stage-console { transform: none; padding-top: 16px; }
     .pipe-controls {
@@ -2161,7 +2180,7 @@
     <div class="pipe-header">
       <span class="pipe-eyebrow"><span class="pipe-status-dot" aria-hidden="true"></span>How we usually start</span>
       <h2 class="pipe-title">Map one real workflow.</h2>
-      <p class="pipe-intro">We start with one workflow your team already runs. Then we identify where AI can safely reduce manual work, improve consistency, or speed up a decision without removing human control.</p>
+      <p class="pipe-intro">We start with one workflow your team already runs. Then we identify where AI can safely reduce manual effort, improve consistency, or speed up a decision without removing human control.</p>
     </div>
 
     <!-- the rail -->
@@ -2169,19 +2188,19 @@
       <div class="rail-line" aria-hidden="true"></div>
       <div class="rail-head" id="pipeHead" aria-hidden="true"></div>
       <div class="rail-stops" role="tablist" aria-label="Pipeline stages">
-        <button class="rail-stop is-active" data-stage="0" role="tab" aria-selected="true" aria-label="Step 01 Map the workflow">
+        <button class="rail-stop is-active" data-stage="0" role="tab" aria-selected="true" aria-label="Step 1 Map the workflow">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="1" role="tab" aria-label="Step 02 Find the AI-ready step">
+        <button class="rail-stop" data-stage="1" role="tab" aria-label="Step 2 Find the AI-ready step">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="2" role="tab" aria-label="Step 03 Build a working version">
+        <button class="rail-stop" data-stage="2" role="tab" aria-label="Step 3 Build a working version">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="3" role="tab" aria-label="Step 04 Add human review">
+        <button class="rail-stop" data-stage="3" role="tab" aria-label="Step 4 Add human review">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
-        <button class="rail-stop" data-stage="4" role="tab" aria-label="Step 05 Scale what works">
+        <button class="rail-stop" data-stage="4" role="tab" aria-label="Step 5 Scale what works">
           <span class="rail-node" aria-hidden="true"></span>
         </button>
       </div>
@@ -2189,11 +2208,31 @@
 
     <!-- rail labels -->
     <div class="rail-labels" aria-hidden="true">
-      <span class="rail-label is-active" data-stage="0"><em>01</em> Map the workflow</span>
-      <span class="rail-label" data-stage="1"><em>02</em> Find the AI-ready step</span>
-      <span class="rail-label" data-stage="2"><em>03</em> Build a working version</span>
-      <span class="rail-label" data-stage="3"><em>04</em> Add human review</span>
-      <span class="rail-label" data-stage="4"><em>05</em> Scale what works</span>
+      <div class="rail-label is-active" data-stage="0">
+        <span class="rl-step">Step 1</span>
+        <span class="rl-title">Map the workflow</span>
+        <span class="rl-desc">We map the workflow your team already runs, including inputs, handovers, tools, decisions, and exceptions.</span>
+      </div>
+      <div class="rail-label" data-stage="1">
+        <span class="rl-step">Step 2</span>
+        <span class="rl-title">Find the AI-ready step</span>
+        <span class="rl-desc">We identify the point where AI can safely reduce manual effort, improve consistency, or speed up a decision.</span>
+      </div>
+      <div class="rail-label" data-stage="2">
+        <span class="rl-step">Step 3</span>
+        <span class="rl-title">Build a working version</span>
+        <span class="rl-desc">We create a focused first version that proves the workflow can work in real conditions.</span>
+      </div>
+      <div class="rail-label" data-stage="3">
+        <span class="rl-step">Step 4</span>
+        <span class="rl-title">Add human review</span>
+        <span class="rl-desc">We add approval points, confidence checks, fallbacks, and controls so people stay in charge.</span>
+      </div>
+      <div class="rail-label" data-stage="4">
+        <span class="rl-step">Step 5</span>
+        <span class="rl-title">Scale what works</span>
+        <span class="rl-desc">We expand only after the result is useful, reliable, and clear enough for the team to trust.</span>
+      </div>
     </div>
 
     <!-- footer line + console -->
