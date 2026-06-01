@@ -943,17 +943,28 @@
     border-radius: 4px;
     background: var(--surface);
     color: var(--ink-soft);
-    opacity: 0;
-    transform: translateX(-6px);
-    animation: we-req-in 0.6s var(--ease) var(--d, 0s) forwards,
-               we-req-pulse 5s var(--ease) calc(var(--d, 0s) + 1.5s) infinite;
+    transition:
+      border-color 320ms var(--ease),
+      background 320ms var(--ease),
+      color 320ms var(--ease),
+      transform 320ms var(--ease);
+    position: relative;
   }
-  @keyframes we-req-in {
-    to { opacity: 1; transform: translateX(0); }
+  .we-req.is-active {
+    border-color: var(--c);
+    background: color-mix(in oklab, var(--c) 8%, var(--white));
+    color: var(--c);
+    transform: translateX(4px);
   }
-  @keyframes we-req-pulse {
-    0%, 92%, 100% { border-color: var(--hairline); background: var(--surface); }
-    96%            { border-color: var(--c); background: color-mix(in oklab, var(--c) 6%, var(--white)); }
+  .we-req.is-active::after {
+    content: "";
+    position: absolute;
+    right: -10px; top: 50%;
+    transform: translateY(-50%);
+    width: 0; height: 0;
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid var(--c);
   }
 
   /* Engine */
@@ -990,6 +1001,27 @@
   .we-process { color: var(--ink); font-weight: 500; }
   .we-status { display: inline-flex; align-items: center; gap: 6px; color: var(--c); }
 
+  /* Active work item token */
+  .we-token {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    align-self: flex-start;
+    padding: 4px 9px;
+    border-radius: 999px;
+    background: var(--c);
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--c) 14%, transparent);
+    transition: transform 320ms var(--ease), background 320ms var(--ease), box-shadow 320ms var(--ease);
+  }
+  .we-token-id { font-weight: 600; }
+  .we-token-sep { opacity: 0.65; }
+  .we-token-name { opacity: 0.95; }
+  .we-token.is-shifted { transform: translateX(6px); }
+
   .we-steps {
     list-style: none;
     margin: 0; padding: 0;
@@ -1003,7 +1035,9 @@
     color: var(--ink-soft);
     padding: 4px 6px;
     border-radius: 4px;
-    animation: we-step-highlight 6s var(--ease) var(--d, 0s) infinite;
+    transition:
+      background 280ms var(--ease),
+      color 280ms var(--ease);
   }
   .we-step-no {
     font-family: var(--font-mono);
@@ -1014,10 +1048,15 @@
     border: 1px solid var(--hairline);
     border-radius: 3px;
     padding: 2px 5px;
+    transition: border-color 280ms var(--ease), color 280ms var(--ease);
   }
-  @keyframes we-step-highlight {
-    0%, 92%, 100% { background: transparent; color: var(--ink-soft); }
-    4%, 8%        { background: color-mix(in oklab, var(--c) 10%, var(--white)); color: var(--c); }
+  .we-steps li.is-active {
+    background: color-mix(in oklab, var(--c) 12%, var(--white));
+    color: var(--c);
+  }
+  .we-steps li.is-active .we-step-no {
+    border-color: var(--c);
+    color: var(--c);
   }
 
   .we-audit {
@@ -1030,14 +1069,15 @@
     letter-spacing: 0.10em;
     text-transform: uppercase;
     color: var(--ink-muted);
+    transition: opacity 320ms var(--ease);
   }
-  .we-audit-item {
-    opacity: 0;
-    animation: we-audit-in 0.6s var(--ease) var(--d, 0s) forwards;
+  .we-audit.is-fresh {
+    animation: we-audit-fresh 700ms var(--ease) 1;
   }
   .we-audit-sep { color: var(--ink-muted); opacity: 0.5; }
-  @keyframes we-audit-in {
-    to { opacity: 1; }
+  @keyframes we-audit-fresh {
+    0%   { opacity: 0.25; }
+    100% { opacity: 1; }
   }
 
   /* Outcome lanes */
@@ -1059,6 +1099,12 @@
     text-transform: uppercase;
     color: var(--ink-muted);
   }
+  .we-lane {
+    transition:
+      border-color 320ms var(--ease),
+      background 320ms var(--ease),
+      box-shadow 320ms var(--ease);
+  }
   .we-lane-item {
     font-size: 11px;
     color: var(--ink);
@@ -1066,7 +1112,9 @@
     position: relative;
     opacity: 0;
     transform: translateX(-4px);
-    animation: we-lane-in 0.5s var(--ease) var(--d, 0s) forwards;
+    transition:
+      opacity 380ms var(--ease),
+      transform 380ms var(--ease);
   }
   .we-lane-item::before {
     content: "";
@@ -1077,21 +1125,45 @@
     background: currentColor;
     opacity: 0.6;
   }
-  @keyframes we-lane-in {
-    to { opacity: 1; transform: translateX(0); }
+  .we-lane.is-active .we-lane-item {
+    opacity: 1;
+    transform: translateX(0);
+  }
+  .we-lane.is-active .we-lane-item:nth-child(2) { transition-delay: 0ms; }
+  .we-lane.is-active .we-lane-item:nth-child(3) { transition-delay: 220ms; }
+
+  /* Dim non-active lanes */
+  .we-lanes:has(.we-lane.is-active) .we-lane:not(.is-active) {
+    opacity: 0.42;
+    filter: saturate(0.7);
   }
 
-  .we-lane-approved  { border-color: color-mix(in oklab, var(--teal) 35%, transparent); background: color-mix(in oklab, var(--teal) 4%, var(--white)); }
+  .we-lane-approved  { border-color: color-mix(in oklab, var(--teal) 25%, transparent); background: color-mix(in oklab, var(--teal) 3%, var(--white)); }
   .we-lane-approved  .we-lane-h    { color: var(--teal); }
   .we-lane-approved  .we-lane-item { color: var(--teal); }
+  .we-lane-approved.is-active {
+    border-color: color-mix(in oklab, var(--teal) 55%, transparent);
+    background: color-mix(in oklab, var(--teal) 7%, var(--white));
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--teal) 12%, transparent);
+  }
 
-  .we-lane-review    { border-color: color-mix(in oklab, var(--c) 35%, transparent); background: color-mix(in oklab, var(--c) 4%, var(--white)); }
+  .we-lane-review    { border-color: color-mix(in oklab, var(--c) 25%, transparent); background: color-mix(in oklab, var(--c) 3%, var(--white)); }
   .we-lane-review    .we-lane-h    { color: var(--c); }
   .we-lane-review    .we-lane-item { color: var(--c); }
+  .we-lane-review.is-active {
+    border-color: color-mix(in oklab, var(--c) 55%, transparent);
+    background: color-mix(in oklab, var(--c) 7%, var(--white));
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--c) 12%, transparent);
+  }
 
-  .we-lane-exception { border-color: color-mix(in oklab, #E63946 35%, transparent); background: color-mix(in oklab, #E63946 4%, var(--white)); }
+  .we-lane-exception { border-color: color-mix(in oklab, #E63946 25%, transparent); background: color-mix(in oklab, #E63946 3%, var(--white)); }
   .we-lane-exception .we-lane-h    { color: #C5303A; }
   .we-lane-exception .we-lane-item { color: #C5303A; }
+  .we-lane-exception.is-active {
+    border-color: color-mix(in oklab, #E63946 55%, transparent);
+    background: color-mix(in oklab, #E63946 7%, var(--white));
+    box-shadow: 0 0 0 3px color-mix(in oklab, #E63946 12%, transparent);
+  }
 
   @media (max-width: 960px) {
     .we { font-size: 11.5px; }
@@ -1108,13 +1180,15 @@
 
   @media (prefers-reduced-motion: reduce) {
     .we-req,
-    .we-audit-item,
-    .we-lane-item {
-      opacity: 1;
-      transform: none;
-      animation: none;
+    .we-audit,
+    .we-lane,
+    .we-lane-item,
+    .we-token,
+    .we-steps li {
+      transition: none !important;
+      animation: none !important;
     }
-    .we-steps li { animation: none; }
+    .we-lane-item { opacity: 1; transform: none; }
   }
 
   @media (max-width: 880px) {
@@ -2666,17 +2740,17 @@
         </div>
 
         <!-- Exception-Aware Workflow Engine preview -->
-        <div class="cap-strip-visual we-wrap" aria-hidden="true">
+        <div class="cap-strip-visual we-wrap" data-we aria-hidden="true">
           <div class="we">
 
             <!-- Incoming requests -->
             <div class="we-inbox">
               <span class="we-side-label">Incoming requests</span>
-              <div class="we-req" style="--d:0s">New vendor request</div>
-              <div class="we-req" style="--d:0.25s">Invoice exception</div>
-              <div class="we-req" style="--d:0.5s">Contract update</div>
-              <div class="we-req" style="--d:0.75s">Purchase approval</div>
-              <div class="we-req" style="--d:1s">Missing tax form</div>
+              <div class="we-req" data-req="0">New vendor request</div>
+              <div class="we-req" data-req="1">Invoice exception</div>
+              <div class="we-req" data-req="2">Contract update</div>
+              <div class="we-req" data-req="3">Purchase approval</div>
+              <div class="we-req" data-req="4">Missing tax form</div>
             </div>
 
             <!-- Engine -->
@@ -2689,40 +2763,46 @@
                 </div>
               </div>
 
+              <div class="we-token" data-we-token>
+                <span class="we-token-id" data-we-token-id>REQ-204</span>
+                <span class="we-token-sep">&middot;</span>
+                <span class="we-token-name" data-we-token-name>Contract update</span>
+              </div>
+
               <ol class="we-steps">
-                <li style="--d:0s"><span class="we-step-no">01</span>Classify request</li>
-                <li style="--d:0.4s"><span class="we-step-no">02</span>Extract details</li>
-                <li style="--d:0.8s"><span class="we-step-no">03</span>Match policy</li>
-                <li style="--d:1.2s"><span class="we-step-no">04</span>Prepare decision</li>
-                <li style="--d:1.6s"><span class="we-step-no">05</span>Route owner</li>
-                <li style="--d:2s"><span class="we-step-no">06</span>Escalate exception</li>
+                <li data-step="0"><span class="we-step-no">01</span>Classify request</li>
+                <li data-step="1"><span class="we-step-no">02</span>Extract details</li>
+                <li data-step="2"><span class="we-step-no">03</span>Match policy</li>
+                <li data-step="3"><span class="we-step-no">04</span>Prepare decision</li>
+                <li data-step="4"><span class="we-step-no">05</span>Route owner</li>
+                <li data-step="5"><span class="we-step-no">06</span>Escalate exception</li>
               </ol>
 
-              <div class="we-audit">
-                <span class="we-audit-item" style="--d:3.4s">Audit trail saved</span>
+              <div class="we-audit" data-we-audit>
+                <span class="we-audit-item">Audit trail saved</span>
                 <span class="we-audit-sep">&middot;</span>
-                <span class="we-audit-item" style="--d:3.7s">Policy checked</span>
+                <span class="we-audit-item">Policy checked</span>
                 <span class="we-audit-sep">&middot;</span>
-                <span class="we-audit-item" style="--d:4s">Owner assigned</span>
+                <span class="we-audit-item">Owner assigned</span>
               </div>
             </div>
 
             <!-- Outcome lanes -->
             <div class="we-lanes">
-              <div class="we-lane we-lane-approved">
+              <div class="we-lane we-lane-approved" data-lane="approved">
                 <span class="we-lane-h">Approved path</span>
-                <span class="we-lane-item" style="--d:2.6s">Vendor approved</span>
-                <span class="we-lane-item" style="--d:2.9s">ERP updated</span>
+                <span class="we-lane-item">Vendor approved</span>
+                <span class="we-lane-item">ERP updated</span>
               </div>
-              <div class="we-lane we-lane-review">
+              <div class="we-lane we-lane-review" data-lane="review">
                 <span class="we-lane-h">Review path</span>
-                <span class="we-lane-item" style="--d:3s">Sent to finance</span>
-                <span class="we-lane-item" style="--d:3.3s">Human decision needed</span>
+                <span class="we-lane-item">Sent to finance</span>
+                <span class="we-lane-item">Human decision needed</span>
               </div>
-              <div class="we-lane we-lane-exception">
+              <div class="we-lane we-lane-exception" data-lane="exception">
                 <span class="we-lane-h">Exception path</span>
-                <span class="we-lane-item" style="--d:3.4s">Missing document</span>
-                <span class="we-lane-item" style="--d:3.7s">Escalated to owner</span>
+                <span class="we-lane-item">Missing document</span>
+                <span class="we-lane-item">Escalated to owner</span>
               </div>
             </div>
 
@@ -4303,6 +4383,121 @@
   if (heroWordmark.complete && heroWordmark.naturalWidth > 0) init();
   else heroWordmark.addEventListener("load", init);
   setTimeout(() => { if (!refs.edges.length) init(); }, 1200);
+})();
+</script>
+
+<script>
+/* =====================================================================
+   Card 02 — Exception-Aware Workflow Engine choreography
+   Cycles through three cases. For each:
+   1) highlights the chosen request in the inbox
+   2) shows the moving token (REQ id + name)
+   3) lights up engine steps one by one
+   4) reveals the matching outcome lane
+   5) refreshes the audit strip
+   Only one of each at a time. Calm pacing, ~6.5s per case.
+   ===================================================================== */
+(function () {
+  'use strict';
+
+  var root = document.querySelector('[data-we]');
+  if (!root) return;
+
+  var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var requests = [...root.querySelectorAll('.we-req')];
+  var steps    = [...root.querySelectorAll('.we-steps li')];
+  var lanes    = [...root.querySelectorAll('.we-lane')];
+  var audit    = root.querySelector('[data-we-audit]');
+  var tokenEl  = root.querySelector('[data-we-token]');
+  var tokenId  = root.querySelector('[data-we-token-id]');
+  var tokenNm  = root.querySelector('[data-we-token-name]');
+
+  var CASES = [
+    { reqIdx: 0, lane: 'approved',  id: 'REQ-201', name: 'New vendor request' },
+    { reqIdx: 2, lane: 'review',    id: 'REQ-204', name: 'Contract update' },
+    { reqIdx: 4, lane: 'exception', id: 'REQ-207', name: 'Missing tax form' }
+  ];
+
+  var STEP_MS = 380;
+  var CASE_MS = STEP_MS * steps.length + 2400;
+  var timers = [];
+
+  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
+  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+
+  function clearState() {
+    requests.forEach(function (r) { r.classList.remove('is-active'); });
+    steps.forEach(function (s)    { s.classList.remove('is-active'); });
+    lanes.forEach(function (l)    { l.classList.remove('is-active'); });
+    if (audit) audit.classList.remove('is-fresh');
+  }
+
+  function playCase(c) {
+    clearTimers();
+    clearState();
+
+    if (tokenId) tokenId.textContent = c.id;
+    if (tokenNm) tokenNm.textContent = c.name;
+
+    requests[c.reqIdx].classList.add('is-active');
+
+    if (tokenEl) {
+      tokenEl.classList.remove('is-shifted');
+      void tokenEl.offsetWidth;
+      tokenEl.classList.add('is-shifted');
+    }
+
+    steps.forEach(function (s, i) {
+      at(200 + i * STEP_MS, function () {
+        steps.forEach(function (x) { x.classList.remove('is-active'); });
+        s.classList.add('is-active');
+      });
+    });
+
+    var laneAt = 200 + steps.length * STEP_MS + 200;
+    at(laneAt, function () {
+      steps.forEach(function (x) { x.classList.remove('is-active'); });
+      var lane = lanes.find(function (l) { return l.dataset.lane === c.lane; });
+      if (lane) lane.classList.add('is-active');
+    });
+
+    at(laneAt + 700, function () {
+      if (audit) {
+        audit.classList.remove('is-fresh');
+        void audit.offsetWidth;
+        audit.classList.add('is-fresh');
+      }
+    });
+  }
+
+  var idx = 0;
+  function tick() {
+    playCase(CASES[idx]);
+    idx = (idx + 1) % CASES.length;
+  }
+
+  if (prefersReduced) {
+    requests[1].classList.remove('is-active');
+    requests[2].classList.add('is-active');
+    if (tokenId) tokenId.textContent = 'REQ-204';
+    if (tokenNm) tokenNm.textContent = 'Contract update';
+    var reviewLane = lanes.find(function (l) { return l.dataset.lane === 'review'; });
+    if (reviewLane) reviewLane.classList.add('is-active');
+    return;
+  }
+
+  var started = false;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting && !started) {
+        started = true;
+        tick();
+        setInterval(tick, CASE_MS);
+      }
+    });
+  }, { threshold: 0.25 });
+  io.observe(root);
 })();
 </script>
 </body>
