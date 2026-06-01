@@ -1254,6 +1254,231 @@
     .we-lane-item { opacity: 1; transform: none; }
   }
 
+  /* ===== Enterprise AI Control Stack (card 03 preview) ===== */
+  .cs-wrap { min-height: 0; pointer-events: none; }
+  .cs {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(10px, 1.2vw, 16px);
+    padding: clamp(16px, 1.6vw, 22px);
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    box-shadow: 0 1px 0 rgba(31,31,31,0.02), 0 24px 60px -32px rgba(31,31,31,0.18);
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .cs::before {
+    content: "";
+    position: absolute; left: 0; right: 0; top: 0;
+    height: 2px;
+    background: var(--gradient);
+    opacity: 0.55;
+  }
+  .cs-row-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 6px;
+  }
+
+  /* Control badges strip */
+  .cs-badges {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap;
+    gap: 4px 6px;
+    padding-bottom: 10px;
+    border-bottom: 1px dashed var(--hairline);
+  }
+  .cs-badges li {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    padding: 3px 7px;
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    background: var(--surface);
+  }
+
+  /* Layers */
+  .cs-layer {
+    padding: 10px 12px;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    background: color-mix(in oklab, var(--c) 3%, var(--white));
+    transition: border-color 320ms var(--ease), box-shadow 320ms var(--ease);
+  }
+
+  /* Top — business systems */
+  .cs-tiles {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 5px;
+  }
+  .cs-tile {
+    font-size: 10px;
+    text-align: center;
+    padding: 5px 4px;
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    background: var(--white);
+    color: var(--ink-soft);
+    opacity: 0;
+    transform: translateY(-4px);
+    animation:
+      cs-tile-in 0.5s var(--ease) var(--d, 0s) forwards,
+      cs-tile-pulse 8s var(--ease) calc(var(--d, 0s) + 0.8s) infinite;
+  }
+  @keyframes cs-tile-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes cs-tile-pulse {
+    0%, 90%, 100% { border-color: var(--hairline); background: var(--white); }
+    94%            { border-color: color-mix(in oklab, var(--c) 35%, transparent); background: color-mix(in oklab, var(--c) 4%, var(--white)); }
+  }
+
+  /* Connector flow between layers */
+  .cs-flow {
+    display: flex; justify-content: center; align-items: center;
+    gap: 6px;
+    height: 14px;
+    margin: -4px 0;
+  }
+  .cs-flow-dot {
+    width: 4px; height: 4px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--c) 35%, transparent);
+    opacity: 0;
+    animation: cs-flow-pulse 8s var(--ease) var(--d, 0s) infinite;
+  }
+  @keyframes cs-flow-pulse {
+    0%, 92%, 100% { opacity: 0; transform: translateY(0); }
+    50%, 80%      { opacity: 1; transform: translateY(2px); }
+  }
+
+  /* Middle — control layer */
+  .cs-control {
+    background: color-mix(in oklab, var(--c) 6%, var(--white));
+    border-color: color-mix(in oklab, var(--c) 28%, transparent);
+  }
+  .cs-control-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed color-mix(in oklab, var(--c) 22%, transparent);
+    margin-bottom: 8px;
+  }
+  .cs-control-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .cs-control-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .cs-funcs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .cs-func {
+    font-size: 11px;
+    text-align: center;
+    padding: 7px 6px;
+    border: 1px solid color-mix(in oklab, var(--c) 18%, transparent);
+    border-radius: 5px;
+    background: var(--white);
+    color: var(--ink-soft);
+    animation: cs-func-glow 8s var(--ease) calc(0.6s + var(--i, 0) * 0.55s) infinite;
+  }
+  @keyframes cs-func-glow {
+    0%, 6%, 100% {
+      background: var(--white);
+      color: var(--ink-soft);
+      border-color: color-mix(in oklab, var(--c) 18%, transparent);
+      box-shadow: 0 0 0 0 transparent;
+    }
+    2% {
+      background: color-mix(in oklab, var(--c) 14%, var(--white));
+      color: var(--c);
+      border-color: color-mix(in oklab, var(--c) 55%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--c) 10%, transparent);
+    }
+    4% {
+      background: color-mix(in oklab, var(--c) 8%, var(--white));
+      color: var(--c);
+      border-color: color-mix(in oklab, var(--c) 40%, transparent);
+      box-shadow: 0 0 0 0 transparent;
+    }
+  }
+
+  /* Bottom — deployment */
+  .cs-deploy-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+  }
+  .cs-deploy-opt {
+    font-size: 10.5px;
+    text-align: center;
+    padding: 6px 6px;
+    border: 1px solid var(--hairline);
+    border-radius: 5px;
+    background: var(--white);
+    color: var(--ink-soft);
+    animation: cs-deploy-glow 8s var(--ease) 5.2s infinite;
+  }
+  @keyframes cs-deploy-glow {
+    0%, 12%, 100% {
+      background: var(--white);
+      color: var(--ink-soft);
+      border-color: var(--hairline);
+      box-shadow: 0 0 0 0 transparent;
+    }
+    3%, 8% {
+      background: color-mix(in oklab, var(--c) 6%, var(--white));
+      color: var(--c);
+      border-color: color-mix(in oklab, var(--c) 35%, transparent);
+      box-shadow: 0 0 0 3px color-mix(in oklab, var(--c) 8%, transparent);
+    }
+  }
+
+  @media (max-width: 960px) {
+    .cs { font-size: 11.5px; }
+    .cs-control-title { font-size: 12px; }
+    .cs-tiles { grid-template-columns: repeat(3, 1fr); }
+    .cs-funcs { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 720px) {
+    .cs-deploy-options { grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .cs-tile,
+    .cs-flow-dot,
+    .cs-func,
+    .cs-deploy-opt {
+      animation: none !important;
+      opacity: 1;
+      transform: none;
+    }
+  }
+
   @media (max-width: 880px) {
     .cap-strip,
     .cap-strip.l-right,
@@ -2879,7 +3104,7 @@
 
       <!-- 03 — Enterprise AI -->
       <div class="cap-pin">
-      <a class="cap-strip" style="--c:#3478E5" href="capabilities/enterprise-ai.html">
+      <a class="cap-strip has-visual" style="--c:#3478E5" href="capabilities/enterprise-ai.html">
         <div class="cap-strip-text">
           <span class="cap-strip-num">03 &middot; Enterprise AI</span>
           <h3>Enterprise AI</h3>
@@ -2892,6 +3117,75 @@
             <span>EU residency</span>
           </div>
           <span class="cap-strip-link">Read capability <span class="arrow">&rarr;</span></span>
+        </div>
+
+        <!-- Enterprise AI Control Stack preview -->
+        <div class="cap-strip-visual cs-wrap" aria-hidden="true">
+          <div class="cs">
+
+            <!-- Control badges -->
+            <ul class="cs-badges">
+              <li>Scoped access</li>
+              <li>Human approval</li>
+              <li>Traceable outputs</li>
+              <li>Model switchable</li>
+              <li>Regional boundaries</li>
+            </ul>
+
+            <!-- Top: Business systems -->
+            <div class="cs-layer cs-systems">
+              <span class="cs-row-label">Business systems</span>
+              <div class="cs-tiles">
+                <span class="cs-tile" style="--d:0s">CRM</span>
+                <span class="cs-tile" style="--d:0.2s">ERP</span>
+                <span class="cs-tile" style="--d:0.4s">Documents</span>
+                <span class="cs-tile" style="--d:0.6s">Knowledge base</span>
+                <span class="cs-tile" style="--d:0.8s">Support tools</span>
+                <span class="cs-tile" style="--d:1s">Data warehouse</span>
+              </div>
+            </div>
+
+            <!-- Connector flow -->
+            <div class="cs-flow" aria-hidden="true">
+              <span class="cs-flow-dot" style="--d:0s"></span>
+              <span class="cs-flow-dot" style="--d:0.3s"></span>
+              <span class="cs-flow-dot" style="--d:0.6s"></span>
+            </div>
+
+            <!-- Middle: AI Control Layer -->
+            <div class="cs-layer cs-control">
+              <div class="cs-control-head">
+                <span class="cs-control-eyebrow">Customised control layer</span>
+                <span class="cs-control-title">AI Control Layer</span>
+              </div>
+              <div class="cs-funcs">
+                <span class="cs-func" style="--i:0">Access rules</span>
+                <span class="cs-func" style="--i:1">Retrieval</span>
+                <span class="cs-func" style="--i:2">Model routing</span>
+                <span class="cs-func" style="--i:3">Human checkpoints</span>
+                <span class="cs-func" style="--i:4">Evaluation</span>
+                <span class="cs-func" style="--i:5">Audit trail</span>
+              </div>
+            </div>
+
+            <!-- Connector flow -->
+            <div class="cs-flow cs-flow-out" aria-hidden="true">
+              <span class="cs-flow-dot" style="--d:5s"></span>
+              <span class="cs-flow-dot" style="--d:5.3s"></span>
+              <span class="cs-flow-dot" style="--d:5.6s"></span>
+            </div>
+
+            <!-- Bottom: Deployment -->
+            <div class="cs-layer cs-deploy">
+              <span class="cs-row-label">Deployment</span>
+              <div class="cs-deploy-options">
+                <span class="cs-deploy-opt">Client cloud</span>
+                <span class="cs-deploy-opt">EU hosted</span>
+                <span class="cs-deploy-opt">On-prem / private network</span>
+              </div>
+            </div>
+
+          </div>
         </div>
       </a>
       </div>
