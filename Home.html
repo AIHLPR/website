@@ -992,28 +992,24 @@
     position: relative;
   }
   .we-req.is-active {
-    border-color: var(--c);
-    background: color-mix(in oklab, var(--c) 12%, var(--white));
+    border-color: color-mix(in oklab, var(--c) 55%, transparent);
+    background: color-mix(in oklab, var(--c) 6%, var(--white));
     color: var(--c);
-    font-weight: 600;
-    transform: translateX(6px);
-    box-shadow:
-      inset 3px 0 0 var(--c),
-      0 0 0 3px color-mix(in oklab, var(--c) 14%, transparent);
+    transform: translateX(4px);
   }
   .we-req.is-active::after {
     content: "";
     position: absolute;
-    right: -10px; top: 50%;
+    right: -8px; top: 50%;
     transform: translateY(-50%);
     width: 0; height: 0;
-    border-top: 6px solid transparent;
-    border-bottom: 6px solid transparent;
-    border-left: 7px solid var(--c);
+    border-top: 5px solid transparent;
+    border-bottom: 5px solid transparent;
+    border-left: 6px solid color-mix(in oklab, var(--c) 60%, transparent);
   }
   /* Dim other requests while one is active so the focus is obvious. */
   .we-inbox:has(.we-req.is-active) .we-req:not(.is-active) {
-    opacity: 0.5;
+    opacity: 0.6;
   }
 
   /* Engine */
