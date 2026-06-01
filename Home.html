@@ -565,18 +565,51 @@
     margin: 0;
   }
 
-  /* Strip container — hairline dividers, no boxes. */
-  .cap-strips { border-top: 1px solid var(--hairline); }
+  /* Stacked deck of floating cards.
+     Each .cap-pin is sticky. Increasing top offsets per card produce
+     the classic "stacked deck" effect: as you scroll, each new card
+     pins ~14px below the previous one, so earlier cards peek out
+     above the active one. Mobile + prefers-reduced-motion fall back
+     to plain stacking. */
+  .cap-strips {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(20px, 3vw, 36px);
+    border-top: none;
+  }
+  .cap-pin {
+    position: sticky;
+    top: calc(96px + var(--cap-i, 0) * 14px);
+  }
+  .cap-pin:nth-child(1) { --cap-i: 0; z-index: 1; }
+  .cap-pin:nth-child(2) { --cap-i: 1; z-index: 2; }
+  .cap-pin:nth-child(3) { --cap-i: 2; z-index: 3; }
+  .cap-pin:nth-child(4) { --cap-i: 3; z-index: 4; }
+
   .cap-strip {
     display: grid;
     grid-template-columns: 1fr;
     align-items: center;
-    gap: clamp(32px, 5vw, 80px);
-    padding: clamp(40px, 5vw, 72px) 0;
-    border-bottom: 1px solid var(--hairline);
+    gap: clamp(28px, 4vw, 64px);
+    padding: clamp(28px, 3.6vw, 52px) clamp(28px, 4vw, 56px);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    background: var(--white);
+    box-shadow:
+      0 1px 0 rgba(31,31,31,0.03),
+      0 30px 80px -36px rgba(31,31,31,0.22);
     position: relative;
     color: inherit;
     text-decoration: none;
+    transition:
+      transform 360ms var(--ease),
+      box-shadow 360ms var(--ease);
+  }
+  .cap-pin:hover .cap-strip {
+    transform: translateY(-2px);
+    box-shadow:
+      0 1px 0 rgba(31,31,31,0.03),
+      0 36px 90px -32px rgba(31,31,31,0.28);
   }
   /* Cards that include a visual get a two-column layout. */
   .cap-strip.has-visual {
@@ -585,6 +618,14 @@
   }
   @media (max-width: 960px) {
     .cap-strip.has-visual { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 880px) {
+    .cap-pin { position: static; top: auto; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .cap-pin { position: static; top: auto; }
+    .cap-strip,
+    .cap-pin:hover .cap-strip { transition: none; transform: none; }
   }
 
   .cap-strip-text { display: flex; flex-direction: column; gap: 14px; max-width: 64ch; }
@@ -2667,6 +2708,7 @@
     <div class="cap-strips">
 
       <!-- 01 — AI Products & Platforms -->
+      <div class="cap-pin">
       <a class="cap-strip has-visual" style="--c:#E91E63" href="capabilities/ai-applications-and-platforms.html">
         <div class="cap-strip-text">
           <span class="cap-strip-num">01 &middot; Products &amp; Platforms</span>
@@ -2748,8 +2790,10 @@
           </div>
         </div>
       </a>
+      </div>
 
       <!-- 02 — AI Workflows & Operations -->
+      <div class="cap-pin">
       <a class="cap-strip has-visual" style="--c:#9B59B6" href="capabilities/ai-workflow-infrastructure.html">
         <div class="cap-strip-text">
           <span class="cap-strip-num">02 &middot; Workflows &amp; Operations</span>
@@ -2835,8 +2879,10 @@
           </div>
         </div>
       </a>
+      </div>
 
       <!-- 03 — Enterprise AI -->
+      <div class="cap-pin">
       <a class="cap-strip" style="--c:#3478E5" href="capabilities/enterprise-ai.html">
         <div class="cap-strip-text">
           <span class="cap-strip-num">03 &middot; Enterprise AI</span>
@@ -2852,8 +2898,10 @@
           <span class="cap-strip-link">Read capability <span class="arrow">&rarr;</span></span>
         </div>
       </a>
+      </div>
 
       <!-- 04 — From Pilot to Production -->
+      <div class="cap-pin">
       <a class="cap-strip" style="--c:#CC418C" href="capabilities/prototype-to-production.html">
         <div class="cap-strip-text">
           <span class="cap-strip-num">04 &middot; From Pilot to Production</span>
@@ -2869,6 +2917,7 @@
           <span class="cap-strip-link">Read capability <span class="arrow">&rarr;</span></span>
         </div>
       </a>
+      </div>
 
     </div>
 
