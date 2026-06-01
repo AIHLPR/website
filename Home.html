@@ -578,6 +578,14 @@
     color: inherit;
     text-decoration: none;
   }
+  /* Cards that include a visual get a two-column layout. */
+  .cap-strip.has-visual {
+    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+    align-items: center;
+  }
+  @media (max-width: 960px) {
+    .cap-strip.has-visual { grid-template-columns: 1fr; }
+  }
 
   .cap-strip-text { display: flex; flex-direction: column; gap: 14px; max-width: 64ch; }
   .cap-strip-chips {
@@ -639,6 +647,255 @@
     height: auto;
     display: block;
     max-height: 240px;
+  }
+
+  /* ===== Customer Onboarding Command Centre (card 01 preview) ===== */
+  .ocm-wrap {
+    min-height: 0;
+    pointer-events: none;
+  }
+  .ocm {
+    display: grid;
+    grid-template-columns: minmax(80px, 0.7fr) minmax(0, 2fr) minmax(110px, 0.85fr);
+    gap: clamp(14px, 1.6vw, 22px);
+    align-items: start;
+    padding: clamp(16px, 1.6vw, 22px);
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    box-shadow: 0 1px 0 rgba(31,31,31,0.02), 0 24px 60px -32px rgba(31,31,31,0.18);
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .ocm::before {
+    content: "";
+    position: absolute; left: 0; right: 0; top: 0;
+    height: 2px;
+    background: var(--gradient);
+    opacity: 0.55;
+  }
+  .ocm-side-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+
+  /* Tools column */
+  .ocm-tools {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .ocm-tool {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.06em;
+    padding: 5px 8px;
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--ink-soft);
+    opacity: 0;
+    transform: translateX(-6px);
+    animation: ocm-tool-in 0.6s var(--ease) var(--d, 0s) forwards,
+               ocm-tool-pulse 4.8s var(--ease) calc(var(--d, 0s) + 1.2s) infinite;
+  }
+  @keyframes ocm-tool-in {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes ocm-tool-pulse {
+    0%, 92%, 100% { border-color: var(--hairline); }
+    96%            { border-color: var(--c); }
+  }
+
+  /* Workspace */
+  .ocm-workspace {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+  }
+  .ocm-w-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .ocm-w-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .ocm-w-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .ocm-w-account { color: var(--ink); font-weight: 500; }
+  .ocm-w-status {
+    display: inline-flex; align-items: center; gap: 6px;
+    color: var(--c);
+  }
+  .ocm-dot {
+    width: 6px; height: 6px; border-radius: 999px;
+    background: var(--c);
+    animation: ocm-dot-pulse 2s var(--ease) infinite;
+  }
+  @keyframes ocm-dot-pulse {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.25); }
+  }
+
+  .ocm-section {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .ocm-section-h {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .ocm-section-b {
+    font-size: 11.5px;
+    color: var(--ink-soft);
+  }
+  .ocm-section-pills {
+    display: flex; flex-wrap: wrap; gap: 4px;
+  }
+  .ocm-section-pills span {
+    font-size: 10.5px;
+    padding: 3px 7px;
+    border: 1px solid color-mix(in oklab, var(--c) 30%, transparent);
+    border-radius: 999px;
+    color: var(--c);
+    background: color-mix(in oklab, var(--c) 6%, var(--white));
+  }
+  .ocm-section.is-ai {
+    position: relative;
+    padding: 8px 10px;
+    border-radius: 6px;
+    background: color-mix(in oklab, var(--c) 4%, var(--white));
+    border: 1px solid color-mix(in oklab, var(--c) 15%, transparent);
+    animation: ocm-ai-breathe 4s var(--ease) infinite;
+  }
+  @keyframes ocm-ai-breathe {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--c) 0%, transparent); }
+    50%      { box-shadow: 0 0 0 6px color-mix(in oklab, var(--c) 6%, transparent); }
+  }
+
+  .ocm-actions {
+    display: flex; gap: 8px;
+    margin-top: 2px;
+  }
+  .ocm-btn {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.10em;
+    padding: 6px 10px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 4px;
+    color: var(--ink);
+    background: var(--white);
+  }
+  .ocm-btn-primary {
+    background: var(--c);
+    border-color: var(--c);
+    color: var(--white);
+    animation: ocm-cta 3.6s var(--ease) infinite;
+  }
+  @keyframes ocm-cta {
+    0%, 100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--c) 0%, transparent); }
+    50%      { box-shadow: 0 0 0 5px color-mix(in oklab, var(--c) 18%, transparent); }
+  }
+
+  /* Done column */
+  .ocm-done {
+    align-self: start;
+  }
+  .ocm-done-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .ocm-done-list li {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    line-height: 1.3;
+    color: var(--ink-soft);
+    opacity: 0;
+    transform: translateY(4px);
+    animation: ocm-done-in 0.5s var(--ease) calc(var(--d, 0s) + 2s) forwards;
+  }
+  @keyframes ocm-done-in {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .ocm-check {
+    flex: 0 0 auto;
+    width: 12px; height: 12px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--teal) 100%, transparent);
+    position: relative;
+  }
+  .ocm-check::after {
+    content: "";
+    position: absolute;
+    left: 3px; top: 5px;
+    width: 3px; height: 5px;
+    border-right: 1.2px solid var(--white);
+    border-bottom: 1.2px solid var(--white);
+    transform: rotate(45deg);
+  }
+
+  @media (max-width: 960px) {
+    .ocm { font-size: 11.5px; }
+    .ocm-w-title { font-size: 12px; }
+  }
+  @media (max-width: 720px) {
+    .ocm {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .ocm-tools { flex-direction: row; flex-wrap: wrap; }
+    .ocm-done-list { gap: 6px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ocm-tool,
+    .ocm-done-list li {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .ocm-section.is-ai,
+    .ocm-btn-primary,
+    .ocm-dot {
+      animation: none;
+    }
   }
 
   @media (max-width: 880px) {
@@ -2091,7 +2348,7 @@
     <div class="cap-strips">
 
       <!-- 01 — AI Products & Platforms -->
-      <a class="cap-strip l-right" style="--c:#E91E63" href="capabilities/ai-applications-and-platforms.html">
+      <a class="cap-strip has-visual" style="--c:#E91E63" href="capabilities/ai-applications-and-platforms.html">
         <div class="cap-strip-text">
           <span class="cap-strip-num">01 &middot; Products &amp; Platforms</span>
           <h3>AI Products &amp; Platforms</h3>
@@ -2104,6 +2361,72 @@
             <span>Activity dashboards</span>
           </div>
           <span class="cap-strip-link">Read capability <span class="arrow">&rarr;</span></span>
+        </div>
+
+        <!-- Customer Onboarding Command Centre preview -->
+        <div class="cap-strip-visual ocm-wrap" aria-hidden="true">
+          <div class="ocm">
+
+            <!-- Connected tools -->
+            <div class="ocm-tools">
+              <span class="ocm-side-label">Connected tools</span>
+              <div class="ocm-tool" style="--d:0s">CRM</div>
+              <div class="ocm-tool" style="--d:0.3s">Email</div>
+              <div class="ocm-tool" style="--d:0.6s">Docs</div>
+              <div class="ocm-tool" style="--d:0.9s">Slack</div>
+              <div class="ocm-tool" style="--d:1.2s">Finance</div>
+              <div class="ocm-tool" style="--d:1.5s">Project</div>
+            </div>
+
+            <!-- Workspace -->
+            <div class="ocm-workspace">
+              <div class="ocm-w-head">
+                <div class="ocm-w-title">Customer Onboarding Command Centre</div>
+                <div class="ocm-w-meta">
+                  <span class="ocm-w-account">Nova Retail</span>
+                  <span class="ocm-w-status"><span class="ocm-dot"></span>Ready for review</span>
+                </div>
+              </div>
+
+              <div class="ocm-section">
+                <div class="ocm-section-h">Information gathered</div>
+                <div class="ocm-section-b">CRM details &middot; signed proposal &middot; onboarding form &middot; billing details</div>
+              </div>
+
+              <div class="ocm-section is-ai">
+                <div class="ocm-section-h">AI prepared</div>
+                <div class="ocm-section-pills">
+                  <span>kickoff brief</span>
+                  <span>welcome email</span>
+                  <span>task list</span>
+                  <span>risk notes</span>
+                </div>
+              </div>
+
+              <div class="ocm-section">
+                <div class="ocm-section-h">Needs human review</div>
+                <div class="ocm-section-b">contract terms &middot; billing setup &middot; launch date</div>
+              </div>
+
+              <div class="ocm-actions">
+                <span class="ocm-btn ocm-btn-primary">Approve onboarding</span>
+                <span class="ocm-btn">Request changes</span>
+              </div>
+            </div>
+
+            <!-- After approval -->
+            <div class="ocm-done">
+              <span class="ocm-side-label">After approval</span>
+              <ul class="ocm-done-list">
+                <li style="--d:0s"><span class="ocm-check"></span>CRM updated</li>
+                <li style="--d:0.7s"><span class="ocm-check"></span>Finance notified</li>
+                <li style="--d:1.4s"><span class="ocm-check"></span>Kickoff tasks created</li>
+                <li style="--d:2.1s"><span class="ocm-check"></span>Welcome email drafted</li>
+                <li style="--d:2.8s"><span class="ocm-check"></span>Audit trail saved</li>
+              </ul>
+            </div>
+
+          </div>
         </div>
       </a>
 
