@@ -898,6 +898,225 @@
     }
   }
 
+  /* ===== Exception-Aware Workflow Engine (card 02 preview) ===== */
+  .we-wrap { min-height: 0; pointer-events: none; }
+  .we {
+    display: grid;
+    grid-template-columns: minmax(110px, 0.85fr) minmax(0, 1.8fr) minmax(120px, 0.95fr);
+    gap: clamp(12px, 1.4vw, 20px);
+    align-items: start;
+    padding: clamp(16px, 1.6vw, 22px);
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    box-shadow: 0 1px 0 rgba(31,31,31,0.02), 0 24px 60px -32px rgba(31,31,31,0.18);
+    font-family: var(--font-body);
+    font-size: 12px;
+    line-height: 1.45;
+    color: var(--ink);
+    position: relative;
+    overflow: hidden;
+  }
+  .we::before {
+    content: "";
+    position: absolute; left: 0; right: 0; top: 0;
+    height: 2px;
+    background: var(--gradient);
+    opacity: 0.55;
+  }
+  .we-side-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+
+  /* Incoming requests */
+  .we-inbox { display: flex; flex-direction: column; gap: 6px; }
+  .we-req {
+    font-size: 10.5px;
+    padding: 6px 8px;
+    border: 1px solid var(--hairline);
+    border-radius: 4px;
+    background: var(--surface);
+    color: var(--ink-soft);
+    opacity: 0;
+    transform: translateX(-6px);
+    animation: we-req-in 0.6s var(--ease) var(--d, 0s) forwards,
+               we-req-pulse 5s var(--ease) calc(var(--d, 0s) + 1.5s) infinite;
+  }
+  @keyframes we-req-in {
+    to { opacity: 1; transform: translateX(0); }
+  }
+  @keyframes we-req-pulse {
+    0%, 92%, 100% { border-color: var(--hairline); background: var(--surface); }
+    96%            { border-color: var(--c); background: color-mix(in oklab, var(--c) 6%, var(--white)); }
+  }
+
+  /* Engine */
+  .we-engine {
+    display: flex; flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+    padding: 12px;
+    border: 1px solid var(--hairline);
+    border-radius: 8px;
+    background: color-mix(in oklab, var(--c) 3%, var(--white));
+    position: relative;
+  }
+  .we-engine-head {
+    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed color-mix(in oklab, var(--c) 18%, transparent);
+  }
+  .we-engine-title {
+    font-family: var(--font-display);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+  }
+  .we-engine-meta {
+    display: flex; align-items: center; gap: 12px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.06em;
+    color: var(--ink-muted);
+    white-space: nowrap;
+  }
+  .we-process { color: var(--ink); font-weight: 500; }
+  .we-status { display: inline-flex; align-items: center; gap: 6px; color: var(--c); }
+
+  .we-steps {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 14px;
+  }
+  .we-steps li {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 11.5px;
+    color: var(--ink-soft);
+    padding: 4px 6px;
+    border-radius: 4px;
+    animation: we-step-highlight 6s var(--ease) var(--d, 0s) infinite;
+  }
+  .we-step-no {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 3px;
+    padding: 2px 5px;
+  }
+  @keyframes we-step-highlight {
+    0%, 92%, 100% { background: transparent; color: var(--ink-soft); }
+    4%, 8%        { background: color-mix(in oklab, var(--c) 10%, var(--white)); color: var(--c); }
+  }
+
+  .we-audit {
+    display: flex; flex-wrap: wrap; align-items: center;
+    gap: 6px;
+    padding-top: 8px;
+    border-top: 1px dashed color-mix(in oklab, var(--c) 18%, transparent);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .we-audit-item {
+    opacity: 0;
+    animation: we-audit-in 0.6s var(--ease) var(--d, 0s) forwards;
+  }
+  .we-audit-sep { color: var(--ink-muted); opacity: 0.5; }
+  @keyframes we-audit-in {
+    to { opacity: 1; }
+  }
+
+  /* Outcome lanes */
+  .we-lanes {
+    display: flex; flex-direction: column;
+    gap: 8px;
+  }
+  .we-lane {
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 8px 10px;
+    border-radius: 6px;
+    border: 1px solid var(--hairline);
+    background: var(--white);
+  }
+  .we-lane-h {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .we-lane-item {
+    font-size: 11px;
+    color: var(--ink);
+    padding-left: 12px;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-4px);
+    animation: we-lane-in 0.5s var(--ease) var(--d, 0s) forwards;
+  }
+  .we-lane-item::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.5em;
+    width: 5px; height: 5px;
+    border-radius: 999px;
+    background: currentColor;
+    opacity: 0.6;
+  }
+  @keyframes we-lane-in {
+    to { opacity: 1; transform: translateX(0); }
+  }
+
+  .we-lane-approved  { border-color: color-mix(in oklab, var(--teal) 35%, transparent); background: color-mix(in oklab, var(--teal) 4%, var(--white)); }
+  .we-lane-approved  .we-lane-h    { color: var(--teal); }
+  .we-lane-approved  .we-lane-item { color: var(--teal); }
+
+  .we-lane-review    { border-color: color-mix(in oklab, var(--c) 35%, transparent); background: color-mix(in oklab, var(--c) 4%, var(--white)); }
+  .we-lane-review    .we-lane-h    { color: var(--c); }
+  .we-lane-review    .we-lane-item { color: var(--c); }
+
+  .we-lane-exception { border-color: color-mix(in oklab, #E63946 35%, transparent); background: color-mix(in oklab, #E63946 4%, var(--white)); }
+  .we-lane-exception .we-lane-h    { color: #C5303A; }
+  .we-lane-exception .we-lane-item { color: #C5303A; }
+
+  @media (max-width: 960px) {
+    .we { font-size: 11.5px; }
+    .we-engine-title { font-size: 12px; }
+    .we-steps { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    .we {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .we-inbox { flex-direction: row; flex-wrap: wrap; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .we-req,
+    .we-audit-item,
+    .we-lane-item {
+      opacity: 1;
+      transform: none;
+      animation: none;
+    }
+    .we-steps li { animation: none; }
+  }
+
   @media (max-width: 880px) {
     .cap-strip,
     .cap-strip.l-right,
@@ -2431,7 +2650,7 @@
       </a>
 
       <!-- 02 — AI Workflows & Operations -->
-      <a class="cap-strip" style="--c:#9B59B6" href="capabilities/ai-workflow-infrastructure.html">
+      <a class="cap-strip has-visual" style="--c:#9B59B6" href="capabilities/ai-workflow-infrastructure.html">
         <div class="cap-strip-text">
           <span class="cap-strip-num">02 &middot; Workflows &amp; Operations</span>
           <h3>AI Workflows &amp; Operations</h3>
@@ -2444,6 +2663,70 @@
             <span>System integration</span>
           </div>
           <span class="cap-strip-link">Read capability <span class="arrow">&rarr;</span></span>
+        </div>
+
+        <!-- Exception-Aware Workflow Engine preview -->
+        <div class="cap-strip-visual we-wrap" aria-hidden="true">
+          <div class="we">
+
+            <!-- Incoming requests -->
+            <div class="we-inbox">
+              <span class="we-side-label">Incoming requests</span>
+              <div class="we-req" style="--d:0s">New vendor request</div>
+              <div class="we-req" style="--d:0.25s">Invoice exception</div>
+              <div class="we-req" style="--d:0.5s">Contract update</div>
+              <div class="we-req" style="--d:0.75s">Purchase approval</div>
+              <div class="we-req" style="--d:1s">Missing tax form</div>
+            </div>
+
+            <!-- Engine -->
+            <div class="we-engine">
+              <div class="we-engine-head">
+                <div class="we-engine-title">Workflow Engine</div>
+                <div class="we-engine-meta">
+                  <span class="we-process">Vendor Approval Workflow</span>
+                  <span class="we-status"><span class="ocm-dot"></span>Running</span>
+                </div>
+              </div>
+
+              <ol class="we-steps">
+                <li style="--d:0s"><span class="we-step-no">01</span>Classify request</li>
+                <li style="--d:0.4s"><span class="we-step-no">02</span>Extract details</li>
+                <li style="--d:0.8s"><span class="we-step-no">03</span>Match policy</li>
+                <li style="--d:1.2s"><span class="we-step-no">04</span>Prepare decision</li>
+                <li style="--d:1.6s"><span class="we-step-no">05</span>Route owner</li>
+                <li style="--d:2s"><span class="we-step-no">06</span>Escalate exception</li>
+              </ol>
+
+              <div class="we-audit">
+                <span class="we-audit-item" style="--d:3.4s">Audit trail saved</span>
+                <span class="we-audit-sep">&middot;</span>
+                <span class="we-audit-item" style="--d:3.7s">Policy checked</span>
+                <span class="we-audit-sep">&middot;</span>
+                <span class="we-audit-item" style="--d:4s">Owner assigned</span>
+              </div>
+            </div>
+
+            <!-- Outcome lanes -->
+            <div class="we-lanes">
+              <div class="we-lane we-lane-approved">
+                <span class="we-lane-h">Approved path</span>
+                <span class="we-lane-item" style="--d:2.6s">Vendor approved</span>
+                <span class="we-lane-item" style="--d:2.9s">ERP updated</span>
+              </div>
+              <div class="we-lane we-lane-review">
+                <span class="we-lane-h">Review path</span>
+                <span class="we-lane-item" style="--d:3s">Sent to finance</span>
+                <span class="we-lane-item" style="--d:3.3s">Human decision needed</span>
+              </div>
+              <div class="we-lane we-lane-exception">
+                <span class="we-lane-h">Exception path</span>
+                <span class="we-lane-item" style="--d:3.4s">Missing document</span>
+                <span class="we-lane-item" style="--d:3.7s">Escalated to owner</span>
+              </div>
+            </div>
+
+          </div>
         </div>
       </a>
 
