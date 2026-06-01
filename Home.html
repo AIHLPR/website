@@ -987,9 +987,13 @@
     position: relative;
   }
   .we-engine-head {
-    display: flex; align-items: baseline; justify-content: space-between; gap: 12px;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 10px;
     padding-bottom: 8px;
     border-bottom: 1px dashed color-mix(in oklab, var(--c) 18%, transparent);
+    flex-wrap: wrap;
   }
   .we-engine-title {
     font-family: var(--font-display);
@@ -998,15 +1002,17 @@
     letter-spacing: -0.005em;
     color: var(--ink);
   }
-  .we-engine-meta {
-    display: flex; align-items: center; gap: 12px;
+  .we-process {
     font-family: var(--font-mono);
     font-size: 9.5px;
     letter-spacing: 0.06em;
-    color: var(--ink-muted);
-    white-space: nowrap;
+    color: var(--ink);
+    font-weight: 500;
   }
-  .we-process { color: var(--ink); font-weight: 500; }
+  .we-engine-status-row {
+    display: flex;
+    margin-top: 2px;
+  }
   .we-status {
     display: inline-flex;
     align-items: center;
@@ -2777,10 +2783,10 @@
             <div class="we-engine">
               <div class="we-engine-head">
                 <div class="we-engine-title">Workflow Engine</div>
-                <div class="we-engine-meta">
-                  <span class="we-process">Vendor Approval Workflow</span>
-                  <span class="we-status"><span class="ocm-dot"></span>Workflow running</span>
-                </div>
+                <span class="we-process">Vendor Approval Workflow</span>
+              </div>
+              <div class="we-engine-status-row">
+                <span class="we-status"><span class="ocm-dot"></span>Workflow running</span>
               </div>
 
               <div class="we-token" data-we-token>
