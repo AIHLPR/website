@@ -1876,41 +1876,106 @@
     pointer-events: none;
   }
 
-  .ct-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) clamp(260px, 24vw, 340px);
-    gap: clamp(28px, 4vw, 56px);
-    align-items: start;
+  /* Section head — eyebrow / headline / lede / standards-row */
+  .ct-head {
+    max-width: 62ch;
+    margin-bottom: clamp(36px, 5vw, 56px);
+    position: relative;
+    z-index: 1;
   }
-  .ct-static { max-width: 64ch; }
   .ct-lede {
     font-size: clamp(15px, 1.1vw, 17px);
     line-height: 1.6;
     color: var(--ink-soft);
-    margin: 18px 0 24px;
+    margin: 16px 0 22px;
   }
-  .ct-list {
+  .ct-badges {
     list-style: none;
     padding: 0;
     margin: 0;
     display: flex;
-    flex-direction: column;
-    gap: 14px;
+    flex-wrap: wrap;
+    gap: 6px;
   }
-  .ct-list li {
-    position: relative;
-    padding-left: 22px;
-    font-size: 15.5px;
-    line-height: 1.55;
-    color: var(--ink);
-  }
-  .ct-list li::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0.62em;
-    width: 7px; height: 7px;
+  .ct-badges li {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ct-blue);
+    background: color-mix(in oklab, var(--ct-blue) 6%, var(--white));
+    border: 1px solid color-mix(in oklab, var(--ct-blue) 25%, transparent);
+    padding: 5px 10px;
     border-radius: 999px;
-    background: var(--ct-blue);
+  }
+
+  /* Trust grid */
+  .ct-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(14px, 1.6vw, 22px);
+    position: relative;
+    z-index: 1;
+  }
+  @media (max-width: 760px) {
+    .ct-grid { grid-template-columns: 1fr; }
+  }
+  .ct-card {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: clamp(14px, 1.4vw, 20px);
+    align-items: start;
+    padding: clamp(20px, 2.2vw, 28px) clamp(22px, 2.4vw, 30px);
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    box-shadow:
+      0 1px 0 rgba(31,31,31,0.02),
+      0 20px 50px -32px rgba(31,31,31,0.16);
+    transition:
+      transform 320ms var(--ease),
+      box-shadow 320ms var(--ease),
+      border-color 320ms var(--ease);
+  }
+  .ct-card:hover {
+    transform: translateY(-2px);
+    border-color: color-mix(in oklab, var(--ct-blue) 28%, transparent);
+    box-shadow:
+      0 1px 0 rgba(31,31,31,0.02),
+      0 28px 60px -28px rgba(31,31,31,0.22);
+  }
+  .ct-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: color-mix(in oklab, var(--ct-blue) 7%, var(--white));
+    color: var(--ct-blue);
+    border: 1px solid color-mix(in oklab, var(--ct-blue) 18%, transparent);
+    flex: 0 0 auto;
+  }
+  .ct-icon svg { width: 18px; height: 18px; display: block; }
+  .ct-card-body { min-width: 0; }
+  .ct-card-title {
+    font-family: var(--font-display);
+    font-size: clamp(15.5px, 1.3vw, 17.5px);
+    font-weight: 600;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    margin: 2px 0 6px;
+  }
+  .ct-card-desc {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .ct-card,
+    .ct-card:hover { transition: none; transform: none; }
   }
 
   .ct-eyebrow {
@@ -3643,18 +3708,73 @@
 <section class="compliance-section" id="compliance">
   <canvas class="ct-bg" id="ctBg"></canvas>
   <div class="container">
-    <div class="ct-static">
+    <div class="ct-head">
       <span class="ct-eyebrow">Compliance</span>
       <h2 class="ct-headline">Safety and trust, by design.</h2>
       <p class="ct-lede">
-        Compliance is built into how we design, not bolted on after. Every system ships with the controls enterprise buyers need:
+        Compliance is built into how we design, not bolted on after. Every system we ship comes with the controls enterprise buyers need.
       </p>
-      <ul class="ct-list">
-        <li>GDPR and EU-hosted infrastructure, with regional data boundaries.</li>
-        <li>EU AI Act readiness: human review, approval chains, and traceability where required.</li>
-        <li>Scoped access, audit trails, and customer-controlled data policies.</li>
-        <li>Your IP, your systems. Ownership stays with you.</li>
+      <ul class="ct-badges" aria-label="Standards we ship to">
+        <li>GDPR</li>
+        <li>EU AI Act</li>
+        <li>EU residency</li>
+        <li>Customer-owned IP</li>
       </ul>
+    </div>
+
+    <div class="ct-grid">
+      <article class="ct-card">
+        <span class="ct-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 3 L20 6 V12 C20 17 16 20 12 21 C8 20 4 17 4 12 V6 Z"/>
+            <path d="M9 12 L11 14 L15 10"/>
+          </svg>
+        </span>
+        <div class="ct-card-body">
+          <h3 class="ct-card-title">GDPR &amp; EU residency</h3>
+          <p class="ct-card-desc">EU-hosted infrastructure with regional data boundaries. Your data stays where it&rsquo;s meant to.</p>
+        </div>
+      </article>
+
+      <article class="ct-card">
+        <span class="ct-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M6 3 H15 L18 6 V21 H6 Z"/>
+            <path d="M9 9 H15 M9 13 H15 M9 17 H13"/>
+          </svg>
+        </span>
+        <div class="ct-card-body">
+          <h3 class="ct-card-title">EU AI Act ready</h3>
+          <p class="ct-card-desc">Human review, approval chains, and traceability built in where the regulation requires it.</p>
+        </div>
+      </article>
+
+      <article class="ct-card">
+        <span class="ct-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="11" width="14" height="10" rx="1.5"/>
+            <path d="M8 11 V7 a4 4 0 0 1 8 0 V11"/>
+            <circle cx="12" cy="16" r="1.2" fill="currentColor"/>
+          </svg>
+        </span>
+        <div class="ct-card-body">
+          <h3 class="ct-card-title">Scoped access &amp; audit trails</h3>
+          <p class="ct-card-desc">Customer-controlled data policies, granular permissions, and complete records of every model decision.</p>
+        </div>
+      </article>
+
+      <article class="ct-card">
+        <span class="ct-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="8" cy="14" r="3.5"/>
+            <path d="M11.5 14 H20 M18 14 V17 M15.5 14 V16"/>
+          </svg>
+        </span>
+        <div class="ct-card-body">
+          <h3 class="ct-card-title">Your IP, your systems</h3>
+          <p class="ct-card-desc">Your data, your models, your code. Ownership stays with you &mdash; before, during, and after the engagement.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
