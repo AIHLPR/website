@@ -2145,48 +2145,153 @@
   }
 
   /* ===== Stack ===== */
-  .stack-section { background: var(--surface-2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
-  .stack-grid {
+  /* ===== Stack section (buyer-facing redesign) ===== */
+  .stack-section {
+    background: var(--surface-2);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+  }
+
+  .stack-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.35fr) minmax(0, 0.65fr);
+    align-items: end;
+    gap: clamp(24px, 4vw, 64px);
+    margin-bottom: clamp(40px, 4vw, 60px);
+  }
+  .stack-head h2 { max-width: 16ch; margin-top: 16px; }
+  .stack-lede {
+    color: var(--ink-soft);
+    font-size: clamp(16px, 1.25vw, 18px);
+    line-height: 1.6;
+    max-width: 52ch;
+    margin-top: 26px;
+  }
+  .stack-aside {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    text-align: right;
+    padding-bottom: 6px;
+    margin: 0;
+  }
+  @media (max-width: 880px) {
+    .stack-head { grid-template-columns: 1fr; align-items: start; gap: 20px; }
+    .stack-aside { text-align: left; }
+  }
+
+  /* Layer cards */
+  .layers {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 24px;
   }
-  .stack-col {
+  @media (max-width: 900px) { .layers { grid-template-columns: 1fr; } }
+
+  .layer {
     background: var(--white);
     border: 1px solid var(--hairline);
     border-radius: 16px;
-    padding: 32px;
+    padding: 30px 30px 26px;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    min-height: 372px;
+    transition:
+      border-color 220ms var(--ease),
+      transform 220ms var(--ease),
+      box-shadow 220ms var(--ease);
   }
-  .stack-col .label-mono { color: var(--blue); font-size: 11px; }
-  .stack-col h3 {
-    font-size: 24px;
+  .layer:hover {
+    border-color: var(--hairline-strong);
+    transform: translateY(-3px);
+    box-shadow: 0 18px 40px -28px rgba(31,31,31,0.4);
+  }
+
+  .layer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+  .layer-mark {
+    width: 44px; height: 44px;
+    border-radius: 12px;
+    background: color-mix(in oklab, var(--blue) 9%, white);
+    border: 1px solid color-mix(in oklab, var(--blue) 22%, white);
+    display: grid; place-items: center;
+    color: var(--blue);
+    flex: none;
+  }
+  .layer-mark svg { display: block; }
+  .layer-step {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--blue);
+  }
+
+  .layer-q {
+    font-family: var(--font-display);
+    font-size: 22px;
+    line-height: 1.14;
     letter-spacing: -0.02em;
     font-weight: 600;
+    color: var(--ink);
+    margin: 0;
   }
-  .stack-col p {
+  .layer-body {
     color: var(--ink-soft);
     font-size: 14.5px;
     line-height: 1.55;
+    margin-top: 10px;
+    max-width: 30ch;
   }
-  .stack-intro {
-    margin: 18px 0 0;
-    font-size: clamp(15px, 1.1vw, 17px);
-    line-height: 1.6;
-    color: var(--ink-soft);
-    max-width: 62ch;
-  }
-  .stack-note {
-    font-size: 13px;
-    line-height: 1.5;
+
+  .layer-tools { margin-top: auto; padding-top: 24px; }
+  .layer-toollabel {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
     color: var(--ink-muted);
-    padding-top: 12px;
-    border-top: 1px solid var(--hairline);
-    font-style: italic;
+    display: block;
+    margin-bottom: 12px;
   }
-  @media (max-width: 900px) { .stack-grid { grid-template-columns: 1fr; } }
+  .logos {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+  .logo {
+    display: grid; place-items: center;
+    height: 50px;
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    transition:
+      border-color 200ms var(--ease),
+      transform 200ms var(--ease),
+      box-shadow 200ms var(--ease);
+  }
+  .logo:hover {
+    border-color: var(--hairline-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 22px -16px rgba(31,31,31,0.5);
+  }
+  .logo img { height: 22px; width: auto; opacity: 0.92; }
+  .logo-fallback {
+    font-family: var(--font-mono);
+    font-size: 12.5px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--ink-soft);
+  }
 
   /* ===== Compliance — animated audit terminal (light) ===== */
   .compliance-section {
@@ -4080,34 +4185,100 @@
 <!-- ============= STACK ============= -->
 <section class="stack-section" id="stack">
   <div class="container">
-    <div class="section-head">
+
+    <header class="stack-head">
       <div>
         <span class="label-mono"><span class="dot"></span>The stack</span>
-        <h2 style="margin-top: 14px;">Built around your systems, not ours.</h2>
-        <p class="stack-intro">Every AI system needs three decisions: which model to use, where the knowledge comes from, and where the system should run. We make those choices around your workflow, data, and security requirements.</p>
+        <h2>Built around your systems, not ours.</h2>
+        <p class="stack-lede">
+          Every AI project comes down to three plain questions: which AI does the work,
+          where its answers come from, and where it all runs. We make those calls for you &mdash;
+          shaped around how your team works, the data you already have, and how safe it needs to be.
+        </p>
       </div>
-      <p class="head-aside">Three layers, every time.</p>
-    </div>
+      <p class="stack-aside">Three&nbsp;decisions,<br>every&nbsp;time.</p>
+    </header>
 
-    <div class="stack-grid">
-      <div class="stack-col">
-        <span class="label-mono">01 The intelligence layer</span>
-        <h3>The right model for the job.</h3>
-        <p>We choose the model based on the task, risk level, cost, and accuracy needed. Frontier, open-source, fine-tuned, or switched later when the job changes.</p>
-        <p class="stack-note">Model choice stays flexible.</p>
-      </div>
-      <div class="stack-col">
-        <span class="label-mono">02 The knowledge layer</span>
-        <h3>Answers grounded in your data.</h3>
-        <p>We design where the system gets its context from: documents, databases, product data, policies, CRM records, or knowledge bases. The model should not guess when the answer already exists.</p>
-        <p class="stack-note">Relational, vector, or hybrid retrieval, matched to the data.</p>
-      </div>
-      <div class="stack-col">
-        <span class="label-mono">03 The deployment layer</span>
-        <h3>Deployed where it makes sense.</h3>
-        <p>The system can run in your cloud, our managed environment, EU-hosted infrastructure, or private deployment depending on security, governance, and integration needs.</p>
-        <p class="stack-note">Your environment, your cloud, or on-prem where needed.</p>
-      </div>
+    <div class="layers">
+
+      <!-- 01 -->
+      <article class="layer">
+        <div class="layer-top">
+          <span class="layer-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <circle cx="11" cy="11" r="8.5" stroke="currentColor" stroke-width="1.6"/>
+              <circle cx="11" cy="11" r="2.6" fill="currentColor"/>
+            </svg>
+          </span>
+          <span class="layer-step">01 &middot; The thinking</span>
+        </div>
+        <h3 class="layer-q">Which AI does the work?</h3>
+        <p class="layer-body">The right model for each task &mdash; swapped out the moment a better one lands.</p>
+        <div class="layer-tools">
+          <span class="layer-toollabel">Models we choose from</span>
+          <div class="logos">
+            <span class="logo"><img src="https://cdn.jsdelivr.net/npm/@lobehub/icons-static-svg@latest/icons/openai.svg" data-fixed alt="OpenAI" title="OpenAI"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/anthropic" data-slug="anthropic" alt="Anthropic" title="Anthropic"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/googlegemini" data-slug="googlegemini" alt="Google Gemini" title="Google Gemini"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/meta" data-slug="meta" alt="Meta" title="Meta"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/mistralai" data-slug="mistralai" alt="Mistral" title="Mistral"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/huggingface" data-slug="huggingface" alt="Hugging Face" title="Hugging Face"></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 02 -->
+      <article class="layer">
+        <div class="layer-top">
+          <span class="layer-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="3.5" y="3.5" width="15" height="15" rx="2.4" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M6.8 8h8.4M6.8 11h8.4M6.8 14h5.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="layer-step">02 &middot; The knowledge</span>
+        </div>
+        <h3 class="layer-q">Where do the answers come from?</h3>
+        <p class="layer-body">Your own documents and records &mdash; with the source one click away, never guesswork.</p>
+        <div class="layer-tools">
+          <span class="layer-toollabel">Where your knowledge lives</span>
+          <div class="logos">
+            <span class="logo"><img src="https://cdn.simpleicons.org/postgresql" data-slug="postgresql" alt="PostgreSQL" title="PostgreSQL"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/mongodb" data-slug="mongodb" alt="MongoDB" title="MongoDB"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/elasticsearch" data-slug="elasticsearch" alt="Elasticsearch" title="Elasticsearch"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/redis" data-slug="redis" alt="Redis" title="Redis"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/supabase" data-slug="supabase" alt="Supabase" title="Supabase"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/snowflake" data-slug="snowflake" alt="Snowflake" title="Snowflake"></span>
+          </div>
+        </div>
+      </article>
+
+      <!-- 03 -->
+      <article class="layer">
+        <div class="layer-top">
+          <span class="layer-mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
+              <rect x="3.5" y="4" width="15" height="9.5" rx="2.2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M8 17.5h6M11 13.5v4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="layer-step">03 &middot; Where it lives</span>
+        </div>
+        <h3 class="layer-q">Where does it all run?</h3>
+        <p class="layer-body">Your cloud, ours, or fully on your premises &mdash; nothing leaves without your say-so.</p>
+        <div class="layer-tools">
+          <span class="layer-toollabel">Where it runs</span>
+          <div class="logos">
+            <span class="logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg" data-fixed alt="AWS" title="Amazon Web Services"></span>
+            <span class="logo"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg" data-fixed alt="Azure" title="Microsoft Azure"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/googlecloud" data-slug="googlecloud" alt="Google Cloud" title="Google Cloud"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/cloudflare" data-slug="cloudflare" alt="Cloudflare" title="Cloudflare"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/docker" data-slug="docker" alt="Docker" title="Docker"></span>
+            <span class="logo"><img src="https://cdn.simpleicons.org/kubernetes" data-slug="kubernetes" alt="Kubernetes" title="Kubernetes"></span>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -5489,6 +5660,29 @@
     });
   }, { threshold: 0.25 });
   io.observe(root);
+})();
+</script>
+
+<script>
+/* Stack section — graceful fallback for any logo whose image fails
+   to load. Hides the broken <img> and replaces it with the alt text
+   styled as a mono label. */
+(function () {
+  function fallback(img) {
+    var cell = img.closest('.logo');
+    if (!cell) return;
+    img.style.display = 'none';
+    if (!cell.querySelector('.logo-fallback')) {
+      var s = document.createElement('span');
+      s.className = 'logo-fallback';
+      s.textContent = img.getAttribute('alt') || '';
+      cell.appendChild(s);
+    }
+  }
+  document.querySelectorAll('.logo img').forEach(function (img) {
+    img.addEventListener('error', function () { fallback(img); });
+    if (img.complete && img.naturalWidth === 0) fallback(img);
+  });
 })();
 </script>
 </body>
