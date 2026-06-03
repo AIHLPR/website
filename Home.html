@@ -611,11 +611,12 @@
       0 1px 0 rgba(31,31,31,0.03),
       0 36px 90px -32px rgba(31,31,31,0.28);
   }
-  /* Cards that include a visual get a two-column layout. */
+  /* Cards that include a visual get a two-column layout and a
+     shared height so the stacked deck reads as a uniform set. */
   .cap-strip.has-visual {
     grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
     align-items: center;
-    min-height: clamp(460px, 56vh, 580px);
+    min-height: clamp(560px, 62vh, 620px);
   }
   @media (max-width: 960px) {
     .cap-strip.has-visual {
@@ -1293,26 +1294,6 @@
     margin-bottom: 6px;
   }
 
-  /* Control badges strip */
-  .cs-badges {
-    list-style: none; margin: 0; padding: 0;
-    display: flex; flex-wrap: wrap;
-    gap: 4px 6px;
-    padding-bottom: 10px;
-    border-bottom: 1px dashed var(--hairline);
-  }
-  .cs-badges li {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    padding: 3px 7px;
-    border: 1px solid var(--hairline);
-    border-radius: 999px;
-    background: var(--surface);
-  }
-
   /* Layers */
   .cs-layer {
     padding: 10px 12px;
@@ -1784,6 +1765,36 @@
   @keyframes pp-wire-flow {
     from { stroke-dashoffset: 16; }
     to   { stroke-dashoffset: 0; }
+  }
+
+  /* Ongoing operations strip — sits between the journey and the
+     footer so the visual conveys that production is the start of
+     long-term operations, not an end state. */
+  .pp-ops {
+    list-style: none;
+    margin: 0;
+    padding: 8px 4px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 6px 14px;
+    border-top: 1px dashed var(--hairline);
+    border-bottom: 1px dashed var(--hairline);
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .pp-ops li {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .pp-ops-dot {
+    width: 5px; height: 5px;
+    border-radius: 999px;
+    background: color-mix(in oklab, var(--c) 55%, transparent);
   }
 
   /* Footer row: feedback loop on left, principle quote on right */
@@ -3589,15 +3600,6 @@
         <div class="cap-strip-visual cs-wrap" aria-hidden="true">
           <div class="cs">
 
-            <!-- Control badges -->
-            <ul class="cs-badges">
-              <li>Scoped access</li>
-              <li>Human approval</li>
-              <li>Traceable outputs</li>
-              <li>Model switchable</li>
-              <li>Regional boundaries</li>
-            </ul>
-
             <!-- Top: Business systems -->
             <div class="cs-layer cs-systems">
               <span class="cs-row-label">Business systems</span>
@@ -3699,6 +3701,7 @@
                   <li>Working demo</li>
                   <li>Team feedback</li>
                   <li>Early usage</li>
+                  <li>Quick fixes</li>
                 </ul>
               </div>
 
@@ -3739,10 +3742,19 @@
                   <li>Monitoring</li>
                   <li>Ownership</li>
                   <li>Improvement loop</li>
+                  <li>Team adoption</li>
                 </ul>
               </div>
 
             </div>
+
+            <!-- Ongoing operations strip -->
+            <ul class="pp-ops" aria-label="Ongoing operations">
+              <li><span class="pp-ops-dot"></span>Daily monitoring</li>
+              <li><span class="pp-ops-dot"></span>Quarterly review</li>
+              <li><span class="pp-ops-dot"></span>Continuous improvement</li>
+              <li><span class="pp-ops-dot"></span>Owner accountability</li>
+            </ul>
 
             <!-- Footer: feedback loop + principle -->
             <div class="pp-foot">
