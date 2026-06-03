@@ -2171,6 +2171,13 @@
     font-size: 14.5px;
     line-height: 1.55;
   }
+  .stack-intro {
+    margin: 18px 0 0;
+    font-size: clamp(15px, 1.1vw, 17px);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 62ch;
+  }
   .stack-note {
     font-size: 13px;
     line-height: 1.5;
@@ -4076,29 +4083,30 @@
     <div class="section-head">
       <div>
         <span class="label-mono"><span class="dot"></span>The stack</span>
-        <h2 style="margin-top: 14px;">We pick the stack that fits the problem.</h2>
+        <h2 style="margin-top: 14px;">Built around your systems, not ours.</h2>
+        <p class="stack-intro">Every AI system needs three decisions: which model to use, where the knowledge comes from, and where the system should run. We make those choices around your workflow, data, and security requirements.</p>
       </div>
       <p class="head-aside">Three layers, every time.</p>
     </div>
 
     <div class="stack-grid">
       <div class="stack-col">
-        <span class="label-mono">01 The brain</span>
-        <h3>Models and reasoning.</h3>
-        <p>Frontier or open source, closed or fine-tuned. We pick the model for the job and switch when the job changes.</p>
-        <p class="stack-note">We work across the major model providers, open and closed.</p>
+        <span class="label-mono">01 The intelligence layer</span>
+        <h3>The right model for the job.</h3>
+        <p>We choose the model based on the task, risk level, cost, and accuracy needed. Frontier, open-source, fine-tuned, or switched later when the job changes.</p>
+        <p class="stack-note">Model choice stays flexible.</p>
       </div>
       <div class="stack-col">
-        <span class="label-mono">02 The memory</span>
-        <h3>Data and retrieval.</h3>
-        <p>Relational, vector, or hybrid. We design where the answers come from, not just the model that generates them.</p>
-        <p class="stack-note">Relational, vector, and hybrid stores, matched to the data.</p>
+        <span class="label-mono">02 The knowledge layer</span>
+        <h3>Answers grounded in your data.</h3>
+        <p>We design where the system gets its context from: documents, databases, product data, policies, CRM records, or knowledge bases. The model should not guess when the answer already exists.</p>
+        <p class="stack-note">Relational, vector, or hybrid retrieval, matched to the data.</p>
       </div>
       <div class="stack-col">
-        <span class="label-mono">03 The deployment</span>
-        <h3>Cloud and deployment.</h3>
-        <p>Wherever your systems already live. Inside your own environment or on-prem. Nothing leaves without your say.</p>
-        <p class="stack-note">Deployed in your environment, your cloud, or on-prem.</p>
+        <span class="label-mono">03 The deployment layer</span>
+        <h3>Deployed where it makes sense.</h3>
+        <p>The system can run in your cloud, our managed environment, EU-hosted infrastructure, or private deployment depending on security, governance, and integration needs.</p>
+        <p class="stack-note">Your environment, your cloud, or on-prem where needed.</p>
       </div>
     </div>
   </div>
