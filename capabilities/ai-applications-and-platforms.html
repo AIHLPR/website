@@ -2513,6 +2513,24 @@
     line-height: 1.6; color: var(--ink-soft);
     margin: 0;
   }
+  .panel-copy .panel-outcome {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink);
+    margin: 0;
+    padding-top: 14px;
+    border-top: 1px dashed var(--hairline);
+  }
+  .panel-copy .panel-outcome b {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--p-c, var(--ink));
+    display: block;
+    margin-bottom: 6px;
+  }
 
   .panel-figure {
     display: flex; flex-direction: column; gap: 10px;
@@ -3095,9 +3113,9 @@
     <div class="block-head">
       <div>
         <span class="label-mono"><span class="dot"></span>Use cases</span>
-        <h2 style="margin-top:14px;">AI applications, shaped to the work in front of you.</h2>
+        <h2 style="margin-top:14px;">AI applications shaped around the work that slows teams down.</h2>
       </div>
-      <p class="block-lede">AI applications are most useful where decisions repeat, context is scattered, and review matters. These use cases show how AI can support the work without removing human judgement.</p>
+      <p class="block-lede">Four common places where work gets stuck: catalogue production, finding answers in documents, customer operations, and approvals. Each one has the same pattern: scattered context, repeated investigation, decisions that need human judgement. An internal AI application brings them into one guided workflow.</p>
     </div>
 
     <div class="poss-stack">
@@ -3105,9 +3123,10 @@
       <div class="poss-stack-copy"><!-- Panel 01 — Retail / Ecommerce -->
       <div class="poss-panel" style="--p-c:#E91E63;">
         <div class="panel-copy">
-          <span class="panel-eyebrow">Retail &middot; Ecommerce</span>
-          <h3>Manage every SKU, across every channel, in every language.</h3>
-          <p class="panel-body">Connect your catalog to your content team, your translators, your support, your marketplaces. Decisions about pricing, listings, and asset operations route to the right person at the right moment. Product, content, translation, and channel teams stay aligned without another manual coordination layer.</p>
+          <span class="panel-eyebrow">Use case 01 &middot; Retail &middot; Ecommerce</span>
+          <h3>Managing catalogue work at scale.</h3>
+          <p class="panel-body">For retail and e-commerce teams, product content often moves through images, copy, translations, callouts, approvals, and marketplace formats. An internal AI application can bring those steps into one guided workflow.</p>
+          <p class="panel-outcome"><b>Outcome:</b> Move from repeated manual production cycles to a structured, reviewable asset workflow.</p>
         </div>
         <div class="panel-figure">
           <div class="dash dash-sku" role="figure" aria-label="Retail SKU dashboard">
@@ -3190,16 +3209,17 @@
               </span>
             </div>
           </div>
-          <span class="stack-line"><b>Stack &middot;</b> AWS &middot; Postgres &middot; pgvector &middot; GPT-4o &middot; Translation API</span>
+          <span class="stack-line"><b>Works with</b>existing product data, asset libraries, approval tools, and export formats.</span>
         </div>
       </div>
 
       <!-- Panel 02 — Knowledge work -->
       <div class="poss-panel flip" style="--p-c:#7E6CE0;">
         <div class="panel-copy">
-          <span class="panel-eyebrow">Knowledge work</span>
-          <h3>Turn the documents your business runs on into decisions.</h3>
-          <p class="panel-body">Contracts, SOPs, internal policies. The AI knows what is in them. It pulls out what matters, cites the source, and routes the question to whoever owns the answer. Answers become easier to find, cite, and route to the right owner.</p>
+          <span class="panel-eyebrow">Use case 02 &middot; Knowledge work</span>
+          <h3>Finding answers buried in documents.</h3>
+          <p class="panel-body">Policies, contracts, SOPs, internal notes, and technical documentation often contain the answer, but the answer is hard to find quickly. An internal AI application can search approved sources, assemble the context, and show where the answer came from.</p>
+          <p class="panel-outcome"><b>Outcome:</b> Questions that took manual searching can become reviewable answers in seconds.</p>
         </div>
         <div class="panel-figure">
           <div class="dash dash-know" role="figure" aria-label="Knowledge retrieval dashboard">
@@ -3263,16 +3283,17 @@
               </div>
             </div>
           </div>
-          <span class="stack-line"><b>Stack &middot;</b> Azure &middot; SageMaker &middot; Postgres &middot; Claude &middot; OCR</span>
+          <span class="stack-line"><b>Works with</b>document stores, knowledge bases, SharePoint, Google Drive, Notion, and internal databases.</span>
         </div>
       </div>
 
       <!-- Panel 03 — Customer operations -->
       <div class="poss-panel" style="--p-c:#CC418C;">
         <div class="panel-copy">
-          <span class="panel-eyebrow">Customer operations</span>
-          <h3>Support that holds when volume doubles.</h3>
-          <p class="panel-body">Tickets triaged, multilingual responses prepared, escalations routed to the right team. Customers get faster responses while the team keeps control of quality and escalation.</p>
+          <span class="panel-eyebrow">Use case 03 &middot; Customer operations</span>
+          <h3>Customer operations with better first drafts.</h3>
+          <p class="panel-body">Support, success, and operations teams often repeat the same investigation work before replying to a customer or escalating an issue. An AI application can prepare draft responses, summarise history, and route exceptions to the right person.</p>
+          <p class="panel-outcome"><b>Outcome:</b> Teams spend less time preparing the answer and more time resolving the issue.</p>
         </div>
         <div class="panel-figure">
           <div class="dash dash-cust" role="figure" aria-label="Customer ops triage queue">
@@ -3393,16 +3414,17 @@
               </span>
             </div>
           </div>
-          <span class="stack-line"><b>Stack &middot;</b> AWS &middot; Lambda &middot; Postgres &middot; Whisper &middot; GPT-4o</span>
+          <span class="stack-line"><b>Works with</b>CRM, helpdesk, inbox, ticketing, and communication tools.</span>
         </div>
       </div>
 
       <!-- Panel 04 — Workflow & approvals -->
       <div class="poss-panel flip" style="--p-c:#9B59B6;">
         <div class="panel-copy">
-          <span class="panel-eyebrow">Workflow &middot; Approvals</span>
-          <h3>The approvals running your business, faster and traceable.</h3>
-          <p class="panel-body">Finance gates, legal reviews, procurement chains. AI assembles the context, suggests the next step, the person decides. Every decision recorded, ready to defend.</p>
+          <span class="panel-eyebrow">Use case 04 &middot; Workflow &middot; Approvals</span>
+          <h3>Approval chains that slow everything down.</h3>
+          <p class="panel-body">Approvals often stall because the approver does not have the full context. An internal AI system can prepare the decision pack, show the source material, highlight risks, and keep the audit trail.</p>
+          <p class="panel-outcome"><b>Outcome:</b> Approvers get the context they need before the decision reaches them.</p>
         </div>
         <div class="panel-figure">
           <div class="dash dash-flow" role="figure" aria-label="Approval chain dashboard">
@@ -3455,7 +3477,7 @@
               </span>
             </div>
           </div>
-          <span class="stack-line"><b>Stack &middot;</b> Azure &middot; Service Bus &middot; Postgres &middot; GPT-4o &middot; OIDC</span>
+          <span class="stack-line"><b>Works with</b>approval queues, Slack or Teams, email, project tools, and internal systems.</span>
         </div>
       </div>
 
@@ -3543,7 +3565,7 @@
               </span>
             </div>
           </div>
-                    <span class="stack-line"><b>Stack &middot;</b> AWS &middot; Postgres &middot; pgvector &middot; GPT-4o &middot; Translation API</span>
+                    <span class="stack-line"><b>Works with</b>existing product data, asset libraries, approval tools, and export formats.</span>
         </div>
         <div class="panel-figure" data-stage-idx="1">
           <div class="dash dash-know" role="figure" aria-label="Knowledge retrieval dashboard">
@@ -3607,7 +3629,7 @@
               </div>
             </div>
           </div>
-                    <span class="stack-line"><b>Stack &middot;</b> Azure &middot; SageMaker &middot; Postgres &middot; Claude &middot; OCR</span>
+                    <span class="stack-line"><b>Works with</b>document stores, knowledge bases, SharePoint, Google Drive, Notion, and internal databases.</span>
         </div>
         <div class="panel-figure" data-stage-idx="2">
           <div class="dash dash-cust" role="figure" aria-label="Customer ops triage queue">
@@ -3728,7 +3750,7 @@
               </span>
             </div>
           </div>
-                    <span class="stack-line"><b>Stack &middot;</b> AWS &middot; Lambda &middot; Postgres &middot; Whisper &middot; GPT-4o</span>
+                    <span class="stack-line"><b>Works with</b>CRM, helpdesk, inbox, ticketing, and communication tools.</span>
         </div>
         <div class="panel-figure" data-stage-idx="3">
           <div class="dash dash-flow" role="figure" aria-label="Approval chain dashboard">
@@ -3781,7 +3803,7 @@
               </span>
             </div>
           </div>
-                    <span class="stack-line"><b>Stack &middot;</b> Azure &middot; Service Bus &middot; Postgres &middot; GPT-4o &middot; OIDC</span>
+                    <span class="stack-line"><b>Works with</b>approval queues, Slack or Teams, email, project tools, and internal systems.</span>
                   </div>
         </div>
         </div>
