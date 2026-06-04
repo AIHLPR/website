@@ -1403,6 +1403,57 @@
     border-color: var(--ah-ink);
   }
   .apps-hero__cta.is-primary:hover { background: #1F1F1F; }
+  .apps-hero__risk {
+    margin: 14px 0 0;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--ah-ink-muted);
+    max-width: 50ch;
+    font-style: italic;
+  }
+
+  /* Floating mockup annotations. Hidden on narrow screens where they'd overlap the chrome. */
+  .apps-hero__labels {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 5;
+  }
+  .apps-hero__label {
+    position: absolute;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.96);
+    border: 1px solid var(--ah-hairline);
+    color: var(--ah-ink);
+    font-family: var(--ah-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    box-shadow: 0 10px 24px -16px rgba(0, 0, 0, 0.28);
+    white-space: nowrap;
+  }
+  .apps-hero__label-dot {
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: var(--ah-pink, #E91E63);
+    flex: 0 0 auto;
+    box-shadow: 0 0 0 4px color-mix(in oklab, var(--ah-pink, #E91E63) 18%, transparent);
+  }
+  /* Anchor positions, roughly aligned with the operator console panels */
+  .apps-hero__label--ctx     { top: 22%;  right: -4%;  }
+  .apps-hero__label--src     { top: 4%;   left:  -8%;  }
+  .apps-hero__label--approve { bottom: 30%; right: -6%; }
+  .apps-hero__label--audit   { bottom: 6%; left: -6%; }
+
+  /* On narrow screens the labels would overlap the mockup chrome; hide them. */
+  @media (max-width: 1080px) {
+    .apps-hero__labels { display: none; }
+  }
 
   /* =====================================================================
      OPERATOR CONSOLE (right column)
@@ -1980,16 +2031,17 @@
         <span>Apps &amp; Platforms</span>
       </span>
 
-      <h1 class="apps-hero__h1">AI Applications &amp; Internal Platforms</h1>
+      <h1 class="apps-hero__h1">Internal AI systems your teams actually use.</h1>
 
-      <p class="apps-hero__lede">Internal AI systems designed around real operational environments.</p>
+      <p class="apps-hero__lede">Operational software, not demos.</p>
 
-      <p class="apps-hero__sub">Every business runs on decisions moving through queues: approvals, reviews, sign-offs, exceptions, and handovers. The application surface brings context, AI assistance, human approval, and audit trails into the same place.</p>
+      <p class="apps-hero__sub">Every day, decisions queue up because the right context is spread across documents, inboxes, dashboards, and approvals. AIHLPR builds internal applications that bring the context together, route the work, keep the audit trail, and leave the final decision with your team.</p>
 
       <div class="apps-hero__ctas">
-        <a class="apps-hero__cta is-primary" href="../Home.html#contact">Discuss internal AI systems &rarr;</a>
-        <a class="apps-hero__cta" href="../Home.html#capabilities">Explore capabilities &rarr;</a>
+        <a class="apps-hero__cta is-primary" href="../Home.html#contact">Book a scoping call &rarr;</a>
       </div>
+
+      <p class="apps-hero__risk">30-minute call. No pitch deck. We&rsquo;ll tell you where AI fits, where it doesn&rsquo;t, and what a useful first version could look like.</p>
     </div>
 
     <!-- ============ RIGHT · Operator console + cursor stage ============ -->
@@ -2272,6 +2324,26 @@
         </svg>
       </div>
       <div class="oc-ripple" data-ripple aria-hidden="true"></div>
+
+      <!-- Floating annotations: explain the mockup to non-technical buyers -->
+      <div class="apps-hero__labels" aria-hidden="true">
+        <span class="apps-hero__label apps-hero__label--ctx">
+          <span class="apps-hero__label-dot"></span>
+          AI-assembled context
+        </span>
+        <span class="apps-hero__label apps-hero__label--src">
+          <span class="apps-hero__label-dot"></span>
+          Sources stay visible
+        </span>
+        <span class="apps-hero__label apps-hero__label--approve">
+          <span class="apps-hero__label-dot"></span>
+          Human approval stays in control
+        </span>
+        <span class="apps-hero__label apps-hero__label--audit">
+          <span class="apps-hero__label-dot"></span>
+          Full audit trail
+        </span>
+      </div>
 
     </div><!-- /.apps-hero__stage -->
 
