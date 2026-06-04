@@ -1242,6 +1242,24 @@
     line-height: 1.25;
   }
   .evolve-step .d { font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; }
+  .evolve-step .evolve-outcome {
+    font-size: 12px;
+    color: var(--ink);
+    line-height: 1.5;
+    padding-top: 10px;
+    margin-top: 4px;
+    border-top: 1px solid var(--hairline);
+  }
+  .evolve-step .evolve-outcome b {
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--pink, #E91E63);
+    display: block;
+    margin-bottom: 4px;
+  }
   .evolve-mini {
     margin-top: auto;
     background: var(--white); border: 1px solid var(--hairline);
@@ -2348,6 +2366,50 @@
     </div><!-- /.apps-hero__stage -->
 
   </div><!-- /.apps-hero__container -->
+</section>
+
+<!-- SECTION — Scaling journey: start small, expand into an operating layer -->
+<section class="block evolve-section">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Scaling journey</span>
+        <h2 style="margin-top:14px;">Start with one workflow. Grow into an operating layer.</h2>
+      </div>
+      <p class="block-lede">The safest way to build internal AI is not to automate everything at once. Start with one high-friction workflow, prove the value, then expand into the connected places where the same context, approvals, and audit trail can create more leverage.</p>
+    </div>
+
+    <div class="evolve">
+      <div class="evolve-step">
+        <span class="lbl"><span class="num">01</span> Stage</span>
+        <span class="t">Start with one team</span>
+        <span class="d">Pick a workflow where work already gets stuck: an inbox, approval queue, document review, product request, or support handover.</span>
+        <span class="evolve-outcome"><b>Business outcome:</b> A focused first version that saves time without changing how the whole company works.</span>
+        <div class="evolve-mini s1"><i></i></div>
+      </div>
+      <div class="evolve-step">
+        <span class="lbl"><span class="num">02</span> Stage</span>
+        <span class="t">Expand the workflow</span>
+        <span class="d">Once the first workflow is trusted, connect the next step: routing, review, notifications, exports, or reporting.</span>
+        <span class="evolve-outcome"><b>Business outcome:</b> Less manual coordination between teams and fewer dropped tasks.</span>
+        <div class="evolve-mini s2"><i class="accent"></i><i></i></div>
+      </div>
+      <div class="evolve-step">
+        <span class="lbl"><span class="num">03</span> Stage</span>
+        <span class="t">Connect the systems</span>
+        <span class="d">Bring in the systems your team already uses: CRM, ERP, document storage, spreadsheets, ticketing tools, or internal databases.</span>
+        <span class="evolve-outcome"><b>Business outcome:</b> People stop hunting across tools before making a decision.</span>
+        <div class="evolve-mini s3"><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="evolve-step">
+        <span class="lbl"><span class="num">04</span> Stage</span>
+        <span class="t">Operate with visibility</span>
+        <span class="d">Add permissions, review states, audit logs, usage tracking, and improvement loops.</span>
+        <span class="evolve-outcome"><b>Business outcome:</b> Leadership gets a system that can be trusted, monitored, and improved over time.</span>
+        <div class="evolve-mini s4"><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- SECTION 2 — AI applications, shaped to the work (4 vertical panels w/ dashboards) -->
@@ -4282,48 +4344,6 @@
     obs.observe(sys);
   })();
 </script>
-
-<!-- SECTION 5 — Designed to Evolve -->
-<section class="block">
-  <div class="container">
-    <div class="block-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>Designed to evolve</span>
-        <h2 style="margin-top:14px;">From one team's tool to an operating layer for the whole organisation.</h2>
-      </div>
-      <p class="block-lede">Internal AI scales through proven workflows. A single tool becomes a workspace, then a connected platform, then an operating layer with shared context, controls, and auditability.</p>
-    </div>
-
-    <div class="evolve">
-      <div class="evolve-step">
-        <span class="lbl"><span class="num">01</span> Start</span>
-        <span class="t">A single internal tool.</span>
-        <span class="d">One team, one workflow. Replaces the spreadsheet, the bot, the manual hand-off.</span>
-        <div class="evolve-mini s1"><i></i></div>
-      </div>
-      <div class="evolve-step">
-        <span class="lbl"><span class="num">02</span> Expand</span>
-        <span class="t">An operational workspace.</span>
-        <span class="d">Inbox, queue, knowledge, and audit chain — same surface, more of the work the team owns.</span>
-        <div class="evolve-mini s2"><i class="accent"></i><i></i></div>
-      </div>
-      <div class="evolve-step">
-        <span class="lbl"><span class="num">03</span> Connect</span>
-        <span class="t">A multi-team platform.</span>
-        <span class="d">Support, catalogue, translation, compliance — distinct surfaces sharing context, controls, and audit.</span>
-        <div class="evolve-mini s3"><i></i><i></i><i></i><i></i><i></i><i></i></div>
-      </div>
-      <div class="evolve-step">
-        <span class="lbl"><span class="num">04</span> Operate</span>
-        <span class="t">An organisation-wide operating layer.</span>
-        <span class="d">A consistent way for the whole company to delegate to AI, review work, and stay accountable for it.</span>
-        <div class="evolve-mini s4"><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i class="on"></i><i></i><i></i><i></i><i></i><i></i><i class="on"></i><i></i><i class="on"></i></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
 <!-- SECTION 6 — Partnership / how we work -->
 <style>
   .partnership {
