@@ -371,8 +371,24 @@
   .final-cta-card .btn-ghost:hover { border-color: var(--white); background: var(--white); color: var(--ink); }
   .final-cta-actions {
     display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end;
+    align-items: center;
   }
-  @media (max-width: 880px) { .final-cta-actions { justify-content: flex-start; } }
+  .final-cta-risk {
+    display: block;
+    flex-basis: 100%;
+    text-align: right;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.55);
+    font-style: italic;
+    margin-top: 6px;
+    max-width: 38ch;
+    margin-left: auto;
+  }
+  @media (max-width: 880px) {
+    .final-cta-actions { justify-content: flex-start; }
+    .final-cta-risk { text-align: left; margin-left: 0; }
+  }
 
   /* Footer */
   .footer {
@@ -3870,176 +3886,6 @@
 
 </section>
 
-<!-- SECTION 3 — Engineered into your stack (architecture pillars) -->
-<style>
-  .ai-arch {
-    background: var(--surface-2);
-    color: var(--ink);
-    padding: clamp(100px, 12vw, 168px) 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .ai-arch .block-head { margin-bottom: clamp(56px, 6vw, 88px); }
-
-  .ai-arch-grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: clamp(14px, 1.4vw, 20px);
-  }
-  @media (max-width: 1280px) { .ai-arch-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
-  @media (max-width: 880px)  { .ai-arch-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 540px)  { .ai-arch-grid { grid-template-columns: 1fr; } }
-
-  .ai-arch-card {
-    border: 1px solid var(--hairline-strong);
-    border-radius: 10px;
-    background: var(--white);
-    padding: clamp(22px, 2vw, 28px) clamp(20px, 1.8vw, 24px);
-    display: flex; flex-direction: column;
-    gap: 14px;
-    transition: background 200ms var(--ease), border-color 200ms var(--ease);
-  }
-  .ai-arch-card:hover { background: var(--white); border-color: var(--ink); }
-  .ai-arch-card .num {
-    font-family: var(--font-mono); font-size: 10px;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--c); font-weight: 600;
-  }
-  .ai-arch-card h3 {
-    font-family: var(--font-display);
-    font-size: clamp(20px, 1.7vw, 24px);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: var(--ink);
-    margin: 0;
-    line-height: 1.15;
-  }
-  .ai-arch-card .sub {
-    font-size: 13.5px; line-height: 1.55;
-    color: var(--ink-soft);
-    margin: 0;
-    max-width: 32ch;
-  }
-  .ai-arch-card .items {
-    list-style: none; padding: 0; margin: 4px 0 0;
-    display: flex; flex-direction: column; gap: 8px;
-    border-top: 1px solid var(--hairline);
-    padding-top: 16px;
-  }
-  .ai-arch-card .items li {
-    font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.04em;
-    color: var(--ink);
-    line-height: 1.45;
-    padding-left: 12px;
-    position: relative;
-  }
-  .ai-arch-card .items li::before {
-    content: ""; position: absolute;
-    left: 0; top: 7px;
-    width: 5px; height: 1px;
-    background: var(--c);
-  }
-
-  .ai-arch-foot {
-    margin-top: clamp(40px, 4.6vw, 64px);
-    padding-top: 22px;
-    border-top: 1px solid var(--hairline);
-    display: flex; gap: clamp(18px, 2vw, 32px);
-    flex-wrap: wrap;
-    font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: var(--ink-muted);
-  }
-  .ai-arch-foot b { color: var(--ink); font-weight: 600; letter-spacing: 0.02em; margin-right: 6px; }
-</style>
-
-<section class="ai-arch">
-  <div class="container">
-    <div class="block-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>Where it lives</span>
-        <h2 style="margin-top:14px;">Engineered into your stack.</h2>
-      </div>
-      <p class="block-lede">Clear system boundaries matter. Deployment, identity, integrations, model choice, and data controls are defined before the workflow goes live.</p>
-    </div>
-
-    <div class="ai-arch-grid">
-      <article class="ai-arch-card">
-        <span class="num">01</span>
-        <h3>Deployment</h3>
-        <p class="sub">Cloud, private network, or on-prem deployment. Region-pinned where required, with customer-held keys on request.</p>
-        <ul class="items">
-          <li>AWS &middot; Azure &middot; GCP</li>
-          <li>Private network / on-prem</li>
-          <li>Region pinning &middot; EU residency</li>
-          <li>VPC isolation</li>
-          <li>BYO key management (KMS)</li>
-          <li>Sovereign deployment</li>
-        </ul>
-      </article>
-
-      <article class="ai-arch-card">
-        <span class="num">02</span>
-        <h3>Identity</h3>
-        <p class="sub">Existing SSO and identity provider. Roles, scopes, and access decisions stay within the organisation&rsquo;s control.</p>
-        <ul class="items">
-          <li>SAML &middot; OIDC &middot; SCIM</li>
-          <li>Roles inherit from your IDP</li>
-          <li>MFA enforced by you</li>
-          <li>Just-in-time access</li>
-          <li>Per-tenant role scoping</li>
-        </ul>
-      </article>
-
-      <article class="ai-arch-card">
-        <span class="num">03</span>
-        <h3>Integrations</h3>
-        <p class="sub">Connects to existing business systems. No rip-and-replace. No parallel operating layer.</p>
-        <ul class="items">
-          <li>Salesforce &middot; HubSpot</li>
-          <li>SAP &middot; NetSuite &middot; Oracle</li>
-          <li>M365 &middot; Google Workspace</li>
-          <li>SharePoint &middot; Confluence</li>
-          <li>Snowflake &middot; Databricks &middot; Postgres</li>
-          <li>Kafka &middot; Service Bus &middot; webhooks</li>
-        </ul>
-      </article>
-
-      <article class="ai-arch-card">
-        <span class="num">04</span>
-        <h3>Model layer</h3>
-        <p class="sub">The right model for the task. Swappable as the landscape changes, with routing for cost, latency, and control.</p>
-        <ul class="items">
-          <li>GPT &middot; Claude &middot; Gemini</li>
-          <li>Open weights (Llama, Mistral)</li>
-          <li>Fine-tuned on your domain</li>
-          <li>LLM router &middot; cost/latency aware</li>
-          <li>No vendor lock-in</li>
-        </ul>
-      </article>
-
-      <article class="ai-arch-card">
-        <span class="num">05</span>
-        <h3>Data sovereignty</h3>
-        <p class="sub">Data stays inside defined boundaries. Every action is recorded, scoped, and reviewable.</p>
-        <ul class="items">
-          <li>Encryption at rest &amp; in transit</li>
-          <li>Scoped reads &middot; scoped writes</li>
-          <li>Immutable action log</li>
-          <li>Per-tenant isolation</li>
-          <li>GDPR / SOC 2 / ISO 27001 ready</li>
-        </ul>
-      </article>
-    </div>
-
-    <div class="ai-arch-foot">
-      <span><b>Cloud-agnostic.</b> AWS &middot; Azure &middot; GCP &middot; on-prem</span>
-      <span><b>Your perimeter.</b> data never leaves your boundary</span>
-      <span><b>Model-agnostic.</b> swap models as the landscape shifts</span>
-      <span><b>IT-reviewed.</b> deployable as documented</span>
-    </div>
-  </div>
-</section>
 
 
 <!-- SECTION 4 — The architecture of a decision (system diagram) -->
@@ -4387,39 +4233,257 @@
     padding: clamp(72px, 8vw, 112px) 0;
     border-top: 1px solid var(--hairline);
   }
-  .partnership-inner {
-    max-width: 760px;
-    display: flex; flex-direction: column; gap: 14px;
+  .partnership-head {
+    max-width: 820px;
+    margin-bottom: clamp(40px, 5vw, 60px);
   }
-  .partnership-inner h3 {
+  .partnership-head h2 {
     font-family: var(--font-display);
-    font-size: clamp(24px, 2.2vw, 32px);
-    line-height: 1.25;
-    letter-spacing: -0.02em;
+    font-size: clamp(28px, 3vw, 42px);
+    line-height: 1.15;
+    letter-spacing: -0.025em;
     color: var(--ink);
-    font-weight: 500;
-    margin: 0;
-    max-width: 30ch;
+    font-weight: 600;
+    margin: 14px 0 18px;
+    max-width: 22ch;
   }
-  .partnership-inner p {
+  .partnership-lede {
     font-family: var(--font-body);
-    font-size: clamp(15px, 1.1vw, 16.5px);
+    font-size: clamp(15px, 1.1vw, 17px);
     line-height: 1.6;
     color: var(--ink-soft);
     margin: 0;
-    max-width: 60ch;
+    max-width: 62ch;
+  }
+  .partnership-proof {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2.2vw, 32px);
+  }
+  @media (max-width: 880px) {
+    .partnership-proof { grid-template-columns: 1fr; }
+  }
+  .proof-block {
+    padding: clamp(24px, 2.4vw, 32px);
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .proof-block .proof-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--pink, #E91E63);
+  }
+  .proof-block h3 {
+    font-family: var(--font-display);
+    font-size: clamp(17px, 1.4vw, 20px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    color: var(--ink);
+    margin: 4px 0 0;
+  }
+  .proof-block p {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
   }
 </style>
 
 <section class="partnership">
   <div class="container">
-    <div class="partnership-inner">
+    <div class="partnership-head">
       <span class="label-mono"><span class="dot"></span>How we work</span>
-      <h3>Built with IT, operated with the business.</h3>
-      <p>Deep IT experience applied to AI systems: approvals, oversight, traceability, and deployment discipline from day one.</p>
+      <h2>Built with IT. Operated by the teams doing the work.</h2>
+      <p class="partnership-lede">
+        Internal AI systems need two kinds of trust. IT needs to know where the data lives, how access is controlled, and how the system can be reviewed. Business teams need a tool that fits the way work actually moves. AIHLPR designs both sides together: secure enough for IT review, practical enough for daily use, and clear enough for teams to understand what the system is doing.
+      </p>
+    </div>
+
+    <div class="partnership-proof">
+      <article class="proof-block">
+        <span class="proof-num">01</span>
+        <h3>IT does not get bypassed</h3>
+        <p>Deployment, access control, data boundaries, and audit trails are designed into the workflow from the start.</p>
+      </article>
+      <article class="proof-block">
+        <span class="proof-num">02</span>
+        <h3>Business teams stay in control</h3>
+        <p>AI prepares context, drafts, routes, and recommendations. People still approve the decisions that matter.</p>
+      </article>
+      <article class="proof-block">
+        <span class="proof-num">03</span>
+        <h3>The first version is intentionally small</h3>
+        <p>Start with one workflow, one team, and one measurable outcome before expanding into a wider operating layer.</p>
+      </article>
     </div>
   </div>
 </section>
+
+<!-- SECTION 3 — Engineered into your stack (architecture pillars) -->
+<style>
+  .ai-arch {
+    background: var(--surface-2);
+    color: var(--ink);
+    padding: clamp(100px, 12vw, 168px) 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .ai-arch .block-head { margin-bottom: clamp(56px, 6vw, 88px); }
+
+  .ai-arch-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(14px, 1.4vw, 20px);
+  }
+  @media (max-width: 1280px) { .ai-arch-grid { grid-template-columns: repeat(3, 1fr); gap: 18px; } }
+  @media (max-width: 880px)  { .ai-arch-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px)  { .ai-arch-grid { grid-template-columns: 1fr; } }
+
+  .ai-arch-card {
+    border: 1px solid var(--hairline-strong);
+    border-radius: 10px;
+    background: var(--white);
+    padding: clamp(22px, 2vw, 28px) clamp(20px, 1.8vw, 24px);
+    display: flex; flex-direction: column;
+    gap: 14px;
+    transition: background 200ms var(--ease), border-color 200ms var(--ease);
+  }
+  .ai-arch-card:hover { background: var(--white); border-color: var(--ink); }
+  .ai-arch-card .num {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--c); font-weight: 600;
+  }
+  .ai-arch-card h3 {
+    font-family: var(--font-display);
+    font-size: clamp(20px, 1.7vw, 24px);
+    font-weight: 500;
+    letter-spacing: -0.02em;
+    color: var(--ink);
+    margin: 0;
+    line-height: 1.15;
+  }
+  .ai-arch-card .sub {
+    font-size: 13.5px; line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 32ch;
+  }
+  .ai-arch-card .items {
+    list-style: none; padding: 0; margin: 4px 0 0;
+    display: flex; flex-direction: column; gap: 8px;
+    border-top: 1px solid var(--hairline);
+    padding-top: 16px;
+  }
+  .ai-arch-card .items li {
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    line-height: 1.45;
+    padding-left: 12px;
+    position: relative;
+  }
+  .ai-arch-card .items li::before {
+    content: ""; position: absolute;
+    left: 0; top: 7px;
+    width: 5px; height: 1px;
+    background: var(--c);
+  }
+
+  .ai-arch-foot {
+    margin-top: clamp(40px, 4.6vw, 64px);
+    padding-top: 22px;
+    border-top: 1px solid var(--hairline);
+    display: flex; gap: clamp(18px, 2vw, 32px);
+    flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .ai-arch-foot b { color: var(--ink); font-weight: 600; letter-spacing: 0.02em; margin-right: 6px; }
+
+  /* Trust strip — 5 prominent pills below the technical reassurance cards */
+  .trust-strip {
+    list-style: none;
+    margin: clamp(40px, 4.6vw, 64px) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 14px;
+  }
+  .trust-strip li {
+    font-family: var(--font-mono);
+    font-size: clamp(11px, 1vw, 13px);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: 12px 22px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    background: var(--white);
+  }
+</style>
+
+<section class="ai-arch">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Technical reassurance</span>
+        <h2 style="margin-top:14px;">Designed to fit the systems you already trust.</h2>
+      </div>
+      <p class="block-lede">The technical setup depends on the client environment. The principle stays the same: keep data boundaries clear, integrate with existing systems, avoid unnecessary lock-in, and make the workflow reviewable by IT.</p>
+    </div>
+
+    <div class="ai-arch-grid">
+      <article class="ai-arch-card">
+        <span class="num">01</span>
+        <h3>Where does the data live?</h3>
+        <p class="sub">Cloud, private cloud, or client-controlled environments can be considered depending on security and operational needs.</p>
+      </article>
+
+      <article class="ai-arch-card">
+        <span class="num">02</span>
+        <h3>Who can access what?</h3>
+        <p class="sub">Role-based access, identity systems, permission scopes, and approval rights are designed around the organisation&rsquo;s existing controls.</p>
+      </article>
+
+      <article class="ai-arch-card">
+        <span class="num">03</span>
+        <h3>What systems does it connect to?</h3>
+        <p class="sub">The application can connect to CRMs, ERPs, document stores, spreadsheets, ticketing systems, internal databases, and communication tools.</p>
+      </article>
+
+      <article class="ai-arch-card">
+        <span class="num">04</span>
+        <h3>Which AI model is used?</h3>
+        <p class="sub">The right model is selected for the task. The system does not need to be locked to one provider as needs, cost, or compliance requirements change.</p>
+      </article>
+
+      <article class="ai-arch-card">
+        <span class="num">05</span>
+        <h3>How is it reviewed?</h3>
+        <p class="sub">Logs, source references, approval states, and monitoring help teams understand what happened and improve the workflow over time.</p>
+      </article>
+    </div>
+
+    <ul class="trust-strip" aria-label="Trust attributes">
+      <li>Cloud-aware</li>
+      <li>IT-reviewed</li>
+      <li>Human-approved</li>
+      <li>Model-flexible</li>
+      <li>Audit-ready</li>
+    </ul>
+  </div>
+</section>
+
 
 
 <!-- FINAL CTA -->
@@ -4428,17 +4492,18 @@
     <div class="final-cta-card">
       <div class="final-cta-grid">
         <div>
-          <span class="label-mono"><span class="dot"></span>Build with us</span>
-          <h2>Build internal AI systems teams use every day.</h2>
-          <p>Operational software, not demos. Designed around the queues, approvals, and decision surfaces teams already use, grounded in the organisation&rsquo;s own context.</p>
+          <span class="label-mono"><span class="dot"></span>Start here</span>
+          <h2>Build an internal AI system your team can trust.</h2>
+          <p>Start with one workflow where work is slow, repetitive, or dependent on scattered context. We&rsquo;ll help define the smallest useful version, the human review points, the systems involved, and the outcome worth measuring.</p>
         </div>
         <div class="final-cta-actions">
           <a class="btn btn-primary" href="../Home.html#contact">
-            Scope an internal system <span class="arrow">&rarr;</span>
+            Book a scoping call <span class="arrow">&rarr;</span>
           </a>
-          <a class="btn btn-ghost" href="../Home.html#capabilities">
-            See other capabilities <span class="arrow">&rarr;</span>
+          <a class="btn btn-ghost" href="../Home.html#work">
+            Read a case study <span class="arrow">&rarr;</span>
           </a>
+          <span class="final-cta-risk">30-minute call. No obligation. We&rsquo;ll help identify the fastest useful workflow and whether it is worth building.</span>
         </div>
       </div>
     </div>
