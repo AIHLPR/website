@@ -1963,6 +1963,44 @@
   }
   .gs-stack-hint b { color: var(--ink); font-weight: 700; letter-spacing: 0.04em; }
 
+  /* Buyer-facing one-liner above the technical details */
+  .gs-when {
+    margin: 14px 0 0;
+    font-size: 13.5px;
+    line-height: 1.5;
+    color: var(--ink);
+  }
+  /* Technical pattern collapsed behind a small disclosure */
+  .gs-tech {
+    margin-top: 8px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+  }
+  .gs-tech > summary {
+    list-style: none;
+    cursor: pointer;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    padding: 4px 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+  .gs-tech > summary::-webkit-details-marker { display: none; }
+  .gs-tech > summary::before {
+    content: "+";
+    display: inline-block;
+    color: var(--ink);
+    font-weight: 700;
+  }
+  .gs-tech[open] > summary::before { content: "\2212"; }
+  .gs-tech > summary:hover { color: var(--ink); }
+  .gs-tech .gs-stack-hint {
+    display: block;
+    margin-top: 6px;
+  }
+
   .gs-diagram {
     background: var(--surface-2);
     border: 1px solid var(--hairline-strong);
@@ -2046,10 +2084,10 @@
       <p class="hero-sub">AI becomes useful when it connects to real data, workflows, approvals, governance, and measurable outcomes. This page shows where AI enters the organisation, where it usually stalls, and what needs to be designed for production.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="../Home.html#contact">
-          Book a scoping call <span class="arrow">&rarr;</span>
+          Scope an enterprise AI system <span class="arrow">&rarr;</span>
         </a>
-        <a class="btn btn-secondary" href="../Home.html#work">
-          Explore case studies <span class="arrow">&rarr;</span>
+        <a class="btn btn-secondary" href="#generative">
+          See how production AI works <span class="arrow">&darr;</span>
         </a>
       </div>
     </div>
@@ -2224,9 +2262,9 @@
     <div class="block-head">
       <div>
         <span class="label-mono"><span class="dot"></span>03 &middot; How we build</span>
-        <h2 style="margin-top:14px;">Generative systems engineered for production.</h2>
+        <h2 style="margin-top:14px;">The AI capabilities behind the operating layer.</h2>
       </div>
-      <p class="block-lede">The capabilities people associate with AI today, engineered to run inside an enterprise: retrieval-grounded, evaluated, governed, swappable across models as the landscape shifts.</p>
+      <p class="block-lede">These are the technical patterns used underneath the system. Buyers do not need to choose them upfront; they are selected based on the workflow, data, risk, and operating environment.</p>
     </div>
 
     <div class="gs-stack">
@@ -2237,7 +2275,11 @@
           <span class="gs-eyebrow">RAG</span>
           <h3>Retrieval-augmented generation.</h3>
           <p>The model answers from <b>your data</b>, not its training set. Every answer carries source attribution, permissioned by the user asking.</p>
-          <span class="gs-stack-hint"><b>Stack &middot;</b> Vector store &middot; permissioned retrieval &middot; LLM</span>
+          <p class="gs-when">Used when teams need cited answers from internal knowledge.</p>
+          <details class="gs-tech">
+            <summary>Technical pattern</summary>
+            <span class="gs-stack-hint"><b>Stack &middot;</b> Vector store &middot; permissioned retrieval &middot; LLM</span>
+          </details>
         </div>
         <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 300" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
             <defs>
@@ -2356,7 +2398,11 @@
           <span class="gs-eyebrow">Fine-tuning</span>
           <h3>Domain adaptation.</h3>
           <p>Fine-tune open or closed models on your documents, your decisions, your voice. The model speaks <b>your language</b>, not a generic one.</p>
-          <span class="gs-stack-hint"><b>Stack &middot;</b> Open weights &middot; LoRA / QLoRA &middot; eval suite &middot; registry</span>
+          <p class="gs-when">Used when a general model is close but needs to learn the team's language, decisions, or document style.</p>
+          <details class="gs-tech">
+            <summary>Technical pattern</summary>
+            <span class="gs-stack-hint"><b>Stack &middot;</b> Open weights &middot; LoRA / QLoRA &middot; eval suite &middot; registry</span>
+          </details>
         </div>
         <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 320" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
             <defs>
@@ -2494,7 +2540,11 @@
           <span class="gs-eyebrow">Agents</span>
           <h3>Agentic workflows.</h3>
           <p>Long-running AI processes that carry repeated tasks across business systems and hand back to a person when judgement is needed.</p>
-          <span class="gs-stack-hint"><b>Stack &middot;</b> Tool calling &middot; planner &middot; memory &middot; human-in-loop gate</span>
+          <p class="gs-when">Used for long-running AI processes that handle repeated tasks and hand back to a person when judgement is needed.</p>
+          <details class="gs-tech">
+            <summary>Technical pattern</summary>
+            <span class="gs-stack-hint"><b>Stack &middot;</b> Tool calling &middot; planner &middot; memory &middot; human-in-loop gate</span>
+          </details>
         </div>
         <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 240" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
             <rect x="20" y="14" width="120" height="28" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1"/>
@@ -2536,7 +2586,11 @@
           <span class="gs-eyebrow">Vector search</span>
           <h3>Semantic retrieval.</h3>
           <p>Find by meaning, not keywords. Documents, prior decisions, customer cases, all searchable by what they <b>mean</b>.</p>
-          <span class="gs-stack-hint"><b>Stack &middot;</b> pgvector &middot; Pinecone &middot; OpenSearch &middot; in-house indexes</span>
+          <p class="gs-when">Used when teams need to find documents, decisions, or cases by meaning, not keyword.</p>
+          <details class="gs-tech">
+            <summary>Technical pattern</summary>
+            <span class="gs-stack-hint"><b>Stack &middot;</b> pgvector &middot; Pinecone &middot; OpenSearch &middot; in-house indexes</span>
+          </details>
         </div>
         <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 240" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
             <rect x="20" y="14" width="180" height="26" rx="3" fill="#fff" stroke="#8A8A8A" stroke-width="0.8"/>
@@ -2575,7 +2629,11 @@
           <span class="gs-eyebrow">Multi-modal</span>
           <h3>Text, vision, voice.</h3>
           <p>Vision models classify and extract. Speech models transcribe. Language models reason. All under <b>one governance frame</b>, audited the same way.</p>
-          <span class="gs-stack-hint"><b>Stack &middot;</b> CLIP &middot; Whisper &middot; GPT-4o &middot; Claude &middot; Gemini</span>
+          <p class="gs-when">Used when work involves images, voice, or scanned material alongside text - all governed in one frame.</p>
+          <details class="gs-tech">
+            <summary>Technical pattern</summary>
+            <span class="gs-stack-hint"><b>Stack &middot;</b> CLIP &middot; Whisper &middot; GPT-4o &middot; Claude &middot; Gemini</span>
+          </details>
         </div>
         <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 240" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
             <rect x="20" y="20" width="130" height="50" rx="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
