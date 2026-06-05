@@ -596,6 +596,91 @@
 
 <body>
 
+<!-- nav-dropdown styles (idempotent) -->
+<style id="navDropdownStyles">
+  .nav-dropdown { position: relative; display: inline-flex; align-items: center; }
+  .nav-dropdown-trigger {
+    background: none; border: none; padding: 0; margin: 0;
+    font: inherit; cursor: pointer;
+    color: var(--ink-soft, #4A4A4A);
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 180ms ease;
+  }
+  .nav-dropdown-trigger:hover { color: var(--ink, #1F1F1F); }
+  .nav-dropdown-trigger .caret {
+    display: inline-block;
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid currentColor;
+    opacity: 0.55;
+    transition: transform 220ms ease, opacity 220ms ease;
+  }
+  .nav-dropdown:hover .caret,
+  .nav-dropdown:focus-within .caret { transform: rotate(180deg); opacity: 1; }
+  .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 18px);
+    left: -16px;
+    min-width: 320px;
+    background: var(--white, #ffffff);
+    border: 1px solid var(--hairline, rgba(31,31,31,0.10));
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: 0 22px 60px -28px rgba(31,31,31,0.32);
+    opacity: 0; visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 220ms ease, transform 220ms ease, visibility 220ms ease;
+    z-index: 200;
+    display: flex; flex-direction: column;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .nav-dropdown-menu .dd-item {
+    display: flex; flex-direction: column; gap: 2px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--ink, #1F1F1F);
+    font-family: var(--font-display, "Poppins", sans-serif);
+    font-size: 14.5px; font-weight: 500;
+    letter-spacing: -0.005em;
+    transition: background 180ms ease;
+  }
+  .nav-dropdown-menu .dd-item:hover { background: var(--surface, #F8F8F6); }
+  .nav-dropdown-menu .dd-item--featured {
+    background: var(--ink, #1F1F1F);
+    color: var(--white, #ffffff);
+    margin-bottom: 4px;
+  }
+  .nav-dropdown-menu .dd-item--featured:hover { background: #000000; }
+  .nav-dropdown-menu .dd-desc {
+    font-family: var(--font-body, "Roboto", sans-serif);
+    font-size: 12px; font-weight: 400;
+    color: var(--ink-muted, #8A8A8A);
+  }
+  .nav-dropdown-menu .dd-item--featured .dd-desc { color: rgba(255,255,255,0.72); }
+  .dd-divider {
+    display: block;
+    height: 1px; background: var(--hairline, rgba(31,31,31,0.10));
+    margin: 6px 8px;
+  }
+  /* Mobile sections in the hamburger menu */
+  .mm-section { display: flex; flex-direction: column; }
+  .mm-label {
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-muted, #8A8A8A);
+    padding: 16px 0 6px;
+  }
+  /* Hide the desktop dropdown trigger on narrow screens */
+  @media (max-width: 880px) {
+    .nav-links .nav-dropdown { display: none; }
+  }
+</style>
 <nav class="nav" id="siteNav">
   <div class="container nav-inner">
     <div class="nav-logo">
@@ -609,23 +694,51 @@
       </span>
     </div>
     <div class="nav-links">
-    <a href="../Home.html#capabilities">Solutions</a>
-    <a href="../insights/index.html">Our thinking</a>
-    <a href="../about.html">About</a>
-    <a href="../Home.html#how">How We Work</a>
-    <a href="../Home.html#work">Case Studies</a>
-    <a href="../Home.html#contact" class="cta">Book a call &rarr;</a>
-  </div>
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-trigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="solutionsMenu">
+          Solutions <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="nav-dropdown-menu" id="solutionsMenu" role="menu">
+          <a href="readiness-audit.html" class="dd-item dd-item--featured" role="menuitem">
+            <span class="dd-title">Readiness Audit</span>
+            <span class="dd-desc">Find the first AI workflow worth building.</span>
+          </a>
+          <span class="dd-divider" aria-hidden="true"></span>
+          <a href="ai-applications-and-platforms.html" class="dd-item" role="menuitem">
+            <span class="dd-title">AI Products &amp; Platforms</span>
+          </a>
+          <a href="ai-workflow-infrastructure.html" class="dd-item" role="menuitem">
+            <span class="dd-title">AI Workflows &amp; Operations</span>
+          </a>
+          <a href="enterprise-ai.html" class="dd-item" role="menuitem">
+            <span class="dd-title">Enterprise AI</span>
+          </a>
+          <a href="prototype-to-production.html" class="dd-item" role="menuitem">
+            <span class="dd-title">AI Pilot to Production</span>
+          </a>
+        </div>
+      </div>
+      <a href="../Home.html#work">Case Studies</a>
+      <a href="../insights/index.html">Our thinking</a>
+      <a href="../about.html">About</a>
+      <a href="../Home.html#contact" class="cta">Book a call &rarr;</a>
+    </div>
     <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
-    <a href="../Home.html#capabilities">Solutions</a>
+    <div class="mm-section">
+      <span class="mm-label">Solutions</span>
+      <a href="readiness-audit.html"><b>Readiness Audit</b></a>
+      <a href="ai-applications-and-platforms.html">AI Products &amp; Platforms</a>
+      <a href="ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a>
+      <a href="enterprise-ai.html">Enterprise AI</a>
+      <a href="prototype-to-production.html">AI Pilot to Production</a>
+    </div>
+    <a href="../Home.html#work">Case Studies</a>
     <a href="../insights/index.html">Our thinking</a>
     <a href="../about.html">About</a>
-    <a href="../Home.html#how">How We Work</a>
-    <a href="../Home.html#work">Case Studies</a>
     <a href="../Home.html#contact" class="cta">Book a call &rarr;</a>
   </div>
 </nav>
