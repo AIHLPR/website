@@ -2501,54 +2501,48 @@
   .ct-pill svg { width: clamp(20px, 2vw, 26px); height: clamp(20px, 2vw, 26px); color: var(--ink); flex: 0 0 auto; }
   .ct-lede2 { font-size: clamp(15px, 1.2vw, 18px); color: var(--ink-soft); line-height: 1.6; margin: clamp(16px, 1.8vw, 22px) 0 0; max-width: 52ch; }
 
-  /* Two-column body: governance points (left) + cert badges (right) */
-  .ct-body {
-    display: grid; grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
-    gap: clamp(36px, 5vw, 80px); align-items: start;
-    margin-top: clamp(40px, 5vw, 64px);
-    padding-top: clamp(36px, 4vw, 52px);
+  /* Review-readiness areas — 5 grouped tiles instead of fake cert badges */
+  .ct-areas {
+    list-style: none;
+    margin: clamp(40px, 5vw, 64px) 0 0;
+    padding: clamp(36px, 4vw, 52px) 0 0;
     border-top: 1px solid var(--hairline);
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: clamp(14px, 1.6vw, 20px);
   }
-  @media (max-width: 880px) { .ct-body { grid-template-columns: 1fr; gap: 44px; } }
-  .ct-points { display: flex; flex-direction: column; }
-  .ct-point {
-    display: grid; grid-template-columns: 26px 1fr; gap: 16px; align-items: start;
-    padding: 16px 0; border-bottom: 1px solid var(--hairline);
+  .ct-area {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
   }
-  .ct-point:first-child { padding-top: 0; }
-  .ct-point:last-child { border-bottom: 0; }
-  .ct-point-ic {
-    width: 26px; height: 26px; color: var(--ink); margin-top: 1px;
+  .ct-area-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
   }
-  .ct-point-ic svg { width: 100%; height: 100%; }
-  .ct-point-title { font-family: var(--font-display); font-size: clamp(16px, 1.3vw, 18px); font-weight: 600; letter-spacing: -0.01em; color: var(--ink); margin: 0 0 3px; }
-  .ct-point-desc { font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin: 0; }
-
-  /* Cert badge wall (right) */
-  .certwall { display: grid; grid-template-columns: repeat(2, 1fr); gap: clamp(20px, 2.4vw, 34px) clamp(14px, 1.6vw, 22px); }
-  .certwall .cert:nth-child(5) { grid-column: 1 / -1; }
-  @media (max-width: 460px) { .certwall { grid-template-columns: 1fr; } .certwall .cert:nth-child(5) { grid-column: auto; } }
-  .cert { display: flex; flex-direction: column; align-items: center; gap: 14px; }
-  .cert-badge {
-    width: clamp(68px, 7vw, 88px); height: clamp(68px, 7vw, 88px);
-    border-radius: 18px; border: 1px solid var(--hairline);
-    background: var(--white); display: grid; place-items: center;
-    box-shadow: 0 12px 30px -20px rgba(31,31,31,0.45);
-    transition: transform .25s var(--ease), border-color .25s var(--ease);
+  .ct-area-items {
+    font-family: var(--font-display);
+    font-size: clamp(15px, 1.15vw, 17px);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    line-height: 1.35;
   }
-  .cert:hover .cert-badge { transform: translateY(-3px); border-color: var(--hairline-strong); }
-  .cert-badge span {
-    font-family: var(--font-display); font-weight: 700;
-    font-size: clamp(13px, 1.3vw, 16px); letter-spacing: -0.01em;
-    color: var(--ink); text-align: center; line-height: 1.05;
+  .ct-disclaimer {
+    margin-top: clamp(20px, 2vw, 28px);
+    font-size: 12.5px;
+    line-height: 1.55;
+    color: var(--ink-muted);
+    font-style: italic;
+    max-width: 72ch;
   }
-  .cert-badge span small { display: block; font-family: var(--font-mono); font-weight: 500; font-size: 9px; letter-spacing: 0.1em; color: var(--ink-muted); margin-top: 3px; }
-  .cert-tag {
-    display: inline-flex; align-items: center; gap: 7px;
-    font-family: var(--font-mono); font-size: 12px; letter-spacing: 0.04em;
-    color: var(--ink); white-space: nowrap;
-  }
-  .cert-tag svg { width: 15px; height: 15px; color: var(--ct-green); flex: 0 0 auto; }
 
   .ct-checks { display: flex; flex-direction: column; }
   .ct-check {
@@ -4857,57 +4851,36 @@
   <div class="container">
     <div class="ct-head">
       <span class="ct-eyebrow">Compliance</span>
-      <h2 class="ct-headline">Scale your business without compromising security.</h2>
-      <p class="ct-lede2">Compliance is built into how we design, not bolted on after. Work with us knowing the controls, audit trails and data boundaries your enterprise needs are there from day one.</p>
+      <h2 class="ct-headline">Review-ready by design.</h2>
+      <p class="ct-lede2">The controls, audit trails, and data boundaries your reviewers ask about are built into how we ship &mdash; not bolted on later.</p>
     </div>
 
-    <div class="ct-body">
-      <div class="ct-points">
-        <div class="ct-point">
-          <span class="ct-point-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.2"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/><path d="M9.5 12.5 11 14l3.5-3.5"/></svg></span>
-          <div><h3 class="ct-point-title">Human oversight</h3><p class="ct-point-desc">Approval chains and review points wherever a decision actually matters.</p></div>
-        </div>
-        <div class="ct-point">
-          <span class="ct-point-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="1.6"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
-          <div><h3 class="ct-point-title">Data security</h3><p class="ct-point-desc">Encrypted, access-scoped, and kept inside the boundaries you set.</p></div>
-        </div>
-        <div class="ct-point">
-          <span class="ct-point-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h9l3 3v15H6z"/><path d="M9 9h6M9 13h6M9 17h4"/></svg></span>
-          <div><h3 class="ct-point-title">Audit trail, end to end</h3><p class="ct-point-desc">Every model decision logged and traceable, from input to outcome.</p></div>
-        </div>
-        <div class="ct-point">
-          <span class="ct-point-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M2.5 12S5.5 6 12 6s9.5 6 9.5 6-3 6-9.5 6-9.5-6-9.5-6z"/></svg></span>
-          <div><h3 class="ct-point-title">Observability</h3><p class="ct-point-desc">Live monitoring of what every system does in production.</p></div>
-        </div>
-        <div class="ct-point">
-          <span class="ct-point-ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 4h6M12 4v5"/><path d="M7 9h10l2.5 8a2 2 0 0 1-1.9 2.6H6.4A2 2 0 0 1 4.5 17z"/><path d="M9.5 15h5"/></svg></span>
-          <div><h3 class="ct-point-title">Evals</h3><p class="ct-point-desc">Continuous evaluation so quality holds as your workflows change.</p></div>
-        </div>
-      </div>
+    <ul class="ct-areas" aria-label="Review-readiness areas">
+      <li class="ct-area">
+        <span class="ct-area-label">Privacy</span>
+        <span class="ct-area-items">GDPR &middot; DPIA</span>
+      </li>
+      <li class="ct-area">
+        <span class="ct-area-label">AI governance</span>
+        <span class="ct-area-items">EU AI Act &middot; Human oversight &middot; Audit trail</span>
+      </li>
+      <li class="ct-area">
+        <span class="ct-area-label">Security</span>
+        <span class="ct-area-items">ISO/IEC 27001 &middot; SOC 2 Type II</span>
+      </li>
+      <li class="ct-area">
+        <span class="ct-area-label">Access control</span>
+        <span class="ct-area-items">SSO &middot; RBAC &middot; Least privilege</span>
+      </li>
+      <li class="ct-area">
+        <span class="ct-area-label">Operational review</span>
+        <span class="ct-area-items">Logging &middot; Monitoring &middot; Approval records</span>
+      </li>
+    </ul>
 
-      <div class="certwall">
-        <div class="cert">
-          <div class="cert-badge"><span>ISO<small>27001</small></span></div>
-          <span class="cert-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>ISO 27001</span>
-        </div>
-        <div class="cert">
-          <div class="cert-badge"><span>SOC 2</span></div>
-          <span class="cert-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>SOC 2 Type II</span>
-        </div>
-        <div class="cert">
-          <div class="cert-badge"><span>HIPAA</span></div>
-          <span class="cert-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>HIPAA</span>
-        </div>
-        <div class="cert">
-          <div class="cert-badge"><span>GDPR</span></div>
-          <span class="cert-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>GDPR</span>
-        </div>
-        <div class="cert">
-          <div class="cert-badge"><span>EU<small>AI ACT</small></span></div>
-          <span class="cert-tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M8 12l3 3 5-6"/></svg>EU AI Act</span>
-        </div>
-      </div>
-    </div>
+    <p class="ct-disclaimer">
+      Designed to support enterprise review processes. Formal certification or compliance depends on the client environment, deployment model, and assessment scope.
+    </p>
   </div>
 </section>
 
