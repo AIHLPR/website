@@ -322,6 +322,22 @@
     color: var(--ink-muted);
     margin-top: 10px;
   }
+  .metric--text { justify-content: flex-start; }
+  .metric--text .metric-num {
+    font-size: clamp(20px, 1.7vw, 26px);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+  }
+  .metric--text .metric-unit {
+    font-size: clamp(20px, 1.7vw, 26px);
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-left: 6px;
+    letter-spacing: -0.005em;
+  }
+  .metric--text > div:first-child { white-space: normal; }
+
   @media (max-width: 760px) {
     .metrics-grid { grid-template-columns: repeat(2, 1fr); }
   }
@@ -945,11 +961,11 @@
         <div><span class="metric-num">1</span><span class="metric-unit">glossary layer</span></div>
         <div class="metric-label">Approved terminology</div>
       </div>
-      <div class="metric">
+      <div class="metric metric--text">
         <div><span class="metric-num">Human</span><span class="metric-unit">review</span></div>
         <div class="metric-label">Market approval built in</div>
       </div>
-      <div class="metric">
+      <div class="metric metric--text">
         <div><span class="metric-num">Retailer<span class="metric-unit">-ready copy</span></span></div>
         <div class="metric-label">Structured for PDP use</div>
       </div>
