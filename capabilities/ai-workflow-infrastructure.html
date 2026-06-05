@@ -369,8 +369,24 @@
   .final-cta-card .btn-ghost:hover { border-color: var(--white); background: var(--white); color: var(--ink); }
   .final-cta-actions {
     display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end;
+    align-items: center;
   }
-  @media (max-width: 880px) { .final-cta-actions { justify-content: flex-start; } }
+  .final-cta-risk {
+    display: block;
+    flex-basis: 100%;
+    text-align: right;
+    font-size: 12.5px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.55);
+    font-style: italic;
+    margin-top: 6px;
+    max-width: 38ch;
+    margin-left: auto;
+  }
+  @media (max-width: 880px) {
+    .final-cta-actions { justify-content: flex-start; }
+    .final-cta-risk { text-align: left; margin-left: 0; }
+  }
 
   /* Footer */
   .footer {
@@ -694,14 +710,14 @@
         <span class="sep"></span>
         <span>Workflows &amp; Operations</span>
       </div>
-      <h1>AI that runs across tools, people, and workflows.</h1>
-      <p class="hero-lede">Workflow infrastructure connects triggers, documents, decisions, approvals, retries, and escalations across the systems already in use. It is the layer that lets AI move work forward without removing human control.</p>
+      <h1>AI that moves work forward without losing control.</h1>
+      <p class="hero-lede">AIHLPR builds workflow infrastructure for the parts of work that move between tools, teams, approvals, and exceptions. AI prepares, routes, drafts, checks, and escalates &mdash; while people stay in control of the decisions that matter.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="../Home.html#contact">
-          Discuss workflow infrastructure <span class="arrow">&rarr;</span>
+          Discuss a workflow <span class="arrow">&rarr;</span>
         </a>
-        <a class="btn btn-secondary" href="../Home.html#capabilities">
-          Explore capabilities <span class="arrow">&rarr;</span>
+        <a class="btn btn-secondary" href="#why">
+          See how it works <span class="arrow">&darr;</span>
         </a>
       </div>
     </div>
@@ -717,15 +733,15 @@
 
   <!-- Top metadata strip -->
   <g font-size="9" letter-spacing="0.16em">
-    <text x="20" y="20" fill="#8A8A8A">FLOW · order_intake_v4</text>
-    <text x="800" y="20" text-anchor="end" fill="#9B59B6">3 active · 2 retrying · 1 escalated</text>
+    <text x="20" y="20" fill="#8A8A8A">EXAMPLE WORKFLOW</text>
+    <text x="800" y="20" text-anchor="end" fill="#9B59B6">3 active · 1 paused for review · 1 escalated</text>
   </g>
   <line x1="20" y1="28" x2="800" y2="28" stroke="rgba(31,31,31,0.08)" stroke-width="1"/>
 
   <!-- TRIGGER (top-left) -->
   <rect x="40" y="56" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.4"/>
   <text x="110" y="78" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">TRIGGER</text>
-  <text x="110" y="93" text-anchor="middle" font-size="9.5" fill="#1F1F1F">CRM · webhook</text>
+  <text x="110" y="93" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Trigger received</text>
 
   <!-- TRIGGER → CLASSIFY -->
   <path d="M 110 104 L 110 138" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
@@ -733,12 +749,12 @@
 
   <!-- CLASSIFY -->
   <rect x="40" y="140" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.4"/>
-  <text x="110" y="162" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">CLASSIFY</text>
-  <text x="110" y="177" text-anchor="middle" font-size="9.5" fill="#1F1F1F">severity = 3</text>
+  <text x="110" y="162" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">ROUTE</text>
+  <text x="110" y="177" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Right team</text>
 
   <!-- Retry loop on CLASSIFY -->
   <path d="M 180 152 Q 230 152 230 168 Q 230 184 182 184" stroke="#9B59B6" stroke-width="0.8" fill="none" stroke-dasharray="3 3"/>
-  <text x="240" y="172" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">retry × 2 / backoff 30s</text>
+  <text x="240" y="172" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">temporary failure</text>
 
   <!-- CLASSIFY branches: SUCCESS path right, FAIL path down -->
   <path d="M 110 188 L 110 240 L 280 240" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
@@ -747,8 +763,8 @@
 
   <!-- ENRICH -->
   <rect x="280" y="216" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.1"/>
-  <text x="350" y="238" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">ENRICH</text>
-  <text x="350" y="253" text-anchor="middle" font-size="9.5" fill="#8A8A8A">customer-360</text>
+  <text x="350" y="238" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">AI PREPARES</text>
+  <text x="350" y="253" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Context gathered</text>
 
   <!-- ENRICH → DRAFT (branch with condition) -->
   <path d="M 420 240 L 510 240 L 510 220 L 520 220" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
@@ -766,7 +782,7 @@
   <!-- HUMAN APPROVAL gate (center) -->
   <rect x="380" y="290" width="160" height="58" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.6"/>
   <text x="460" y="314" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">HUMAN REVIEW</text>
-  <text x="460" y="332" text-anchor="middle" font-size="9.5" fill="#8A8A8A">SLA · 4h · M. Patel</text>
+  <text x="460" y="332" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Review required</text>
   <circle cx="396" cy="305" r="3.5" fill="#9B59B6">
     <animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite"/>
   </circle>
@@ -778,8 +794,8 @@
 
   <!-- ACTION -->
   <rect x="620" y="296" width="160" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.1"/>
-  <text x="700" y="318" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">CRM UPDATED</text>
-  <text x="700" y="333" text-anchor="middle" font-size="9.5" fill="#8A8A8A">SLA met · audit sealed</text>
+  <text x="700" y="318" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">AUDIT TRAIL</text>
+  <text x="700" y="333" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Decision recorded</text>
   <!-- One thread continues off-frame to the right -->
   <line x1="780" y1="320" x2="900" y2="320" stroke="#9B59B6" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
   <text x="820" y="312" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">→ downstream</text>
@@ -787,16 +803,16 @@
   <!-- CLASSIFY → DLQ (failure path, dashed) -->
   <path d="M 110 188 L 110 408 L 880 408" stroke="#8A8A8A" stroke-width="0.9" fill="none" stroke-dasharray="3 3"/>
   <polygon points="874,404 882,408 874,412" fill="#8A8A8A"/>
-  <text x="395" y="402" font-size="8.5" fill="#8A8A8A" letter-spacing="0.12em">on classify_failed · after 2 retries</text>
+  <text x="395" y="402" font-size="8.5" fill="#8A8A8A" letter-spacing="0.12em">if information is missing</text>
 
   <!-- DLQ -->
   <rect x="800" y="386" width="140" height="44" rx="3" fill="#FAFAF8" stroke="#8A8A8A" stroke-width="0.9" stroke-dasharray="3 3"/>
-  <text x="870" y="408" text-anchor="middle" font-size="10" fill="#8A8A8A" letter-spacing="0.14em" font-weight="600">DLQ</text>
-  <text x="870" y="421" text-anchor="middle" font-size="9.5" fill="#8A8A8A">3 pending</text>
+  <text x="870" y="408" text-anchor="middle" font-size="10" fill="#8A8A8A" letter-spacing="0.14em" font-weight="600">PARKED</text>
+  <text x="870" y="421" text-anchor="middle" font-size="9.5" fill="#8A8A8A">For review</text>
 
   <!-- HUMAN REVIEW → ESCALATE branch (if SLA breach) -->
   <path d="M 460 348 L 460 408 L 880 408" stroke="#E63946" stroke-width="0.9" fill="none" stroke-dasharray="3 3" opacity="0.55"/>
-  <text x="495" y="368" font-size="8.5" fill="#E63946" letter-spacing="0.12em" opacity="0.85">on SLA breach</text>
+  <text x="495" y="368" font-size="8.5" fill="#E63946" letter-spacing="0.12em" opacity="0.85">if review overdue</text>
 
   <!-- Animated tracer dot moving along the success path.
        Waypoints match the exact L-shaped connectors between boxes
@@ -808,8 +824,8 @@
   </circle>
 </svg>
       <div class="hero-visual-caption">
-        <span>workflow_orchestration()</span>
-        <span><b>3 triggers</b> &middot; <b>4 tasks</b> &middot; <b>1 output</b></span>
+        <span>Workflow infrastructure</span>
+        <span><b>Trigger</b> &middot; <b>Routing</b> &middot; <b>Review</b> &middot; <b>Record</b></span>
       </div>
     </div>
   </div>
@@ -877,12 +893,89 @@
   }
 </style>
 
+<!-- WHY workflows need infrastructure -->
+<style>
+  .why-band {
+    padding: clamp(64px, 7vw, 96px) 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .why-band .block-head { margin-bottom: clamp(32px, 4vw, 48px); }
+  .why-chain {
+    margin-top: clamp(32px, 4vw, 48px);
+    padding: clamp(20px, 2.4vw, 32px) clamp(20px, 3vw, 36px);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    background: var(--surface-2);
+  }
+  .why-chain ol {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(8px, 1.5vw, 16px);
+  }
+  .why-chain li {
+    font-family: var(--font-mono);
+    font-size: clamp(10px, 1vw, 12px);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: 10px 18px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 999px;
+    background: var(--white);
+    white-space: nowrap;
+  }
+  .why-chain li + li::before {
+    content: "\2192";
+    display: inline-block;
+    margin-right: 12px;
+    color: var(--ink-muted);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  @media (max-width: 760px) {
+    .why-chain ol { justify-content: flex-start; }
+    .why-chain li + li::before { margin-right: 8px; }
+  }
+</style>
+
+<section class="why-band" id="why">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>01 &middot; Why workflows need infrastructure</span>
+        <h2 style="margin-top:14px;">AI becomes useful when it can move work, not just answer questions.</h2>
+      </div>
+      <p class="block-lede">Many teams already use AI to draft, summarise, or search. The harder step is connecting that output to the real workflow: who reviews it, where it goes next, what happens if information is missing, and how the decision is recorded.</p>
+    </div>
+
+    <p style="max-width: 64ch; color: var(--ink-soft); line-height: 1.65; margin: 0 0 8px;">
+      Workflow infrastructure is the layer that turns AI from a separate tool into part of the operating process. It connects the trigger, the context, the decision, the handoff, and the record of what happened.
+    </p>
+
+    <div class="why-chain" aria-hidden="true">
+      <ol>
+        <li>Request</li>
+        <li>Context</li>
+        <li>AI draft</li>
+        <li>Human review</li>
+        <li>Action</li>
+        <li>Record</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
 <section class="block whatwebuild">
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>01 &middot; What workflow infrastructure handles</span>
-        <h2 style="margin-top:14px;">What workflow infrastructure handles.</h2>
+        <span class="label-mono"><span class="dot"></span>02 &middot; What has to happen around the AI output</span>
+        <h2 style="margin-top:14px;">What has to happen around the AI output.</h2>
       </div>
       <p class="block-lede">Five capabilities sit underneath every workflow we ship. Most projects blend several of them, scoped to what the organisation already runs.</p>
     </div>
@@ -890,33 +983,33 @@
     <div class="ww-grid">
       <article class="ww-tile">
         <span class="ww-num">01</span>
-        <h3>Process automation</h3>
-        <p class="ww-prop">Trigger steps, branch on conditions, and route work across systems.</p>
-        <div class="ww-chips"><span>Trigger-based</span><span>Branching logic</span></div>
+        <h3>Requests and triggers</h3>
+        <p class="ww-prop">Work starts from somewhere: a form, inbox, CRM update, uploaded document, ticket, message, or scheduled event.</p>
+        <div class="ww-chips"><span>Forms</span><span>Inboxes</span><span>CRMs</span><span>Documents</span></div>
       </article>
       <article class="ww-tile">
         <span class="ww-num">02</span>
-        <h3>Document automation</h3>
-        <p class="ww-prop">Extract, structure, classify, and route documents through reviewable pipelines.</p>
-        <div class="ww-chips"><span>Document pipelines</span><span>Structured outputs</span></div>
+        <h3>Context and documents</h3>
+        <p class="ww-prop">The workflow collects the right files, records, policies, customer history, or product information before AI prepares the next step.</p>
+        <div class="ww-chips"><span>Documents</span><span>Records</span><span>Policies</span></div>
       </article>
       <article class="ww-tile">
         <span class="ww-num">03</span>
-        <h3>Routing &amp; escalation</h3>
-        <p class="ww-prop">Move work to the right person with SLA tracking and structured handoffs.</p>
-        <div class="ww-chips"><span>SLA tracking</span><span>Smart handoffs</span></div>
+        <h3>Routing and approvals</h3>
+        <p class="ww-prop">The right person gets the right work at the right time, with the context they need to approve, edit, escalate, or reject.</p>
+        <div class="ww-chips"><span>Review queues</span><span>Approvals</span><span>Handoffs</span></div>
       </article>
       <article class="ww-tile">
         <span class="ww-num">04</span>
-        <h3>Background AI tasks</h3>
-        <p class="ww-prop">Run repeated AI tasks in the background, with handoff when judgement is needed.</p>
-        <div class="ww-chips"><span>Always-on</span><span>Scoped permissions</span></div>
+        <h3>Background work</h3>
+        <p class="ww-prop">Routine checks, summaries, reminders, and drafts can run in the background until a person needs to make a decision.</p>
+        <div class="ww-chips"><span>Drafts</span><span>Reminders</span><span>Checks</span></div>
       </article>
       <article class="ww-tile">
         <span class="ww-num">05</span>
-        <h3>System integration</h3>
-        <p class="ww-prop">Connect AI to CRMs, ERPs, document stores, APIs, and internal data layers.</p>
-        <div class="ww-chips"><span>API connectors</span><span>Event integration</span></div>
+        <h3>System updates</h3>
+        <p class="ww-prop">Once reviewed, the workflow can update the tools already in use: CRM, ERP, inbox, ticketing system, spreadsheet, or internal database.</p>
+        <div class="ww-chips"><span>CRM</span><span>ERP</span><span>Ticketing</span><span>Databases</span></div>
       </article>
     </div>
   </div>
@@ -1041,15 +1134,15 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>02 &middot; How work moves through people and AI</span>
-        <h2 style="margin-top:14px;">How work moves through people and AI.</h2>
+        <span class="label-mono"><span class="dot"></span>03 &middot; How people and AI share the workflow</span>
+        <h2 style="margin-top:14px;">How people and AI share the workflow.</h2>
       </div>
       <p class="block-lede">AI prepares the work. People review, approve, escalate, or send it forward. The record of each decision stays attached to the workflow.</p>
     </div>
 
     <div class="behaviour-flow">
       <div class="behaviour-flow-head">
-        <span><b>WORK ITEM</b> &middot; refund-request &middot; #4831</span>
+        <span><b>Example workflow</b> &middot; Customer refund request</span>
         <span class="status">Routed &middot; logged</span>
       </div>
 
@@ -1058,40 +1151,40 @@
           <span class="bf-eyebrow"><b>01</b> Prepared</span>
           <div class="bf-who">
             <span class="bf-av">AI</span>
-            <span class="bf-name">AI assistant <span>&middot; support</span></span>
+            <span class="bf-name">AI prepares the draft</span>
           </div>
-          <p class="bf-action">Drafts response grounded in <b>refund-policy &sect;3.2</b>. Cites source. Awaits human send-off.</p>
-          <span class="bf-tag"><b>scope:</b> support &middot; read</span>
+          <p class="bf-action">Pulls together the customer history, the policy that applies, and any prior decisions. Cites the source. Waits for a human to send.</p>
+          <span class="bf-tag"><b>Scope:</b> Support &middot; read</span>
         </div>
 
         <div class="bf-step">
           <span class="bf-eyebrow"><b>02</b> Operated</span>
           <div class="bf-who">
-            <span class="bf-av">EK</span>
-            <span class="bf-name">Eline Kova&#269; <span>&middot; ops, DE</span></span>
+            <span class="bf-av">OP</span>
+            <span class="bf-name">Operator reviews the queue</span>
           </div>
           <p class="bf-action">Triggers the workflow, watches the queue, hands off when an item needs senior eyes.</p>
-          <span class="bf-tag"><b>scope:</b> support &middot; read &middot; write</span>
+          <span class="bf-tag"><b>Scope:</b> Support &middot; read &middot; write</span>
         </div>
 
         <div class="bf-step">
           <span class="bf-eyebrow"><b>03</b> Signed off</span>
           <div class="bf-who">
-            <span class="bf-av">SW</span>
-            <span class="bf-name">Sophie Werner <span>&middot; reviewer</span></span>
+            <span class="bf-av">RV</span>
+            <span class="bf-name">Reviewer approves the action</span>
           </div>
           <p class="bf-action">Approves the response with a reason of record. Nothing leaves the queue without a person.</p>
-          <span class="bf-tag"><b>scope:</b> review &middot; approval</span>
+          <span class="bf-tag"><b>Scope:</b> Review &middot; approval</span>
         </div>
 
         <div class="bf-step">
           <span class="bf-eyebrow"><b>04</b> Recorded</span>
           <div class="bf-who">
             <span class="bf-av">&sect;</span>
-            <span class="bf-name">Trail of record <span>&middot; immutable</span></span>
+            <span class="bf-name">Decision is recorded</span>
           </div>
-          <p class="bf-action">Sealed entry: <b>policy applied</b>, <b>reviewer named</b>, <b>action timestamped</b>. Exportable on demand.</p>
-          <span class="bf-tag"><b>scope:</b> auditor &middot; read</span>
+          <p class="bf-action">Sealed entry: <b>source</b>, <b>reviewer</b>, <b>timestamp</b>, and <b>next step</b>. Exportable on demand.</p>
+          <span class="bf-tag"><b>Scope:</b> Auditor &middot; read</span>
         </div>
       </div>
     </div>
@@ -1100,17 +1193,17 @@
       <div class="principle">
         <span class="p-num">PRINCIPLE 01</span>
         <h3 class="p-title">Routed through people.</h3>
-        <p class="p-body">AI prepares the work. People keep the decision. Every consequential action passes a human signature before it moves.</p>
+        <p class="p-body">AI prepares the work. People keep the decision.</p>
       </div>
       <div class="principle">
         <span class="p-num">PRINCIPLE 02</span>
         <h3 class="p-title">Scoped by role.</h3>
-        <p class="p-body">Each user sees what their role allows, nothing more. AI inherits the same scope, never wider than the person operating it.</p>
+        <p class="p-body">People and AI only see what they are allowed to see.</p>
       </div>
       <div class="principle">
         <span class="p-num">PRINCIPLE 03</span>
-        <h3 class="p-title">Recorded where the work happens.</h3>
-        <p class="p-body">Every step lives in one place: policy applied, reviewer named, action timestamped. Exportable on demand.</p>
+        <h3 class="p-title">Recorded where work happens.</h3>
+        <p class="p-body">Each action keeps its source, reviewer, timestamp, and next step.</p>
       </div>
     </div>
   </div>
@@ -1122,42 +1215,171 @@
   <div class="container">
     <div class="failure-block">
       <div>
-        <span class="label-mono"><span class="dot"></span>03 &middot; When workflows hit exceptions</span>
-        <h2 style="margin-top:14px;">When workflows hit exceptions.</h2>
+        <span class="label-mono"><span class="dot"></span>04 &middot; When the workflow does not go to plan</span>
+        <h2 style="margin-top:14px;">What happens when the workflow does not go to plan.</h2>
         <p class="block-lede">
-          Retries, fallbacks, SLA monitoring, escalations, and dead-letter queues keep the system from depending only on the happy path.
+          Real workflows do not only follow the happy path. Information is missing. Approvals are late. Systems fail. Confidence is low. A useful workflow knows when to retry, pause, escalate, or hand work back to a person.
         </p>
       </div>
-      <div class="failure-panel" aria-label="Continuity states">
+      <div class="failure-panel" aria-label="Exception handling states">
         <div class="failure-row is-active">
-          <span class="fname">RETRY</span>
-          <span class="fdesc">Transient failure on <b>classify()</b>. Exponential backoff, <b>3 attempts</b> before fallback.</span>
-          <span class="fmeta">attempt 2 / 3</span>
+          <span class="fname">Temporary failure</span>
+          <span class="fdesc">The system retries before escalating.</span>
+          <span class="fmeta">Retrying</span>
         </div>
         <div class="failure-row">
-          <span class="fname">BRANCH FAIL</span>
-          <span class="fdesc">Conditional path returns no match. Default branch routes to <b>human review</b>.</span>
-          <span class="fmeta">routed · 14m ago</span>
+          <span class="fname">Missing information</span>
+          <span class="fdesc">The workflow asks for the missing context or routes to review.</span>
+          <span class="fmeta">Routed</span>
         </div>
         <div class="failure-row is-active">
-          <span class="fname">SLA BREACH</span>
-          <span class="fdesc">Approval window <b>4h</b> elapsed. Auto-escalate to <b>secondary reviewer</b>.</span>
-          <span class="fmeta">escalated</span>
+          <span class="fname">Approval delay</span>
+          <span class="fdesc">If the review window is missed, the task escalates to the next owner.</span>
+          <span class="fmeta">Escalated</span>
         </div>
         <div class="failure-row">
-          <span class="fname">HUMAN FALLBACK</span>
-          <span class="fdesc">AI confidence below <b>0.55</b>. Defer to operator with full context attached.</span>
-          <span class="fmeta">queued · 3</span>
+          <span class="fname">Low confidence</span>
+          <span class="fdesc">AI does not guess. The item is sent to a person with the context attached.</span>
+          <span class="fmeta">Sent to review</span>
         </div>
         <div class="failure-row">
-          <span class="fname">DLQ</span>
-          <span class="fdesc">Unrecoverable failures parked for review. Replayable from the same context.</span>
-          <span class="fmeta">3 pending · 0 lost</span>
+          <span class="fname">Parked for review</span>
+          <span class="fdesc">Unresolved items are held safely so they can be reviewed and replayed later.</span>
+          <span class="fmeta">Awaiting review</span>
         </div>
       </div>
     </div>
   </div>
 </section>
+<section class="grow" data-sec="grow" id="grow">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>05 &middot; Start with one workflow</span>
+        <h2 style="margin-top:14px;">Start with one workflow. Keep visibility as it grows.</h2>
+      </div>
+      <p class="block-lede">A workflow can begin with one trigger and one team, then expand across services, queues, approvals, and systems. The important part is that visibility grows with it: what moved, what failed, who reviewed it, where it slowed down, and what happened next.</p>
+    </div>
+
+    <!-- Part A — scaling path -->
+    <div class="grow-stages">
+      <div class="grow-flow">
+        <span class="gf-step">Trigger</span>
+        <span class="gf-arr">&rarr;</span>
+        <span class="gf-step">Workflow</span>
+        <span class="gf-arr">&rarr;</span>
+        <span class="gf-step">Queue</span>
+        <span class="gf-arr">&rarr;</span>
+        <span class="gf-step">Team</span>
+        <span class="gf-arr">&rarr;</span>
+        <span class="gf-step">System</span>
+      </div>
+      <div class="grow-labels">
+        <div class="gl">
+          <span class="gl-lbl">Stage 01</span>
+          <span class="gl-name">One workflow.</span>
+          <span class="gl-desc">One trigger, one process, one measurable outcome.</span>
+        </div>
+        <div class="gl">
+          <span class="gl-lbl">Stage 02</span>
+          <span class="gl-name">Connected workflow.</span>
+          <span class="gl-desc">Multiple tools, approvals, retries, and escalations.</span>
+        </div>
+        <div class="gl">
+          <span class="gl-lbl">Stage 03</span>
+          <span class="gl-name">Operating layer.</span>
+          <span class="gl-desc">Shared visibility across queues, teams, systems, and action history.</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Part B — visibility layer -->
+    <div class="grow-cards">
+      <div class="gc">
+        <span class="gc-lbl">01</span>
+        <span class="gc-name">Activity.</span>
+        <span class="gc-desc">What is moving through the workflow.</span>
+      </div>
+      <div class="gc">
+        <span class="gc-lbl">02</span>
+        <span class="gc-name">Retries.</span>
+        <span class="gc-desc">What was attempted again after a temporary failure.</span>
+      </div>
+      <div class="gc">
+        <span class="gc-lbl">03</span>
+        <span class="gc-name">Waiting time.</span>
+        <span class="gc-desc">Where work slows down.</span>
+      </div>
+      <div class="gc">
+        <span class="gc-lbl">04</span>
+        <span class="gc-name">Handoffs.</span>
+        <span class="gc-desc">Who received, reviewed, or escalated the task.</span>
+      </div>
+      <div class="gc">
+        <span class="gc-lbl">05</span>
+        <span class="gc-name">Queues.</span>
+        <span class="gc-desc">What is waiting or blocked.</span>
+      </div>
+      <div class="gc">
+        <span class="gc-lbl">06</span>
+        <span class="gc-name">Action history.</span>
+        <span class="gc-desc">What happened, when, and why.</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 05 — Designed to grow without losing visibility (merges old Scaling up + Visibility) -->
+<style>
+  .grow { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--white); }
+  .grow .block-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
+  @media (max-width: 760px) { .grow .block-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
+
+  /* Part A — scaling path */
+  .grow-stages { padding-bottom: clamp(32px, 4vw, 48px); border-bottom: 1px solid var(--hairline); margin-bottom: clamp(32px, 4vw, 48px); }
+  .grow-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
+  .grow-flow .gf-step {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink);
+    padding: 10px 16px; border: 1px solid var(--hairline-strong); border-radius: 4px;
+    background: var(--white);
+  }
+  .grow-flow .gf-arr { font-family: var(--font-mono); font-size: 14px; color: var(--c); font-weight: 600; }
+  .grow-labels { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 32px); margin-top: clamp(20px, 2.4vw, 32px); }
+  @media (max-width: 760px) { .grow-labels { grid-template-columns: 1fr; } }
+  .grow-labels .gl { display: flex; flex-direction: column; gap: 8px; }
+  .grow-labels .gl-lbl {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--c);
+  }
+  .grow-labels .gl-name {
+    font-family: var(--font-display); font-weight: 500;
+    font-size: clamp(16px, 1.2vw, 18px); letter-spacing: -0.015em; color: var(--ink);
+  }
+  .grow-labels .gl-desc { font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
+
+  /* Part B — visibility cards */
+  .grow-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.4vw, 18px); }
+  @media (max-width: 760px) { .grow-cards { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 480px) { .grow-cards { grid-template-columns: 1fr; } }
+  .grow-cards .gc {
+    background: var(--white); border: 1px solid var(--hairline); border-radius: 10px;
+    padding: clamp(18px, 1.8vw, 22px);
+    display: flex; flex-direction: column; gap: 8px;
+    transition: border-color 200ms var(--ease);
+  }
+  .grow-cards .gc:hover { border-color: var(--c); }
+  .grow-cards .gc-lbl {
+    font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--c);
+  }
+  .grow-cards .gc-name {
+    font-family: var(--font-display); font-weight: 500;
+    font-size: clamp(16px, 1.2vw, 18px); letter-spacing: -0.015em; color: var(--ink);
+  }
+  .grow-cards .gc-desc { font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+</style>
+
 <!-- SECTION — Architecture (4 enterprise layers) — the moat -->
 <style>
   .archlayers {
@@ -1244,23 +1466,46 @@
     color: rgba(255,255,255,0.45);
   }
   .archlayers-foot b { color: #fff; font-weight: 600; letter-spacing: 0.02em; margin-right: 6px; }
+
+  /* Trust strip (replaces archlayers-foot) — 5 prominent pills on the dark section */
+  .archlayers-trust {
+    list-style: none;
+    margin: clamp(40px, 4.6vw, 64px) 0 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px 14px;
+  }
+  .archlayers-trust li {
+    font-family: var(--font-mono);
+    font-size: clamp(11px, 1vw, 13px);
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #fff;
+    padding: 12px 22px;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.04);
+  }
 </style>
 
 <section class="archlayers">
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>04 &middot; Architecture that fits existing IT</span>
-        <h2 style="margin-top:14px;">Architecture that fits existing IT.</h2>
+        <span class="label-mono"><span class="dot"></span>06 &middot; Built so IT can review it</span>
+        <h2 style="margin-top:14px;">Built so IT can review it.</h2>
       </div>
-      <p class="block-lede">Four layers keep the workflow deployable, observable, secure, and maintainable across cloud, private network, or on-prem environments.</p>
+      <p class="block-lede">The workflow layer should fit the client environment, not sit outside it. Deployment, access, data boundaries, logging, and security are designed early so the system can be reviewed before it scales.</p>
     </div>
 
     <div class="archlayers-grid">
       <article class="archlayer">
         <span class="al-num">Layer 01</span>
-        <h3>Frontend</h3>
-        <p class="al-sub">Edge distribution. Authenticated access. Hardened against abuse.</p>
+        <h3>Where teams use it</h3>
+        <p class="al-sub">The surface people see and act on. Authenticated, hardened, and integrated with how the team already works.</p>
         <ul class="al-items">
           <li>CDN-fronted distribution</li>
           <li>Static SPA hosting</li>
@@ -1271,8 +1516,8 @@
       </article>
       <article class="archlayer">
         <span class="al-num">Layer 02</span>
-        <h3>API</h3>
-        <p class="al-sub">Validated, throttled, observable. Scales on demand, contained on failure.</p>
+        <h3>How systems talk to each other</h3>
+        <p class="al-sub">Validated and observable. Scales on demand, contained on failure. The integration boundary between the workflow and the systems it touches.</p>
         <ul class="al-items">
           <li>Gateway &middot; request validation</li>
           <li>Serverless or containerised compute</li>
@@ -1283,24 +1528,24 @@
       </article>
       <article class="archlayer">
         <span class="al-num">Layer 03</span>
-        <h3>Data</h3>
-        <p class="al-sub">Encrypted, replicated, recoverable. Vector and relational in one footprint.</p>
+        <h3>Where information is stored</h3>
+        <p class="al-sub">Encrypted, replicated, recoverable. Boundaries are explicit and tenant-scoped.</p>
         <ul class="al-items">
           <li>Multi-AZ relational</li>
-          <li>Vector embeddings (pgvector or eq.)</li>
+          <li>Vector + relational in one footprint</li>
           <li>Encryption at rest &amp; in transit</li>
-          <li>Automated backups &middot; PITR</li>
+          <li>Automated backups &middot; point-in-time recovery</li>
           <li>Tenant-scoped isolation</li>
         </ul>
       </article>
       <article class="archlayer">
         <span class="al-num">Layer 04</span>
-        <h3>Security</h3>
-        <p class="al-sub">SSO at the front, secrets in a vault, every action recorded.</p>
+        <h3>How access is controlled</h3>
+        <p class="al-sub">SSO at the front, secrets in a vault, every action recorded. Designed to be reviewable by IT before it scales.</p>
         <ul class="al-items">
           <li>SSO via SAML / OIDC</li>
           <li>Secrets vault</li>
-          <li>Role-based access (IAM-style)</li>
+          <li>Role-based access</li>
           <li>Private network isolation</li>
           <li>Immutable record of action</li>
           <li>Policy enforcement</li>
@@ -1308,140 +1553,13 @@
       </article>
     </div>
 
-    <div class="archlayers-foot">
-      <span><b>Cloud-agnostic.</b> AWS &middot; Azure &middot; GCP &middot; on-prem</span>
-      <span><b>Tenant-isolated.</b> per-customer scoping</span>
-      <span><b>IT-reviewed.</b> deployable as-documented</span>
-    </div>
-  </div>
-</section>
-
-<!-- SECTION 05 — Designed to grow without losing visibility (merges old Scaling up + Visibility) -->
-<style>
-  .grow { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--white); }
-  .grow .block-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
-  @media (max-width: 760px) { .grow .block-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
-
-  /* Part A — scaling path */
-  .grow-stages { padding-bottom: clamp(32px, 4vw, 48px); border-bottom: 1px solid var(--hairline); margin-bottom: clamp(32px, 4vw, 48px); }
-  .grow-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-  .grow-flow .gf-step {
-    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink);
-    padding: 10px 16px; border: 1px solid var(--hairline-strong); border-radius: 4px;
-    background: var(--white);
-  }
-  .grow-flow .gf-arr { font-family: var(--font-mono); font-size: 14px; color: var(--c); font-weight: 600; }
-  .grow-labels { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 32px); margin-top: clamp(20px, 2.4vw, 32px); }
-  @media (max-width: 760px) { .grow-labels { grid-template-columns: 1fr; } }
-  .grow-labels .gl { display: flex; flex-direction: column; gap: 8px; }
-  .grow-labels .gl-lbl {
-    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--c);
-  }
-  .grow-labels .gl-name {
-    font-family: var(--font-display); font-weight: 500;
-    font-size: clamp(16px, 1.2vw, 18px); letter-spacing: -0.015em; color: var(--ink);
-  }
-  .grow-labels .gl-desc { font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
-
-  /* Part B — visibility cards */
-  .grow-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.4vw, 18px); }
-  @media (max-width: 760px) { .grow-cards { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { .grow-cards { grid-template-columns: 1fr; } }
-  .grow-cards .gc {
-    background: var(--white); border: 1px solid var(--hairline); border-radius: 10px;
-    padding: clamp(18px, 1.8vw, 22px);
-    display: flex; flex-direction: column; gap: 8px;
-    transition: border-color 200ms var(--ease);
-  }
-  .grow-cards .gc:hover { border-color: var(--c); }
-  .grow-cards .gc-lbl {
-    font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
-    letter-spacing: 0.16em; text-transform: uppercase; color: var(--c);
-  }
-  .grow-cards .gc-name {
-    font-family: var(--font-display); font-weight: 500;
-    font-size: clamp(16px, 1.2vw, 18px); letter-spacing: -0.015em; color: var(--ink);
-  }
-  .grow-cards .gc-desc { font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
-</style>
-
-<section class="grow" data-sec="grow" id="grow">
-  <div class="container">
-    <div class="block-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>05 &middot; Designed to grow without losing visibility</span>
-        <h2 style="margin-top:14px;">Designed to grow without losing visibility.</h2>
-      </div>
-      <p class="block-lede">A workflow can start small, then expand across services, queues, teams, and systems. Visibility stays attached to the flow: activity, retries, latency, handoffs, queues, and action history.</p>
-    </div>
-
-    <!-- Part A — scaling path -->
-    <div class="grow-stages">
-      <div class="grow-flow">
-        <span class="gf-step">Trigger</span>
-        <span class="gf-arr">&rarr;</span>
-        <span class="gf-step">Workflow</span>
-        <span class="gf-arr">&rarr;</span>
-        <span class="gf-step">Queue</span>
-        <span class="gf-arr">&rarr;</span>
-        <span class="gf-step">Team</span>
-        <span class="gf-arr">&rarr;</span>
-        <span class="gf-step">System</span>
-      </div>
-      <div class="grow-labels">
-        <div class="gl">
-          <span class="gl-lbl">Stage 01</span>
-          <span class="gl-name">Single workflow.</span>
-          <span class="gl-desc">One trigger, one process, one measurable outcome.</span>
-        </div>
-        <div class="gl">
-          <span class="gl-lbl">Stage 02</span>
-          <span class="gl-name">Connected workflow.</span>
-          <span class="gl-desc">Multiple tools, approvals, retries, and escalations.</span>
-        </div>
-        <div class="gl">
-          <span class="gl-lbl">Stage 03</span>
-          <span class="gl-name">Operating layer.</span>
-          <span class="gl-desc">Shared visibility across queues, teams, systems, and action history.</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Part B — visibility layer -->
-    <div class="grow-cards">
-      <div class="gc">
-        <span class="gc-lbl">01</span>
-        <span class="gc-name">Activity.</span>
-        <span class="gc-desc">What is moving through the workflow.</span>
-      </div>
-      <div class="gc">
-        <span class="gc-lbl">02</span>
-        <span class="gc-name">Retries.</span>
-        <span class="gc-desc">What failed and was attempted again.</span>
-      </div>
-      <div class="gc">
-        <span class="gc-lbl">03</span>
-        <span class="gc-name">Latency.</span>
-        <span class="gc-desc">Where work slows down.</span>
-      </div>
-      <div class="gc">
-        <span class="gc-lbl">04</span>
-        <span class="gc-name">Handoffs.</span>
-        <span class="gc-desc">Who received, reviewed, or escalated the task.</span>
-      </div>
-      <div class="gc">
-        <span class="gc-lbl">05</span>
-        <span class="gc-name">Queues.</span>
-        <span class="gc-desc">What is waiting, blocked, or complete.</span>
-      </div>
-      <div class="gc">
-        <span class="gc-lbl">06</span>
-        <span class="gc-name">Action history.</span>
-        <span class="gc-desc">What happened, when, and why.</span>
-      </div>
-    </div>
+    <ul class="archlayers-trust" aria-label="Trust attributes">
+      <li>Cloud-agnostic</li>
+      <li>Tenant-scoped</li>
+      <li>Role-based</li>
+      <li>Audit-ready</li>
+      <li>IT-reviewed</li>
+    </ul>
   </div>
 </section>
 
@@ -1452,16 +1570,17 @@
       <div class="final-cta-grid">
         <div>
           <span class="label-mono"><span class="dot"></span>Start here</span>
-          <h2>Start with the workflow layer.</h2>
-          <p>Sequencing, dependencies, approvals, retries, and escalations decide whether AI can operate beyond the demo. Start with one workflow trigger, prove the path, then expand across the system.</p>
+          <h2>Start with one workflow that keeps getting stuck.</h2>
+          <p>Pick one workflow where work waits for context, approval, routing, or manual updates. We&rsquo;ll map the trigger, the people involved, the systems it touches, the exception paths, and the smallest useful version worth building.</p>
         </div>
         <div class="final-cta-actions">
           <a class="btn btn-primary" href="../Home.html#contact">
-            Discuss a workflow trigger <span class="arrow">&rarr;</span>
+            Discuss a workflow <span class="arrow">&rarr;</span>
           </a>
-          <a class="btn btn-ghost" href="../Home.html#capabilities">
-            Explore capabilities <span class="arrow">&rarr;</span>
+          <a class="btn btn-ghost" href="../Home.html#work">
+            Read a case study <span class="arrow">&rarr;</span>
           </a>
+          <span class="final-cta-risk">30-minute call. No obligation. We&rsquo;ll tell you what can be automated, what should stay human, and what to measure first.</span>
         </div>
       </div>
     </div>
