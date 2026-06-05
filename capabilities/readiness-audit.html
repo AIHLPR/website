@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Workflow &amp; Data Readiness Audit &middot; AIHLPR</title>
+<meta name="description" content="AIHLPR audits your workflow, data, tools, human review points, and business outcome to identify the first AI-ready workflow worth building.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="../assets/aihlpr-logo.svg">
+
+<style>
+  :root {
+    --pink:#E91E63; --magenta:#CC418C; --purple:#9B59B6;
+    --lavender:#7E6CE0; --sky:#5794EA; --blue:#3478E5;
+    --teal:#1D9E75;
+    --ink:#1F1F1F; --ink-soft:#4A4A4A; --ink-muted:#8A8A8A;
+    --white:#FFFFFF; --black:#0C0C0C;
+    --surface:#F8F8F6; --surface-2:#FAFAF8;
+    --hairline:rgba(31,31,31,0.10);
+    --hairline-strong:rgba(31,31,31,0.20);
+    --font-display:"Poppins", system-ui, sans-serif;
+    --font-body:"Roboto", system-ui, sans-serif;
+    --font-mono:"JetBrains Mono", ui-monospace, monospace;
+    --ease:cubic-bezier(0.22, 1, 0.36, 1);
+    --container:1240px;
+    --gutter:clamp(20px, 4.5vw, 56px);
+    --section-y:clamp(72px, 8vw, 112px);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--white);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; text-decoration: none; }
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  h1, h2, h3, h4, h5 {
+    font-family: var(--font-display);
+    color: var(--ink);
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    font-weight: 600;
+    text-wrap: balance;
+  }
+  h1 { font-size: clamp(42px, 5vw, 64px); letter-spacing: -0.03em; }
+  h2 { font-size: clamp(30px, 3.4vw, 46px); letter-spacing: -0.025em; }
+  h3 { font-size: clamp(18px, 1.5vw, 22px); letter-spacing: -0.01em; line-height: 1.2; }
+  p { margin: 0; }
+
+  .label-mono {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .label-mono .dot {
+    display: inline-block;
+    width: 7px; height: 7px;
+    border-radius: 999px;
+    background: var(--pink);
+  }
+
+  /* ===== Nav ===== */
+  .nav {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: saturate(160%) blur(14px);
+    -webkit-backdrop-filter: saturate(160%) blur(14px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    min-height: 72px;
+    gap: 20px;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 14px; }
+  .nav-logo img { height: 28px; width: auto; }
+  .nav-crumb {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .nav-crumb a { color: var(--ink-muted); transition: color 180ms var(--ease); }
+  .nav-crumb a:hover { color: var(--ink); }
+  .nav-crumb .sep { opacity: 0.5; }
+  .nav-crumb span:last-child { color: var(--ink); }
+  .nav-links {
+    display: flex; align-items: center;
+    gap: clamp(16px, 2.4vw, 30px);
+    font-size: 14.5px;
+    color: var(--ink-soft);
+  }
+  .nav-links a { transition: color 180ms var(--ease); }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-links .cta {
+    padding: 8px 16px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    color: var(--ink); font-weight: 500;
+    transition: background 180ms var(--ease), color 180ms var(--ease);
+  }
+  .nav-links .cta:hover { background: var(--ink); color: var(--white); }
+  .nav-burger { display: none; }
+  @media (max-width: 880px) {
+    .nav-crumb { display: none; }
+    .nav-links a:not(.cta) { display: none; }
+  }
+
+  /* ===== Buttons ===== */
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 14px 24px;
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: -0.005em;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease), gap 200ms var(--ease);
+  }
+  .btn .arrow { transition: transform 200ms var(--ease); display: inline-block; }
+  .btn:hover .arrow { transform: translateX(2px); }
+  .btn-primary {
+    background: var(--ink);
+    color: var(--white);
+    border-color: var(--ink);
+  }
+  .btn-primary:hover { background: #000; }
+  .btn-secondary {
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .btn-secondary:hover { background: var(--ink); color: var(--white); }
+
+  /* ===== Hero ===== */
+  .hero {
+    padding: clamp(72px, 9vw, 128px) 0 clamp(56px, 7vw, 96px);
+  }
+  .hero h1 { max-width: 18ch; margin: 18px 0 0; }
+  .hero-sub {
+    margin: clamp(20px, 2vw, 28px) 0 0;
+    font-size: clamp(17px, 1.4vw, 21px);
+    line-height: 1.55;
+    color: var(--ink-soft);
+    max-width: 60ch;
+  }
+  .hero-ctas {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    margin-top: clamp(28px, 3vw, 40px);
+  }
+  .hero-trust {
+    margin-top: clamp(20px, 2.2vw, 28px);
+    font-size: 13.5px;
+    color: var(--ink-muted);
+    line-height: 1.55;
+    max-width: 60ch;
+    font-style: italic;
+  }
+
+  /* ===== Section base ===== */
+  .block {
+    padding: var(--section-y) 0;
+    border-top: 1px solid var(--hairline);
+  }
+  .block-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: clamp(28px, 4vw, 60px);
+    align-items: end;
+    margin-bottom: clamp(40px, 5vw, 64px);
+  }
+  .block-head h2 { max-width: 24ch; margin: 14px 0 0; }
+  .block-lede {
+    font-size: clamp(16px, 1.2vw, 18px);
+    line-height: 1.6;
+    color: var(--ink-soft);
+    margin: 0;
+    max-width: 56ch;
+  }
+  @media (max-width: 880px) {
+    .block-head { grid-template-columns: 1fr; align-items: start; gap: 18px; }
+  }
+
+  /* ===== Visual chain (workflow -> data -> tools -> ...) ===== */
+  .chain {
+    margin-top: clamp(36px, 4vw, 56px);
+    padding: clamp(20px, 2.4vw, 32px);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    background: var(--surface-2);
+  }
+  .chain ol {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex; flex-wrap: wrap;
+    align-items: center; justify-content: space-between;
+    gap: clamp(10px, 1.4vw, 18px);
+  }
+  .chain li {
+    font-family: var(--font-mono);
+    font-size: clamp(10px, 1vw, 12px);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: 10px 18px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 999px;
+    background: var(--white);
+    white-space: nowrap;
+  }
+  .chain li:last-child {
+    color: var(--pink);
+    border-color: var(--pink);
+  }
+  .chain li + li::before {
+    content: "\2192";
+    display: inline-block;
+    margin-right: 12px;
+    color: var(--ink-muted);
+    font-weight: 400; letter-spacing: 0;
+  }
+  @media (max-width: 760px) {
+    .chain ol { justify-content: flex-start; }
+    .chain li + li::before { margin-right: 8px; }
+  }
+
+  /* ===== Starting points (6 ICP cards) ===== */
+  .start-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2vw, 28px);
+  }
+  @media (max-width: 980px) { .start-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 600px) { .start-grid { grid-template-columns: 1fr; } }
+  .start-card {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: clamp(22px, 2.4vw, 30px);
+    display: flex; flex-direction: column; gap: 10px;
+    transition: border-color 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
+  }
+  .start-card:hover {
+    border-color: var(--hairline-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 18px 40px -28px rgba(31,31,31,0.32);
+  }
+  .start-card .icp {
+    font-family: var(--font-mono);
+    font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--pink);
+  }
+  .start-card h3 { margin: 4px 0 2px; }
+  .start-card .focus {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--ink-muted);
+    margin: 0 0 8px;
+  }
+  .start-card p {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0 0 8px;
+  }
+  .start-card .micro-cta {
+    margin-top: auto;
+    padding-top: 14px;
+    border-top: 1px dashed var(--hairline);
+    display: inline-flex; align-items: center; gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.10em; text-transform: uppercase;
+    color: var(--ink);
+  }
+  .start-card .micro-cta .arrow { color: var(--pink); transition: transform 200ms var(--ease); }
+  .start-card:hover .micro-cta .arrow { transform: translateX(3px); }
+
+  /* ===== What we assess (7 cards, mixed grid) ===== */
+  .assess-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(14px, 1.6vw, 22px);
+  }
+  /* Card 7 (quick-win) spans 2 columns and gets accent treatment */
+  .assess-card:nth-child(7) {
+    grid-column: span 2;
+    background: var(--ink);
+    color: var(--white);
+    border-color: var(--ink);
+  }
+  .assess-card:nth-child(7) .ac-num { color: var(--pink); }
+  .assess-card:nth-child(7) h3 { color: var(--white); }
+  .assess-card:nth-child(7) p { color: rgba(255,255,255,0.7); }
+
+  @media (max-width: 980px) {
+    .assess-grid { grid-template-columns: repeat(2, 1fr); }
+    .assess-card:nth-child(7) { grid-column: span 2; }
+  }
+  @media (max-width: 540px) {
+    .assess-grid { grid-template-columns: 1fr; }
+    .assess-card:nth-child(7) { grid-column: auto; }
+  }
+  .assess-card {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: clamp(20px, 2vw, 26px);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .assess-card .ac-num {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.16em;
+    color: var(--ink-muted);
+  }
+  .assess-card h3 { margin: 2px 0 0; }
+  .assess-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ===== Readiness score (3 score cards) ===== */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2vw, 28px);
+  }
+  @media (max-width: 880px) { .score-grid { grid-template-columns: 1fr; } }
+  .score-card {
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: clamp(24px, 2.6vw, 32px);
+    background: var(--white);
+    display: flex; flex-direction: column; gap: 10px;
+    position: relative;
+    overflow: hidden;
+  }
+  .score-card::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0;
+    height: 3px;
+    background: var(--accent, var(--ink));
+  }
+  .score-card.is-build { --accent: var(--teal); }
+  .score-card.is-prep { --accent: var(--pink); }
+  .score-card.is-not  { --accent: var(--ink-muted); }
+  .score-card .verdict {
+    font-family: var(--font-mono);
+    font-size: 10.5px; font-weight: 500;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--accent);
+  }
+  .score-card h3 {
+    font-size: clamp(22px, 2vw, 28px);
+    letter-spacing: -0.015em;
+    margin: 6px 0 4px;
+  }
+  .score-card p {
+    font-size: 14.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* ===== Deliverables ===== */
+  .deliver-wrap {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: clamp(28px, 3.4vw, 44px);
+  }
+  .deliver-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px 24px;
+    list-style: none;
+    margin: 0; padding: 0;
+  }
+  @media (max-width: 760px) { .deliver-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 460px) { .deliver-grid { grid-template-columns: 1fr; } }
+  .deliver-grid li {
+    display: flex; align-items: flex-start; gap: 10px;
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--ink);
+    padding: 8px 0;
+    border-bottom: 1px dashed var(--hairline);
+  }
+  .deliver-grid li::before {
+    content: "";
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: var(--pink);
+    margin-top: 8px;
+    flex: 0 0 auto;
+  }
+  .deliver-foot {
+    margin-top: clamp(20px, 2vw, 28px);
+    padding-top: clamp(18px, 2vw, 24px);
+    border-top: 1px solid var(--hairline);
+    font-size: 14.5px;
+    color: var(--ink-soft);
+    line-height: 1.55;
+    max-width: 64ch;
+  }
+
+  /* ===== Packages (3 tiers) ===== */
+  .pkg-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2vw, 28px);
+    align-items: stretch;
+  }
+  @media (max-width: 980px) { .pkg-grid { grid-template-columns: 1fr; } }
+  .pkg-card {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: clamp(26px, 2.8vw, 36px);
+    display: flex; flex-direction: column; gap: 14px;
+    transition: border-color 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
+  }
+  .pkg-card.is-featured {
+    border-color: var(--ink);
+    box-shadow: 0 26px 60px -32px rgba(31,31,31,0.30);
+  }
+  .pkg-card:hover {
+    border-color: var(--hairline-strong);
+    transform: translateY(-2px);
+    box-shadow: 0 22px 50px -28px rgba(31,31,31,0.28);
+  }
+  .pkg-card.is-featured:hover { border-color: var(--ink); }
+  .pkg-tier {
+    font-family: var(--font-mono);
+    font-size: 11px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--pink);
+  }
+  .pkg-card h3 { margin: 4px 0 2px; font-size: clamp(22px, 1.9vw, 26px); }
+  .pkg-card .pkg-for {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0 0 6px;
+  }
+  .pkg-card .pkg-includes-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 6px;
+  }
+  .pkg-card ul {
+    list-style: none; padding: 0; margin: 0;
+    display: flex; flex-direction: column;
+    gap: 8px;
+  }
+  .pkg-card ul li {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--ink);
+    padding-left: 16px;
+    position: relative;
+  }
+  .pkg-card ul li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 9px;
+    width: 6px; height: 1px;
+    background: var(--ink-muted);
+  }
+  .pkg-card .pkg-best {
+    font-size: 13px;
+    color: var(--ink-muted);
+    font-style: italic;
+    margin: auto 0 0;
+    padding-top: 14px;
+    border-top: 1px dashed var(--hairline);
+  }
+  .pkg-card .btn {
+    margin-top: 14px;
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  /* ===== Final CTA ===== */
+  .final {
+    padding: var(--section-y) 0;
+    border-top: 1px solid var(--hairline);
+    background: var(--black);
+    color: var(--white);
+  }
+  .final h2 { color: var(--white); max-width: 22ch; }
+  .final p {
+    font-size: clamp(16px, 1.2vw, 18px);
+    line-height: 1.6;
+    color: rgba(255,255,255,0.72);
+    margin: 18px 0 0;
+    max-width: 58ch;
+  }
+  .final .label-mono { color: rgba(255,255,255,0.55); }
+  .final .label-mono .dot { background: var(--pink); }
+  .final .btn-primary {
+    background: var(--white);
+    color: var(--ink);
+    border-color: var(--white);
+  }
+  .final .btn-primary:hover { background: var(--surface); }
+  .final-actions {
+    margin-top: clamp(28px, 3vw, 40px);
+    display: flex; flex-direction: column; align-items: flex-start;
+    gap: 14px;
+  }
+  .final-risk {
+    font-size: 13px;
+    color: rgba(255,255,255,0.55);
+    font-style: italic;
+    line-height: 1.55;
+    max-width: 48ch;
+  }
+
+  /* ===== Footer ===== */
+  .footer {
+    background: var(--black);
+    color: rgba(255,255,255,0.72);
+    padding: clamp(56px, 6vw, 80px) 0 32px;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    gap: clamp(24px, 3vw, 48px);
+  }
+  @media (max-width: 880px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 540px) { .footer-grid { grid-template-columns: 1fr; } }
+  .footer-brand img { height: 30px; width: auto; margin-bottom: 14px; }
+  .footer-brand p { font-size: 14px; line-height: 1.55; max-width: 36ch; }
+  .footer-col h5 {
+    color: var(--white);
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    font-weight: 500;
+    margin: 0 0 14px;
+  }
+  .footer-col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px; }
+  .footer-col a { color: rgba(255,255,255,0.72); transition: color 180ms var(--ease); font-size: 14px; }
+  .footer-col a:hover { color: var(--white); }
+  .footer-col li { font-size: 14px; }
+  .footer-bottom {
+    margin-top: clamp(40px, 5vw, 64px);
+    padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+    gap: 18px;
+    font-size: 12.5px;
+    color: rgba(255,255,255,0.45);
+  }
+  .footer-mb {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.55); font-size: 12.5px;
+  }
+  .footer-mb img { opacity: 0.7; }
+  .footer-mb strong { color: rgba(255,255,255,0.85); letter-spacing: 0.06em; }
+</style>
+</head>
+<body>
+
+<!-- ============= NAV ============= -->
+<nav class="nav" id="siteNav">
+  <div class="container nav-inner">
+    <div class="nav-logo">
+      <a href="../Home.html" aria-label="AIHLPR home">
+        <img src="../assets/aihlpr-logo.svg" alt="AIHLPR">
+      </a>
+      <span class="nav-crumb">
+        <a href="../Home.html#capabilities">Solutions</a>
+        <span class="sep">/</span>
+        <span>Readiness Audit</span>
+      </span>
+    </div>
+    <div class="nav-links">
+      <a href="../Home.html#capabilities">Solutions</a>
+      <a href="../insights/index.html">Our thinking</a>
+      <a href="../about.html">About</a>
+      <a href="../Home.html#how">How We Work</a>
+      <a href="../Home.html#work">Case Studies</a>
+      <a href="../Home.html#contact" class="cta">Book a call &rarr;</a>
+    </div>
+  </div>
+</nav>
+
+
+<!-- ============= HERO ============= -->
+<header class="hero">
+  <div class="container">
+    <span class="label-mono"><span class="dot"></span>AI Workflow &amp; Data Readiness Audit</span>
+    <h1>Find the AI workflow worth building first.</h1>
+    <p class="hero-sub">AIHLPR reviews your workflow, data, tools, human review points, and business outcome to identify where AI can safely reduce manual work &mdash; and where the process needs to be cleaned up first.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary" href="../Home.html#contact">
+        Book a readiness review <span class="arrow">&rarr;</span>
+      </a>
+      <a class="btn btn-secondary" href="#assess">
+        See what we assess <span class="arrow">&darr;</span>
+      </a>
+    </div>
+    <p class="hero-trust">Built for teams that want practical AI adoption without over-automating, overbuilding, or losing human control.</p>
+  </div>
+</header>
+
+
+<!-- ============= 01 · WHY THIS AUDIT EXISTS ============= -->
+<section class="block" id="why">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Why this audit exists</span>
+        <h2>Most AI projects do not fail because the model is weak. They fail because the workflow around it is unclear.</h2>
+      </div>
+      <p class="block-lede">Before building an AI system, teams need to know which workflow is ready, which data can be trusted, which tools need to connect, where human review belongs, and what outcome is worth measuring.</p>
+    </div>
+
+    <p style="font-size: clamp(15px, 1.1vw, 16.5px); line-height: 1.65; color: var(--ink-soft); max-width: 70ch; margin: 0;">
+      The audit gives teams a practical starting point. Not a generic AI strategy. Not a long innovation report. A clear view of what can be built now, what needs preparation, and what should not be automated yet.
+    </p>
+
+    <div class="chain" aria-hidden="true">
+      <ol>
+        <li>Workflow</li>
+        <li>Data</li>
+        <li>Tools</li>
+        <li>Human review</li>
+        <li>Risk</li>
+        <li>Quick win</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============= 02 · STARTING POINTS (6 ICP CARDS) ============= -->
+<section class="block" id="starting-points">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Starting points</span>
+        <h2>One audit engine. Different entry points for different teams.</h2>
+      </div>
+      <p class="block-lede">Different teams come to the audit from different angles. The lens changes; the underlying review of workflow, data, tools, risk, and review points stays consistent.</p>
+    </div>
+
+    <div class="start-grid">
+      <article class="start-card">
+        <span class="icp">01 &middot; Operations</span>
+        <h3>Workflows, approvals, handoffs, and exceptions</h3>
+        <p>For teams where work gets stuck between inboxes, spreadsheets, approval queues, and manual updates.</p>
+        <a class="micro-cta" href="../Home.html#contact">Find the workflow slowing your team down <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="start-card">
+        <span class="icp">02 &middot; Marketing &amp; e-commerce</span>
+        <h3>Content production, localisation, and asset workflows</h3>
+        <p>For teams where digital content, product listings, translations, and market approvals delay launches.</p>
+        <a class="micro-cta" href="../Home.html#contact">Find the first content workflow to streamline <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="start-card">
+        <span class="icp">03 &middot; IT &amp; product teams</span>
+        <h3>Pilots, architecture, integrations, and rollout readiness</h3>
+        <p>For teams with a promising AI pilot that needs stronger security, monitoring, ownership, and production discipline.</p>
+        <a class="micro-cta" href="../Home.html#contact">Review an AI pilot before rollout <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="start-card">
+        <span class="icp">04 &middot; Leadership</span>
+        <h3>Opportunity scoring, ROI, and quick-win roadmap</h3>
+        <p>For founders, CEOs, and department leaders who want to know where AI can create measurable value first.</p>
+        <a class="micro-cta" href="../Home.html#contact">Find the AI use case worth building first <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="start-card">
+        <span class="icp">05 &middot; Legal &amp; compliance</span>
+        <h3>Human oversight, auditability, DPIA, and governance</h3>
+        <p>For teams that need clear review points before AI enters sensitive workflows.</p>
+        <a class="micro-cta" href="../Home.html#contact">Review AI risk before rollout <span class="arrow">&rarr;</span></a>
+      </article>
+
+      <article class="start-card">
+        <span class="icp">06 &middot; Support &amp; service</span>
+        <h3>Ticket triage, knowledge workflows, and escalation prep</h3>
+        <p>For teams repeating the same investigation work before every customer reply or handoff.</p>
+        <a class="micro-cta" href="../Home.html#contact">Find the support workflow AI can prepare first <span class="arrow">&rarr;</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============= 03 · WHAT WE ASSESS (7 CARDS) ============= -->
+<section class="block" id="assess">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>What we assess</span>
+        <h2>We audit the workflow around the AI.</h2>
+      </div>
+      <p class="block-lede">The audit looks at the operational layer that determines whether AI will be useful in practice: the business goal, the workflow, the data, the systems, the review points, the risks, and the first measurable build.</p>
+    </div>
+
+    <div class="assess-grid">
+      <article class="assess-card">
+        <span class="ac-num">01</span>
+        <h3>Business outcome</h3>
+        <p>What should improve: time saved, cost reduced, revenue lifted, quality improved, or risk reduced?</p>
+      </article>
+      <article class="assess-card">
+        <span class="ac-num">02</span>
+        <h3>Workflow reality</h3>
+        <p>How the work actually moves today: triggers, people, tools, reviews, handoffs, exceptions, and bottlenecks.</p>
+      </article>
+      <article class="assess-card">
+        <span class="ac-num">03</span>
+        <h3>Data readiness</h3>
+        <p>Where the information lives, who owns it, whether it is current, structured, searchable, complete, and safe to use.</p>
+      </article>
+      <article class="assess-card">
+        <span class="ac-num">04</span>
+        <h3>Tool readiness</h3>
+        <p>Which systems need to connect, whether APIs or exports are available, and what can be done without disrupting the stack.</p>
+      </article>
+      <article class="assess-card">
+        <span class="ac-num">05</span>
+        <h3>Human review</h3>
+        <p>Where AI can prepare, draft, classify, or route &mdash; and where people must approve, edit, or decide.</p>
+      </article>
+      <article class="assess-card">
+        <span class="ac-num">06</span>
+        <h3>Risk and governance</h3>
+        <p>Sensitive data, permissions, audit trail needs, DPIA considerations, EU AI Act relevance, and review responsibilities.</p>
+      </article>
+      <article class="assess-card">
+        <span class="ac-num">07</span>
+        <h3>Quick-win path</h3>
+        <p>The smallest useful workflow that can prove value in 2&ndash;4 weeks.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============= 04 · READINESS SCORE ============= -->
+<section class="block" id="score">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Readiness score</span>
+        <h2>The result is a practical readiness score, not a vague recommendation.</h2>
+      </div>
+      <p class="block-lede">Each workflow is scored across the audit lenses so the next step is clear. Some workflows are ready to build. Some need better data, ownership, or review paths first. Some should not be automated yet.</p>
+    </div>
+
+    <div class="score-grid">
+      <article class="score-card is-build">
+        <span class="verdict">Build now</span>
+        <h3>Build now.</h3>
+        <p>Workflow is clear, data exists, risk is manageable, and ROI is visible.</p>
+      </article>
+      <article class="score-card is-prep">
+        <span class="verdict">Prepare first</span>
+        <h3>Prepare first.</h3>
+        <p>The opportunity is strong, but data, process, ownership, or governance needs cleanup.</p>
+      </article>
+      <article class="score-card is-not">
+        <span class="verdict">Do not automate yet</span>
+        <h3>Do not automate yet.</h3>
+        <p>The workflow is unclear, risk is too high, or the business case is not strong enough.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============= 05 · WHAT YOU RECEIVE ============= -->
+<section class="block" id="receive">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>What you receive</span>
+        <h2>A clear path from audit to first useful build.</h2>
+      </div>
+      <p class="block-lede">The deliverable is a single document plus a working session. It can stand alone as a decision document, or become the starting point for a quick-win sprint.</p>
+    </div>
+
+    <div class="deliver-wrap">
+      <ul class="deliver-grid">
+        <li>Workflow map</li>
+        <li>Data readiness score</li>
+        <li>Tool and integration notes</li>
+        <li>Risk and governance notes</li>
+        <li>Human review points</li>
+        <li>Quick-win shortlist</li>
+        <li>Recommended first build</li>
+        <li>ROI / payback snapshot</li>
+        <li>2&ndash;4 week implementation path</li>
+      </ul>
+      <p class="deliver-foot">
+        The audit can stand alone as a decision document or become the starting point for an AIHLPR quick-win sprint.
+      </p>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============= 06 · PACKAGES ============= -->
+<section class="block" id="packages">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Packages</span>
+        <h2>Start small. Expand only when the value is clear.</h2>
+      </div>
+      <p class="block-lede">Three engagement shapes for three different starting points. Each one ends with a concrete decision document, not a strategy deck.</p>
+    </div>
+
+    <div class="pkg-grid">
+      <article class="pkg-card">
+        <span class="pkg-tier">Essential</span>
+        <h3>Workflow Fit Check</h3>
+        <p class="pkg-for">For teams that want to identify one AI-ready workflow.</p>
+        <span class="pkg-includes-label">Includes</span>
+        <ul>
+          <li>30-minute review</li>
+          <li>One workflow candidate</li>
+          <li>One blocker</li>
+          <li>One quick-win recommendation</li>
+        </ul>
+        <span class="pkg-best">Best for early exploration.</span>
+        <a class="btn btn-secondary" href="../Home.html#contact">
+          Book a fit check <span class="arrow">&rarr;</span>
+        </a>
+      </article>
+
+      <article class="pkg-card is-featured">
+        <span class="pkg-tier">Growth</span>
+        <h3>AI Workflow &amp; Data Readiness Audit</h3>
+        <p class="pkg-for">For teams ready to assess a workflow before building.</p>
+        <span class="pkg-includes-label">Includes</span>
+        <ul>
+          <li>Workflow map</li>
+          <li>Data readiness review</li>
+          <li>Risk and governance notes</li>
+          <li>Integration feasibility</li>
+          <li>Quick-win recommendation</li>
+          <li>ROI / payback snapshot</li>
+        </ul>
+        <span class="pkg-best">Best for teams preparing a first build.</span>
+        <a class="btn btn-primary" href="../Home.html#contact">
+          Book a readiness audit <span class="arrow">&rarr;</span>
+        </a>
+      </article>
+
+      <article class="pkg-card">
+        <span class="pkg-tier">Scale</span>
+        <h3>AI Operating Layer Roadmap</h3>
+        <p class="pkg-for">For teams assessing multiple workflows across teams, markets, or systems.</p>
+        <span class="pkg-includes-label">Includes</span>
+        <ul>
+          <li>Department-level workflow scan</li>
+          <li>Use-case scoring</li>
+          <li>Data and system readiness map</li>
+          <li>Governance model</li>
+          <li>First 90-day roadmap</li>
+          <li>Build priorities</li>
+        </ul>
+        <span class="pkg-best">Best for scale-ups and enterprise teams.</span>
+        <a class="btn btn-secondary" href="../Home.html#contact">
+          Plan the roadmap <span class="arrow">&rarr;</span>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============= FINAL CTA ============= -->
+<section class="final">
+  <div class="container">
+    <span class="label-mono"><span class="dot"></span>Book the audit</span>
+    <h2 style="margin-top:14px;">Find the AI workflow worth building first.</h2>
+    <p>Bring one workflow, process, backlog, pilot, or operational pain point. We&rsquo;ll help identify whether AI can safely reduce the load, what needs to be cleaned up first, and what a useful first version should look like.</p>
+    <div class="final-actions">
+      <a class="btn btn-primary" href="../Home.html#contact">
+        Book a readiness review <span class="arrow">&rarr;</span>
+      </a>
+      <span class="final-risk">30-minute call. No obligation. We&rsquo;ll tell you where AI fits, where it does not, and what to measure first.</span>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============= FOOTER ============= -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../assets/aihlpr-logo-light.svg" alt="AIHLPR">
+        <p>Operational AI partner. Building AI systems that fit how organisations already work, from one workflow to the whole organisation.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Solutions</h5>
+        <ul>
+          <li><a href="ai-applications-and-platforms.html">AI Products &amp; Platforms</a></li>
+          <li><a href="ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a></li>
+          <li><a href="enterprise-ai.html">Enterprise AI</a></li>
+          <li><a href="prototype-to-production.html">AI Pilot to Production</a></li>
+          <li><a href="readiness-audit.html">Readiness Audit</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>The site</h5>
+        <ul>
+          <li><a href="../Home.html#capabilities">Solutions</a></li>
+          <li><a href="../insights/index.html">Our thinking</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../Home.html#how">How We Work</a></li>
+          <li><a href="../Home.html#work">Case studies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:brinda@moralitybytes.eu">brinda@moralitybytes.eu</a></li>
+          <li>Wibautstraat 129, Amsterdam</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <a class="footer-mb" href="https://moralitybytes.eu" target="_blank" rel="noopener" aria-label="MoralityBytes">
+        <img src="../assets/moralitybytes-mark.svg" alt="" width="30" height="30">
+        <span>A practice of <strong>MORALITY BYTES</strong></span>
+      </a>
+      <span>&copy; 2026 AIHLPR &middot; AI engineering, built to last</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
