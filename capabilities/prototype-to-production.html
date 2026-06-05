@@ -294,8 +294,40 @@
     padding: 5px 9px; border: 1px solid var(--hairline); border-radius: 999px;
   }
 
-  /* 03 — Readiness review pathway */
-  .review { background: var(--surface); }
+  /* 03 — Readiness review pathway. Visually emphasised: top accent ribbon,
+     'recommended first step' pre-label, and slightly larger h2 so this
+     section reads as the recommended on-ramp into the engagement. */
+  .review {
+    background: var(--surface);
+    position: relative;
+  }
+  .review::before {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; top: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #E91E63 0%, #CC418C 35%, #9B59B6 70%, #3478E5 100%);
+    opacity: 0.75;
+  }
+  .review-prelead {
+    display: inline-block;
+    margin-bottom: 14px;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: #1F1F1F;
+    color: #fff;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .review-title {
+    font-size: clamp(34px, 3.8vw, 52px) !important;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+    max-width: 22ch;
+  }
   .pathway {
     display: grid; grid-template-columns: repeat(4, 1fr);
     gap: 0; counter-reset: step;
@@ -603,8 +635,8 @@
       <span>AI Pilot to Production</span>
     </div>
     <h1>AI Pilot to Production</h1>
-    <p class="hero-lede">Make AI systems ready for real operations.</p>
-    <p class="hero-sub">A pilot proves signal. Production tests operating readiness.</p>
+    <p class="hero-lede">Make a promising AI pilot ready for real work.</p>
+    <p class="hero-sub">A pilot proves there is signal. Production asks whether the system can be trusted every day &mdash; with real users, real data, approvals, exceptions, monitoring, ownership, and cost control in place.</p>
     <p class="hero-sub muted">Before wider rollout, the system needs clear answers on data, workflow logic, integrations, approvals, monitoring, evaluation, security, ownership, and cost.</p>
     <div class="hero-ctas">
       <a class="btn btn-primary" href="../Home.html#contact">
@@ -680,7 +712,7 @@
     <div class="block-head reveal">
       <div>
         <span class="label-mono"><span class="dot"></span><span class="idx">01</span> &middot; What changes after the pilot</span>
-        <h2 style="margin-top:14px;">A pilot proves potential. Production tests readiness.</h2>
+        <h2 style="margin-top:14px;">A pilot proves potential. Production proves reliability.</h2>
       </div>
       <p class="block-lede">The first version can work in a controlled setting. Wider rollout brings different conditions: real users, real data, exceptions, handovers, approvals, integrations, changing model outputs, and operational pressure. <b>The shift from pilot to production is where the system has to become visible, owned, measurable, and safe to improve.</b></p>
     </div>
@@ -719,7 +751,7 @@
     <div class="block-head reveal">
       <div>
         <span class="label-mono"><span class="dot"></span><span class="idx">02</span> &middot; What needs to be hardened</span>
-        <h2 style="margin-top:14px;">Production readiness is made where the system can break.</h2>
+        <h2 style="margin-top:14px;">Production readiness starts where the system could break.</h2>
       </div>
       <p class="block-lede">The model is only one part of the workflow. Readiness depends on the full operating layer around it: data, logic, tools, approvals, monitoring, evaluation, deployment, and cost.</p>
     </div>
@@ -787,8 +819,9 @@
   <div class="container">
     <div class="block-head reveal">
       <div>
+        <span class="review-prelead">Recommended first step</span>
         <span class="label-mono"><span class="dot"></span><span class="idx">03</span> &middot; The readiness review</span>
-        <h2 style="margin-top:14px;">Before rollout, four decisions matter.</h2>
+        <h2 class="review-title" style="margin-top:14px;">Before rollout, four decisions matter.</h2>
       </div>
       <p class="block-lede">A readiness review answers them in order, from what exists now to how rollout should happen.</p>
     </div>
