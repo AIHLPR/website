@@ -978,14 +978,11 @@
     }
   }
 
-  /* ===== Exception-Aware Workflow Engine (card 02 preview) ===== */
-  .we-wrap { min-height: 0; pointer-events: none; }
-  .we {
-    display: grid;
-    grid-template-columns: minmax(110px, 0.85fr) minmax(0, 1.8fr) minmax(120px, 0.95fr);
-    gap: clamp(12px, 1.4vw, 20px);
-    align-items: start;
-    padding: clamp(16px, 1.6vw, 22px);
+  /* ===== Node-based Automation Flowchart (card 02 preview) ===== */
+  .wf-wrap { min-height: 0; pointer-events: none; }
+  .wf {
+    position: relative;
+    padding: clamp(14px, 1.5vw, 20px);
     background: var(--white);
     border: 1px solid var(--hairline);
     border-radius: 10px;
@@ -994,304 +991,210 @@
     font-size: 12px;
     line-height: 1.45;
     color: var(--ink);
-    position: relative;
     overflow: hidden;
+    --wf-line: #cbd5e1;
+    --wf-line-soft: #e2e8f0;
+    --wf-dot: #94a3b8;
+    --wf-ink: #334155;
+    --wf-muted: #94a3b8;
+    --wf-red: #E5484D;
+    --wf-red-ink: #B42318;
   }
-  .we::before {
+  .wf::before {
     content: "";
     position: absolute; left: 0; right: 0; top: 0;
     height: 2px;
     background: var(--gradient);
     opacity: 0.55;
   }
-  .we-side-label {
-    display: block;
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    margin-bottom: 8px;
-  }
-
-  /* Incoming requests */
-  .we-inbox { display: flex; flex-direction: column; gap: 6px; }
-  .we-req {
-    font-size: 10.5px;
-    padding: 6px 8px;
-    border: 1px solid var(--hairline);
-    border-radius: 4px;
-    background: var(--surface);
-    color: var(--ink-soft);
-    transition:
-      border-color 320ms var(--ease),
-      background 320ms var(--ease),
-      color 320ms var(--ease),
-      transform 320ms var(--ease);
+  .wf-canvas {
     position: relative;
-  }
-  .we-req.is-active {
-    border-color: color-mix(in oklab, var(--c) 55%, transparent);
-    background: color-mix(in oklab, var(--c) 6%, var(--white));
-    color: var(--c);
-    transform: translateX(4px);
-  }
-  .we-req.is-active::after {
-    content: "";
-    position: absolute;
-    right: -8px; top: 50%;
-    transform: translateY(-50%);
-    width: 0; height: 0;
-    border-top: 5px solid transparent;
-    border-bottom: 5px solid transparent;
-    border-left: 6px solid color-mix(in oklab, var(--c) 60%, transparent);
-  }
-  /* Dim other requests while one is active so the focus is obvious. */
-  .we-inbox:has(.we-req.is-active) .we-req:not(.is-active) {
-    opacity: 0.6;
-  }
-
-  /* Engine */
-  .we-engine {
-    display: flex; flex-direction: column;
-    gap: 10px;
-    min-width: 0;
-    padding: 12px;
-    border: 1px solid var(--hairline);
     border-radius: 8px;
-    background: color-mix(in oklab, var(--c) 3%, var(--white));
-    position: relative;
-  }
-  .we-engine-head {
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
-    padding-bottom: 8px;
-    border-bottom: 1px dashed color-mix(in oklab, var(--c) 18%, transparent);
-    flex-wrap: wrap;
-  }
-  .we-engine-title {
-    font-family: var(--font-display);
-    font-size: 13px;
-    font-weight: 600;
-    letter-spacing: -0.005em;
-    color: var(--ink);
-  }
-  .we-process {
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    letter-spacing: 0.06em;
-    color: var(--ink);
-    font-weight: 500;
-  }
-  .we-engine-status-row {
-    display: flex;
-    margin-top: 2px;
-  }
-  .we-status {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 3px 8px;
-    border-radius: 999px;
-    background: color-mix(in oklab, var(--c) 8%, var(--white));
-    border: 1px solid color-mix(in oklab, var(--c) 25%, transparent);
-    color: var(--c);
-    font-size: 10px;
-    letter-spacing: 0.04em;
-    text-transform: none;
+    padding: clamp(16px, 2vw, 28px) clamp(12px, 1.6vw, 22px);
+    background-color: var(--white);
+    background-image: radial-gradient(var(--wf-line-soft) 1px, transparent 1px);
+    background-size: 16px 16px;
+    background-position: -1px -1px;
   }
 
-  /* Active work item token */
-  .we-token {
-    display: inline-flex;
-    align-items: center;
-    gap: 7px;
-    align-self: flex-start;
-    padding: 5px 11px;
-    border-radius: 999px;
-    background: var(--c);
-    color: var(--white);
-    font-family: var(--font-mono);
-    font-size: 12px;
-    letter-spacing: 0.01em;
-    box-shadow: 0 0 0 4px color-mix(in oklab, var(--c) 14%, transparent);
-    transition: transform 320ms var(--ease), background 320ms var(--ease), box-shadow 320ms var(--ease);
+  /* Connector overlay */
+  .wf-links { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; z-index: 1; pointer-events: none; }
+  .wf-base {
+    fill: none; stroke: var(--wf-line); stroke-width: 1.25;
+    vector-effect: non-scaling-stroke; stroke-linecap: round; stroke-linejoin: round;
   }
-  .we-token-id { font-weight: 600; }
-  .we-token-sep { opacity: 0.65; }
-  .we-token-name { opacity: 0.95; }
-  .we-token.is-shifted { transform: translateX(6px); }
-
-  .we-steps {
-    list-style: none;
-    margin: 0; padding: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px 14px;
-  }
-  .we-steps li {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 11.5px;
-    color: var(--ink-soft);
-    padding: 4px 6px;
-    border-radius: 4px;
-    transition:
-      background 280ms var(--ease),
-      color 280ms var(--ease);
-  }
-  .we-step-no {
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    letter-spacing: 0.12em;
-    color: var(--ink-muted);
-    background: var(--white);
-    border: 1px solid var(--hairline);
-    border-radius: 3px;
-    padding: 2px 5px;
-    transition: border-color 280ms var(--ease), color 280ms var(--ease);
-  }
-  .we-steps li.is-active {
-    background: color-mix(in oklab, var(--c) 12%, var(--white));
-    color: var(--c);
-  }
-  .we-steps li.is-active .we-step-no {
-    border-color: var(--c);
-    color: var(--c);
-  }
-
-  .we-audit {
-    display: flex; flex-wrap: wrap; align-items: center;
-    gap: 6px;
-    padding-top: 8px;
-    border-top: 1px dashed color-mix(in oklab, var(--c) 18%, transparent);
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    letter-spacing: 0.10em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-    transition: opacity 320ms var(--ease);
-  }
-  .we-audit.is-fresh {
-    animation: we-audit-fresh 700ms var(--ease) 1;
-  }
-  .we-audit-sep { color: var(--ink-muted); opacity: 0.5; }
-  @keyframes we-audit-fresh {
-    0%   { opacity: 0.25; }
-    100% { opacity: 1; }
-  }
-
-  /* Outcome lanes */
-  .we-lanes {
-    display: flex; flex-direction: column;
-    gap: 8px;
-  }
-  .we-lane {
-    display: flex; flex-direction: column; gap: 4px;
-    padding: 8px 10px;
-    border-radius: 6px;
-    border: 1px solid var(--hairline);
-    background: var(--white);
-  }
-  .we-lane-h {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-  }
-  .we-lane {
-    transition:
-      border-color 320ms var(--ease),
-      background 320ms var(--ease),
-      box-shadow 320ms var(--ease);
-  }
-  .we-lane-item {
-    font-size: 11px;
-    color: var(--ink);
-    padding-left: 12px;
-    position: relative;
+  .wf-pulse {
+    fill: none;
+    stroke: color-mix(in oklab, var(--c) 78%, white);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+    stroke-linecap: round; stroke-linejoin: round;
+    stroke-dasharray: 4 7;
     opacity: 0;
-    transform: translateX(-4px);
-    transition:
-      opacity 380ms var(--ease),
-      transform 380ms var(--ease);
+    transition: opacity 360ms var(--ease);
+    animation: wf-march 1.1s linear infinite;
   }
-  .we-lane-item::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0.5em;
-    width: 5px; height: 5px;
-    border-radius: 999px;
-    background: currentColor;
-    opacity: 0.6;
-  }
-  .we-lane.is-active .we-lane-item {
-    opacity: 1;
-    transform: translateX(0);
-  }
-  .we-lane.is-active .we-lane-item:nth-child(2) { transition-delay: 0ms; }
-  .we-lane.is-active .we-lane-item:nth-child(3) { transition-delay: 220ms; }
+  .wf-pulse.is-live { opacity: 0.9; }
+  @keyframes wf-march { from { stroke-dashoffset: 22; } to { stroke-dashoffset: 0; } }
+  .wf-dot { fill: var(--wf-dot); stroke: #fff; stroke-width: 2; vector-effect: non-scaling-stroke; transition: fill 320ms var(--ease); }
+  .wf-dot.is-live { fill: var(--c); }
 
-  /* Dim non-active lanes */
-  .we-lanes:has(.we-lane.is-active) .we-lane:not(.is-active) {
-    opacity: 0.42;
-    filter: saturate(0.7);
+  /* Stage grid */
+  .wf-row {
+    position: relative; z-index: 2;
+    display: grid;
+    grid-template-columns: minmax(94px, 0.7fr) minmax(158px, 1.18fr) minmax(142px, 1fr);
+    column-gap: clamp(22px, 3.4vw, 48px);
+    align-items: center;
+  }
+  .wf-stage { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .wf-branches { gap: clamp(20px, 2.6vw, 34px); }
+  .wf-eyebrow {
+    font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--wf-muted); font-weight: 700;
   }
 
-  .we-lane-approved  { border-color: color-mix(in oklab, var(--teal) 25%, transparent); background: color-mix(in oklab, var(--teal) 3%, var(--white)); }
-  .we-lane-approved  .we-lane-h    { color: var(--teal); }
-  .we-lane-approved  .we-lane-item { color: var(--teal); }
-  .we-lane-approved.is-active {
+  /* Generic card */
+  .wf-card {
+    position: relative;
+    background: #fff;
+    border: 1px solid var(--wf-line-soft);
+    border-radius: 9px;
+    padding: 11px 12px;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.04);
+    transition: border-color 320ms var(--ease), box-shadow 320ms var(--ease), opacity 320ms var(--ease);
+  }
+
+  /* Stage 1 - entry */
+  .wf-card-entry { display: flex; flex-direction: column; gap: 3px; }
+  .wf-card-kicker { font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--wf-muted); }
+  .wf-card-title { font-family: var(--font-display); font-size: 13px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+  .wf-chips { display: flex; flex-direction: column; gap: 5px; }
+  .wf-chip {
+    font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.05em;
+    color: var(--wf-muted); background: #f8fafc;
+    border: 1px solid var(--wf-line-soft); border-radius: 5px;
+    padding: 4px 8px; opacity: 0.85;
+  }
+
+  /* Stage 2 - engine (light-themed core, accent tint) */
+  .wf-core { align-items: stretch; }
+  .wf-card-engine {
+    display: flex; flex-direction: column; gap: 7px;
+    background: color-mix(in oklab, var(--c) 5%, var(--white));
+    border-color: color-mix(in oklab, var(--c) 30%, var(--hairline-strong));
+    color: var(--ink);
+    box-shadow: 0 6px 20px -12px color-mix(in oklab, var(--c) 28%, rgba(31,31,31,0.18));
+  }
+  .wf-card-engine.is-pulse { animation: wf-engine-pulse 760ms var(--ease) 1; }
+  @keyframes wf-engine-pulse {
+    0%   { box-shadow: 0 0 0 0 color-mix(in oklab, var(--c) 28%, transparent), 0 6px 20px -12px color-mix(in oklab, var(--c) 28%, rgba(31,31,31,0.18)); }
+    100% { box-shadow: 0 0 0 7px transparent, 0 6px 20px -12px color-mix(in oklab, var(--c) 28%, rgba(31,31,31,0.18)); }
+  }
+  .wf-engine-title { font-family: var(--font-display); font-size: 13.5px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); }
+  .wf-engine-meta { font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); }
+  .wf-badge {
+    display: inline-flex; flex-wrap: wrap; align-items: center; gap: 5px; align-self: stretch;
+    margin-top: 1px;
+    font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.01em;
+    color: #fff; background: var(--c); border-radius: 7px; padding: 5px 9px;
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--c) 20%, transparent);
+  }
+  .wf-badge-name { flex-basis: 100%; opacity: 0.85; font-size: 8.5px; letter-spacing: 0.05em; white-space: nowrap; }
+  .wf-badge-dot { width: 5px; height: 5px; border-radius: 999px; background: #fff; opacity: 0.92; flex: none; }
+  .wf-badge-id { font-weight: 600; white-space: nowrap; }
+  .wf-badge-sep { display: none; }
+
+  /* Stage 3 - branch paths */
+  .wf-card-path { display: flex; flex-direction: column; gap: 9px; }
+  .wf-path-head { display: flex; align-items: center; gap: 7px; }
+  .wf-path-name { font-family: var(--font-display); font-size: 12px; font-weight: 600; color: var(--ink); letter-spacing: -0.005em; }
+
+  .wf-check {
+    flex: none; width: 15px; height: 15px; border-radius: 999px;
+    display: inline-grid; place-items: center;
+    background: color-mix(in oklab, var(--teal) 14%, white);
+    border: 1px solid color-mix(in oklab, var(--teal) 45%, transparent);
+  }
+  .wf-check::before {
+    content: ""; width: 6px; height: 3px;
+    border-left: 1.5px solid var(--teal); border-bottom: 1.5px solid var(--teal);
+    transform: translateY(-1px) rotate(-45deg);
+  }
+  .wf-substeps { display: flex; align-items: center; gap: 7px; }
+  .wf-sub {
+    flex: 1; text-align: center; font-size: 9.5px; color: var(--wf-ink);
+    background: #f8fafc; border: 1px solid var(--wf-line-soft); border-radius: 6px;
+    padding: 6px 6px;
+  }
+  .wf-sub-arrow { color: var(--wf-muted); font-size: 11px; flex: none; }
+
+  .wf-path-ok.is-active {
     border-color: color-mix(in oklab, var(--teal) 55%, transparent);
-    background: color-mix(in oklab, var(--teal) 7%, var(--white));
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--teal) 12%, transparent);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--teal) 13%, transparent), 0 1px 2px rgba(16,24,40,0.04);
   }
 
-  .we-lane-review    { border-color: color-mix(in oklab, var(--c) 25%, transparent); background: color-mix(in oklab, var(--c) 3%, var(--white)); }
-  .we-lane-review    .we-lane-h    { color: var(--c); }
-  .we-lane-review    .we-lane-item { color: var(--c); }
-  .we-lane-review.is-active {
-    border-color: color-mix(in oklab, var(--c) 55%, transparent);
-    background: color-mix(in oklab, var(--c) 7%, var(--white));
-    box-shadow: 0 0 0 3px color-mix(in oklab, var(--c) 12%, transparent);
+  .wf-path-exc {
+    border-color: color-mix(in oklab, var(--wf-red) 38%, white);
+    background: color-mix(in oklab, var(--wf-red) 4%, white);
+  }
+  .wf-x {
+    flex: none; width: 15px; height: 15px; border-radius: 999px;
+    display: inline-grid; place-items: center;
+    background: color-mix(in oklab, var(--wf-red) 12%, white);
+    border: 1px solid color-mix(in oklab, var(--wf-red) 42%, transparent);
+    position: relative;
+  }
+  .wf-x::before, .wf-x::after {
+    content: ""; position: absolute; width: 7px; height: 1.5px; border-radius: 2px;
+    background: var(--wf-red-ink);
+  }
+  .wf-x::before { transform: rotate(45deg); }
+  .wf-x::after  { transform: rotate(-45deg); }
+  .wf-ops { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 6px; }
+  .wf-op { display: flex; align-items: center; gap: 8px; font-size: 10.5px; color: var(--wf-red-ink); }
+  .wf-op-no {
+    font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.1em;
+    color: var(--wf-red-ink); background: #fff;
+    border: 1px solid color-mix(in oklab, var(--wf-red) 35%, white);
+    border-radius: 4px; padding: 2px 5px;
+  }
+  .wf-op-staggered { margin-left: 18px; position: relative; }
+  .wf-op-turn {
+    position: absolute; left: -12px; top: -9px;
+    width: 8px; height: 15px;
+    border-left: 1.5px solid color-mix(in oklab, var(--wf-red) 55%, transparent);
+    border-bottom: 1.5px solid color-mix(in oklab, var(--wf-red) 55%, transparent);
+    border-bottom-left-radius: 5px;
+  }
+  .wf-op-turn::after {
+    content: ""; position: absolute; right: -3px; bottom: -3px;
+    width: 0; height: 0;
+    border-top: 3px solid transparent; border-bottom: 3px solid transparent;
+    border-left: 4px solid color-mix(in oklab, var(--wf-red) 60%, transparent);
+  }
+  .wf-path-exc.is-active {
+    border-color: color-mix(in oklab, var(--wf-red) 62%, transparent);
+    background: color-mix(in oklab, var(--wf-red) 6%, white);
+    box-shadow: 0 0 0 3px color-mix(in oklab, var(--wf-red) 13%, transparent), 0 1px 2px rgba(16,24,40,0.04);
   }
 
-  .we-lane-exception { border-color: color-mix(in oklab, #E63946 25%, transparent); background: color-mix(in oklab, #E63946 3%, var(--white)); }
-  .we-lane-exception .we-lane-h    { color: #C5303A; }
-  .we-lane-exception .we-lane-item { color: #C5303A; }
-  .we-lane-exception.is-active {
-    border-color: color-mix(in oklab, #E63946 55%, transparent);
-    background: color-mix(in oklab, #E63946 7%, var(--white));
-    box-shadow: 0 0 0 3px color-mix(in oklab, #E63946 12%, transparent);
-  }
+  /* Dim the path that isn't currently active */
+  .wf-branches:has(.is-active) .wf-card-path:not(.is-active) { opacity: 0.5; filter: saturate(0.8); }
 
   @media (max-width: 960px) {
-    .we { font-size: 11.5px; }
-    .we-engine-title { font-size: 12px; }
-    .we-steps { grid-template-columns: 1fr; }
+    .wf-row { column-gap: clamp(22px, 3vw, 40px); }
+    .wf-card-title, .wf-engine-title { font-size: 12px; }
   }
   @media (max-width: 720px) {
-    .we {
-      grid-template-columns: 1fr;
-      gap: 16px;
-    }
-    .we-inbox { flex-direction: row; flex-wrap: wrap; }
+    .wf-row { grid-template-columns: 1fr; row-gap: 18px; }
+    .wf-links { display: none; }
+    .wf-branches { gap: 14px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .wf-pulse, .wf-card-engine, .wf-card, .wf-dot { animation: none !important; transition: none !important; }
   }
 
-  @media (prefers-reduced-motion: reduce) {
-    .we-req,
-    .we-audit,
-    .we-lane,
-    .we-lane-item,
-    .we-token,
-    .we-steps li {
-      transition: none !important;
-      animation: none !important;
-    }
-    .we-lane-item { opacity: 1; transform: none; }
-  }
 
   /* ===== Enterprise AI Control Stack (card 03 preview) ===== */
   .cs-wrap { min-height: 0; pointer-events: none; }
@@ -4129,72 +4032,86 @@
         </div>
         </div>
         <div class="capvisual" data-i="1" style="--c:#9B59B6">
-          <div class="cap-strip-visual we-wrap" data-we aria-hidden="true">
-          <div class="we">
+          <div class="cap-strip-visual wf-wrap" data-wf aria-hidden="true">
+          <div class="wf">
+            <div class="wf-canvas">
 
-            <!-- Incoming requests -->
-            <div class="we-inbox">
-              <span class="we-side-label">Incoming requests</span>
-              <div class="we-req" data-req="0">New vendor request</div>
-              <div class="we-req" data-req="1">Invoice exception</div>
-              <div class="we-req" data-req="2">Contract update</div>
-              <div class="we-req" data-req="3">Purchase approval</div>
-              <div class="we-req" data-req="4">Missing tax form</div>
+              <svg class="wf-links" preserveAspectRatio="none" aria-hidden="true">
+                <path class="wf-base" data-link="feed"></path>
+                <path class="wf-base" data-link="up"></path>
+                <path class="wf-base" data-link="down"></path>
+                <path class="wf-pulse" data-pulse="feed"></path>
+                <path class="wf-pulse" data-pulse="branch"></path>
+                <circle class="wf-dot" r="3.2"></circle>
+                <circle class="wf-dot" r="3.2"></circle>
+                <circle class="wf-dot" r="3.2"></circle>
+                <circle class="wf-dot wf-dot-split" r="3.4"></circle>
+                <circle class="wf-dot" r="3.2"></circle>
+                <circle class="wf-dot" r="3.2"></circle>
+              </svg>
+
+              <div class="wf-row">
+
+                <!-- Stage 1: ingestion -->
+                <div class="wf-stage wf-ingest">
+                  <span class="wf-eyebrow">Ingest</span>
+                  <div class="wf-card wf-card-entry" data-anchor="s1">
+                    <span class="wf-card-kicker">Entry point</span>
+                    <span class="wf-card-title">Incoming Request</span>
+                  </div>
+                  <div class="wf-chips">
+                    <span class="wf-chip">Invoice Exception</span>
+                    <span class="wf-chip">Contract Update</span>
+                    <span class="wf-chip">New Vendor</span>
+                  </div>
+                </div>
+
+                <!-- Stage 2: core logic -->
+                <div class="wf-stage wf-core">
+                  <span class="wf-eyebrow">Engine</span>
+                  <div class="wf-card wf-card-engine" data-anchor="s2">
+                    <span class="wf-engine-title">Workflow Engine</span>
+                    <span class="wf-engine-meta">Vendor Approval</span>
+                    <span class="wf-badge" data-wf-badge>
+                      <span class="wf-badge-dot"></span>
+                      <span class="wf-badge-id" data-wf-badge-id>REQ-207</span>
+                      <span class="wf-badge-sep">&middot;</span>
+                      <span class="wf-badge-name" data-wf-badge-name>Missing tax form</span>
+                    </span>
+                  </div>
+                </div>
+
+                <!-- Stage 3: branching paths -->
+                <div class="wf-stage wf-branches">
+                  <span class="wf-eyebrow">Routing</span>
+
+                  <div class="wf-card wf-card-path wf-path-ok is-active" data-anchor="up" data-branch="approved">
+                    <div class="wf-path-head">
+                      <span class="wf-check" aria-hidden="true"></span>
+                      <span class="wf-path-name">Approved Path</span>
+                    </div>
+                    <div class="wf-substeps">
+                      <span class="wf-sub">Classify Request</span>
+                      <span class="wf-sub-arrow" aria-hidden="true">&rarr;</span>
+                      <span class="wf-sub">Match Policy</span>
+                    </div>
+                  </div>
+
+                  <div class="wf-card wf-card-path wf-path-exc" data-anchor="down" data-branch="exception">
+                    <div class="wf-path-head">
+                      <span class="wf-x" aria-hidden="true"></span>
+                      <span class="wf-path-name">Exception Path</span>
+                    </div>
+                    <ol class="wf-ops">
+                      <li class="wf-op"><span class="wf-op-no">05</span>Route Owner</li>
+                      <li class="wf-op wf-op-staggered"><span class="wf-op-turn" aria-hidden="true"></span><span class="wf-op-no">06</span>Escalate Exception</li>
+                    </ol>
+                  </div>
+
+                </div>
+
+              </div>
             </div>
-
-            <!-- Engine -->
-            <div class="we-engine">
-              <div class="we-engine-head">
-                <div class="we-engine-title">Workflow Engine</div>
-                <span class="we-process">Vendor Approval Workflow</span>
-              </div>
-              <div class="we-engine-status-row">
-                <span class="we-status"><span class="ocm-dot"></span>Workflow running</span>
-              </div>
-
-              <div class="we-token" data-we-token>
-                <span class="we-token-id" data-we-token-id>REQ-204</span>
-                <span class="we-token-sep">&middot;</span>
-                <span class="we-token-name" data-we-token-name>Contract update</span>
-              </div>
-
-              <ol class="we-steps">
-                <li data-step="0"><span class="we-step-no">01</span>Classify request</li>
-                <li data-step="1"><span class="we-step-no">02</span>Extract details</li>
-                <li data-step="2"><span class="we-step-no">03</span>Match policy</li>
-                <li data-step="3"><span class="we-step-no">04</span>Prepare decision</li>
-                <li data-step="4"><span class="we-step-no">05</span>Route owner</li>
-                <li data-step="5"><span class="we-step-no">06</span>Escalate exception</li>
-              </ol>
-
-              <div class="we-audit" data-we-audit>
-                <span class="we-audit-item">Audit trail saved</span>
-                <span class="we-audit-sep">&middot;</span>
-                <span class="we-audit-item">Policy checked</span>
-                <span class="we-audit-sep">&middot;</span>
-                <span class="we-audit-item">Owner assigned</span>
-              </div>
-            </div>
-
-            <!-- Outcome lanes -->
-            <div class="we-lanes">
-              <div class="we-lane we-lane-approved" data-lane="approved">
-                <span class="we-lane-h">Approved path</span>
-                <span class="we-lane-item">Vendor approved</span>
-                <span class="we-lane-item">ERP updated</span>
-              </div>
-              <div class="we-lane we-lane-review" data-lane="review">
-                <span class="we-lane-h">Review path</span>
-                <span class="we-lane-item">Sent to finance</span>
-                <span class="we-lane-item">Human decision needed</span>
-              </div>
-              <div class="we-lane we-lane-exception" data-lane="exception">
-                <span class="we-lane-h">Exception path</span>
-                <span class="we-lane-item">Missing document</span>
-                <span class="we-lane-item">Escalated to owner</span>
-              </div>
-            </div>
-
           </div>
         </div>
         </div>
@@ -6255,115 +6172,161 @@
 
 <script>
 /* =====================================================================
-   Card 02 — Exception-Aware Workflow Engine choreography
-   Cycles through three cases. For each:
-   1) highlights the chosen request in the inbox
-   2) shows the moving token (REQ id + name)
-   3) lights up engine steps one by one
-   4) reveals the matching outcome lane
-   5) refreshes the audit strip
-   Only one of each at a time. Calm pacing, ~6.5s per case.
+   Card 02 - Exception-Aware Workflow Engine choreography (light-theme)
+   Cycles through cases. For each, lights up the matching branch,
+   moves the pulse line, and refreshes the engine badge.
    ===================================================================== */
 (function () {
   'use strict';
 
-  var root = document.querySelector('[data-we]');
+  var root = document.querySelector('[data-wf]');
   if (!root) return;
 
   var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  var requests = [...root.querySelectorAll('.we-req')];
-  var steps    = [...root.querySelectorAll('.we-steps li')];
-  var lanes    = [...root.querySelectorAll('.we-lane')];
-  var audit    = root.querySelector('[data-we-audit]');
-  var tokenEl  = root.querySelector('[data-we-token]');
-  var tokenId  = root.querySelector('[data-we-token-id]');
-  var tokenNm  = root.querySelector('[data-we-token-name]');
+  var canvas      = root.querySelector('.wf-canvas');
+  var svg         = root.querySelector('.wf-links');
+  var baseFeed    = root.querySelector('.wf-base[data-link="feed"]');
+  var baseUp      = root.querySelector('.wf-base[data-link="up"]');
+  var baseDown    = root.querySelector('.wf-base[data-link="down"]');
+  var pulseFeed   = root.querySelector('.wf-pulse[data-pulse="feed"]');
+  var pulseBranch = root.querySelector('.wf-pulse[data-pulse="branch"]');
+  var dots        = [].slice.call(root.querySelectorAll('.wf-dot'));
+  var entry       = root.querySelector('[data-anchor="s1"]');
+  var engine      = root.querySelector('[data-anchor="s2"]');
+  var upCard      = root.querySelector('[data-anchor="up"]');
+  var downCard    = root.querySelector('[data-anchor="down"]');
+  var engineCard  = root.querySelector('.wf-card-engine');
+  var badgeId     = root.querySelector('[data-wf-badge-id]');
+  var badgeNm     = root.querySelector('[data-wf-badge-name]');
+  var branchEls   = { approved: upCard, exception: downCard };
 
-  var CASES = [
-    { reqIdx: 0, lane: 'approved',  id: 'REQ-201', name: 'New vendor request' },
-    { reqIdx: 2, lane: 'review',    id: 'REQ-204', name: 'Contract update' },
-    { reqIdx: 4, lane: 'exception', id: 'REQ-207', name: 'Missing tax form' }
-  ];
+  var geo = { feed: '', up: '', down: '' };
+  var activeLink = 'down';
 
-  var STEP_MS = 380;
-  var CASE_MS = STEP_MS * steps.length + 2400;
-  var timers = [];
-
-  function clearTimers() { timers.forEach(clearTimeout); timers = []; }
-  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
-
-  function clearState() {
-    requests.forEach(function (r) { r.classList.remove('is-active'); });
-    steps.forEach(function (s)    { s.classList.remove('is-active'); });
-    lanes.forEach(function (l)    { l.classList.remove('is-active'); });
-    if (audit) audit.classList.remove('is-fresh');
+  function anchor(el, side) {
+    var r = el.getBoundingClientRect();
+    var b = canvas.getBoundingClientRect();
+    return {
+      x: (side === 'r' ? r.right : r.left) - b.left,
+      y: r.top - b.top + r.height / 2
+    };
+  }
+  function elbow(a, b) {
+    var mx = (a.x + b.x) / 2;
+    return 'M ' + a.x + ' ' + a.y + ' L ' + mx + ' ' + a.y + ' L ' + mx + ' ' + b.y + ' L ' + b.x + ' ' + b.y;
+  }
+  function branch(a, sx, b) {
+    return 'M ' + a.x + ' ' + a.y + ' L ' + sx + ' ' + a.y + ' L ' + sx + ' ' + b.y + ' L ' + b.x + ' ' + b.y;
+  }
+  function draw() {
+    if (!canvas) return;
+    if (window.getComputedStyle(svg).display === 'none') return;
+    var b = canvas.getBoundingClientRect();
+    if (!b.width || !b.height) return;
+    svg.setAttribute('viewBox', '0 0 ' + b.width + ' ' + b.height);
+    var s1  = anchor(entry, 'r');
+    var s2l = anchor(engine, 'l');
+    var s2r = anchor(engine, 'r');
+    var up  = anchor(upCard, 'l');
+    var dn  = anchor(downCard, 'l');
+    var sx  = s2r.x + Math.max(18, (up.x - s2r.x) * 0.42);
+    geo.feed = elbow(s1, s2l);
+    geo.up   = branch(s2r, sx, up);
+    geo.down = branch(s2r, sx, dn);
+    baseFeed.setAttribute('d', geo.feed);
+    baseUp.setAttribute('d', geo.up);
+    baseDown.setAttribute('d', geo.down);
+    pulseFeed.setAttribute('d', geo.feed);
+    pulseBranch.setAttribute('d', activeLink === 'up' ? geo.up : geo.down);
+    var pts = [s1, s2l, s2r, { x: sx, y: s2r.y }, up, dn];
+    dots.forEach(function (d, i) {
+      if (!pts[i]) return;
+      d.setAttribute('cx', pts[i].x);
+      d.setAttribute('cy', pts[i].y);
+    });
   }
 
+  var CASES = [
+    { b: 'exception', link: 'down', id: 'REQ-207', name: 'Missing tax form' },
+    { b: 'approved',  link: 'up',   id: 'REQ-201', name: 'New vendor request' },
+    { b: 'exception', link: 'down', id: 'REQ-212', name: 'Invoice exception' },
+    { b: 'approved',  link: 'up',   id: 'REQ-204', name: 'Contract update' }
+  ];
+
   function playCase(c) {
-    clearTimers();
-    clearState();
-
-    if (tokenId) tokenId.textContent = c.id;
-    if (tokenNm) tokenNm.textContent = c.name;
-
-    requests[c.reqIdx].classList.add('is-active');
-
-    if (tokenEl) {
-      tokenEl.classList.remove('is-shifted');
-      void tokenEl.offsetWidth;
-      tokenEl.classList.add('is-shifted');
+    draw();
+    if (badgeId) badgeId.textContent = c.id;
+    if (badgeNm) badgeNm.textContent = c.name;
+    activeLink = c.link;
+    pulseBranch.setAttribute('d', c.link === 'up' ? geo.up : geo.down);
+    pulseBranch.classList.add('is-live');
+    pulseFeed.classList.add('is-live');
+    Object.keys(branchEls).forEach(function (k) {
+      branchEls[k].classList.toggle('is-active', k === c.b);
+    });
+    dots.forEach(function (d) { d.classList.remove('is-live'); });
+    if (dots[3]) dots[3].classList.add('is-live');
+    if (c.link === 'up' && dots[4]) dots[4].classList.add('is-live');
+    if (c.link === 'down' && dots[5]) dots[5].classList.add('is-live');
+    if (engineCard) {
+      engineCard.classList.remove('is-pulse');
+      void engineCard.offsetWidth;
+      engineCard.classList.add('is-pulse');
     }
-
-    steps.forEach(function (s, i) {
-      at(200 + i * STEP_MS, function () {
-        steps.forEach(function (x) { x.classList.remove('is-active'); });
-        s.classList.add('is-active');
-      });
-    });
-
-    var laneAt = 200 + steps.length * STEP_MS + 200;
-    at(laneAt, function () {
-      steps.forEach(function (x) { x.classList.remove('is-active'); });
-      var lane = lanes.find(function (l) { return l.dataset.lane === c.lane; });
-      if (lane) lane.classList.add('is-active');
-    });
-
-    at(laneAt + 700, function () {
-      if (audit) {
-        audit.classList.remove('is-fresh');
-        void audit.offsetWidth;
-        audit.classList.add('is-fresh');
-      }
-    });
   }
 
   var idx = 0;
-  function tick() {
-    playCase(CASES[idx]);
-    idx = (idx + 1) % CASES.length;
+  function tick() { playCase(CASES[idx]); idx = (idx + 1) % CASES.length; }
+
+  function scheduleDraws() {
+    draw();
+    requestAnimationFrame(draw);
+    [60, 160, 400, 800, 1400].forEach(function (ms) { setTimeout(draw, ms); });
+  }
+
+  scheduleDraws();
+  window.addEventListener('load', scheduleDraws);
+  window.addEventListener('resize', draw);
+  if (window.ResizeObserver) {
+    var ro = new ResizeObserver(function () { draw(); });
+    ro.observe(canvas);
+    var visBox = root.closest('.capscroll-visual');
+    if (visBox) ro.observe(visBox);
+  }
+  if (document.fonts && document.fonts.ready) { document.fonts.ready.then(scheduleDraws); }
+
+  var capvis = root.closest('.capvisual');
+  if (capvis && window.MutationObserver) {
+    new MutationObserver(scheduleDraws)
+      .observe(capvis, { attributes: true, attributeFilter: ['class'] });
   }
 
   if (prefersReduced) {
-    requests[1].classList.remove('is-active');
-    requests[2].classList.add('is-active');
-    if (tokenId) tokenId.textContent = 'REQ-204';
-    if (tokenNm) tokenNm.textContent = 'Contract update';
-    var reviewLane = lanes.find(function (l) { return l.dataset.lane === 'review'; });
-    if (reviewLane) reviewLane.classList.add('is-active');
+    scheduleDraws();
+    pulseFeed.classList.add('is-live');
+    pulseBranch.setAttribute('d', geo.down);
+    pulseBranch.classList.add('is-live');
+    downCard.classList.add('is-active');
+    upCard.classList.remove('is-active');
+    if (dots[3]) dots[3].classList.add('is-live');
+    if (dots[5]) dots[5].classList.add('is-live');
     return;
   }
 
   var started = false;
   var io = new IntersectionObserver(function (entries) {
     entries.forEach(function (e) {
-      if (e.isIntersecting && !started) {
-        started = true;
-        tick();
-        setInterval(tick, CASE_MS);
+      if (e.isIntersecting) {
+        scheduleDraws();
+        if (!started) {
+          started = true;
+          tick();
+          setInterval(tick, 3200);
+        }
       }
     });
-  }, { threshold: 0.25 });
+  }, { threshold: 0.2 });
   io.observe(root);
 })();
 </script>
