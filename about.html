@@ -481,6 +481,69 @@
     </div>
   </section>
 
+  <!-- WHAT WE BUILD -->
+  <style id="whatWeBuildStyles">
+    .wb-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(14px, 1.8vw, 22px);
+    }
+    @media (max-width: 760px) { .wb-grid { grid-template-columns: 1fr; } }
+    .wb-card {
+      padding: clamp(20px, 2.2vw, 26px);
+      background: var(--white);
+      border: 1px solid var(--hairline);
+      border-radius: 14px;
+      display: flex; flex-direction: column; gap: 8px;
+      transition: border-color 200ms var(--ease);
+    }
+    .wb-card:hover { border-color: var(--ink); }
+    .wb-card h3 {
+      font-size: 17px;
+      letter-spacing: -0.01em;
+      line-height: 1.25;
+      margin: 0;
+    }
+    .wb-card p {
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+      margin: 0;
+    }
+  </style>
+  <section class="about-section" style="border-top: 1px solid var(--hairline);">
+    <div class="container">
+      <div class="section-head">
+        <div class="s-id">
+          <span class="label-mono"><span class="dot"></span>What we build</span>
+          <h2>AI systems that move work forward.</h2>
+        </div>
+        <div class="s-lead">
+          <p>Our work usually sits across four areas: internal AI products, workflow automation, enterprise AI foundations, and the path from pilot to production. The common thread is the same: AI should fit the workflow, connect to the right tools, and leave people with clear points of control.</p>
+        </div>
+      </div>
+
+      <div class="wb-grid">
+        <article class="wb-card">
+          <h3>AI Products &amp; Platforms</h3>
+          <p>Internal tools, assistants, dashboards, knowledge search, and review screens that teams can use every day.</p>
+        </article>
+        <article class="wb-card">
+          <h3>AI Workflows &amp; Operations</h3>
+          <p>Automation layers that move work across tools, documents, approvals, and exceptions.</p>
+        </article>
+        <article class="wb-card">
+          <h3>Enterprise AI</h3>
+          <p>Data, access, model routing, governance, and deployment designed for controlled environments.</p>
+        </article>
+        <article class="wb-card">
+          <h3>Pilot to Production</h3>
+          <p>The path from working demo to monitored, useful, and operated system.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <!-- PHILOSOPHY -->
   <section class="about-section is-surface">
     <div class="container">
