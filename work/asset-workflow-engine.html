@@ -822,6 +822,141 @@
   .scen-card h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(16px, 1.3vw, 19px); letter-spacing: -0.015em; line-height: 1.3; margin: 2px 0 0; }
   .scen-card p { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
 
+
+  /* ----- Layered architecture stack (Option B) ----- */
+  .stack { padding: clamp(56px, 6vw, 88px) 0; background: var(--surface-2); border-bottom: 1px solid var(--hairline); }
+  .stack-head { margin-bottom: clamp(28px, 3vw, 40px); max-width: 60ch; }
+  .stack-head .eyebrow { margin-bottom: 10px; }
+  .stack-head h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 2.8vw, 38px); letter-spacing: -0.02em; line-height: 1.12; max-width: 24ch; margin: 0 0 14px; }
+  .stack-head p { font-size: clamp(14.5px, 1.05vw, 16.5px); line-height: 1.6; color: var(--ink-soft); max-width: 58ch; margin: 0; }
+
+  .stack-canvas { display: flex; flex-direction: column; align-items: center; gap: 0; }
+
+  .stack-layer {
+    position: relative;
+    width: 100%;
+    max-width: 920px;
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: clamp(20px, 2.4vw, 28px) clamp(22px, 2.6vw, 32px);
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+  .stack-layer-head {
+    display: flex; flex-direction: column; gap: 4px;
+    border-bottom: 1px solid var(--hairline);
+    padding-bottom: 14px;
+  }
+  .stack-layer-id {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-muted);
+    display: inline-flex; align-items: baseline; gap: 12px;
+  }
+  .stack-layer-id .n {
+    font-family: var(--font-display); font-weight: 700;
+    font-size: clamp(20px, 1.8vw, 26px); letter-spacing: -0.03em;
+    color: var(--c);
+  }
+  .stack-layer-title {
+    font-family: var(--font-display); font-weight: 600;
+    font-size: clamp(15.5px, 1.3vw, 19px); letter-spacing: -0.015em;
+    line-height: 1.3; color: var(--ink); margin: 0;
+  }
+
+  .stack-layer-body { display: flex; flex-wrap: wrap; gap: 9px; }
+  .stack-node {
+    font-family: var(--font-mono); font-size: 11px; color: var(--ink-soft);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 8px; padding: 9px 13px;
+  }
+  .stack-node .br { color: var(--ink-muted); }
+
+  /* Engine layer 02 - accent treatment */
+  .stack-layer.is-engine {
+    background: color-mix(in oklab, var(--c) 4%, var(--white));
+    border-color: color-mix(in oklab, var(--c) 42%, transparent);
+    box-shadow: 0 1px 0 rgba(31,31,31,0.02), 0 22px 50px -30px color-mix(in oklab, var(--c) 50%, transparent);
+  }
+  .stack-layer.is-engine .stack-layer-id { color: var(--c); font-weight: 600; }
+  .stack-layer.is-engine .stack-layer-id .pulse {
+    width: 7px; height: 7px; border-radius: 999px; background: var(--c);
+    box-shadow: 0 0 0 0 color-mix(in oklab, var(--c) 50%, transparent);
+    animation: stack-pulse 2.6s var(--ease) infinite;
+    display: inline-block; margin-right: 4px;
+  }
+  @keyframes stack-pulse {
+    0%,100% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--c) 45%, transparent); }
+    50% { box-shadow: 0 0 0 6px color-mix(in oklab, var(--c) 0%, transparent); }
+  }
+  .stack-layer.is-engine .stack-layer-head { border-bottom-color: color-mix(in oklab, var(--c) 25%, var(--hairline)); }
+  .stack-layer-body.is-grid {
+    display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px;
+  }
+  @media (max-width: 600px) { .stack-layer-body.is-grid { grid-template-columns: 1fr; } }
+  .stack-engine-cell {
+    background: color-mix(in oklab, var(--c) 7%, var(--white));
+    border: 1px solid color-mix(in oklab, var(--c) 25%, transparent);
+    border-radius: 10px; padding: 12px 14px;
+    display: flex; flex-direction: column; gap: 4px;
+  }
+  .cell-tag {
+    font-family: var(--font-mono); font-size: 10px;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    color: color-mix(in oklab, var(--c) 72%, var(--ink));
+    font-weight: 600;
+  }
+  .cell-desc { font-size: 13px; line-height: 1.45; color: var(--ink-soft); }
+
+  /* Governance gates inside Layer 03 */
+  .stack-gate {
+    font-family: var(--font-mono); font-size: 11px; color: var(--ink);
+    background: var(--surface); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 9px 14px;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .stack-gate::before {
+    content: ""; width: 6px; height: 6px; border-radius: 999px;
+    background: var(--c); flex: none;
+  }
+  .stack-gate .count {
+    font-family: var(--font-mono); font-size: 9.5px;
+    color: var(--ink-muted); letter-spacing: 0.06em;
+    background: var(--white); border: 1px solid var(--hairline);
+    border-radius: 999px; padding: 1px 7px; margin-left: 2px;
+  }
+
+  /* Distribution markets row */
+  .stack-markets { display: flex; flex-wrap: wrap; gap: 7px; align-items: center; }
+  .market {
+    font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.06em;
+    color: var(--ink-soft); background: var(--surface);
+    border: 1px solid var(--hairline); border-radius: 6px;
+    padding: 6px 10px; min-width: 38px; text-align: center;
+  }
+  .market.is-rest { color: var(--ink-muted); background: transparent; border-style: dashed; }
+
+  /* Connector between layers */
+  .stack-connector {
+    position: relative; width: 2px;
+    height: clamp(18px, 2vw, 28px);
+    background: linear-gradient(180deg, var(--hairline-strong), color-mix(in oklab, var(--c) 45%, var(--hairline-strong)));
+    margin: 0 auto;
+  }
+  .stack-connector::after {
+    content: ""; position: absolute; bottom: -1px; left: 50%;
+    transform: translateX(-50%);
+    border-left: 4px solid transparent; border-right: 4px solid transparent;
+    border-top: 5px solid color-mix(in oklab, var(--c) 55%, var(--ink-muted));
+  }
+
+  @media (max-width: 760px) {
+    .stack-layer { padding: clamp(18px, 4vw, 22px); }
+    .stack-layer-id .n { font-size: 22px; }
+  }
+
 </style>
 </head>
 <body>
@@ -1119,54 +1254,114 @@
   </div>
 </section>
 
-<!-- ============= 4 · Pipeline canvas ============= -->
-<section class="pipeband">
+<!-- ============= 5 · Under the hood (layered stack) ============= -->
+<section class="stack">
   <div class="container">
-    <div class="pipe-head">
+    <div class="stack-head">
       <span class="eyebrow"><span class="eyebrow-dot"></span>Under the hood</span>
-      <h2>From approved assets to a finished pack, in one pass.</h2>
-      <p>A workflow that reads the approved product photo, applies the brand rules, and assembles each module. Bulk mode turns a spreadsheet of products into a complete pack.</p>
+      <h2>Five layers, one workflow.</h2>
+      <p>Each layer owns one job, from approved inputs through to per-market distribution. The four governance checkpoints from the previous section live inside Layer 03.</p>
     </div>
 
-    <div class="pipe-canvas">
-      <div class="pipe-row">
+    <div class="stack-canvas">
 
-        <div class="pstep">
-          <span class="pstep-eyebrow"><span class="n">01</span> Inputs</span>
-          <div class="pnode-stack">
-            <div class="pnode"><span class="br">[</span>Approved product photos<span class="br">]</span></div>
-            <div class="pnode"><span class="br">[</span>Product spec sheet<span class="br">]</span></div>
-          </div>
+      <!-- Layer 01 - Ingestion -->
+      <div class="stack-layer" data-l="01">
+        <div class="stack-layer-head">
+          <span class="stack-layer-id"><span class="n">01</span> Ingestion</span>
+          <h3 class="stack-layer-title">Approved inputs, in the formats the team already uses.</h3>
         </div>
-
-        <div class="pipe-link"><span class="tracer"></span></div>
-
-        <div class="pengine">
-          <div class="pengine-head">
-            <span class="pengine-eyebrow"><span class="pulse"></span>02 &middot; Module composition</span>
-            <span class="pengine-title">Layout workflow</span>
-          </div>
-          <div class="pengine-tags">
-            <span>Brand rules applied</span>
-            <span>Layouts per product</span>
-            <span>Review point built in</span>
-          </div>
+        <div class="stack-layer-body">
+          <span class="stack-node"><span class="br">[</span> Approved product photos <span class="br">]</span></span>
+          <span class="stack-node"><span class="br">[</span> Product spec sheet <span class="br">]</span></span>
+          <span class="stack-node"><span class="br">[</span> Brand rules + module templates <span class="br">]</span></span>
+          <span class="stack-node"><span class="br">[</span> Localised copy &middot; 11 markets <span class="br">]</span></span>
         </div>
-
-        <div class="pipe-link delay"><span class="tracer"></span></div>
-
-        <div class="pstep">
-          <span class="pstep-eyebrow"><span class="n">03</span> Output</span>
-          <div class="pdeliver">
-            <span class="pdeliver-check" aria-hidden="true"></span>
-            <span class="pdeliver-text">
-              <span class="k">Output</span>
-              <span class="v">Listing pack ready for export</span>
-            </span>
-          </div>
-        </div>
-
       </div>
+
+      <div class="stack-connector" aria-hidden="true"></div>
+
+      <!-- Layer 02 - Composition engine (accent) -->
+      <div class="stack-layer is-engine" data-l="02">
+        <div class="stack-layer-head">
+          <span class="stack-layer-id"><span class="pulse"></span><span class="n">02</span> Composition engine</span>
+          <h3 class="stack-layer-title">Where the structural work gets done.</h3>
+        </div>
+        <div class="stack-layer-body is-grid">
+          <div class="stack-engine-cell">
+            <span class="cell-tag">Vision pass</span>
+            <span class="cell-desc">Subject, safe zone, free whitespace per photo.</span>
+          </div>
+          <div class="stack-engine-cell">
+            <span class="cell-tag">Spec parse</span>
+            <span class="cell-desc">Features, dimensions, callouts pulled from the spec sheet.</span>
+          </div>
+          <div class="stack-engine-cell">
+            <span class="cell-tag">Brand rules</span>
+            <span class="cell-desc">Padding, type, colour, layout patterns applied per template.</span>
+          </div>
+          <div class="stack-engine-cell">
+            <span class="cell-tag">Layout generation</span>
+            <span class="cell-desc">Per product &times; per market, desktop &amp; mobile in one pass.</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="stack-connector" aria-hidden="true"></div>
+
+      <!-- Layer 03 - Governance (the 4 checkpoints) -->
+      <div class="stack-layer" data-l="03">
+        <div class="stack-layer-head">
+          <span class="stack-layer-id"><span class="n">03</span> Governance</span>
+          <h3 class="stack-layer-title">Four checkpoints. Sign-off before anything moves forward.</h3>
+        </div>
+        <div class="stack-layer-body">
+          <span class="stack-gate">Brand sign-off</span>
+          <span class="stack-gate">Reviewer queue</span>
+          <span class="stack-gate">Per-market local review <span class="count">&times; 11</span></span>
+          <span class="stack-gate">Final export approval</span>
+        </div>
+      </div>
+
+      <div class="stack-connector" aria-hidden="true"></div>
+
+      <!-- Layer 04 - Export -->
+      <div class="stack-layer" data-l="04">
+        <div class="stack-layer-head">
+          <span class="stack-layer-id"><span class="n">04</span> Export</span>
+          <h3 class="stack-layer-title">Channel-shaped packs, per market.</h3>
+        </div>
+        <div class="stack-layer-body">
+          <span class="stack-node"><span class="br">[</span> PDP modules <span class="br">]</span></span>
+          <span class="stack-node"><span class="br">[</span> A+ modules <span class="br">]</span></span>
+          <span class="stack-node"><span class="br">[</span> Alt text + metadata <span class="br">]</span></span>
+          <span class="stack-node"><span class="br">[</span> Per-market pack &middot; 11 <span class="br">]</span></span>
+        </div>
+      </div>
+
+      <div class="stack-connector" aria-hidden="true"></div>
+
+      <!-- Layer 05 - Distribution -->
+      <div class="stack-layer is-out" data-l="05">
+        <div class="stack-layer-head">
+          <span class="stack-layer-id"><span class="n">05</span> Distribution</span>
+          <h3 class="stack-layer-title">Listings live, per Seller Central, per market.</h3>
+        </div>
+        <div class="stack-markets" aria-label="11 EU marketplaces">
+          <span class="market">DE</span>
+          <span class="market">FR</span>
+          <span class="market">IT</span>
+          <span class="market">ES</span>
+          <span class="market">NL</span>
+          <span class="market">BE</span>
+          <span class="market">SE</span>
+          <span class="market">PL</span>
+          <span class="market">AT</span>
+          <span class="market">IE</span>
+          <span class="market">PT</span>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
