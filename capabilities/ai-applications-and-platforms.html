@@ -4002,53 +4002,51 @@
 
 
 
-<!-- ============= EXPLORE WITH US (thin CTA strip after use cases) ============= -->
-<style id="exploreStripStyles">
-  .explore-strip {
-    padding: clamp(36px, 5vw, 56px) 0;
-    background: var(--surface, #F8F8F6);
-    border-top: 1px solid var(--hairline, rgba(31,31,31,0.10));
-    border-bottom: 1px solid var(--hairline, rgba(31,31,31,0.10));
+<!-- ============= EXPLORE WITH US (inline CTA after use cases) ============= -->
+<style id="exploreInlineStyles">
+  .explore-inline {
+    margin-top: clamp(-8px, -0.6vw, 0px);
+    padding: clamp(20px, 2.4vw, 32px) 0 clamp(28px, 3vw, 40px);
   }
-  .explore-strip .es-row {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: clamp(20px, 3vw, 40px);
+  .explore-inline .ei-row {
+    display: flex; align-items: center;
+    gap: clamp(18px, 2.4vw, 28px);
     flex-wrap: wrap;
   }
-  .explore-strip .es-h {
+  .explore-inline .ei-h {
     font-family: var(--font-display, "Poppins", sans-serif);
-    font-size: clamp(20px, 2vw, 26px);
-    letter-spacing: -0.015em;
+    font-size: clamp(17px, 1.5vw, 20px);
+    letter-spacing: -0.01em;
     font-weight: 500;
     color: var(--ink, #1F1F1F);
     margin: 0;
-    max-width: 38ch;
+    max-width: 44ch;
     text-wrap: balance;
-    line-height: 1.25;
+    line-height: 1.35;
   }
-  .explore-strip .es-cta {
+  .explore-inline .ei-cta {
     display: inline-flex; align-items: center; gap: 10px;
-    padding: 12px 22px;
+    padding: 11px 20px;
     background: var(--ink, #1F1F1F);
     color: var(--white, #FFFFFF);
     border-radius: 999px;
     font-family: var(--font-display, "Poppins", sans-serif);
-    font-size: 14.5px; font-weight: 500;
+    font-size: 14px; font-weight: 500;
     transition: background 180ms ease, gap 180ms ease;
     white-space: nowrap;
   }
-  .explore-strip .es-cta:hover { background: #000000; gap: 14px; }
+  .explore-inline .ei-cta:hover { background: #000000; gap: 14px; }
 </style>
-<section class="explore-strip" aria-label="Explore with us">
+<div class="explore-inline">
   <div class="container">
-    <div class="es-row">
-      <h3 class="es-h">Explore with us what fits your business.</h3>
-      <a class="es-cta" href="../Home.html#contact">
+    <div class="ei-row">
+      <p class="ei-h">Explore with us what fits your business.</p>
+      <a class="ei-cta" href="../Home.html#contact">
         Start a conversation <span aria-hidden="true">&rarr;</span>
       </a>
     </div>
   </div>
-</section>
+</div>
 
 <!-- SECTION 4 — The architecture of a decision (system diagram) -->
 <style>
