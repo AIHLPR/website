@@ -778,6 +778,50 @@
     .quote-row .rule { width: 100%; }
   }
 
+
+  /* ----- How we solved the bottlenecks ----- */
+  .solved { padding: clamp(56px, 6vw, 88px) 0; border-bottom: 1px solid var(--hairline); background: var(--white); }
+  .solved-head { margin-bottom: clamp(28px, 3vw, 40px); max-width: 60ch; }
+  .solved-head .eyebrow { margin-bottom: 10px; }
+  .solved-head h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(26px, 2.8vw, 38px); letter-spacing: -0.02em; line-height: 1.12; max-width: 26ch; margin: 0; }
+  .solved-list { display: flex; flex-direction: column; }
+  .solved-row { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr); gap: clamp(20px, 3vw, 56px); padding: clamp(22px, 2.6vw, 32px) 0; border-top: 1px solid var(--hairline); }
+  .solved-row:last-child { border-bottom: 1px solid var(--hairline); }
+  @media (max-width: 780px) { .solved-row { grid-template-columns: 1fr; gap: 12px; } }
+  .solved-bn { display: flex; flex-direction: column; gap: 10px; }
+  .solved-bn-num { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); display: inline-flex; align-items: baseline; gap: 12px; }
+  .solved-bn-num .n { font-family: var(--font-display); font-weight: 700; font-size: clamp(22px, 2vw, 28px); letter-spacing: -0.03em; color: var(--c); }
+  .solved-bn h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(17px, 1.4vw, 21px); letter-spacing: -0.015em; line-height: 1.25; margin: 0; }
+  .solved-row p { font-size: clamp(14.5px, 1.05vw, 16.5px); line-height: 1.66; color: var(--ink-soft); margin: 0; }
+
+  /* ----- What we deliberately left to humans ----- */
+  .handsoff { padding: clamp(56px, 6vw, 88px) 0; border-bottom: 1px solid var(--hairline); background: var(--surface-warm); }
+  .handsoff-head { margin-bottom: clamp(28px, 3vw, 40px); max-width: 60ch; }
+  .handsoff-head .eyebrow { margin-bottom: 10px; }
+  .handsoff-head h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 2.6vw, 36px); letter-spacing: -0.02em; line-height: 1.12; max-width: 28ch; margin: 0; }
+  .handsoff-head p { margin-top: 14px; font-size: clamp(14.5px, 1.05vw, 16.5px); line-height: 1.6; color: var(--ink-soft); max-width: 56ch; }
+  .handsoff-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(16px, 1.8vw, 24px); }
+  @media (max-width: 760px) { .handsoff-grid { grid-template-columns: 1fr; } }
+  .handsoff-card { background: var(--white); border: 1px solid var(--hairline); border-radius: 14px; padding: clamp(22px, 2.4vw, 30px); display: flex; flex-direction: column; gap: 10px; }
+  .handsoff-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); display: inline-flex; align-items: center; gap: 9px; }
+  .handsoff-label .tick { width: 6px; height: 6px; border-radius: 999px; background: var(--c); flex: none; }
+  .handsoff-card h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(16px, 1.3vw, 19px); letter-spacing: -0.015em; line-height: 1.3; margin: 4px 0 0; }
+  .handsoff-card p { font-size: 14px; line-height: 1.6; color: var(--ink-soft); margin: 0; }
+
+  /* ----- Improved extended (named scenarios) ----- */
+  .scenarios { padding: clamp(56px, 6vw, 88px) 0; border-bottom: 1px solid var(--hairline); background: var(--white); }
+  .scenarios-head { margin-bottom: clamp(28px, 3vw, 40px); max-width: 60ch; }
+  .scenarios-head .eyebrow { margin-bottom: 10px; }
+  .scenarios-head h2 { font-family: var(--font-display); font-weight: 600; font-size: clamp(24px, 2.6vw, 34px); letter-spacing: -0.02em; line-height: 1.12; max-width: 28ch; margin: 0; }
+  .scenarios-head p { margin-top: 14px; font-size: clamp(14.5px, 1.05vw, 16.5px); line-height: 1.6; color: var(--ink-soft); max-width: 58ch; }
+  .scenarios-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(16px, 1.8vw, 24px); }
+  @media (max-width: 860px) { .scenarios-grid { grid-template-columns: 1fr; } }
+  .scen-card { background: var(--surface-2); border: 1px solid var(--hairline); border-radius: 14px; padding: clamp(22px, 2.4vw, 30px); display: flex; flex-direction: column; gap: 10px; transition: border-color 200ms var(--ease), transform 200ms var(--ease); }
+  .scen-card:hover { border-color: color-mix(in oklab, var(--c) 40%, var(--hairline)); transform: translateY(-2px); }
+  .scen-card .scen-tag { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--c); }
+  .scen-card h3 { font-family: var(--font-display); font-weight: 600; font-size: clamp(16px, 1.3vw, 19px); letter-spacing: -0.015em; line-height: 1.3; margin: 2px 0 0; }
+  .scen-card p { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+
 </style>
 </head>
 <body>
@@ -931,34 +975,34 @@
   <div class="container">
     <div class="velocity-head">
       <span class="eyebrow"><span class="eyebrow-dot"></span>Outcomes</span>
-      <h2>Same launch pack. One operator, two hours, no agency in the loop.</h2>
+      <h2>From three weeks to two hours, without changing who&rsquo;s in charge.</h2>
     </div>
     <div class="velocity-grid">
 
       <div class="vcard is-legacy">
-        <span class="vcard-label"><span class="tick"></span>Legacy agency route</span>
+        <span class="vcard-label"><span class="tick"></span>Before this workflow</span>
         <div class="vcard-figure">~3<span class="unit">weeks</span></div>
-        <p class="vcard-sub">Time to brief, draft, revise, and deliver one launch pack through an external design agency loop.</p>
+        <p class="vcard-sub">Time to brief, draft, revise, and deliver one launch pack when the layout work had to be looped through an external design agency.</p>
       </div>
 
       <div class="vcard is-solution">
-        <span class="vcard-label"><span class="tick"></span>The workflow we built</span>
+        <span class="vcard-label"><span class="tick"></span>With this workflow</span>
         <div class="vcard-figure">2<span class="unit">hours</span></div>
-        <p class="vcard-sub">Time to turn the same approved assets into a finished, on-brand listing pack ready for export.</p>
+        <p class="vcard-sub">Time the same internal team needs to produce a finished, on-brand listing pack &mdash; without learning any new tooling.</p>
       </div>
 
       <div class="vcard">
-        <span class="vcard-label"><span class="tick"></span>Operational footprint</span>
-        <div class="vcard-figure">1 <span class="split">/ 0</span><span class="unit">operator / agencies</span></div>
-        <p class="vcard-sub">One internal operator runs the workflow end to end. No external agency loop required.</p>
+        <span class="vcard-label"><span class="tick"></span>Shipped at scale</span>
+        <div class="vcard-figure">100<span class="split"> / 11</span><span class="unit">SKUs / EU markets</span></div>
+        <p class="vcard-sub">Listings produced across desktop and mobile for one hundred SKUs in eleven EU markets, without expanding the team.</p>
       </div>
 
     </div>
-    <p class="velocity-foot"><span class="ar">&rarr;</span> 47 SKUs prepared, three markets covered, desktop and mobile modules in one pass.</p>
+    <p class="velocity-foot"><span class="ar">&rarr;</span> Same approved assets, same reviewers, same brand decisions &mdash; the queue just stopped piling up.</p>
   </div>
 </section>
 
-<!-- ============= 3 · Bottleneck vs Approach ============= -->
+<!-- ============= 3 · Problem | Solution split ============= -->
 <section class="split">
   <div class="container">
     <div class="split-grid">
@@ -966,23 +1010,109 @@
       <div class="split-col left">
         <span class="split-eyebrow"><span class="sq"></span>Where it got stuck</span>
         <h2>Launches were ready. The listings weren&rsquo;t.</h2>
-        <p class="split-body">The photography, copy, and launch dates were all in place. What got stuck was turning those inputs into Amazon-ready PDP and A+ modules. The internal digital content team was overloaded, so the work was briefed out to an external design agency &mdash; adding rounds of revisions, coordination, and waiting time. Every week a listing sat dark in the backlog was a week of lost sales.</p>
+        <p class="split-body">Photography was shot. Copy was written. Launch dates were set. But turning those inputs into Amazon-ready PDP and A+ modules sat as a queue on the digital content team&rsquo;s desk. Data prep alone &mdash; gathering, naming, cross-checking &mdash; could take days. Layout wasn&rsquo;t in-house, so the work was briefed out, with revision rounds and waiting in between. Every week a listing stayed dark was a week of sales the brand didn&rsquo;t capture &mdash; and a week the team felt the backlog grow.</p>
         <div class="split-foot">
-          <span>Backlog</span>
+          <span>Data prep</span>
+          <span>Layout outsourced</span>
           <span>Revision loops</span>
-          <span>Time-to-market loss</span>
+          <span>Backlog growing</span>
         </div>
       </div>
 
       <div class="split-col right">
-        <span class="split-eyebrow"><span class="sq"></span>How we approached it</span>
-        <h2>Automate the repeatable. Keep judgement with the team.</h2>
-        <p class="split-body">We didn&rsquo;t try to automate the creative call. We automated the structural assembly around it. Brand rules, padding, type sizes, layout patterns &mdash; the parts of the work that are repeatable &mdash; get applied by the workflow. The team&rsquo;s reviewers stay in control of the decisions that actually need judgement: the look, the fit, the sign-off before anything goes out.</p>
+        <span class="split-eyebrow"><span class="sq"></span>What changed</span>
+        <h2>The team kept the decisions. The grind went away.</h2>
+        <p class="split-body">The workflow took the structural work off the team&rsquo;s plate &mdash; the parts that are repeatable and rule-driven: padding, brand styles, layout per product, desktop and mobile in one pass. What stayed with the team is what should: which photo leads, which callout matters, sign-off before anything ships. Same people. Same brand judgement. No new tooling to learn, no external loop for routine modules.</p>
         <div class="split-foot">
-          <span>Structural assembly</span>
-          <span>Human-in-the-loop review</span>
+          <span>Structural work automated</span>
+          <span>Reviewers still in charge</span>
           <span>Desktop + mobile in one pass</span>
+          <span>No new tooling</span>
         </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============= 4a · How we solved the bottlenecks ============= -->
+<section class="solved">
+  <div class="container">
+    <div class="solved-head">
+      <span class="eyebrow"><span class="eyebrow-dot"></span>How we solved the bottlenecks</span>
+      <h2>Each pain point, named, with what changed.</h2>
+    </div>
+    <div class="solved-list">
+
+      <div class="solved-row">
+        <div class="solved-bn">
+          <span class="solved-bn-num"><span class="n">01</span> Bottleneck</span>
+          <h3>Data prep was eating days.</h3>
+        </div>
+        <p>The workflow reads the approved photos and the spec sheet in the formats the team already uses. No reformatting upfront &mdash; the structural assembly handles the heavy lifting downstream, so the team starts producing instead of preparing.</p>
+      </div>
+
+      <div class="solved-row">
+        <div class="solved-bn">
+          <span class="solved-bn-num"><span class="n">02</span> Bottleneck</span>
+          <h3>The internal team was overloaded.</h3>
+        </div>
+        <p>The repeatable parts &mdash; padding, brand styles, layout per product &mdash; are now applied by the workflow. The same team ships the same packs, but the queue stopped growing and the time-sensitive launches stopped slipping.</p>
+      </div>
+
+      <div class="solved-row">
+        <div class="solved-bn">
+          <span class="solved-bn-num"><span class="n">03</span> Bottleneck</span>
+          <h3>Layout wasn&rsquo;t in-house.</h3>
+        </div>
+        <p>The layout step that used to require briefing work out and waiting for revisions is now part of the workflow. The team doesn&rsquo;t learn desktop publishing tooling &mdash; they review, adjust where it matters, and sign off.</p>
+      </div>
+
+      <div class="solved-row">
+        <div class="solved-bn">
+          <span class="solved-bn-num"><span class="n">04</span> Bottleneck</span>
+          <h3>Handoffs added rounds.</h3>
+        </div>
+        <p>For routine listing modules, work no longer has to be briefed out and waited on. Strategic creative direction still flows through agencies when that&rsquo;s the right call &mdash; we only took the bottleneck off the routine pipeline.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============= 4b · What we deliberately left to humans ============= -->
+<section class="handsoff">
+  <div class="container">
+    <div class="handsoff-head">
+      <span class="eyebrow"><span class="eyebrow-dot"></span>What stayed with humans</span>
+      <h2>Some calls aren&rsquo;t ours to automate.</h2>
+      <p>The point of the workflow was never to replace the team&rsquo;s judgement. It was to take the structural grind off their plate so they could spend their time on the parts that actually need a person.</p>
+    </div>
+    <div class="handsoff-grid">
+
+      <div class="handsoff-card">
+        <span class="handsoff-label"><span class="tick"></span>Brand team</span>
+        <h3>The creative direction.</h3>
+        <p>Which photo leads the module, what story the callout tells, how the launch sits inside the broader brand &mdash; that judgement stays with the brand team, where it belongs.</p>
+      </div>
+
+      <div class="handsoff-card">
+        <span class="handsoff-label"><span class="tick"></span>Reviewers</span>
+        <h3>The sign-off before anything ships.</h3>
+        <p>Every pack passes through human review before export. The workflow is a runway, not a launch button &mdash; the team decides what goes out.</p>
+      </div>
+
+      <div class="handsoff-card">
+        <span class="handsoff-label"><span class="tick"></span>Local teams</span>
+        <h3>The market nuance.</h3>
+        <p>Tone, claims, regulated wording across eleven markets &mdash; local context still belongs to local reviewers. The workflow lays out the modules; the people who know the market check the words.</p>
+      </div>
+
+      <div class="handsoff-card">
+        <span class="handsoff-label"><span class="tick"></span>Upstream</span>
+        <h3>The strategic creative.</h3>
+        <p>Hero photography, campaign concepts, brand films &mdash; still produced upstream by the people who do that work best. The workflow starts where their work ends.</p>
       </div>
 
     </div>
@@ -1042,29 +1172,34 @@
 </section>
 
 <!-- Extended to -->
-<section class="body-section extended">
+<!-- ============= 7 · Where the same pattern fits ============= -->
+<section class="scenarios">
   <div class="container">
-    <div class="extended-grid">
-      <div>
-        <span class="eyebrow"><span class="eyebrow-dot"></span>Applicable to</span>
-        <h2>The same pattern, in adjacent product teams.</h2>
-      </div>
-      <div>
-        <p style="margin-bottom: 12px;">
-          The pattern, approved product inputs, guided composition, human
-          review, and retailer-ready export, applies to any team producing
-          high-volume product assets under brand and marketplace constraints.
-        </p>
-        <div class="extension-chips">
-          <span class="extension-chip">Baby and juvenile products</span>
-          <span class="extension-chip">Consumer electronics</span>
-          <span class="extension-chip">Home equipment</span>
-          <span class="extension-chip">Beauty and personal care</span>
-          <span class="extension-chip">Marketplace listing teams</span>
-          <span class="extension-chip">Retail content operations</span>
-          <span class="extension-chip">DTC product launches</span>
-        </div>
-      </div>
+    <div class="scenarios-head">
+      <span class="eyebrow"><span class="eyebrow-dot"></span>Where the same pattern fits</span>
+      <h2>The shape travels well.</h2>
+      <p>Approved inputs in, automated structural assembly, human sign-off, structured export out. The category changes; the workflow shape doesn&rsquo;t. Three of the strongest fits we&rsquo;ve seen:</p>
+    </div>
+    <div class="scenarios-grid">
+
+      <article class="scen-card">
+        <span class="scen-tag">Scenario 01</span>
+        <h3>Beauty &amp; personal care PDPs.</h3>
+        <p>Same workflow shape, where brand rules are tight, regulatory copy varies per market, and reviewers stay closely in the loop on claims.</p>
+      </article>
+
+      <article class="scen-card">
+        <span class="scen-tag">Scenario 02</span>
+        <h3>Consumer electronics launches.</h3>
+        <p>Same workflow shape, where dense spec sheets and feature callouts drive the modules and the team needs to ship multiple SKU variants on the same launch day.</p>
+      </article>
+
+      <article class="scen-card">
+        <span class="scen-tag">Scenario 03</span>
+        <h3>Localised marketplace listings.</h3>
+        <p>Same workflow shape, where the same SKU set has to ship across multiple country sites at once, with local reviewers checking copy in each market.</p>
+      </article>
+
     </div>
   </div>
 </section>
