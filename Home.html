@@ -3183,7 +3183,46 @@
   }
   .pipeline > .container { position: relative; z-index: 1; }
 
-  .pipe-header { margin-bottom: clamp(24px, 3vw, 40px); }
+  .pipe-header { margin-bottom: clamp(20px, 2.2vw, 28px); }
+
+  /* In-pipeline CTA: lives inside the dark band, calm and low-pressure */
+  .pipe-cta {
+    margin-top: clamp(28px, 3.4vw, 44px);
+    padding-top: clamp(24px, 2.8vw, 36px);
+    border-top: 1px dashed rgba(255,255,255,0.14);
+    display: flex; align-items: center; justify-content: space-between;
+    gap: clamp(20px, 3vw, 40px);
+    flex-wrap: wrap;
+  }
+  .pipe-cta-text { display: flex; flex-direction: column; gap: 6px; max-width: 50ch; min-width: 0; }
+  .pipe-cta-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: rgba(255,255,255,0.55);
+  }
+  .pipe-cta-line {
+    font-size: clamp(14.5px, 1.1vw, 16px);
+    line-height: 1.55;
+    color: rgba(255,255,255,0.82);
+    margin: 0;
+  }
+  .pipe-cta-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 22px;
+    background: rgba(255,255,255,0.96);
+    color: var(--ink);
+    border-radius: 999px;
+    font-family: var(--font-display);
+    font-size: 14.5px; font-weight: 500;
+    white-space: nowrap;
+    transition: background 180ms ease, gap 180ms ease;
+    text-decoration: none;
+  }
+  .pipe-cta-btn:hover { background: var(--white); gap: 14px; }
+  @media (max-width: 720px) {
+    .pipe-cta { flex-direction: column; align-items: stretch; gap: 18px; }
+    .pipe-cta-btn { width: 100%; justify-content: center; }
+  }
   .pipe-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--font-mono);
@@ -3213,8 +3252,8 @@
   /* Cycling per-step display in the header */
   .pipe-display {
     position: relative;
-    margin-top: 18px;
-    min-height: clamp(140px, 14vw, 180px);
+    margin-top: 14px;
+    min-height: clamp(108px, 10vw, 140px);
     max-width: 64ch;
   }
   .pipe-display .stage-title {
@@ -3235,7 +3274,7 @@
     max-width: 56ch;
   }
   @media (max-width: 880px) {
-    .pipe-display { min-height: 170px; }
+    .pipe-display { min-height: 140px; }
   }
 
   .pipe-status-dot {
@@ -4539,22 +4578,6 @@
   })();
 </script>
 
-<!-- ============= MID-PAGE CTA ============= -->
-<section class="midcta">
-  <div class="container midcta-inner">
-    <div>
-      <span class="midcta-eyebrow"><span class="dot"></span>Where to start</span>
-      <h2>Talk to us about what your business <span class="grad-light">could gain.</span></h2>
-    </div>
-    <div class="midcta-side">
-      <button type="button" class="btn btn-primary" data-modal-open="form">
-        Map the first workflow <span class="arrow">&rarr;</span>
-      </button>
-      <span class="midcta-note">Free 45-min call &middot; And we build well beyond what you see here</span>
-    </div>
-  </div>
-</section>
-
 <!-- ============= HOW WE WORK — animated pipeline ============= -->
 <section class="pipeline" id="how">
   <div class="container">
@@ -4653,6 +4676,17 @@
         </div>
       </aside>
 
+    </div>
+
+    <!-- In-pipeline CTA: calm, embedded in the dark theme -->
+    <div class="pipe-cta">
+      <div class="pipe-cta-text">
+        <span class="pipe-cta-eyebrow">This is how we usually work</span>
+        <p class="pipe-cta-line">Bring one workflow. We&rsquo;ll walk it through with you and decide together what&rsquo;s worth building.</p>
+      </div>
+      <a class="pipe-cta-btn" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
+        Book a workflow call <span aria-hidden="true">&rarr;</span>
+      </a>
     </div>
   </div>
 </section>
