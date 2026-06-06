@@ -759,6 +759,7 @@
   .pdeliver-text { display: flex; flex-direction: column; gap: 3px; }
   .pdeliver-text .k { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.5); }
   .pdeliver-text .v { font-family: var(--font-display); font-weight: 600; font-size: clamp(13.5px, 1.15vw, 16px); color: var(--white); }
+  .pdeliver-text .pdeliver-meta { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.08em; color: rgba(255,255,255,0.55); margin-top: 4px; }
   @media (max-width: 860px) {
     .pipe-row { grid-template-columns: 1fr; gap: 0; justify-items: stretch; }
     .pipe-link { width: 2px; height: clamp(28px, 6vw, 44px); margin: 6px auto; background: linear-gradient(180deg, var(--hairline-strong), color-mix(in oklab, var(--c) 50%, var(--hairline-strong))); }
@@ -1254,114 +1255,58 @@
   </div>
 </section>
 
-<!-- ============= 5 · Under the hood (layered stack) ============= -->
-<section class="stack">
+<!-- ============= 5 · Under the hood (pipeline canvas) ============= -->
+<section class="pipeband">
   <div class="container">
-    <div class="stack-head">
+    <div class="pipe-head">
       <span class="eyebrow"><span class="eyebrow-dot"></span>Under the hood</span>
-      <h2>Five layers, one workflow.</h2>
-      <p>Each layer owns one job, from approved inputs through to per-market distribution. The four governance checkpoints from the previous section live inside Layer 03.</p>
+      <h2>From approved assets to a finished pack, in one pass.</h2>
+      <p>The workflow reads the approved photo, applies the brand rules, and assembles each module. In bulk mode it does the same for a hundred SKUs across eleven markets &mdash; desktop and mobile, in one pass.</p>
     </div>
 
-    <div class="stack-canvas">
+    <div class="pipe-canvas">
+      <div class="pipe-row">
 
-      <!-- Layer 01 - Ingestion -->
-      <div class="stack-layer" data-l="01">
-        <div class="stack-layer-head">
-          <span class="stack-layer-id"><span class="n">01</span> Ingestion</span>
-          <h3 class="stack-layer-title">Approved inputs, in the formats the team already uses.</h3>
-        </div>
-        <div class="stack-layer-body">
-          <span class="stack-node"><span class="br">[</span> Approved product photos <span class="br">]</span></span>
-          <span class="stack-node"><span class="br">[</span> Product spec sheet <span class="br">]</span></span>
-          <span class="stack-node"><span class="br">[</span> Brand rules + module templates <span class="br">]</span></span>
-          <span class="stack-node"><span class="br">[</span> Localised copy &middot; 11 markets <span class="br">]</span></span>
-        </div>
-      </div>
-
-      <div class="stack-connector" aria-hidden="true"></div>
-
-      <!-- Layer 02 - Composition engine (accent) -->
-      <div class="stack-layer is-engine" data-l="02">
-        <div class="stack-layer-head">
-          <span class="stack-layer-id"><span class="pulse"></span><span class="n">02</span> Composition engine</span>
-          <h3 class="stack-layer-title">Where the structural work gets done.</h3>
-        </div>
-        <div class="stack-layer-body is-grid">
-          <div class="stack-engine-cell">
-            <span class="cell-tag">Vision pass</span>
-            <span class="cell-desc">Subject, safe zone, free whitespace per photo.</span>
-          </div>
-          <div class="stack-engine-cell">
-            <span class="cell-tag">Spec parse</span>
-            <span class="cell-desc">Features, dimensions, callouts pulled from the spec sheet.</span>
-          </div>
-          <div class="stack-engine-cell">
-            <span class="cell-tag">Brand rules</span>
-            <span class="cell-desc">Padding, type, colour, layout patterns applied per template.</span>
-          </div>
-          <div class="stack-engine-cell">
-            <span class="cell-tag">Layout generation</span>
-            <span class="cell-desc">Per product &times; per market, desktop &amp; mobile in one pass.</span>
+        <div class="pstep">
+          <span class="pstep-eyebrow"><span class="n">01</span> Inputs</span>
+          <div class="pnode-stack">
+            <div class="pnode"><span class="br">[</span>Approved product photos<span class="br">]</span></div>
+            <div class="pnode"><span class="br">[</span>Product spec sheet<span class="br">]</span></div>
+            <div class="pnode"><span class="br">[</span>Brand rules + templates<span class="br">]</span></div>
+            <div class="pnode"><span class="br">[</span>Localised copy &middot; 11 markets<span class="br">]</span></div>
           </div>
         </div>
+
+        <div class="pipe-link"><span class="tracer"></span></div>
+
+        <div class="pengine">
+          <div class="pengine-head">
+            <span class="pengine-eyebrow"><span class="pulse"></span>02 &middot; Module composition</span>
+            <span class="pengine-title">Layout workflow</span>
+          </div>
+          <div class="pengine-tags">
+            <span>Vision pass per photo</span>
+            <span>Brand rules applied</span>
+            <span>Desktop + mobile in one pass</span>
+            <span>Review point built in</span>
+          </div>
+        </div>
+
+        <div class="pipe-link delay"><span class="tracer"></span></div>
+
+        <div class="pstep">
+          <span class="pstep-eyebrow"><span class="n">03</span> Output</span>
+          <div class="pdeliver">
+            <span class="pdeliver-check" aria-hidden="true"></span>
+            <span class="pdeliver-text">
+              <span class="k">Output</span>
+              <span class="v">Listing pack ready for export</span>
+              <span class="pdeliver-meta">PDP + A+ modules &middot; 11 EU markets</span>
+            </span>
+          </div>
+        </div>
+
       </div>
-
-      <div class="stack-connector" aria-hidden="true"></div>
-
-      <!-- Layer 03 - Governance (the 4 checkpoints) -->
-      <div class="stack-layer" data-l="03">
-        <div class="stack-layer-head">
-          <span class="stack-layer-id"><span class="n">03</span> Governance</span>
-          <h3 class="stack-layer-title">Four checkpoints. Sign-off before anything moves forward.</h3>
-        </div>
-        <div class="stack-layer-body">
-          <span class="stack-gate">Brand sign-off</span>
-          <span class="stack-gate">Reviewer queue</span>
-          <span class="stack-gate">Per-market local review <span class="count">&times; 11</span></span>
-          <span class="stack-gate">Final export approval</span>
-        </div>
-      </div>
-
-      <div class="stack-connector" aria-hidden="true"></div>
-
-      <!-- Layer 04 - Export -->
-      <div class="stack-layer" data-l="04">
-        <div class="stack-layer-head">
-          <span class="stack-layer-id"><span class="n">04</span> Export</span>
-          <h3 class="stack-layer-title">Channel-shaped packs, per market.</h3>
-        </div>
-        <div class="stack-layer-body">
-          <span class="stack-node"><span class="br">[</span> PDP modules <span class="br">]</span></span>
-          <span class="stack-node"><span class="br">[</span> A+ modules <span class="br">]</span></span>
-          <span class="stack-node"><span class="br">[</span> Alt text + metadata <span class="br">]</span></span>
-          <span class="stack-node"><span class="br">[</span> Per-market pack &middot; 11 <span class="br">]</span></span>
-        </div>
-      </div>
-
-      <div class="stack-connector" aria-hidden="true"></div>
-
-      <!-- Layer 05 - Distribution -->
-      <div class="stack-layer is-out" data-l="05">
-        <div class="stack-layer-head">
-          <span class="stack-layer-id"><span class="n">05</span> Distribution</span>
-          <h3 class="stack-layer-title">Listings live, per Seller Central, per market.</h3>
-        </div>
-        <div class="stack-markets" aria-label="11 EU marketplaces">
-          <span class="market">DE</span>
-          <span class="market">FR</span>
-          <span class="market">IT</span>
-          <span class="market">ES</span>
-          <span class="market">NL</span>
-          <span class="market">BE</span>
-          <span class="market">SE</span>
-          <span class="market">PL</span>
-          <span class="market">AT</span>
-          <span class="market">IE</span>
-          <span class="market">PT</span>
-        </div>
-      </div>
-
     </div>
   </div>
 </section>
