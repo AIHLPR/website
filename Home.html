@@ -3804,11 +3804,6 @@
           Solutions <span class="caret" aria-hidden="true"></span>
         </button>
         <div class="nav-dropdown-menu" id="solutionsMenu" role="menu">
-          <a href="capabilities/readiness-audit.html" class="dd-item dd-item--featured" role="menuitem">
-            <span class="dd-title">AI Readiness Audit</span>
-            <span class="dd-desc">Find the first workflow worth building.</span>
-          </a>
-          <span class="dd-divider" aria-hidden="true"></span>
           <a href="capabilities/ai-applications-and-platforms.html" class="dd-item" role="menuitem">
             <span class="dd-title">AI Products &amp; Platforms</span>
           </a>
@@ -3835,7 +3830,6 @@
   <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
     <div class="mm-section">
       <span class="mm-label">Solutions</span>
-      <a href="capabilities/readiness-audit.html"><b>AI Readiness Audit</b></a>
       <a href="capabilities/ai-applications-and-platforms.html">AI Products &amp; Platforms</a>
       <a href="capabilities/ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a>
       <a href="capabilities/enterprise-ai.html">Enterprise AI</a>
@@ -5284,114 +5278,6 @@
           </div>
         </details>
       </div>
-    </div>
-  </div>
-</section>
-
-<!-- ============= READINESS STRIP ============= -->
-<style id="readinessStripStyles">
-  .rstrip {
-    padding: clamp(56px, 7vw, 96px) 0;
-    background: var(--surface, #F8F8F6);
-    border-top: 1px solid var(--hairline, rgba(31,31,31,0.10));
-    border-bottom: 1px solid var(--hairline, rgba(31,31,31,0.10));
-  }
-  .rstrip-head { max-width: 720px; }
-  .rstrip-head h2 {
-    font-family: var(--font-display, "Poppins", sans-serif);
-    font-size: clamp(28px, 3vw, 40px);
-    letter-spacing: -0.02em;
-    margin: 12px 0 14px;
-    color: var(--ink, #1F1F1F);
-    line-height: 1.15;
-  }
-  .rstrip-head p {
-    font-size: 15.5px;
-    color: var(--ink-soft, #4A4A4A);
-    max-width: 60ch;
-    line-height: 1.55;
-    margin: 0;
-  }
-  .rstrip-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: clamp(14px, 1.6vw, 22px);
-    margin: clamp(28px, 3.4vw, 44px) 0 clamp(20px, 2.4vw, 28px);
-  }
-  @media (max-width: 880px) { .rstrip-grid { grid-template-columns: 1fr; } }
-  .rstrip-card {
-    background: var(--white, #FFFFFF);
-    border: 1px solid var(--hairline, rgba(31,31,31,0.10));
-    border-radius: 14px;
-    padding: clamp(18px, 2vw, 24px);
-    display: flex; flex-direction: column; gap: 6px;
-    transition: border-color 200ms var(--ease, cubic-bezier(0.22,1,0.36,1)), transform 200ms ease;
-  }
-  .rstrip-card:hover {
-    border-color: var(--ink, #1F1F1F);
-    transform: translateY(-2px);
-  }
-  .rstrip-card h3 {
-    font-family: var(--font-display, "Poppins", sans-serif);
-    font-size: 17px;
-    margin: 0;
-    color: var(--ink, #1F1F1F);
-    letter-spacing: -0.01em;
-  }
-  .rstrip-card p {
-    font-size: 14px;
-    color: var(--ink-soft, #4A4A4A);
-    line-height: 1.5;
-    margin: 0;
-  }
-  .rstrip-foot {
-    display: flex; align-items: center; justify-content: space-between;
-    gap: 18px; flex-wrap: wrap;
-  }
-  .rstrip-cta {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 12px 22px;
-    background: var(--ink, #1F1F1F);
-    color: var(--white, #FFFFFF);
-    border-radius: 999px;
-    font-family: var(--font-display, "Poppins", sans-serif);
-    font-size: 14.5px; font-weight: 500;
-    transition: background 180ms ease;
-  }
-  .rstrip-cta:hover { background: #000000; }
-  .rstrip-note {
-    font-size: 13px;
-    color: var(--ink-muted, #8A8A8A);
-    font-style: italic;
-    max-width: 48ch;
-  }
-</style>
-<section class="rstrip" id="readiness-check">
-  <div class="container">
-    <div class="rstrip-head">
-      <span class="label-mono"><span class="dot"></span>Readiness check</span>
-      <h2>Unsure where AI should start?</h2>
-      <p>Use the audit as a time-saver before building. It helps clarify which workflow is ready, what data or approval gaps may block adoption, and what to ask before investing in a system.</p>
-    </div>
-    <div class="rstrip-grid">
-      <div class="rstrip-card">
-        <h3>Fit check</h3>
-        <p>For teams exploring where AI could help.</p>
-      </div>
-      <div class="rstrip-card">
-        <h3>Readiness audit</h3>
-        <p>For teams with one workflow worth reviewing.</p>
-      </div>
-      <div class="rstrip-card">
-        <h3>Operating roadmap</h3>
-        <p>For teams assessing multiple workflows or departments.</p>
-      </div>
-    </div>
-    <div class="rstrip-foot">
-      <button type="button" class="rstrip-cta" data-modal-open="form">
-        Start the workflow audit <span aria-hidden="true">&rarr;</span>
-      </button>
-      <span class="rstrip-note">Use it to clarify what to ask internally &mdash; and what to ask us.</span>
     </div>
   </div>
 </section>
