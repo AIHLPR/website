@@ -509,6 +509,11 @@
   }
 
   /* ===== Self-Assessment ===== */
+  .sa-teaser { display: flex; flex-direction: column; align-items: flex-start; gap: 14px; max-width: 56ch; }
+  .sa-teaser h2 { margin: 8px 0 0; }
+  .sa-teaser p { margin: 0; color: var(--ink-soft); font-size: 15.5px; line-height: 1.6; }
+  .sa-teaser .btn { margin-top: 12px; }
+
   .sa-section { background: var(--surface); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
   .sa-wrap {
     display: grid;
@@ -815,7 +820,7 @@
     <h1>Find the AI workflow worth building first.</h1>
     <p class="hero-sub">AIHLPR reviews your workflow, data, tools, human review points, and business outcome to identify where AI can safely reduce manual work &mdash; and where the process needs to be cleaned up first.</p>
     <div class="hero-ctas">
-      <a class="btn btn-primary" href="../Home.html#contact">
+      <a class="btn btn-primary" href="../audit.html">
         Book a readiness review <span class="arrow">&rarr;</span>
       </a>
       <a class="btn btn-secondary" href="#assess">
@@ -1031,210 +1036,19 @@
 
 <!-- ============= 06 · PACKAGES ============= -->
 <!-- ============= SELF-ASSESSMENT ============= -->
+<!-- ============= SELF-ASSESSMENT TEASER ============= -->
 <section class="block sa-section" id="self-assessment">
   <div class="container">
-    <div class="sa-wrap">
-      <div class="sa-intro">
-        <span class="label-mono"><span class="dot"></span>Self-assessment</span>
-        <h2>Get a first readiness snapshot.</h2>
-        <p>Answer a few practical questions about one workflow. Receive a short readiness snapshot with likely blockers, review points, and a suggested next step.</p>
-      </div>
-
-      <form class="sa-form" id="readinessForm" novalidate>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Team</legend>
-          <span class="sa-q-title">Which team owns this workflow?</span>
-          <div class="sa-chips">
-            <label class="sa-chip"><input type="radio" name="team" value="Operations"> Operations</label>
-            <label class="sa-chip"><input type="radio" name="team" value="Marketing / e-commerce"> Marketing / e-commerce</label>
-            <label class="sa-chip"><input type="radio" name="team" value="IT / product"> IT / product</label>
-            <label class="sa-chip"><input type="radio" name="team" value="Customer support"> Customer support</label>
-            <label class="sa-chip"><input type="radio" name="team" value="Legal / compliance"> Legal / compliance</label>
-            <label class="sa-chip"><input type="radio" name="team" value="Finance"> Finance</label>
-            <label class="sa-chip"><input type="radio" name="team" value="HR"> HR</label>
-            <label class="sa-chip"><input type="radio" name="team" value="Other"> Other</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Workflow description</legend>
-          <span class="sa-q-title">Describe one workflow in a few sentences.</span>
-          <textarea class="sa-textarea" name="workflow" placeholder="What does the team do today, step by step? Where does it slow down?"></textarea>
-        </fieldset>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Where does the work start?</legend>
-          <span class="sa-q-title">Select all that apply.</span>
-          <div class="sa-chips">
-            <label class="sa-chip"><input type="checkbox" name="workStart" value="Email / inbox"> Email / inbox</label>
-            <label class="sa-chip"><input type="checkbox" name="workStart" value="Form"> Form</label>
-            <label class="sa-chip"><input type="checkbox" name="workStart" value="Spreadsheet"> Spreadsheet</label>
-            <label class="sa-chip"><input type="checkbox" name="workStart" value="CRM"> CRM</label>
-            <label class="sa-chip"><input type="checkbox" name="workStart" value="ERP"> ERP</label>
-            <label class="sa-chip"><input type="checkbox" name="workStart" value="Ticketing tool"> Ticketing tool</label>
-            <label class="sa-chip"><input type="checkbox" name="workStart" value="Document upload"> Document upload</label>
-            <label class="sa-chip"><input type="checkbox" name="workStart" value="Chat / Slack / Teams"> Chat / Slack / Teams</label>
-            <label class="sa-chip"><input type="checkbox" name="workStart" value="Manual request"> Manual request</label>
-            <label class="sa-chip"><input type="checkbox" name="workStart" value="Other"> Other</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Main problem</legend>
-          <span class="sa-q-title">What slows this workflow down today?</span>
-          <div class="sa-chips">
-            <label class="sa-chip"><input type="checkbox" name="mainProblem" value="Too much manual work"> Too much manual work</label>
-            <label class="sa-chip"><input type="checkbox" name="mainProblem" value="Work sits in backlog"> Work sits in backlog</label>
-            <label class="sa-chip"><input type="checkbox" name="mainProblem" value="Approval delays"> Approval delays</label>
-            <label class="sa-chip"><input type="checkbox" name="mainProblem" value="Repeated copy/paste"> Repeated copy/paste</label>
-            <label class="sa-chip"><input type="checkbox" name="mainProblem" value="Too many handoffs"> Too many handoffs</label>
-            <label class="sa-chip"><input type="checkbox" name="mainProblem" value="Inconsistent quality"> Inconsistent quality</label>
-            <label class="sa-chip"><input type="checkbox" name="mainProblem" value="Hard to find information"> Hard to find information</label>
-            <label class="sa-chip"><input type="checkbox" name="mainProblem" value="Too much agency/vendor coordination"> Too much agency/vendor coordination</label>
-            <label class="sa-chip"><input type="checkbox" name="mainProblem" value="Slow customer response"> Slow customer response</label>
-            <label class="sa-chip"><input type="checkbox" name="mainProblem" value="Compliance or review uncertainty"> Compliance or review uncertainty</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Desired outcome</legend>
-          <span class="sa-q-title">What would success look like?</span>
-          <div class="sa-chips">
-            <label class="sa-chip"><input type="checkbox" name="desiredOutcome" value="Time saved"> Time saved</label>
-            <label class="sa-chip"><input type="checkbox" name="desiredOutcome" value="Faster launch"> Faster launch</label>
-            <label class="sa-chip"><input type="checkbox" name="desiredOutcome" value="Lower cost"> Lower cost</label>
-            <label class="sa-chip"><input type="checkbox" name="desiredOutcome" value="Higher revenue"> Higher revenue</label>
-            <label class="sa-chip"><input type="checkbox" name="desiredOutcome" value="Fewer errors"> Fewer errors</label>
-            <label class="sa-chip"><input type="checkbox" name="desiredOutcome" value="Better customer experience"> Better customer experience</label>
-            <label class="sa-chip"><input type="checkbox" name="desiredOutcome" value="Better brand consistency"> Better brand consistency</label>
-            <label class="sa-chip"><input type="checkbox" name="desiredOutcome" value="Better compliance / auditability"> Better compliance / auditability</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Frequency</legend>
-          <span class="sa-q-title">How often does the workflow run?</span>
-          <div class="sa-chips">
-            <label class="sa-chip"><input type="radio" name="frequency" value="Daily"> Daily</label>
-            <label class="sa-chip"><input type="radio" name="frequency" value="Weekly"> Weekly</label>
-            <label class="sa-chip"><input type="radio" name="frequency" value="Monthly"> Monthly</label>
-            <label class="sa-chip"><input type="radio" name="frequency" value="During launches/projects"> During launches/projects</label>
-            <label class="sa-chip"><input type="radio" name="frequency" value="Not sure"> Not sure</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Where does the information live?</legend>
-          <span class="sa-q-title">Select all that apply.</span>
-          <div class="sa-chips">
-            <label class="sa-chip"><input type="checkbox" name="infoLives" value="Google Drive / SharePoint"> Google Drive / SharePoint</label>
-            <label class="sa-chip"><input type="checkbox" name="infoLives" value="Spreadsheets"> Spreadsheets</label>
-            <label class="sa-chip"><input type="checkbox" name="infoLives" value="CRM"> CRM</label>
-            <label class="sa-chip"><input type="checkbox" name="infoLives" value="ERP"> ERP</label>
-            <label class="sa-chip"><input type="checkbox" name="infoLives" value="Product information system"> Product information system</label>
-            <label class="sa-chip"><input type="checkbox" name="infoLives" value="Asset library"> Asset library</label>
-            <label class="sa-chip"><input type="checkbox" name="infoLives" value="Helpdesk"> Helpdesk</label>
-            <label class="sa-chip"><input type="checkbox" name="infoLives" value="Email"> Email</label>
-            <label class="sa-chip"><input type="checkbox" name="infoLives" value="Internal database"> Internal database</label>
-            <label class="sa-chip"><input type="checkbox" name="infoLives" value="Not sure"> Not sure</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Data cleanliness</legend>
-          <span class="sa-q-title">How structured is the data today?</span>
-          <div class="sa-chips">
-            <label class="sa-chip"><input type="radio" name="dataCleanliness" value="Mostly structured and reliable"> Mostly structured and reliable</label>
-            <label class="sa-chip"><input type="radio" name="dataCleanliness" value="Usable but messy"> Usable but messy</label>
-            <label class="sa-chip"><input type="radio" name="dataCleanliness" value="Spread across many places"> Spread across many places</label>
-            <label class="sa-chip"><input type="radio" name="dataCleanliness" value="Not sure"> Not sure</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Update another system?</legend>
-          <span class="sa-q-title">Does this workflow need to write back to another system?</span>
-          <div class="sa-chips">
-            <label class="sa-chip"><input type="radio" name="updatesOtherSystem" value="Yes"> Yes</label>
-            <label class="sa-chip"><input type="radio" name="updatesOtherSystem" value="No, prepare/review only"> No, prepare/review only</label>
-            <label class="sa-chip"><input type="radio" name="updatesOtherSystem" value="Not sure"> Not sure</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Where should humans stay in control?</legend>
-          <span class="sa-q-title">Select all that apply.</span>
-          <div class="sa-chips">
-            <label class="sa-chip"><input type="checkbox" name="humanControl" value="Final approval"> Final approval</label>
-            <label class="sa-chip"><input type="checkbox" name="humanControl" value="Customer-facing message"> Customer-facing message</label>
-            <label class="sa-chip"><input type="checkbox" name="humanControl" value="Legal/compliance check"> Legal/compliance check</label>
-            <label class="sa-chip"><input type="checkbox" name="humanControl" value="Brand review"> Brand review</label>
-            <label class="sa-chip"><input type="checkbox" name="humanControl" value="Financial decision"> Financial decision</label>
-            <label class="sa-chip"><input type="checkbox" name="humanControl" value="Data correction"> Data correction</label>
-            <label class="sa-chip"><input type="checkbox" name="humanControl" value="Exception handling"> Exception handling</label>
-            <label class="sa-chip"><input type="checkbox" name="humanControl" value="Not sure"> Not sure</label>
-          </div>
-        </fieldset>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Sensitive data</legend>
-          <span class="sa-q-title">What kinds of sensitive data, if any, are involved?</span>
-          <div class="sa-chips">
-            <label class="sa-chip"><input type="checkbox" name="sensitiveData" value="Personal data"> Personal data</label>
-            <label class="sa-chip"><input type="checkbox" name="sensitiveData" value="Customer data"> Customer data</label>
-            <label class="sa-chip"><input type="checkbox" name="sensitiveData" value="Financial data"> Financial data</label>
-            <label class="sa-chip"><input type="checkbox" name="sensitiveData" value="HR data"> HR data</label>
-            <label class="sa-chip"><input type="checkbox" name="sensitiveData" value="Legal documents"> Legal documents</label>
-            <label class="sa-chip"><input type="checkbox" name="sensitiveData" value="Product claims"> Product claims</label>
-            <label class="sa-chip"><input type="checkbox" name="sensitiveData" value="No sensitive data"> No sensitive data</label>
-            <label class="sa-chip"><input type="checkbox" name="sensitiveData" value="Not sure"> Not sure</label>
-          </div>
-        </fieldset>
-
-        <div class="sa-divider"></div>
-
-        <fieldset class="sa-q">
-          <legend class="sa-q-label">Contact</legend>
-          <span class="sa-q-title">Where should we send the snapshot?</span>
-          <div class="sa-contact">
-            <input class="sa-input" type="text" name="name" placeholder="Name" autocomplete="name">
-            <input class="sa-input" type="email" name="email" placeholder="Work email" autocomplete="email">
-            <input class="sa-input" type="text" name="company" placeholder="Company" autocomplete="organization">
-            <input class="sa-input" type="text" name="role" placeholder="Role" autocomplete="organization-title">
-          </div>
-          <label class="sa-consent">
-            <input type="checkbox" name="consent" value="yes">
-            <span>I agree to receive my readiness snapshot by email and understand AIHLPR may contact me about the result.</span>
-          </label>
-        </fieldset>
-
-        <div class="sa-submit">
-          <button class="btn btn-primary" type="submit">
-            Generate my readiness snapshot <span class="arrow">&rarr;</span>
-          </button>
-          <div class="sa-confirm" id="readinessConfirm" role="status" aria-live="polite">
-            Thank you. Your readiness snapshot will be prepared and sent to your email.
-          </div>
-        </div>
-
-      </form>
+    <div class="sa-teaser">
+      <span class="label-mono"><span class="dot"></span>Self-assessment</span>
+      <h2>Get a first readiness snapshot.</h2>
+      <p>Answer a few practical questions about one workflow. We&rsquo;ll come back with likely blockers, review points, and a suggested next step.</p>
+      <a class="btn btn-primary" href="../audit.html">
+        Start the readiness snapshot <span class="arrow">&rarr;</span>
+      </a>
     </div>
   </div>
 </section>
-
-<script>
-  (function () {
-    var form = document.getElementById('readinessForm');
-    var confirm = document.getElementById('readinessConfirm');
-    if (!form || !confirm) return;
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      confirm.classList.add('is-visible');
-      confirm.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    });
-  })();
-</script>
 
 
 <section class="block" id="packages">
@@ -1260,7 +1074,7 @@
           <li>One quick-win recommendation</li>
         </ul>
         <span class="pkg-best">Best for early exploration.</span>
-        <a class="btn btn-secondary" href="../Home.html#contact">
+        <a class="btn btn-secondary" href="../audit.html">
           Book a fit check <span class="arrow">&rarr;</span>
         </a>
       </article>
@@ -1279,7 +1093,7 @@
           <li>ROI / payback snapshot</li>
         </ul>
         <span class="pkg-best">Best for teams preparing a first build.</span>
-        <a class="btn btn-primary" href="../Home.html#contact">
+        <a class="btn btn-primary" href="../audit.html">
           Book a readiness audit <span class="arrow">&rarr;</span>
         </a>
       </article>
@@ -1298,7 +1112,7 @@
           <li>Build priorities</li>
         </ul>
         <span class="pkg-best">Best for scale-ups and enterprise teams.</span>
-        <a class="btn btn-secondary" href="../Home.html#contact">
+        <a class="btn btn-secondary" href="../audit.html">
           Plan the roadmap <span class="arrow">&rarr;</span>
         </a>
       </article>
@@ -1314,7 +1128,7 @@
     <h2 style="margin-top:14px;">Find the AI workflow worth building first.</h2>
     <p>Bring one workflow, process, backlog, pilot, or operational pain point. We&rsquo;ll help identify whether AI can safely reduce the load, what needs to be cleaned up first, and what a useful first version should look like.</p>
     <div class="final-actions">
-      <a class="btn btn-primary" href="../Home.html#contact">
+      <a class="btn btn-primary" href="../audit.html">
         Book a readiness review <span class="arrow">&rarr;</span>
       </a>
       <span class="final-risk">Start with a short fit call before any paid audit.</span>

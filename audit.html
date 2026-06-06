@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Get a first readiness snapshot &middot; AIHLPR</title>
+<meta name="description" content="Answer a few practical questions about one workflow. Receive a short readiness snapshot with likely blockers, review points, and a suggested next step.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="icon" type="image/svg+xml" href="assets/aihlpr-logo.svg">
+<style>
+  :root {
+    --pink: #E91E63; --blue: #3478E5; --teal: #1D9E75;
+    --ink: #1F1F1F; --ink-soft: #4A4A4A; --ink-muted: #8A8A8A;
+    --white: #FFFFFF; --surface: #F2F2F2; --surface-2: #F8F8F6;
+    --hairline: rgba(31,31,31,0.10); --hairline-strong: rgba(31,31,31,0.20);
+    --gradient: linear-gradient(90deg,#E91E63 0%,#CC418C 25%,#9B59B6 50%,#7E6CE0 70%,#5794EA 85%,#3478E5 100%);
+    --font-display: "Poppins", system-ui, sans-serif;
+    --font-body: "Roboto", system-ui, sans-serif;
+    --font-mono: "JetBrains Mono", ui-monospace, monospace;
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+    --gutter: clamp(20px, 5vw, 40px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body { margin: 0; padding: 0; background: var(--surface-2); color: var(--ink); font-family: var(--font-body); font-weight: 400; font-size: 15px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--ink); color: var(--white); }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; background: none; border: none; padding: 0; color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .page { min-height: 100vh; display: flex; flex-direction: column; }
+  .topbar { height: 60px; display: flex; align-items: center; justify-content: space-between; padding: 0 var(--gutter); border-bottom: 1px solid var(--hairline); background: rgba(248,248,246,0.85); backdrop-filter: blur(8px); position: sticky; top: 0; z-index: 10; }
+  .topbar img { height: 21px; width: auto; }
+  .topbar-back { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); display: inline-flex; align-items: center; gap: 8px; transition: color 180ms var(--ease); }
+  .topbar-back:hover { color: var(--ink); }
+  .topbar-back .arr { transition: transform 200ms var(--ease); }
+  .topbar-back:hover .arr { transform: translateX(-3px); }
+
+  .stage { flex: 1; display: flex; align-items: center; justify-content: center; padding: clamp(36px, 6vw, 80px) var(--gutter); }
+
+  .intro { text-align: center; margin: 0 auto clamp(22px, 3vw, 30px); max-width: 560px; }
+  .intro .eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); display: inline-flex; align-items: center; gap: 9px; }
+  .intro .eyebrow .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--pink); }
+  .intro h1 { font-family: var(--font-display); font-weight: 600; font-size: clamp(28px, 3.4vw, 36px); letter-spacing: -0.025em; line-height: 1.1; margin: 14px 0 12px; color: var(--ink); text-wrap: balance; }
+  .intro p { margin: 0 auto; font-size: 15px; line-height: 1.6; color: var(--ink-soft); max-width: 48ch; text-wrap: pretty; }
+
+  .audit-card { width: 100%; max-width: 580px; background: var(--white); border: 1px solid var(--hairline); border-radius: 16px; box-shadow: 0 1px 0 rgba(31,31,31,0.03), 0 2px 6px -2px rgba(31,31,31,0.06), 0 40px 80px -44px rgba(31,31,31,0.28); overflow: hidden; position: relative; }
+  .progress-rail { position: relative; height: 3px; width: 100%; background: var(--surface); }
+  .progress-fill { position: absolute; inset: 0 auto 0 0; height: 100%; width: 20%; background: var(--gradient); border-radius: 0 3px 3px 0; transition: width 520ms var(--ease); }
+  .card-body { padding: clamp(26px, 4vw, 40px); }
+  .card-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .eyebrow { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); display: inline-flex; align-items: center; gap: 9px; }
+  .eyebrow .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--pink); }
+  .step-count { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--ink-muted); }
+  .step-count b { color: var(--ink); font-weight: 500; }
+  .progress-meta { margin-top: 14px; display: flex; align-items: center; justify-content: space-between; gap: 14px; flex-wrap: wrap; row-gap: 10px; }
+  .microcopy { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-muted); white-space: nowrap; }
+  .step-dots { display: flex; align-items: center; gap: 9px; flex: 0 0 auto; }
+  .sd { width: 7px; height: 7px; border-radius: 999px; background: var(--hairline-strong); padding: 0; transition: background 320ms var(--ease), transform 320ms var(--ease), box-shadow 320ms var(--ease); }
+  .sd.is-done { background: var(--ink); cursor: pointer; }
+  .sd.is-current { background: var(--pink); transform: scale(1.34); box-shadow: 0 0 0 3px color-mix(in oklab, var(--pink) 16%, transparent); }
+  @media (prefers-reduced-motion: reduce) { .sd { transition: none; } }
+
+  .steps { position: relative; margin-top: clamp(22px, 3vw, 30px); }
+  .step { display: none; }
+  .step.is-active { display: block; animation: step-in 420ms var(--ease); }
+  @keyframes step-in { from { transform: translateY(9px); } to { transform: none; } }
+  @media (prefers-reduced-motion: reduce) { .step.is-active { animation: none; } .progress-fill { transition: none; } }
+  .step-eyebrow { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); }
+  .step-q { font-family: var(--font-display); font-size: clamp(22px, 3vw, 27px); font-weight: 600; letter-spacing: -0.02em; line-height: 1.12; margin: 12px 0 0; color: var(--ink); text-wrap: balance; }
+  .step-help { margin: 12px 0 0; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); max-width: 46ch; text-wrap: pretty; }
+
+  .field-block { margin-top: clamp(20px, 2.6vw, 26px); }
+  .field-label { display: block; font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 11px; }
+  .input, .textarea { width: 100%; font-family: var(--font-body); font-size: 15px; color: var(--ink); background: var(--white); border: 1px solid var(--hairline-strong); border-radius: 12px; padding: 14px 16px; line-height: 1.5; transition: border-color 180ms var(--ease), box-shadow 180ms var(--ease); }
+  .textarea { min-height: 148px; resize: vertical; }
+  .input::placeholder, .textarea::placeholder { color: var(--ink-muted); }
+  .input:focus, .textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
+
+  .chips { display: flex; flex-wrap: wrap; gap: 9px; }
+  .chip { font-family: var(--font-body); font-size: 14px; line-height: 1; color: var(--ink-soft); background: var(--surface-2); border: 1px solid var(--hairline-strong); border-radius: 999px; padding: 11px 16px; white-space: nowrap; transition: border-color 160ms var(--ease), color 160ms var(--ease), background 160ms var(--ease); -webkit-tap-highlight-color: transparent; }
+  .chip:hover { border-color: var(--ink); color: var(--ink); }
+  .chip.is-on { background: var(--ink); border-color: var(--ink); color: var(--white); }
+  .chip.is-on:hover { color: var(--white); }
+
+  .tagfield { display: flex; gap: 9px; margin-top: 12px; }
+  .tagfield .input { flex: 1; padding: 12px 14px; font-size: 14px; }
+  .tag-add { flex: 0 0 auto; width: 46px; border: 1px solid var(--hairline-strong); border-radius: 12px; color: var(--ink-soft); font-size: 20px; line-height: 1; transition: border-color 160ms var(--ease), color 160ms var(--ease); }
+  .tag-add:hover { border-color: var(--ink); color: var(--ink); }
+  .custom-tags { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
+  .custom-tags:empty { margin-top: 0; }
+  .custom-tag { display: inline-flex; align-items: center; gap: 8px; font-size: 13.5px; color: var(--white); background: var(--ink); border-radius: 999px; padding: 8px 10px 8px 14px; }
+  .custom-tag button { width: 16px; height: 16px; display: grid; place-items: center; color: rgba(255,255,255,0.6); border-radius: 999px; font-size: 14px; line-height: 1; transition: color 150ms var(--ease); }
+  .custom-tag button:hover { color: var(--white); }
+  .field-sep { height: 1px; background: var(--hairline); margin: clamp(20px, 2.6vw, 26px) 0 0; }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .contact-grid .field-full { grid-column: 1 / -1; }
+  @media (max-width: 480px) { .contact-grid { grid-template-columns: 1fr; } }
+
+  .card-foot { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-top: clamp(26px, 3.4vw, 34px); padding-top: clamp(20px, 2.6vw, 24px); border-top: 1px solid var(--hairline); }
+  .btn-back { font-family: var(--font-body); font-size: 14.5px; color: var(--ink-muted); display: inline-flex; align-items: center; gap: 9px; transition: color 180ms var(--ease), opacity 220ms var(--ease); }
+  .btn-back:hover { color: var(--ink); }
+  .btn-back .arr { transition: transform 200ms var(--ease); }
+  .btn-back:hover .arr { transform: translateX(-3px); }
+  .btn-back.is-hidden { opacity: 0; pointer-events: none; }
+  .btn-next { display: inline-flex; align-items: center; gap: 10px; height: 48px; padding: 0 24px; border-radius: 999px; background: var(--ink); color: var(--white); font-family: var(--font-body); font-size: 14.5px; font-weight: 500; line-height: 1; white-space: nowrap; transition: background 220ms var(--ease), opacity 220ms var(--ease), transform 220ms var(--ease); }
+  .btn-next .arr { transition: transform 220ms var(--ease); }
+  .btn-next:hover:not(:disabled) { background: #000; }
+  .btn-next:hover:not(:disabled) .arr { transform: translateX(3px); }
+  .btn-next:disabled { opacity: 0.32; cursor: not-allowed; }
+  .btn-next.is-submit { padding: 0 26px; }
+  @media (max-width: 460px) { .card-foot { flex-wrap: wrap; row-gap: 14px; } .btn-next { flex: 1 1 auto; justify-content: center; } .btn-next.is-submit { white-space: normal; line-height: 1.25; } }
+
+  .success { display: none; }
+  .success.is-active { display: block; animation: step-in 460ms var(--ease); }
+  .success-mark { width: 46px; height: 46px; border-radius: 999px; background: var(--teal); display: grid; place-items: center; margin-bottom: 22px; }
+  .success-mark svg { width: 22px; height: 22px; }
+  .success h2 { font-family: var(--font-display); font-size: clamp(24px, 3.2vw, 30px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.1; margin: 0; color: var(--ink); text-wrap: balance; }
+  .success p { margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-soft); max-width: 48ch; text-wrap: pretty; }
+  .success-recap { margin-top: 26px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--surface-2); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
+  .recap-row { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: baseline; }
+  .recap-row dt { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); }
+  .recap-row dd { margin: 0; font-size: 13.5px; color: var(--ink); line-height: 1.5; }
+  .success-restart { margin-top: 24px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); border-bottom: 1px solid var(--hairline); padding-bottom: 2px; transition: color 180ms var(--ease), border-color 180ms var(--ease); }
+  .success-restart:hover { color: var(--ink); border-bottom-color: var(--ink); }
+</style>
+</head>
+<body>
+<div class="page">
+  <header class="topbar">
+    <a href="Home.html" aria-label="AIHLPR home"><img src="assets/aihlpr-logo-transparent.png" alt="AIHLPR"></a>
+    <a class="topbar-back" href="Home.html"><span class="arr">&larr;</span> Back to site</a>
+  </header>
+
+  <main class="stage">
+    <div style="width: 100%; max-width: 580px;">
+      <div class="intro">
+        <span class="eyebrow"><span class="dot"></span>Readiness snapshot</span>
+        <h1>Get a first readiness snapshot.</h1>
+        <p>Answer a few practical questions about one workflow. We&rsquo;ll come back with likely blockers, review points, and a suggested next step.</p>
+      </div>
+
+      <section class="audit-card" aria-label="Quick AI readiness check">
+        <div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
+        <div class="card-body">
+          <div class="card-head">
+            <span class="eyebrow"><span class="dot"></span>Get a first readiness snapshot</span>
+            <span class="step-count" id="stepCount"><b>01</b> / 05</span>
+          </div>
+          <div class="progress-meta">
+            <span class="microcopy">5&ndash;7 minutes &middot; one workflow &middot; practical next step</span>
+            <div class="step-dots" id="stepDots" role="list" aria-label="Form progress">
+              <button type="button" class="sd" data-dot="1" aria-label="Step 1"></button>
+              <button type="button" class="sd" data-dot="2" aria-label="Step 2"></button>
+              <button type="button" class="sd" data-dot="3" aria-label="Step 3"></button>
+              <button type="button" class="sd" data-dot="4" aria-label="Step 4"></button>
+              <button type="button" class="sd" data-dot="5" aria-label="Step 5"></button>
+            </div>
+          </div>
+
+          <div class="steps" id="steps">
+            <div class="step is-active" data-step="1">
+              <span class="step-eyebrow">01 &middot; Workflow</span>
+              <h2 class="step-q">Describe the workflow you want to evaluate</h2>
+              <p class="step-help">Tell us about one workflow. We&rsquo;ll review whether AI could safely help, what may need preparing first, and what the first useful step could be.</p>
+              <div class="field-block">
+                <textarea class="textarea" id="f-workflow" data-key="workflow" placeholder="For example: every new client kicks off a 12-step onboarding across email, our CRM and three spreadsheets. It takes two people most of a week, and details slip between handoffs."></textarea>
+              </div>
+              <div class="field-block">
+                <span class="field-label">How often does it run?</span>
+                <div class="chips" data-single="frequency">
+                  <button type="button" class="chip" data-val="Daily">Daily</button>
+                  <button type="button" class="chip" data-val="Weekly">Weekly</button>
+                  <button type="button" class="chip" data-val="Monthly">Monthly</button>
+                  <button type="button" class="chip" data-val="Ad hoc">Ad hoc</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="step" data-step="2">
+              <span class="step-eyebrow">02 &middot; Friction</span>
+              <h2 class="step-q">Where does this workflow slow down today?</h2>
+              <p class="step-help">Pick what applies. This shapes where we look first.</p>
+              <div class="field-block">
+                <div class="chips" data-multi="friction">
+                  <button type="button" class="chip" data-val="Time consuming">Time consuming</button>
+                  <button type="button" class="chip" data-val="Human error">Human error</button>
+                  <button type="button" class="chip" data-val="Data entry">Data entry</button>
+                  <button type="button" class="chip" data-val="Manual handoffs">Manual handoffs</button>
+                  <button type="button" class="chip" data-val="Scaling limits">Scaling limits</button>
+                  <button type="button" class="chip" data-val="Inconsistent output">Inconsistent output</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="step" data-step="3">
+              <span class="step-eyebrow">03 &middot; Tools and data</span>
+              <h2 class="step-q">Which systems run this workflow?</h2>
+              <p class="step-help">Add the tools involved. Where the data lives helps us judge what&rsquo;s ready.</p>
+              <div class="field-block">
+                <span class="field-label">Systems in use</span>
+                <div class="chips" data-multi="tools">
+                  <button type="button" class="chip" data-val="Salesforce">Salesforce</button>
+                  <button type="button" class="chip" data-val="HubSpot">HubSpot</button>
+                  <button type="button" class="chip" data-val="Notion">Notion</button>
+                  <button type="button" class="chip" data-val="Google Sheets">Google Sheets</button>
+                  <button type="button" class="chip" data-val="Excel">Excel</button>
+                  <button type="button" class="chip" data-val="SAP">SAP</button>
+                  <button type="button" class="chip" data-val="Slack">Slack</button>
+                </div>
+                <div class="tagfield">
+                  <input class="input" id="tool-input" type="text" placeholder="Add another system, then press Enter" autocomplete="off">
+                  <button type="button" class="tag-add" id="tool-add" aria-label="Add system">+</button>
+                </div>
+                <div class="custom-tags" id="tool-tags"></div>
+              </div>
+              <div class="field-sep"></div>
+              <div class="field-block">
+                <span class="field-label">Where does most of the data live?</span>
+                <div class="chips" data-single="dataloc">
+                  <button type="button" class="chip" data-val="Spreadsheets">Spreadsheets</button>
+                  <button type="button" class="chip" data-val="A database">A database</button>
+                  <button type="button" class="chip" data-val="SaaS tools">SaaS tools</button>
+                  <button type="button" class="chip" data-val="Documents &amp; PDFs">Documents &amp; PDFs</button>
+                  <button type="button" class="chip" data-val="Email">Email</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="step" data-step="4">
+              <span class="step-eyebrow">04 &middot; Control and risk</span>
+              <h2 class="step-q">Any control or data sensitivities?</h2>
+              <p class="step-help">So we know what to prepare before anything goes live. Pick any that apply.</p>
+              <div class="field-block">
+                <div class="chips" data-multi="risk">
+                  <button type="button" class="chip" data-val="Personal or customer data">Personal or customer data</button>
+                  <button type="button" class="chip" data-val="Regulated industry">Regulated industry</button>
+                  <button type="button" class="chip" data-val="Needs human sign-off">Needs human sign-off</button>
+                  <button type="button" class="chip" data-val="EU or on-prem hosting">EU or on-prem hosting</button>
+                  <button type="button" class="chip" data-val="Sensitive IP">Sensitive IP</button>
+                  <button type="button" class="chip" data-val="None of these">None of these</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="step" data-step="5">
+              <span class="step-eyebrow">05 &middot; Contact</span>
+              <h2 class="step-q">Where should we send your snapshot?</h2>
+              <p class="step-help">We&rsquo;ll come back within one business day. No newsletter, no sales sequence.</p>
+              <div class="field-block">
+                <div class="contact-grid">
+                  <div>
+                    <span class="field-label">Full name</span>
+                    <input class="input" id="f-name" data-key="name" type="text" placeholder="Jordan Rivera" autocomplete="name">
+                  </div>
+                  <div>
+                    <span class="field-label">Work email</span>
+                    <input class="input" id="f-email" data-key="email" type="email" placeholder="jordan@company.com" autocomplete="email">
+                  </div>
+                  <div class="field-full">
+                    <span class="field-label">Company</span>
+                    <input class="input" id="f-company" data-key="company" type="text" placeholder="Company name" autocomplete="organization">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="success" id="success">
+            <div class="success-mark">
+              <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5 11-12"/></svg>
+            </div>
+            <h2 id="success-h">Your snapshot is on its way</h2>
+            <p id="success-p">We&rsquo;re reviewing the workflow you described and will come back within one business day with where AI fits, what to prepare first, and a practical first step.</p>
+            <dl class="success-recap" id="recap"></dl>
+            <button type="button" class="success-restart" id="restart">Start another check</button>
+          </div>
+
+          <div class="card-foot" id="cardFoot">
+            <button type="button" class="btn-back is-hidden" id="btnBack"><span class="arr">&larr;</span> Back</button>
+            <button type="button" class="btn-next" id="btnNext">Next <span class="arr">&rarr;</span></button>
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+</div>
+
+<script>
+(function () {
+  var TOTAL = 5;
+  var STORE = 'aihlpr-audit-v1';
+  var data = { step: 1, workflow: '', frequency: '', friction: [], tools: [], customTools: [], dataloc: '', risk: [], name: '', email: '', company: '' };
+  var els = {
+    steps: document.getElementById('steps'),
+    fill: document.getElementById('progressFill'),
+    count: document.getElementById('stepCount'),
+    back: document.getElementById('btnBack'),
+    next: document.getElementById('btnNext'),
+    foot: document.getElementById('cardFoot'),
+    success: document.getElementById('success'),
+    recap: document.getElementById('recap'),
+    toolInput: document.getElementById('tool-input'),
+    toolAdd: document.getElementById('tool-add'),
+    toolTags: document.getElementById('tool-tags'),
+    dots: Array.prototype.slice.call(document.querySelectorAll('#stepDots .sd'))
+  };
+  function save() { try { localStorage.setItem(STORE, JSON.stringify(data)); } catch (e) {} }
+  function load() { try { var raw = localStorage.getItem(STORE); if (raw) { var p = JSON.parse(raw); for (var k in p) if (k in data) data[k] = p[k]; } } catch (e) {} }
+  function syncChips() {
+    document.querySelectorAll('.chips[data-single]').forEach(function (group) {
+      var key = group.getAttribute('data-single');
+      group.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('is-on', data[key] === c.getAttribute('data-val')); });
+    });
+    document.querySelectorAll('.chips[data-multi]').forEach(function (group) {
+      var key = group.getAttribute('data-multi');
+      group.querySelectorAll('.chip').forEach(function (c) { c.classList.toggle('is-on', data[key].indexOf(c.getAttribute('data-val')) > -1); });
+    });
+  }
+  function syncInputs() { document.querySelectorAll('[data-key]').forEach(function (i) { i.value = data[i.getAttribute('data-key')] || ''; }); }
+  function renderTags() {
+    els.toolTags.innerHTML = '';
+    data.customTools.forEach(function (t, i) {
+      var span = document.createElement('span'); span.className = 'custom-tag';
+      span.appendChild(document.createTextNode(t));
+      var x = document.createElement('button'); x.type = 'button'; x.setAttribute('aria-label', 'Remove ' + t); x.textContent = '×';
+      x.addEventListener('click', function () { data.customTools.splice(i, 1); renderTags(); save(); refreshNav(); });
+      span.appendChild(x); els.toolTags.appendChild(span);
+    });
+  }
+  function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function stepValid(n) {
+    if (n === 1) return data.workflow.trim().length > 3;
+    if (n === 5) return data.name.trim() && emailOk(data.email.trim()) && data.company.trim();
+    return true;
+  }
+  function showStep(n) {
+    data.step = n;
+    els.steps.querySelectorAll('.step').forEach(function (s) { s.classList.toggle('is-active', +s.getAttribute('data-step') === n); });
+    els.success.classList.remove('is-active');
+    els.steps.style.display = ''; els.foot.style.display = '';
+    els.fill.style.width = (n / TOTAL * 100) + '%';
+    els.count.innerHTML = '<b>0' + n + '</b> / 05';
+    els.back.classList.toggle('is-hidden', n === 1);
+    els.dots.forEach(function (d, i) {
+      var idx = i + 1;
+      d.classList.toggle('is-current', idx === n);
+      d.classList.toggle('is-done', idx < n);
+    });
+    if (n === TOTAL) {
+      els.next.classList.add('is-submit');
+      els.next.innerHTML = 'Generate my readiness snapshot <span class="arr">&rarr;</span>';
+    } else {
+      els.next.classList.remove('is-submit');
+      els.next.innerHTML = 'Next <span class="arr">&rarr;</span>';
+    }
+    refreshNav(); save();
+  }
+  function refreshNav() { els.next.disabled = !stepValid(data.step); }
+  function next() {
+    if (!stepValid(data.step)) return;
+    if (data.step === TOTAL) { submit(); return; }
+    showStep(data.step + 1);
+  }
+  function back() { if (data.step > 1) showStep(data.step - 1); }
+  function listOrDash(arr) { return arr && arr.length ? arr.join(', ') : '—'; }
+  function submit() {
+    var firstName = data.name.trim().split(' ')[0] || 'there';
+    document.getElementById('success-h').textContent = 'Your snapshot is on its way';
+    document.getElementById('success-p').innerHTML = 'Thanks ' + escapeHtml(firstName) + '. We&rsquo;re reviewing the workflow you described and will come back within one business day with where AI fits, what to prepare first, and a practical first step.';
+    var allTools = data.tools.concat(data.customTools);
+    var rows = [['Workflow', truncate(data.workflow, 120)], ['Friction', listOrDash(data.friction)], ['Systems', listOrDash(allTools)], ['Sensitivities', listOrDash(data.risk)], ['Send to', data.email]];
+    els.recap.innerHTML = '';
+    rows.forEach(function (r) {
+      var row = document.createElement('div'); row.className = 'recap-row';
+      var dt = document.createElement('dt'); dt.textContent = r[0];
+      var dd = document.createElement('dd'); dd.textContent = r[1] || '—';
+      row.appendChild(dt); row.appendChild(dd); els.recap.appendChild(row);
+    });
+    els.steps.style.display = 'none'; els.foot.style.display = 'none';
+    els.fill.style.width = '100%'; els.count.innerHTML = '<b>Done</b>';
+    els.dots.forEach(function (d) { d.classList.remove('is-current'); d.classList.add('is-done'); });
+    els.success.classList.add('is-active');
+  }
+  function truncate(s, n) { s = (s || '').trim(); return s.length > n ? s.slice(0, n - 1) + '…' : s; }
+  function escapeHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
+  function reset() {
+    data = { step: 1, workflow: '', frequency: '', friction: [], tools: [], customTools: [], dataloc: '', risk: [], name: '', email: '', company: '' };
+    try { localStorage.removeItem(STORE); } catch (e) {}
+    syncInputs(); syncChips(); renderTags();
+    els.success.classList.remove('is-active');
+    showStep(1);
+  }
+  document.querySelectorAll('.chips').forEach(function (group) {
+    group.addEventListener('click', function (e) {
+      var chip = e.target.closest('.chip'); if (!chip) return;
+      var val = chip.getAttribute('data-val');
+      if (group.hasAttribute('data-single')) {
+        var k = group.getAttribute('data-single');
+        data[k] = (data[k] === val) ? '' : val;
+      } else {
+        var key = group.getAttribute('data-multi');
+        var i = data[key].indexOf(val);
+        if (i > -1) data[key].splice(i, 1); else data[key].push(val);
+      }
+      syncChips(); save(); refreshNav();
+    });
+  });
+  document.querySelectorAll('[data-key]').forEach(function (input) {
+    input.addEventListener('input', function () { data[input.getAttribute('data-key')] = input.value; save(); refreshNav(); });
+  });
+  function addTool() {
+    var v = els.toolInput.value.trim(); if (!v) return;
+    if (data.tools.indexOf(v) === -1 && data.customTools.indexOf(v) === -1) {
+      data.customTools.push(v); renderTags(); save();
+    }
+    els.toolInput.value = '';
+  }
+  els.toolAdd.addEventListener('click', addTool);
+  els.toolInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addTool(); } });
+  els.next.addEventListener('click', next);
+  els.back.addEventListener('click', back);
+  els.dots.forEach(function (d) {
+    d.addEventListener('click', function () {
+      var idx = +d.getAttribute('data-dot');
+      if (idx < data.step) showStep(idx);
+    });
+  });
+  document.getElementById('restart').addEventListener('click', reset);
+  document.querySelector('.audit-card').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && e.target.id !== 'tool-input') {
+      if (!els.next.disabled && els.success.classList.contains('is-active') === false) { e.preventDefault(); next(); }
+    }
+  });
+  load(); syncInputs(); syncChips(); renderTags();
+  showStep(Math.min(Math.max(data.step, 1), TOTAL));
+})();
+</script>
+</body>
+</html>
