@@ -1488,344 +1488,569 @@
     }
   }
 
-  /* ===== Pilot-to-Production Readiness Map (card 04 preview) ===== */
-  .pp-wrap { min-height: 0; pointer-events: none; }
-  .pp {
+  /* ===== Enterprise AI (card 03) — premium UI pass =====
+     Scoped to the Enterprise AI step + its control-stack diagram only,
+     so the other three capability cards are untouched. Refines the
+     tracking tag, header, chips, link, card shell, section headers,
+     component boxes and the feedback loop, and re-tunes the existing
+     live animation onto a precise Tailwind blue / gray / slate palette. */
+  .capvisual[data-i="2"] .cs,
+  .capstep[data-i="2"] {
+    --ent-blue: #2563eb;                    /* blue-600 corporate */
+    --ent-blue-strong: #3b82f6;             /* blue-500 */
+    --ent-blue-bg: rgba(239, 246, 255, 0.6); /* blue-50/60 */
+    --ent-blue-border: #bfdbfe;             /* blue-200 */
+    --ent-blue-ink: #1e3a8a;                /* blue-900 */
+    --ent-gray-50: #f9fafb;
+    --ent-gray-200: #e5e7eb;
+    --ent-slate-400: #94a3b8;
+    --ent-slate-500: #64748b;
+    --ent-slate-700: #334155;
+  }
+
+  /* --- LEFT TEXT COLUMN --- */
+  .capstep[data-i="2"] .cap-strip-num {
+    text-transform: uppercase;
+    color: var(--ent-blue);
+    letter-spacing: 0.2em;
+    font-size: 10.5px;
+  }
+  .capstep[data-i="2"] h3 {
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+  /* Boxed rectangles -> sleek low-contrast pills */
+  .capstep[data-i="2"] .cap-strip-chips span,
+  .capstep[data-i="3"] .cap-strip-chips span {
+    font-family: var(--font-mono);
+    text-transform: none;
+    letter-spacing: 0.01em;
+    font-size: 10.5px;
+    color: #475569;
+    background: transparent;
+    border: 1px solid #e2e8f0;
+    border-radius: 999px;
+    padding: 4px 12px;
+    white-space: nowrap;
+  }
+  .capstep[data-i="3"]:hover .cap-strip-chips span {
+    border-color: color-mix(in oklab, var(--c) 40%, #e2e8f0);
+    color: var(--c);
+  }
+  .capstep[data-i="2"]:hover .cap-strip-chips span {
+    border-color: var(--ent-blue-border);
+    color: var(--ent-blue);
+    background: var(--ent-blue-bg);
+  }
+  /* Premium link with animated inline arrow */
+  .capstep[data-i="2"] .cap-strip-link { color: var(--ent-slate-500); }
+  .capstep[data-i="2"] .cap-strip-link .arrow {
+    display: inline-block;
+    transition: transform 240ms var(--ease);
+  }
+  .capstep[data-i="2"]:hover .cap-strip-link { color: var(--ent-blue); }
+  .capstep[data-i="2"]:hover .cap-strip-link .arrow { transform: translateX(5px); }
+
+  /* --- RIGHT ARCHITECTURE DIAGRAM --- */
+  /* Outer card shell: flawless hairline, smoother corners, soft lift */
+  .capvisual[data-i="2"] .cs {
+    border: 1px solid rgba(229, 231, 235, 0.8);
+    border-radius: 16px;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04), 0 10px 28px -14px rgba(16, 24, 40, 0.12);
+  }
+  .capvisual[data-i="2"] .cs::before {
+    background: var(--ent-blue);
+    opacity: 0.12;
+    height: 3px;
+  }
+
+  /* Layer wrappers */
+  .capvisual[data-i="2"] .cs-layer {
+    border-color: var(--ent-gray-200);
+    background: #fff;
+    border-radius: 12px;
+  }
+  .capvisual[data-i="2"] .cs-control {
+    background: var(--ent-blue-bg);
+    border-color: var(--ent-blue-border);
+  }
+  .capvisual[data-i="2"] .cs-control-head { border-bottom-color: var(--ent-blue-border); }
+
+  /* Section headers: bold mono, generous tracking, slate-400 */
+  .capvisual[data-i="2"] .cs-row-label,
+  .capvisual[data-i="2"] .cs-control-eyebrow {
+    color: var(--ent-slate-400);
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    font-size: 9px;
+  }
+  .capvisual[data-i="2"] .cs-control-title { color: var(--ent-blue-ink); }
+
+  /* Inactive component boxes: crisp white, gray-200 border, slate-700 */
+  .capvisual[data-i="2"] .cs-tile {
+    border-color: var(--ent-gray-200);
+    background: #fff;
+    color: var(--ent-slate-700);
+    border-radius: 8px;
+    padding: 7px 8px;
+    font-weight: 500;
+  }
+  /* Active boxes (Documents, Knowledge base): pastel blue, blue-200, blue-900 */
+  .capvisual[data-i="2"] .cs-tile.is-source {
+    border-color: var(--ent-blue-border);
+    background: var(--ent-blue-bg);
+    color: var(--ent-blue-ink);
+    font-weight: 600;
+    animation:
+      cs-tile-in 0.5s var(--ease) var(--d, 0s) forwards,
+      ent-source-breathe 3.6s ease-in-out var(--b, 0s) infinite;
+  }
+  @keyframes ent-source-breathe {
+    0%, 100% { border-color: var(--ent-blue-border); box-shadow: 0 0 0 0 transparent; }
+    50%      { border-color: #93c5fd; box-shadow: 0 0 0 3px rgba(191, 219, 254, 0.4); }
+  }
+
+  /* Control-layer functions: white rest, blue sweep */
+  .capvisual[data-i="2"] .cs-func {
+    border-color: var(--ent-gray-200);
+    background: #fff;
+    color: var(--ent-slate-700);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-weight: 500;
+    animation: ent-func-pass 7.2s ease-in-out calc(var(--i, 0) * 0.55s) infinite;
+  }
+  @keyframes ent-func-pass {
+    0%, 18%, 100% { background: #fff; color: var(--ent-slate-700); border-color: var(--ent-gray-200); }
+    7%  { background: var(--ent-blue-bg); color: var(--ent-blue-ink); border-color: var(--ent-blue-border); }
+    12% { background: rgba(239, 246, 255, 0.45); color: var(--ent-blue); border-color: #c7dcfb; }
+  }
+  .capvisual[data-i="2"] .cs-func-loop {
+    animation:
+      ent-func-pass 7.2s ease-in-out calc(var(--i, 0) * 0.55s) infinite,
+      ent-func-feedback 7.2s ease-in-out 5.6s infinite;
+  }
+  @keyframes ent-func-feedback {
+    0%, 14%, 100% { box-shadow: 0 0 0 0 transparent; }
+    5%, 10% {
+      background: rgba(239, 246, 255, 0.5);
+      color: var(--ent-blue);
+      border-color: var(--ent-blue-border);
+      box-shadow: 0 0 0 3px rgba(191, 219, 254, 0.35);
+    }
+  }
+
+  /* Deployment options: white rest, gentle blue breathe */
+  .capvisual[data-i="2"] .cs-deploy-opt {
+    border-color: var(--ent-gray-200);
+    background: #fff;
+    color: var(--ent-slate-700);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-weight: 500;
+    animation: ent-deploy-breathe 4.8s ease-in-out infinite;
+  }
+  @keyframes ent-deploy-breathe {
+    0%, 100% { background: #fff; color: var(--ent-slate-700); border-color: var(--ent-gray-200); box-shadow: 0 0 0 0 transparent; }
+    50%      { background: var(--ent-blue-bg); color: var(--ent-blue-ink); border-color: var(--ent-blue-border); box-shadow: 0 0 0 3px rgba(191, 219, 254, 0.3); }
+  }
+
+  /* Connector wires in the blue palette */
+  .capvisual[data-i="2"] .cs-wire { stroke: rgba(59, 130, 246, 0.55); }
+  .capvisual[data-i="2"] .cs-wire-faint { stroke: rgba(59, 130, 246, 0.26); }
+
+  /* Continuous-evaluation feedback loop: clean vector curve + inline arrow */
+  .capvisual[data-i="2"] .cs-loopback {
+    color: var(--ent-slate-400);
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    animation: ent-loopback-breathe 3.6s ease-in-out infinite;
+  }
+  .capvisual[data-i="2"] .cs-loopback-svg { width: 32px; height: 14px; overflow: visible; flex: none; }
+  .capvisual[data-i="2"] .cs-loopback-path {
+    stroke: rgba(59, 130, 246, 0.55);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    fill: none;
+    stroke-dasharray: 3 4;
+    animation: cs-wire-flow 1.6s linear infinite;
+  }
+  .capvisual[data-i="2"] .cs-loopback-head {
+    stroke: var(--ent-blue);
+    stroke-width: 1.25;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    fill: none;
+  }
+  @keyframes ent-loopback-breathe {
+    0%, 100% { color: var(--ent-slate-400); }
+    50%      { color: var(--ent-slate-500); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .capvisual[data-i="2"] .cs-loopback-path,
+    .capvisual[data-i="2"] .cs-tile.is-source,
+    .capvisual[data-i="2"] .cs-func,
+    .capvisual[data-i="2"] .cs-func-loop,
+    .capvisual[data-i="2"] .cs-deploy-opt { animation: none !important; }
+  }
+
+  /* ===== Enterprise AI (card 03) — Secure Data Retrieval Sandbox =====
+     Replaces the rigid 3-tier control stack with a horizontal sandbox:
+     ingestion shards (left) → tinted control conduit (center) →
+     grounded terminal (right). Same outer card shell + blue/slate
+     palette as the premium pass above. Scoped to card 03 only. */
+  .capvisual[data-i="2"] .cs.sbx {
     display: flex;
     flex-direction: column;
-    gap: clamp(10px, 1.2vw, 16px);
-    padding: clamp(16px, 1.6vw, 22px);
+    justify-content: center;
+    gap: 4px;
+    padding: 26px 26px 28px;
+    font-family: var(--font-body);
+  }
+  .capvisual[data-i="2"] .cs.sbx::before {
+    background: var(--ent-blue);
+    opacity: 0.12;
+    height: 3px;
+  }
+
+  /* ---- Section labels ---- */
+  .sbx-col-label {
+    display: block;
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ent-slate-400);
+    margin-bottom: 11px;
+  }
+
+  /* ---- Ingestion: row of source cards ---- */
+  .sbx-shards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 11px; }
+  .sbx-shard {
+    border: 1px solid var(--ent-gray-200);
+    border-radius: 11px;
+    background: #fff;
+    padding: 12px 12px 13px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    box-shadow: 0 1px 2px rgba(16, 24, 40, 0.04);
+    animation: sbx-shard-breathe 5.4s ease-in-out infinite;
+  }
+  .sbx-shard:nth-child(1) { animation-delay: 0s; }
+  .sbx-shard:nth-child(2) { animation-delay: -1.8s; }
+  .sbx-shard:nth-child(3) { animation-delay: -3.6s; }
+  @keyframes sbx-shard-breathe {
+    0%, 100% { border-color: var(--ent-gray-200); box-shadow: 0 1px 2px rgba(16,24,40,0.04); }
+    50%      { border-color: var(--ent-blue-border); box-shadow: 0 0 0 3px rgba(191,219,254,0.32); }
+  }
+  .sbx-shard-head {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 600;
+    line-height: 1.3;
+    letter-spacing: -0.01em;
+    color: var(--ent-slate-700);
+    min-width: 0;
+  }
+  .sbx-shard-head span { text-wrap: balance; }
+  .capvisual[data-i="2"] .sbx-ico { width: 17px; height: 17px; flex: none; color: var(--ent-blue); }
+  .sbx-shard-meta {
+    font-family: var(--font-mono);
+    font-size: 8.5px;
+    letter-spacing: 0.01em;
+    color: var(--ent-slate-400);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .sbx-toggle {
+    flex: none;
+    width: 18px; height: 10px;
+    border-radius: 999px;
+    background: #16a34a;
+    position: relative;
+    display: inline-block;
+  }
+  .sbx-toggle::after {
+    content: "";
+    position: absolute;
+    top: 1px; right: 1px;
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: #fff;
+  }
+
+  /* ---- Vertical flow connector ---- */
+  .sbx-flow {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .sbx-flow svg { height: 100%; width: 16px; display: block; overflow: visible; }
+  .sbx-flow path {
+    fill: none;
+    stroke: rgba(59, 130, 246, 0.55);
+    stroke-width: 1.5;
+    stroke-dasharray: 3 4;
+    stroke-linecap: round;
+    animation: cs-wire-flow 1.6s linear infinite;
+  }
+  .sbx-flow polyline {
+    fill: none;
+    stroke: rgba(59, 130, 246, 0.7);
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* ---- AI Control Layer: full-width band ---- */
+  .sbx-conduit {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+    padding: 14px 16px 16px;
+    border-radius: 13px;
+    border: 1px solid var(--ent-blue-border);
+    background: linear-gradient(180deg, rgba(239,246,255,0.95), rgba(238,242,255,0.92));
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.6), 0 8px 22px -14px rgba(37,99,235,0.45);
+  }
+  .sbx-conduit-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ent-blue);
+  }
+  .capvisual[data-i="2"] .sbx-shield { width: 16px; height: 16px; flex: none; color: var(--ent-blue); }
+  .sbx-pills { display: flex; flex-wrap: wrap; gap: 8px; }
+  .sbx-pill {
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.01em;
+    color: var(--ent-blue-ink);
+    background: #fff;
+    border: 1px solid var(--ent-blue-border);
+    border-radius: 999px;
+    padding: 5px 11px;
+    white-space: nowrap;
+    box-shadow: 0 1px 2px rgba(37, 99, 235, 0.08);
+    animation: sbx-pill-pulse 4.4s ease-in-out infinite;
+  }
+  .sbx-pill:nth-child(2) { animation-delay: -1.5s; }
+  .sbx-pill:nth-child(3) { animation-delay: -3s; }
+  @keyframes sbx-pill-pulse {
+    0%, 100% { border-color: var(--ent-blue-border); box-shadow: 0 1px 2px rgba(37,99,235,0.08); }
+    50%      { border-color: #93c5fd; box-shadow: 0 0 0 3px rgba(191,219,254,0.45); }
+  }
+
+  /* ---- Grounded terminal: full width ---- */
+  .sbx-terminal {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--ent-gray-200);
+    border-radius: 13px;
+    background: #fff;
+    overflow: hidden;
+    box-shadow: 0 1px 2px rgba(16,24,40,0.05), 0 16px 30px -20px rgba(16,24,40,0.22);
+  }
+  .sbx-term-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--ent-gray-200);
+    background: var(--ent-gray-50);
+  }
+  .sbx-term-dots { display: flex; gap: 5px; flex: none; }
+  .sbx-term-dots i { width: 7px; height: 7px; border-radius: 50%; background: #d4d9e0; display: block; }
+  .sbx-term-title {
+    font-family: var(--font-mono);
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ent-slate-400);
+    white-space: nowrap;
+  }
+  .sbx-term-body {
+    padding: 16px 16px 17px;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    line-height: 1.6;
+    color: var(--ent-slate-700);
+  }
+  .sbx-term-prompt {
+    display: block;
+    color: var(--ent-slate-400);
+    margin-bottom: 9px;
+  }
+  .sbx-term-prompt::before { content: "› "; color: var(--ent-blue); }
+  .sbx-term-body .k { color: var(--ent-blue); font-weight: 600; }
+  .sbx-cursor {
+    display: inline-block;
+    width: 6px; height: 14px;
+    margin-left: 2px;
+    vertical-align: -2px;
+    background: var(--ent-blue);
+    animation: sbx-blink 1.05s steps(1) infinite;
+  }
+  @keyframes sbx-blink { 0%, 50% { opacity: 1; } 50.01%, 100% { opacity: 0; } }
+  .sbx-term-foot {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border-top: 1px solid var(--ent-gray-200);
+    background: rgba(240, 253, 244, 0.5);
+    font-family: var(--font-mono);
+    font-size: 9px;
+    letter-spacing: 0.06em;
+    color: #15803d;
+  }
+  .capvisual[data-i="2"] .sbx-check { width: 14px; height: 14px; flex: none; color: #16a34a; }
+
+  @media (max-width: 540px) {
+    .capvisual[data-i="2"] .cs.sbx { padding: 18px; }
+    .sbx-shards { grid-template-columns: 1fr; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .sbx-shard, .sbx-pill, .sbx-flow path, .sbx-cursor { animation: none !important; }
+  }
+
+  /* ===== Pilot-to-Production Readiness Staircase (card 04 preview) ===== */
+  .pp-wrap { min-height: 0; pointer-events: none; }
+  .pp {
+    display: flex; flex-direction: column; gap: 0;
+    padding: 18px 20px;
     background: var(--white);
     border: 1px solid var(--hairline);
     border-radius: 10px;
     box-shadow: 0 1px 0 rgba(31,31,31,0.02), 0 24px 60px -32px rgba(31,31,31,0.18);
     font-family: var(--font-body);
-    font-size: 12px;
-    line-height: 1.45;
-    color: var(--ink);
-    position: relative;
-    overflow: hidden;
+    font-size: 12px; line-height: 1.4; color: var(--ink);
+    position: relative; overflow: hidden;
   }
-  .pp::before {
-    content: "";
-    position: absolute; left: 0; right: 0; top: 0;
-    height: 2px;
-    background: var(--gradient);
-    opacity: 0.55;
-  }
+  .pp::before { content: ""; position: absolute; left: 0; right: 0; top: 0; height: 2px; background: var(--gradient); opacity: 0.55; }
 
-  /* Journey grid: pilot · wire · gates · wire · production */
-  .pp-journey {
-    display: grid;
-    grid-template-columns: minmax(0, 0.8fr) 26px minmax(0, 1.3fr) 26px minmax(0, 1.1fr);
-    gap: 8px;
-    align-items: stretch;
-  }
+  /* Horizontal staircase row */
+  .pp-stair { display: flex; flex-direction: row; align-items: flex-start; gap: 0; }
 
+  /* Shared compact stage card */
   .pp-stage {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-    padding: 10px 12px;
+    box-sizing: border-box;
+    display: flex; flex-direction: column; gap: 4px;
+    padding: 9px 10px;
     border: 1px solid var(--hairline);
-    border-radius: 8px;
+    border-radius: 9px;
     background: var(--white);
   }
-  .pp-stage-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-  }
-  .pp-stage-name {
-    font-family: var(--font-display);
-    font-size: 12.5px;
-    font-weight: 600;
-    letter-spacing: -0.005em;
-    color: var(--ink);
-    line-height: 1.2;
-  }
-  .pp-stage-list {
-    list-style: none;
-    margin: 4px 0 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-  .pp-stage-list li {
-    font-size: 11px;
-    color: var(--ink-soft);
-    padding-left: 12px;
-    position: relative;
-  }
-  .pp-stage-list li::before {
-    content: "";
-    position: absolute;
-    left: 0; top: 0.5em;
-    width: 4px; height: 4px;
-    border-radius: 999px;
-    background: var(--ink-muted);
-    opacity: 0.55;
-  }
+  .pp-stage-eyebrow { font-family: var(--font-mono); font-size: 7.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); line-height: 1.3; }
+  .pp-stage-name { font-family: var(--font-display); font-size: 12px; font-weight: 600; letter-spacing: -0.01em; color: var(--ink); line-height: 1.15; }
+  .pp-stage-list { list-style: none; margin: 1px 0 0; padding: 0; display: flex; flex-direction: column; gap: 3px; }
+  .pp-stage-list li { font-size: 10px; color: var(--ink-soft); padding-left: 11px; position: relative; line-height: 1.3; }
+  .pp-stage-list li::before { content: ""; position: absolute; left: 0; top: 0.5em; width: 3px; height: 3px; border-radius: 999px; background: var(--ink-muted); opacity: 0.5; }
 
-  /* Pilot — calm starting state */
-  .pp-pilot {
-    background: var(--surface);
-  }
+  /* CARD 1 — Pilot (top, narrow) */
+  .pp-gate-pilot { flex: 0 0 25%; background: var(--surface); }
 
-  /* Gates — accent-tinted centrepiece */
-  .pp-gates {
-    background: color-mix(in oklab, var(--c) 4%, var(--white));
-    border-color: color-mix(in oklab, var(--c) 25%, transparent);
+  /* CARD 2 — Readiness gates (mid, lower, pink, widest) */
+  .pp-gate-checks {
+    flex: 0 0 46%; margin-top: 18px; align-items: center;
+    background: color-mix(in oklab, var(--c) 5%, var(--white));
+    border-color: color-mix(in oklab, var(--c) 28%, transparent);
+    box-shadow: 0 10px 24px -18px color-mix(in oklab, var(--c) 60%, transparent);
   }
-  .pp-gates-list {
-    list-style: none;
-    margin: 4px 0 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
+  .pp-gate-checks > .pp-stage-eyebrow, .pp-gate-checks > .pp-stage-name { align-self: flex-start; }
+  .pp-checks-grid { list-style: none; margin: 3px 0 0; padding: 0; width: 100%; display: grid; grid-template-columns: 1fr 1fr; gap: 4px 10px; }
+  .pp-checks-grid li {
+    display: flex; align-items: center; gap: 6px;
+    font-size: 9px; color: var(--ink-soft); line-height: 1.2; white-space: nowrap;
+    animation: pp-row-pass 10s ease-in-out calc(var(--i,0)*0.5s) infinite;
   }
-  .pp-gates-list li {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 11px;
-    color: var(--ink-muted);
-    animation: pp-row-pass 10s ease-in-out calc(var(--i, 0) * 0.7s) infinite;
-  }
-  @keyframes pp-row-pass {
-    0%, 6%, 100% { color: var(--ink-muted); }
-    10%, 92%     { color: var(--ink); }
-  }
-
+  @keyframes pp-row-pass { 0%,6%,100%{color:var(--ink-muted);} 10%,92%{color:var(--ink);} }
   .pp-check {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 12px; height: 12px;
-    flex: 0 0 12px;
-    border-radius: 999px;
-    border: 1.5px solid var(--hairline-strong);
-    background: transparent;
-    position: relative;
-    animation: pp-check-fill 10s ease-in-out calc(var(--i, 0) * 0.7s) infinite;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 10px; height: 10px; flex: 0 0 10px; border-radius: 999px;
+    border: 1.3px solid color-mix(in oklab, var(--c) 32%, var(--hairline-strong));
+    background: transparent; position: relative;
+    animation: pp-check-fill 10s ease-in-out calc(var(--i,0)*0.5s) infinite;
   }
-  @keyframes pp-check-fill {
-    0%, 6%, 100% {
-      background: transparent;
-      border-color: var(--hairline-strong);
-    }
-    10%, 92% {
-      background: var(--c);
-      border-color: var(--c);
-    }
-  }
+  @keyframes pp-check-fill { 0%,6%,100%{background:transparent;border-color:color-mix(in oklab,var(--c) 30%,var(--hairline-strong));} 10%,92%{background:var(--c);border-color:var(--c);} }
   .pp-check::after {
-    content: "";
-    position: absolute;
-    left: 3.5px; top: 2px;
-    width: 3px; height: 6px;
-    border-right: 1.4px solid var(--white);
-    border-bottom: 1.4px solid var(--white);
-    transform: rotate(45deg) scale(0);
-    transform-origin: 60% 60%;
-    animation: pp-check-tick 10s ease-in-out calc(var(--i, 0) * 0.7s) infinite;
+    content: ""; position: absolute; left: 3px; top: 1.6px; width: 2.2px; height: 4px;
+    border-right: 1.2px solid var(--white); border-bottom: 1.2px solid var(--white);
+    transform: rotate(45deg) scale(0); transform-origin: 60% 60%;
+    animation: pp-check-tick 10s ease-in-out calc(var(--i,0)*0.5s) infinite;
   }
-  @keyframes pp-check-tick {
-    0%, 8%, 100% { transform: rotate(45deg) scale(0); }
-    12%, 92%     { transform: rotate(45deg) scale(1); }
-  }
-
+  @keyframes pp-check-tick { 0%,8%,100%{transform:rotate(45deg) scale(0);} 12%,92%{transform:rotate(45deg) scale(1);} }
   .pp-ready {
-    align-self: flex-start;
-    margin-top: 4px;
-    padding: 4px 9px;
-    border-radius: 999px;
-    background: var(--c);
-    color: var(--white);
-    font-family: var(--font-mono);
-    font-size: 9px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    font-weight: 600;
-    opacity: 0;
-    transform: translateY(4px);
-    animation: pp-ready-in 10s ease-in-out infinite;
-    box-shadow: 0 0 0 4px color-mix(in oklab, var(--c) 14%, transparent);
+    margin-top: 8px; padding: 5px 12px; border-radius: 999px;
+    background: var(--c); color: var(--white);
+    font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.13em; text-transform: uppercase; font-weight: 700;
+    display: inline-flex; align-items: center; gap: 6px; white-space: nowrap;
+    box-shadow: 0 5px 14px -7px color-mix(in oklab, var(--c) 70%, transparent), 0 0 0 3px color-mix(in oklab, var(--c) 12%, transparent);
   }
-  @keyframes pp-ready-in {
-    0%, 45%, 95%, 100% { opacity: 0; transform: translateY(4px); }
-    50%, 92%           { opacity: 1; transform: translateY(0); }
-  }
+  .pp-ready-pulse { width: 5px; height: 5px; border-radius: 999px; background: var(--white); animation: pp-pulse 1.8s ease-out infinite; }
+  @keyframes pp-pulse { 0%{box-shadow:0 0 0 0 rgba(255,255,255,0.6);} 70%,100%{box-shadow:0 0 0 5px rgba(255,255,255,0);} }
 
-  /* Production — activates once readiness completes */
-  .pp-prod {
+  /* CARD 3 — Production engine (right, lowest) */
+  .pp-gate-prod {
+    flex: 0 0 25%; margin-top: 36px; gap: 5px;
     animation: pp-prod-activate 10s ease-in-out infinite;
   }
-  @keyframes pp-prod-activate {
-    0%, 45%, 95%, 100% {
-      border-color: var(--hairline);
-      background: var(--white);
-      box-shadow: 0 0 0 0 transparent;
-    }
-    55%, 90% {
-      border-color: color-mix(in oklab, var(--c) 50%, transparent);
-      background: color-mix(in oklab, var(--c) 5%, var(--white));
-      box-shadow: 0 0 0 3px color-mix(in oklab, var(--c) 9%, transparent);
-    }
-  }
+  @keyframes pp-prod-activate { 0%,45%,97%,100%{border-color:var(--hairline);box-shadow:0 0 0 0 transparent;} 55%,92%{border-color:color-mix(in oklab,var(--c) 42%,transparent);box-shadow:0 10px 24px -18px color-mix(in oklab,var(--c) 55%,transparent);} }
+  .pp-prod-health { display: flex; align-items: center; gap: 7px; margin-top: 1px; }
+  .pp-health-val { font-family: var(--font-display); font-size: 16px; font-weight: 600; letter-spacing: -0.02em; color: var(--ink); line-height: 1; }
+  .pp-prod-live { display: inline-flex; align-items: center; gap: 4px; font-family: var(--font-mono); font-size: 7px; letter-spacing: 0.08em; text-transform: uppercase; color: #15803d; }
+  .pp-prod-live i { width: 5px; height: 5px; border-radius: 999px; background: #16a34a; animation: pp-live 1.8s ease-out infinite; }
+  @keyframes pp-live { 0%{box-shadow:0 0 0 0 rgba(22,163,74,0.5);} 70%,100%{box-shadow:0 0 0 4px rgba(22,163,74,0);} }
+  .pp-prod-uptime { font-size: 8.5px; color: var(--ink-muted); }
+  .pp-ops-mono { list-style: none; margin: 4px 0 0; padding: 0; display: flex; flex-direction: column; gap: 2px; font-family: var(--font-mono); font-size: 8.5px; letter-spacing: 0.01em; color: var(--ink-soft); }
+  .pp-ops-mono li::before { content: "› "; color: color-mix(in oklab, var(--c) 60%, var(--ink-muted)); }
 
-  /* Wires between stages — marching dashes for continuous flow */
-  .pp-wire {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100%;
-  }
-  .pp-wire svg {
-    width: 100%;
-    height: 6px;
-    overflow: visible;
-  }
-  .pp-wire-line {
-    fill: none;
-    stroke: color-mix(in oklab, var(--c) 35%, transparent);
-    stroke-width: 1;
-    stroke-dasharray: 3 5;
-    stroke-linecap: round;
-    vector-effect: non-scaling-stroke;
-    animation: pp-wire-flow 1.6s linear infinite;
-  }
-  @keyframes pp-wire-flow {
-    from { stroke-dashoffset: 16; }
-    to   { stroke-dashoffset: 0; }
-  }
+  /* Horizontal staircase arrows (sit in the gaps, stepped down) */
+  .pp-harrow { flex: 1 1 auto; min-width: 8px; align-self: flex-start; display: flex; align-items: center; }
+  .pp-harrow.a1 { margin-top: 60px; }
+  .pp-harrow.a2 { margin-top: 96px; }
+  .pp-harrow svg { width: 100%; height: 8px; overflow: visible; display: block; }
+  .pp-harrow path.l { fill: none; stroke: color-mix(in oklab, var(--c) 40%, transparent); stroke-width: 1.2; stroke-dasharray: 3 4; stroke-linecap: round; animation: pp-wire-flow 1.5s linear infinite; }
+  .pp-harrow polyline.a { fill: none; stroke: color-mix(in oklab, var(--c) 55%, transparent); stroke-width: 1.2; stroke-linecap: round; stroke-linejoin: round; }
+  @keyframes pp-wire-flow { from { stroke-dashoffset: 14; } to { stroke-dashoffset: 0; } }
 
-  /* Ongoing operations strip — sits between the journey and the
-     footer so the visual conveys that production is the start of
-     long-term operations, not an end state. */
-  .pp-ops {
-    list-style: none;
-    margin: 0;
-    padding: 8px 4px;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 6px 14px;
-    border-top: 1px dashed var(--hairline);
-    border-bottom: 1px dashed var(--hairline);
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-  }
-  .pp-ops li {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .pp-ops-dot {
-    width: 5px; height: 5px;
-    border-radius: 999px;
-    background: color-mix(in oklab, var(--c) 55%, transparent);
-  }
-
-  /* Footer row: feedback loop on left, principle quote on right */
-  .pp-foot {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 16px;
-    padding: 10px 4px 2px;
-    border-top: 1px dashed var(--hairline);
-    margin-top: 2px;
-  }
-  .pp-loop {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 9.5px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: var(--ink-muted);
-  }
-  .pp-loop-arc {
-    display: inline-block;
-    width: 18px; height: 10px;
-    border: 1px solid color-mix(in oklab, var(--c) 50%, transparent);
-    border-top: 0; border-right: 0;
-    border-bottom-left-radius: 10px;
-    position: relative;
-  }
-  .pp-loop-arc::before {
-    content: "";
-    position: absolute;
-    left: -2px; top: -3px;
-    width: 0; height: 0;
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-bottom: 5px solid color-mix(in oklab, var(--c) 60%, transparent);
-  }
-  .pp-principle {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-size: 12.5px;
-    font-weight: 500;
-    color: var(--ink);
-    letter-spacing: -0.005em;
-    text-align: right;
-  }
-  .pp-principle-mark {
-    color: color-mix(in oklab, var(--c) 65%, var(--ink-muted));
-    font-family: serif;
-    font-size: 16px;
-    line-height: 0;
-    vertical-align: -3px;
-    margin: 0 1px;
-  }
+  /* Compact footer: ticker + quote on one row */
+  .pp-foot { margin-top: 16px; padding-top: 11px; border-top: 1px dashed var(--hairline); display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .pp-ticker { display: flex; flex-wrap: wrap; align-items: center; min-width: 0; font-family: var(--font-mono); font-size: 7.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-muted); }
+  .pp-ticker span { display: inline-flex; align-items: center; }
+  .pp-ticker span:not(:last-child)::after { content: ""; width: 3px; height: 3px; border-radius: 999px; background: color-mix(in oklab, var(--c) 45%, var(--hairline-strong)); margin: 0 8px; }
+  .pp-quote { flex: none; font-family: Georgia, "Times New Roman", serif; font-style: italic; font-size: 11.5px; color: var(--ink-muted); text-align: right; white-space: nowrap; }
+  .pp-quote-mark { color: color-mix(in oklab, var(--c) 60%, var(--ink-muted)); font-size: 14px; line-height: 0; vertical-align: -2px; margin: 0 1px; }
 
   @media (max-width: 960px) {
-    .pp { font-size: 11.5px; }
-    .pp-journey {
-      grid-template-columns: 1fr;
-      gap: 8px;
-    }
-    .pp-wire { height: 22px; }
-    .pp-wire svg {
-      width: 6px; height: 22px;
-      transform: rotate(90deg);
-      transform-origin: center;
-    }
-    .pp-foot {
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
-    }
-    .pp-principle { text-align: left; }
+    .pp-stair { flex-direction: column; align-items: stretch; gap: 8px; }
+    .pp-gate-pilot, .pp-gate-checks, .pp-gate-prod { flex: 1 1 auto; margin-top: 0; align-items: stretch; }
+    .pp-gate-checks > .pp-stage-eyebrow, .pp-gate-checks > .pp-stage-name { align-self: auto; }
+    .pp-harrow { display: none; }
+    .pp-foot { flex-direction: column; align-items: flex-start; gap: 8px; }
+    .pp-quote { text-align: left; white-space: normal; }
   }
-
   @media (prefers-reduced-motion: reduce) {
-    .pp-gates-list li,
-    .pp-check,
-    .pp-check::after,
-    .pp-ready,
-    .pp-prod,
-    .pp-wire-line {
-      animation: none !important;
-      opacity: 1;
-      transform: none;
-    }
+    .pp-checks-grid li, .pp-check, .pp-check::after, .pp-gate-prod, .pp-harrow path.l, .pp-ready-pulse, .pp-prod-live i { animation: none !important; }
     .pp-check { background: var(--c); border-color: var(--c); }
     .pp-check::after { transform: rotate(45deg) scale(1); }
-    .pp-prod {
-      border-color: color-mix(in oklab, var(--c) 50%, transparent);
-      background: color-mix(in oklab, var(--c) 5%, var(--white));
-    }
+    .pp-checks-grid li { color: var(--ink); }
+    .pp-gate-prod { border-color: color-mix(in oklab, var(--c) 42%, transparent); }
   }
 
   @media (max-width: 880px) {
@@ -4115,72 +4340,81 @@
           </div>
         </div>
         </div>
-        <div class="capvisual" data-i="2" style="--c:#3478E5">
+                <div class="capvisual" data-i="2" style="--c:#3478E5">
           <div class="cap-strip-visual cs-wrap" aria-hidden="true">
-          <div class="cs">
+          <div class="cs sbx">
 
-            <!-- Top: Business systems -->
-            <div class="cs-layer cs-systems">
-              <span class="cs-row-label">Business systems</span>
-              <div class="cs-tiles">
-                <span class="cs-tile is-source" style="--d:0s;   --b:0s">CRM</span>
-                <span class="cs-tile" style="--d:0.2s">ERP</span>
-                <span class="cs-tile is-source" style="--d:0.4s; --b:-1s">Documents</span>
-                <span class="cs-tile is-source" style="--d:0.6s; --b:-2s">Knowledge base</span>
-                <span class="cs-tile" style="--d:0.8s">Support tools</span>
-                <span class="cs-tile" style="--d:1s">Data warehouse</span>
+            <!-- Ingestion: source cards -->
+            <div class="sbx-ingest">
+              <span class="sbx-col-label">Enterprise Sources</span>
+              <div class="sbx-shards">
+                <div class="sbx-shard">
+                  <div class="sbx-shard-head">
+                    <svg class="sbx-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"></ellipse><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"></path><path d="M3 12c0 1.66 4 3 9 3s9-1.34 9-3"></path></svg>
+                    <span>CRM &amp; ERP Data</span>
+                  </div>
+                  <span class="sbx-shard-meta">12,480 records · live</span>
+                </div>
+                <div class="sbx-shard">
+                  <div class="sbx-shard-head">
+                    <svg class="sbx-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"></path><path d="M14 3v5h5"></path><path d="M9 13h6M9 17h4"></path></svg>
+                    <span>Docs &amp; Knowledge Base</span>
+                  </div>
+                  <span class="sbx-shard-meta">/vault/contracts/*</span>
+                </div>
+                <div class="sbx-shard">
+                  <div class="sbx-shard-head">
+                    <svg class="sbx-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="11" width="16" height="9" rx="2"></rect><path d="M8 11V7a4 4 0 0 1 8 0v4"></path></svg>
+                    <span>Access &amp; Governance</span>
+                  </div>
+                  <span class="sbx-shard-meta"><span class="sbx-toggle"></span>enforce: on</span>
+                </div>
               </div>
             </div>
 
-            <!-- Connector flow: Business systems → Control layer -->
-            <div class="cs-flow cs-flow-in" aria-hidden="true">
-              <svg viewBox="0 0 100 26" preserveAspectRatio="none">
-                <path class="cs-wire" style="--d:0s"    d="M 8 0 C 8 14, 32 14, 32 26"/>
-                <path class="cs-wire" style="--d:-0.4s" d="M 42 0 C 42 12, 50 14, 50 26"/>
-                <path class="cs-wire" style="--d:-0.8s" d="M 58 0 C 58 12, 50 14, 50 26"/>
-                <path class="cs-wire cs-wire-faint" style="--d:-1.2s" d="M 92 0 C 92 14, 68 14, 68 26"/>
+            <!-- Flow: sources → control layer -->
+            <div class="sbx-flow" aria-hidden="true">
+              <svg viewBox="0 0 16 30" preserveAspectRatio="none">
+                <path d="M8 0 V22"></path>
+                <polyline points="3,18 8,24 13,18"></polyline>
               </svg>
             </div>
 
-            <!-- Middle: AI Control Layer -->
-            <div class="cs-layer cs-control">
-              <div class="cs-control-head">
-                <span class="cs-control-eyebrow">Enterprise control layer</span>
-                <span class="cs-control-title">AI Control Layer</span>
-              </div>
-              <div class="cs-funcs">
-                <span class="cs-func" style="--i:0">Access rules</span>
-                <span class="cs-func" style="--i:1">Retrieval</span>
-                <span class="cs-func" style="--i:2">Model routing</span>
-                <span class="cs-func" style="--i:3">Human checkpoints</span>
-                <span class="cs-func cs-func-loop" style="--i:4">Evaluation</span>
-                <span class="cs-func cs-func-loop" style="--i:5">Audit trail</span>
+            <!-- AI Control Layer band -->
+            <div class="sbx-conduit">
+              <span class="sbx-conduit-label">
+                <svg class="sbx-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+                AI Control Layer
+              </span>
+              <div class="sbx-pills">
+                <span class="sbx-pill">Retrieval Engine</span>
+                <span class="sbx-pill">Real-time Guardrails</span>
+                <span class="sbx-pill">Citation Tracking</span>
               </div>
             </div>
 
-            <!-- Connector flow: Control layer → Deployment -->
-            <div class="cs-flow cs-flow-out" aria-hidden="true">
-              <svg viewBox="0 0 100 26" preserveAspectRatio="none">
-                <path class="cs-wire" style="--d:0s"    d="M 50 0 C 50 12, 18 14, 18 26"/>
-                <path class="cs-wire" style="--d:-0.5s" d="M 50 0 C 50 14, 50 14, 50 26"/>
-                <path class="cs-wire" style="--d:-1s"   d="M 50 0 C 50 12, 82 14, 82 26"/>
+            <!-- Flow: control layer → response -->
+            <div class="sbx-flow" aria-hidden="true">
+              <svg viewBox="0 0 16 30" preserveAspectRatio="none">
+                <path d="M8 0 V22"></path>
+                <polyline points="3,18 8,24 13,18"></polyline>
               </svg>
             </div>
 
-            <!-- Bottom: Deployment -->
-            <div class="cs-layer cs-deploy">
-              <span class="cs-row-label">Deployment</span>
-              <div class="cs-deploy-options">
-                <span class="cs-deploy-opt">Client cloud</span>
-                <span class="cs-deploy-opt">EU hosted</span>
-                <span class="cs-deploy-opt">On-prem / private network</span>
+            <!-- Grounded terminal -->
+            <div class="sbx-terminal">
+              <div class="sbx-term-head">
+                <span class="sbx-term-dots"><i></i><i></i><i></i></span>
+                <span class="sbx-term-title">Secure AI Response</span>
               </div>
-            </div>
-
-            <!-- Feedback loop indicator -->
-            <div class="cs-loopback" aria-hidden="true">
-              <span class="cs-loopback-arc"></span>
-              <span class="cs-loopback-label">Continuous evaluation</span>
+              <div class="sbx-term-body">
+                <span class="sbx-term-prompt">retrieve regional parameters</span>
+                Based on <span class="k">contract clause 4.2</span>, the regional parameters are active for the EU operating entity.<span class="sbx-cursor"></span>
+              </div>
+              <div class="sbx-term-foot">
+                <svg class="sbx-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg>
+                <span>Citation verified · ERP_SECURE_v2</span>
+              </div>
             </div>
 
           </div>
@@ -4190,11 +4424,11 @@
           <div class="cap-strip-visual pp-wrap" aria-hidden="true">
           <div class="pp">
 
-            <!-- Journey: pilot → readiness checks → production -->
-            <div class="pp-journey">
+            <!-- Production Readiness Staircase -->
+            <div class="pp-stair">
 
-              <!-- Pilot -->
-              <div class="pp-stage pp-pilot">
+              <!-- CARD 1 — Pilot (top) -->
+              <div class="pp-stage pp-gate-pilot">
                 <span class="pp-stage-eyebrow">Stage 01</span>
                 <span class="pp-stage-name">Pilot</span>
                 <ul class="pp-stage-list">
@@ -4205,73 +4439,70 @@
                 </ul>
               </div>
 
-              <!-- Wire pilot → gates -->
-              <div class="pp-wire">
-                <svg viewBox="0 0 40 6" preserveAspectRatio="none">
-                  <path class="pp-wire-line" d="M 0 3 L 40 3"/>
+              <!-- Arrow: pilot → checks -->
+              <div class="pp-harrow a1">
+                <svg viewBox="0 0 30 8" preserveAspectRatio="none">
+                  <path class="l" d="M0 4 H22"></path>
+                  <polyline class="a" points="18,1 24,4 18,7"></polyline>
                 </svg>
               </div>
 
-              <!-- Readiness gates -->
-              <div class="pp-stage pp-gates">
+              <!-- CARD 2 — Readiness gates (lower, pink) -->
+              <div class="pp-stage pp-gate-checks">
                 <span class="pp-stage-eyebrow">Stage 02</span>
                 <span class="pp-stage-name">Readiness checks</span>
-                <ol class="pp-gates-list">
+                <ul class="pp-checks-grid">
                   <li style="--i:0"><span class="pp-check"></span>Business fit</li>
                   <li style="--i:1"><span class="pp-check"></span>Data path</li>
                   <li style="--i:2"><span class="pp-check"></span>Human control</li>
                   <li style="--i:3"><span class="pp-check"></span>Failure paths</li>
                   <li style="--i:4"><span class="pp-check"></span>Governance</li>
-                </ol>
-                <span class="pp-ready">Ready to scale</span>
+                  <li style="--i:5"><span class="pp-check"></span>Cost &amp; scale</li>
+                </ul>
+                <span class="pp-ready"><span class="pp-ready-pulse"></span>Ready to scale</span>
               </div>
 
-              <!-- Wire gates → production -->
-              <div class="pp-wire">
-                <svg viewBox="0 0 40 6" preserveAspectRatio="none">
-                  <path class="pp-wire-line" d="M 0 3 L 40 3"/>
+              <!-- Arrow: checks → production -->
+              <div class="pp-harrow a2">
+                <svg viewBox="0 0 30 8" preserveAspectRatio="none">
+                  <path class="l" d="M0 4 H22"></path>
+                  <polyline class="a" points="18,1 24,4 18,7"></polyline>
                 </svg>
               </div>
 
-              <!-- Production -->
-              <div class="pp-stage pp-prod">
+              <!-- CARD 3 — Production engine (lowest) -->
+              <div class="pp-stage pp-gate-prod">
                 <span class="pp-stage-eyebrow">Stage 03</span>
-                <span class="pp-stage-name">Production system</span>
-                <ul class="pp-stage-list">
+                <span class="pp-stage-name">Production engine</span>
+                <div class="pp-prod-health">
+                  <span class="pp-health-val">99.9%</span>
+                  <span class="pp-prod-live"><i></i>Live</span>
+                </div>
+                <span class="pp-prod-uptime">Uptime · 90d</span>
+                <ul class="pp-ops-mono">
                   <li>Live workflow</li>
                   <li>Monitoring</li>
                   <li>Ownership</li>
-                  <li>Improvement loop</li>
-                  <li>Team adoption</li>
                 </ul>
               </div>
 
             </div>
 
-            <!-- Ongoing operations strip -->
-            <ul class="pp-ops" aria-label="Ongoing operations">
-              <li><span class="pp-ops-dot"></span>Daily monitoring</li>
-              <li><span class="pp-ops-dot"></span>Quarterly review</li>
-              <li><span class="pp-ops-dot"></span>Continuous improvement</li>
-              <li><span class="pp-ops-dot"></span>Owner accountability</li>
-            </ul>
-
-            <!-- Footer: feedback loop + principle -->
+            <!-- Compact footer: ticker + quote -->
             <div class="pp-foot">
-              <div class="pp-loop">
-                <span class="pp-loop-arc"></span>
-                <span class="pp-loop-text">Monitor &middot; Learn &middot; Improve</span>
+              <div class="pp-ticker" aria-label="Ongoing operations">
+                <span>Daily monitoring</span>
+                <span>Quarterly review</span>
+                <span>Continuous improvement</span>
+                <span>Owner accountability</span>
               </div>
-              <div class="pp-principle">
-                <span class="pp-principle-mark">&ldquo;</span>Scale only what proves useful.<span class="pp-principle-mark">&rdquo;</span>
-              </div>
+              <div class="pp-quote"><span class="pp-quote-mark">“</span>Scale only what proves useful.<span class="pp-quote-mark">”</span></div>
             </div>
 
           </div>
         </div>
         </div>
-      </div>
-    </div>
+</div>
 
   </div>
 </section>
