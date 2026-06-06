@@ -126,7 +126,17 @@
   .recap-row dd { margin: 0; font-size: 13.5px; color: var(--ink); line-height: 1.5; }
   .success-restart { margin-top: 24px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); border-bottom: 1px solid var(--hairline); padding-bottom: 2px; transition: color 180ms var(--ease), border-color 180ms var(--ease); }
   .success-restart:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+  /* When embedded as a modal iframe from the homepage, hide site chrome */
+  .is-embed .topbar { display: none; }
+  .is-embed .stage { padding: clamp(20px, 3vw, 32px) var(--gutter); }
+  .is-embed body, html.is-embed body { background: var(--white); }
 </style>
+<script>
+  if (new URLSearchParams(location.search).get('embed') === '1') {
+    document.documentElement.classList.add('is-embed');
+  }
+</script>
 </head>
 <body>
 <div class="page">

@@ -3826,7 +3826,7 @@
       <a href="#work">Case Studies</a>
       <a href="insights/index.html">Our thinking</a>
       <a href="about.html">About</a>
-      <a href="#contact" class="cta">Book a readiness check &rarr;</a>
+      <a href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" class="cta" target="_blank" rel="noopener">Talk to us &rarr;</a>
     </div>
     <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
       <span></span><span></span><span></span>
@@ -3844,7 +3844,7 @@
     <a href="#work">Case Studies</a>
     <a href="insights/index.html">Our thinking</a>
     <a href="about.html">About</a>
-    <a href="#contact" class="cta">Book a readiness check &rarr;</a>
+    <a href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" class="cta" target="_blank" rel="noopener">Talk to us &rarr;</a>
   </div>
 </nav>
 
@@ -3880,9 +3880,9 @@
         </div>
 
         <div class="hero-ctas">
-          <a class="btn btn-primary" href="#contact">
+          <button type="button" class="btn btn-primary" data-modal-open="choice">
             Map your AI opportunity <span class="arrow">&rarr;</span>
-          </a>
+          </button>
           <a class="btn btn-ghost" href="#work">
             See case studies
           </a>
@@ -4405,9 +4405,9 @@
       <h2>Talk to us about what your business <span class="grad-light">could gain.</span></h2>
     </div>
     <div class="midcta-side">
-      <a class="btn btn-primary" href="#contact">
+      <button type="button" class="btn btn-primary" data-modal-open="form">
         Map the first workflow <span class="arrow">&rarr;</span>
-      </a>
+      </button>
       <span class="midcta-note">Free 45-min call &middot; And we build well beyond what you see here</span>
     </div>
   </div>
@@ -5388,9 +5388,9 @@
       </div>
     </div>
     <div class="rstrip-foot">
-      <a class="rstrip-cta" href="capabilities/readiness-audit.html">
-        Explore the readiness audit <span aria-hidden="true">&rarr;</span>
-      </a>
+      <button type="button" class="rstrip-cta" data-modal-open="form">
+        Start the workflow audit <span aria-hidden="true">&rarr;</span>
+      </button>
       <span class="rstrip-note">Use it to clarify what to ask internally &mdash; and what to ask us.</span>
     </div>
   </div>
@@ -5415,8 +5415,8 @@
     <div class="closing-cta">
       <span class="closing-cta-eyebrow">Readiness check &middot; 45 min &middot; Free</span>
       <p class="closing-cta-copy">Bring one workflow. We&rsquo;ll help identify the first useful AI step.</p>
-      <a class="btn btn-primary closing-cta-btn" href="audit.html">
-        Book a readiness check <span class="arrow">&rarr;</span>
+      <a class="btn btn-primary closing-cta-btn" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
+        Book a workflow call <span class="arrow">&rarr;</span>
       </a>
       <a class="closing-cta-secondary" href="/cdn-cgi/l/email-protection#7517071c1b111435181a0714191c010c170c0110065b10004a0600171f10160148343c3d392527504745101b04001c070c">Or email <span class="__cf_email__" data-cfemail="d1b3a3b8bfb5b091bcbea3b0bdb8a5a8b3a8a5b4a2ffb4a4">[email&#160;protected]</span></a>
     </div>
@@ -6504,5 +6504,223 @@
   });
 })();
 </script>
+<!-- ============= CTA MODAL (choice + audit form) ============= -->
+<style id="aihModalStyles">
+  .aih-modal { position: fixed; inset: 0; z-index: 100; display: none; }
+  .aih-modal.is-open { display: block; }
+  .aih-modal-overlay {
+    position: absolute; inset: 0;
+    background: rgba(31,31,31,0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    animation: aih-fade-in 220ms ease;
+  }
+  .aih-modal-content {
+    position: relative;
+    width: calc(100% - 32px);
+    max-width: 720px;
+    margin: clamp(28px, 6vh, 80px) auto;
+    background: var(--white, #fff);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+    box-shadow: 0 30px 80px -20px rgba(0,0,0,0.4);
+    animation: aih-pop 260ms cubic-bezier(0.22,1,0.36,1);
+    max-height: calc(100vh - 56px);
+  }
+  .aih-modal-close {
+    position: absolute; top: 14px; right: 14px; z-index: 3;
+    width: 36px; height: 36px; border-radius: 999px;
+    background: rgba(255,255,255,0.92);
+    border: 1px solid var(--hairline, rgba(31,31,31,0.10));
+    cursor: pointer;
+    display: grid; place-items: center;
+    font-size: 20px; line-height: 1; color: var(--ink, #1F1F1F);
+    transition: background 180ms ease, transform 180ms ease;
+    font-family: var(--font-body, system-ui, sans-serif);
+  }
+  .aih-modal-close:hover { background: var(--white, #fff); transform: scale(1.05); }
+  .aih-modal-panel { display: none; }
+  .aih-modal-panel.is-active { display: block; }
+  .aih-modal-panel[data-panel="choice"] { padding: clamp(28px, 4vw, 44px); }
+  .aih-modal-panel[data-panel="form"] {
+    flex: 1; min-height: 0;
+    display: none;
+  }
+  .aih-modal-panel[data-panel="form"].is-active { display: flex; }
+  .aih-modal-panel[data-panel="form"] iframe {
+    display: block;
+    width: 100%;
+    height: calc(100vh - 110px);
+    max-height: 86vh;
+    border: 0;
+    background: var(--white, #fff);
+  }
+
+  .aih-modal-eyebrow {
+    font-family: var(--font-mono, "JetBrains Mono", monospace);
+    font-size: 11px; letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted, #8A8A8A);
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .aih-modal-eyebrow .dot { width: 7px; height: 7px; border-radius: 999px; background: var(--pink, #E91E63); }
+  .aih-modal-panel h2 {
+    font-family: var(--font-display, "Poppins", sans-serif);
+    font-size: clamp(24px, 3vw, 32px);
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1.12;
+    margin: 14px 0 12px;
+    color: var(--ink, #1F1F1F);
+    text-wrap: balance;
+  }
+  .aih-modal-panel > p {
+    font-size: 15.5px;
+    color: var(--ink-soft, #4A4A4A);
+    line-height: 1.6;
+    margin: 0 0 26px;
+    max-width: 56ch;
+  }
+  .aih-choice-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  @media (max-width: 640px) { .aih-choice-grid { grid-template-columns: 1fr; } }
+  .aih-choice {
+    display: flex; flex-direction: column; gap: 10px;
+    padding: 22px;
+    border: 1px solid var(--hairline, rgba(31,31,31,0.10));
+    border-radius: 14px;
+    background: var(--surface, #F8F8F6);
+    transition: border-color 180ms ease, background 180ms ease;
+  }
+  .aih-choice:hover { border-color: var(--ink, #1F1F1F); background: var(--white, #fff); }
+  .aih-choice h3 {
+    font-family: var(--font-display, "Poppins", sans-serif);
+    font-size: 17px; font-weight: 600;
+    margin: 0;
+    letter-spacing: -0.01em;
+  }
+  .aih-choice p {
+    font-size: 13.5px;
+    color: var(--ink-soft, #4A4A4A);
+    margin: 0;
+    line-height: 1.5;
+  }
+  .aih-choice-btn {
+    margin-top: auto;
+    padding: 11px 18px;
+    background: var(--ink, #1F1F1F);
+    color: var(--white, #fff);
+    border: 0;
+    border-radius: 999px;
+    font-family: var(--font-display, "Poppins", sans-serif);
+    font-size: 14px; font-weight: 500;
+    cursor: pointer;
+    display: inline-flex; align-items: center; justify-content: center;
+    gap: 8px;
+    transition: background 180ms ease, gap 180ms ease;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+  .aih-choice-btn:hover { background: #000; gap: 12px; }
+
+  body.is-modal-open { overflow: hidden; }
+
+  @keyframes aih-fade-in { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes aih-pop {
+    from { opacity: 0; transform: translateY(12px) scale(0.98); }
+    to { opacity: 1; transform: none; }
+  }
+</style>
+<div class="aih-modal" id="aihModal" hidden aria-hidden="true">
+  <div class="aih-modal-overlay" data-modal-close></div>
+  <div class="aih-modal-content" role="dialog" aria-modal="true" aria-labelledby="aihModalTitle">
+    <button type="button" class="aih-modal-close" data-modal-close aria-label="Close">&times;</button>
+
+    <div class="aih-modal-panel" data-panel="choice">
+      <span class="aih-modal-eyebrow"><span class="dot"></span>Map your AI opportunity</span>
+      <h2 id="aihModalTitle">Start with one workflow.</h2>
+      <p>Bring a workflow, process, or AI idea. We&rsquo;ll help identify whether AI can safely help, what needs preparation first, and what a practical first step could look like.</p>
+      <div class="aih-choice-grid">
+        <article class="aih-choice">
+          <h3>Submit a workflow</h3>
+          <p>Tell us about one workflow and receive a practical readiness snapshot.</p>
+          <button type="button" class="aih-choice-btn" data-modal-open="form">Start workflow check &rarr;</button>
+        </article>
+        <article class="aih-choice">
+          <h3>Choose a time</h3>
+          <p>Book a short workflow call and talk it through directly.</p>
+          <a class="aih-choice-btn" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Choose a time &rarr;</a>
+        </article>
+      </div>
+    </div>
+
+    <div class="aih-modal-panel" data-panel="form">
+      <iframe data-modal-iframe title="Readiness snapshot form" loading="lazy"></iframe>
+    </div>
+  </div>
+</div>
+<script>
+  (function () {
+    var modal = document.getElementById('aihModal');
+    if (!modal) return;
+    var iframe = modal.querySelector('[data-modal-iframe]');
+    var lastFocus = null;
+
+    function activatePanel(panelName) {
+      modal.querySelectorAll('.aih-modal-panel').forEach(function (p) {
+        p.classList.toggle('is-active', p.getAttribute('data-panel') === panelName);
+      });
+      if (panelName === 'form' && iframe && !iframe.getAttribute('src')) {
+        iframe.setAttribute('src', 'audit.html?embed=1');
+      }
+    }
+
+    function open(panelName) {
+      lastFocus = document.activeElement;
+      activatePanel(panelName);
+      modal.classList.add('is-open');
+      modal.removeAttribute('hidden');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('is-modal-open');
+      // focus the close button for accessibility
+      var closeBtn = modal.querySelector('.aih-modal-close');
+      if (closeBtn) closeBtn.focus();
+    }
+
+    function close() {
+      modal.classList.remove('is-open');
+      modal.setAttribute('hidden', '');
+      modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('is-modal-open');
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    document.addEventListener('click', function (e) {
+      var openTrigger = e.target.closest('[data-modal-open]');
+      if (openTrigger) {
+        e.preventDefault();
+        open(openTrigger.getAttribute('data-modal-open'));
+        return;
+      }
+      var closeTrigger = e.target.closest('[data-modal-close]');
+      if (closeTrigger && modal.contains(closeTrigger)) {
+        e.preventDefault();
+        close();
+      }
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && modal.classList.contains('is-open')) {
+        close();
+      }
+    });
+  })();
+</script>
+
 </body>
 </html>
