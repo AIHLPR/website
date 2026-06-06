@@ -81,7 +81,8 @@
   .input:focus, .textarea:focus { outline: none; border-color: var(--ink); box-shadow: 0 0 0 1px var(--ink); }
 
   .chips { display: flex; flex-wrap: wrap; gap: 9px; }
-  .chip { font-family: var(--font-body); font-size: 14px; line-height: 1; color: var(--ink-soft); background: var(--surface-2); border: 1px solid var(--hairline-strong); border-radius: 999px; padding: 11px 16px; white-space: nowrap; transition: border-color 160ms var(--ease), color 160ms var(--ease), background 160ms var(--ease); -webkit-tap-highlight-color: transparent; }
+  .chip { font-family: var(--font-body); font-size: 14px; line-height: 1.25; color: var(--ink-soft); background: var(--surface-2); border: 1px solid var(--hairline-strong); border-radius: 999px; padding: 11px 16px; white-space: normal; max-width: 100%; text-align: left; transition: border-color 160ms var(--ease), color 160ms var(--ease), background 160ms var(--ease); -webkit-tap-highlight-color: transparent; }
+  @media (max-width: 480px) { .chip { font-size: 13.5px; padding: 10px 14px; } }
   .chip:hover { border-color: var(--ink); color: var(--ink); }
   .chip.is-on { background: var(--ink); border-color: var(--ink); color: var(--white); }
   .chip.is-on:hover { color: var(--white); }
@@ -161,7 +162,7 @@
             <span class="step-count" id="stepCount"><b>01</b> / 05</span>
           </div>
           <div class="progress-meta">
-            <span class="microcopy">5&ndash;7 minutes &middot; one workflow &middot; practical next step</span>
+            <span class="microcopy">Around 5 minutes &middot; one workflow &middot; meaningful next step</span>
             <div class="step-dots" id="stepDots" role="list" aria-label="Form progress">
               <button type="button" class="sd" data-dot="1" aria-label="Step 1"></button>
               <button type="button" class="sd" data-dot="2" aria-label="Step 2"></button>
@@ -172,94 +173,157 @@
           </div>
 
           <div class="steps" id="steps">
+
+            <!-- ===== Step 1 - Workflow ===== -->
             <div class="step is-active" data-step="1">
-              <span class="step-eyebrow">01 &middot; Workflow</span>
-              <h2 class="step-q">Describe the workflow you want to evaluate</h2>
-              <p class="step-help">Tell us about one workflow. We&rsquo;ll review whether AI could safely help, what may need preparing first, and what the first useful step could be.</p>
+              <span class="step-eyebrow">01 &middot; The workflow</span>
+              <h2 class="step-q">Tell us about the workflow you want to evaluate</h2>
+              <p class="step-help">A few details now let us prepare a useful, specific snapshot &mdash; not a generic one.</p>
+
               <div class="field-block">
-                <textarea class="textarea" id="f-workflow" data-key="workflow" placeholder="For example: every new client kicks off a 12-step onboarding across email, our CRM and three spreadsheets. It takes two people most of a week, and details slip between handoffs."></textarea>
+                <span class="field-label">Which team or department owns it?</span>
+                <div class="chips" data-single="team">
+                  <button type="button" class="chip" data-val="Operations">Operations</button>
+                  <button type="button" class="chip" data-val="Marketing &amp; e-commerce">Marketing &amp; e-commerce</button>
+                  <button type="button" class="chip" data-val="IT &amp; product">IT &amp; product</button>
+                  <button type="button" class="chip" data-val="Customer support">Customer support</button>
+                  <button type="button" class="chip" data-val="Legal &amp; compliance">Legal &amp; compliance</button>
+                  <button type="button" class="chip" data-val="Finance / HR">Finance / HR</button>
+                </div>
               </div>
+
               <div class="field-block">
                 <span class="field-label">How often does it run?</span>
                 <div class="chips" data-single="frequency">
-                  <button type="button" class="chip" data-val="Daily">Daily</button>
+                  <button type="button" class="chip" data-val="Continuously / every day">Continuously / every day</button>
                   <button type="button" class="chip" data-val="Weekly">Weekly</button>
                   <button type="button" class="chip" data-val="Monthly">Monthly</button>
-                  <button type="button" class="chip" data-val="Ad hoc">Ad hoc</button>
+                  <button type="button" class="chip" data-val="Only during specific projects or launches">Only during projects or launches</button>
                 </div>
+              </div>
+
+              <div class="field-block">
+                <span class="field-label">In 2&ndash;3 sentences, what does the team do today, step-by-step?</span>
+                <textarea class="textarea" id="f-workflow" data-key="workflow" placeholder="Example: a customer emails an invoice PDF. We open it, copy the line items into a spreadsheet, then upload that sheet into our accounting software."></textarea>
               </div>
             </div>
 
+            <!-- ===== Step 2 - Bottlenecks ===== -->
             <div class="step" data-step="2">
-              <span class="step-eyebrow">02 &middot; Friction</span>
-              <h2 class="step-q">Where does this workflow slow down today?</h2>
-              <p class="step-help">Pick what applies. This shapes where we look first.</p>
+              <span class="step-eyebrow">02 &middot; The bottlenecks</span>
+              <h2 class="step-q">Where does this workflow get stuck?</h2>
+              <p class="step-help">Pick what fits. This tells us which manual steps AI should target.</p>
+
               <div class="field-block">
+                <span class="field-label">Where does the work actually start?</span>
+                <div class="chips" data-multi="workStart">
+                  <button type="button" class="chip" data-val="Email inbox">Email inbox</button>
+                  <button type="button" class="chip" data-val="Online form">Online form</button>
+                  <button type="button" class="chip" data-val="Spreadsheets (Excel / Google Sheets)">Spreadsheets (Excel / Sheets)</button>
+                  <button type="button" class="chip" data-val="CRM / ERP software">CRM / ERP software</button>
+                  <button type="button" class="chip" data-val="Chat (Slack / Teams)">Chat (Slack / Teams)</button>
+                  <button type="button" class="chip" data-val="Internal document uploads">Internal document uploads</button>
+                </div>
+              </div>
+
+              <div class="field-block">
+                <span class="field-label">What slows this workflow down the most?</span>
                 <div class="chips" data-multi="friction">
-                  <button type="button" class="chip" data-val="Time consuming">Time consuming</button>
-                  <button type="button" class="chip" data-val="Human error">Human error</button>
-                  <button type="button" class="chip" data-val="Data entry">Data entry</button>
-                  <button type="button" class="chip" data-val="Manual handoffs">Manual handoffs</button>
-                  <button type="button" class="chip" data-val="Scaling limits">Scaling limits</button>
-                  <button type="button" class="chip" data-val="Inconsistent output">Inconsistent output</button>
+                  <button type="button" class="chip" data-val="Too much manual data entry / typing">Too much manual data entry / typing</button>
+                  <button type="button" class="chip" data-val="Work sits waiting in backlogs or queues">Work sits waiting in backlogs / queues</button>
+                  <button type="button" class="chip" data-val="Delays waiting for manager approvals">Delays waiting for approvals</button>
+                  <button type="button" class="chip" data-val="Repeated copy-and-paste across tools">Repeated copy-and-paste across tools</button>
+                  <button type="button" class="chip" data-val="Information is scattered and hard to find">Information is scattered / hard to find</button>
+                  <button type="button" class="chip" data-val="Inconsistent quality or frequent errors">Inconsistent quality / frequent errors</button>
                 </div>
               </div>
             </div>
 
+            <!-- ===== Step 3 - Data & tools ===== -->
             <div class="step" data-step="3">
-              <span class="step-eyebrow">03 &middot; Tools and data</span>
-              <h2 class="step-q">Which systems run this workflow?</h2>
-              <p class="step-help">Add the tools involved. Where the data lives helps us judge what&rsquo;s ready.</p>
+              <span class="step-eyebrow">03 &middot; Data &amp; tools</span>
+              <h2 class="step-q">Where does your data live, and how clean is it?</h2>
+              <p class="step-help">This tells us whether AI can read what it needs without major data work first.</p>
+
               <div class="field-block">
-                <span class="field-label">Systems in use</span>
-                <div class="chips" data-multi="tools">
-                  <button type="button" class="chip" data-val="Salesforce">Salesforce</button>
-                  <button type="button" class="chip" data-val="HubSpot">HubSpot</button>
-                  <button type="button" class="chip" data-val="Notion">Notion</button>
-                  <button type="button" class="chip" data-val="Google Sheets">Google Sheets</button>
-                  <button type="button" class="chip" data-val="Excel">Excel</button>
-                  <button type="button" class="chip" data-val="SAP">SAP</button>
-                  <button type="button" class="chip" data-val="Slack">Slack</button>
-                </div>
-                <div class="tagfield">
-                  <input class="input" id="tool-input" type="text" placeholder="Add another system, then press Enter" autocomplete="off">
-                  <button type="button" class="tag-add" id="tool-add" aria-label="Add system">+</button>
-                </div>
-                <div class="custom-tags" id="tool-tags"></div>
-              </div>
-              <div class="field-sep"></div>
-              <div class="field-block">
-                <span class="field-label">Where does most of the data live?</span>
-                <div class="chips" data-single="dataloc">
-                  <button type="button" class="chip" data-val="Spreadsheets">Spreadsheets</button>
-                  <button type="button" class="chip" data-val="A database">A database</button>
-                  <button type="button" class="chip" data-val="SaaS tools">SaaS tools</button>
-                  <button type="button" class="chip" data-val="Documents &amp; PDFs">Documents &amp; PDFs</button>
+                <span class="field-label">Where does the supporting information live?</span>
+                <div class="chips" data-multi="infoLives">
+                  <button type="button" class="chip" data-val="Shared drives (Google Drive / SharePoint)">Shared drives (Drive / SharePoint)</button>
+                  <button type="button" class="chip" data-val="Internal databases">Internal databases</button>
+                  <button type="button" class="chip" data-val="Customer helpdesk / ticketing tools">Helpdesk / ticketing tools</button>
+                  <button type="button" class="chip" data-val="Company wikis / knowledge bases">Wikis / knowledge bases</button>
+                  <button type="button" class="chip" data-val="CRM / ERP records">CRM / ERP records</button>
                   <button type="button" class="chip" data-val="Email">Email</button>
                 </div>
               </div>
+
+              <div class="field-block">
+                <span class="field-label">How clean and organised is the data today?</span>
+                <div class="chips" data-single="dataCleanliness">
+                  <button type="button" class="chip" data-val="Structured &amp; reliable">Structured &amp; reliable</button>
+                  <button type="button" class="chip" data-val="Usable but messy">Usable but messy</button>
+                  <button type="button" class="chip" data-val="Scattered">Scattered across too many places</button>
+                </div>
+              </div>
+
+              <!-- Conditional: shown only when "Usable but messy" or "Scattered" -->
+              <div class="field-block" data-field="formatLimits" id="fb-formatLimits" style="display: none;">
+                <span class="field-label">Any specific data format or software limits we should know about?</span>
+                <textarea class="textarea" id="f-formatLimits" data-key="formatLimits" placeholder="Example: half of our vendor data arrives as scanned image PDFs that aren&rsquo;t searchable, and our legacy ERP doesn&rsquo;t have an open API." style="min-height: 110px;"></textarea>
+              </div>
             </div>
 
+            <!-- ===== Step 4 - Governance & control ===== -->
             <div class="step" data-step="4">
-              <span class="step-eyebrow">04 &middot; Control and risk</span>
-              <h2 class="step-q">Any control or data sensitivities?</h2>
-              <p class="step-help">So we know what to prepare before anything goes live. Pick any that apply.</p>
+              <span class="step-eyebrow">04 &middot; Control &amp; sensitivity</span>
+              <h2 class="step-q">Where do people need to stay in control?</h2>
+              <p class="step-help">This shapes the human review points we design into the system.</p>
+
               <div class="field-block">
-                <div class="chips" data-multi="risk">
-                  <button type="button" class="chip" data-val="Personal or customer data">Personal or customer data</button>
-                  <button type="button" class="chip" data-val="Regulated industry">Regulated industry</button>
-                  <button type="button" class="chip" data-val="Needs human sign-off">Needs human sign-off</button>
-                  <button type="button" class="chip" data-val="EU or on-prem hosting">EU or on-prem hosting</button>
-                  <button type="button" class="chip" data-val="Sensitive IP">Sensitive IP</button>
-                  <button type="button" class="chip" data-val="None of these">None of these</button>
+                <span class="field-label">Where must human experts stay firmly in control?</span>
+                <div class="chips" data-multi="humanControl">
+                  <button type="button" class="chip" data-val="Final approval (AI drafts, human signs off)">Final approval (AI drafts, human signs off)</button>
+                  <button type="button" class="chip" data-val="Customer-facing messages">Customer-facing messages</button>
+                  <button type="button" class="chip" data-val="Compliance / legal checks">Compliance / legal checks</button>
+                  <button type="button" class="chip" data-val="Exception handling / unusual edge cases">Exception handling</button>
+                  <button type="button" class="chip" data-val="Brand and creative review">Brand &amp; creative review</button>
+                  <button type="button" class="chip" data-val="Financial decisions">Financial decisions</button>
+                </div>
+              </div>
+
+              <div class="field-block">
+                <span class="field-label">What type of sensitive data is involved?</span>
+                <div class="chips" data-multi="sensitiveData">
+                  <button type="button" class="chip" data-val="Personal info (names, IDs, emails)">Personal info (names, IDs, emails)</button>
+                  <button type="button" class="chip" data-val="Customer or client data">Customer / client data</button>
+                  <button type="button" class="chip" data-val="Financial or payment records">Financial / payment records</button>
+                  <button type="button" class="chip" data-val="Confidential legal documents">Confidential legal documents</button>
+                  <button type="button" class="chip" data-val="Product or pricing IP">Product / pricing IP</button>
+                  <button type="button" class="chip" data-val="No sensitive data is used">No sensitive data is used</button>
                 </div>
               </div>
             </div>
 
+            <!-- ===== Step 5 - Goals & contact ===== -->
             <div class="step" data-step="5">
-              <span class="step-eyebrow">05 &middot; Contact</span>
-              <h2 class="step-q">Where should we send your snapshot?</h2>
-              <p class="step-help">We&rsquo;ll come back within one business day. No newsletter, no sales sequence.</p>
+              <span class="step-eyebrow">05 &middot; Goals &amp; contact</span>
+              <h2 class="step-q">What does success look like &mdash; and where do we send the snapshot?</h2>
+              <p class="step-help">Last step. The goals help us frame the snapshot around what actually matters to you.</p>
+
+              <div class="field-block">
+                <span class="field-label">What would success look like for this project?</span>
+                <div class="chips" data-multi="successGoals">
+                  <button type="button" class="chip" data-val="Time saved on repetitive manual work">Time saved on repetitive manual work</button>
+                  <button type="button" class="chip" data-val="Faster turnaround / quicker responses">Faster turnaround / quicker responses</button>
+                  <button type="button" class="chip" data-val="Lower operational costs">Lower operational costs</button>
+                  <button type="button" class="chip" data-val="Drastically fewer errors and data mistakes">Fewer errors and data mistakes</button>
+                  <button type="button" class="chip" data-val="Better customer experience">Better customer experience</button>
+                  <button type="button" class="chip" data-val="More consistent quality / brand">More consistent quality / brand</button>
+                </div>
+              </div>
+
+              <div class="field-sep"></div>
+
               <div class="field-block">
                 <div class="contact-grid">
                   <div>
@@ -302,8 +366,16 @@
 <script>
 (function () {
   var TOTAL = 5;
-  var STORE = 'aihlpr-audit-v1';
-  var data = { step: 1, workflow: '', frequency: '', friction: [], tools: [], customTools: [], dataloc: '', risk: [], name: '', email: '', company: '' };
+  var STORE = 'aihlpr-audit-v2';
+  var data = {
+    step: 1,
+    team: '', frequency: '', workflow: '',
+    workStart: [], friction: [],
+    infoLives: [], dataCleanliness: '', formatLimits: '',
+    humanControl: [], sensitiveData: [],
+    successGoals: [],
+    name: '', email: '', company: ''
+  };
   var els = {
     steps: document.getElementById('steps'),
     fill: document.getElementById('progressFill'),
@@ -313,9 +385,7 @@
     foot: document.getElementById('cardFoot'),
     success: document.getElementById('success'),
     recap: document.getElementById('recap'),
-    toolInput: document.getElementById('tool-input'),
-    toolAdd: document.getElementById('tool-add'),
-    toolTags: document.getElementById('tool-tags'),
+    fbFormatLimits: document.getElementById('fb-formatLimits'),
     dots: Array.prototype.slice.call(document.querySelectorAll('#stepDots .sd'))
   };
   function save() { try { localStorage.setItem(STORE, JSON.stringify(data)); } catch (e) {} }
@@ -331,15 +401,11 @@
     });
   }
   function syncInputs() { document.querySelectorAll('[data-key]').forEach(function (i) { i.value = data[i.getAttribute('data-key')] || ''; }); }
-  function renderTags() {
-    els.toolTags.innerHTML = '';
-    data.customTools.forEach(function (t, i) {
-      var span = document.createElement('span'); span.className = 'custom-tag';
-      span.appendChild(document.createTextNode(t));
-      var x = document.createElement('button'); x.type = 'button'; x.setAttribute('aria-label', 'Remove ' + t); x.textContent = '×';
-      x.addEventListener('click', function () { data.customTools.splice(i, 1); renderTags(); save(); refreshNav(); });
-      span.appendChild(x); els.toolTags.appendChild(span);
-    });
+  function syncConditional() {
+    // Show Q8 (format/software limits) only when data is messy or scattered
+    if (!els.fbFormatLimits) return;
+    var show = data.dataCleanliness === 'Usable but messy' || data.dataCleanliness === 'Scattered';
+    els.fbFormatLimits.style.display = show ? '' : 'none';
   }
   function emailOk(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
   function stepValid(n) {
@@ -381,8 +447,18 @@
     var firstName = data.name.trim().split(' ')[0] || 'there';
     document.getElementById('success-h').textContent = 'Your snapshot is on its way';
     document.getElementById('success-p').innerHTML = 'Thanks ' + escapeHtml(firstName) + '. We&rsquo;re reviewing the workflow you described and will come back within one business day with where AI fits, what to prepare first, and a practical first step.';
-    var allTools = data.tools.concat(data.customTools);
-    var rows = [['Workflow', truncate(data.workflow, 120)], ['Friction', listOrDash(data.friction)], ['Systems', listOrDash(allTools)], ['Sensitivities', listOrDash(data.risk)], ['Send to', data.email]];
+    var rows = [
+      ['Workflow', truncate(data.workflow, 140)],
+      ['Team', data.team || '—'],
+      ['Frequency', data.frequency || '—'],
+      ['Friction', listOrDash(data.friction)],
+      ['Data home', listOrDash(data.infoLives)],
+      ['Data state', data.dataCleanliness || '—'],
+      ['Human control', listOrDash(data.humanControl)],
+      ['Sensitive data', listOrDash(data.sensitiveData)],
+      ['Success looks like', listOrDash(data.successGoals)],
+      ['Send to', data.email]
+    ];
     els.recap.innerHTML = '';
     rows.forEach(function (r) {
       var row = document.createElement('div'); row.className = 'recap-row';
@@ -398,9 +474,17 @@
   function truncate(s, n) { s = (s || '').trim(); return s.length > n ? s.slice(0, n - 1) + '…' : s; }
   function escapeHtml(s) { var d = document.createElement('div'); d.textContent = s; return d.innerHTML; }
   function reset() {
-    data = { step: 1, workflow: '', frequency: '', friction: [], tools: [], customTools: [], dataloc: '', risk: [], name: '', email: '', company: '' };
+    data = {
+      step: 1,
+      team: '', frequency: '', workflow: '',
+      workStart: [], friction: [],
+      infoLives: [], dataCleanliness: '', formatLimits: '',
+      humanControl: [], sensitiveData: [],
+      successGoals: [],
+      name: '', email: '', company: ''
+    };
     try { localStorage.removeItem(STORE); } catch (e) {}
-    syncInputs(); syncChips(); renderTags();
+    syncInputs(); syncChips(); syncConditional();
     els.success.classList.remove('is-active');
     showStep(1);
   }
@@ -416,21 +500,12 @@
         var i = data[key].indexOf(val);
         if (i > -1) data[key].splice(i, 1); else data[key].push(val);
       }
-      syncChips(); save(); refreshNav();
+      syncChips(); syncConditional(); save(); refreshNav();
     });
   });
   document.querySelectorAll('[data-key]').forEach(function (input) {
     input.addEventListener('input', function () { data[input.getAttribute('data-key')] = input.value; save(); refreshNav(); });
   });
-  function addTool() {
-    var v = els.toolInput.value.trim(); if (!v) return;
-    if (data.tools.indexOf(v) === -1 && data.customTools.indexOf(v) === -1) {
-      data.customTools.push(v); renderTags(); save();
-    }
-    els.toolInput.value = '';
-  }
-  els.toolAdd.addEventListener('click', addTool);
-  els.toolInput.addEventListener('keydown', function (e) { if (e.key === 'Enter') { e.preventDefault(); addTool(); } });
   els.next.addEventListener('click', next);
   els.back.addEventListener('click', back);
   els.dots.forEach(function (d) {
@@ -441,11 +516,11 @@
   });
   document.getElementById('restart').addEventListener('click', reset);
   document.querySelector('.audit-card').addEventListener('keydown', function (e) {
-    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA' && e.target.id !== 'tool-input') {
+    if (e.key === 'Enter' && e.target.tagName !== 'TEXTAREA') {
       if (!els.next.disabled && els.success.classList.contains('is-active') === false) { e.preventDefault(); next(); }
     }
   });
-  load(); syncInputs(); syncChips(); renderTags();
+  load(); syncInputs(); syncChips(); syncConditional();
   showStep(Math.min(Math.max(data.step, 1), TOTAL));
 })();
 </script>
