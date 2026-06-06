@@ -3187,8 +3187,8 @@
 
   /* In-pipeline CTA: lives inside the dark band, calm and low-pressure */
   .pipe-cta {
-    margin-top: clamp(28px, 3.4vw, 44px);
-    padding-top: clamp(24px, 2.8vw, 36px);
+    margin-top: clamp(20px, 2.4vw, 32px);
+    padding-top: clamp(20px, 2.4vw, 28px);
     border-top: 1px dashed rgba(255,255,255,0.14);
     display: flex; align-items: center; justify-content: space-between;
     gap: clamp(20px, 3vw, 40px);
@@ -3400,15 +3400,14 @@
   .rail-label.is-active { color: var(--accent); }
 
   .stage-display {
-    margin-top: clamp(32px, 4vw, 52px);
+    margin-top: clamp(20px, 2.4vw, 32px);
     display: grid;
     grid-template-columns: minmax(0, 1fr) auto;
-    gap: clamp(32px, 4vw, 56px);
+    gap: clamp(28px, 3.4vw, 48px);
     align-items: start;
   }
   .stage-display-main {
     min-width: 0;
-    min-height: clamp(190px, 19vw, 250px);
     position: relative;
   }
   .stage-frame {
@@ -4685,7 +4684,7 @@
         <p class="pipe-cta-line">Bring one workflow. We&rsquo;ll walk it through with you and decide together what&rsquo;s worth building.</p>
       </div>
       <a class="pipe-cta-btn" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
-        Book a workflow call <span aria-hidden="true">&rarr;</span>
+        Let&rsquo;s talk it through <span aria-hidden="true">&rarr;</span>
       </a>
     </div>
   </div>
@@ -5002,108 +5001,59 @@
 <!-- ============= POST-WORK CTA (audit + call) ============= -->
 <style id="postWorkCtaStyles">
   .pwcta {
-    padding: clamp(56px, 6vw, 88px) 0;
-    background: var(--surface, #F8F8F6);
-    border-top: 1px solid var(--hairline, rgba(31,31,31,0.10));
-    border-bottom: 1px solid var(--hairline, rgba(31,31,31,0.10));
+    padding: clamp(48px, 6vw, 88px) 0;
+    background: var(--white);
+    color: var(--ink);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
   }
-  .pwcta-head { max-width: 640px; }
-  .pwcta-head h2 {
-    font-family: var(--font-display, "Poppins", sans-serif);
-    font-size: clamp(28px, 3vw, 40px);
-    letter-spacing: -0.02em;
-    line-height: 1.15;
-    margin: 14px 0 14px;
-    color: var(--ink, #1F1F1F);
+  .pwcta-inner {
+    display: flex; flex-direction: column; align-items: center; text-align: center;
+    gap: 22px;
+  }
+  .pwcta-eyebrow {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em;
+    text-transform: uppercase; color: var(--ink-muted);
+    display: inline-flex; align-items: center; gap: 9px;
+  }
+  .pwcta-eyebrow .dot {
+    display: inline-block; width: 7px; height: 7px; border-radius: 999px;
+    background: var(--pink);
+  }
+  .pwcta h2 {
+    color: var(--ink); max-width: 22ch;
+    font-size: clamp(26px, 2.8vw, 40px);
+    letter-spacing: -0.025em; line-height: 1.08;
+    margin: 0;
     text-wrap: balance;
   }
-  .pwcta-head p {
-    font-size: 15.5px;
-    line-height: 1.6;
-    color: var(--ink-soft, #4A4A4A);
-    margin: 0;
-    max-width: 56ch;
+  .pwcta .grad-light {
+    background: var(--gradient);
+    -webkit-background-clip: text; background-clip: text; color: transparent;
   }
-  .pwcta-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: clamp(14px, 1.8vw, 22px);
-    margin-top: clamp(28px, 3vw, 40px);
+  .pwcta-actions {
+    display: flex; flex-wrap: wrap; gap: 12px;
+    align-items: center; justify-content: center;
   }
-  @media (max-width: 720px) { .pwcta-grid { grid-template-columns: 1fr; } }
-  .pwcta-card {
-    background: var(--white, #FFFFFF);
-    border: 1px solid var(--hairline, rgba(31,31,31,0.10));
-    border-radius: 14px;
-    padding: clamp(22px, 2.6vw, 30px);
-    display: flex; flex-direction: column; gap: 10px;
-    transition: border-color 200ms ease, transform 200ms ease;
+  .pwcta .btn { white-space: nowrap; }
+  .pwcta-note {
+    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.08em;
+    text-transform: uppercase; color: var(--ink-muted);
   }
-  .pwcta-card:hover { border-color: var(--ink, #1F1F1F); transform: translateY(-2px); }
-  .pwcta-card-label {
-    font-family: var(--font-mono, "JetBrains Mono", monospace);
-    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: var(--ink-muted, #8A8A8A);
-  }
-  .pwcta-card h3 {
-    font-family: var(--font-display, "Poppins", sans-serif);
-    font-size: clamp(19px, 1.6vw, 22px);
-    font-weight: 600;
-    letter-spacing: -0.01em;
-    line-height: 1.25;
-    margin: 4px 0 0;
-    color: var(--ink, #1F1F1F);
-    text-wrap: balance;
-  }
-  .pwcta-card p {
-    font-size: 14.5px;
-    line-height: 1.55;
-    color: var(--ink-soft, #4A4A4A);
-    margin: 0;
-  }
-  .pwcta-card .pwcta-btn {
-    margin-top: auto;
-    align-self: flex-start;
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 12px 22px;
-    border-radius: 999px;
-    font-family: var(--font-display, "Poppins", sans-serif);
-    font-size: 14.5px; font-weight: 500;
-    transition: background 180ms ease, color 180ms ease, border-color 180ms ease, gap 180ms ease;
-    cursor: pointer;
-    border: 1px solid var(--ink, #1F1F1F);
-    text-decoration: none;
-  }
-  .pwcta-card .pwcta-btn-primary { background: var(--ink, #1F1F1F); color: var(--white, #FFFFFF); }
-  .pwcta-card .pwcta-btn-primary:hover { background: #000; gap: 14px; }
-  .pwcta-card .pwcta-btn-secondary { background: transparent; color: var(--ink, #1F1F1F); }
-  .pwcta-card .pwcta-btn-secondary:hover { background: var(--ink, #1F1F1F); color: var(--white, #FFFFFF); gap: 14px; }
 </style>
 <section class="pwcta" id="pwcta">
-  <div class="container">
-    <div class="pwcta-head">
-      <span class="label-mono"><span class="dot"></span>What's your starting point?</span>
-      <h2>See where AI fits in your workflow.</h2>
-      <p>Two ways to start - depending on whether you'd like a quick read on your own first, or a conversation with us.</p>
+  <div class="container pwcta-inner">
+    <span class="pwcta-eyebrow"><span class="dot"></span>What’s your starting point?</span>
+    <h2>See where AI fits in <span class="grad-light">your workflow.</span></h2>
+    <div class="pwcta-actions">
+      <button type="button" class="btn btn-primary" data-modal-open="form">
+        Take the workflow audit <span class="arrow">&rarr;</span>
+      </button>
+      <a class="btn btn-ghost" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
+        Or book a call with us <span class="arrow">&rarr;</span>
+      </a>
     </div>
-    <div class="pwcta-grid">
-      <article class="pwcta-card">
-        <span class="pwcta-card-label">Check your status</span>
-        <h3>Take the workflow audit.</h3>
-        <p>Answer a few practical questions about one workflow. We'll come back with a short readiness snapshot - where AI fits, what to prepare first, and a useful first step.</p>
-        <button type="button" class="pwcta-btn pwcta-btn-primary" data-modal-open="form">
-          Start the workflow audit <span aria-hidden="true">&rarr;</span>
-        </button>
-      </article>
-      <article class="pwcta-card">
-        <span class="pwcta-card-label">Talk it through</span>
-        <h3>Book a workflow call.</h3>
-        <p>Pick a time and we'll walk through your workflow together. Helpful when the situation is layered or you'd rather think out loud with us.</p>
-        <a class="pwcta-btn pwcta-btn-secondary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
-          Book a workflow call <span aria-hidden="true">&rarr;</span>
-        </a>
-      </article>
-    </div>
+    <span class="pwcta-note">Quick read on your own &middot; Or talk it through with us</span>
   </div>
 </section>
 
