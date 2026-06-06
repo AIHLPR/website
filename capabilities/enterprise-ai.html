@@ -1279,49 +1279,47 @@
     --toc-w: 240px;
   }
 
-  /* Page shell — TOC rail layout */
-  .shell { display: grid; grid-template-columns: var(--toc-w) 1fr; gap: 0; max-width: 1480px; margin: 0 auto; }
-  @media (max-width: 980px) { .shell { grid-template-columns: 1fr; } }
+  /* Page shell — content uses full width; section nav lives in a sticky bottom strip */
+  .shell { display: block; max-width: 1480px; margin: 0 auto; }
   .shell .main-col { min-width: 0; }
 
-  .toc-rail { position: relative; }
-  .toc-sticky { position: sticky; top: 80px; padding: 40px 0 40px 28px; }
-  .toc-rail .toc-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted); margin-bottom: 16px; }
-  .toc-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 2px; border-left: 1px solid var(--hairline); }
-  .toc-list a {
-    display: flex; align-items: baseline; gap: 10px;
-    padding: 8px 14px;
-    font-family: var(--font-mono); font-size: 11.5px; letter-spacing: 0.06em;
-    color: var(--ink-muted);
-    border-left: 1px solid transparent;
-    margin-left: -1px;
-    transition: color 180ms var(--ease), border-color 180ms var(--ease);
-  }
-  .toc-list a:hover { color: var(--ink); }
-  .toc-list a.is-active { color: var(--ink); border-left-color: var(--accent); }
-  .toc-list a .num { color: var(--ink-muted); }
-  .toc-list a.is-active .num { color: var(--accent); }
-  @media (max-width: 980px) { .toc-rail { display: none; } }
+  /* Old left rail retired — nav is now the bottom strip below */
+  .toc-rail { display: none; }
 
-  /* Mobile sticky bottom section chips */
+  /* Sticky bottom section chips (used on all viewports) */
   .mobile-toc {
-    display: none;
     position: sticky; bottom: 0; z-index: 40;
-    background: rgba(255,255,255,0.96);
-    backdrop-filter: blur(10px);
+    background: rgba(255,255,255,0.94);
+    backdrop-filter: saturate(160%) blur(12px);
+    -webkit-backdrop-filter: saturate(160%) blur(12px);
     border-top: 1px solid var(--hairline);
-    padding: 10px var(--gutter);
+    padding: 12px var(--gutter);
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
+    box-shadow: 0 -10px 30px -20px rgba(31,31,31,0.18);
   }
-  .mobile-toc-track { display: flex; gap: 8px; white-space: nowrap; }
+  .mobile-toc-track {
+    display: flex; gap: 8px; white-space: nowrap;
+    max-width: 1240px; margin: 0 auto;
+    align-items: center;
+  }
+  .mobile-toc-track::before {
+    content: "On this page";
+    font-family: var(--font-mono);
+    font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-right: 8px;
+    flex: none;
+  }
+  @media (max-width: 760px) { .mobile-toc-track::before { display: none; } }
   .mobile-toc a {
     font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase;
     padding: 8px 12px; border: 1px solid var(--hairline); border-radius: 999px; color: var(--ink-soft);
     flex: none;
+    transition: background 180ms var(--ease), color 180ms var(--ease), border-color 180ms var(--ease);
   }
+  .mobile-toc a:hover { color: var(--ink); border-color: var(--ink); }
   .mobile-toc a.is-active { background: var(--ink); color: var(--white); border-color: var(--ink); }
-  @media (max-width: 980px) { .mobile-toc { display: block; } }
 
   /* Scroll-margin so section anchors clear the 64px fixed nav */
   section[id] { scroll-margin-top: 80px; }
