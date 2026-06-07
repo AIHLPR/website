@@ -958,6 +958,25 @@
     .stack-layer-id .n { font-size: 22px; }
   }
 
+
+  /* ----- CTA buttons inside the fit section ----- */
+  .fit-actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: clamp(22px, 2.6vw, 32px); }
+  .fit-btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 13px 24px; border-radius: 999px;
+    font-family: var(--font-display); font-size: 14.5px; font-weight: 500;
+    letter-spacing: -0.005em;
+    border: 1px solid transparent;
+    cursor: pointer;
+    transition: background 200ms var(--ease), color 200ms var(--ease), border-color 200ms var(--ease), gap 200ms var(--ease);
+    text-decoration: none; white-space: nowrap;
+  }
+  .fit-btn-primary { background: var(--ink); color: var(--white); border-color: var(--ink); }
+  .fit-btn-primary:hover { background: #000; gap: 14px; }
+  .fit-btn-secondary { background: transparent; color: var(--ink); border-color: var(--hairline-strong); }
+  .fit-btn-secondary:hover { border-color: var(--ink); background: var(--ink); color: var(--white); gap: 14px; }
+  @media (max-width: 480px) { .fit-btn { width: 100%; justify-content: center; } }
+
 </style>
 </head>
 <body>
@@ -1313,32 +1332,43 @@
 
 
 <!-- Extended to -->
-<!-- ============= 7 · Where the same pattern fits ============= -->
+<!-- ============= 5 · Does this look familiar? (CTA + fit cards) ============= -->
 <section class="scenarios">
   <div class="container">
     <div class="scenarios-head">
-      <span class="eyebrow"><span class="eyebrow-dot"></span>Where the same pattern fits</span>
-      <h2>The shape travels well.</h2>
-      <p>Approved inputs in, automated structural assembly, human sign-off, structured export out. The category changes; the workflow shape doesn&rsquo;t. Three of the strongest fits we&rsquo;ve seen:</p>
+      <span class="eyebrow"><span class="eyebrow-dot"></span>Does this look familiar?</span>
+      <h2>Product launches should not wait on asset production.</h2>
+      <p>For many e-commerce and manufacturing teams, the delay is not the product. It is the production loop around it: approved images, specs, copy, translations, marketplace formats, local review, and final export.</p>
+      <p>This case study shows one way to shorten that loop. If your team is managing similar asset or store-launch workflows, we can help map where automation, AI preparation, and human review should sit.</p>
+
+      <div class="fit-actions">
+        <a class="fit-btn fit-btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
+          Book a workflow call <span aria-hidden="true">&rarr;</span>
+        </a>
+        <a class="fit-btn fit-btn-secondary" href="../audit.html">
+          Submit your asset workflow <span aria-hidden="true">&rarr;</span>
+        </a>
+      </div>
     </div>
+
     <div class="scenarios-grid">
 
       <article class="scen-card">
-        <span class="scen-tag">Scenario 01</span>
-        <h3>Beauty &amp; personal care PDPs.</h3>
-        <p>Same workflow shape, where brand rules are tight, regulatory copy varies per market, and reviewers stay closely in the loop on claims.</p>
+        <span class="scen-tag">Fit 01 &middot; Manufacturing</span>
+        <h3>Manufacturers launching across markets.</h3>
+        <p>When the same SKU needs different copy, claims, imagery, and approvals across regions, a structured asset workflow helps teams move faster without losing review control.</p>
       </article>
 
       <article class="scen-card">
-        <span class="scen-tag">Scenario 02</span>
-        <h3>Consumer electronics launches.</h3>
-        <p>Same workflow shape, where dense spec sheets and feature callouts drive the modules and the team needs to ship multiple SKU variants on the same launch day.</p>
+        <span class="scen-tag">Fit 02 &middot; E-commerce</span>
+        <h3>E-commerce teams managing PDP and A+ content.</h3>
+        <p>When product pages, feature callouts, marketplace formats, and launch deadlines collide, the repeatable production work can move into a controlled app workflow.</p>
       </article>
 
       <article class="scen-card">
-        <span class="scen-tag">Scenario 03</span>
-        <h3>Localised marketplace listings.</h3>
-        <p>Same workflow shape, where the same SKU set has to ship across multiple country sites at once, with local reviewers checking copy in each market.</p>
+        <span class="scen-tag">Fit 03 &middot; Brand ops</span>
+        <h3>Brands coordinating agencies and internal reviewers.</h3>
+        <p>When every asset change creates another round of comments, files, and waiting, the review loop can be shortened inside one editor before export.</p>
       </article>
 
     </div>
