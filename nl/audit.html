@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Get a first readiness snapshot &middot; AIHLPR</title>
-<meta name="description" content="Answer a few practical questions about one workflow. Receive a short readiness snapshot with likely blockers, review points, and a suggested next step.">
+<title>Krijg een eerste workflow-snapshot &middot; AIHLPR</title>
+<meta name="description" content="Beantwoord een paar praktische vragen over één workflow. Je krijgt een korte workflow-snapshot terug met waarschijnlijke knelpunten, controlepunten en een concrete volgende stap.">
 <link rel="alternate" hreflang="en" href="https://aihlpr.github.io/website/audit.html">
 <link rel="alternate" hreflang="nl" href="https://aihlpr.github.io/website/nl/audit.html">
 <link rel="alternate" hreflang="x-default" href="https://aihlpr.github.io/website/audit.html">
-<link rel="canonical" href="https://aihlpr.github.io/website/audit.html">
+<link rel="canonical" href="https://aihlpr.github.io/website/nl/audit.html">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="icon" type="image/svg+xml" href="assets/aihlpr-logo.svg">
+<link rel="icon" type="image/svg+xml" href="../assets/aihlpr-logo.svg">
 <style>
   :root {
     --pink: #E91E63; --blue: #3478E5; --teal: #1D9E75;
@@ -133,7 +133,7 @@
   .success h2 { font-family: var(--font-display); font-size: clamp(24px, 3.2vw, 30px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.1; margin: 0; color: var(--ink); text-wrap: balance; }
   .success p { margin: 14px 0 0; font-size: 15px; line-height: 1.6; color: var(--ink-soft); max-width: 48ch; text-wrap: pretty; }
   .success-recap { margin-top: 26px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--surface-2); padding: 18px 20px; display: flex; flex-direction: column; gap: 12px; }
-  .recap-row { display: grid; grid-template-columns: 96px 1fr; gap: 14px; align-items: baseline; }
+  .recap-row { display: grid; grid-template-columns: 110px 1fr; gap: 14px; align-items: baseline; }
   .recap-row dt { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); }
   .recap-row dd { margin: 0; font-size: 13.5px; color: var(--ink); line-height: 1.5; }
   .success-restart { margin-top: 24px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); border-bottom: 1px solid var(--hairline); padding-bottom: 2px; transition: color 180ms var(--ease), border-color 180ms var(--ease); }
@@ -153,40 +153,40 @@
 <body>
 <div class="page">
   <header class="topbar">
-    <a href="Home.html" aria-label="AIHLPR home"><img src="assets/aihlpr-logo-transparent.png" alt="AIHLPR"></a>
+    <a href="../Home.html" aria-label="AIHLPR home"><img src="../assets/aihlpr-logo-transparent.png" alt="AIHLPR"></a>
     <div class="topbar-tools">
       <span class="topbar-lang">
-        <span class="is-current" aria-current="true">EN</span>
+        <a href="../audit.html" hreflang="en" aria-label="English">EN</a>
         <span class="sep" aria-hidden="true">/</span>
-        <a href="nl/audit.html" hreflang="nl" aria-label="Nederlands">NL</a>
+        <span class="is-current" aria-current="true">NL</span>
       </span>
-      <a class="topbar-back" href="Home.html"><span class="arr">&larr;</span> Back to site</a>
+      <a class="topbar-back" href="../Home.html"><span class="arr">&larr;</span> Terug naar site</a>
     </div>
   </header>
 
   <main class="stage">
     <div style="width: 100%; max-width: 580px;">
       <div class="intro">
-        <span class="eyebrow"><span class="dot"></span>Readiness snapshot</span>
-        <h1>Get a first readiness snapshot.</h1>
-        <p>Answer a few practical questions about one workflow. We&rsquo;ll come back with likely blockers, review points, and a suggested next step.</p>
+        <span class="eyebrow"><span class="dot"></span>Workflow-snapshot</span>
+        <h1>Krijg een eerste workflow-snapshot.</h1>
+        <p>Beantwoord een paar praktische vragen over &eacute;&eacute;n workflow. We komen terug met waarschijnlijke knelpunten, controlepunten en een concrete volgende stap.</p>
       </div>
 
-      <section class="audit-card" aria-label="Quick AI readiness check">
+      <section class="audit-card" aria-label="Snelle workflow-check">
         <div class="progress-rail"><div class="progress-fill" id="progressFill"></div></div>
         <div class="card-body">
           <div class="card-head">
-            <span class="eyebrow"><span class="dot"></span>Get a first readiness snapshot</span>
+            <span class="eyebrow"><span class="dot"></span>Workflow-snapshot</span>
             <span class="step-count" id="stepCount"><b>01</b> / 05</span>
           </div>
           <div class="progress-meta">
-            <span class="microcopy">Around 5 minutes &middot; one workflow &middot; meaningful next step</span>
-            <div class="step-dots" id="stepDots" role="list" aria-label="Form progress">
-              <button type="button" class="sd" data-dot="1" aria-label="Step 1"></button>
-              <button type="button" class="sd" data-dot="2" aria-label="Step 2"></button>
-              <button type="button" class="sd" data-dot="3" aria-label="Step 3"></button>
-              <button type="button" class="sd" data-dot="4" aria-label="Step 4"></button>
-              <button type="button" class="sd" data-dot="5" aria-label="Step 5"></button>
+            <span class="microcopy">Ongeveer 5 minuten &middot; &eacute;&eacute;n workflow &middot; zinvolle volgende stap</span>
+            <div class="step-dots" id="stepDots" role="list" aria-label="Voortgang formulier">
+              <button type="button" class="sd" data-dot="1" aria-label="Stap 1"></button>
+              <button type="button" class="sd" data-dot="2" aria-label="Stap 2"></button>
+              <button type="button" class="sd" data-dot="3" aria-label="Stap 3"></button>
+              <button type="button" class="sd" data-dot="4" aria-label="Stap 4"></button>
+              <button type="button" class="sd" data-dot="5" aria-label="Stap 5"></button>
             </div>
           </div>
 
@@ -194,65 +194,65 @@
 
             <!-- ===== Step 1 - Workflow ===== -->
             <div class="step is-active" data-step="1">
-              <span class="step-eyebrow">01 &middot; The workflow</span>
-              <h2 class="step-q">Tell us about the workflow you want to evaluate</h2>
-              <p class="step-help">A few details now let us prepare a useful, specific snapshot &mdash; not a generic one.</p>
+              <span class="step-eyebrow">01 &middot; De workflow</span>
+              <h2 class="step-q">Vertel ons over de workflow die je wilt evalueren</h2>
+              <p class="step-help">Een paar details nu zorgen voor een bruikbare, specifieke snapshot &mdash; geen generieke.</p>
 
               <div class="field-block">
-                <span class="field-label">Which team or department owns it?</span>
+                <span class="field-label">Welk team of welke afdeling is eigenaar?</span>
                 <div class="chips" data-single="team">
                   <button type="button" class="chip" data-val="Operations">Operations</button>
                   <button type="button" class="chip" data-val="Marketing &amp; e-commerce">Marketing &amp; e-commerce</button>
                   <button type="button" class="chip" data-val="IT &amp; product">IT &amp; product</button>
-                  <button type="button" class="chip" data-val="Customer support">Customer support</button>
+                  <button type="button" class="chip" data-val="Customer support">Klantenservice</button>
                   <button type="button" class="chip" data-val="Legal &amp; compliance">Legal &amp; compliance</button>
                   <button type="button" class="chip" data-val="Finance / HR">Finance / HR</button>
                 </div>
               </div>
 
               <div class="field-block">
-                <span class="field-label">How often does it run?</span>
+                <span class="field-label">Hoe vaak draait het?</span>
                 <div class="chips" data-single="frequency">
-                  <button type="button" class="chip" data-val="Continuously / every day">Continuously / every day</button>
-                  <button type="button" class="chip" data-val="Weekly">Weekly</button>
-                  <button type="button" class="chip" data-val="Monthly">Monthly</button>
-                  <button type="button" class="chip" data-val="Only during specific projects or launches">Only during projects or launches</button>
+                  <button type="button" class="chip" data-val="Continuously / every day">Continu / elke dag</button>
+                  <button type="button" class="chip" data-val="Weekly">Wekelijks</button>
+                  <button type="button" class="chip" data-val="Monthly">Maandelijks</button>
+                  <button type="button" class="chip" data-val="Only during specific projects or launches">Alleen bij projecten of launches</button>
                 </div>
               </div>
 
               <div class="field-block">
-                <span class="field-label">In 2&ndash;3 sentences, what does the team do today, step-by-step?</span>
-                <textarea class="textarea" id="f-workflow" data-key="workflow" placeholder="Example: a customer emails an invoice PDF. We open it, copy the line items into a spreadsheet, then upload that sheet into our accounting software."></textarea>
+                <span class="field-label">Wat doet het team vandaag, stap voor stap? (2&ndash;3 zinnen)</span>
+                <textarea class="textarea" id="f-workflow" data-key="workflow" placeholder="Bijvoorbeeld: een klant mailt een factuur als PDF. We openen die, kopi&euml;ren de regels naar een spreadsheet en uploaden dat blad in onze boekhoudsoftware."></textarea>
               </div>
             </div>
 
             <!-- ===== Step 2 - Bottlenecks ===== -->
             <div class="step" data-step="2">
-              <span class="step-eyebrow">02 &middot; The bottlenecks</span>
-              <h2 class="step-q">Where does this workflow get stuck?</h2>
-              <p class="step-help">Pick what fits. This tells us which manual steps AI should target.</p>
+              <span class="step-eyebrow">02 &middot; De knelpunten</span>
+              <h2 class="step-q">Waar loopt deze workflow vast?</h2>
+              <p class="step-help">Kies wat past. Dat vertelt ons welke handmatige stappen AI moet aanpakken.</p>
 
               <div class="field-block">
-                <span class="field-label">Where does the work actually start?</span>
+                <span class="field-label">Waar begint het werk eigenlijk?</span>
                 <div class="chips" data-multi="workStart">
-                  <button type="button" class="chip" data-val="Email inbox">Email inbox</button>
-                  <button type="button" class="chip" data-val="Online form">Online form</button>
+                  <button type="button" class="chip" data-val="Email inbox">E-mailinbox</button>
+                  <button type="button" class="chip" data-val="Online form">Online formulier</button>
                   <button type="button" class="chip" data-val="Spreadsheets (Excel / Google Sheets)">Spreadsheets (Excel / Sheets)</button>
-                  <button type="button" class="chip" data-val="CRM / ERP software">CRM / ERP software</button>
+                  <button type="button" class="chip" data-val="CRM / ERP software">CRM / ERP-software</button>
                   <button type="button" class="chip" data-val="Chat (Slack / Teams)">Chat (Slack / Teams)</button>
-                  <button type="button" class="chip" data-val="Internal document uploads">Internal document uploads</button>
+                  <button type="button" class="chip" data-val="Internal document uploads">Interne documenten-uploads</button>
                 </div>
               </div>
 
               <div class="field-block">
-                <span class="field-label">What slows this workflow down the most?</span>
+                <span class="field-label">Wat vertraagt deze workflow het meest?</span>
                 <div class="chips" data-multi="friction">
-                  <button type="button" class="chip" data-val="Too much manual data entry / typing">Too much manual data entry / typing</button>
-                  <button type="button" class="chip" data-val="Work sits waiting in backlogs or queues">Work sits waiting in backlogs / queues</button>
-                  <button type="button" class="chip" data-val="Delays waiting for manager approvals">Delays waiting for approvals</button>
-                  <button type="button" class="chip" data-val="Repeated copy-and-paste across tools">Repeated copy-and-paste across tools</button>
-                  <button type="button" class="chip" data-val="Information is scattered and hard to find">Information is scattered / hard to find</button>
-                  <button type="button" class="chip" data-val="Inconsistent quality or frequent errors">Inconsistent quality / frequent errors</button>
+                  <button type="button" class="chip" data-val="Too much manual data entry / typing">Te veel handmatige data-invoer / typen</button>
+                  <button type="button" class="chip" data-val="Work sits waiting in backlogs or queues">Werk blijft liggen in backlogs / wachtrijen</button>
+                  <button type="button" class="chip" data-val="Delays waiting for manager approvals">Vertraging door wachten op goedkeuringen</button>
+                  <button type="button" class="chip" data-val="Repeated copy-and-paste across tools">Herhaald kopi&euml;ren-en-plakken tussen tools</button>
+                  <button type="button" class="chip" data-val="Information is scattered and hard to find">Informatie is verspreid / moeilijk te vinden</button>
+                  <button type="button" class="chip" data-val="Inconsistent quality or frequent errors">Inconsistente kwaliteit / vaak fouten</button>
                 </div>
               </div>
             </div>
@@ -260,83 +260,83 @@
             <!-- ===== Step 3 - Data & tools ===== -->
             <div class="step" data-step="3">
               <span class="step-eyebrow">03 &middot; Data &amp; tools</span>
-              <h2 class="step-q">Where does your data live, and how clean is it?</h2>
-              <p class="step-help">This tells us whether AI can read what it needs without major data work first.</p>
+              <h2 class="step-q">Waar staat je data, en hoe schoon is die?</h2>
+              <p class="step-help">Dit vertelt ons of AI kan lezen wat het nodig heeft, zonder eerst grote dataschoonmaak.</p>
 
               <div class="field-block">
-                <span class="field-label">Where does the supporting information live?</span>
+                <span class="field-label">Waar staat de ondersteunende informatie?</span>
                 <div class="chips" data-multi="infoLives">
-                  <button type="button" class="chip" data-val="Shared drives (Google Drive / SharePoint)">Shared drives (Drive / SharePoint)</button>
-                  <button type="button" class="chip" data-val="Internal databases">Internal databases</button>
-                  <button type="button" class="chip" data-val="Customer helpdesk / ticketing tools">Helpdesk / ticketing tools</button>
-                  <button type="button" class="chip" data-val="Company wikis / knowledge bases">Wikis / knowledge bases</button>
-                  <button type="button" class="chip" data-val="CRM / ERP records">CRM / ERP records</button>
-                  <button type="button" class="chip" data-val="Email">Email</button>
+                  <button type="button" class="chip" data-val="Shared drives (Google Drive / SharePoint)">Gedeelde schijven (Drive / SharePoint)</button>
+                  <button type="button" class="chip" data-val="Internal databases">Interne databases</button>
+                  <button type="button" class="chip" data-val="Customer helpdesk / ticketing tools">Helpdesk / ticket-tools</button>
+                  <button type="button" class="chip" data-val="Company wikis / knowledge bases">Wikis / kennisbanken</button>
+                  <button type="button" class="chip" data-val="CRM / ERP records">CRM / ERP-records</button>
+                  <button type="button" class="chip" data-val="Email">E-mail</button>
                 </div>
               </div>
 
               <div class="field-block">
-                <span class="field-label">How clean and organised is the data today?</span>
+                <span class="field-label">Hoe schoon en georganiseerd is de data nu?</span>
                 <div class="chips" data-single="dataCleanliness">
-                  <button type="button" class="chip" data-val="Structured &amp; reliable">Structured &amp; reliable</button>
-                  <button type="button" class="chip" data-val="Usable but messy">Usable but messy</button>
-                  <button type="button" class="chip" data-val="Scattered">Scattered across too many places</button>
+                  <button type="button" class="chip" data-val="Structured &amp; reliable">Gestructureerd &amp; betrouwbaar</button>
+                  <button type="button" class="chip" data-val="Usable but messy">Bruikbaar maar rommelig</button>
+                  <button type="button" class="chip" data-val="Scattered">Verspreid over te veel plekken</button>
                 </div>
               </div>
 
               <!-- Conditional: shown only when "Usable but messy" or "Scattered" -->
               <div class="field-block" data-field="formatLimits" id="fb-formatLimits" style="display: none;">
-                <span class="field-label">Any specific data format or software limits we should know about?</span>
-                <textarea class="textarea" id="f-formatLimits" data-key="formatLimits" placeholder="Example: half of our vendor data arrives as scanned image PDFs that aren&rsquo;t searchable, and our legacy ERP doesn&rsquo;t have an open API." style="min-height: 110px;"></textarea>
+                <span class="field-label">Specifieke data-formaten of software-beperkingen die we moeten weten?</span>
+                <textarea class="textarea" id="f-formatLimits" data-key="formatLimits" placeholder="Bijvoorbeeld: de helft van onze leveranciersdata komt binnen als gescande PDF&rsquo;s die niet doorzoekbaar zijn, en onze legacy ERP heeft geen open API." style="min-height: 110px;"></textarea>
               </div>
             </div>
 
             <!-- ===== Step 4 - Governance & control ===== -->
             <div class="step" data-step="4">
-              <span class="step-eyebrow">04 &middot; Control &amp; sensitivity</span>
-              <h2 class="step-q">Where do people need to stay in control?</h2>
-              <p class="step-help">This shapes the human review points we design into the system.</p>
+              <span class="step-eyebrow">04 &middot; Controle &amp; gevoeligheid</span>
+              <h2 class="step-q">Waar moeten mensen de controle houden?</h2>
+              <p class="step-help">Dit vormt de menselijke controlepunten die we in het systeem inbouwen.</p>
 
               <div class="field-block">
-                <span class="field-label">Where must human experts stay firmly in control?</span>
+                <span class="field-label">Waar moeten menselijke experts stevig de controle houden?</span>
                 <div class="chips" data-multi="humanControl">
-                  <button type="button" class="chip" data-val="Final approval (AI drafts, human signs off)">Final approval (AI drafts, human signs off)</button>
-                  <button type="button" class="chip" data-val="Customer-facing messages">Customer-facing messages</button>
-                  <button type="button" class="chip" data-val="Compliance / legal checks">Compliance / legal checks</button>
-                  <button type="button" class="chip" data-val="Exception handling / unusual edge cases">Exception handling</button>
-                  <button type="button" class="chip" data-val="Brand and creative review">Brand &amp; creative review</button>
-                  <button type="button" class="chip" data-val="Financial decisions">Financial decisions</button>
+                  <button type="button" class="chip" data-val="Final approval (AI drafts, human signs off)">Eindgoedkeuring (AI schrijft voor, mens tekent af)</button>
+                  <button type="button" class="chip" data-val="Customer-facing messages">Klantgerichte berichten</button>
+                  <button type="button" class="chip" data-val="Compliance / legal checks">Compliance / juridische checks</button>
+                  <button type="button" class="chip" data-val="Exception handling / unusual edge cases">Uitzonderingen afhandelen</button>
+                  <button type="button" class="chip" data-val="Brand and creative review">Merk &amp; creatieve review</button>
+                  <button type="button" class="chip" data-val="Financial decisions">Financi&euml;le beslissingen</button>
                 </div>
               </div>
 
               <div class="field-block">
-                <span class="field-label">What type of sensitive data is involved?</span>
+                <span class="field-label">Welk soort gevoelige data is erbij betrokken?</span>
                 <div class="chips" data-multi="sensitiveData">
-                  <button type="button" class="chip" data-val="Personal info (names, IDs, emails)">Personal info (names, IDs, emails)</button>
-                  <button type="button" class="chip" data-val="Customer or client data">Customer / client data</button>
-                  <button type="button" class="chip" data-val="Financial or payment records">Financial / payment records</button>
-                  <button type="button" class="chip" data-val="Confidential legal documents">Confidential legal documents</button>
-                  <button type="button" class="chip" data-val="Product or pricing IP">Product / pricing IP</button>
-                  <button type="button" class="chip" data-val="No sensitive data is used">No sensitive data is used</button>
+                  <button type="button" class="chip" data-val="Personal info (names, IDs, emails)">Persoonsgegevens (namen, IDs, e-mails)</button>
+                  <button type="button" class="chip" data-val="Customer or client data">Klant- of opdrachtgeverdata</button>
+                  <button type="button" class="chip" data-val="Financial or payment records">Financi&euml;le / betaalgegevens</button>
+                  <button type="button" class="chip" data-val="Confidential legal documents">Vertrouwelijke juridische documenten</button>
+                  <button type="button" class="chip" data-val="Product or pricing IP">Product- / prijs-IP</button>
+                  <button type="button" class="chip" data-val="No sensitive data is used">Geen gevoelige data</button>
                 </div>
               </div>
             </div>
 
             <!-- ===== Step 5 - Goals & contact ===== -->
             <div class="step" data-step="5">
-              <span class="step-eyebrow">05 &middot; Goals &amp; contact</span>
-              <h2 class="step-q">What does success look like &mdash; and where do we send the snapshot?</h2>
-              <p class="step-help">Last step. The goals help us frame the snapshot around what actually matters to you.</p>
+              <span class="step-eyebrow">05 &middot; Doelen &amp; contact</span>
+              <h2 class="step-q">Hoe ziet succes eruit &mdash; en waar sturen we de snapshot heen?</h2>
+              <p class="step-help">Laatste stap. De doelen helpen ons de snapshot te richten op wat er voor jou echt toe doet.</p>
 
               <div class="field-block">
-                <span class="field-label">What would success look like for this project?</span>
+                <span class="field-label">Hoe ziet succes voor dit project eruit?</span>
                 <div class="chips" data-multi="successGoals">
-                  <button type="button" class="chip" data-val="Time saved on repetitive manual work">Time saved on repetitive manual work</button>
-                  <button type="button" class="chip" data-val="Faster turnaround / quicker responses">Faster turnaround / quicker responses</button>
-                  <button type="button" class="chip" data-val="Lower operational costs">Lower operational costs</button>
-                  <button type="button" class="chip" data-val="Drastically fewer errors and data mistakes">Fewer errors and data mistakes</button>
-                  <button type="button" class="chip" data-val="Better customer experience">Better customer experience</button>
-                  <button type="button" class="chip" data-val="More consistent quality / brand">More consistent quality / brand</button>
+                  <button type="button" class="chip" data-val="Time saved on repetitive manual work">Tijdwinst op repetitief handwerk</button>
+                  <button type="button" class="chip" data-val="Faster turnaround / quicker responses">Snellere doorlooptijd / snellere reacties</button>
+                  <button type="button" class="chip" data-val="Lower operational costs">Lagere operationele kosten</button>
+                  <button type="button" class="chip" data-val="Drastically fewer errors and data mistakes">Minder fouten en datavergissingen</button>
+                  <button type="button" class="chip" data-val="Better customer experience">Betere klantbeleving</button>
+                  <button type="button" class="chip" data-val="More consistent quality / brand">Consistentere kwaliteit / merk</button>
                 </div>
               </div>
 
@@ -345,16 +345,16 @@
               <div class="field-block">
                 <div class="contact-grid">
                   <div>
-                    <span class="field-label">Full name</span>
+                    <span class="field-label">Volledige naam</span>
                     <input class="input" id="f-name" data-key="name" type="text" placeholder="Jordan Rivera" autocomplete="name">
                   </div>
                   <div>
-                    <span class="field-label">Work email</span>
-                    <input class="input" id="f-email" data-key="email" type="email" placeholder="jordan@company.com" autocomplete="email">
+                    <span class="field-label">Werk-e-mail</span>
+                    <input class="input" id="f-email" data-key="email" type="email" placeholder="jordan@bedrijf.com" autocomplete="email">
                   </div>
                   <div class="field-full">
-                    <span class="field-label">Company</span>
-                    <input class="input" id="f-company" data-key="company" type="text" placeholder="Company name" autocomplete="organization">
+                    <span class="field-label">Bedrijf</span>
+                    <input class="input" id="f-company" data-key="company" type="text" placeholder="Bedrijfsnaam" autocomplete="organization">
                   </div>
                 </div>
               </div>
@@ -365,15 +365,15 @@
             <div class="success-mark">
               <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12.5l5 5 11-12"/></svg>
             </div>
-            <h2 id="success-h">Your snapshot is on its way</h2>
-            <p id="success-p">We&rsquo;re reviewing the workflow you described and will come back within one business day with where AI fits, what to prepare first, and a practical first step.</p>
+            <h2 id="success-h">Je snapshot is onderweg</h2>
+            <p id="success-p">We bekijken de workflow die je hebt beschreven en komen binnen &eacute;&eacute;n werkdag terug &mdash; met waar AI past, wat eerst voorbereid moet worden, en een praktische eerste stap.</p>
             <dl class="success-recap" id="recap"></dl>
-            <button type="button" class="success-restart" id="restart">Start another check</button>
+            <button type="button" class="success-restart" id="restart">Nog een check starten</button>
           </div>
 
           <div class="card-foot" id="cardFoot">
-            <button type="button" class="btn-back is-hidden" id="btnBack"><span class="arr">&larr;</span> Back</button>
-            <button type="button" class="btn-next" id="btnNext">Next <span class="arr">&rarr;</span></button>
+            <button type="button" class="btn-back is-hidden" id="btnBack"><span class="arr">&larr;</span> Terug</button>
+            <button type="button" class="btn-next" id="btnNext">Volgende <span class="arr">&rarr;</span></button>
           </div>
         </div>
       </section>
@@ -384,7 +384,8 @@
 <script>
 (function () {
   var TOTAL = 5;
-  var STORE = 'aihlpr-audit-v2';
+  // Namespaced per locale so EN <-> NL form state doesn't collide.
+  var STORE = 'aihlpr-audit-v2-nl';
   var data = {
     step: 1,
     team: '', frequency: '', workflow: '',
@@ -420,7 +421,6 @@
   }
   function syncInputs() { document.querySelectorAll('[data-key]').forEach(function (i) { i.value = data[i.getAttribute('data-key')] || ''; }); }
   function syncConditional() {
-    // Show Q8 (format/software limits) only when data is messy or scattered
     if (!els.fbFormatLimits) return;
     var show = data.dataCleanliness === 'Usable but messy' || data.dataCleanliness === 'Scattered';
     els.fbFormatLimits.style.display = show ? '' : 'none';
@@ -446,10 +446,10 @@
     });
     if (n === TOTAL) {
       els.next.classList.add('is-submit');
-      els.next.innerHTML = 'Generate my readiness snapshot <span class="arr">&rarr;</span>';
+      els.next.innerHTML = 'Maak mijn workflow-snapshot <span class="arr">&rarr;</span>';
     } else {
       els.next.classList.remove('is-submit');
-      els.next.innerHTML = 'Next <span class="arr">&rarr;</span>';
+      els.next.innerHTML = 'Volgende <span class="arr">&rarr;</span>';
     }
     refreshNav(); save();
   }
@@ -462,20 +462,21 @@
   function back() { if (data.step > 1) showStep(data.step - 1); }
   function listOrDash(arr) { return arr && arr.length ? arr.join(', ') : '—'; }
   function submit() {
-    var firstName = data.name.trim().split(' ')[0] || 'there';
-    document.getElementById('success-h').textContent = 'Your snapshot is on its way';
-    document.getElementById('success-p').innerHTML = 'Thanks ' + escapeHtml(firstName) + '. We&rsquo;re reviewing the workflow you described and will come back within one business day with where AI fits, what to prepare first, and a practical first step.';
+    var firstName = data.name.trim().split(' ')[0];
+    document.getElementById('success-h').textContent = 'Je snapshot is onderweg';
+    var thanks = firstName ? 'Bedankt ' + escapeHtml(firstName) + '. ' : 'Bedankt. ';
+    document.getElementById('success-p').innerHTML = thanks + 'We bekijken de workflow die je hebt beschreven en komen binnen &eacute;&eacute;n werkdag terug &mdash; met waar AI past, wat eerst voorbereid moet worden, en een praktische eerste stap.';
     var rows = [
       ['Workflow', truncate(data.workflow, 140)],
       ['Team', data.team || '—'],
-      ['Frequency', data.frequency || '—'],
-      ['Friction', listOrDash(data.friction)],
-      ['Data home', listOrDash(data.infoLives)],
-      ['Data state', data.dataCleanliness || '—'],
-      ['Human control', listOrDash(data.humanControl)],
-      ['Sensitive data', listOrDash(data.sensitiveData)],
-      ['Success looks like', listOrDash(data.successGoals)],
-      ['Send to', data.email]
+      ['Frequentie', data.frequency || '—'],
+      ['Knelpunten', listOrDash(data.friction)],
+      ['Data-locatie', listOrDash(data.infoLives)],
+      ['Data-staat', data.dataCleanliness || '—'],
+      ['Menselijke controle', listOrDash(data.humanControl)],
+      ['Gevoelige data', listOrDash(data.sensitiveData)],
+      ['Succes ziet eruit als', listOrDash(data.successGoals)],
+      ['Versturen naar', data.email]
     ];
     els.recap.innerHTML = '';
     rows.forEach(function (r) {
@@ -485,7 +486,7 @@
       row.appendChild(dt); row.appendChild(dd); els.recap.appendChild(row);
     });
     els.steps.style.display = 'none'; els.foot.style.display = 'none';
-    els.fill.style.width = '100%'; els.count.innerHTML = '<b>Done</b>';
+    els.fill.style.width = '100%'; els.count.innerHTML = '<b>Klaar</b>';
     els.dots.forEach(function (d) { d.classList.remove('is-current'); d.classList.add('is-done'); });
     els.success.classList.add('is-active');
   }
