@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Localisation Platform — AIHLPR case study</title>
+<meta name="description" content="Europese expansie zonder dat het merk verschuift. Een transcreation-workflow voor productteams die goedgekeurde terminologie, marktnuance, brand-tone en retailer-ready output willen in één review-proces.">
+<link rel="alternate" hreflang="en" href="https://aihlpr.github.io/website/work/translation-workflow.html">
+<link rel="alternate" hreflang="nl" href="https://aihlpr.github.io/website/nl/work/translation-workflow.html">
+<link rel="alternate" hreflang="x-default" href="https://aihlpr.github.io/website/work/translation-workflow.html">
+<link rel="canonical" href="https://aihlpr.github.io/website/nl/work/translation-workflow.html">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --blue-trust: #3478E5;
+    --blue-sky: #6A9DF0;
+    --purple-friendly: #9B59B6;
+    --magenta-bridge: #CC418C;
+    --pink-warm: #E91E63;
+
+    --ink: #1F1F1F;
+    --ink-soft: #555;
+    --ink-muted: #8A8A8A;
+    --white: #FFFFFF;
+    --surface: #F2F2F2;
+    --surface-2: #FAFAFA;
+    --surface-warm: #F6F4EF;
+    --hairline: rgba(31, 31, 31, 0.10);
+    --hairline-strong: rgba(31, 31, 31, 0.18);
+
+    --accent: var(--blue-trust);
+
+    --font-display: "Poppins", system-ui, sans-serif;
+    --font-body: "Roboto", system-ui, sans-serif;
+    --font-mono: "Roboto Mono", ui-monospace, monospace;
+
+    --ease: cubic-bezier(0.22, 1, 0.36, 1);
+
+    --container: 1200px;
+    --gutter: clamp(20px, 5vw, 64px);
+  }
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  html, body {
+    margin: 0; padding: 0;
+    background: var(--white);
+    color: var(--ink);
+    font-family: var(--font-body);
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  ::selection { background: var(--ink); color: var(--white); }
+  a { color: inherit; text-decoration: none; }
+  button { font: inherit; cursor: pointer; background: none; border: none; padding: 0; color: inherit; }
+  img { max-width: 100%; display: block; }
+
+  .container {
+    max-width: var(--container);
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+  .container-wide {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--gutter);
+  }
+
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+  .eyebrow-dot {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 999px;
+    background: var(--accent);
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  /* -------- Nav -------- */
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-inner {
+    height: 68px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .nav-logo img {
+    height: 22px;
+    width: auto;
+    display: block;
+  }
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+    font-size: 14px;
+    color: var(--ink-soft);
+  }
+  .nav-links a:hover { color: var(--ink); }
+  .nav-back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    transition: color 200ms var(--ease);
+  }
+  .nav-back:hover { color: var(--ink); }
+  .nav-cta {
+    padding: 8px 14px;
+    border: 1px solid var(--ink);
+    border-radius: 999px;
+    color: var(--ink);
+    font-size: 14px;
+    transition: background 200ms var(--ease), color 200ms var(--ease);
+  }
+  .nav-cta:hover { background: var(--ink); color: var(--white); }
+
+  /* -------- Hero -------- */
+  .case-hero {
+    padding: clamp(60px, 8vw, 120px) 0 clamp(40px, 5vw, 64px);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .case-hero .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .case-hero .case-no {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+  .case-hero .hero-meta .sep {
+    width: 1px; height: 14px; background: var(--hairline-strong);
+  }
+  .case-hero h1 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(40px, 5.4vw, 76px);
+    letter-spacing: -0.025em;
+    line-height: 1.02;
+    margin: 0 0 24px;
+    max-width: 18ch;
+  }
+  .case-hero .outcome {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(20px, 2vw, 26px);
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    color: var(--ink-soft);
+    max-width: 40ch;
+    margin: 0 0 48px;
+  }
+  .hero-image {
+    margin-top: 32px;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    background: var(--surface-2);
+    aspect-ratio: 16 / 7;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+    position: relative;
+  }
+  .hero-image::after {
+    content: "Hero image / lead diagram";
+    position: absolute;
+    bottom: 14px; left: 18px;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* -------- Visual process strip (replaces hero SVG diagram) -------- */
+  .hero-strip {
+    margin-top: clamp(36px, 4.5vw, 56px);
+    padding: clamp(22px, 2.6vw, 36px) clamp(20px, 3vw, 40px);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    background: var(--surface-2);
+  }
+  .hero-strip ol {
+    list-style: none;
+    margin: 0; padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: clamp(10px, 1.5vw, 20px);
+  }
+  .hero-strip li {
+    font-family: var(--font-mono);
+    font-size: clamp(10px, 1vw, 12px);
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink);
+    padding: 10px 18px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 999px;
+    background: var(--white);
+    white-space: nowrap;
+  }
+  .hero-strip li + li::before {
+    content: "\2192";
+    display: inline-block;
+    margin-right: 12px;
+    color: var(--ink-muted);
+    font-weight: 400;
+    letter-spacing: 0;
+  }
+  @media (max-width: 760px) {
+    .hero-strip ol { justify-content: flex-start; }
+    .hero-strip li + li::before { margin-right: 8px; }
+  }
+
+  /* Branching market pill: shows one source splitting into three localised drafts */
+  .hero-strip li.hero-strip-branch {
+    padding: 8px 12px 10px;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    background: var(--white);
+    border-color: var(--pink, #E91E63);
+    white-space: normal;
+  }
+  .hero-strip li.hero-strip-branch .hero-strip-branch-label {
+    font-family: var(--font-mono);
+    font-size: clamp(10px, 1vw, 12px);
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--pink, #E91E63);
+  }
+  .hero-strip li.hero-strip-branch .hero-strip-markets {
+    display: inline-flex;
+    gap: 4px;
+  }
+  .hero-strip li.hero-strip-branch .hero-strip-markets em {
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: 9.5px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 3px 7px;
+    border: 1px solid var(--hairline);
+    border-radius: 999px;
+    background: var(--surface-2);
+  }
+
+  /* -------- Metrics strip -------- */
+  .metrics {
+    padding: clamp(48px, 6vw, 80px) 0;
+    border-bottom: 1px solid var(--hairline);
+    background: var(--surface-2);
+  }
+  .metrics-head {
+    margin-bottom: 36px;
+  }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--hairline);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  .metric {
+    background: var(--white);
+    padding: 28px 28px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .metric-num {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(36px, 4vw, 52px);
+    letter-spacing: -0.025em;
+    line-height: 1;
+    color: var(--ink);
+  }
+  .metric-unit {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: 14px;
+    color: var(--ink-soft);
+    margin-left: 6px;
+    letter-spacing: -0.005em;
+  }
+  .metric-label {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-top: 10px;
+  }
+  .metric--text { justify-content: flex-start; }
+  .metric--text .metric-num {
+    font-size: clamp(20px, 1.7vw, 26px);
+    font-weight: 500;
+    letter-spacing: -0.005em;
+    line-height: 1.25;
+  }
+  .metric--text .metric-unit {
+    font-size: clamp(20px, 1.7vw, 26px);
+    font-weight: 500;
+    color: var(--ink-soft);
+    margin-left: 6px;
+    letter-spacing: -0.005em;
+  }
+  .metric--text > div:first-child { white-space: normal; }
+
+  @media (max-width: 760px) {
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* -------- Body sections -------- */
+  .body-section {
+    padding: clamp(72px, 9vw, 120px) 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .body-section h2 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(28px, 3vw, 40px);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 14px 0 28px;
+    max-width: 22ch;
+  }
+  .body-section p {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--ink-soft);
+    max-width: 62ch;
+    margin: 0 0 18px;
+  }
+  .body-section p.lead {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(20px, 2vw, 24px);
+    line-height: 1.4;
+    color: var(--ink);
+    letter-spacing: -0.005em;
+    max-width: 36ch;
+    margin: 0 0 32px;
+  }
+
+  /* Problem layout: eyebrow + heading on left, body on right */
+  .problem-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .problem-grid { grid-template-columns: 1fr; gap: 24px; } }
+
+  /* -------- Approach (scroll-pinned) -------- */
+  .approach {
+    padding: clamp(72px, 9vw, 120px) 0;
+    border-bottom: 1px solid var(--hairline);
+    background: var(--white);
+  }
+  .approach-head {
+    margin-bottom: 56px;
+  }
+  .approach-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.1fr;
+    gap: 80px;
+    align-items: stretch;
+  }
+  .approach-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .approach-step {
+    padding: 36px 0;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border-top: 1px solid var(--hairline);
+    transition: opacity 400ms var(--ease);
+    opacity: 0.45;
+  }
+  .approach-step.is-active { opacity: 1; }
+  .approach-step:first-child { border-top: none; padding-top: 0; }
+  .approach-step .step-no {
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    color: var(--ink-muted);
+    font-weight: 500;
+  }
+  .approach-step.is-active .step-no { color: var(--accent); }
+  .approach-step h3 {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 26px;
+    letter-spacing: -0.015em;
+    line-height: 1.2;
+    margin: 0;
+    max-width: 24ch;
+  }
+  .approach-step p {
+    margin: 0;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+    max-width: 40ch;
+  }
+  .approach-step .step-meta {
+    margin-top: 4px;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .approach-pin {
+    position: sticky;
+    top: 110px;
+    align-self: start;
+    justify-self: start;
+    width: 100%;
+    max-width: 480px;
+    aspect-ratio: 1 / 1;
+    background: var(--surface-2);
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 36px;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+  }
+  .approach-svg { width: 100%; height: 100%; display: block; }
+  @media (max-width: 900px) {
+    .approach-grid { grid-template-columns: 1fr; gap: 32px; }
+    .approach-step { min-height: auto; }
+    .approach-pin { position: relative; top: 0; aspect-ratio: 4 / 3; }
+  }
+
+  /* -------- Product -------- */
+  .product-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 40px;
+  }
+  .product-tile {
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    background: var(--surface-2);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .product-tile .tile-visual {
+    aspect-ratio: 16 / 10;
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 10px;
+    display: grid;
+    place-items: center;
+    position: relative;
+  }
+  .product-tile .tile-visual::after {
+    content: attr(data-label);
+    position: absolute;
+    bottom: 12px; left: 14px;
+    font-family: var(--font-mono);
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .product-tile h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: 18px;
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  .product-tile p {
+    margin: 0;
+    font-size: 14.5px;
+    line-height: 1.6;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 760px) { .product-grid { grid-template-columns: 1fr; } }
+
+  /* Translation page — 3-zone market-flow visual (Source -> Glossary -> Outputs) */
+  .market-flow {
+    margin-top: 32px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr auto 1fr;
+    gap: clamp(8px, 1.4vw, 18px);
+    align-items: stretch;
+  }
+  .market-zone {
+    background: var(--white);
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 20px 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .market-zone--glossary {
+    background: var(--surface-2);
+    border-color: var(--hairline-strong);
+  }
+  .market-zone-label {
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+  .market-zone-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .market-zone-items li {
+    padding-left: 12px;
+    position: relative;
+  }
+  .market-zone-items li::before {
+    content: "";
+    position: absolute;
+    left: 0; top: 0.55em;
+    width: 5px; height: 1px;
+    background: var(--ink-muted);
+  }
+  .market-zone--outputs .market-zone-items em {
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.10em;
+    color: var(--ink);
+    background: var(--surface);
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-right: 6px;
+  }
+  .market-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    color: var(--ink-muted);
+  }
+  @media (max-width: 800px) {
+    .market-flow {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .market-arrow { transform: rotate(90deg); }
+  }
+
+  .market-layers {
+    margin-top: clamp(32px, 4vw, 48px);
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(20px, 2.4vw, 32px);
+    padding-top: clamp(28px, 3vw, 40px);
+    border-top: 1px dashed var(--hairline);
+  }
+  @media (max-width: 880px) {
+    .market-layers { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 540px) {
+    .market-layers { grid-template-columns: 1fr; }
+  }
+  .market-layer h4 {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin: 0 0 6px;
+  }
+  .market-layer p {
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: var(--ink-soft);
+    margin: 0;
+  }
+
+  /* -------- Extended to -------- */
+  .extended {
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--hairline);
+  }
+  .extended-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr;
+    gap: 80px;
+    align-items: start;
+  }
+  @media (max-width: 900px) { .extended-grid { grid-template-columns: 1fr; gap: 28px; } }
+  .extension-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  .extension-chip {
+    padding: 10px 18px;
+    border-radius: 999px;
+    background: var(--white);
+    border: 1px solid var(--hairline-strong);
+    font-size: 14px;
+    color: var(--ink-soft);
+    white-space: nowrap;
+  }
+
+  /* -------- Quote -------- */
+  .quote {
+    padding: clamp(72px, 9vw, 120px) 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .quote blockquote {
+    font-family: var(--font-display);
+    font-weight: 400;
+    font-size: clamp(24px, 2.8vw, 36px);
+    letter-spacing: -0.015em;
+    line-height: 1.35;
+    margin: 0;
+    max-width: 28ch;
+    color: var(--ink);
+  }
+  .quote cite {
+    display: block;
+    margin-top: 28px;
+    font-style: normal;
+    font-family: var(--font-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
+
+  /* -------- Next + footer -------- */
+  .next {
+    padding: clamp(60px, 7vw, 96px) 0;
+  }
+  .next-link {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 32px;
+    padding: 32px 0;
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    align-items: center;
+    transition: transform 400ms var(--ease);
+    cursor: pointer;
+  }
+  .next-link:hover { transform: translateX(4px); }
+  .next-link .next-no {
+    font-family: var(--font-mono);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--ink-muted);
+  }
+  .next-link .next-title {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(24px, 2.6vw, 36px);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin: 0;
+  }
+  .next-link .next-sector {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+    margin-bottom: 8px;
+  }
+  .next-arrow {
+    width: 40px; height: 40px;
+    border-radius: 999px;
+    border: 1px solid var(--ink);
+    display: grid;
+    place-items: center;
+    transition: background 200ms var(--ease), color 200ms var(--ease);
+  }
+  .next-link:hover .next-arrow {
+    background: var(--ink);
+    color: var(--white);
+  }
+  .next-arrow svg { width: 16px; height: 12px; }
+
+  /* -------- Footer -------- */
+  /* ===== Footer (dark) ===== */
+  .footer {
+    background: var(--black); color: rgba(255,255,255,0.75);
+    padding: clamp(40px, 4vw, 56px) 0 clamp(28px, 3vw, 40px);
+    border-top: none;
+  }
+  .footer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr));
+    gap: clamp(28px, 4vw, 56px);
+    margin-bottom: 32px;
+  }
+  @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
+  .footer-brand img { height: 22px; width: auto; opacity: 0.9; }
+  .footer-brand p {
+    margin-top: 14px; font-size: 13.5px; line-height: 1.55;
+    color: rgba(255,255,255,0.6); max-width: 36ch;
+  }
+  .footer-col h5 {
+    font-family: var(--font-mono); font-size: 11px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+    color: rgba(255,255,255,0.45);
+    margin: 0 0 14px;
+  }
+  .footer-col ul {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .footer-col a {
+    font-size: 13.5px; color: rgba(255,255,255,0.78);
+    transition: color 180ms var(--ease);
+  }
+  .footer-col a:hover { color: var(--white); }
+  .footer-bottom {
+    display: flex; align-items: center; justify-content: space-between;
+    padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.08);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    color: rgba(255,255,255,0.4);
+    flex-wrap: wrap; gap: 12px;
+  }
+  .footer-bottom .footer-mb {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: rgba(255,255,255,0.55);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.10em; text-transform: uppercase;
+    transition: color 180ms var(--ease);
+  }
+  .footer-bottom .footer-mb:hover { color: var(--white); }
+  .footer-bottom .footer-mb img { opacity: 1; }
+  .footer-bottom .footer-mb strong { color: rgba(255,255,255,0.85); font-weight: 600; }
+
+  @media (max-width: 760px) {
+    .case-hero h1 { font-size: 44px; }
+    .problem-grid, .approach-grid, .extended-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Nav -->
+<style id="navDropdownStyles">
+  .nav-dropdown { position: relative; display: inline-flex; align-items: center; }
+  .nav-dropdown-trigger {
+    background: none; border: none; padding: 0; margin: 0;
+    font: inherit; cursor: pointer;
+    color: var(--ink-soft, #4A4A4A);
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 180ms ease;
+  }
+  .nav-dropdown-trigger:hover { color: var(--ink, #1F1F1F); }
+  .nav-dropdown-trigger .caret {
+    display: inline-block;
+    width: 0; height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-top: 4px solid currentColor;
+    opacity: 0.55;
+    transition: transform 220ms ease, opacity 220ms ease;
+  }
+  .nav-dropdown:hover .caret,
+  .nav-dropdown:focus-within .caret { transform: rotate(180deg); opacity: 1; }
+  .nav-dropdown-menu {
+    position: absolute;
+    top: calc(100% + 18px);
+    left: -16px;
+    min-width: 320px;
+    background: var(--white, #ffffff);
+    border: 1px solid var(--hairline, rgba(31,31,31,0.10));
+    border-radius: 14px;
+    padding: 8px;
+    box-shadow: 0 22px 60px -28px rgba(31,31,31,0.32);
+    opacity: 0; visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 220ms ease, transform 220ms ease, visibility 220ms ease;
+    z-index: 200;
+    display: flex; flex-direction: column;
+  }
+  .nav-dropdown:hover .nav-dropdown-menu,
+  .nav-dropdown:focus-within .nav-dropdown-menu {
+    opacity: 1; visibility: visible; transform: translateY(0);
+  }
+  .nav-dropdown-menu .dd-item {
+    display: flex; flex-direction: column; gap: 2px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    text-decoration: none;
+    color: var(--ink, #1F1F1F);
+    font-family: var(--font-display, "Poppins", sans-serif);
+    font-size: 14.5px; font-weight: 500;
+    letter-spacing: -0.005em;
+    transition: background 180ms ease;
+  }
+  .nav-dropdown-menu .dd-item:hover { background: var(--surface, #F8F8F6); }
+  .nav-dropdown-menu .dd-item--featured {
+    background: var(--ink, #1F1F1F);
+    color: var(--white, #ffffff);
+    margin-bottom: 4px;
+  }
+  .nav-dropdown-menu .dd-item--featured:hover { background: #000000; }
+  .nav-dropdown-menu .dd-desc {
+    font-family: var(--font-body, "Roboto", sans-serif);
+    font-size: 12px; font-weight: 400;
+    color: var(--ink-muted, #8A8A8A);
+  }
+  .nav-dropdown-menu .dd-item--featured .dd-desc { color: rgba(255,255,255,0.72); }
+  .dd-divider {
+    display: block;
+    height: 1px; background: var(--hairline, rgba(31,31,31,0.10));
+    margin: 6px 8px;
+  }
+  @media (max-width: 880px) {
+    .nav-links .nav-dropdown { display: none; }
+  }
+</style>
+<nav class="nav">
+  <div class="container nav-inner">
+    <a class="nav-logo" href="../Home.html" aria-label="AIHLPR home">
+      <img src="../../assets/aihlpr-logo.svg" alt="AIHLPR">
+    </a>
+    <div class="nav-links">
+      <div class="nav-dropdown">
+        <button class="nav-dropdown-trigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="solutionsMenu">
+          Oplossingen <span class="caret" aria-hidden="true"></span>
+        </button>
+        <div class="nav-dropdown-menu" id="solutionsMenu" role="menu">
+          <a href="../capabilities/ai-applications-and-platforms.html" class="dd-item" role="menuitem">
+            <span class="dd-title">AI Products &amp; Platforms</span>
+          </a>
+          <a href="../capabilities/ai-workflow-infrastructure.html" class="dd-item" role="menuitem">
+            <span class="dd-title">AI Workflows &amp; Operations</span>
+          </a>
+          <a href="../capabilities/enterprise-ai.html" class="dd-item" role="menuitem">
+            <span class="dd-title">Enterprise AI</span>
+          </a>
+          <a href="../capabilities/prototype-to-production.html" class="dd-item" role="menuitem">
+            <span class="dd-title">Van pilot naar productie</span>
+          </a>
+        </div>
+      </div>
+      <a href="../Home.html#work">Case studies</a>
+      <a href="../../insights/index.html">Our thinking</a>
+      <a href="../about.html">Over ons</a>
+      <span class="nav-lang" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-muted);display:inline-flex;align-items:center;gap:6px;">
+        <a href="../../work/translation-workflow.html" hreflang="en" style="color:var(--ink-muted);" aria-label="English">EN</a>
+        <span style="opacity:0.5;" aria-hidden="true">/</span>
+        <span style="color:var(--ink);font-weight:500;" aria-current="true">NL</span>
+      </span>
+      <a class="nav-cta" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Praat met ons &rarr;</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="case-hero">
+  <div class="container">
+    <div class="hero-meta">
+      <a href="../Home.html#work" class="nav-back">
+        <svg width="12" height="10" viewBox="0 0 12 10" fill="none">
+          <path d="M11 5 L1 5 M5 1 L1 5 L5 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        Ons werk
+      </a>
+      <span class="sep"></span>
+      <span class="case-no">02 / 03</span>
+      <span class="sep"></span>
+      <span class="eyebrow">Retail &middot; Localisatie</span>
+    </div>
+
+    <h1>Europese expansie zonder dat het merk verschuift.</h1>
+
+    <p class="outcome">
+      Een transcreation-workflow voor productteams die goedgekeurde terminologie, marktnuance, brand-tone en retailer-ready output willen in één review-proces.
+    </p>
+
+    <div class="hero-strip hero-strip--branch" aria-hidden="true">
+      <ol>
+        <li>Brontekst</li>
+        <li>Terminologie</li>
+        <li class="hero-strip-branch">
+          <span class="hero-strip-branch-label">Marktversies</span>
+          <span class="hero-strip-markets">
+            <em>Markt A</em><em>Markt B</em><em>Markt C</em>
+          </span>
+        </li>
+        <li>Review</li>
+        <li>Export</li>
+      </ol>
+    </div>
+  </div>
+</header>
+
+<!-- Metrics -->
+<section class="metrics">
+  <div class="container">
+    <div class="metrics-head">
+      <span class="eyebrow"><span class="eyebrow-dot"></span>Resultaten</span>
+    </div>
+    <div class="metrics-grid">
+      <div class="metric">
+        <div><span class="metric-num">3</span><span class="metric-unit">markten</span></div>
+        <div class="metric-label">Gelokaliseerde content-paden</div>
+      </div>
+      <div class="metric">
+        <div><span class="metric-num">1</span><span class="metric-unit">terminologielaag</span></div>
+        <div class="metric-label">Goedgekeurde terminologie</div>
+      </div>
+      <div class="metric metric--text">
+        <div><span class="metric-num">Menselijke</span><span class="metric-unit">review</span></div>
+        <div class="metric-label">Marktgoedkeuring ingebouwd</div>
+      </div>
+      <div class="metric metric--text">
+        <div><span class="metric-num">Retailer<span class="metric-unit">-ready copy</span></span></div>
+        <div class="metric-label">Gestructureerd voor PDP-gebruik</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Problem -->
+<section class="body-section">
+  <div class="container">
+    <div class="problem-grid">
+      <div>
+        <span class="eyebrow"><span class="eyebrow-dot"></span>Het probleem</span>
+        <h2>Vertalen was niet het lastige. Marktklare content coördineren wel.</h2>
+      </div>
+      <div>
+        <p class="lead">
+          De klant had niet alleen vertaalde woorden nodig. Elke markt wilde productcontent die dichtbij de goedgekeurde brand-taal bleef en tegelijk lokaal, accuraat en bruikbaar aanvoelde in de retail-omgeving.
+        </p>
+        <p>
+          Een simpele vertaaltool of custom GPT kon helpen bij een eerste concept, maar loste het operationele probleem eromheen niet op. Producttermen moesten onder controle blijven. Claims moesten consistent zijn. Marktteams hadden ruimte nodig voor nuance. Brand-teams wilden zicht hebben voor er iets live ging. Elke verduidelijkingsronde leverde meer communicatie op tussen centrale teams, agencies en lokale markten.
+        </p>
+        <p>
+          Het risico was niet alleen trage vertaling. Het was brand-drift. Als lokale markten ontevreden waren over copy of beeld, wilden ze het natuurlijk verbeteren. Maar als elke markt content los aanpaste, werd het brand-systeem moeilijker te beschermen. De workflow moest localisatie ondersteunen zonder van elke markt een aparte creatieve productielijn te maken.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Approach (scroll-pinned) -->
+<section class="approach" id="approach">
+  <div class="container">
+    <div class="approach-head">
+      <span class="eyebrow"><span class="eyebrow-dot"></span>De aanpak</span>
+      <h2 style="font-family: var(--font-display); font-weight: 600; font-size: clamp(28px,3vw,40px); letter-spacing:-0.02em; line-height:1.1; margin:14px 0 0; max-width:24ch;">
+        Lokaliseer de content terwijl het asset nog bewerkbaar is.
+      </h2>
+    </div>
+
+    <div class="approach-grid">
+      <div class="approach-steps" id="approachSteps">
+        <article class="approach-step" data-step="0">
+          <span class="step-no">Stap 01</span>
+          <h3>Begin met goedgekeurde brontekst.</h3>
+          <p>
+            De workflow begint met goedgekeurde productcopy, feature-claims en brand-taal, zodat elke marktversie vanuit dezelfde gecontroleerde bron vertrekt.
+          </p>
+          <div class="step-meta">Brontekst &middot; Claim-controle</div>
+        </article>
+
+        <article class="approach-step" data-step="1">
+          <span class="step-no">Stap 02</span>
+          <h3>Pas terminologie en brand-regels toe.</h3>
+          <p>
+            Goedgekeurde terminologie, vaste zinspatronen en brand-tone-regels sturen het eerste concept, zodat marktreviewers niet vanaf een generieke vertaling beginnen.
+          </p>
+          <div class="step-meta">Terminologie &middot; Brand-taal</div>
+        </article>
+
+        <article class="approach-step" data-step="2">
+          <span class="step-no">Stap 03</span>
+          <h3>Stuur concepten naar marktreview.</h3>
+          <p>
+            Regionale reviewers kunnen copy nakijken terwijl het asset nog in productie is. Dat scheelt late correcties en houdt de lokale nuance binnen de workflow.
+          </p>
+          <div class="step-meta">Marktreview &middot; Menselijke goedkeuring</div>
+        </article>
+
+        <article class="approach-step" data-step="3">
+          <span class="step-no">Stap 04</span>
+          <h3>Lever retailer-ready output op.</h3>
+          <p>
+            Definitieve copy kan gestructureerd worden voor PDP-modules, Amazon-content en campagne-assets, in plaats van als losse vertaalbestanden.
+          </p>
+          <div class="step-meta">Gestructureerde export &middot; Retail-gereedheid</div>
+        </article>
+      </div>
+
+      <aside class="approach-pin">
+        <svg class="approach-svg" id="approachDiagram" viewBox="0 0 420 420" aria-hidden="true">
+          <!-- Lane labels (4 stages: source, terminology, market versions, review) -->
+          <g font-family="Roboto Mono" font-size="9" letter-spacing="0.12em" fill="#8A8A8A">
+            <text x="50" y="64" text-anchor="end">SOURCE</text>
+            <text x="50" y="160" text-anchor="end">TERMINOLOGY</text>
+            <text x="50" y="240" text-anchor="end">MARKET VERSIONS</text>
+            <text x="50" y="360" text-anchor="end">REVIEW</text>
+          </g>
+
+          <!-- Source node (one) -->
+          <g fill="#1F1F1F">
+            <circle cx="210" cy="60" r="5"/>
+          </g>
+
+          <!-- Terminology node (one, accent-bordered to suggest 'glossary applied') -->
+          <g fill="#fff" stroke="#1F1F1F" stroke-width="1">
+            <rect x="180" y="146" width="60" height="28" rx="4"/>
+          </g>
+          <g font-family="Roboto Mono" font-size="9" fill="#1F1F1F" letter-spacing="0.08em">
+            <text x="210" y="164" text-anchor="middle">GLOSSARY</text>
+          </g>
+
+          <!-- Market version nodes (three: A / B / C) -->
+          <g fill="#1F1F1F">
+            <circle cx="110" cy="240" r="5"/>
+            <circle cx="210" cy="240" r="5"/>
+            <circle cx="310" cy="240" r="5"/>
+          </g>
+          <g font-family="Roboto Mono" font-size="8.5" letter-spacing="0.12em" fill="#8A8A8A">
+            <text x="110" y="266" text-anchor="middle">MKT A</text>
+            <text x="210" y="266" text-anchor="middle">MKT B</text>
+            <text x="310" y="266" text-anchor="middle">MKT C</text>
+          </g>
+
+          <!-- Review node (single, converging) -->
+          <g fill="#fff" stroke="#1F1F1F" stroke-width="1">
+            <rect x="180" y="346" width="60" height="28" rx="4"/>
+          </g>
+          <g font-family="Roboto Mono" font-size="9" fill="#1F1F1F" letter-spacing="0.08em">
+            <text x="210" y="364" text-anchor="middle">REVIEW</text>
+          </g>
+
+          <!-- Highlight rings (kept in DOM so JS can drive opacity) -->
+          <g id="lane-highlights" fill="none" stroke="#3478E5" stroke-width="1.5">
+            <circle cx="210" cy="60"  r="14" opacity="0" data-h="0"/>
+            <circle cx="210" cy="160" r="22" opacity="0" data-h="1"/>
+            <circle cx="210" cy="240" r="14" opacity="0" data-h="2"/>
+            <circle cx="210" cy="360" r="22" opacity="0" data-h="3"/>
+          </g>
+
+          <!-- Branching flow path: source -> glossary -> 3 markets -> review.
+               Drawn as one continuous path with sub-paths joined by M commands
+               so the existing stroke-dashoffset animation reveals it gradually. -->
+          <path id="flowPath"
+            d="M 210 65 L 210 146
+               M 210 174 C 210 200 110 210 110 235
+               M 210 174 L 210 235
+               M 210 174 C 210 200 310 210 310 235
+               M 110 245 C 110 290 210 320 210 346
+               M 210 245 L 210 346
+               M 310 245 C 310 290 210 320 210 346"
+            stroke="#3478E5" stroke-width="1.4" fill="none"
+            stroke-dasharray="900" stroke-dashoffset="700"/>
+        </svg>
+      </aside>
+    </div>
+  </div>
+</section>
+
+<!-- Product -->
+<section class="body-section">
+  <div class="container">
+    <span class="eyebrow"><span class="eyebrow-dot"></span>Wat we bouwden</span>
+    <h2>Een localisatie-laag voor productcontent-operaties.</h2>
+    <p style="max-width: 60ch;">
+      Ontworpen om vertaling, transcreation, review en export dicht bij de asset-workflow te houden, zodat teams over markten heen kunnen bewegen zonder het goedgekeurde brand-systeem te verliezen.
+    </p>
+
+    <!-- 3-zone visual: source -> glossary -> market-ready outputs -->
+    <div class="market-flow" aria-hidden="true">
+      <div class="market-zone market-zone--source">
+        <span class="market-zone-label">Goedgekeurde brontekst</span>
+        <ul class="market-zone-items">
+          <li>Productcopy</li>
+          <li>Claims</li>
+          <li>Feature-notities</li>
+        </ul>
+      </div>
+      <span class="market-arrow">&rarr;</span>
+      <div class="market-zone market-zone--glossary">
+        <span class="market-zone-label">Terminologie + brand-regels</span>
+        <ul class="market-zone-items">
+          <li>Goedgekeurde terminologie</li>
+          <li>Brand-tone</li>
+          <li>Consistentie van claims</li>
+        </ul>
+      </div>
+      <span class="market-arrow">&rarr;</span>
+      <div class="market-zone market-zone--outputs">
+        <span class="market-zone-label">Marktklare output</span>
+        <ul class="market-zone-items">
+          <li><em>EN</em> gereviewd</li>
+          <li><em>FR</em> gereviewd</li>
+          <li><em>DE</em> gereviewd</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- 4 written layers — supporting detail below the visual -->
+    <div class="market-layers">
+      <div class="market-layer">
+        <h4>Brontekst-laag</h4>
+        <p>Een gestructureerde input-laag voor goedgekeurde productcopy, claims, feature-beschrijvingen en module-content.</p>
+      </div>
+      <div class="market-layer">
+        <h4>Terminologie-laag</h4>
+        <p>Een laag voor terminologie en zinscontrole voor productnamen, claims, brand-formuleringen en terugkerende feature-taal.</p>
+      </div>
+      <div class="market-layer">
+        <h4>Marktreview-laag</h4>
+        <p>Een marktreview-pad waarin regionale input toegevoegd kan worden vóór de eindexport, niet nadat het asset al geproduceerd is.</p>
+      </div>
+      <div class="market-layer">
+        <h4>Export-laag</h4>
+        <p>Gestructureerde output voor retailer-ready productcontent, over markten en formaten heen.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Extended to -->
+<section class="body-section extended">
+  <div class="container">
+    <div class="extended-grid">
+      <div>
+        <span class="eyebrow"><span class="eyebrow-dot"></span>Toepasbaar op</span>
+        <h2>Hetzelfde patroon, overal waar producttaal merkrisico draagt.</h2>
+      </div>
+      <div>
+        <p style="margin-bottom: 12px;">
+          Product-localisatie gaat niet alleen over taal. Het gaat over claims, terminologie en tone consistent houden terwijl je je aanpast aan de markt.
+        </p>
+        <div class="extension-chips">
+          <span class="extension-chip">Europese e-commerce expansie</span>
+          <span class="extension-chip">Amazon PDP-localisatie</span>
+          <span class="extension-chip">Retailer-content teams</span>
+          <span class="extension-chip">Consumer product-launches</span>
+          <span class="extension-chip">Multi-brand portfolios</span>
+          <span class="extension-chip">Gereguleerde claims</span>
+          <span class="extension-chip">Distributeur-content workflows</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Quote -->
+<section class="quote">
+  <div class="container">
+    <blockquote>
+      “Het doel is niet alleen snellere vertaling. Het is een gecontroleerde manier om producttaal door markten heen te bewegen zonder brand-drift te creëren.”
+    </blockquote>
+    <cite>AIHLPR &middot; Localisatie-workflow team</cite>
+  </div>
+</section>
+
+<!-- Next -->
+<section class="next">
+  <div class="container">
+    <span class="eyebrow"><span class="eyebrow-dot"></span>Volgende case study</span>
+    <a class="next-link" href="asset-workflow-engine.html">
+      <span class="next-no">01 / 02</span>
+      <div>
+        <div class="next-sector">Retail &middot; Marketplace asset generation</div>
+        <h3 class="next-title">Product content that keeps up with launch timelines.</h3>
+      </div>
+      <span class="next-arrow">
+        <svg viewBox="0 0 16 12" fill="none">
+          <path d="M1 6 L15 6 M10 1 L15 6 L10 11" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+    </a>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="../../assets/aihlpr-logo-light.svg" alt="AIHLPR">
+        <p>Operationele AI-partner. We bouwen AI-systemen die passen bij hoe organisaties al werken — van één workflow tot de hele organisatie.</p>
+      </div>
+      <div class="footer-col">
+        <h5>Oplossingen</h5>
+        <ul>
+          <li><a href="../capabilities/ai-applications-and-platforms.html">AI Products &amp; Platforms</a></li>
+          <li><a href="../capabilities/ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a></li>
+          <li><a href="../capabilities/enterprise-ai.html">Enterprise AI</a></li>
+          <li><a href="../capabilities/prototype-to-production.html">Van pilot naar productie</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>De site</h5>
+        <ul>
+          <li><a href="../Home.html#capabilities">Solutions</a></li>
+          <li><a href="../../insights/index.html">Our thinking</a></li>
+          <li><a href="../about.html">About</a></li>
+          <li><a href="../Home.html#how">How we work</a></li>
+          <li><a href="../Home.html#work">Case studies</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h5>Contact</h5>
+        <ul>
+          <li><a href="mailto:brinda@moralitybytes.eu">brinda@moralitybytes.eu</a></li>
+          <li>Wibautstraat 129, Amsterdam</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <a class="footer-mb" href="https://moralitybytes.eu" target="_blank" rel="noopener" aria-label="MoralityBytes">
+        <img src="../../assets/moralitybytes-mark.svg" alt="" width="30" height="30">
+        <span>Onderdeel van <strong>MORALITY BYTES</strong></span>
+      </a>
+      <span>&copy; 2026 AIHLPR &middot; AI engineering die meegaat</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function () {
+  // Scroll-pinned Approach diagram
+  const steps = document.querySelectorAll(".approach-step");
+  const highlights = document.querySelectorAll("#lane-highlights circle");
+  const flowPath = document.getElementById("flowPath");
+
+  if (!steps.length) return;
+
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const idx = parseInt(entry.target.dataset.step, 10);
+      // Set active state
+      steps.forEach(s => s.classList.toggle("is-active", parseInt(s.dataset.step, 10) === idx));
+      // Show only the matching highlight ring
+      highlights.forEach((h, hi) => {
+        h.setAttribute("opacity", hi === idx ? "0.9" : "0");
+      });
+      // Animate flow path drawing in by step
+      // Path is 4 segments * 250 = 1000. Approximate progress by step.
+      if (flowPath) {
+        const total = 1200;
+        const reveal = (idx + 1) / steps.length;
+        flowPath.style.transition = "stroke-dashoffset 700ms cubic-bezier(0.22,1,0.36,1)";
+        flowPath.style.strokeDashoffset = (total * (1 - reveal)).toFixed(0);
+      }
+    });
+  }, {
+    rootMargin: "-40% 0px -40% 0px",
+    threshold: 0,
+  });
+
+  steps.forEach(s => io.observe(s));
+
+  // Initial state: first step active
+  if (steps[0]) steps[0].classList.add("is-active");
+  if (highlights[0]) highlights[0].setAttribute("opacity", "0.9");
+  if (flowPath) flowPath.style.strokeDashoffset = (1200 * (1 - 1 / steps.length)).toFixed(0);
+})();
+</script>
+</body>
+</html>
