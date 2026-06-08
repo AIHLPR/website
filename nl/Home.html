@@ -2845,120 +2845,94 @@
 
   /* ===== Our thinking — light section with dark article tiles ===== */
   section#insights {
-    background: var(--surface);
+    background: var(--white);
     padding: var(--section-y) 0;
   }
   .insights-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 20px;
+    gap: 0;
+    border-top: 1px solid var(--hairline);
   }
-  /* === Insight tile (self-contained dark card) ===
-     Each card carries everything inside one dark surface:
-     a faint network constellation, a brand-colour corner glow,
-     meta header, body, and a footer with a circular arrow.
-     Per-section colour set via --accent on .insight.is-* below. */
+  /* === Insight tile — light, editorial, divided by vertical hairlines ===
+     Top accent bar in --accent (set per-card inline for the home strip).
+     No background, no constellation; the colour lives in the bar + eyebrow. */
   .insight {
     --accent: var(--blue);
     position: relative;
-    isolation: isolate;
-    overflow: hidden;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    gap: 28px;
+    gap: 18px;
     min-height: 320px;
-    padding: 24px;
+    padding: 36px 32px 32px;
     text-decoration: none;
-    background: var(--ink);
-    color: rgba(255,255,255,0.85);
-    border: 1px solid rgba(255,255,255,0.06);
-    border-radius: 14px;
-    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.06);
-    transition: transform 220ms var(--ease), box-shadow 220ms var(--ease), border-color 220ms var(--ease);
+    color: var(--ink);
+    background: transparent;
+    border-right: 1px solid var(--hairline);
+    transition: background 220ms var(--ease);
   }
-  /* Corner glow in the brand colour */
+  .insight:last-child { border-right: none; }
   .insight::before {
     content: "";
-    position: absolute; inset: 0;
-    background: radial-gradient(70% 65% at 90% 100%, color-mix(in oklab, var(--accent) 32%, transparent), transparent 65%);
-    z-index: 0;
-    pointer-events: none;
+    display: block;
+    width: 48px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 2px;
   }
-  /* Faint network overlay, tinted by --accent */
-  .insight .insight-net {
-    position: absolute; inset: 0;
-    width: 100%; height: 100%;
-    color: color-mix(in oklab, var(--accent) 70%, rgba(255,255,255,0.15));
-    opacity: 0.5;
-    z-index: 0;
-    pointer-events: none;
-  }
-  .insight > * { position: relative; z-index: 1; }
-  .insight:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 12px 28px rgba(0, 0, 0, 0.16);
-    border-color: color-mix(in oklab, var(--accent) 45%, rgba(255,255,255,0.10));
-  }
+  .insight:hover { background: color-mix(in oklab, var(--accent) 4%, transparent); }
+  /* Hide the legacy constellation + foot block; the new layout is flatter. */
+  .insight .insight-net,
+  .insight .insight-foot { display: none; }
 
-  /* Per-section brand colours — kept in sync with /insights index */
-  .insight.is-tech   { --accent: #7E6CE0; }  /* lavender - Technical AI */
-  .insight.is-biz    { --accent: #9B59B6; }  /* purple   - Business AI */
-  .insight.is-plain  { --accent: #E91E63; }  /* pink     - Plain talk */
-  .insight.is-notes  { --accent: #3478E5; }  /* blue     - AI in production */
+  /* Per-section accents — kept for back-compat with other surfaces. */
+  .insight.is-tech   { --accent: #7E6CE0; }
+  .insight.is-biz    { --accent: #9B59B6; }
+  .insight.is-plain  { --accent: #E91E63; }
+  .insight.is-notes  { --accent: #3478E5; }
 
   .insight-meta {
-    display: flex; gap: 12px; align-items: center; justify-content: space-between;
+    display: flex; align-items: center;
     font-family: var(--font-mono);
     font-size: 10.5px;
-    letter-spacing: 0.16em;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: rgba(255,255,255,0.65);
   }
-  .insight-cat { display: inline-flex; align-items: center; gap: 8px; color: var(--accent); }
-  .insight-cat .dot { width: 7px; height: 7px; border-radius: 999px; background: currentColor; }
-  .insight-read { color: rgba(255,255,255,0.45); }
+  .insight-cat { color: var(--accent); }
+  .insight-cat .dot { display: none; }
+  .insight-read {
+    margin-top: auto;
+    font-family: var(--font-mono);
+    font-size: 10.5px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--ink-muted);
+  }
 
-  .insight-body { display: flex; flex-direction: column; gap: 10px; }
+  .insight-body { display: flex; flex-direction: column; gap: 14px; }
   .insight h3 {
     font-family: var(--font-display);
-    font-size: 22px;
+    font-size: clamp(20px, 1.7vw, 24px);
     line-height: 1.18;
     letter-spacing: -0.015em;
     font-weight: 600;
-    color: var(--white);
+    color: var(--ink);
     margin: 0;
-    max-width: 22ch;
+    max-width: 20ch;
   }
   .insight p {
-    color: rgba(255, 255, 255, 0.68);
-    font-size: 13.5px;
+    color: var(--ink-soft);
+    font-size: 14.5px;
     line-height: 1.55;
     margin: 0;
-    max-width: 38ch;
+    max-width: 40ch;
   }
-
-  .insight-foot {
-    display: flex; align-items: center; justify-content: space-between;
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
+  @media (max-width: 900px) {
+    .insights-grid { grid-template-columns: 1fr; }
+    .insight { border-right: none; border-bottom: 1px solid var(--hairline); }
+    .insight:last-child { border-bottom: none; }
   }
-  .insight-arrow {
-    width: 30px; height: 30px; border-radius: 999px;
-    display: inline-flex; align-items: center; justify-content: center;
-    border: 1px solid rgba(255,255,255,0.25);
-    color: var(--white);
-    transition: background 180ms var(--ease), border-color 180ms var(--ease), color 180ms var(--ease);
-  }
-  .insight:hover .insight-arrow {
-    background: var(--accent);
-    border-color: var(--accent);
-    color: var(--ink);
-  }
-  @media (max-width: 900px) { .insights-grid { grid-template-columns: 1fr; } }
 
   /* ===== FAQ ===== */
   .faq-grid {
@@ -5340,58 +5314,31 @@
     </svg>
 
     <div class="insights-grid">
-      <a class="insight is-tech" href="../insights/evaluating-ai-in-production.html">
-        <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
-        <div class="insight-meta">
-          <span class="insight-cat"><span class="dot"></span>Technical AI</span>
-          <span class="insight-read">10 min read</span>
-        </div>
+      <a class="insight is-tech" style="--accent: var(--pink);" href="../insights/evaluating-ai-in-production.html">
+        <span class="insight-cat">Technical AI</span>
         <div class="insight-body">
           <h3>AI evals: what tells you a system still works.</h3>
-          <p>Evaluation usually enters AI projects late - as monitoring on a finished system. The argument for measuring earlier, at the first real operational result, and what benchmarks become as workflows mature.</p>
+          <p>Evaluation usually enters AI projects late, as monitoring on a finished system. The argument for measuring earlier, at the first real operational result, and what benchmarks become as workflows mature.</p>
         </div>
-        <div class="insight-foot">
-          <span>Field guide</span>
-          <span class="insight-arrow" aria-hidden="true">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
+        <span class="insight-read">10 min read</span>
       </a>
 
-      <a class="insight is-biz" href="../insights/how-to-score-ai-use-case.html">
-        <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
-        <div class="insight-meta">
-          <span class="insight-cat"><span class="dot"></span>Business AI</span>
-          <span class="insight-read">7 min read</span>
-        </div>
+      <a class="insight is-biz" style="--accent: var(--teal);" href="../insights/how-to-score-ai-use-case.html">
+        <span class="insight-cat">Business AI</span>
         <div class="insight-body">
           <h3>Scoring an AI use case before the build.</h3>
           <p>Most AI projects fail because they were the wrong project. A short framework for scoring impact against feasibility, with the questions we ask before we touch any code.</p>
         </div>
-        <div class="insight-foot">
-          <span>Practice note</span>
-          <span class="insight-arrow" aria-hidden="true">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
+        <span class="insight-read">7 min read</span>
       </a>
 
-      <a class="insight is-biz" href="../insights/ai-architecture-lock-in.html">
-        <svg class="insight-net" viewBox="0 0 440 380" preserveAspectRatio="xMidYMid slice"><use href="#insight-net"/></svg>
-        <div class="insight-meta">
-          <span class="insight-cat"><span class="dot"></span>Business AI</span>
-          <span class="insight-read">8 min read</span>
-        </div>
+      <a class="insight is-biz" style="--accent: var(--magenta);" href="../insights/ai-architecture-lock-in.html">
+        <span class="insight-cat">Business AI</span>
         <div class="insight-body">
           <h3>AI architecture: what locks you in, and what doesn't.</h3>
-          <p>An architecture decision rarely has a clean owner. Most choices are reversible - a small set aren't, and on the day you make them they look identical. Four questions tell them apart, before the cost is real.</p>
+          <p>An architecture decision rarely has a clean owner. Most choices are reversible, but a small set aren't, and on the day you make them they look identical. Four questions tell them apart, before the cost is real.</p>
         </div>
-        <div class="insight-foot">
-          <span>The argument</span>
-          <span class="insight-arrow" aria-hidden="true">
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2 6h7M6 3l3 3-3 3" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-          </span>
-        </div>
+        <span class="insight-read">8 min read</span>
       </a>
     </div>
 
