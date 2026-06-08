@@ -35,8 +35,8 @@ These match how Dutch business audiences read and write them daily. Keeping them
 |---|---|
 | Back to site | Terug naar site |
 | Readiness snapshot | Workflow-snapshot |
-| Get a first readiness snapshot | Krijg een eerste workflow-snapshot |
-| Around 5 minutes · one workflow · meaningful next step | Ongeveer 5 minuten · één workflow · zinvolle volgende stap |
+| Get a first readiness snapshot | Van workflow naar concrete vervolgstap *(was: "Krijg een eerste workflow-snapshot" — too imperative-first / English-leaning; the "Van X naar Y" frame is the native B2B opener)* |
+| Around 5 minutes · one workflow · meaningful next step | Ongeveer 5 minuten · één workflow · concrete vervolgstap *(was: "zinvolle volgende stap" — "vervolgstap" is the native compound)* |
 | Next | Volgende |
 | Back | Terug |
 | Generate my readiness snapshot | Maak mijn workflow-snapshot |
@@ -52,39 +52,80 @@ These match how Dutch business audiences read and write them daily. Keeping them
 | Internal document uploads | Interne documenten-uploads |
 | Too much manual data entry / typing | Te veel handmatige data-invoer / typen |
 | Work sits waiting in backlogs / queues | Werk blijft liggen in backlogs / wachtrijen |
-| Delays waiting for approvals | Vertraging door wachten op goedkeuringen |
-| Repeated copy-and-paste across tools | Herhaald kopiëren-en-plakken tussen tools |
+| Delays waiting for approvals | Te lang wachten op goedkeuringen *(was: "Vertraging door wachten op…" — flat/passive)* |
+| Repeated copy-and-paste across tools | Voortdurend kopiëren en plakken tussen systemen *(was: "tussen tools" — anglicism; Dutch B2B says "tussen systemen")* |
 | Information is scattered / hard to find | Informatie is verspreid / moeilijk te vinden |
 | Inconsistent quality / frequent errors | Inconsistente kwaliteit / vaak fouten |
 | Shared drives (Drive / SharePoint) | Gedeelde schijven (Drive / SharePoint) |
 | Internal databases | Interne databases |
-| Helpdesk / ticketing tools | Helpdesk / ticket-tools |
+| Helpdesk / ticketing tools | Helpdesk- of ticketsystemen *(was: "ticket-tools" — anglicism)* |
 | Wikis / knowledge bases | Wikis / kennisbanken |
 | Structured & reliable | Gestructureerd & betrouwbaar |
 | Usable but messy | Bruikbaar maar rommelig |
 | Scattered across too many places | Verspreid over te veel plekken |
-| Final approval (AI drafts, human signs off) | Eindgoedkeuring (AI schrijft voor, mens tekent af) |
+| Final approval (AI drafts, human signs off) | Eindgoedkeuring (AI doet een voorstel, mens tekent af) *(was: "AI schrijft voor" — "schrijft voor" means "prescribes" in Dutch; misreads)* |
 | Customer-facing messages | Klantgerichte berichten |
 | Compliance / legal checks | Compliance / juridische checks |
 | Exception handling | Uitzonderingen afhandelen |
 | Brand & creative review | Merk & creatieve review |
 | Financial decisions | Financiële beslissingen |
 | Personal info (names, IDs, emails) | Persoonsgegevens (namen, IDs, e-mails) |
-| Customer / client data | Klant- of opdrachtgeverdata |
+| Customer / client data | Klant- of opdrachtgeversgegevens *(was: "opdrachtgeverdata" — unwieldy compound; Dutch business uses "-gegevens")* |
 | Financial / payment records | Financiële / betaalgegevens |
 | Confidential legal documents | Vertrouwelijke juridische documenten |
 | Product / pricing IP | Product- / prijs-IP |
 | No sensitive data is used | Geen gevoelige data |
-| Time saved on repetitive manual work | Tijdwinst op repetitief handwerk |
+| Time saved on repetitive manual work | Minder tijd kwijt aan repetitief handwerk *(was: "Tijdwinst op…" — clinical)* |
 | Faster turnaround / quicker responses | Snellere doorlooptijd / snellere reacties |
 | Lower operational costs | Lagere operationele kosten |
-| Fewer errors and data mistakes | Minder fouten en datavergissingen |
+| Fewer errors and data mistakes | Minder fouten in de data *(was: "Minder fouten en datavergissingen" — "datavergissingen" is barely used in Dutch)* |
 | Better customer experience | Betere klantbeleving |
-| More consistent quality / brand | Consistentere kwaliteit / merk |
+| More consistent quality / brand | Meer consistente kwaliteit / merk *(was: "Consistentere kwaliteit" — grammatically possible but clunky)* |
 | Full name | Volledige naam |
-| Work email | Werk-e-mail |
+| Work email | Zakelijk e-mailadres *(was: "Werk-e-mail" — Dutch business says "zakelijk")* |
 | Company | Bedrijf |
 | Company name | Bedrijfsnaam |
+
+## Sentence-level rewrites (English calque → native Dutch)
+
+After the first audit pass we found several lines reading as "translated English" — grammatically valid but obviously not how a Dutch native would phrase it. Native B2B patterns we picked up from the Growteq / Boldcaster reference set:
+
+- **"Van X naar Y"** as the title frame (*"Van data naar stuurinformatie"*).
+- **Question-as-section-header** (*"Wat krijg je?"*, *"Herkenbaar?"*).
+- **"Het begint bij ..."** to anchor what comes first.
+- **"Denk aan ..."** for examples (not "zoals").
+- **"in kaart brengen"** / **"richting geven aan"**.
+- **"Zit"** not "is" for problems (*"Het probleem zit niet in de techniek, maar in …"*).
+- Compound nouns: *vervolgstap, doorlooptijd, stuurinformatie, kennismaking, vrijblijvend, datafundament*.
+
+The structural fixes already applied to `nl/audit.html`:
+
+| Where | Was (calque) | Now (native) | Pattern fixed |
+|---|---|---|---|
+| H1 + intro | "Krijg een eerste workflow-snapshot." + "We komen terug met …" | "Van workflow naar concrete vervolgstap." + "Een paar korte vragen over één workflow, en je krijgt een snapshot terug — met …" | English imperative-first → "Van X naar Y" + "Je krijgt … terug" |
+| Step 1 question | "Vertel ons over de workflow die je wilt evalueren" | "Om welke workflow gaat het?" | "Tell us about" calque → short native question |
+| Step 1 help | "Een paar details nu zorgen voor een bruikbare, specifieke snapshot — geen generieke." | "Met een paar details maken we de snapshot specifiek — geen generieke." | English subject-first → "Met X kunnen we Y" |
+| Step 1 ownership | "Welk team of welke afdeling is eigenaar?" | "Wie is intern verantwoordelijk voor deze workflow?" | "is eigenaar" = "is owner" (anglicism) |
+| Step 1 frequency | "Hoe vaak draait het?" | "Hoe vaak loopt deze workflow?" | Register-matched to "loopt vast" in step 2 |
+| Step 1 step-by-step | "Wat doet het team vandaag, stap voor stap?" | "Hoe gaat dit nu, stap voor stap?" | "vandaag" = "today specifically"; meant "currently" |
+| Step 2 help | "Dat vertelt ons welke handmatige stappen AI moet aanpakken." | "Op basis daarvan weten we waar AI handmatige stappen kan overnemen." | "Dat vertelt ons" = direct "That tells us" calque |
+| Step 2 question | "Waar begint het werk eigenlijk?" | "Waar start het werk?" | "eigenlijk" reads as filler |
+| Step 3 question + help | "Waar staat je data, en hoe schoon is die?" / "zonder eerst grote dataschoonmaak" | "Waar staat je data, en hoe op orde is die?" / "zonder dat we de data eerst hoeven op te schonen" | "schoon" = physically clean; data is **"op orde"** in Dutch |
+| Step 3 cleanliness | "Hoe schoon en georganiseerd is de data nu?" | "Hoe op orde is de data nu?" | Same fix |
+| Step 3 limits | "Specifieke data-formaten of software-beperkingen die we moeten weten?" | "Zijn er specifieke data-formaten of software-beperkingen waar we rekening mee moeten houden?" | Missing preposition; rephrased fully |
+| Step 4 question + help | "Waar moeten mensen de controle houden?" / "Dit vormt de menselijke controlepunten die we in het systeem inbouwen." | "Waar moet de controle bij mensen blijven?" / "Op basis hiervan bouwen we de controlepunten in." | English "shapes the … we build in" → Dutch action-first |
+| Step 4 sensitive | "Welk soort gevoelige data is erbij betrokken?" | "Welke gevoelige data komt erbij kijken?" | "komt erbij kijken" is the native idiom |
+| Step 5 question (x2) | **"Hoe ziet succes eruit"** | "Wat is voor jullie het gewenste resultaat" / "Wat betekent succes voor dit project?" | The textbook English calque of "What does X look like" — both occurrences killed |
+| Step 5 placeholder | "kopiëren de regels naar een spreadsheet" | "zetten de regels over naar een spreadsheet" | "overzetten" is more native for "transfer between systems" |
+| Success p | "We bekijken de workflow … en komen binnen één werkdag terug — met waar AI past, …" | "Binnen één werkdag laten we weten waar AI past, …" | "met waar AI past" is impossible word order in native Dutch |
+
+## Recap labels (JS-rendered on the success screen)
+
+| Was | Now |
+|---|---|
+| "Data-locatie" | "Waar de data zit" |
+| "Data-staat" | "Datakwaliteit" |
+| "Succes ziet eruit als" | "Gewenst resultaat" |
 
 ## CTA strings (cross-page)
 
