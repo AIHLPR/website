@@ -127,6 +127,21 @@ The structural fixes already applied to `nl/audit.html`:
 | "Data-staat" | "Datakwaliteit" |
 | "Succes ziet eruit als" | "Gewenst resultaat" |
 
+## "Our thinking" / Insights — stays English on the NL Home
+
+The Insights section on `nl/Home.html` is **kept in English**, including:
+- The nav link ("Our thinking", not "Onze visie")
+- The mobile-menu link
+- The section eyebrow + heading + intro ("Our thinking" / "Writing about what works." / "Articles, not posts. Fewer, sharper.")
+- All three insight card meta lines ("Technical AI" / "Business AI" + "X min read")
+- All three card titles + bodies (verbatim from EN)
+- The view-all link at the bottom ("View all our thinking - technical AI, business AI, plain talk, and AI in production")
+- The footer "Our thinking" column link
+
+The card hrefs still point to `../insights/...` so they land on the EN articles. The signal to a Dutch reader is consistent: *this whole section is English-only content*, no fake-Dutch summary that promises a Dutch read.
+
+Editorial reason: the insight articles themselves are out of NL scope. If the cards were Dutch-summarised and the linked page was English, the reader gets a tonal jolt on click. Keeping the whole section EN avoids the jolt.
+
 ## CTA strings (cross-page)
 
 | English | Dutch |
