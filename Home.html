@@ -3100,6 +3100,17 @@
   }
   .closing-cta-secondary:hover { color: var(--ink); border-bottom-color: var(--ink); }
   @media (max-width: 900px) { .closing-grid { grid-template-columns: 1fr; gap: 32px; } }
+  /* Mobile-only: long mono meta strings wrap to 2-3 lines on phones
+     and look cluttered in caps. Keep the mono font but drop the
+     uppercase transform and tighten the letter-spacing. */
+  @media (max-width: 760px) {
+    .closing-trust,
+    .closing-cta-eyebrow {
+      text-transform: none;
+      letter-spacing: 0.04em;
+      font-size: 13px;
+    }
+  }
 
   /* ===== Footer ===== */
   .footer {
@@ -5501,7 +5512,6 @@
       <a class="btn btn-primary closing-cta-btn" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
         Book your session <span class="arrow">&rarr;</span>
       </a>
-      <a class="closing-cta-secondary" href="/cdn-cgi/l/email-protection#7517071c1b111435181a0714191c010c170c0110065b10004a0600171f10160148343c3d392527504745101b04001c070c">Or email us directly <span class="__cf_email__" data-cfemail="d1b3a3b8bfb5b091bcbea3b0bdb8a5a8b3a8a5b4a2ffb4a4">[email&#160;protected]</span></a>
     </div>
   </div>
 </section>
