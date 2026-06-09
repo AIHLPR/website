@@ -3890,6 +3890,42 @@
   .fit-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
   .fit-pill { font-family: var(--font-display); font-weight: 500; font-size: clamp(14px, 1.1vw, 16px); color: var(--ink); padding: 11px 19px; border: 1px solid var(--hairline-strong); border-radius: 12px; background: var(--white); transition: border-color .2s var(--ease), color .2s var(--ease), transform .2s var(--ease); }
   .fit-pill:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-1px); }
+
+  /* =========================================================
+     Scroll-reveal: fade + slide-up on enter, optional stagger.
+     Apply .reveal to any element. Apply .reveal-stagger to a
+     parent of .reveal items to delay each child by 80ms.
+     JS toggles .is-visible via IntersectionObserver (one-shot).
+     ========================================================= */
+  .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+      opacity 600ms var(--ease),
+      transform 600ms var(--ease);
+    transition-delay: calc(var(--reveal-i, 0) * 80ms);
+    will-change: opacity, transform;
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .reveal-stagger > .reveal:nth-child(1) { --reveal-i: 0; }
+  .reveal-stagger > .reveal:nth-child(2) { --reveal-i: 1; }
+  .reveal-stagger > .reveal:nth-child(3) { --reveal-i: 2; }
+  .reveal-stagger > .reveal:nth-child(4) { --reveal-i: 3; }
+  .reveal-stagger > .reveal:nth-child(5) { --reveal-i: 4; }
+  .reveal-stagger > .reveal:nth-child(6) { --reveal-i: 5; }
+  .reveal-stagger > .reveal:nth-child(7) { --reveal-i: 6; }
+  .reveal-stagger > .reveal:nth-child(8) { --reveal-i: 7; }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal,
+    .reveal.is-visible {
+      opacity: 1;
+      transform: none;
+      transition: none;
+    }
+  }
 </style>
 </head>
 <body>
@@ -4136,32 +4172,32 @@
 <!-- ============= WHAT YOU GET (missing part #1) ============= -->
 <section class="valueband section-tight" id="why">
   <div class="container">
-    <div class="value-head">
+    <div class="value-head reveal">
       <span class="label-mono"><span class="dot"></span>Wat ons anders maakt</span>
       <h2>E&eacute;n team. <span class="brand-gradient-text">Van de eerste workflow tot volledige uitrol.</span></h2>
     </div>
-    <div class="value-grid">
-      <div class="value-item">
+    <div class="value-grid reveal-stagger">
+      <div class="value-item reveal">
         <span class="value-title">We blijven na go-live.</span>
         <p class="value-desc">Strategie, build, deployment, dagelijkse operatie. E&eacute;n team over de volledige levenscyclus van het systeem.</p>
       </div>
-      <div class="value-item">
+      <div class="value-item reveal">
         <span class="value-title">Alles onder &eacute;&eacute;n dak.</span>
         <p class="value-desc">Modellen, data, workflows, governance, cloud. &eacute;&eacute;n team, &eacute;&eacute;n stack, &eacute;&eacute;n aanspreekpunt.</p>
       </div>
-      <div class="value-item">
+      <div class="value-item reveal">
         <span class="value-title">Gebouwd om in productie te draaien.</span>
         <p class="value-desc">Elk systeem dat we opleveren houdt stand onder echte gebruikers, echte data en echte operationele druk, en blijft gemonitord na de launch.</p>
       </div>
-      <div class="value-item">
+      <div class="value-item reveal">
         <span class="value-title">Past bij hoe je al werkt.</span>
         <p class="value-desc">We ontwerpen rondom je processen, je tools en je goedkeuringsketens. Niets wordt vervangen.</p>
       </div>
-      <div class="value-item">
+      <div class="value-item reveal">
         <span class="value-title">Mensen houden de regie.</span>
         <p class="value-desc">Goedkeuringspunten, reviewschermen en audit trails zijn vanaf dag &eacute;&eacute;n in de workflow ontworpen.</p>
       </div>
-      <div class="value-item">
+      <div class="value-item reveal">
         <span class="value-title">Jij bezit alles.</span>
         <p class="value-desc">De workflows, de logica, de data. Alles wat we bouwen blijft onder jouw controle. Voor, tijdens en na.</p>
       </div>
@@ -4175,7 +4211,7 @@
 <section class="capabilities" id="capabilities">
   <div class="container">
 
-    <div class="cap-section-head">
+    <div class="cap-section-head reveal">
       <div>
         <span class="label-mono"><span class="dot"></span>Wat we bouwen</span>
         <h2 class="cap-title">AI-tools die je team gebruikt, en de infrastructuur die eronder draait.</h2>
@@ -4741,7 +4777,7 @@
         <div class="ffo-tile"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v5M12 16v5M3 12h5M16 12h5M6.5 6.5l3 3M14.5 14.5l3 3M17.5 6.5l-3 3M9.5 14.5l-3 3"></path></svg></div>
       </div>
     </div>
-    <div class="fit-copy">
+    <div class="fit-copy reveal">
       <span class="label-mono"><span class="dot"></span>Gebouwd rond jouw systemen</span>
       <h2>Je systemen blijven. <span class="brand-gradient-text">We voegen AI toe waar het helpt.</span></h2>
       <p class="fitband-sub">Geen vervanging. Geen migratie. Geen nieuw platform dat je team moet leren. We bouwen een AI-laag bovenop de tools waar je bedrijf al op draait. Zodat mensen blijven werken op de manier die ze kennen, met minder wrijving.</p>
@@ -4759,7 +4795,7 @@
 <!-- ============= OUR WORK ============= -->
 <section class="work-section" id="work">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <span class="label-mono"><span class="dot"></span>Werk dat we hebben opgeleverd</span>
         <h2 style="margin-top: 14px;">Echte systemen, echte resultaten.</h2>
@@ -4775,9 +4811,9 @@
       <button class="work-tab" data-tab="sales">Sales</button>
     </div>
 
-    <div class="work-rows" id="workRows">
+    <div class="work-rows reveal-stagger" id="workRows">
       <!-- 01 -->
-      <a class="work-row" data-sector="retail" href="work/asset-workflow-engine.html">
+      <a class="work-row reveal" data-sector="retail" href="work/asset-workflow-engine.html">
         <div class="work-head">
           <div class="work-cap">
             <span class="work-no">01</span>
@@ -4815,7 +4851,7 @@
       </a>
 
       <!-- 02 -->
-      <a class="work-row" data-sector="marketing" href="work/translation-workflow.html">
+      <a class="work-row reveal" data-sector="marketing" href="work/translation-workflow.html">
         <div class="work-head">
           <div class="work-cap">
             <span class="work-no">02</span>
@@ -4855,7 +4891,7 @@
       <!-- 03 -->
       <!-- HIDDEN: Product Intelligence Layer (folded into Asset Workflow Engine as a "Next layer" section). Revive by removing the comment wrapper.
       __ 03 __
-      <a class="work-row" data-sector="ops" href="work/product-intelligence-layer.html">
+      <a class="work-row reveal" data-sector="ops" href="work/product-intelligence-layer.html">
         <div class="work-head">
           <div class="work-cap">
             <span class="work-no">03</span>
@@ -4895,7 +4931,7 @@
 
       <!-- HIDDEN: Architecture case study (revive by removing the comment wrapper)
       __ 04 __
-      <a class="work-row" data-sector="arch" href="work/ai-modeling-assistant.html">
+      <a class="work-row reveal" data-sector="arch" href="work/ai-modeling-assistant.html">
         <div class="work-head">
           <div class="work-cap">
             <span class="work-no">04</span>
@@ -4936,7 +4972,7 @@
 
       <!-- HIDDEN: Workforce case study (revive by removing the comment wrapper)
       __ 05 __
-      <a class="work-row" data-sector="workforce" href="work/careeros.html">
+      <a class="work-row reveal" data-sector="workforce" href="work/careeros.html">
         <div class="work-head">
           <div class="work-cap">
             <span class="work-no">05</span>
@@ -4976,7 +5012,7 @@
       -->
 
       <!-- 03 -->
-      <div class="work-row work-row--placeholder" data-sector="sales">
+      <div class="work-row work-row--placeholder reveal" data-sector="sales">
         <div class="work-head">
           <div class="work-cap">
             <span class="work-no">03</span>
@@ -5231,12 +5267,12 @@
 <!-- ============= TEAM ============= -->
 <section class="team" id="team">
   <div class="container">
-    <div class="team-head">
+    <div class="team-head reveal">
       <span class="label-mono"><span class="dot"></span>De mensen</span>
       <h2>Gebouwd door mensen die <span class="brand-gradient-text">echte systemen hebben opgeleverd.</span></h2>
     </div>
-    <div class="team-grid">
-      <article class="tmember">
+    <div class="team-grid reveal-stagger">
+      <article class="tmember reveal">
         <div class="tmember-photo">
           <img src="../assets/team/brinda.jpeg" alt="Brinda Rajendran">
         </div>
@@ -5246,7 +5282,7 @@
           <a class="tmember-li" href="https://www.linkedin.com/in/brinda-rajendran/" target="_blank" rel="noopener" aria-label="Brinda Rajendran on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9.5h4V21H3zM10 9.5h3.8v1.57h.05c.53-1 1.83-2.07 3.77-2.07 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></a>
         </div>
       </article>
-      <article class="tmember">
+      <article class="tmember reveal">
         <div class="tmember-photo">
           <img src="../assets/team/susse.jpeg" alt="Susse">
         </div>
@@ -5256,7 +5292,7 @@
           <a class="tmember-li" href="https://www.linkedin.com/in/susse/" target="_blank" rel="noopener" aria-label="Susse on LinkedIn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5A2.5 2.5 0 1 0 5 8.5a2.5 2.5 0 0 0-.02-5zM3 9.5h4V21H3zM10 9.5h3.8v1.57h.05c.53-1 1.83-2.07 3.77-2.07 4.03 0 4.78 2.65 4.78 6.1V21h-4v-5.1c0-1.22-.02-2.78-1.7-2.78-1.7 0-1.96 1.33-1.96 2.7V21h-4z"/></svg></a>
         </div>
       </article>
-      <article class="tmember">
+      <article class="tmember reveal">
         <div class="tmember-photo">
           <img src="../assets/team/jurre.png" alt="Jurre Grimberg">
         </div>
@@ -5267,7 +5303,7 @@
         </div>
       </article>
 
-      <article class="tmember tmember-cta">
+      <article class="tmember tmember-cta reveal">
         <a class="tmember-photo-link" href="about.html" aria-label="Read about us and our culture">
           <div class="tmember-photo tmember-photo-illustration">
             <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" fill="none" stroke="#1F1F1F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -5305,7 +5341,7 @@
 <!-- ============= INSIGHTS ============= -->
 <section id="insights">
   <div class="container">
-    <div class="section-head">
+    <div class="section-head reveal">
       <div>
         <span class="label-mono"><span class="dot"></span>Our thinking</span>
         <h2 style="margin-top: 14px;">Writing about what works.</h2>
@@ -5357,8 +5393,8 @@
       </symbol>
     </svg>
 
-    <div class="insights-grid">
-      <a class="insight is-tech" style="--accent: var(--pink);" href="../insights/evaluating-ai-in-production.html">
+    <div class="insights-grid reveal-stagger">
+      <a class="insight is-tech reveal" style="--accent: var(--pink);" href="../insights/evaluating-ai-in-production.html">
         <span class="insight-cat">Technical AI</span>
         <div class="insight-body">
           <h3>AI evals: what tells you a system still works.</h3>
@@ -5367,7 +5403,7 @@
         <span class="insight-read">10 min read</span>
       </a>
 
-      <a class="insight is-biz" style="--accent: var(--lavender);" href="../insights/how-to-score-ai-use-case.html">
+      <a class="insight is-biz reveal" style="--accent: var(--lavender);" href="../insights/how-to-score-ai-use-case.html">
         <span class="insight-cat">Business AI</span>
         <div class="insight-body">
           <h3>Scoring an AI use case before the build.</h3>
@@ -5376,7 +5412,7 @@
         <span class="insight-read">7 min read</span>
       </a>
 
-      <a class="insight is-biz" style="--accent: var(--magenta);" href="../insights/ai-architecture-lock-in.html">
+      <a class="insight is-biz reveal" style="--accent: var(--magenta);" href="../insights/ai-architecture-lock-in.html">
         <span class="insight-cat">Business AI</span>
         <div class="insight-body">
           <h3>AI architecture: what locks you in, and what doesn't.</h3>
@@ -5398,7 +5434,7 @@
 <section id="faq" class="section-tight" style="background: var(--surface-2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);">
   <div class="container">
     <div class="faq-grid">
-      <div>
+      <div class="reveal">
         <span class="label-mono"><span class="dot"></span>Vragen die we vaak vroeg krijgen</span>
         <h2 style="margin-top: 14px;">Antwoorden op de vragen die het vaakst terugkomen.</h2>
         <p style="margin-top: 16px; color: var(--ink-soft); max-width: 32ch;">
@@ -5493,7 +5529,7 @@
 <!-- ============= CLOSING CTA / CONTACT ============= -->
 <section class="closing" id="contact">
   <div class="container closing-grid">
-    <div>
+    <div class="reveal">
       <h2>
         Vertel ons waar je<br>
         <span class="grad-light">wilt dat AI helpt.</span>
@@ -5506,7 +5542,7 @@
       </p>
     </div>
 
-    <div class="closing-cta">
+    <div class="closing-cta reveal">
       <span class="closing-cta-eyebrow">Workflow-sessie. 45 minuten. Gratis</span>
       <p class="closing-cta-copy">Breng &eacute;&eacute;n workflow die je sneller wilt laten lopen. We lopen door waar AI past, hoe de eerste stap eruit ziet, en wat dat voor je team zou veranderen.</p>
       <a class="btn btn-primary closing-cta-btn" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
@@ -6858,6 +6894,29 @@
         close();
       }
     });
+  })();
+</script>
+
+<script>
+  /* Scroll-reveal observer. One-shot: each .reveal element gets
+     .is-visible the first time it enters the viewport, then is
+     unobserved. Falls back to immediately visible if IO is missing. */
+  (function () {
+    var els = document.querySelectorAll('.reveal');
+    if (!els.length) return;
+    if (!('IntersectionObserver' in window)) {
+      els.forEach(function (el) { el.classList.add('is-visible'); });
+      return;
+    }
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    els.forEach(function (el) { io.observe(el); });
   })();
 </script>
 
