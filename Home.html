@@ -4679,7 +4679,7 @@
   <div class="container">
 
     <!-- section header (with cycling per-step content) -->
-    <div class="pipe-header">
+    <div class="pipe-header reveal">
       <span class="pipe-eyebrow"><span class="pipe-status-dot" aria-hidden="true"></span>How it begins</span>
 
       <div class="pipe-display" id="stageDisplay">
@@ -5161,7 +5161,7 @@
 <section class="stack-section" id="stack">
   <div class="container">
 
-    <header class="stack-head">
+    <header class="stack-head reveal">
       <div>
         <span class="label-mono"><span class="dot"></span>How it&rsquo;s built</span>
         <h2>Tech-agnostic by design. The right tools for each project.</h2>
@@ -5171,10 +5171,10 @@
       </div>
     </header>
 
-    <div class="layers">
+    <div class="layers reveal-stagger">
 
       <!-- 01 -->
-      <article class="layer">
+      <article class="layer reveal">
         <div class="layer-top">
           <span class="layer-mark" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -5200,7 +5200,7 @@
       </article>
 
       <!-- 02 -->
-      <article class="layer">
+      <article class="layer reveal">
         <div class="layer-top">
           <span class="layer-mark" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -5226,7 +5226,7 @@
       </article>
 
       <!-- 03 -->
-      <article class="layer">
+      <article class="layer reveal">
         <div class="layer-top">
           <span class="layer-mark" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 22 22" fill="none">
@@ -5259,30 +5259,30 @@
 <section class="compliance-section" id="compliance">
   <canvas class="ct-bg" id="ctBg"></canvas>
   <div class="container">
-    <div class="ct-head">
+    <div class="ct-head reveal">
       <span class="ct-eyebrow">Built to pass review</span>
       <h2 class="ct-headline">Designed for the questions your legal and IT teams ask first.</h2>
       <p class="ct-lede2">Every system we build is designed so your legal, security, and compliance teams can review it without surprises. Data boundaries, human oversight, approval trails, and access controls are in the architecture from day one. Not added when someone raises a concern.</p>
     </div>
 
-    <ul class="ct-areas" aria-label="Review-readiness areas">
-      <li class="ct-area">
+    <ul class="ct-areas reveal-stagger" aria-label="Review-readiness areas">
+      <li class="ct-area reveal">
         <span class="ct-area-label">Privacy</span>
         <span class="ct-area-items">GDPR &middot; DPIA</span>
       </li>
-      <li class="ct-area">
+      <li class="ct-area reveal">
         <span class="ct-area-label">AI governance</span>
         <span class="ct-area-items">EU AI Act &middot; Human oversight &middot; Audit trail</span>
       </li>
-      <li class="ct-area">
+      <li class="ct-area reveal">
         <span class="ct-area-label">Security</span>
         <span class="ct-area-items">ISO/IEC 27001 &middot; SOC 2 Type II</span>
       </li>
-      <li class="ct-area">
+      <li class="ct-area reveal">
         <span class="ct-area-label">Access control</span>
         <span class="ct-area-items">SSO &middot; RBAC &middot; Least privilege</span>
       </li>
-      <li class="ct-area">
+      <li class="ct-area reveal">
         <span class="ct-area-label">Operational review</span>
         <span class="ct-area-items">Logging &middot; Monitoring &middot; Approval records</span>
       </li>
@@ -6963,10 +6963,7 @@
     }
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (entry) {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('is-visible');
-          io.unobserve(entry.target);
-        }
+        entry.target.classList.toggle('is-visible', entry.isIntersecting);
       });
     }, { rootMargin: '0px 0px -3% 0px', threshold: 0 });
     els.forEach(function (el) { io.observe(el); });
