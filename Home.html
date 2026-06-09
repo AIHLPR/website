@@ -124,16 +124,28 @@
     line-height: 1;
     transition: all 220ms var(--ease);
   }
-  .btn-primary { background: var(--pink); color: var(--white); }
-  .btn-primary:hover { background: var(--ink); }
+  .btn-primary {
+    background: var(--pink); color: var(--white);
+    box-shadow: 0 12px 32px -16px color-mix(in oklab, var(--pink) 65%, transparent);
+  }
+  .btn-primary:hover {
+    background: var(--ink);
+    box-shadow: 0 18px 44px -18px color-mix(in oklab, var(--pink) 80%, transparent);
+    transform: translateY(-1px);
+  }
   .btn-ink { background: var(--ink); color: var(--white); }
   .btn-ink:hover { background: var(--blue); }
   .btn-ghost {
     background: transparent;
     color: var(--ink);
     border-color: var(--hairline-strong);
+    box-shadow: 0 8px 22px -14px rgba(31,31,31,0.18);
   }
-  .btn-ghost:hover { border-color: var(--ink); }
+  .btn-ghost:hover {
+    border-color: var(--ink);
+    box-shadow: 0 14px 32px -16px rgba(31,31,31,0.30);
+    transform: translateY(-1px);
+  }
   .btn .arrow { transition: transform 220ms var(--ease); }
   .btn:hover .arrow { transform: translateX(3px); }
 
@@ -302,12 +314,11 @@
   @media (max-width: 760px) {
     .nav-links { display: none; }
     .nav-burger { display: block; }
-    /* Always-solid nav on mobile so page content doesn't bleed
-       through the logo / hamburger before scroll-dock kicks in. */
-    .nav {
-      background: var(--white);
-      border-bottom-color: var(--hairline);
-    }
+    /* On mobile the hero animation is hidden, so the dock-driven
+       .is-docked toggle never fires. The scroll listener at end of
+       body adds .is-docked once the user scrolls past the hero. At
+       scroll = 0 the nav is transparent and dissolves into the
+       white hero -- the 'boundless' feel. */
   }
 
   /* ===== Hero ===== */
@@ -339,6 +350,28 @@
     .hero-sticky { position: static; height: auto; padding: 32px 0 64px; }
   }
   .hero-left { display: flex; flex-direction: column; gap: 28px; }
+
+  /* Hero on-load entrance: each child of .hero-left rises into place
+     with a stagger. Matches the .reveal motion vocabulary so the
+     above-fold and below-fold animations feel like one system.
+     animation-fill-mode: both holds the start state until the delay
+     elapses, so nothing flashes before the animation begins. */
+  @keyframes hero-rise {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  .hero-left > * {
+    animation: hero-rise 800ms var(--ease) both;
+  }
+  .hero-left > *:nth-child(1) { animation-delay: 120ms; }
+  .hero-left > *:nth-child(2) { animation-delay: 240ms; }
+  .hero-left > *:nth-child(3) { animation-delay: 380ms; }
+  .hero-left > *:nth-child(4) { animation-delay: 520ms; }
+  .hero-left > *:nth-child(5) { animation-delay: 660ms; }
+  @media (prefers-reduced-motion: reduce) {
+    .hero-left > * { animation: none; }
+  }
+
   .hero-meta {
     display: inline-flex;
     align-items: center;
@@ -6893,6 +6926,27 @@
         close();
       }
     });
+  })();
+</script>
+
+<script>
+  /* Boundless nav: on mobile the dock animation that toggles
+     .is-docked doesn't run, so the nav stays transparent forever
+     and content would bleed through. This adds .is-docked once
+     the user scrolls past ~60px. Desktop also gets it as a
+     belt-and-braces measure (same end state as dock animation). */
+  (function () {
+    var nav = document.querySelector('.nav');
+    if (!nav) return;
+    var threshold = 60;
+    function update() {
+      var docked = window.scrollY > threshold;
+      if (docked !== nav.classList.contains('is-docked')) {
+        nav.classList.toggle('is-docked', docked);
+      }
+    }
+    update();
+    window.addEventListener('scroll', update, { passive: true });
   })();
 </script>
 
