@@ -3556,6 +3556,15 @@
     }
     .stage-display-main { min-height: 260px; }
   }
+  /* Mobile-only: drop the step console and the reserved 260px slot.
+     Brings 'This is how we usually work' right up against the rail so
+     the whole 'How it begins' card fits on one phone screen. */
+  @media (max-width: 760px) {
+    .stage-console { display: none; }
+    .stage-display { margin-top: 8px; gap: 0; }
+    .stage-display-main { min-height: 0; }
+    .pipe-cta { margin-top: 18px; padding-top: 18px; }
+  }
   @media (prefers-reduced-motion: reduce) {
     .pipe-status-dot, .rail-stop.is-active .rail-node::before,
     .stage-cursor { animation: none; }
