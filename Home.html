@@ -3910,19 +3910,143 @@
 
   /* ===== Value band (missing part #1: what you get) ===== */
   .valueband { background: var(--white); border-top: 1px solid var(--hairline); }
-  .value-head { margin-bottom: clamp(32px, 4vw, 52px); }
-  .value-head h2 { font-size: clamp(28px, 3vw, 44px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.08; margin: 12px 0 0; max-width: 20ch; }
-  .value-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(30px, 3.4vw, 52px) clamp(28px, 3vw, 64px); counter-reset: valnum; }
-  @media (max-width: 900px) { .value-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 600px) { .value-grid { grid-template-columns: 1fr; } }
-  .value-item { display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--hairline); counter-increment: valnum; }
-  .value-item::before {
-    content: counter(valnum, decimal-leading-zero);
-    font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em;
-    color: var(--ink-muted); margin-bottom: 2px;
+
+  /* Two-column layout: sticky statement on the left, weighted bento on the right. */
+  .diff-layout {
+    display: grid;
+    grid-template-columns: minmax(0, 0.86fr) minmax(0, 1.14fr);
+    gap: clamp(40px, 6vw, 88px);
+    align-items: start;
   }
-  .value-title { font-family: var(--font-display); font-size: clamp(17px, 1.4vw, 20px); font-weight: 600; letter-spacing: -0.015em; color: var(--ink); }
-  .value-desc { font-size: 14.5px; line-height: 1.6; color: var(--ink-soft); margin: 0; max-width: 34ch; }
+  @media (max-width: 940px) { .diff-layout { grid-template-columns: 1fr; gap: 44px; } }
+
+  .diff-aside { position: sticky; top: 96px; align-self: start; }
+  @media (max-width: 940px) { .diff-aside { position: static; } }
+  .diff-aside h2 {
+    font-size: clamp(34px, 4vw, 56px);
+    font-weight: 600;
+    line-height: 1.04;
+    letter-spacing: -0.03em;
+    margin-top: 18px;
+    max-width: 14ch;
+  }
+  .diff-aside .lede {
+    color: var(--ink-soft);
+    font-size: clamp(15px, 1.2vw, 18px);
+    line-height: 1.6;
+    margin: 24px 0 0;
+    max-width: 38ch;
+  }
+  .diff-aside .rule {
+    width: 52px; height: 2px; border-radius: 2px;
+    background: var(--gradient);
+    margin-top: 30px;
+  }
+
+  /* Bento of six points: hero (01) on top spanning 2 cols, four mid tiles in two
+     rows of 2, closer (06) on the bottom spanning 2 cols. Bookends share the
+     surface-2 background + a gradient hairline -- 01's at the top, 06's at the
+     bottom -- so the section reads as 'opens here, closes here'. No dark fill. */
+  .diff-bento {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    grid-template-areas:
+      "hero hero"
+      "p2   p3"
+      "p4   p5"
+      "own  own";
+  }
+  @media (max-width: 560px) {
+    .diff-bento {
+      grid-template-columns: 1fr;
+      grid-template-areas: "hero" "p2" "p3" "p4" "p5" "own";
+    }
+  }
+
+  .pt {
+    border-radius: 18px;
+    border: 1px solid var(--hairline);
+    background: var(--white);
+    padding: clamp(22px, 2vw, 28px);
+    display: flex;
+    flex-direction: column;
+    transition: border-color 220ms var(--ease), transform 220ms var(--ease), box-shadow 220ms var(--ease);
+  }
+  .pt:hover {
+    border-color: var(--hairline-strong);
+    transform: translateY(-3px);
+    box-shadow: 0 20px 44px -30px rgba(31,31,31,0.4);
+  }
+  .pt-num {
+    font-family: var(--font-mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    color: var(--ink-muted);
+  }
+  .pt-title {
+    font-family: var(--font-display);
+    font-size: clamp(19px, 1.6vw, 23px);
+    font-weight: 600;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin: 14px 0 0;
+    color: var(--ink);
+  }
+  .pt-body {
+    color: var(--ink-soft);
+    font-size: 14.5px;
+    line-height: 1.55;
+    margin: 10px 0 0;
+    max-width: 46ch;
+  }
+
+  /* 01 hero -- LIGHT feature, gradient strip on top */
+  .pt-hero {
+    grid-area: hero;
+    background: var(--surface-2);
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(20px, 3vw, 40px);
+    position: relative;
+    overflow: hidden;
+  }
+  .pt-hero::before {
+    content: "";
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: var(--gradient);
+  }
+  .pt-hero .pt-title { font-size: clamp(24px, 2.4vw, 32px); }
+  .pt-hero .pt-body { max-width: 34ch; margin-top: 12px; }
+  .pt-hero .pt-main { flex: 1.2; }
+  .pt-hero .pt-side { flex: 1; }
+  @media (max-width: 560px) { .pt-hero { flex-direction: column; align-items: flex-start; } }
+
+  /* 06 closer -- LIGHT feature, gradient strip on bottom */
+  .pt-own {
+    grid-area: own;
+    background: var(--surface-2);
+    flex-direction: row;
+    align-items: center;
+    gap: clamp(20px, 3vw, 40px);
+    position: relative;
+    overflow: hidden;
+  }
+  .pt-own::after {
+    content: "";
+    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+    background: var(--gradient);
+  }
+  .pt-own .pt-main { flex: 1.2; }
+  .pt-own .pt-side { flex: 1; }
+  .pt-own .pt-title { font-size: clamp(22px, 2vw, 28px); }
+  @media (max-width: 560px) { .pt-own { flex-direction: column; align-items: flex-start; } }
+
+  .pt-p2 { grid-area: p2; }
+  .pt-p3 { grid-area: p3; }
+  .pt-p4 { grid-area: p4; }
+  .pt-p5 { grid-area: p5; }
 
   /* ===== The fit — flow diagram + copy ===== */
   .fit-layout { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: clamp(32px, 5vw, 84px); align-items: center; }
@@ -4259,34 +4383,69 @@
 <!-- ============= WHAT YOU GET (missing part #1) ============= -->
 <section class="valueband section-tight" id="why">
   <div class="container">
-    <div class="value-head reveal">
-      <span class="label-mono"><span class="dot"></span>What makes us different</span>
-      <h2>One team. <span class="brand-gradient-text">From first workflow to full deployment.</span></h2>
-    </div>
-    <div class="value-grid reveal-stagger">
-      <div class="value-item reveal">
-        <span class="value-title">We stay after go-live.</span>
-        <p class="value-desc">Strategy, build, deployment, day-to-day operations. One team across the full lifecycle of the system.</p>
-      </div>
-      <div class="value-item reveal">
-        <span class="value-title">Everything under one roof.</span>
-        <p class="value-desc">Models, data, workflows, governance, cloud. One team, one stack, one point of accountability.</p>
-      </div>
-      <div class="value-item reveal">
-        <span class="value-title">Built to run in production.</span>
-        <p class="value-desc">Every system we ship holds up under real users, real data, and real operational pressure, and stays monitored after launch.</p>
-      </div>
-      <div class="value-item reveal">
-        <span class="value-title">Fits how you already work.</span>
-        <p class="value-desc">We design around your processes, your tools, and your approval chains. Nothing gets ripped out.</p>
-      </div>
-      <div class="value-item reveal">
-        <span class="value-title">People stay in charge.</span>
-        <p class="value-desc">Approval points, review screens, and audit trails are designed into the workflow from day one.</p>
-      </div>
-      <div class="value-item reveal">
-        <span class="value-title">You own everything.</span>
-        <p class="value-desc">The workflows, the logic, the data. Everything we build stays under your control. Before, during, and after.</p>
+    <div class="diff-layout">
+
+      <!-- LEFT: sticky statement -->
+      <aside class="diff-aside reveal">
+        <span class="label-mono"><span class="dot"></span>What makes us different</span>
+        <h2>One team. <span class="brand-gradient-text">From first workflow to full deployment.</span></h2>
+        <p class="lede">Six things that hold true on every engagement, from the first workflow we map to the day-to-day system you run long after launch.</p>
+        <div class="rule"></div>
+      </aside>
+
+      <!-- RIGHT: weighted bento -->
+      <div class="diff-bento reveal-stagger">
+
+        <!-- 01 hero -->
+        <article class="pt pt-hero reveal">
+          <div class="pt-main">
+            <span class="pt-num">01</span>
+            <h3 class="pt-title">We stay after go-live.</h3>
+          </div>
+          <div class="pt-side">
+            <p class="pt-body">Strategy, build, deployment, day-to-day operations. One team across the full lifecycle of the system.</p>
+          </div>
+        </article>
+
+        <!-- 02 -->
+        <article class="pt pt-p2 reveal">
+          <span class="pt-num">02</span>
+          <h3 class="pt-title">Everything under one roof.</h3>
+          <p class="pt-body">Models, data, workflows, governance, cloud. One team, one stack, one point of accountability.</p>
+        </article>
+
+        <!-- 03 -->
+        <article class="pt pt-p3 reveal">
+          <span class="pt-num">03</span>
+          <h3 class="pt-title">Built to run in production.</h3>
+          <p class="pt-body">Every system we ship holds up under real users, real data, and real operational pressure, and stays monitored after launch.</p>
+        </article>
+
+        <!-- 04 -->
+        <article class="pt pt-p4 reveal">
+          <span class="pt-num">04</span>
+          <h3 class="pt-title">Fits how you already work.</h3>
+          <p class="pt-body">We design around your processes, your tools, and your approval chains. Nothing gets ripped out.</p>
+        </article>
+
+        <!-- 05 -->
+        <article class="pt pt-p5 reveal">
+          <span class="pt-num">05</span>
+          <h3 class="pt-title">People stay in charge.</h3>
+          <p class="pt-body">Approval points, review screens, and audit trails are designed into the workflow from day one.</p>
+        </article>
+
+        <!-- 06 closer -->
+        <article class="pt pt-own reveal">
+          <div class="pt-main">
+            <span class="pt-num">06</span>
+            <h3 class="pt-title">You own everything.</h3>
+          </div>
+          <div class="pt-side">
+            <p class="pt-body">The workflows, the logic, the data. Everything we build stays under your control. Before, during, and after.</p>
+          </div>
+        </article>
+
       </div>
     </div>
   </div>
