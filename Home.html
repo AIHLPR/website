@@ -3917,6 +3917,38 @@
   .fitflow-outputs { display: flex; flex-direction: column; gap: 12px; }
   .ffo-tile { width: 48px; height: 48px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--white); display: grid; place-items: center; box-shadow: 0 8px 20px -14px rgba(31,31,31,0.35); }
   .ffo-tile svg { width: 20px; height: 20px; color: var(--ink); }
+
+  /* Float / bob on the fit-band tiles. Sources pill on the left
+     drifts as one unit; each output tile on the right drifts
+     individually with staggered phase so they don't move in
+     unison. Pause on hover. Disabled on mobile and under
+     prefers-reduced-motion. The SVG wires don't follow (they're
+     drawn once at rest position), but the 6px amplitude is
+     small enough that the disconnect isn't noticeable. */
+  @keyframes fit-bob {
+    0%   { transform: translateY(-6px); }
+    100% { transform: translateY(6px); }
+  }
+  .fitflow-sources,
+  .ffo-tile {
+    animation: fit-bob 5s ease-in-out infinite alternate;
+    will-change: transform;
+  }
+  .fitflow-sources { animation-delay: 0s; }
+  .ffo-tile:nth-child(1) { animation-delay: -0.7s; }
+  .ffo-tile:nth-child(2) { animation-delay: -1.4s; }
+  .ffo-tile:nth-child(3) { animation-delay: -2.1s; }
+  .ffo-tile:nth-child(4) { animation-delay: -2.8s; }
+  .fitflow-sources:hover,
+  .ffo-tile:hover { animation-play-state: paused; }
+  @media (max-width: 760px) {
+    .fitflow-sources,
+    .ffo-tile { animation: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .fitflow-sources,
+    .ffo-tile { animation: none; }
+  }
   .fit-copy { display: flex; flex-direction: column; gap: 14px; }
   .fit-copy h2 { font-size: clamp(30px, 3.4vw, 52px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.04; margin: 6px 0 0; }
   .fit-copy .fitband-sub { margin: 4px 0 0; max-width: 46ch; }
