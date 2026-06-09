@@ -472,6 +472,13 @@
     max-width: 52ch;
   }
 
+  /* On mobile the hero animation is skipped (home-v2-hero.js early-returns).
+     Hide the .hero-anim slot entirely so the empty SVG doesn't render as a
+     static unstyled constellation under the headline. */
+  @media (max-width: 760px) {
+    .hero-anim { display: none; }
+  }
+
   /* ===== Clients strip (marquee — logos drift right → left in a slow loop) ===== */
   .clients {
     padding: clamp(20px, 2.4vw, 32px) 0;
@@ -613,11 +620,28 @@
   .capvisual.is-active { opacity: 1; pointer-events: auto; }
   .capvisual .cap-strip-visual { width: 100%; }
   @media (max-width: 900px) {
+    /* Single column, but interleave text + matching visual.
+       display:contents flattens the two columns so .capstep and .capvisual
+       become siblings under .capscroll, then `order` pairs them up:
+       text-1, visual-1, text-2, visual-2, ... */
     .capscroll { grid-template-columns: 1fr; gap: 0; }
+    .capscroll-text,
+    .capscroll-visual { display: contents; }
     .capstep { min-height: 0; padding: 30px 0; }
     .capstep-inner { opacity: 1; }
-    .capscroll-visual { position: static; height: auto; display: flex; flex-direction: column; gap: 28px; margin-top: 20px; }
-    .capvisual { position: relative; inset: auto; opacity: 1; pointer-events: auto; }
+    .capvisual {
+      position: relative; inset: auto;
+      opacity: 1; pointer-events: auto;
+      margin: 0 0 28px;
+    }
+    .capstep[data-i="0"]   { order: 0; }
+    .capvisual[data-i="0"] { order: 1; }
+    .capstep[data-i="1"]   { order: 2; }
+    .capvisual[data-i="1"] { order: 3; }
+    .capstep[data-i="2"]   { order: 4; }
+    .capvisual[data-i="2"] { order: 5; }
+    .capstep[data-i="3"]   { order: 6; }
+    .capvisual[data-i="3"] { order: 7; }
   }
   .cap-pin:nth-child(1) { --cap-i: 0; z-index: 1; }
   .cap-pin:nth-child(2) { --cap-i: 1; z-index: 2; }
