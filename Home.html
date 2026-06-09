@@ -4165,7 +4165,19 @@
   .fit-copy h2 { font-size: clamp(30px, 3.4vw, 52px); font-weight: 600; letter-spacing: -0.03em; line-height: 1.04; margin: 6px 0 0; }
   .fit-copy .fitband-sub { margin: 4px 0 0; max-width: 46ch; }
   .fit-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
-  .fit-pill { font-family: var(--font-display); font-weight: 500; font-size: clamp(14px, 1.1vw, 16px); color: var(--ink); padding: 11px 19px; border: 1px solid var(--hairline-strong); border-radius: 12px; background: var(--white); transition: border-color .2s var(--ease), color .2s var(--ease), transform .2s var(--ease); }
+  .fit-pill {
+    font-family: var(--font-mono);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    padding: 8px 14px;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 999px;
+    background: var(--white);
+    transition: border-color .2s var(--ease), color .2s var(--ease), transform .2s var(--ease);
+  }
   .fit-pill:hover { border-color: var(--pink); color: var(--pink); transform: translateY(-1px); }
 
   /* =========================================================
