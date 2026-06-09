@@ -3899,11 +3899,11 @@
      ========================================================= */
   .reveal {
     opacity: 0;
-    transform: translateY(16px);
+    transform: translateY(28px);
     transition:
-      opacity 600ms var(--ease),
-      transform 600ms var(--ease);
-    transition-delay: calc(var(--reveal-i, 0) * 80ms);
+      opacity 800ms var(--ease),
+      transform 800ms var(--ease);
+    transition-delay: calc(var(--reveal-i, 0) * 110ms);
     will-change: opacity, transform;
   }
   .reveal.is-visible {
@@ -6914,7 +6914,7 @@
           io.unobserve(entry.target);
         }
       });
-    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
+    }, { rootMargin: '0px 0px -3% 0px', threshold: 0 });
     els.forEach(function (el) { io.observe(el); });
   })();
 </script>
