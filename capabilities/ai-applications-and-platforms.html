@@ -2572,7 +2572,9 @@
      shows a condensed .panel-figure-m mini-dashboard built for this
      width. Dots + swipe hint sit under the carousel. */
   @media (max-width: 920px) {
-    .poss-sticky { display: none; }
+    /* specificity bump: base rule '.poss-sticky { display: grid }' sits later
+       in the sheet with equal specificity and would otherwise win. */
+    .poss-stack-pinned .poss-sticky { display: none; }
     .poss-panel .panel-figure { display: none; }
     .poss-stack-copy {
       display: flex;
