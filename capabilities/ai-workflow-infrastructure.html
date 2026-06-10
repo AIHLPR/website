@@ -836,6 +836,325 @@
     line-height: 1.15;
     max-width: 30ch;
   }
+
+  /* =====================================================================
+     MOBILE PASS (<=760px) — adopts the Claude Design mock fidelity:
+     - Tighter hero H1
+     - Five capabilities (whatwebuild): collapsible accordion, one open at
+       a time. Desktop .ww-grid keeps its current expanded grid.
+     - Behaviour stepper: connecting rail + AI/OP/RV/§ avatars on rail
+     - Failure rows: status badge chip + clean stacked layout
+     - Grow flow: tighter pill chain that wraps cleanly
+     - Grow cards: 2-column compact grid
+     - IT-architecture (archlayers): dark collapsible accordion + trust
+       pills moved BELOW the accordion. Desktop keeps its grid.
+     Markup uses .ww-acc (mobile only) and .al-acc (mobile only) siblings
+     to the existing desktop blocks, hidden above 760px. Desktop CSS is
+     not touched.
+     ===================================================================== */
+  .ww-acc, .al-acc, .al-trust-m { display: none; }
+  @media (max-width: 760px) {
+    /* --- Hero tightening for the Samsung S26 Ultra at ~412px --- */
+    .hero { overflow: visible; padding-bottom: clamp(48px, 6vw, 80px); }
+    .hero-grid {
+      /* defeat the asymmetric-hero 2-col rule from the desktop block */
+      grid-template-columns: 1fr !important;
+      gap: 0 !important;
+    }
+    .hero-visual { margin: 0 !important; }
+    .hero h1 { font-size: 26px; line-height: 1.18; letter-spacing: -0.025em; }
+    .hero-lede { font-size: 15px; line-height: 1.55; }
+    .hero-ctas { gap: 10px; flex-direction: column; }
+    .hero-ctas .btn { width: 100%; }
+
+    /* --- Five capabilities: hide desktop grid, show accordion --- */
+    .whatwebuild .ww-grid { display: none; }
+    .whatwebuild .ww-acc { display: block; }
+
+    /* --- IT architecture: hide desktop grid, show dark accordion --- */
+    .archlayers .archlayers-grid { display: none; }
+    .archlayers .archlayers-trust { display: none; }
+    .archlayers .al-acc { display: block; }
+    .archlayers .al-trust-m { display: flex; }
+
+    /* --- Behaviour stepper: connecting rail + avatar circles --- */
+    .bf-track {
+      display: flex !important;
+      flex-direction: column;
+      gap: 0;
+      padding: 18px 16px !important;
+      position: relative;
+    }
+    /* Vertical rail line down the avatars */
+    .bf-track::before {
+      content: ""; position: absolute;
+      left: calc(16px + 14px);
+      top: 36px; bottom: 36px;
+      width: 1px; background: var(--hairline-strong);
+      z-index: 0;
+    }
+    .bf-step {
+      display: grid !important;
+      grid-template-columns: 28px 1fr;
+      gap: 14px !important;
+      padding: 12px 0 !important;
+      background: transparent !important;
+      border: 0 !important;
+      border-radius: 0 !important;
+      position: relative;
+    }
+    .bf-step .bf-eyebrow {
+      grid-column: 2;
+      order: 1;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      margin-bottom: 2px;
+    }
+    .bf-step .bf-who {
+      grid-column: 1 / -1;
+      display: contents;
+    }
+    .bf-step .bf-av {
+      grid-column: 1;
+      grid-row: span 4;
+      width: 28px; height: 28px;
+      font-size: 9.5px;
+      align-self: start;
+      margin-top: 2px;
+      position: relative;
+      z-index: 1;
+    }
+    .bf-step .bf-name {
+      grid-column: 2;
+      order: 2;
+      font-size: 14px;
+      font-family: var(--font-display);
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
+    }
+    .bf-step .bf-action {
+      grid-column: 2;
+      order: 3;
+      font-size: 12.5px;
+      line-height: 1.5;
+      margin: 0 0 6px;
+    }
+    .bf-step .bf-tag {
+      grid-column: 2;
+      order: 4;
+      border-top: 0;
+      padding-top: 0;
+      margin: 0 0 6px;
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
+    }
+
+    /* --- Failure rows: badge chip aligned right --- */
+    .failure-panel {
+      border: 1px solid var(--hairline-strong);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
+    }
+    .failure-row {
+      display: grid !important;
+      grid-template-columns: 1fr auto !important;
+      gap: 4px 12px !important;
+      padding: 14px 16px !important;
+      align-items: baseline;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .failure-row:last-child { border-bottom: 0; }
+    .failure-row .fname {
+      grid-column: 1;
+      font-size: 14.5px;
+      font-family: var(--font-display);
+      font-weight: 500;
+      letter-spacing: -0.01em;
+    }
+    .failure-row .fmeta {
+      grid-column: 2;
+      grid-row: 1;
+      flex: none;
+      font-family: var(--font-mono);
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      border: 1px solid var(--hairline);
+      background: var(--surface-2);
+      border-radius: 4px;
+      padding: 3px 7px;
+      align-self: start;
+      margin-top: 2px;
+    }
+    .failure-row.is-active .fmeta {
+      color: var(--c);
+      border-color: var(--c);
+      background: color-mix(in oklab, var(--c) 7%, var(--white));
+    }
+    .failure-row .fdesc {
+      grid-column: 1 / -1;
+      font-size: 12.5px;
+      line-height: 1.5;
+    }
+
+    /* --- Grow flow: tight pill chain --- */
+    .grow-flow {
+      gap: 8px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
+    }
+    .grow-flow .gf-step {
+      font-family: var(--font-mono);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding: 8px 12px;
+      border: 1px solid var(--hairline-strong);
+      border-radius: 4px;
+      background: var(--white);
+    }
+    .grow-flow .gf-arr {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      color: var(--c);
+      font-weight: 600;
+    }
+    .grow-labels { gap: 18px; }
+    .grow-labels .gl { border-left: 2px solid var(--c); padding-left: 14px; }
+
+    /* --- Grow cards: 2-column on phones --- */
+    .grow-cards {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 10px !important;
+    }
+    .grow-cards .gc { padding: 14px !important; }
+    .grow-cards .gc-name { font-size: 14.5px; }
+    .grow-cards .gc-desc { font-size: 12px; line-height: 1.45; }
+  }
+
+  /* ===== Mobile accordion styles (light, used by .ww-acc) ===== */
+  .ww-acc {
+    margin-top: 0;
+    border: 1px solid var(--hairline-strong);
+    border-radius: 12px;
+    background: var(--white);
+    overflow: hidden;
+  }
+  .ww-acc details { border-bottom: 1px solid var(--hairline); }
+  .ww-acc details:last-child { border-bottom: 0; }
+  .ww-acc summary {
+    list-style: none; cursor: pointer;
+    display: grid; grid-template-columns: 34px 1fr auto;
+    align-items: center; gap: 12px;
+    padding: 16px 18px; min-height: 56px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .ww-acc summary::-webkit-details-marker { display: none; }
+  .ww-acc .a-num {
+    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
+    letter-spacing: 0.18em; color: var(--c);
+  }
+  .ww-acc .a-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .ww-acc .a-title h3 {
+    font-size: 16.5px; font-weight: 500; letter-spacing: -0.015em;
+    color: var(--ink); margin: 0; line-height: 1.25;
+  }
+  .ww-acc .a-sub {
+    font-size: 12px; line-height: 1.45; color: var(--ink-muted);
+  }
+  .ww-acc .a-chev {
+    width: 9px; height: 9px;
+    border-right: 1.5px solid var(--ink-muted);
+    border-bottom: 1.5px solid var(--ink-muted);
+    transform: rotate(45deg);
+    transition: transform 220ms var(--ease);
+    margin-right: 4px;
+  }
+  .ww-acc details[open] .a-chev { transform: rotate(225deg); }
+  .ww-acc .a-body {
+    padding: 0 18px 18px 64px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .ww-acc .a-body .a-prop {
+    font-size: 13px; line-height: 1.55; color: var(--ink-soft);
+    border-top: 1px solid var(--hairline); padding-top: 12px;
+    margin: 0;
+  }
+  .ww-acc .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .ww-acc .chips span {
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
+    padding: 4px 8px; border: 1px solid var(--hairline-strong);
+    border-radius: 2px;
+  }
+
+  /* ===== Mobile accordion styles (dark, used by .al-acc) ===== */
+  .al-acc {
+    border: 1px solid rgba(255,255,255,0.16);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+    overflow: hidden;
+  }
+  .al-acc details { border-bottom: 1px solid rgba(255,255,255,0.10); }
+  .al-acc details:last-child { border-bottom: 0; }
+  .al-acc summary {
+    list-style: none; cursor: pointer;
+    display: grid; grid-template-columns: 56px 1fr auto;
+    align-items: center; gap: 12px;
+    padding: 16px 18px; min-height: 56px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  .al-acc summary::-webkit-details-marker { display: none; }
+  .al-acc .a-num {
+    font-family: var(--font-mono); font-size: 9px; font-weight: 600;
+    letter-spacing: 0.18em; text-transform: uppercase; color: #a896e8;
+  }
+  .al-acc .a-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+  .al-acc .a-title h3 {
+    font-size: 16.5px; font-weight: 500; color: #fff; margin: 0; line-height: 1.25;
+  }
+  .al-acc .a-sub { font-size: 12px; line-height: 1.45; color: rgba(255,255,255,0.5); }
+  .al-acc .a-chev {
+    width: 9px; height: 9px;
+    border-right: 1.5px solid rgba(255,255,255,0.5);
+    border-bottom: 1.5px solid rgba(255,255,255,0.5);
+    transform: rotate(45deg);
+    transition: transform 220ms var(--ease);
+    margin-right: 4px;
+  }
+  .al-acc details[open] .a-chev { transform: rotate(225deg); }
+  .al-acc .a-body { padding: 0 18px 18px 86px; }
+  .al-acc .items {
+    list-style: none; padding: 14px 0 0; margin: 0;
+    border-top: 1px solid rgba(255,255,255,0.10);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .al-acc .items li {
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.06em; color: rgba(255,255,255,0.78);
+    line-height: 1.45; padding-left: 14px; position: relative;
+  }
+  .al-acc .items li::before {
+    content: ""; position: absolute; left: 0; top: 7px;
+    width: 5px; height: 1px; background: rgba(168,150,232,0.6);
+  }
+  /* Mobile trust pills row (lives below the accordion) */
+  .al-trust-m {
+    margin: 26px 0 0; padding: 0; list-style: none;
+    flex-wrap: wrap; gap: 8px;
+  }
+  .al-trust-m li {
+    font-family: var(--font-mono); font-size: 9.5px; font-weight: 500;
+    letter-spacing: 0.16em; text-transform: uppercase; color: #fff;
+    padding: 9px 16px; border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 999px; background: rgba(255,255,255,0.04);
+  }
 </style>
 
 <style>
@@ -1246,6 +1565,65 @@
         <p class="ww-prop">Once approved, the workflow updates the systems already running your business: CRM, ERP, inbox, ticketing, internal databases. The work is done. The record is closed.</p>
         <div class="ww-chips"><span>CRM</span><span>ERP</span><span>Ticketing</span><span>Databases</span></div>
       </article>
+    </div>
+
+    <!-- Mobile-only: collapsible accordion of the same 5 capabilities -->
+    <div class="ww-acc">
+      <details open>
+        <summary>
+          <span class="a-num">01</span>
+          <span class="a-title"><h3>Requests and triggers</h3><span class="a-sub">Work starts somewhere. The workflow catches it.</span></span>
+          <span class="a-chev"></span>
+        </summary>
+        <div class="a-body">
+          <p class="a-prop">A form submitted, an email arriving, a CRM record updating, a document uploading. The workflow catches every trigger and acts on it. Reliably. Every time.</p>
+          <div class="chips"><span>Forms</span><span>Inboxes</span><span>CRMs</span><span>Documents</span></div>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="a-num">02</span>
+          <span class="a-title"><h3>Context and documents</h3><span class="a-sub">The right files, policy, and history, assembled.</span></span>
+          <span class="a-chev"></span>
+        </summary>
+        <div class="a-body">
+          <p class="a-prop">Before AI does anything useful, it needs the right context: the relevant files, the applicable policy, the customer's history, the linked records. The workflow assembles that automatically, so AI isn't guessing.</p>
+          <div class="chips"><span>Documents</span><span>Records</span><span>Policies</span></div>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="a-num">03</span>
+          <span class="a-title"><h3>Routing and approvals</h3><span class="a-sub">The right task to the right person.</span></span>
+          <span class="a-chev"></span>
+        </summary>
+        <div class="a-body">
+          <p class="a-prop">The right task goes to the right person, with everything they need to decide already attached. No hunting for context. No asking colleagues what stage it's at.</p>
+          <div class="chips"><span>Review queues</span><span>Approvals</span><span>Handoffs</span></div>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="a-num">04</span>
+          <span class="a-title"><h3>Background work</h3><span class="a-sub">Checks, drafts, and reminders while the team decides.</span></span>
+          <span class="a-chev"></span>
+        </summary>
+        <div class="a-body">
+          <p class="a-prop">Routine checks, draft preparation, summaries, and reminders happen in the background while the team focuses on decisions. When a person is needed, the work arrives prepared.</p>
+          <div class="chips"><span>Drafts</span><span>Reminders</span><span>Checks</span></div>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="a-num">05</span>
+          <span class="a-title"><h3>System updates</h3><span class="a-sub">Approved work lands in the systems you run.</span></span>
+          <span class="a-chev"></span>
+        </summary>
+        <div class="a-body">
+          <p class="a-prop">Once approved, the workflow updates the systems already running your business: CRM, ERP, inbox, ticketing, internal databases. The work is done. The record is closed.</p>
+          <div class="chips"><span>CRM</span><span>ERP</span><span>Ticketing</span><span>Databases</span></div>
+        </div>
+      </details>
     </div>
   </div>
 </section>
@@ -1795,6 +2173,84 @@
       <li>Audit-ready</li>
       <li>IT-reviewed</li>
     </ul>
+
+    <!-- Mobile-only: dark collapsible accordion of the same 4 layers -->
+    <div class="al-acc">
+      <details open>
+        <summary>
+          <span class="a-num">Layer 01</span>
+          <span class="a-title"><h3>Where teams use it</h3><span class="a-sub">The surface people see and act on.</span></span>
+          <span class="a-chev"></span>
+        </summary>
+        <div class="a-body">
+          <ul class="items">
+            <li>CDN-fronted distribution</li>
+            <li>Static SPA hosting</li>
+            <li>TLS termination &middot; cert management</li>
+            <li>WAF &middot; DDoS protection</li>
+            <li>Auth at the edge</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="a-num">Layer 02</span>
+          <span class="a-title"><h3>How systems talk to each other</h3><span class="a-sub">Validated and observable. Contained on failure.</span></span>
+          <span class="a-chev"></span>
+        </summary>
+        <div class="a-body">
+          <ul class="items">
+            <li>Gateway &middot; request validation</li>
+            <li>Serverless or containerised compute</li>
+            <li>Auto-scaling &middot; throttling</li>
+            <li>Versioned endpoints</li>
+            <li>Structured logging</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="a-num">Layer 03</span>
+          <span class="a-title"><h3>Where information is stored</h3><span class="a-sub">Encrypted, replicated, recoverable.</span></span>
+          <span class="a-chev"></span>
+        </summary>
+        <div class="a-body">
+          <ul class="items">
+            <li>Multi-AZ relational</li>
+            <li>Vector + relational in one footprint</li>
+            <li>Encryption at rest &amp; in transit</li>
+            <li>Automated backups &middot; point-in-time recovery</li>
+            <li>Tenant-scoped isolation</li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>
+          <span class="a-num">Layer 04</span>
+          <span class="a-title"><h3>How access is controlled</h3><span class="a-sub">SSO at the front, every action recorded.</span></span>
+          <span class="a-chev"></span>
+        </summary>
+        <div class="a-body">
+          <ul class="items">
+            <li>SSO via SAML / OIDC</li>
+            <li>Secrets vault</li>
+            <li>Role-based access</li>
+            <li>Private network isolation</li>
+            <li>Immutable record of action</li>
+            <li>Policy enforcement</li>
+          </ul>
+        </div>
+      </details>
+    </div>
+
+    <!-- Mobile-only trust pill row, lives below the accordion -->
+    <ul class="al-trust-m" aria-label="Trust attributes">
+      <li>Cloud-agnostic</li>
+      <li>Tenant-scoped</li>
+      <li>Role-based</li>
+      <li>Audit-ready</li>
+      <li>IT-reviewed</li>
+    </ul>
   </div>
 </section>
 
@@ -1971,6 +2427,20 @@
   menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => setOpen(false)));
   document.addEventListener('keydown', (e) => { if (e.key === 'Escape') setOpen(false); });
 })();
+</script>
+
+<script>
+  /* Mobile accordions: open one at a time, per group. */
+  (function () {
+    document.querySelectorAll('.ww-acc, .al-acc').forEach(function (group) {
+      var all = group.querySelectorAll('details');
+      all.forEach(function (d) {
+        d.addEventListener('toggle', function () {
+          if (d.open) all.forEach(function (o) { if (o !== d && o.open) o.open = false; });
+        });
+      });
+    });
+  })();
 </script>
 </body>
 </html>
