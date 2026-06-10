@@ -214,6 +214,80 @@
   }
   .hero-visual-caption b { color: var(--ink); font-weight: 600; }
 
+  /* ===== Mobile hero: vertical workflow card (replaces landscape SVG) =====
+     The hero SVG is a 920x480 landscape diagram that shrinks to an illegible
+     sliver on phones. Below 760px we hide it and show a vertical rebuild of
+     the same workflow (trigger -> route -> AI -> review -> record, + parked
+     branch). Desktop is untouched. */
+  .hero-visual-m { display: none; }
+  @media (max-width: 760px) {
+    .hero-visual { display: none; }
+    .hero-visual-m { display: block; margin-top: 28px; }
+    .hero h1 { font-size: 27px; line-height: 1.18; }
+  }
+  .hero-visual-m .wf-card {
+    border: 1px solid var(--hairline-strong); border-radius: 14px;
+    background: var(--white); overflow: hidden;
+  }
+  .hero-visual-m .wf-card-head {
+    display: flex; align-items: center; justify-content: space-between; gap: 10px;
+    padding: 11px 14px; border-bottom: 1px solid var(--hairline);
+    background: var(--surface-2);
+    font-family: var(--font-mono); font-size: 9px;
+    letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .hero-visual-m .wf-card-head .l { color: var(--ink-muted); }
+  .hero-visual-m .wf-card-head .r { color: var(--c); font-weight: 700; text-align: right; }
+  .hero-visual-m .wf-steps { padding: 16px 16px 18px; }
+  .hero-visual-m .wf-step { position: relative; padding: 0 0 0 34px; }
+  .hero-visual-m .wf-node {
+    border: 1.2px solid var(--c); border-radius: 6px;
+    background: var(--white); padding: 10px 12px;
+    display: flex; flex-direction: column; gap: 1px;
+  }
+  .hero-visual-m .wf-node .k {
+    font-family: var(--font-mono); font-size: 9px; font-weight: 700;
+    letter-spacing: 0.16em; text-transform: uppercase; color: var(--c);
+  }
+  .hero-visual-m .wf-node .v { font-size: 12.5px; color: var(--ink); line-height: 1.35; }
+  .hero-visual-m .wf-step .pin {
+    position: absolute; left: 0; top: 12px;
+    width: 22px; height: 22px; border-radius: 999px;
+    border: 1px solid var(--c); background: var(--white); color: var(--c);
+    display: grid; place-items: center;
+    font-family: var(--font-mono); font-size: 8.5px; font-weight: 700; z-index: 1;
+  }
+  .hero-visual-m .wf-step.gate .wf-node { border-width: 1.6px; background: color-mix(in oklab, var(--c) 4%, var(--white)); }
+  .hero-visual-m .wf-step.gate .pin { background: var(--c); color: #fff; }
+  .hero-visual-m .wf-edge {
+    position: relative; height: 30px; margin-left: 10px;
+    border-left: 1.1px solid var(--c);
+  }
+  .hero-visual-m .wf-edge::after {
+    content: ""; position: absolute; left: -3.6px; bottom: 0;
+    width: 6px; height: 6px;
+    border-left: 1.1px solid var(--c); border-bottom: 1.1px solid var(--c);
+    transform: rotate(-45deg);
+  }
+  .hero-visual-m .wf-edge .note {
+    position: absolute; left: 24px; top: 50%; transform: translateY(-50%);
+    font-family: var(--font-mono); font-size: 8.5px;
+    letter-spacing: 0.12em; color: var(--c); white-space: nowrap;
+  }
+  .hero-visual-m .wf-edge.dim { border-left-style: dashed; border-left-color: var(--ink-muted); }
+  .hero-visual-m .wf-edge.dim::after { border-color: var(--ink-muted); }
+  .hero-visual-m .wf-edge.dim .note { color: var(--ink-muted); }
+  .hero-visual-m .wf-step.parked .wf-node { border: 1px dashed var(--ink-muted); background: var(--surface-2); }
+  .hero-visual-m .wf-step.parked .wf-node .k { color: var(--ink-muted); }
+  .hero-visual-m .wf-step.parked .pin { border-color: var(--ink-muted); color: var(--ink-muted); }
+  .hero-visual-m .wf-card-foot {
+    display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+    padding: 11px 14px; border-top: 1px solid var(--hairline);
+    font-family: var(--font-mono); font-size: 8.5px;
+    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
+  }
+  .hero-visual-m .wf-card-foot b { color: var(--ink); font-weight: 600; }
+
   /* Section scaffolding */
   section.block { padding: var(--section-y) 0; border-bottom: 1px solid var(--hairline); }
   section.block:last-of-type { border-bottom: none; }
@@ -942,6 +1016,51 @@
       <div class="hero-visual-caption">
         <span>Workflow infrastructure</span>
         <span><b>Trigger</b> &middot; <b>Routing</b> &middot; <b>Review</b> &middot; <b>Record</b></span>
+      </div>
+    </div>
+
+    <!-- Mobile-only vertical rebuild of the hero workflow diagram -->
+    <div class="hero-visual-m" aria-hidden="true">
+      <div class="wf-card" aria-label="Example workflow">
+        <div class="wf-card-head">
+          <span class="l">Example workflow</span>
+          <span class="r">3 active &middot; 1 paused</span>
+        </div>
+        <div class="wf-steps">
+          <div class="wf-step">
+            <span class="pin">01</span>
+            <div class="wf-node"><span class="k">Trigger</span><span class="v">Trigger received</span></div>
+          </div>
+          <div class="wf-edge"></div>
+          <div class="wf-step">
+            <span class="pin">02</span>
+            <div class="wf-node"><span class="k">Route</span><span class="v">Right team</span></div>
+          </div>
+          <div class="wf-edge"><span class="note">on ok</span></div>
+          <div class="wf-step">
+            <span class="pin">03</span>
+            <div class="wf-node"><span class="k">AI prepares</span><span class="v">Context gathered &middot; draft proposal</span></div>
+          </div>
+          <div class="wf-edge"></div>
+          <div class="wf-step gate">
+            <span class="pin">04</span>
+            <div class="wf-node"><span class="k">Human review</span><span class="v">Review required &middot; approved</span></div>
+          </div>
+          <div class="wf-edge"></div>
+          <div class="wf-step">
+            <span class="pin">05</span>
+            <div class="wf-node"><span class="k">Audit trail</span><span class="v">Decision recorded &rarr; downstream</span></div>
+          </div>
+          <div class="wf-edge dim"><span class="note">if information is missing</span></div>
+          <div class="wf-step parked">
+            <span class="pin">&#10073;&#10073;</span>
+            <div class="wf-node"><span class="k">Parked</span><span class="v">Held for review &middot; replayable</span></div>
+          </div>
+        </div>
+        <div class="wf-card-foot">
+          <span>Workflow infrastructure</span>
+          <span><b>Trigger</b> &middot; <b>Routing</b> &middot; <b>Review</b> &middot; <b>Record</b></span>
+        </div>
       </div>
     </div>
   </div>
