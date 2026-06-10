@@ -1239,6 +1239,9 @@
     align-items: stretch;
   }
   @media (max-width: 880px) { .evolve { grid-template-columns: repeat(2, 1fr); } }
+  /* Phones: the 4-stage ladder reads as one clean column rather than a
+     cramped 2x2 grid. */
+  @media (max-width: 600px) { .evolve { grid-template-columns: 1fr; gap: 12px; } }
   .evolve-step {
     border: 1px solid var(--hairline); border-radius: 12px;
     background: var(--surface-2); padding: 18px 16px 16px;
