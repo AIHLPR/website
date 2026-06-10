@@ -3954,7 +3954,12 @@
   }
 
   /* ===== Connection / fit band (missing part #1) ===== */
-  .fitband { background: var(--surface-2); border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+  .fitband {
+    background: var(--surface-2);
+    border-top: 1px solid var(--hairline);
+    border-bottom: 1px solid var(--hairline);
+    padding-top: clamp(80px, 9vw, 130px);
+  }
   .fitband-head { margin-bottom: clamp(28px, 3.5vw, 46px); }
   .fitband-head h2 { font-size: clamp(28px, 3vw, 44px); font-weight: 600; letter-spacing: -0.025em; line-height: 1.08; margin: 12px 0 0; max-width: 20ch; }
   .fitband-sub { font-size: clamp(15px, 1.1vw, 17px); color: var(--ink-soft); line-height: 1.55; margin: 16px 0 0; max-width: 56ch; }
