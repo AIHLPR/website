@@ -1,10 +1,17 @@
-/* AIHLPR Home v2 — hero animation (spec v1.0)
-   Exact replication of aihlpr-hero-spec.json:
-     - Track A: 0–4970ms auto-intro (entry → hold → tracers → dim → migrate → bounce)
-     - Track B: scroll-driven dock (15%–55% scroll range)
+/* AIHLPR Home v2 — hero animation (spec v1.1 — auto-dock)
+   Two tracks, auto-played but scroll-bypassable:
+     - Track A: 0–4970ms intro (entry → hold → tracers → dim → migrate → bounce)
+     - Track B: auto-dock at A.total + 450ms, lasts 1400ms
+   The dock progress is max(autoDockProgress, scrollProgress), so a patient
+   reader sees it play out on a timer; an impatient one who scrolls down
+   skips straight to the docked state.
    At dockE=1 the entire foreground cluster (#heroLogo) is reparented into the
-   nav's #logoSlot so it sticks as the header logo regardless of further scroll.
-   Scrolling back up un-docks AND replays the entry animation.
+   nav's #logoSlot. The Replay button (#heroReplay) resets mountTime and plays
+   both tracks again.
+
+   v1.0 used scroll position 15%-55% as the *only* dock driver. Users read
+   that as a layout glitch until they happened to scroll, so v1.1 adds the
+   timed auto-dock and keeps scroll as a max-clamped accelerator.
 */
 (function () {
   "use strict";
@@ -514,8 +521,12 @@
     if (replayBtn) replayBtn.classList.remove("is-visible");
   }
 
-  function applyScroll() {
-    scrollT = getSectionProgress();
+  function applyScroll(progressOverride) {
+    // progressOverride lets us drive the dock from a time-based auto-loop
+    // instead of the page's scroll position. The number is normalized
+    // section-progress (0..1), the same shape getSectionProgress would
+    // return; the 0.15..0.55 band is what the original scroll path used.
+    scrollT = (progressOverride != null) ? progressOverride : getSectionProgress();
     const raw = clamp((scrollT - 0.15) / 0.40, 0, 1);
     dockE = raw >= 0.98 ? 1 : easeInOut(raw);
     dockP = raw;
@@ -564,9 +575,37 @@
   // ===== Replay button =====
   if (replayBtn) replayBtn.addEventListener("click", replay);
 
+  // ===== Auto-dock timing =====
+  // Earlier reviewers read the scroll-driven dock as a glitch: the AIHLPR
+  // cluster sat stranded in the hero until they scrolled, by which point
+  // it looked like layout was breaking. We now drive the dock from a
+  // timer that starts shortly after the intro finishes. No scroll
+  // listener, no surprise.
+  const DOCK_AUTO_DELAY = 450;   // ms pause after intro before dock starts
+  const DOCK_AUTO_DUR   = 1400;  // ms for the cluster to travel into the nav
+  let forceDockedAtBoot = false; // set when prefers-reduced-motion
+
+  function autoDockProgress(now) {
+    if (forceDockedAtBoot) return 0.55; // map to dockE = 1 in applyScroll
+    if (mountTime === 0) return 0.15;
+    const elapsed = now - mountTime;
+    const start = A.total + DOCK_AUTO_DELAY;
+    if (elapsed < start) return 0.15;
+    const raw = clamp((elapsed - start) / DOCK_AUTO_DUR, 0, 1);
+    // The original scroll path used the 0.15..0.55 band of section-progress
+    // to drive dockE 0..1 (see applyScroll). Stay inside that band.
+    return 0.15 + raw * 0.40;
+  }
+
   // ===== RAF loop =====
   function frame(now) {
     applyIntro(now);
+    // Whichever progress is higher wins: the auto-dock timer plays out
+    // on its own for patient readers, but a scroll past the hero pulls
+    // the cluster into the nav early. Never less than 0.15 (pre-dock).
+    const auto = autoDockProgress(now);
+    const scrolled = getSectionProgress();
+    applyScroll(Math.max(auto, scrolled));
     requestAnimationFrame(frame);
   }
 
@@ -581,13 +620,14 @@
     if (prefersReduce) {
       forcedIntroMs = A.total;
       introDone = true;
+      forceDockedAtBoot = true;
     }
     computeDock();
     mountTime = performance.now();
     requestAnimationFrame(frame);
-    window.addEventListener("scroll", applyScroll, { passive: true });
-    window.addEventListener("resize", () => { computeDock(); applyScroll(); });
-    applyScroll();
+    // No scroll listener: the RAF loop reads scroll position itself every
+    // frame so we can max() it against the auto-dock timer.
+    window.addEventListener("resize", computeDock);
   }
 
   if (heroLetters.complete && heroLetters.naturalWidth > 0) init();

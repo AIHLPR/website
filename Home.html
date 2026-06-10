@@ -6750,8 +6750,11 @@
     return clamp(-rect.top / total, 0, 1);
   }
 
-  function applyScroll() {
-    scrollT = getSectionProgress();
+  function applyScroll(progressOverride) {
+    // progressOverride lets the auto-dock timer drive the same logic
+    // without scrolling. The number is normalized section-progress (0..1),
+    // and the dock band is 0.15..0.55.
+    scrollT = (progressOverride != null) ? progressOverride : getSectionProgress();
     const raw = clamp((scrollT - 0.15) / 0.40, 0, 1);
     dockE = raw >= 0.98 ? 1 : easeInOut(raw);
     dockP = raw;
@@ -6823,21 +6826,44 @@
   }
   if (replayBtn) replayBtn.addEventListener("click", replay);
 
+  // ===== Auto-dock (v1.1) =====
+  // Earlier reviewers read the scroll-coupled dock as a layout glitch:
+  // the cluster sat in the hero until they scrolled, then jumped into
+  // the nav. Now the dock auto-plays on a timer ~450ms after the intro
+  // finishes, but scrolling past the hero still wins (max of the two).
+  const DOCK_AUTO_DELAY = 450;
+  const DOCK_AUTO_DUR   = 1400;
+  let forceDockedAtBoot = false;
+  function autoDockProgress(now) {
+    if (forceDockedAtBoot) return 0.55;
+    if (mountTime === 0) return 0.15;
+    const elapsed = now - mountTime;
+    const start = A.total + DOCK_AUTO_DELAY;
+    if (elapsed < start) return 0.15;
+    const raw = clamp((elapsed - start) / DOCK_AUTO_DUR, 0, 1);
+    return 0.15 + raw * 0.40;
+  }
+
   function frame(now) {
     applyIntro(now);
+    // Whichever progress is higher wins: patient readers see the auto-dock
+    // play out, impatient ones who scroll get the cluster pulled in early.
+    const auto = autoDockProgress(now);
+    const scrolled = getSectionProgress();
+    applyScroll(Math.max(auto, scrolled));
     requestAnimationFrame(frame);
   }
 
   function init() {
     build();
     const prefersReduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReduce) { forcedIntroMs = A.total; introDone = true; }
+    if (prefersReduce) { forcedIntroMs = A.total; introDone = true; forceDockedAtBoot = true; }
     computeDock();
     mountTime = performance.now();
     requestAnimationFrame(frame);
-    window.addEventListener("scroll", applyScroll, { passive: true });
-    window.addEventListener("resize", () => { computeDock(); applyScroll(); });
-    applyScroll();
+    // Resize only re-measures the destination; the RAF loop re-applies on
+    // the next frame. No scroll listener needed — RAF reads scroll itself.
+    window.addEventListener("resize", computeDock);
   }
 
   if (heroWordmark.complete && heroWordmark.naturalWidth > 0) init();
