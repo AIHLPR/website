@@ -2183,7 +2183,6 @@
         <li><a href="#operational"><span class="num">04</span> How it becomes operational</a></li>
         <li><a href="#governance"><span class="num">05</span> Governance in the workflow</a></li>
         <li><a href="#regions"><span class="num">06</span> How it scales</a></li>
-        <li><a href="#expansion"><span class="num">07</span> How it expands</a></li>
       </ol>
     </div>
   </aside>
@@ -2197,10 +2196,10 @@
       <div class="hero-meta">
         <span class="num">Capability</span>
         <span class="sep"></span>
-        <span>Enterprise AI</span>
+        <span>ENTERPRISE AI</span>
       </div>
-      <h1>Enterprise AI that runs your business.</h1>
-      <p class="hero-lede">Turn AI into a system your business runs on.</p>
+      <h1>Enterprise AI your organisation can trust in daily operations.</h1>
+      <p class="hero-lede">We design AI systems that connect to real data, route through real approvals, and stay visible to legal, security, and business teams. Start with one workflow, then scale the operating layer with control.</p>
       <p class="hero-sub">Enterprise AI works when it connects to real data, routes through real approvals, and answers to real governance. This page shows how we design and build that. From where AI enters your organisation to how it stays governed at scale.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="../Home.html#contact">
@@ -2290,7 +2289,7 @@
     <div class="sec-head">
       <div>
         <span class="label-mono"><span class="dot"></span>02 &middot; Where it stalls</span>
-        <h2>Where enterprise AI tends to plateau, and what moves it forward.</h2>
+        <h2>What has to be true for AI to scale.</h2>
       </div>
       <div class="block-lede">
         <p>Enterprise AI rarely slows down because the model can&rsquo;t produce an answer. It slows down when the work <em>around</em> the model isn&rsquo;t ready: ownership, integration, visibility, governance, and cost structure.</p>
@@ -2382,9 +2381,9 @@
     <div class="block-head">
       <div>
         <span class="label-mono"><span class="dot"></span>03 &middot; How we build</span>
-        <h2 style="margin-top:14px;">The AI patterns underneath. Chosen to fit your workflow and data.</h2>
+        <h2 style="margin-top:14px;">The right AI pattern for your workflow and data.</h2>
       </div>
-      <p class="block-lede">You don't need to choose these upfront. We pick the right pattern based on your workflow, your data, your risk profile, and where the system needs to run. Here's what's available.</p>
+      <p class="block-lede">We pick the right pattern for your workflow, your data, your risk profile, and where the system needs to run. Here's what's available.</p>
     </div>
 
     <div class="gs-stack">
@@ -2395,7 +2394,6 @@
           <span class="gs-eyebrow">RAG</span>
           <h3>Retrieval-augmented generation.</h3>
           <p>The model answers from <b>your data</b>, not its training set. Every answer carries source attribution, permissioned by the user asking.</p>
-          <p class="gs-when">Used when teams need cited answers from internal knowledge.</p>
           <details class="gs-tech">
             <summary>Technical pattern</summary>
             <span class="gs-stack-hint"><b>Stack &middot;</b> Vector store &middot; permissioned retrieval &middot; LLM</span>
@@ -2517,8 +2515,7 @@
         <div class="gs-copy">
           <span class="gs-eyebrow">Fine-tuning</span>
           <h3>Domain adaptation.</h3>
-          <p>Fine-tune open or closed models on your documents, your decisions, your voice. The model speaks <b>your language</b>, not a generic one.</p>
-          <p class="gs-when">Used when a general model is close but needs to learn the team's language, decisions, or document style.</p>
+          <p>Fine-tune open or closed models on your documents, your decisions, your voice. The model speaks <b>your language</b>, not a generic one — used when a general model is close but needs to learn the team's decisions and document style.</p>
           <details class="gs-tech">
             <summary>Technical pattern</summary>
             <span class="gs-stack-hint"><b>Stack &middot;</b> Open weights &middot; LoRA / QLoRA &middot; eval suite &middot; registry</span>
@@ -2660,7 +2657,6 @@
           <span class="gs-eyebrow">Agents</span>
           <h3>Agentic workflows.</h3>
           <p>Long-running AI processes that carry repeated tasks across business systems and hand back to a person when judgement is needed.</p>
-          <p class="gs-when">Used for long-running AI processes that handle repeated tasks and hand back to a person when judgement is needed.</p>
           <details class="gs-tech">
             <summary>Technical pattern</summary>
             <span class="gs-stack-hint"><b>Stack &middot;</b> Tool calling &middot; planner &middot; memory &middot; human-in-loop gate</span>
@@ -2706,7 +2702,6 @@
           <span class="gs-eyebrow">Vector search</span>
           <h3>Semantic retrieval.</h3>
           <p>Find by meaning, not keywords. Documents, prior decisions, customer cases, all searchable by what they <b>mean</b>.</p>
-          <p class="gs-when">Used when teams need to find documents, decisions, or cases by meaning, not keyword.</p>
           <details class="gs-tech">
             <summary>Technical pattern</summary>
             <span class="gs-stack-hint"><b>Stack &middot;</b> pgvector &middot; Pinecone &middot; OpenSearch &middot; in-house indexes</span>
@@ -2749,7 +2744,6 @@
           <span class="gs-eyebrow">Multi-modal</span>
           <h3>Text, vision, voice.</h3>
           <p>Vision models classify and extract. Speech models transcribe. Language models reason. All under <b>one governance frame</b>, audited the same way.</p>
-          <p class="gs-when">Used when work involves images, voice, or scanned material alongside text - all governed in one frame.</p>
           <details class="gs-tech">
             <summary>Technical pattern</summary>
             <span class="gs-stack-hint"><b>Stack &middot;</b> CLIP &middot; Whisper &middot; GPT-4o &middot; Claude &middot; Gemini</span>
@@ -3296,76 +3290,15 @@
 </section>
 
 
-<!-- SECTION 06. How it scales (regional deployment) -->
+<!-- SECTION 06. How it scales & expands (regional deployment + organisational reach) -->
 <section class="block borrowed" data-sec="regions" id="regions">
   <div class="container">
     <div class="block-head">
       <div>
         <span class="label-mono"><span class="dot"></span>06 &middot; How it scales</span>
-        <h2 style="margin-top:14px;">Multi-region. Locally governed. Same operating layer.</h2>
-      </div>
-      <p class="block-lede">You operate across jurisdictions. Each region gets its own data residency, its own reviewers, and its own regulatory overlay. On the same operating layer.</p>
-    </div>
-
-    <div class="regions" aria-label="Regional deployment topology">
-      <div class="region primary">
-        <div class="region-pulse" aria-hidden="true"></div>
-        <div class="region-head">
-          <span class="region-code">EU-WEST</span>
-          <span class="region-flag">primary</span>
-        </div>
-        <h3>Frankfurt &middot; Amsterdam</h3>
-        <div class="region-meta">
-          <div class="row"><span class="k">Residency</span><span class="v">EU only &middot; pinned</span></div>
-          <div class="row"><span class="k">Regulation</span><span class="v">GDPR &middot; EU AI Act</span></div>
-          <div class="row"><span class="k">Reviewers</span><span class="v">local language</span></div>
-          <div class="row"><span class="k">Languages</span><span class="v">EN &middot; DE &middot; FR &middot; NL</span></div>
-        </div>
-      </div>
-
-      <div class="region">
-        <div class="region-pulse" aria-hidden="true"></div>
-        <div class="region-head">
-          <span class="region-code">US-EAST</span>
-          <span class="region-flag">active</span>
-        </div>
-        <h3>Virginia</h3>
-        <div class="region-meta">
-          <div class="row"><span class="k">Residency</span><span class="v">US only &middot; pinned</span></div>
-          <div class="row"><span class="k">Regulation</span><span class="v">SOC 2 &middot; CCPA</span></div>
-          <div class="row"><span class="k">Reviewers</span><span class="v">US business hours</span></div>
-          <div class="row"><span class="k">Languages</span><span class="v">EN &middot; ES</span></div>
-        </div>
-      </div>
-
-      <div class="region standby">
-        <div class="region-pulse" aria-hidden="true"></div>
-        <div class="region-head">
-          <span class="region-code">APAC</span>
-          <span class="region-flag">on request</span>
-        </div>
-        <h3>Singapore</h3>
-        <div class="region-meta">
-          <div class="row"><span class="k">Residency</span><span class="v">SG &middot; resident</span></div>
-          <div class="row"><span class="k">Regulation</span><span class="v">PDPA &middot; MAS guidance</span></div>
-          <div class="row"><span class="k">Reviewers</span><span class="v">follow-the-sun</span></div>
-          <div class="row"><span class="k">Languages</span><span class="v">EN &middot; JA &middot; ZH</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- SECTION 07. How it expands (one division → operational layer) -->
-<section class="block borrowed" data-sec="expansion" id="expansion">
-  <div class="container">
-    <div class="block-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>07 &middot; How it expands</span>
         <h2 style="margin-top:14px;">From one workflow to the layer your business runs on.</h2>
       </div>
-      <p class="block-lede">One workflow proves the model. One division adopts it. Cross-functional teams pick it up. The same operating layer extends from there. Same foundation, same controls, the whole organisation.</p>
+      <p class="block-lede">One workflow proves the model. One division adopts it. Cross-functional teams pick it up, and the same operating layer extends across markets — each region with its own data residency, reviewers, and regulatory overlay. Same foundation, same controls.</p>
     </div>
 
     <div class="topo-expand" aria-label="Topology expansion">
@@ -3422,6 +3355,53 @@
         <span class="ts-meta">organisation-wide layer</span>
       </div>
     </div>
+
+    <div class="regions" aria-label="Regional deployment topology">
+      <div class="region primary">
+        <div class="region-pulse" aria-hidden="true"></div>
+        <div class="region-head">
+          <span class="region-code">EU-WEST</span>
+          <span class="region-flag">primary</span>
+        </div>
+        <h3>Frankfurt &middot; Amsterdam</h3>
+        <div class="region-meta">
+          <div class="row"><span class="k">Residency</span><span class="v">EU only &middot; pinned</span></div>
+          <div class="row"><span class="k">Regulation</span><span class="v">GDPR &middot; EU AI Act</span></div>
+          <div class="row"><span class="k">Reviewers</span><span class="v">local language</span></div>
+          <div class="row"><span class="k">Languages</span><span class="v">EN &middot; DE &middot; FR &middot; NL</span></div>
+        </div>
+      </div>
+
+      <div class="region">
+        <div class="region-pulse" aria-hidden="true"></div>
+        <div class="region-head">
+          <span class="region-code">US-EAST</span>
+          <span class="region-flag">active</span>
+        </div>
+        <h3>Virginia</h3>
+        <div class="region-meta">
+          <div class="row"><span class="k">Residency</span><span class="v">US only &middot; pinned</span></div>
+          <div class="row"><span class="k">Regulation</span><span class="v">SOC 2 &middot; CCPA</span></div>
+          <div class="row"><span class="k">Reviewers</span><span class="v">US business hours</span></div>
+          <div class="row"><span class="k">Languages</span><span class="v">EN &middot; ES</span></div>
+        </div>
+      </div>
+
+      <div class="region standby">
+        <div class="region-pulse" aria-hidden="true"></div>
+        <div class="region-head">
+          <span class="region-code">APAC</span>
+          <span class="region-flag">on request</span>
+        </div>
+        <h3>Singapore</h3>
+        <div class="region-meta">
+          <div class="row"><span class="k">Residency</span><span class="v">SG &middot; resident</span></div>
+          <div class="row"><span class="k">Regulation</span><span class="v">PDPA &middot; MAS guidance</span></div>
+          <div class="row"><span class="k">Reviewers</span><span class="v">follow-the-sun</span></div>
+          <div class="row"><span class="k">Languages</span><span class="v">EN &middot; JA &middot; ZH</span></div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -3464,7 +3444,6 @@
     <a href="#operational">04 How operational</a>
     <a href="#governance">05 Governance</a>
     <a href="#regions">06 How it scales</a>
-    <a href="#expansion">07 How it expands</a>
   </div>
 </nav>
 
