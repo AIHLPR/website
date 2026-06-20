@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Workflows &amp; Operations &middot; AIHLPR Oplossingen</title>
-<meta name="description" content="De laag waarop AI door je hele bedrijf draait. Stappen, documenten, goedkeuringen en uitzonderingen, verbonden met de tools die je al gebruikt.">
+<title>Workflows &middot; AIHLPR</title>
 <link rel="alternate" hreflang="en" href="https://aihlpr.github.io/website/capabilities/ai-workflow-infrastructure.html">
 <link rel="alternate" hreflang="nl" href="https://aihlpr.github.io/website/nl/capabilities/ai-workflow-infrastructure.html">
 <link rel="alternate" hreflang="x-default" href="https://aihlpr.github.io/website/capabilities/ai-workflow-infrastructure.html">
-<link rel="canonical" href="https://aihlpr.github.io/website/nl/capabilities/ai-workflow-infrastructure.html">
+<link rel="canonical" href="https://aihlpr.github.io/website/capabilities/ai-workflow-infrastructure.html">
+<meta name="description" content="Workflows: orchestration, document automation, routing en systeemintegratie. De workflow-laag die AI werk veilig laat bewegen door je organisatie.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -217,7 +217,8 @@
   /* ===== Mobile hero: vertical workflow card (replaces landscape SVG) =====
      The hero SVG is a 920x480 landscape diagram that shrinks to an illegible
      sliver on phones. Below 760px we hide it and show a vertical rebuild of
-     the same workflow. Desktop is untouched. */
+     the same workflow (trigger -> route -> AI -> review -> record, + parked
+     branch). Desktop is untouched. */
   .hero-visual-m { display: none; }
   @media (max-width: 760px) {
     .hero-visual { display: none; }
@@ -767,7 +768,7 @@
       <span class="nav-crumb">
         <a href="../Home.html#capabilities">Oplossingen</a>
         <span class="sep">/</span>
-        <span>AI Workflows &amp; Operations</span>
+        <span>Workflows</span>
       </span>
     </div>
     <div class="nav-links">
@@ -777,28 +778,29 @@
         </button>
         <div class="nav-dropdown-menu" id="solutionsMenu" role="menu">
           <a href="ai-applications-and-platforms.html" class="dd-item" role="menuitem">
-            <span class="dd-title">AI Products &amp; Platforms</span>
+            <span class="dd-title">Platforms &amp; Tools</span>
           </a>
           <a href="ai-workflow-infrastructure.html" class="dd-item" role="menuitem">
-            <span class="dd-title">AI Workflows &amp; Operations</span>
+            <span class="dd-title">Workflows</span>
+          </a>
+          <span class="dd-divider"></span>
+          <a href="scale-ups.html" class="dd-item" role="menuitem">
+            <span class="dd-title">Scale-ups</span>
           </a>
           <a href="enterprise-ai.html" class="dd-item" role="menuitem">
-            <span class="dd-title">Enterprise AI</span>
-          </a>
-          <a href="prototype-to-production.html" class="dd-item" role="menuitem">
-            <span class="dd-title">Van pilot naar productie</span>
+            <span class="dd-title">Enterprise</span>
           </a>
         </div>
       </div>
       <a href="../Home.html#work">Case studies</a>
-      <a href="../../insights/index.html">Our thinking</a>
-      <a href="../about.html">Over ons</a>
+      <a href="../../insights/index.html">Onze inzichten</a>
+      <a href="../about.html">Over AIHLPR</a>
       <span class="nav-lang" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-muted);display:inline-flex;align-items:center;gap:6px;">
         <a href="../../capabilities/ai-workflow-infrastructure.html" hreflang="en" style="color:var(--ink-muted);" aria-label="English">EN</a>
         <span style="opacity:0.5;" aria-hidden="true">/</span>
         <span style="color:var(--ink);font-weight:500;" aria-current="true">NL</span>
       </span>
-      <a href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener" class="cta">Praat met ons &rarr;</a>
+      <a href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener" class="cta">Plan een gesprek &rarr;</a>
     </div>
     <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
       <span></span><span></span><span></span>
@@ -806,17 +808,19 @@
   </div>
   <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
     <div class="mm-section">
-      <span class="mm-label">Oplossingen</span>
-      <a href="ai-applications-and-platforms.html">AI Products &amp; Platforms</a>
-      <a href="ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a>
-      <a href="enterprise-ai.html">Enterprise AI</a>
-      <a href="prototype-to-production.html">Van pilot naar productie</a>
+      <span class="mm-label">Services</span>
+      <a href="ai-applications-and-platforms.html">Platforms &amp; Tools</a>
+      <a href="ai-workflow-infrastructure.html">Workflows</a>
+    </div>
+    <div class="mm-section">
+      <span class="mm-label">Voor wie we werken</span>
+      <a href="scale-ups.html">Scale-ups</a>
+      <a href="enterprise-ai.html">Enterprise</a>
     </div>
     <a href="../Home.html#work">Case studies</a>
-    <a href="../../insights/index.html">Our thinking</a>
-    <a href="../about.html">Over ons</a>
-    <a href="../../capabilities/ai-workflow-infrastructure.html" hreflang="en" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-muted);">Switch to English</a>
-    <a href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener" class="cta">Praat met ons &rarr;</a>
+    <a href="../../insights/index.html">Onze inzichten</a>
+    <a href="../about.html">Over AIHLPR</a>
+    <a href="../Home.html#contact" class="cta">Plan een gesprek &rarr;</a>
   </div>
 </nav>
 
@@ -838,28 +842,42 @@
   }
 
   /* =====================================================================
-     MOBILE PASS (<=760px) — adopts the Claude Design mock fidelity.
-     See EN twin for full notes. Markup uses .ww-acc and .al-acc siblings
-     to the existing desktop blocks; desktop CSS is untouched.
+     MOBILE PASS (<=760px) — adopts the Claude Design mock fidelity:
+     - Tighter hero H1
+     - Five capabilities (whatwebuild): collapsible accordion, one open at
+       a time. Desktop .ww-grid keeps its current expanded grid.
+     - Behaviour stepper: connecting rail + AI/OP/RV/§ avatars on rail
+     - Failure rows: status badge chip + clean stacked layout
+     - Grow flow: tighter pill chain that wraps cleanly
+     - Grow cards: 2-column compact grid
+     - IT-architecture (archlayers): dark collapsible accordion + trust
+       pills moved BELOW the accordion. Desktop keeps its grid.
+     Markup uses .ww-acc (mobile only) and .al-acc (mobile only) siblings
+     to the existing desktop blocks, hidden above 760px. Desktop CSS is
+     not touched.
      ===================================================================== */
   .ww-acc, .al-acc, .al-trust-m { display: none; }
   @media (max-width: 760px) {
+    /* --- Hero tightening for the Samsung S26 Ultra at ~412px --- */
     .hero { overflow: visible; padding-bottom: clamp(48px, 6vw, 80px); }
-    .hero-grid { grid-template-columns: 1fr !important; gap: 0 !important; }
+    .hero-grid {
+      /* defeat the asymmetric-hero 2-col rule from the desktop block */
+      grid-template-columns: 1fr !important;
+      gap: 0 !important;
+    }
     .hero-visual { margin: 0 !important; }
     .hero h1 { font-size: 26px; line-height: 1.18; letter-spacing: -0.025em; }
     .hero-lede { font-size: 15px; line-height: 1.55; }
     .hero-ctas { gap: 10px; flex-direction: column; }
     .hero-ctas .btn { width: 100%; }
 
-    .whatwebuild .ww-grid { display: none; }
-    .whatwebuild .ww-acc { display: block; }
-
+    /* --- IT architecture: hide desktop grid, show dark accordion --- */
     .archlayers .archlayers-grid { display: none; }
     .archlayers .archlayers-trust { display: none; }
     .archlayers .al-acc { display: block; }
     .archlayers .al-trust-m { display: flex; }
 
+    /* --- Behaviour stepper: connecting rail + avatar circles --- */
     .bf-track {
       display: flex !important;
       flex-direction: column;
@@ -867,6 +885,7 @@
       padding: 18px 16px !important;
       position: relative;
     }
+    /* Vertical rail line down the avatars */
     .bf-track::before {
       content: ""; position: absolute;
       left: calc(16px + 14px);
@@ -885,36 +904,57 @@
       position: relative;
     }
     .bf-step .bf-eyebrow {
-      grid-column: 2; order: 1;
-      font-size: 9px; letter-spacing: 0.16em; margin-bottom: 2px;
+      grid-column: 2;
+      order: 1;
+      font-size: 9px;
+      letter-spacing: 0.16em;
+      margin-bottom: 2px;
     }
-    .bf-step .bf-who { grid-column: 1 / -1; display: contents; }
+    .bf-step .bf-who {
+      grid-column: 1 / -1;
+      display: contents;
+    }
     .bf-step .bf-av {
-      grid-column: 1; grid-row: span 4;
+      grid-column: 1;
+      grid-row: span 4;
       width: 28px; height: 28px;
       font-size: 9.5px;
-      align-self: start; margin-top: 2px;
-      position: relative; z-index: 1;
+      align-self: start;
+      margin-top: 2px;
+      position: relative;
+      z-index: 1;
     }
     .bf-step .bf-name {
-      grid-column: 2; order: 2;
+      grid-column: 2;
+      order: 2;
       font-size: 14px;
       font-family: var(--font-display);
-      letter-spacing: -0.01em; margin-bottom: 4px;
+      letter-spacing: -0.01em;
+      margin-bottom: 4px;
     }
     .bf-step .bf-action {
-      grid-column: 2; order: 3;
-      font-size: 12.5px; line-height: 1.5; margin: 0 0 6px;
+      grid-column: 2;
+      order: 3;
+      font-size: 12.5px;
+      line-height: 1.5;
+      margin: 0 0 6px;
     }
     .bf-step .bf-tag {
-      grid-column: 2; order: 4;
-      border-top: 0; padding-top: 0; margin: 0 0 6px;
-      font-size: 8.5px; letter-spacing: 0.14em;
+      grid-column: 2;
+      order: 4;
+      border-top: 0;
+      padding-top: 0;
+      margin: 0 0 6px;
+      font-size: 8.5px;
+      letter-spacing: 0.14em;
     }
 
+    /* --- Failure rows: badge chip aligned right --- */
     .failure-panel {
       border: 1px solid var(--hairline-strong);
-      border-radius: 12px; overflow: hidden; background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--white);
     }
     .failure-row {
       display: grid !important;
@@ -929,56 +969,82 @@
       grid-column: 1;
       font-size: 14.5px;
       font-family: var(--font-display);
-      font-weight: 500; letter-spacing: -0.01em;
+      font-weight: 500;
+      letter-spacing: -0.01em;
     }
     .failure-row .fmeta {
-      grid-column: 2; grid-row: 1; flex: none;
+      grid-column: 2;
+      grid-row: 1;
+      flex: none;
       font-family: var(--font-mono);
-      font-size: 8.5px; font-weight: 700;
-      letter-spacing: 0.12em; text-transform: uppercase;
+      font-size: 8.5px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
       color: var(--ink-soft);
       border: 1px solid var(--hairline);
       background: var(--surface-2);
-      border-radius: 4px; padding: 3px 7px;
-      align-self: start; margin-top: 2px;
+      border-radius: 4px;
+      padding: 3px 7px;
+      align-self: start;
+      margin-top: 2px;
     }
     .failure-row.is-active .fmeta {
-      color: var(--c); border-color: var(--c);
+      color: var(--c);
+      border-color: var(--c);
       background: color-mix(in oklab, var(--c) 7%, var(--white));
     }
     .failure-row .fdesc {
       grid-column: 1 / -1;
-      font-size: 12.5px; line-height: 1.5;
+      font-size: 12.5px;
+      line-height: 1.5;
     }
 
+    /* --- Grow flow: tight pill chain --- */
     .grow-flow {
-      gap: 8px !important; padding: 0 !important;
-      border: 0 !important; background: transparent !important;
+      gap: 8px !important;
+      padding: 0 !important;
+      border: 0 !important;
+      background: transparent !important;
     }
     .grow-flow .gf-step {
       font-family: var(--font-mono);
-      font-size: 9.5px; font-weight: 600;
-      letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
-      padding: 8px 12px; border: 1px solid var(--hairline-strong);
-      border-radius: 4px; background: var(--white);
+      font-size: 9.5px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink);
+      padding: 8px 12px;
+      border: 1px solid var(--hairline-strong);
+      border-radius: 4px;
+      background: var(--white);
     }
     .grow-flow .gf-arr {
       font-family: var(--font-mono);
-      font-size: 12px; color: var(--c); font-weight: 600;
+      font-size: 12px;
+      color: var(--c);
+      font-weight: 600;
     }
     .grow-labels { gap: 18px; }
     .grow-labels .gl { border-left: 2px solid var(--c); padding-left: 14px; }
 
-    .grow-cards { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+    /* --- Grow cards: 2-column on phones --- */
+    .grow-cards {
+      grid-template-columns: 1fr 1fr !important;
+      gap: 10px !important;
+    }
     .grow-cards .gc { padding: 14px !important; }
     .grow-cards .gc-name { font-size: 14.5px; }
     .grow-cards .gc-desc { font-size: 12px; line-height: 1.45; }
   }
 
-  /* Mobile light accordion (.ww-acc) */
+  /* ===== Mobile accordion styles (light, used by .ww-acc) ===== */
   .ww-acc {
+    margin-top: 0;
     border: 1px solid var(--hairline-strong);
-    border-radius: 12px; background: var(--white); overflow: hidden;
+    border-radius: 12px;
+    background: var(--white);
+    overflow: hidden;
   }
   .ww-acc details { border-bottom: 1px solid var(--hairline); }
   .ww-acc details:last-child { border-bottom: 0; }
@@ -999,7 +1065,9 @@
     font-size: 16.5px; font-weight: 500; letter-spacing: -0.015em;
     color: var(--ink); margin: 0; line-height: 1.25;
   }
-  .ww-acc .a-sub { font-size: 12px; line-height: 1.45; color: var(--ink-muted); }
+  .ww-acc .a-sub {
+    font-size: 12px; line-height: 1.45; color: var(--ink-muted);
+  }
   .ww-acc .a-chev {
     width: 9px; height: 9px;
     border-right: 1.5px solid var(--ink-muted);
@@ -1009,10 +1077,14 @@
     margin-right: 4px;
   }
   .ww-acc details[open] .a-chev { transform: rotate(225deg); }
-  .ww-acc .a-body { padding: 0 18px 18px 64px; display: flex; flex-direction: column; gap: 12px; }
+  .ww-acc .a-body {
+    padding: 0 18px 18px 64px;
+    display: flex; flex-direction: column; gap: 12px;
+  }
   .ww-acc .a-body .a-prop {
     font-size: 13px; line-height: 1.55; color: var(--ink-soft);
-    border-top: 1px solid var(--hairline); padding-top: 12px; margin: 0;
+    border-top: 1px solid var(--hairline); padding-top: 12px;
+    margin: 0;
   }
   .ww-acc .chips { display: flex; flex-wrap: wrap; gap: 6px; }
   .ww-acc .chips span {
@@ -1022,10 +1094,12 @@
     border-radius: 2px;
   }
 
-  /* Mobile dark accordion (.al-acc) */
+  /* ===== Mobile accordion styles (dark, used by .al-acc) ===== */
   .al-acc {
     border: 1px solid rgba(255,255,255,0.16);
-    border-radius: 12px; background: rgba(255,255,255,0.02); overflow: hidden;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+    overflow: hidden;
   }
   .al-acc details { border-bottom: 1px solid rgba(255,255,255,0.10); }
   .al-acc details:last-child { border-bottom: 0; }
@@ -1042,7 +1116,9 @@
     letter-spacing: 0.18em; text-transform: uppercase; color: #a896e8;
   }
   .al-acc .a-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-  .al-acc .a-title h3 { font-size: 16.5px; font-weight: 500; color: #fff; margin: 0; line-height: 1.25; }
+  .al-acc .a-title h3 {
+    font-size: 16.5px; font-weight: 500; color: #fff; margin: 0; line-height: 1.25;
+  }
   .al-acc .a-sub { font-size: 12px; line-height: 1.45; color: rgba(255,255,255,0.5); }
   .al-acc .a-chev {
     width: 9px; height: 9px;
@@ -1068,6 +1144,7 @@
     content: ""; position: absolute; left: 0; top: 7px;
     width: 5px; height: 1px; background: rgba(168,150,232,0.6);
   }
+  /* Mobile trust pills row (lives below the accordion) */
   .al-trust-m {
     margin: 26px 0 0; padding: 0; list-style: none;
     flex-wrap: wrap; gap: 8px;
@@ -1140,16 +1217,17 @@
         <span class="sep"></span>
         <span>Capabilities</span>
         <span class="sep"></span>
-        <span>Workflows &amp; Operations</span>
+        <span>AI Workflow Systems</span>
       </div>
-      <h1>Werk loopt automatisch door je systemen. Mensen blijven op de beslissingen die ertoe doen.</h1>
-      <p class="hero-lede">We bouwen de laag die AI-output omzet in werk dat loopt: routing naar het juiste team, de juiste context verzamelen, elke beslissing vastleggen, pauzeren voor menselijke review waar het telt. Het werk beweegt zichzelf.</p>
+      <h1>Workflows die sneller bewegen tussen de tools die je al gebruikt.</h1>
+      <p class="hero-lede">We verbinden forms, inboxes, CRM, ERP, documenten, approvals en reporting tools in één AI-supported workflow. Agentic systems lezen context, routen taken, bereiden updates voor, signaleren uitzonderingen en zetten de volgende stap klaar.</p>
+      <p class="hero-sub">Mensen houden controle over approvals, beslissingen en edge cases. Het systeem verwerkt de herhaalde beweging rondom het werk.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="../Home.html#contact">
-          Praat met ons <span class="arrow">&rarr;</span>
+          Bespreek een workflow <span class="arrow">&rarr;</span>
         </a>
         <a class="btn btn-secondary" href="#why">
-          Zie hoe het werkt <span class="arrow">&darr;</span>
+          Bekijk hoe het werkt <span class="arrow">&darr;</span>
         </a>
       </div>
     </div>
@@ -1165,15 +1243,15 @@
 
   <!-- Top metadata strip -->
   <g font-size="9" letter-spacing="0.16em">
-    <text x="20" y="20" fill="#8A8A8A">VOORBEELD WORKFLOW</text>
-    <text x="800" y="20" text-anchor="end" fill="#9B59B6">3 actief · 1 gepauzeerd voor review · 1 geëscaleerd</text>
+    <text x="20" y="20" fill="#8A8A8A">EXAMPLE WORKFLOW</text>
+    <text x="800" y="20" text-anchor="end" fill="#9B59B6">3 active · 1 paused for review · 1 escalated</text>
   </g>
   <line x1="20" y1="28" x2="800" y2="28" stroke="rgba(31,31,31,0.08)" stroke-width="1"/>
 
   <!-- TRIGGER (top-left) -->
   <rect x="40" y="56" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.4"/>
   <text x="110" y="78" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">TRIGGER</text>
-  <text x="110" y="93" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Trigger ontvangen</text>
+  <text x="110" y="93" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Trigger received</text>
 
   <!-- TRIGGER → CLASSIFY -->
   <path d="M 110 104 L 110 138" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
@@ -1182,30 +1260,30 @@
   <!-- CLASSIFY -->
   <rect x="40" y="140" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.4"/>
   <text x="110" y="162" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">ROUTE</text>
-  <text x="110" y="177" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Juiste team</text>
+  <text x="110" y="177" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Right team</text>
 
   <!-- Retry loop on CLASSIFY -->
   <path d="M 180 152 Q 230 152 230 168 Q 230 184 182 184" stroke="#9B59B6" stroke-width="0.8" fill="none" stroke-dasharray="3 3"/>
-  <text x="240" y="172" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">tijdelijke fout</text>
+  <text x="240" y="172" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">temporary failure</text>
 
   <!-- CLASSIFY branches: SUCCESS path right, FAIL path down -->
   <path d="M 110 188 L 110 240 L 280 240" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
   <polygon points="274,236 282,240 274,244" fill="#9B59B6"/>
-  <text x="195" y="232" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">bij ok</text>
+  <text x="195" y="232" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">on ok</text>
 
   <!-- ENRICH -->
   <rect x="280" y="216" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.1"/>
-  <text x="350" y="238" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">AI BEREIDT VOOR</text>
-  <text x="350" y="253" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Context verzameld</text>
+  <text x="350" y="238" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">AI PREPARES</text>
+  <text x="350" y="253" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Context gathered</text>
 
   <!-- ENRICH → DRAFT (branch with condition) -->
   <path d="M 420 240 L 510 240 L 510 220 L 520 220" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
-  <text x="500" y="212" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">als bedrag &gt; €10k</text>
+  <text x="500" y="212" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">if amt &gt; €10k</text>
 
   <!-- DRAFT -->
   <rect x="520" y="196" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.1"/>
-  <text x="590" y="218" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">CONCEPT</text>
-  <text x="590" y="233" text-anchor="middle" font-size="9.5" fill="#8A8A8A">voorstel</text>
+  <text x="590" y="218" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">DRAFT</text>
+  <text x="590" y="233" text-anchor="middle" font-size="9.5" fill="#8A8A8A">proposal</text>
 
   <!-- DRAFT → HUMAN APPROVAL -->
   <path d="M 590 244 L 590 268 L 460 268 L 460 286" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
@@ -1213,8 +1291,8 @@
 
   <!-- HUMAN APPROVAL gate (center) -->
   <rect x="380" y="290" width="160" height="58" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.6"/>
-  <text x="460" y="314" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">MENSELIJKE REVIEW</text>
-  <text x="460" y="332" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Review nodig</text>
+  <text x="460" y="314" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">HUMAN REVIEW</text>
+  <text x="460" y="332" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Review required</text>
   <circle cx="396" cy="305" r="3.5" fill="#9B59B6">
     <animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite"/>
   </circle>
@@ -1222,29 +1300,29 @@
   <!-- HUMAN REVIEW → ACTION (approved path) -->
   <path d="M 540 320 L 620 320" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
   <polygon points="614,316 622,320 614,324" fill="#9B59B6"/>
-  <text x="572" y="312" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">goedgekeurd</text>
+  <text x="572" y="312" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">approved</text>
 
   <!-- ACTION -->
   <rect x="620" y="296" width="160" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.1"/>
   <text x="700" y="318" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">AUDIT TRAIL</text>
-  <text x="700" y="333" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Besluit vastgelegd</text>
+  <text x="700" y="333" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Decision recorded</text>
   <!-- One thread continues off-frame to the right -->
   <line x1="780" y1="320" x2="900" y2="320" stroke="#9B59B6" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
-  <text x="820" y="312" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">→ vervolg</text>
+  <text x="820" y="312" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">→ downstream</text>
 
   <!-- CLASSIFY → DLQ (failure path, dashed) -->
   <path d="M 110 188 L 110 408 L 880 408" stroke="#8A8A8A" stroke-width="0.9" fill="none" stroke-dasharray="3 3"/>
   <polygon points="874,404 882,408 874,412" fill="#8A8A8A"/>
-  <text x="395" y="402" font-size="8.5" fill="#8A8A8A" letter-spacing="0.12em">als informatie ontbreekt</text>
+  <text x="395" y="402" font-size="8.5" fill="#8A8A8A" letter-spacing="0.12em">if information is missing</text>
 
   <!-- DLQ -->
   <rect x="800" y="386" width="140" height="44" rx="3" fill="#FAFAF8" stroke="#8A8A8A" stroke-width="0.9" stroke-dasharray="3 3"/>
-  <text x="870" y="408" text-anchor="middle" font-size="10" fill="#8A8A8A" letter-spacing="0.14em" font-weight="600">GEPARKEERD</text>
-  <text x="870" y="421" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Voor review</text>
+  <text x="870" y="408" text-anchor="middle" font-size="10" fill="#8A8A8A" letter-spacing="0.14em" font-weight="600">PARKED</text>
+  <text x="870" y="421" text-anchor="middle" font-size="9.5" fill="#8A8A8A">For review</text>
 
   <!-- HUMAN REVIEW → ESCALATE branch (if SLA breach) -->
   <path d="M 460 348 L 460 408 L 880 408" stroke="#E63946" stroke-width="0.9" fill="none" stroke-dasharray="3 3" opacity="0.55"/>
-  <text x="495" y="368" font-size="8.5" fill="#E63946" letter-spacing="0.12em" opacity="0.85">als review te laat</text>
+  <text x="495" y="368" font-size="8.5" fill="#E63946" letter-spacing="0.12em" opacity="0.85">if review overdue</text>
 
   <!-- Animated tracer dot moving along the success path.
        Waypoints match the exact L-shaped connectors between boxes
@@ -1256,16 +1334,16 @@
   </circle>
 </svg>
       <div class="hero-visual-caption">
-        <span>Workflow-infrastructuur</span>
-        <span><b>Trigger</b> &middot; <b>Routing</b> &middot; <b>Review</b> &middot; <b>Vastleggen</b></span>
+        <span>Workflow infrastructure</span>
+        <span><b>Trigger</b> &middot; <b>Routing</b> &middot; <b>Review</b> &middot; <b>Record</b></span>
       </div>
     </div>
 
     <!-- Mobile-only vertical rebuild of the hero workflow diagram -->
     <div class="hero-visual-m" aria-hidden="true">
-      <div class="wf-card" aria-label="Voorbeeld workflow">
+      <div class="wf-card" aria-label="Voorbeeldworkflow">
         <div class="wf-card-head">
-          <span class="l">Voorbeeld workflow</span>
+          <span class="l">Voorbeeldworkflow</span>
           <span class="r">3 actief &middot; 1 gepauzeerd</span>
         </div>
         <div class="wf-steps">
@@ -1286,22 +1364,22 @@
           <div class="wf-edge"></div>
           <div class="wf-step gate">
             <span class="pin">04</span>
-            <div class="wf-node"><span class="k">Menselijke review</span><span class="v">Review nodig &middot; goedgekeurd</span></div>
+            <div class="wf-node"><span class="k">Human review</span><span class="v">Review vereist &middot; goedgekeurd</span></div>
           </div>
           <div class="wf-edge"></div>
           <div class="wf-step">
             <span class="pin">05</span>
-            <div class="wf-node"><span class="k">Audit trail</span><span class="v">Besluit vastgelegd &rarr; downstream</span></div>
+            <div class="wf-node"><span class="k">Audit trail</span><span class="v">Beslissing vastgelegd &rarr; downstream</span></div>
           </div>
           <div class="wf-edge dim"><span class="note">als informatie ontbreekt</span></div>
           <div class="wf-step parked">
             <span class="pin">&#10073;&#10073;</span>
-            <div class="wf-node"><span class="k">Geparkeerd</span><span class="v">Voor review &middot; herhaalbaar</span></div>
+            <div class="wf-node"><span class="k">Geparkeerd</span><span class="v">Vastgehouden voor review &middot; herhaalbaar</span></div>
           </div>
         </div>
         <div class="wf-card-foot">
-          <span>Workflow-infrastructuur</span>
-          <span><b>Trigger</b> &middot; <b>Routing</b> &middot; <b>Review</b> &middot; <b>Vastleggen</b></span>
+          <span>Workflow infrastructure</span>
+          <span><b>Trigger</b> &middot; <b>Routing</b> &middot; <b>Review</b> &middot; <b>Record</b></span>
         </div>
       </div>
     </div>
@@ -1425,23 +1503,23 @@
     <div class="block-head">
       <div>
         <span class="label-mono"><span class="dot"></span>01 &middot; Waarom workflows infrastructuur nodig hebben</span>
-        <h2 style="margin-top:14px;">Een AI die vragen beantwoordt is nuttig. Een AI die het werk in beweging zet, is transformatief.</h2>
+        <h2 style="margin-top:14px;">AI creëert meer waarde wanneer werk veilig beweegt, niet alleen wanneer het antwoorden geeft.</h2>
       </div>
-      <p class="block-lede">De meeste teams hebben AI al gebruikt om iets op te stellen of een document samen te vatten. De moeilijkere stap is wat daarna gebeurt: de draft naar de juiste reviewer sturen, de juiste policy erbij ophalen, de goedkeuring vastleggen, de CRM bijwerken. Dat is workflow-infrastructuur, en dat is wat AI op het werk echt nuttig maakt.</p>
+      <p class="block-lede">De meeste teams hebben AI al gebruikt om iets op te stellen of een document samen te vatten. De stap erna is lastiger: de draft naar de juiste reviewer routen, de policy erbij halen waarnaar verwezen moet worden, de approval vastleggen, de CRM bijwerken. Dat is workflow infrastructure, en dat is wat AI echt nuttig maakt op het werk.</p>
     </div>
 
     <p style="max-width: 64ch; color: var(--ink-soft); line-height: 1.65; margin: 0 0 8px;">
-      Workflow-infrastructuur is de laag die AI verandert van een losse tool in een onderdeel van het operationele proces. Hij verbindt de trigger, de context, de beslissing, de handoff en de vastlegging van wat er is gebeurd.
+      Workflow infrastructure is de laag die AI van een losse tool tot onderdeel van het operationele proces maakt. Het verbindt de trigger, de context, de beslissing, de handoff en het record van wat er is gebeurd.
     </p>
 
     <div class="why-chain" aria-hidden="true">
       <ol>
-        <li>Aanvraag</li>
+        <li>Request</li>
         <li>Context</li>
-        <li>AI-concept</li>
-        <li>Menselijke review</li>
-        <li>Actie</li>
-        <li>Vastlegging</li>
+        <li>AI draft</li>
+        <li>Human review</li>
+        <li>Action</li>
+        <li>Record</li>
       </ol>
     </div>
   </div>
@@ -1452,101 +1530,37 @@
     <div class="block-head">
       <div>
         <span class="label-mono"><span class="dot"></span>02 &middot; Wat er rond de AI-output moet gebeuren</span>
-        <h2 style="margin-top:14px;">Vijf capabilities die AI-output omzetten in werk dat loopt.</h2>
+        <h2 style="margin-top:14px;">Wat elke nuttige workflow rond de AI-output nodig heeft.</h2>
       </div>
-      <p class="block-lede">Onder elke workflow die we opleveren liggen vijf capabilities. De meeste projecten combineren er meerdere, afgestemd op wat de organisatie al draait.</p>
+      <p class="block-lede">Vijf capabilities liggen onder elke workflow die we opleveren. De meeste projecten combineren er meerdere, afgestemd op wat de organisatie al draait.</p>
     </div>
 
     <div class="ww-grid">
       <article class="ww-tile">
-        <span class="ww-num">01</span>
-        <h3>Aanvragen en triggers</h3>
-        <p class="ww-prop">Werk begint ergens. Een ingediend formulier, een binnenkomende mail, een bijgewerkt CRM-record, een geüpload document. De workflow vangt elke trigger en handelt erop. Betrouwbaar. Elke keer.</p>
-        <div class="ww-chips"><span>Formulieren</span><span>Inboxes</span><span>CRMs</span><span>Documenten</span></div>
+        <h3>Requests en triggers</h3>
+        <p class="ww-prop">Werk begint ergens. Een form dat wordt ingediend, een e-mail die binnenkomt, een CRM-record dat wordt bijgewerkt, een document dat wordt geüpload. De workflow vangt elke trigger en zet de juiste actie in gang. Betrouwbaar. Elke keer.</p>
+        <div class="ww-chips"><span>Forms</span><span>Inboxes</span><span>CRMs</span><span>Documenten</span></div>
       </article>
       <article class="ww-tile">
-        <span class="ww-num">02</span>
         <h3>Context en documenten</h3>
-        <p class="ww-prop">Voor AI iets nuttigs doet, heeft het de juiste context nodig: de relevante bestanden, de toepasselijke policy, de klanthistorie, de gekoppelde records. De workflow stelt dat automatisch samen. Zodat AI niet hoeft te gokken.</p>
+        <p class="ww-prop">Voordat AI iets nuttigs doet, heeft het de juiste context nodig: de relevante bestanden, de geldende policy, de klantgeschiedenis, de gekoppelde records. De workflow verzamelt dat automatisch, zodat AI niet hoeft te gokken.</p>
         <div class="ww-chips"><span>Documenten</span><span>Records</span><span>Policies</span></div>
       </article>
       <article class="ww-tile">
-        <span class="ww-num">03</span>
         <h3>Routing en approvals</h3>
-        <p class="ww-prop">De juiste taak gaat naar de juiste persoon, met alles wat ze nodig hebben om te beslissen al bijgevoegd. Niet meer zoeken naar context. Niet meer aan collega's vragen waar het staat.</p>
+        <p class="ww-prop">De juiste taak gaat naar de juiste persoon, met alles wat nodig is om te beslissen er al bij. Geen zoeken naar context. Geen collega's vragen in welke fase iets zit.</p>
         <div class="ww-chips"><span>Review queues</span><span>Approvals</span><span>Handoffs</span></div>
       </article>
       <article class="ww-tile">
-        <span class="ww-num">04</span>
-        <h3>Achtergrondwerk</h3>
-        <p class="ww-prop">Routinecontroles, draftvoorbereiding, samenvattingen en reminders gebeuren op de achtergrond terwijl het team zich op beslissingen richt. Wanneer iemand nodig is, komt het werk voorbereid aan.</p>
-        <div class="ww-chips"><span>Concepten</span><span>Herinneringen</span><span>Checks</span></div>
+        <h3>Background work</h3>
+        <p class="ww-prop">Routinematige checks, drafts, summaries en reminders lopen op de achtergrond terwijl het team zich op beslissingen focust. Wanneer een persoon nodig is, komt het werk voorbereid aan.</p>
+        <div class="ww-chips"><span>Drafts</span><span>Reminders</span><span>Checks</span></div>
       </article>
       <article class="ww-tile">
-        <span class="ww-num">05</span>
-        <h3>Systeemupdates</h3>
-        <p class="ww-prop">Eenmaal goedgekeurd werkt de workflow de systemen bij waar je bedrijf al op draait: CRM, ERP, inbox, ticketing, interne databases. Het werk is af. Het record is gesloten.</p>
+        <h3>System updates</h3>
+        <p class="ww-prop">Na approval werkt de workflow de systemen bij die je business al draaien: CRM, ERP, inbox, ticketing, interne databases. Het werk is af. Het record is gesloten.</p>
         <div class="ww-chips"><span>CRM</span><span>ERP</span><span>Ticketing</span><span>Databases</span></div>
       </article>
-    </div>
-
-    <!-- Mobile-only: collapsible accordion of the same 5 capabilities -->
-    <div class="ww-acc">
-      <details open>
-        <summary>
-          <span class="a-num">01</span>
-          <span class="a-title"><h3>Aanvragen en triggers</h3><span class="a-sub">Werk begint ergens. De workflow vangt het op.</span></span>
-          <span class="a-chev"></span>
-        </summary>
-        <div class="a-body">
-          <p class="a-prop">Een ingediend formulier, een binnenkomende mail, een bijgewerkt CRM-record, een ge&uuml;pload document. De workflow vangt elke trigger en handelt erop. Betrouwbaar. Elke keer.</p>
-          <div class="chips"><span>Formulieren</span><span>Inboxes</span><span>CRMs</span><span>Documenten</span></div>
-        </div>
-      </details>
-      <details>
-        <summary>
-          <span class="a-num">02</span>
-          <span class="a-title"><h3>Context en documenten</h3><span class="a-sub">De juiste bestanden, policy en historie, samengesteld.</span></span>
-          <span class="a-chev"></span>
-        </summary>
-        <div class="a-body">
-          <p class="a-prop">Voor AI iets nuttigs doet, heeft het de juiste context nodig: de relevante bestanden, de toepasselijke policy, de klanthistorie, de gekoppelde records. De workflow stelt dat automatisch samen. Zodat AI niet hoeft te gokken.</p>
-          <div class="chips"><span>Documenten</span><span>Records</span><span>Policies</span></div>
-        </div>
-      </details>
-      <details>
-        <summary>
-          <span class="a-num">03</span>
-          <span class="a-title"><h3>Routing en approvals</h3><span class="a-sub">De juiste taak naar de juiste persoon.</span></span>
-          <span class="a-chev"></span>
-        </summary>
-        <div class="a-body">
-          <p class="a-prop">De juiste taak gaat naar de juiste persoon, met alles wat ze nodig hebben om te beslissen al bijgevoegd. Niet meer zoeken naar context. Niet meer aan collega's vragen waar het staat.</p>
-          <div class="chips"><span>Review queues</span><span>Approvals</span><span>Handoffs</span></div>
-        </div>
-      </details>
-      <details>
-        <summary>
-          <span class="a-num">04</span>
-          <span class="a-title"><h3>Achtergrondwerk</h3><span class="a-sub">Checks, concepten en reminders terwijl het team beslist.</span></span>
-          <span class="a-chev"></span>
-        </summary>
-        <div class="a-body">
-          <p class="a-prop">Routinecontroles, draftvoorbereiding, samenvattingen en reminders gebeuren op de achtergrond terwijl het team zich op beslissingen richt. Wanneer iemand nodig is, komt het werk voorbereid aan.</p>
-          <div class="chips"><span>Concepten</span><span>Herinneringen</span><span>Checks</span></div>
-        </div>
-      </details>
-      <details>
-        <summary>
-          <span class="a-num">05</span>
-          <span class="a-title"><h3>Systeemupdates</h3><span class="a-sub">Goedgekeurd werk landt in de systemen die je draait.</span></span>
-          <span class="a-chev"></span>
-        </summary>
-        <div class="a-body">
-          <p class="a-prop">Eenmaal goedgekeurd werkt de workflow de systemen bij waar je bedrijf al op draait: CRM, ERP, inbox, ticketing, interne databases. Het werk is af. Het record is gesloten.</p>
-          <div class="chips"><span>CRM</span><span>ERP</span><span>Ticketing</span><span>Databases</span></div>
-        </div>
-      </details>
     </div>
   </div>
 </section>
@@ -1671,56 +1685,56 @@
     <div class="block-head">
       <div>
         <span class="label-mono"><span class="dot"></span>03 &middot; Hoe mensen en AI de workflow delen</span>
-        <h2 style="margin-top:14px;">AI bereidt voor. Mensen beslissen. De workflow houdt het record bij.</h2>
+        <h2 style="margin-top:14px;">AI bereidt voor. Mensen beslissen. De workflow bewaart het record.</h2>
       </div>
-      <p class="block-lede">AI verzamelt, stelt op en stuurt door. Mensen beslissen. Goedkeuren, afwijzen, escaleren, of terugsturen. Elke beslissing blijft aan de workflow gekoppeld. Zodat je zes maanden later nog steeds kunt zien waarom iets is goedgekeurd.</p>
+      <p class="block-lede">AI verzamelt, draft en routeert. Mensen beslissen. Keur goed, wijs af, escaleer of stuur terug. Elke beslissing blijft gekoppeld aan de workflow, zodat je zes maanden later nog steeds kunt zien waarom iets is goedgekeurd.</p>
     </div>
 
     <div class="behaviour-flow">
       <div class="behaviour-flow-head">
-        <span><b>Voorbeeld workflow</b> &middot; Klant vraagt terugbetaling</span>
+        <span><b>Voorbeeldworkflow</b> &middot; Refundverzoek van een klant</span>
         <span class="status">Gerouteerd &middot; gelogd</span>
       </div>
 
       <div class="bf-track">
         <div class="bf-step ai">
-          <span class="bf-eyebrow"><b>01</b> Voorbereid</span>
+          <span class="bf-eyebrow"><b>01</b> Prepared</span>
           <div class="bf-who">
             <span class="bf-av">AI</span>
-            <span class="bf-name">AI maakt het concept</span>
+            <span class="bf-name">AI bereidt de draft voor</span>
           </div>
-          <p class="bf-action">Brengt de klanthistorie samen, de policy die van toepassing is en eerdere beslissingen. Verwijst naar de bron. Wacht tot een mens verzendt.</p>
-          <span class="bf-tag"><b>Scope:</b> Support &middot; lezen</span>
+          <p class="bf-action">Brengt de klantgeschiedenis, de geldende policy en eerdere beslissingen samen. Citeert de bron. Wacht tot een mens verstuurt.</p>
+          <span class="bf-tag"><b>Scope:</b> Support &middot; read</span>
         </div>
 
         <div class="bf-step">
-          <span class="bf-eyebrow"><b>02</b> Bediend</span>
+          <span class="bf-eyebrow"><b>02</b> Operated</span>
           <div class="bf-who">
             <span class="bf-av">OP</span>
-            <span class="bf-name">Operator reviewt de queue</span>
+            <span class="bf-name">Operator bewaakt de queue</span>
           </div>
-          <p class="bf-action">Triggert de workflow, bewaakt de queue en draagt over wanneer een item een senior nodig heeft.</p>
-          <span class="bf-tag"><b>Scope:</b> Support &middot; lezen &middot; schrijven</span>
+          <p class="bf-action">Triggert de workflow, bewaakt de queue, draagt over wanneer een item senior review nodig heeft.</p>
+          <span class="bf-tag"><b>Scope:</b> Support &middot; read &middot; write</span>
         </div>
 
         <div class="bf-step">
-          <span class="bf-eyebrow"><b>03</b> Goedgekeurd</span>
+          <span class="bf-eyebrow"><b>03</b> Signed off</span>
           <div class="bf-who">
             <span class="bf-av">RV</span>
             <span class="bf-name">Reviewer keurt de actie goed</span>
           </div>
-          <p class="bf-action">Keurt de reactie goed met een vastgelegde reden. Niets verlaat de queue zonder een mens.</p>
+          <p class="bf-action">Keurt de respons goed met een reason of record. Niets verlaat de queue zonder een persoon.</p>
           <span class="bf-tag"><b>Scope:</b> Review &middot; approval</span>
         </div>
 
         <div class="bf-step">
-          <span class="bf-eyebrow"><b>04</b> Vastgelegd</span>
+          <span class="bf-eyebrow"><b>04</b> Recorded</span>
           <div class="bf-who">
             <span class="bf-av">&sect;</span>
-            <span class="bf-name">Beslissing wordt vastgelegd</span>
+            <span class="bf-name">De beslissing wordt vastgelegd</span>
           </div>
-          <p class="bf-action">Verzegelde regel: <b>bron</b>, <b>reviewer</b>, <b>timestamp</b> en <b>volgende stap</b>. Op verzoek exporteerbaar.</p>
-          <span class="bf-tag"><b>Scope:</b> Auditor &middot; lezen</span>
+          <p class="bf-action">Verzegelde entry: <b>bron</b>, <b>reviewer</b>, <b>timestamp</b> en <b>next step</b>. Op aanvraag exporteerbaar.</p>
+          <span class="bf-tag"><b>Scope:</b> Auditor &middot; read</span>
         </div>
       </div>
     </div>
@@ -1728,18 +1742,18 @@
     <div class="behaviour-principles">
       <div class="principle">
         <span class="p-num">PRINCIPE 01</span>
-        <h3 class="p-title">Via mensen gerouteerd.</h3>
+        <h3 class="p-title">Gerouteerd via mensen.</h3>
         <p class="p-body">AI bereidt het werk voor. Mensen houden de beslissing.</p>
       </div>
       <div class="principle">
         <span class="p-num">PRINCIPE 02</span>
-        <h3 class="p-title">Per rol afgebakend.</h3>
+        <h3 class="p-title">Afgebakend per rol.</h3>
         <p class="p-body">Mensen en AI zien alleen wat ze mogen zien.</p>
       </div>
       <div class="principle">
         <span class="p-num">PRINCIPE 03</span>
         <h3 class="p-title">Vastgelegd waar het werk gebeurt.</h3>
-        <p class="p-body">Elke actie houdt zijn bron, reviewer, timestamp en volgende stap vast.</p>
+        <p class="p-body">Elke actie behoudt zijn bron, reviewer, timestamp en next step.</p>
       </div>
     </div>
   </div>
@@ -1751,36 +1765,36 @@
   <div class="container">
     <div class="failure-block">
       <div>
-        <span class="label-mono"><span class="dot"></span>04 &middot; Als de workflow niet volgens plan loopt</span>
-        <h2 style="margin-top:14px;">Hoe het systeem omgaat met het onverwachte.</h2>
+        <span class="label-mono"><span class="dot"></span>04 &middot; Wanneer de workflow afwijkt</span>
+        <h2 style="margin-top:14px;">Hoe het systeem onverwachte situaties opvangt.</h2>
         <p class="block-lede">
-          Echte workflows komen edge cases tegen. Input arriveert incompleet. API's timen out. Een handtekening ontbreekt. Het systeem handelt elk geval af. Pauzeren, naar een persoon sturen, opnieuw proberen, loggen. Terwijl het werk zichtbaar blijft en het team op de hoogte is.
+          Echte workflows komen edge cases tegen. Inputs komen incompleet binnen. APIs vallen tijdelijk uit. Een handtekening ontbreekt. Het systeem vangt elk geval op. Pauzeren, naar een persoon routen, opnieuw proberen, loggen. Zo blijft het werk zichtbaar en het team op de hoogte.
         </p>
       </div>
       <div class="failure-panel" aria-label="Exception handling states">
         <div class="failure-row is-active">
           <span class="fname">Tijdelijke fout</span>
-          <span class="fdesc">Het systeem doet een retry voordat het escaleert.</span>
-          <span class="fmeta">Retry loopt</span>
+          <span class="fdesc">Het systeem probeert opnieuw voordat het escaleert.</span>
+          <span class="fmeta">Opnieuw proberen</span>
         </div>
         <div class="failure-row">
           <span class="fname">Ontbrekende informatie</span>
-          <span class="fdesc">De workflow vraagt om de ontbrekende context of routeert naar review.</span>
+          <span class="fdesc">De workflow vraagt de ontbrekende context op of routeert naar review.</span>
           <span class="fmeta">Gerouteerd</span>
         </div>
         <div class="failure-row is-active">
-          <span class="fname">Approval-vertraging</span>
-          <span class="fdesc">Als het review-venster wordt gemist, escaleert de taak naar de volgende eigenaar.</span>
+          <span class="fname">Approval delay</span>
+          <span class="fdesc">Als de review window wordt gemist, escaleert de taak naar de volgende owner.</span>
           <span class="fmeta">Geëscaleerd</span>
         </div>
         <div class="failure-row">
-          <span class="fname">Lage zekerheid</span>
-          <span class="fdesc">AI gokt niet. Het item gaat met context naar een mens.</span>
-          <span class="fmeta">Naar review</span>
+          <span class="fname">Lage confidence</span>
+          <span class="fdesc">AI gokt niet. Het item gaat met de context erbij naar een persoon.</span>
+          <span class="fmeta">Naar review gestuurd</span>
         </div>
         <div class="failure-row">
           <span class="fname">Geparkeerd voor review</span>
-          <span class="fdesc">Niet-afgehandelde items worden veilig vastgehouden zodat ze later kunnen worden beoordeeld en opnieuw uitgevoerd.</span>
+          <span class="fdesc">Onopgeloste items worden veilig vastgehouden zodat ze later gereviewd en opnieuw afgespeeld kunnen worden.</span>
           <span class="fmeta">Wacht op review</span>
         </div>
       </div>
@@ -1794,7 +1808,7 @@
         <span class="label-mono"><span class="dot"></span>05 &middot; Begin met één workflow</span>
         <h2 style="margin-top:14px;">Vandaag één workflow. Morgen de operationele laag.</h2>
       </div>
-      <p class="block-lede">Eén workflow wordt er twee. Twee wordt een afdeling. Een afdeling wordt cross-functioneel. Wat constant blijft is wat je ziet: wat beweegt, wat faalt, wie het heeft beoordeeld, waar het vertraagt. Groeien betekent niet zicht verliezen. Het betekent dat het zicht meegroeit met het werk.</p>
+      <p class="block-lede">Eén workflow wordt er twee. Twee wordt een afdeling. Een afdeling wordt cross-functioneel. Wat constant blijft is wat je kunt zien: wat er bewoog, wat er faalde, wie het reviewde, waar het vertraagde. Groei betekent niet dat je zicht verliest. Het betekent dat het zicht meeschaalt met het werk.</p>
     </div>
 
     <!-- Part A. Scaling path -->
@@ -1808,23 +1822,23 @@
         <span class="gf-arr">&rarr;</span>
         <span class="gf-step">Team</span>
         <span class="gf-arr">&rarr;</span>
-        <span class="gf-step">Systeem</span>
+        <span class="gf-step">System</span>
       </div>
       <div class="grow-labels">
         <div class="gl">
-          <span class="gl-lbl">Fase 01</span>
+          <span class="gl-lbl">Stage 01</span>
           <span class="gl-name">Eén workflow.</span>
           <span class="gl-desc">Eén trigger, één proces, één meetbaar resultaat.</span>
         </div>
         <div class="gl">
-          <span class="gl-lbl">Fase 02</span>
-          <span class="gl-name">Gekoppelde workflow.</span>
+          <span class="gl-lbl">Stage 02</span>
+          <span class="gl-name">Connected workflow.</span>
           <span class="gl-desc">Meerdere tools, approvals, retries en escalaties.</span>
         </div>
         <div class="gl">
-          <span class="gl-lbl">Fase 03</span>
+          <span class="gl-lbl">Stage 03</span>
           <span class="gl-name">Operationele laag.</span>
-          <span class="gl-desc">Gedeeld zicht op queues, teams, systemen en actiegeschiedenis.</span>
+          <span class="gl-desc">Gedeeld zicht over queues, teams, systemen en action history.</span>
         </div>
       </div>
     </div>
@@ -1839,7 +1853,7 @@
       <div class="gc">
         <span class="gc-lbl">02</span>
         <span class="gc-name">Retries.</span>
-        <span class="gc-desc">Wat opnieuw geprobeerd is na een tijdelijke fout.</span>
+        <span class="gc-desc">Wat opnieuw is geprobeerd na een tijdelijke fout.</span>
       </div>
       <div class="gc">
         <span class="gc-lbl">03</span>
@@ -1849,7 +1863,7 @@
       <div class="gc">
         <span class="gc-lbl">04</span>
         <span class="gc-name">Handoffs.</span>
-        <span class="gc-desc">Wie de taak ontving, beoordeelde of escaleerde.</span>
+        <span class="gc-desc">Wie de taak ontving, reviewde of escaleerde.</span>
       </div>
       <div class="gc">
         <span class="gc-lbl">05</span>
@@ -1858,7 +1872,7 @@
       </div>
       <div class="gc">
         <span class="gc-lbl">06</span>
-        <span class="gc-name">Actiegeschiedenis.</span>
+        <span class="gc-name">Action history.</span>
         <span class="gc-desc">Wat er gebeurde, wanneer en waarom.</span>
       </div>
     </div>
@@ -2032,147 +2046,147 @@
     <div class="block-head">
       <div>
         <span class="label-mono"><span class="dot"></span>06 &middot; Gebouwd zodat IT het kan reviewen</span>
-        <h2 style="margin-top:14px;">Vanaf dag één ontworpen met je IT-team in gedachten.</h2>
+        <h2 style="margin-top:14px;">Ontworpen met je IT-team vanaf dag één.</h2>
       </div>
-      <p class="block-lede">Je IT- en security-teams reviewen de architectuur vroeg. Deployment, toegang, datagrenzen, logging en security zijn allemaal ontworpen voor er iets live gaat.</p>
+      <p class="block-lede">Je IT- en securityteams reviewen de architectuur vroeg. Deployment, access, data boundaries, logging en security worden allemaal ontworpen voordat iets live gaat.</p>
     </div>
 
     <div class="archlayers-grid">
       <article class="archlayer">
-        <span class="al-num">Laag 01</span>
+        <span class="al-num">Layer 01</span>
         <h3>Waar teams het gebruiken</h3>
-        <p class="al-sub">Het oppervlak dat mensen zien en bedienen. Geauthentiseerd, gehardened en geïntegreerd met hoe het team al werkt.</p>
+        <p class="al-sub">De interface die mensen zien en waarop ze handelen. Authenticated, hardened en geïntegreerd met hoe het team al werkt.</p>
         <ul class="al-items">
-          <li>CDN-fronted distributie</li>
-          <li>Statische SPA-hosting</li>
-          <li>TLS-terminatie &middot; certificaatbeheer</li>
-          <li>WAF &middot; DDoS-bescherming</li>
-          <li>Auth aan de edge</li>
+          <li>CDN-fronted distribution</li>
+          <li>Static SPA hosting</li>
+          <li>TLS termination &middot; cert management</li>
+          <li>WAF &middot; DDoS protection</li>
+          <li>Auth at the edge</li>
         </ul>
       </article>
       <article class="archlayer">
-        <span class="al-num">Laag 02</span>
+        <span class="al-num">Layer 02</span>
         <h3>Hoe systemen met elkaar praten</h3>
-        <p class="al-sub">Gevalideerd en observeerbaar. Schaalt op aanvraag, blijft begrensd bij een fout. De integratiegrens tussen de workflow en de systemen die hij raakt.</p>
+        <p class="al-sub">Validated en observable. Schaalt op aanvraag, contained bij failure. De integration boundary tussen de workflow en de systemen die hij raakt.</p>
         <ul class="al-items">
-          <li>Gateway &middot; request-validatie</li>
-          <li>Serverless of containerised compute</li>
+          <li>Gateway &middot; request validation</li>
+          <li>Serverless or containerised compute</li>
           <li>Auto-scaling &middot; throttling</li>
-          <li>Versie-gebonden endpoints</li>
-          <li>Gestructureerde logging</li>
+          <li>Versioned endpoints</li>
+          <li>Structured logging</li>
         </ul>
       </article>
       <article class="archlayer">
-        <span class="al-num">Laag 03</span>
+        <span class="al-num">Layer 03</span>
         <h3>Waar informatie wordt opgeslagen</h3>
-        <p class="al-sub">Versleuteld, gerepliceerd, herstelbaar. Grenzen zijn expliciet en per tenant afgebakend.</p>
+        <p class="al-sub">Encrypted, replicated, recoverable. Boundaries zijn expliciet en tenant-scoped.</p>
         <ul class="al-items">
-          <li>Multi-AZ relationeel</li>
-          <li>Vector + relationeel in één footprint</li>
+          <li>Multi-AZ relational</li>
+          <li>Vector + relational in one footprint</li>
           <li>Encryption at rest &amp; in transit</li>
-          <li>Geautomatiseerde back-ups &middot; point-in-time recovery</li>
-          <li>Per tenant geïsoleerd</li>
+          <li>Automated backups &middot; point-in-time recovery</li>
+          <li>Tenant-scoped isolation</li>
         </ul>
       </article>
       <article class="archlayer">
-        <span class="al-num">Laag 04</span>
+        <span class="al-num">Layer 04</span>
         <h3>Hoe toegang wordt geregeld</h3>
-        <p class="al-sub">SSO aan de voorkant, secrets in een vault, elke actie vastgelegd. Ontworpen om door IT te kunnen worden gereviewd voordat het opschaalt.</p>
+        <p class="al-sub">SSO aan de voorkant, secrets in een vault, elke actie vastgelegd. Ontworpen om reviewable te zijn door IT voordat het schaalt.</p>
         <ul class="al-items">
           <li>SSO via SAML / OIDC</li>
-          <li>Secrets-vault</li>
+          <li>Secrets vault</li>
           <li>Role-based access</li>
-          <li>Private network-isolatie</li>
-          <li>Onveranderbare actie-vastlegging</li>
-          <li>Policy-handhaving</li>
+          <li>Private network isolation</li>
+          <li>Immutable record of action</li>
+          <li>Policy enforcement</li>
         </ul>
       </article>
     </div>
 
-    <ul class="archlayers-trust" aria-label="Trust-eigenschappen">
-      <li>Cloud-agnostisch</li>
-      <li>Per tenant afgebakend</li>
+    <ul class="archlayers-trust" aria-label="Trust attributes">
+      <li>Cloud-agnostic</li>
+      <li>Tenant-scoped</li>
       <li>Role-based</li>
       <li>Audit-ready</li>
-      <li>Door IT gereviewd</li>
+      <li>IT-reviewed</li>
     </ul>
 
     <!-- Mobile-only: dark collapsible accordion of the same 4 layers -->
     <div class="al-acc">
       <details open>
         <summary>
-          <span class="a-num">Laag 01</span>
-          <span class="a-title"><h3>Waar teams het gebruiken</h3><span class="a-sub">Het oppervlak dat mensen zien en bedienen.</span></span>
+          <span class="a-num">Layer 01</span>
+          <span class="a-title"><h3>Waar teams het gebruiken</h3><span class="a-sub">De interface die mensen zien en waarop ze handelen.</span></span>
           <span class="a-chev"></span>
         </summary>
         <div class="a-body">
           <ul class="items">
-            <li>CDN-fronted distributie</li>
-            <li>Statische SPA-hosting</li>
-            <li>TLS-terminatie &middot; certificaatbeheer</li>
-            <li>WAF &middot; DDoS-bescherming</li>
-            <li>Auth aan de edge</li>
+            <li>CDN-fronted distribution</li>
+            <li>Static SPA hosting</li>
+            <li>TLS termination &middot; cert management</li>
+            <li>WAF &middot; DDoS protection</li>
+            <li>Auth at the edge</li>
           </ul>
         </div>
       </details>
       <details>
         <summary>
-          <span class="a-num">Laag 02</span>
-          <span class="a-title"><h3>Hoe systemen met elkaar praten</h3><span class="a-sub">Gevalideerd en observeerbaar. Begrensd bij een fout.</span></span>
+          <span class="a-num">Layer 02</span>
+          <span class="a-title"><h3>Hoe systemen met elkaar praten</h3><span class="a-sub">Validated en observable. Contained bij failure.</span></span>
           <span class="a-chev"></span>
         </summary>
         <div class="a-body">
           <ul class="items">
-            <li>Gateway &middot; request-validatie</li>
-            <li>Serverless of containerised compute</li>
+            <li>Gateway &middot; request validation</li>
+            <li>Serverless or containerised compute</li>
             <li>Auto-scaling &middot; throttling</li>
-            <li>Versie-gebonden endpoints</li>
-            <li>Gestructureerde logging</li>
+            <li>Versioned endpoints</li>
+            <li>Structured logging</li>
           </ul>
         </div>
       </details>
       <details>
         <summary>
-          <span class="a-num">Laag 03</span>
-          <span class="a-title"><h3>Waar informatie wordt opgeslagen</h3><span class="a-sub">Versleuteld, gerepliceerd, herstelbaar.</span></span>
+          <span class="a-num">Layer 03</span>
+          <span class="a-title"><h3>Waar informatie wordt opgeslagen</h3><span class="a-sub">Encrypted, replicated, recoverable.</span></span>
           <span class="a-chev"></span>
         </summary>
         <div class="a-body">
           <ul class="items">
-            <li>Multi-AZ relationeel</li>
-            <li>Vector + relationeel in &eacute;&eacute;n footprint</li>
+            <li>Multi-AZ relational</li>
+            <li>Vector + relational in one footprint</li>
             <li>Encryption at rest &amp; in transit</li>
-            <li>Geautomatiseerde back-ups &middot; point-in-time recovery</li>
-            <li>Per tenant ge&iuml;soleerd</li>
+            <li>Automated backups &middot; point-in-time recovery</li>
+            <li>Tenant-scoped isolation</li>
           </ul>
         </div>
       </details>
       <details>
         <summary>
-          <span class="a-num">Laag 04</span>
+          <span class="a-num">Layer 04</span>
           <span class="a-title"><h3>Hoe toegang wordt geregeld</h3><span class="a-sub">SSO aan de voorkant, elke actie vastgelegd.</span></span>
           <span class="a-chev"></span>
         </summary>
         <div class="a-body">
           <ul class="items">
             <li>SSO via SAML / OIDC</li>
-            <li>Secrets-vault</li>
+            <li>Secrets vault</li>
             <li>Role-based access</li>
-            <li>Private network-isolatie</li>
-            <li>Onveranderbare actie-vastlegging</li>
-            <li>Policy-handhaving</li>
+            <li>Private network isolation</li>
+            <li>Immutable record of action</li>
+            <li>Policy enforcement</li>
           </ul>
         </div>
       </details>
     </div>
 
     <!-- Mobile-only trust pill row, lives below the accordion -->
-    <ul class="al-trust-m" aria-label="Trust-eigenschappen">
-      <li>Cloud-agnostisch</li>
-      <li>Per tenant afgebakend</li>
+    <ul class="al-trust-m" aria-label="Trust attributes">
+      <li>Cloud-agnostic</li>
+      <li>Tenant-scoped</li>
       <li>Role-based</li>
       <li>Audit-ready</li>
-      <li>Door IT gereviewd</li>
+      <li>IT-reviewed</li>
     </ul>
   </div>
 </section>
@@ -2184,17 +2198,17 @@
       <div class="final-cta-grid">
         <div>
           <span class="label-mono"><span class="dot"></span>Begin hier</span>
-          <h2>Breng ons één workflow die je sneller wilt laten lopen.</h2>
-          <p>Kies één workflow waar je het werk sneller wilt laten lopen. We brengen de trigger, de mensen, de systemen, de uitzonderingspaden en de kleinste nuttige versie in kaart die het waard is op te leveren.</p>
+          <h2>Breng één workflow mee die je sneller wilt laten bewegen.</h2>
+          <p>Kies één workflow waar je het werk sneller wilt laten bewegen. We brengen de trigger, de mensen, de systemen, de exception paths en de kleinste nuttige versie die het waard is om te shippen in kaart.</p>
         </div>
         <div class="final-cta-actions">
           <a class="btn btn-primary" href="../Home.html#contact">
-            Praat met ons <span class="arrow">&rarr;</span>
+            Bespreek een workflow <span class="arrow">&rarr;</span>
           </a>
           <a class="btn btn-ghost" href="../Home.html#work">
             Lees een case study <span class="arrow">&rarr;</span>
           </a>
-          <span class="final-cta-risk">30 minuten. We brengen in kaart wat eerst geautomatiseerd wordt, wat we voor later laten, en wat we meten.</span>
+          <span class="final-cta-risk">30 minuten. We brengen in kaart wat je eerst automatiseert, wat je voor later laat en wat je meet.</span>
         </div>
       </div>
     </div>
@@ -2300,10 +2314,10 @@
       <div class="footer-col">
         <h5>Oplossingen</h5>
         <ul>
-          <li><a href="ai-applications-and-platforms.html">AI Products &amp; Platforms</a></li>
-          <li><a href="ai-workflow-infrastructure.html">AI Workflows &amp; Operations</a></li>
-          <li><a href="enterprise-ai.html">Enterprise AI</a></li>
-          <li><a href="prototype-to-production.html">Van pilot naar productie</a></li>
+          <li><a href="ai-applications-and-platforms.html">Platforms &amp; Tools</a></li>
+          <li><a href="ai-workflow-infrastructure.html">Workflows</a></li>
+          <li><a href="scale-ups.html">Scale-ups</a></li>
+          <li><a href="enterprise-ai.html">Enterprise</a></li>
         </ul>
       </div>
       <div class="footer-col">

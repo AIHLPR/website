@@ -701,11 +701,20 @@
      auto-sizes to the tallest content. */
   .capscroll {
     display: grid;
-    grid-template-columns: minmax(0, 0.82fr) minmax(0, 1.18fr);
-    gap: clamp(32px, 5vw, 80px);
-    align-items: start;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    column-gap: clamp(32px, 5vw, 80px);
+    row-gap: clamp(56px, 8vw, 110px);
+    align-items: center;
   }
-  .capscroll-text { display: grid; }
+  /* Wrappers dissolve so the steps + visuals become direct grid items */
+  .capscroll-text, .capscroll-visual { display: contents; }
+  /* Two stacked, alternating rows (replaces the tabbed switcher) */
+  .capscroll .capstep,
+  .capscroll .capvisual { grid-area: auto; opacity: 1; pointer-events: auto; }
+  .capscroll .capstep[data-i="0"]   { grid-column: 1; grid-row: 1; }
+  .capscroll .capvisual[data-i="0"] { grid-column: 2; grid-row: 1; }
+  .capscroll .capvisual[data-i="1"] { grid-column: 1; grid-row: 2; }
+  .capscroll .capstep[data-i="1"]   { grid-column: 2; grid-row: 2; }
   .capstep {
     grid-area: 1 / 1;
     display: flex;
@@ -722,10 +731,7 @@
   .capstep:hover .cap-strip-chips span { border-color: var(--c); color: var(--c); }
   .capstep:hover .cap-strip-link { gap: 14px; color: var(--c); }
 
-  .capscroll-visual {
-    display: grid;
-    min-height: clamp(380px, 50vh, 560px);
-  }
+  .capscroll .capvisual { min-height: clamp(340px, 40vw, 520px); }
   .capvisual {
     grid-area: 1 / 1;
     display: grid;
@@ -738,8 +744,13 @@
   .capvisual .cap-strip-visual { width: 100%; }
 
   @media (max-width: 880px) {
-    .capscroll { grid-template-columns: 1fr; gap: 28px; }
-    .capscroll-visual { min-height: clamp(280px, 40vh, 420px); }
+    .capscroll { grid-template-columns: 1fr; row-gap: clamp(40px, 8vw, 64px); }
+    .capscroll .capstep, .capscroll .capvisual { grid-column: 1 !important; }
+    .capscroll .capstep[data-i="0"]   { grid-row: 1; }
+    .capscroll .capvisual[data-i="0"] { grid-row: 2; }
+    .capscroll .capstep[data-i="1"]   { grid-row: 3; }
+    .capscroll .capvisual[data-i="1"] { grid-row: 4; }
+    .capscroll .capvisual { min-height: clamp(280px, 60vw, 420px); }
   }
   .cap-pin:nth-child(1) { --cap-i: 0; z-index: 1; }
   .cap-pin:nth-child(2) { --cap-i: 1; z-index: 2; }
@@ -3320,44 +3331,6 @@
 
   .pipe-header { margin-bottom: clamp(20px, 2.2vw, 28px); }
 
-  /* In-pipeline CTA: lives inside the dark band, calm and low-pressure */
-  .pipe-cta {
-    margin-top: clamp(20px, 2.4vw, 32px);
-    padding-top: clamp(20px, 2.4vw, 28px);
-    border-top: 1px dashed rgba(255,255,255,0.14);
-    display: flex; align-items: center; justify-content: space-between;
-    gap: clamp(20px, 3vw, 40px);
-    flex-wrap: wrap;
-  }
-  .pipe-cta-text { display: flex; flex-direction: column; gap: 6px; max-width: 50ch; min-width: 0; }
-  .pipe-cta-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
-    color: rgba(255,255,255,0.55);
-  }
-  .pipe-cta-line {
-    font-size: clamp(14.5px, 1.1vw, 16px);
-    line-height: 1.55;
-    color: rgba(255,255,255,0.82);
-    margin: 0;
-  }
-  .pipe-cta-btn {
-    display: inline-flex; align-items: center; gap: 10px;
-    padding: 12px 22px;
-    background: rgba(255,255,255,0.96);
-    color: var(--ink);
-    border-radius: 999px;
-    font-family: var(--font-display);
-    font-size: 14.5px; font-weight: 500;
-    white-space: nowrap;
-    transition: background 180ms ease, gap 180ms ease;
-    text-decoration: none;
-  }
-  .pipe-cta-btn:hover { background: var(--white); gap: 14px; }
-  @media (max-width: 720px) {
-    .pipe-cta { flex-direction: column; align-items: stretch; gap: 18px; }
-    .pipe-cta-btn { width: 100%; justify-content: center; }
-  }
   .pipe-eyebrow {
     display: inline-flex; align-items: center; gap: 8px;
     font-family: var(--font-mono);
@@ -3688,14 +3661,12 @@
     }
     .stage-display-main { min-height: 260px; }
   }
-  /* Mobile-only: drop the step console and the reserved 260px slot.
-     Brings 'This is how we usually work' right up against the rail so
+  /* Mobile-only: drop the step console and the reserved 260px slot so
      the whole 'How it begins' card fits on one phone screen. */
   @media (max-width: 760px) {
     .stage-console { display: none; }
     .stage-display { margin-top: 8px; gap: 0; }
     .stage-display-main { min-height: 0; }
-    .pipe-cta { margin-top: 18px; padding-top: 18px; }
   }
   @media (prefers-reduced-motion: reduce) {
     .pipe-status-dot, .rail-stop.is-active .rail-node::before,
@@ -4024,13 +3995,12 @@
     grid-template-areas:
       "hero hero"
       "p2   p3"
-      "p4   p5"
-      "own  own";
+      "p4   p5";
   }
   @media (max-width: 560px) {
     .diff-bento {
       grid-template-columns: 1fr;
-      grid-template-areas: "hero" "p2" "p3" "p4" "p5" "own";
+      grid-template-areas: "hero" "p2" "p3" "p4" "p5";
     }
   }
 
@@ -4093,25 +4063,6 @@
   .pt-hero .pt-side { flex: 1; }
   @media (max-width: 560px) { .pt-hero { flex-direction: column; align-items: flex-start; } }
 
-  /* 06 closer -- LIGHT feature, gradient strip on bottom */
-  .pt-own {
-    grid-area: own;
-    background: var(--surface-2);
-    flex-direction: row;
-    align-items: center;
-    gap: clamp(20px, 3vw, 40px);
-    position: relative;
-    overflow: hidden;
-  }
-  .pt-own::after {
-    content: "";
-    position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
-    background: var(--gradient);
-  }
-  .pt-own .pt-main { flex: 1.2; }
-  .pt-own .pt-side { flex: 1; }
-  .pt-own .pt-title { font-size: clamp(22px, 2vw, 28px); }
-  @media (max-width: 560px) { .pt-own { flex-direction: column; align-items: flex-start; } }
 
   .pt-p2 { grid-area: p2; }
   .pt-p3 { grid-area: p3; }
@@ -4170,6 +4121,8 @@
   .fit-copy h2 { font-size: clamp(28px, 3vw, 44px); font-weight: 500; letter-spacing: -0.03em; line-height: 1.04; margin: 6px 0 0; }
   .fit-copy .fitband-sub { margin: 4px 0 0; max-width: 46ch; }
   .fit-pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 16px; }
+  .fit-cta { margin-top: clamp(20px, 2vw, 28px); }
+  @media (max-width: 560px) { .fit-cta .btn { width: 100%; justify-content: center; } }
   .fit-pill {
     font-family: var(--font-mono);
     font-weight: 500;
@@ -4382,13 +4335,13 @@
         </div>
 
         <h1>
-          Make AI work where<br>
-          your business<br>
-          <em class="grad brand-gradient-text">needs it most.</em>
+          Use AI where it<br>
+          creates real<br>
+          <em class="grad brand-gradient-text">business value.</em>
         </h1>
 
         <p class="hero-sub">
-          AIHLPR helps you identify the workflow, task, or decision point where AI can create real value, then turns it into a system your team can use with control.
+          Find the workflow, task, or decision point where AI can save time, reduce repeated work, or improve output &mdash; then turn it into a system your team can use with control.
         </p>
 
         <div class="hero-pill">
@@ -4473,9 +4426,9 @@
 
       <!-- LEFT: sticky statement -->
       <aside class="diff-aside reveal">
-        <span class="label-mono"><span class="dot"></span>What makes us different</span>
-        <h2>One team. <span class="brand-gradient-text">From first workflow to full deployment.</span></h2>
-        <p class="lede">Six things that hold true on every engagement, from the first workflow we map to the day-to-day system you run long after launch.</p>
+        <span class="label-mono"><span class="dot"></span>Where AI actually helps</span>
+        <h2>Less manual work. <span class="brand-gradient-text">More control over how work moves.</span></h2>
+        <p class="lede">When AI is applied to the right step, slow and repeated work becomes easier to move, review, and scale &mdash; without losing human control.</p>
         <div class="rule"></div>
       </aside>
 
@@ -4485,51 +4438,35 @@
         <!-- 01 hero -->
         <article class="pt pt-hero reveal">
           <div class="pt-main">
-            <span class="pt-num">01</span>
-            <h3 class="pt-title">We stay after go-live.</h3>
+            <h3 class="pt-title">Less manual chasing.</h3>
           </div>
           <div class="pt-side">
-            <p class="pt-body">Strategy, build, deployment, day-to-day operations. One team across the full lifecycle of the system.</p>
+            <p class="pt-body">Tasks move forward without someone chasing every update.</p>
           </div>
         </article>
 
         <!-- 02 -->
         <article class="pt pt-p2 reveal">
-          <span class="pt-num">02</span>
-          <h3 class="pt-title">Everything under one roof.</h3>
-          <p class="pt-body">Models, data, workflows, governance, cloud. One team, one stack, one point of accountability.</p>
+          <h3 class="pt-title">Tools work together.</h3>
+          <p class="pt-body">Data, approvals, and outputs connect across the systems you already use.</p>
         </article>
 
         <!-- 03 -->
         <article class="pt pt-p3 reveal">
-          <span class="pt-num">03</span>
-          <h3 class="pt-title">Built to run in production.</h3>
-          <p class="pt-body">Every system we ship holds up under real users, real data, and real operational pressure, and stays monitored after launch.</p>
+          <h3 class="pt-title">People stay in control.</h3>
+          <p class="pt-body">Your team reviews important decisions before anything moves forward.</p>
         </article>
 
         <!-- 04 -->
         <article class="pt pt-p4 reveal">
-          <span class="pt-num">04</span>
-          <h3 class="pt-title">Fits how you already work.</h3>
-          <p class="pt-body">We design around your processes, your tools, and your approval chains. Nothing gets ripped out.</p>
+          <h3 class="pt-title">Work scales more easily.</h3>
+          <p class="pt-body">More volume moves through the same team without extra coordination.</p>
         </article>
 
         <!-- 05 -->
         <article class="pt pt-p5 reveal">
-          <span class="pt-num">05</span>
-          <h3 class="pt-title">People stay in charge.</h3>
-          <p class="pt-body">Approval points, review screens, and audit trails are designed into the workflow from day one.</p>
-        </article>
-
-        <!-- 06 closer -->
-        <article class="pt pt-own reveal">
-          <div class="pt-main">
-            <span class="pt-num">06</span>
-            <h3 class="pt-title">You own everything.</h3>
-          </div>
-          <div class="pt-side">
-            <p class="pt-body">The workflows, the logic, the data. Everything we build stays under your control. Before, during, and after.</p>
-          </div>
+          <h3 class="pt-title">The system improves after launch.</h3>
+          <p class="pt-body">Real usage shows what to refine, automate further, or keep human-led.</p>
         </article>
 
       </div>
@@ -4545,17 +4482,12 @@
 
     <div class="cap-section-head reveal">
       <div>
-        <span class="label-mono"><span class="dot"></span>What we do</span>
-        <h2 class="cap-title">AI tools, and the infrastructure underneath.</h2>
+        <span class="label-mono"><span class="dot"></span>What we build</span>
+        <h2 class="cap-title">Two ways AI becomes useful at work.</h2>
       </div>
       <p class="cap-subtitle">
-        The interfaces your team clicks, and the workflows that move work automatically. Neither works without the other, so we do both.
+        Some teams need a tool people can use every day. Others need the workflow behind the scenes to move work between systems. We build both, around the way your business already runs.
       </p>
-    </div>
-
-    <div class="captabs reveal" role="tablist" aria-label="Capabilities">
-      <button class="captab is-active" data-tab="0" role="tab" aria-selected="true" aria-controls="capstep-0" tabindex="0">Platforms &amp; Tools</button>
-      <button class="captab" data-tab="1" role="tab" aria-selected="false" aria-controls="capstep-1" tabindex="-1">Workflows</button>
     </div>
 
     <div class="capscroll" id="capscroll">
@@ -4563,8 +4495,8 @@
         <article class="capstep is-active" data-i="0" style="--c:#E91E63">
           <a class="capstep-inner" href="capabilities/ai-applications-and-platforms.html">
             <div class="cap-strip-text">
-          <h3>Internal AI that fits in your workday</h3>
-          <p>Custom assistants, knowledge search, approval screens, review dashboards. Built so your team gets the answer without leaving the system they&rsquo;re already in, and managers can see what was approved, and why.</p>
+          <h3>AI Applications &amp; Platforms</h3>
+          <p>Internal AI tools, assistants, dashboards, knowledge search, and review screens your team can use in daily work.</p>
           <div class="cap-strip-chips">
             <span>AI assistants</span>
             <span>Custom AI apps</span>
@@ -4572,15 +4504,15 @@
             <span>Review &amp; approval</span>
             <span>Activity dashboards</span>
           </div>
-          <span class="cap-strip-link">Explore Platforms &amp; Tools <span class="arrow">&rarr;</span></span>
+          <span class="cap-strip-link">Explore Applications &amp; Platforms <span class="arrow">&rarr;</span></span>
         </div>
           </a>
         </article>
         <article class="capstep" data-i="1" style="--c:#9B59B6">
           <a class="capstep-inner" href="capabilities/ai-workflow-infrastructure.html">
             <div class="cap-strip-text">
-          <h3>AI that moves work between systems automatically</h3>
-          <p>A request comes in. AI gathers the context, drafts a response, routes it to the right reviewer, records the decision. Work moves forward, with the right person making the final call.</p>
+          <h3>AI Workflow Systems</h3>
+          <p>Automation layers that move work across tools, documents, approvals, and exceptions &mdash; with people in control of the decisions.</p>
           <div class="cap-strip-chips">
             <span>Process automation</span>
             <span>Document automation</span>
@@ -4588,7 +4520,7 @@
             <span>Background AI tasks</span>
             <span>System integration</span>
           </div>
-          <span class="cap-strip-link">Explore Workflows <span class="arrow">&rarr;</span></span>
+          <span class="cap-strip-link">Explore Workflow Systems <span class="arrow">&rarr;</span></span>
         </div>
           </a>
         </article>
@@ -4843,26 +4775,26 @@
     <div class="cap-section-head reveal">
       <div>
         <span class="label-mono"><span class="dot"></span>Who we serve</span>
-        <h2 class="cap-title">Shaped around where you are.</h2>
+        <h2 class="cap-title">The same workflow-first approach, adapted to your operating reality.</h2>
       </div>
       <p class="cap-subtitle">
-        The approach is the same. The starting point is not. Pick the one that sounds like you, and see how we help.
+        Some teams need capacity fast. Others need secure rollout across departments, systems, and regions. AIHLPR starts with the real workflow, then builds the version that fits your organisation.
       </p>
     </div>
     <div class="who-grid">
-      <a class="who-card reveal" href="capabilities/scale-ups.html" style="--wc: var(--teal);">
+      <a class="who-card reveal" href="capabilities/scale-ups.html" style="--wc: var(--blue);">
         <span class="who-eyebrow"><span class="dot"></span>Scale-ups</span>
-        <h3>Growing faster than you can hire</h3>
-        <p>More work than headcount, and a budget that only stretches so far. We add AI capacity where the team is stretched, so a lean team gets the output of a much larger one.</p>
-        <div class="who-chips"><span>Lean teams</span><span>Live in weeks</span><span>Fraction of a hire</span></div>
-        <span class="who-link">For scale-ups <span class="arrow">&rarr;</span></span>
+        <h3>More output from the team you already have</h3>
+        <p>Add AI capacity where work is piling up, so your team can handle more leads, documents, updates, or approvals without extra coordination.</p>
+        <div class="who-chips"><span>Lean team</span><span>Live in weeks</span><span>Capacity gain</span></div>
+        <span class="who-link">For growing teams <span class="arrow">&rarr;</span></span>
       </a>
       <a class="who-card reveal" href="capabilities/enterprise-ai.html" style="--wc: var(--blue);">
         <span class="who-eyebrow"><span class="dot"></span>Enterprise</span>
-        <h3>AI your whole organisation can trust</h3>
-        <p>Data residency, role-scoped access, audit trails, and human oversight designed in. AI that meets the standards your organisation already holds, across teams and regions.</p>
-        <div class="who-chips"><span>Governed</span><span>EU residency</span><span>Role-scoped</span></div>
-        <span class="who-link">For enterprise <span class="arrow">&rarr;</span></span>
+        <h3>AI that fits enterprise standards</h3>
+        <p>Add AI into existing workflows with role-based access, audit trails, human review, and deployment options that match your security and governance needs.</p>
+        <div class="who-chips"><span>Governed</span><span>EU-ready</span><span>Role-based</span></div>
+        <span class="who-link">For enterprise teams <span class="arrow">&rarr;</span></span>
       </a>
     </div>
   </div>
@@ -4878,24 +4810,24 @@
 
       <div class="pipe-display" id="stageDisplay">
         <div class="stage-frame is-active" data-stage="0">
-          <h2 class="stage-title">We map the workflow you already have.</h2>
-          <p class="stage-desc">We start from what exists. Not a blank whiteboard. Where does work start? Where does it slow down? Who hands it to whom? That map tells us where AI can actually help.</p>
+          <h2 class="stage-title">Map the workflow you already have.</h2>
+          <p class="stage-desc">We look at where work starts, where it slows down, who makes decisions, and what happens when things go off track.</p>
         </div>
         <div class="stage-frame" data-stage="1">
-          <h2 class="stage-title">We find the one step worth automating first.</h2>
-          <p class="stage-desc">Not everything should be automated. We look for the step where AI saves the most time, creates the least risk, and where your team will actually trust the output.</p>
+          <h2 class="stage-title">Find the AI-ready step.</h2>
+          <p class="stage-desc">We look for the step where AI can save time, reduce risk, and produce an output your team will trust.</p>
         </div>
         <div class="stage-frame" data-stage="2">
-          <h2 class="stage-title">We build a small version that actually runs.</h2>
-          <p class="stage-desc">Not a prototype you can&rsquo;t use. A working system. Limited scope, real data, real users. Enough to prove the idea and show where to go next.</p>
+          <h2 class="stage-title">Build a working version.</h2>
+          <p class="stage-desc">A small system, real data, real users, and a clear result to measure.</p>
         </div>
         <div class="stage-frame" data-stage="3">
-          <h2 class="stage-title">We make sure people stay in control.</h2>
-          <p class="stage-desc">Approval points, confidence checks, fallback paths. AI prepares the work. A real person makes the call. In every system we ship.</p>
+          <h2 class="stage-title">Add human review.</h2>
+          <p class="stage-desc">Approval points, confidence checks, and fallback paths keep people in control.</p>
         </div>
         <div class="stage-frame" data-stage="4">
-          <h2 class="stage-title">We only expand what&rsquo;s already working.</h2>
-          <p class="stage-desc">Once the first workflow is trusted and useful, we extend it. More teams, more systems, more markets. Never before. The goal isn&rsquo;t to automate everything. It&rsquo;s to prove one useful result, then grow with confidence.</p>
+          <h2 class="stage-title">Scale what proves useful.</h2>
+          <p class="stage-desc">Once the first workflow is trusted, we extend the same logic to more teams, tools, and markets.</p>
         </div>
       </div>
     </div>
@@ -4935,7 +4867,7 @@
     <!-- footer line + console -->
     <div class="stage-display">
       <div class="stage-display-main">
-        <p class="pipe-footer">One workflow first. Scale only what earns it.</p>
+        <p class="pipe-footer">Start with one workflow. Build only what proves useful.</p>
       </div>
 
       <aside class="stage-console" aria-hidden="true">
@@ -4967,18 +4899,6 @@
       </aside>
 
     </div>
-
-    <!-- In-pipeline CTA: calm, embedded in the dark theme -->
-    <div class="pipe-cta">
-      <div class="pipe-cta-text">
-        <span class="pipe-cta-eyebrow">This is how we usually work</span>
-        <p class="pipe-cta-line">Bring one workflow. We&rsquo;ll walk it through with you and decide together what&rsquo;s worth building.</p>
-        <a href="capabilities/prototype-to-production.html" style="display:inline-flex;align-items:center;gap:7px;margin-top:8px;font-size:13px;color:rgba(255,255,255,0.6);text-decoration:underline;text-underline-offset:3px;transition:color 180ms var(--ease);" onmouseover="this.style.color='rgba(255,255,255,0.92)'" onmouseout="this.style.color='rgba(255,255,255,0.6)'">Already have an AI pilot? See how we take it to production <span aria-hidden="true">&rarr;</span></a>
-      </div>
-      <a class="pipe-cta-btn" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
-        Let&rsquo;s talk it through <span aria-hidden="true">&rarr;</span>
-      </a>
-    </div>
   </div>
 </section>
 
@@ -5006,15 +4926,12 @@
     </div>
     <div class="fit-copy reveal">
       <span class="label-mono"><span class="dot"></span>Built around your systems</span>
-      <h2>Your systems stay. <span class="brand-gradient-text">We add AI where it helps.</span></h2>
-      <p class="fitband-sub">No replacements. No migrations. No new platform your team has to learn. We build an AI layer that sits on top of the tools already running your business, so people keep working the way they know, just with less friction.</p>
-      <div class="fit-pills">
-        <span class="fit-pill">Automation</span>
-        <span class="fit-pill">AI agents</span>
-        <span class="fit-pill">Knowledge search (RAG)</span>
-        <span class="fit-pill">Document processing</span>
-        <span class="fit-pill">Custom AI apps</span>
-        <span class="fit-pill">Integrations</span>
+      <h2>Keep what works. <span class="brand-gradient-text">Add AI where it creates value.</span></h2>
+      <p class="fitband-sub">We work with whichever AI models, providers, and tools fit your stack, building an AI layer around the systems your team already uses.</p>
+      <div class="fit-cta">
+        <button type="button" class="btn btn-primary" data-modal-open="choice">
+          Curious how this would work for you? <span class="arrow" aria-hidden="true">&rarr;</span>
+        </button>
       </div>
     </div>
   </div>
@@ -5758,7 +5675,7 @@
         <span class="grad-light">want AI to help.</span>
       </h2>
       <p class="closing-sub">
-        We&rsquo;ll be honest about where it can help and where it shouldn&rsquo;t.
+        We&rsquo;ll help you see where AI can create value, what needs preparation, and what should stay human-led.
       </p>
       <p class="closing-trust">
         Replies within one working day &middot; NDA available on request &middot; Based in Amsterdam
@@ -5766,7 +5683,7 @@
     </div>
 
     <div class="closing-cta reveal">
-      <span class="closing-cta-eyebrow">Workflow session. 45 minutes. Free</span>
+      <span class="closing-cta-eyebrow">Workflow session. 45 minutes. Free.</span>
       <p class="closing-cta-copy">Bring one workflow you&rsquo;d like to move faster. We&rsquo;ll walk through where AI fits, what the first step looks like, and what would change for your team.</p>
       <a class="btn btn-primary closing-cta-btn" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
         Book your session <span class="arrow">&rarr;</span>
@@ -7067,7 +6984,7 @@
 
     <div class="aih-modal-panel" data-panel="choice">
       <span class="aih-modal-eyebrow"><span class="dot"></span>Map your AI opportunity</span>
-      <h2 id="aihModalTitle">Start with one workflow.</h2>
+      <h2 id="aihModalTitle">Map your AI opportunity.</h2>
       <p>Bring a workflow, process, or AI idea. We&rsquo;ll help identify whether AI can safely help, what needs preparation first, and what a practical first step could look like.</p>
       <div class="aih-choice-grid">
         <article class="aih-choice">
