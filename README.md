@@ -14,7 +14,8 @@ handoff/
 │   ├── ai-applications-and-platforms.html       Capability — AI Products & Platforms
 │   ├── ai-workflow-infrastructure.html          Capability — AI Workflows & Operations
 │   ├── enterprise-ai.html                       Capability — Enterprise AI
-│   └── prototype-to-production.html             Capability — Prototype to Production
+│   ├── prototype-to-production.html             Capability — Prototype to Production
+│   └── scale-ups.html                           Audience — Scale-ups (linked from home "Who we serve")
 │
 ├── work/
 │   ├── asset-workflow-engine.html               Case study
@@ -37,12 +38,16 @@ Each capability page carries one accent colour, applied page-wide via `:root { -
 | `ai-workflow-infrastructure.html`     | `#9B59B6` | Friendly Purple · friendly, creative |
 | `enterprise-ai.html`                  | `#3478E5` | Deep Trust Blue · reliability, trust |
 | `prototype-to-production.html`        | `#CC418C` | Vibrant Magenta · engaging, warm |
+| `scale-ups.html`                      | `#1D9E75` | Growth Teal · momentum, affordability |
 
 The home page uses the shared system; each capability cap-strip card pulls the page's accent.
 
 ## Where the pages link to each other
 
-- `Home.html` → all 4 capability pages (via `capabilities/...`)
+- **Nav + footer "What we do"** (shared across all EN pages) is grouped as **Services** (Platforms & Tools → `ai-applications-and-platforms.html`, Workflows → `ai-workflow-infrastructure.html`) and **Who we serve** (Scale-ups → `scale-ups.html`, Enterprise → `enterprise-ai.html`).
+- `Home.html#capabilities` "What we do" tabs feature the **2 services** (Platforms & Tools, Workflows).
+- `Home.html#who` "Who we serve" → `capabilities/scale-ups.html` and `capabilities/enterprise-ai.html` (the two audience pages).
+- `capabilities/prototype-to-production.html` is **no longer in nav/footer**; it is relocated to a contextual link inside the homepage "How we work" section (`#how` → "Already have an AI pilot?").
 - `Home.html` → 3 case studies (via `work/...`)
 - Each capability page → `../AIHLPR Home.html` for the home link.
   **Note:** the current home file is named `Home.html`. Either rename to
