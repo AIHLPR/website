@@ -1,17 +1,11 @@
 <!DOCTYPE html>
-<html lang="nl">
-<head>
+<html lang="nl"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Workflows &middot; AIHLPR</title>
-<link rel="alternate" hreflang="en" href="https://aihlpr.github.io/website/capabilities/ai-workflow-infrastructure.html">
-<link rel="alternate" hreflang="nl" href="https://aihlpr.github.io/website/nl/capabilities/ai-workflow-infrastructure.html">
-<link rel="alternate" hreflang="x-default" href="https://aihlpr.github.io/website/capabilities/ai-workflow-infrastructure.html">
-<link rel="canonical" href="https://aihlpr.github.io/website/capabilities/ai-workflow-infrastructure.html">
-<meta name="description" content="Workflows: orchestration, document automation, routing en systeemintegratie. De workflow-laag die AI werk veilig laat bewegen door je organisatie.">
+<title>AI Workflow Systems · AIHLPR Capabilities</title>
+<meta name="description" content="AIHLPR bouwt AI workflow systems die je tools, documenten, approvals en teams verbinden. Herhaald werk beweegt sneller, met duidelijker ownership en menselijke review waar dat nodig is.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link rel="icon" type="image/svg+xml" href="../../assets/aihlpr-logo.svg">
 <style>
   :root {
@@ -48,11 +42,11 @@
   h1, h2, h3, h4 {
     font-family: var(--font-display); margin: 0;
     letter-spacing: -0.025em; line-height: 1.05;
-    font-weight: 500; color: var(--ink); text-wrap: balance;
+    font-weight: 600; color: var(--ink); text-wrap: balance;
   }
-  h1 { font-size: clamp(32px, 3.8vw, 54px); letter-spacing: -0.03em; }
-  h2 { font-size: clamp(26px, 2.6vw, 36px); }
-  h3 { font-size: clamp(22px, 1.8vw, 28px); letter-spacing: -0.02em; }
+  h1 { font-size: clamp(40px, 5vw, 68px); letter-spacing: -0.035em; }
+  h2 { font-size: clamp(28px, 3.1vw, 42px); }
+  h3 { font-size: clamp(20px, 1.7vw, 26px); letter-spacing: -0.02em; }
   h4 { font-size: clamp(15px, 1.1vw, 17px); letter-spacing: -0.01em; font-weight: 600; }
   p  { margin: 0; }
   .label-mono {
@@ -161,14 +155,21 @@
     .nav-links { display: none; }
     .nav-burger { display: block; }
   }
-  main { padding-top: 64px; }
+  main { padding-top: 64px; position: relative; }
 
   /* Hero */
   .hero {
-    padding: clamp(60px, 8vw, 112px) 0 clamp(40px, 5vw, 72px);
+    padding: clamp(56px, 7vw, 100px) 0 clamp(40px, 5vw, 72px);
     border-bottom: 1px solid var(--hairline);
+    overflow: hidden;
   }
-  .hero-grid { display: grid; grid-template-columns: minmax(0, 1fr); gap: clamp(40px, 5vw, 72px); }
+  .hero-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+    gap: clamp(40px, 5vw, 72px);
+    align-items: center;
+  }
+  @media (max-width: 960px) { .hero-grid { grid-template-columns: 1fr; gap: clamp(32px, 5vw, 48px); } }
   .hero-meta {
     display: flex; flex-wrap: wrap; gap: 14px; align-items: center;
     font-family: var(--font-mono); font-size: 11.5px;
@@ -179,234 +180,257 @@
   .hero-meta .num { color: var(--c); font-weight: 600; }
   .hero h1 { max-width: 16ch; margin-bottom: 22px; }
   .hero-lede {
-    font-size: clamp(18px, 1.6vw, 22px);
-    line-height: 1.45; color: var(--ink-soft);
-    max-width: 56ch; margin-bottom: 18px;
-  }
-  .hero-sub {
-    font-size: clamp(15px, 1.1vw, 16.5px);
-    line-height: 1.6; color: var(--ink-muted);
-    max-width: 64ch; margin-bottom: 28px;
+    font-size: clamp(17px, 1.5vw, 21px);
+    line-height: 1.5; color: var(--ink-soft);
+    max-width: 52ch; margin-bottom: 28px;
   }
   .hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; }
+
+  /* Hero visual */
   .hero-visual {
     position: relative; width: 100%;
-    border: 1px solid var(--hairline); border-radius: 18px;
-    background: var(--surface-2);
-    padding: clamp(24px, 3vw, 48px);
-    min-height: clamp(360px, 42vw, 520px);
-    overflow: hidden;
   }
-  .hero-visual::before {
-    content: ""; position: absolute; inset: 0;
-    background-image: radial-gradient(rgba(31,31,31,0.08) 1px, transparent 1px);
-    background-size: 22px 22px; opacity: 0.4; pointer-events: none;
-  }
-  .hero-visual svg {
-    position: relative; width: 100%; height: auto; display: block;
-    max-height: 480px; margin: 0 auto;
-  }
+  .hero-visual svg { width: 100%; height: auto; display: block; }
   .hero-visual-caption {
-    position: absolute; bottom: 18px; left: 24px; right: 24px;
-    display: flex; justify-content: space-between; gap: 16px;
+    margin-top: 18px; padding-top: 16px;
+    border-top: 1px solid var(--hairline);
+    display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap;
     font-family: var(--font-mono); font-size: 10px;
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
   }
   .hero-visual-caption b { color: var(--ink); font-weight: 600; }
 
-  /* ===== Mobile hero: vertical workflow card (replaces landscape SVG) =====
-     The hero SVG is a 920x480 landscape diagram that shrinks to an illegible
-     sliver on phones. Below 760px we hide it and show a vertical rebuild of
-     the same workflow (trigger -> route -> AI -> review -> record, + parked
-     branch). Desktop is untouched. */
-  .hero-visual-m { display: none; }
-  @media (max-width: 760px) {
-    .hero-visual { display: none; }
-    .hero-visual-m { display: block; margin-top: 28px; }
-    .hero h1 { font-size: 27px; line-height: 1.18; }
+  @keyframes tracer-flow {
+    0% { opacity: 0; } 8% { opacity: 1; } 92% { opacity: 1; } 100% { opacity: 0; }
   }
-  .hero-visual-m .wf-card {
-    border: 1px solid var(--hairline-strong); border-radius: 14px;
-    background: var(--white); overflow: hidden;
+  @media (prefers-reduced-motion: reduce) {
+    .hero-visual [data-tracer] { animation: none !important; opacity: 0 !important; }
   }
-  .hero-visual-m .wf-card-head {
-    display: flex; align-items: center; justify-content: space-between; gap: 10px;
-    padding: 11px 14px; border-bottom: 1px solid var(--hairline);
-    background: var(--surface-2);
-    font-family: var(--font-mono); font-size: 9px;
-    letter-spacing: 0.14em; text-transform: uppercase;
-  }
-  .hero-visual-m .wf-card-head .l { color: var(--ink-muted); }
-  .hero-visual-m .wf-card-head .r { color: var(--c); font-weight: 700; text-align: right; }
-  .hero-visual-m .wf-steps { padding: 16px 16px 18px; }
-  .hero-visual-m .wf-step { position: relative; padding: 0 0 0 34px; }
-  .hero-visual-m .wf-node {
-    border: 1.2px solid var(--c); border-radius: 6px;
-    background: var(--white); padding: 10px 12px;
-    display: flex; flex-direction: column; gap: 1px;
-  }
-  .hero-visual-m .wf-node .k {
-    font-family: var(--font-mono); font-size: 9px; font-weight: 700;
-    letter-spacing: 0.16em; text-transform: uppercase; color: var(--c);
-  }
-  .hero-visual-m .wf-node .v { font-size: 12.5px; color: var(--ink); line-height: 1.35; }
-  .hero-visual-m .wf-step .pin {
-    position: absolute; left: 0; top: 12px;
-    width: 22px; height: 22px; border-radius: 999px;
-    border: 1px solid var(--c); background: var(--white); color: var(--c);
-    display: grid; place-items: center;
-    font-family: var(--font-mono); font-size: 8.5px; font-weight: 700; z-index: 1;
-  }
-  .hero-visual-m .wf-step.gate .wf-node { border-width: 1.6px; background: color-mix(in oklab, var(--c) 4%, var(--white)); }
-  .hero-visual-m .wf-step.gate .pin { background: var(--c); color: #fff; }
-  .hero-visual-m .wf-edge {
-    position: relative; height: 30px; margin-left: 10px;
-    border-left: 1.1px solid var(--c);
-  }
-  .hero-visual-m .wf-edge::after {
-    content: ""; position: absolute; left: -3.6px; bottom: 0;
-    width: 6px; height: 6px;
-    border-left: 1.1px solid var(--c); border-bottom: 1.1px solid var(--c);
-    transform: rotate(-45deg);
-  }
-  .hero-visual-m .wf-edge .note {
-    position: absolute; left: 24px; top: 50%; transform: translateY(-50%);
-    font-family: var(--font-mono); font-size: 8.5px;
-    letter-spacing: 0.12em; color: var(--c); white-space: nowrap;
-  }
-  .hero-visual-m .wf-edge.dim { border-left-style: dashed; border-left-color: var(--ink-muted); }
-  .hero-visual-m .wf-edge.dim::after { border-color: var(--ink-muted); }
-  .hero-visual-m .wf-edge.dim .note { color: var(--ink-muted); }
-  .hero-visual-m .wf-step.parked .wf-node { border: 1px dashed var(--ink-muted); background: var(--surface-2); }
-  .hero-visual-m .wf-step.parked .wf-node .k { color: var(--ink-muted); }
-  .hero-visual-m .wf-step.parked .pin { border-color: var(--ink-muted); color: var(--ink-muted); }
-  .hero-visual-m .wf-card-foot {
-    display: flex; justify-content: space-between; gap: 10px; flex-wrap: wrap;
-    padding: 11px 14px; border-top: 1px solid var(--hairline);
-    font-family: var(--font-mono); font-size: 8.5px;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
-  }
-  .hero-visual-m .wf-card-foot b { color: var(--ink); font-weight: 600; }
 
   /* Section scaffolding */
   section.block { padding: var(--section-y) 0; border-bottom: 1px solid var(--hairline); }
-  section.block:last-of-type { border-bottom: none; }
   .block-head {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.4fr);
+    grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.7fr);
     gap: clamp(28px, 4vw, 64px);
-    margin-bottom: clamp(40px, 5vw, 64px);
+    margin-bottom: clamp(40px, 5vw, 60px);
     align-items: end;
   }
-  @media (max-width: 880px) { .block-head { grid-template-columns: 1fr; gap: 22px; } }
+  @media (max-width: 880px) { .block-head { grid-template-columns: 1fr; gap: 18px; align-items: start; } }
   .block-head .label-mono { margin-bottom: 14px; }
-  .block-head h2 { max-width: 22ch; }
+  .block-head h2 { max-width: 20ch; }
   .block-head .block-lede {
     font-size: clamp(16px, 1.2vw, 18px);
     line-height: 1.6; color: var(--ink-soft); max-width: 56ch;
   }
 
-  /* Ecosystem */
-  .ecosystem {
-    border: 1px solid var(--hairline); border-radius: 16px;
-    background: var(--surface-2); padding: clamp(20px, 2.4vw, 32px);
+  /* ── Section 3: USE CASES — editorial index list ── */
+  .cases-list { border-top: 1px solid var(--hairline-strong); }
+  .case-row {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.5fr);
+    gap: clamp(14px, 3vw, 48px); align-items: baseline;
+    padding: clamp(22px, 2.8vw, 34px) 4px;
+    border-bottom: 1px solid var(--hairline);
+    transition: padding-left 240ms var(--ease);
   }
-  .ecosystem-row {
-    display: grid; grid-template-columns: 160px 1fr;
-    gap: 24px; align-items: center; padding: 16px 0;
-    border-bottom: 1px dashed var(--hairline);
-  }
-  .ecosystem-row:last-of-type { border-bottom: none; }
-  .ecosystem-cat {
-    font-family: var(--font-mono); font-size: 10px;
-    letter-spacing: 0.18em; color: var(--ink-muted); font-weight: 600;
-  }
-  .ecosystem-items { display: flex; flex-wrap: wrap; gap: 8px; }
-  .ecosystem-items span {
+  .case-row:hover { padding-left: 14px; }
+  .case-title {
     font-family: var(--font-display); font-weight: 500;
-    font-size: 13.5px; color: var(--ink);
-    padding: 8px 14px;
-    border: 1px solid var(--hairline); border-radius: 999px;
-    background: var(--white);
-    transition: border-color 200ms var(--ease), color 200ms var(--ease);
-    cursor: default;
+    font-size: clamp(20px, 2.1vw, 30px); letter-spacing: -0.025em;
+    line-height: 1.14; color: var(--ink);
+    display: flex; align-items: baseline; gap: 12px;
   }
-  .ecosystem-items span:hover { border-color: var(--c); color: var(--c); }
-  .ecosystem-foot {
-    font-family: var(--font-mono); font-size: 11px;
-    letter-spacing: 0.12em; color: var(--ink-muted);
-    margin-top: 18px; text-align: right;
+  .case-title .case-arrow {
+    font-size: 0.6em; color: var(--c);
+    opacity: 0; transform: translateX(-6px);
+    transition: opacity 220ms var(--ease), transform 220ms var(--ease);
   }
-  @media (max-width: 880px) {
-    .ecosystem-row { grid-template-columns: 1fr; gap: 10px; padding: 14px 0; }
+  .case-row:hover .case-title .case-arrow { opacity: 1; transform: translateX(0); }
+  .case-desc {
+    font-size: clamp(14px, 1.1vw, 16px); line-height: 1.55;
+    color: var(--ink-soft); max-width: 54ch; text-wrap: pretty;
+  }
+  @media (max-width: 760px) {
+    .case-row { grid-template-columns: 1fr; gap: 6px; padding: 22px 0; }
+    .case-row:hover { padding-left: 0; }
   }
 
-  /* Evolve visual */
-  .evolve-visual { max-width: 720px; margin: 0 auto; }
-  .evolve-visual svg { width: 100%; height: auto; display: block; }
-
-  /* Observability strip */
-  .visibility { background: var(--surface); }
-  .observability {
-    border: 1px solid var(--hairline); border-radius: 16px;
+  /* ── Section 4: WHAT WE BUILD — modular system panel ── */
+  .build { background: var(--surface-2); }
+  .buildsys {
+    border: 1px solid var(--hairline-strong); border-radius: 16px;
     background: var(--white); overflow: hidden;
   }
-  .obs-row {
-    padding: clamp(18px, 1.8vw, 24px) clamp(20px, 2vw, 28px);
+  .buildsys-head {
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 16px; flex-wrap: wrap;
+    padding: 15px clamp(20px, 2.2vw, 30px);
     border-bottom: 1px solid var(--hairline);
-  }
-  .obs-row:last-child { border-bottom: none; }
-  .obs-signals {
-    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(20px, 2.6vw, 36px);
-  }
-  .obs-signal { display: flex; flex-direction: column; gap: 8px; }
-  .obs-signal-label {
-    font-family: var(--font-mono); font-size: 10px;
+    font-family: var(--font-mono); font-size: 10.5px;
     letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted);
   }
-  .obs-signal-value {
-    font-family: var(--font-display); font-weight: 600;
-    font-size: clamp(20px, 1.8vw, 24px); color: var(--ink); letter-spacing: -0.015em;
+  .buildsys-head b { color: var(--ink); font-weight: 600; }
+  .buildsys-head .bs-count { color: var(--c); }
+  .buildsys-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 1px; background: var(--hairline);
   }
-  .obs-signal-bar {
-    height: 4px; border-radius: 999px;
-    background: var(--hairline); overflow: hidden; display: block;
-  }
-  .obs-signal-bar span {
-    display: block; height: 100%; width: var(--p, 50%);
-    background: var(--c); border-radius: 999px;
-  }
-  .obs-audit {
-    display: flex; flex-direction: column; gap: 10px;
-    font-family: var(--font-mono); font-size: 12.5px;
-    background: var(--surface-2);
-  }
-  .obs-audit-row {
-    display: grid; grid-template-columns: 90px 180px 1fr auto;
-    gap: 18px; align-items: center;
-  }
-  .obs-audit-row .ts { color: var(--ink-muted); }
-  .obs-audit-row .ev { color: var(--ink); }
-  .obs-audit-row .meta { color: var(--ink-muted); }
-  .obs-audit-row .st {
-    color: var(--c); font-weight: 600; text-transform: uppercase;
-    letter-spacing: 0.14em; font-size: 10.5px; font-family: var(--font-mono);
-  }
-  .obs-audit-row .st.delta { color: var(--teal); }
-  .obs-pills { display: flex; flex-wrap: wrap; gap: 8px; }
-  .obs-pills span {
-    font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink);
-    padding: 8px 14px;
-    border: 1px solid var(--hairline-strong); border-radius: 999px;
+  @media (max-width: 860px) { .buildsys-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 540px) { .buildsys-grid { grid-template-columns: 1fr; } }
+  .bs-module {
     background: var(--white);
+    padding: clamp(22px, 2.2vw, 28px) clamp(22px, 2.2vw, 26px);
+    display: flex; flex-direction: column; gap: 9px;
+    min-height: 172px;
+    transition: background 200ms var(--ease);
   }
-  @media (max-width: 880px) {
-    .obs-signals { grid-template-columns: repeat(2, 1fr); gap: 20px; }
-    .obs-audit-row { grid-template-columns: 80px 1fr auto; gap: 10px; }
-    .obs-audit-row .meta { display: none; }
+  .bs-module:hover { background: var(--surface-2); }
+  .bs-tag {
+    font-family: var(--font-mono); font-size: 9.5px;
+    letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--c); font-weight: 600;
   }
+  .bs-module h3 {
+    font-size: clamp(18px, 1.4vw, 21px); font-weight: 500;
+    color: var(--ink); letter-spacing: -0.018em; line-height: 1.2;
+  }
+  .bs-module p { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); }
+  .buildsys-foot {
+    padding: 14px clamp(20px, 2.2vw, 30px);
+    border-top: 1px solid var(--hairline);
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted);
+  }
+  .buildsys-foot b { color: var(--ink); font-weight: 600; }
+
+  /* ── Section 5: BENEFITS — clean outcome grid ── */
+  .benefits-grid {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(26px, 3vw, 40px) clamp(28px, 3.4vw, 56px);
+  }
+  @media (max-width: 880px) { .benefits-grid { grid-template-columns: 1fr 1fr; gap: 26px 32px; } }
+  @media (max-width: 560px) { .benefits-grid { grid-template-columns: 1fr; } }
+  .benefit {
+    display: flex; flex-direction: column; gap: 8px;
+    padding-top: 18px; border-top: 2px solid var(--ink);
+  }
+  .benefit h3 {
+    font-size: clamp(18px, 1.5vw, 22px); font-weight: 500;
+    letter-spacing: -0.02em; color: var(--ink); line-height: 1.2;
+  }
+  .benefit p { font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); max-width: 34ch; }
+  .benefit.is-key { border-top-color: var(--c); }
+  .benefit.is-key h3 { color: var(--c); }
+
+  /* ── Section 7: HOW TO START — 3-step path ── */
+  .start { background: var(--surface-2); }
+  .start-track {
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: clamp(16px, 2vw, 28px);
+  }
+  @media (max-width: 720px) { .start-track { grid-template-columns: 1fr; gap: 14px; } }
+  .start-step {
+    position: relative;
+    border: 1px solid var(--hairline); border-radius: 12px;
+    background: var(--white);
+    padding: clamp(24px, 2.4vw, 32px);
+    display: flex; flex-direction: column; gap: 10px;
+  }
+  .start-step .ss-n {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.14em; color: var(--c);
+  }
+  .start-step h3 {
+    font-size: clamp(19px, 1.5vw, 23px); font-weight: 500;
+    letter-spacing: -0.02em; color: var(--ink); line-height: 1.2;
+  }
+  .start-step p { font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
+  .start-step:not(:last-child)::after {
+    content: ""; position: absolute; right: -15px; top: 50%;
+    width: 8px; height: 8px;
+    border-top: 1.5px solid var(--hairline-strong);
+    border-right: 1.5px solid var(--hairline-strong);
+    transform: translateY(-50%) rotate(45deg); z-index: 2;
+  }
+  @media (max-width: 720px) { .start-step:not(:last-child)::after { display: none; } }
+
+  /* ── Section 5: Built for control — dark ── */
+  .control {
+    background: #0b0b0c; color: #fff;
+    padding: clamp(84px, 10vw, 140px) 0;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .control .block-head { margin-bottom: clamp(44px, 5vw, 64px); }
+  .control .block-head h2 { color: #fff; }
+  .control .block-head .label-mono { color: rgba(255,255,255,0.55); }
+  .control .block-head .label-mono .dot { background: #a896e8; }
+  .control .block-head .block-lede { color: rgba(255,255,255,0.66); }
+
+  /* connected human-review flow — single panel */
+  .review-flow {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: 1px solid rgba(255,255,255,0.14);
+    border-radius: 12px; background: rgba(255,255,255,0.02);
+    overflow: hidden; margin-bottom: clamp(40px, 4.4vw, 60px);
+  }
+  @media (max-width: 760px) { .review-flow { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 440px) { .review-flow { grid-template-columns: 1fr; } }
+  .rf-step {
+    position: relative;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    padding: clamp(22px, 2vw, 28px) clamp(20px, 1.8vw, 26px);
+    display: flex; flex-direction: column; gap: 8px;
+  }
+  .rf-step:last-child { border-right: none; }
+  .rf-step .rf-tag {
+    font-family: var(--font-mono); font-size: 9.5px;
+    letter-spacing: 0.16em; text-transform: uppercase;
+    color: #a896e8; font-weight: 600;
+    display: inline-flex; align-items: center; gap: 8px;
+  }
+  .rf-step.is-person .rf-tag { color: #fff; }
+  .rf-step .rf-title { font-size: 16px; font-weight: 500; color: #fff; letter-spacing: -0.01em; }
+  .rf-step p { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.58); }
+  .rf-step:not(:last-child)::after {
+    content: ""; position: absolute; right: -4px; top: 50%;
+    width: 7px; height: 7px;
+    border-top: 1px solid rgba(168,150,232,0.7);
+    border-right: 1px solid rgba(168,150,232,0.7);
+    transform: translateY(-50%) rotate(45deg); z-index: 2;
+    background: #0b0b0c;
+  }
+  @media (max-width: 760px) { .rf-step:not(:last-child)::after { display: none; } }
+
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: clamp(14px, 1.4vw, 20px);
+  }
+  @media (max-width: 1080px) { .trust-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 680px)  { .trust-grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 440px)  { .trust-grid { grid-template-columns: 1fr; } }
+  .trust {
+    border: none; border-top: 1px solid rgba(255,255,255,0.22);
+    border-radius: 0; background: none;
+    padding: 20px 0 0;
+    display: flex; flex-direction: column; gap: 10px;
+    transition: border-color 200ms var(--ease);
+  }
+  .trust:hover { background: none; border-color: rgba(168,150,232,0.7); }
+  .trust h3 {
+    font-size: clamp(17px, 1.4vw, 20px); font-weight: 500;
+    color: #fff; letter-spacing: -0.015em; line-height: 1.2;
+  }
+  .trust p { font-size: 13px; line-height: 1.5; color: rgba(255,255,255,0.6); }
+  .control-foot {
+    margin-top: clamp(36px, 4vw, 56px); padding-top: 22px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    display: flex; gap: clamp(18px, 2vw, 32px); flex-wrap: wrap;
+    font-family: var(--font-mono); font-size: 10.5px;
+    letter-spacing: 0.16em; text-transform: uppercase; color: rgba(255,255,255,0.45);
+  }
+  .control-foot b { color: #fff; font-weight: 600; letter-spacing: 0.02em; margin-right: 6px; }
 
   /* Final CTA */
   .final-cta { padding: var(--section-y) 0; background: var(--white); }
@@ -418,8 +442,8 @@
   .final-cta-card::before {
     content: ""; position: absolute; inset: 0;
     background:
-      radial-gradient(60% 60% at 20% 30%, color-mix(in oklab, var(--c) 24%, transparent), transparent 70%),
-      radial-gradient(50% 50% at 80% 80%, color-mix(in oklab, var(--c) 16%, transparent), transparent 70%);
+      radial-gradient(60% 60% at 18% 26%, color-mix(in oklab, var(--c) 26%, transparent), transparent 70%),
+      radial-gradient(50% 50% at 82% 84%, color-mix(in oklab, var(--c) 16%, transparent), transparent 70%);
     pointer-events: none;
   }
   .final-cta-grid {
@@ -432,11 +456,11 @@
   .final-cta-card .label-mono .dot { background: var(--c); }
   .final-cta-card h2 {
     color: var(--white); margin-top: 12px; margin-bottom: 18px;
-    font-size: clamp(28px, 2.8vw, 40px); max-width: 22ch;
+    font-size: clamp(30px, 3.3vw, 46px); max-width: 20ch;
   }
   .final-cta-card p {
     color: rgba(255,255,255,0.75);
-    font-size: clamp(15px, 1.1vw, 17px); line-height: 1.6; max-width: 52ch;
+    font-size: clamp(15px, 1.1vw, 17px); line-height: 1.6; max-width: 50ch;
   }
   .final-cta-card .btn-primary { background: var(--c); color: var(--white); border-color: var(--c); }
   .final-cta-card .btn-primary:hover { background: var(--white); color: var(--ink); }
@@ -445,26 +469,8 @@
     border: 1px solid rgba(255,255,255,0.25);
   }
   .final-cta-card .btn-ghost:hover { border-color: var(--white); background: var(--white); color: var(--ink); }
-  .final-cta-actions {
-    display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end;
-    align-items: center;
-  }
-  .final-cta-risk {
-    display: block;
-    flex-basis: 100%;
-    text-align: right;
-    font-size: 12.5px;
-    line-height: 1.5;
-    color: rgba(255, 255, 255, 0.55);
-    font-style: italic;
-    margin-top: 6px;
-    max-width: 38ch;
-    margin-left: auto;
-  }
-  @media (max-width: 880px) {
-    .final-cta-actions { justify-content: flex-start; }
-    .final-cta-risk { text-align: left; margin-left: 0; }
-  }
+  .final-cta-actions { display: flex; gap: 12px; flex-wrap: wrap; justify-content: flex-end; }
+  @media (max-width: 880px) { .final-cta-actions { justify-content: flex-start; } }
 
   /* Footer */
   .footer {
@@ -478,7 +484,7 @@
     margin-bottom: 32px;
   }
   @media (max-width: 760px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-  .footer-brand img { height: 22px; width: auto; opacity: 0.9; }
+  .footer-brand img { height: 22px; width: auto; filter: invert(1) brightness(1.1); opacity: 0.9; }
   .footer-brand p {
     margin-top: 14px; font-size: 13.5px; line-height: 1.55;
     color: rgba(255,255,255,0.6); max-width: 36ch;
@@ -506,170 +512,24 @@
     color: rgba(255,255,255,0.4);
     flex-wrap: wrap; gap: 12px;
   }
-  .footer-bottom .footer-mb {
-    display: inline-flex; align-items: center; gap: 10px;
-    color: rgba(255,255,255,0.55);
-    font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.10em; text-transform: uppercase;
-    transition: color 180ms var(--ease);
-  }
-  .footer-bottom .footer-mb:hover { color: var(--white); }
-  .footer-bottom .footer-mb img { opacity: 1; }
-  .footer-bottom .footer-mb strong { color: rgba(255,255,255,0.85); font-weight: 600; }
 
-  /* Hero diagram animation hook (per-page overrides --tracer-path) */
-  @keyframes tracer-flow {
-    0%   { opacity: 0; offset-distance: 0%; }
-    10%  { opacity: 1; }
-    90%  { opacity: 1; }
-    100% { opacity: 0; offset-distance: 100%; }
+  /* Flow spine */
+  .flow-spine {
+    position: absolute; width: 1px; background: var(--hairline-strong);
+    pointer-events: none; z-index: 0; opacity: 0;
   }
-  .hero-visual .tracer { offset-rotate: 0deg; animation: tracer-flow 3.4s linear infinite; }
-  @media (prefers-reduced-motion: reduce) { .hero-visual .tracer { animation: none; opacity: 0; } }
-
-  
-  .hero-visual .tracer.t1 { offset-path: path('M 110 75 L 460 75'); animation-delay: 0s; }
-  .hero-visual .tracer.t2 { offset-path: path('M 110 185 L 460 185'); animation-delay: 0.6s; }
-  .hero-visual .tracer.t3 { offset-path: path('M 110 295 L 460 295'); animation-delay: 1.2s; }
-
-
-  /* Workflow benchmark — diagrams embedded into page structure */
-  .hero-visual {
-    background: transparent !important;
-    border: none !important;
-    border-radius: 0 !important;
-    padding: 0 !important;
-    min-height: 0 !important;
+  .flow-spine.is-ready { opacity: 1; }
+  .flow-spine::before {
+    content: ""; position: absolute; inset: 0 -0.5px auto -0.5px;
+    width: 2px; height: var(--flow-progress, 0%);
+    background: var(--c); transition: height 120ms linear;
   }
-  .hero-visual::before { display: none !important; }
-  .hero-visual-caption {
-    position: static !important;
-    margin-top: 18px;
-    padding-top: 16px;
-    border-top: 1px solid var(--hairline);
-    color: var(--ink-muted);
-  }
-  .hero-grid {
-    display: grid;
-    grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
-    gap: clamp(40px, 5vw, 80px);
-    align-items: center;
-  }
-  @media (max-width: 960px) {
-    .hero-grid { grid-template-columns: 1fr; }
-  }
-
-  /* ===== Failure handling — asymmetric, dense ===== */
-  .failure-block {
-    display: grid;
-    grid-template-columns: minmax(0, 0.7fr) minmax(0, 1.3fr);
-    gap: clamp(32px, 4vw, 64px);
-    align-items: flex-start;
-  }
-  @media (max-width: 960px) { .failure-block { grid-template-columns: 1fr; } }
-  .failure-block h2 { font-size: clamp(28px, 3vw, 40px); max-width: 16ch; }
-  .failure-block .block-lede {
-    font-size: clamp(15px, 1.1vw, 17px);
-    line-height: 1.55;
-    color: var(--ink-soft);
-    max-width: 36ch;
-    margin-top: 14px;
-  }
-
-  /* Failure state panel — embedded grid, hairlines, no soft container */
-  .failure-panel {
-    border: 1px solid var(--hairline);
-    background: var(--white);
-  }
-  .failure-row {
-    display: grid;
-    grid-template-columns: 130px 1fr auto;
-    gap: 20px;
-    align-items: center;
-    padding: 18px 22px;
-    border-bottom: 1px solid var(--hairline);
-  }
-  .failure-row:last-child { border-bottom: none; }
-  .failure-row .fname {
-    font-family: var(--font-mono);
-    font-size: 11px;
-    letter-spacing: 0.14em;
-    color: var(--c);
-    text-transform: uppercase;
-    font-weight: 600;
-  }
-  .failure-row .fdesc {
-    font-family: var(--font-body);
-    font-size: 14.5px;
-    line-height: 1.45;
-    color: var(--ink-soft);
-  }
-  .failure-row .fdesc b { color: var(--ink); font-weight: 500; }
-  .failure-row .fmeta {
-    font-family: var(--font-mono);
-    font-size: 10.5px;
-    letter-spacing: 0.12em;
-    color: var(--ink-muted);
-    text-transform: uppercase;
-    white-space: nowrap;
-  }
-  .failure-row.is-active .fmeta {
-    color: var(--c);
-    font-weight: 600;
-  }
-  @media (max-width: 720px) {
-    .failure-row { grid-template-columns: 1fr; gap: 6px; }
-    .failure-row .fmeta { justify-self: start; }
-  }
-
-  /* Visibility section: strip the surrounding surface tone for tighter rhythm */
-  .visibility { background: var(--white); border-top: 1px solid var(--hairline); }
-  .observability { border-radius: 0; }
-
-  /* Evolve: remove the soft card; let the SVG sit in the grid */
-  .evolve-visual {
-    border: none !important;
-    background: transparent !important;
-    padding: 0 !important;
-  }
-
-  /* Asymmetric block-heads — vary rhythm vs other pages */
-  section.block .block-head {
-    grid-template-columns: minmax(0, 0.75fr) minmax(0, 1.85fr);
-  }
-  @media (max-width: 880px) {
-    section.block .block-head { grid-template-columns: 1fr; }
-  }
-
-
-  /* Tighten Section 2 (Reality) — currently the airiest section */
-  section.block:nth-of-type(2) { padding: clamp(48px, 5vw, 76px) 0; }
-  section.block:nth-of-type(2) .block-head { margin-bottom: 0; }
-
-  /* Bring block-head closer to its content where the section has dense content below */
-  .failure-block + * { margin-top: 0; }
-  section.block .block-head { margin-bottom: clamp(28px, 3vw, 44px); }
-
-  /* Asymmetric hero — let the orchestration graph bleed past the right gutter */
-  .hero { overflow: hidden; }
-  .hero-grid {
-    grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
-    align-items: center;
-  }
-  .hero-visual { margin-right: clamp(-80px, -4vw, -40px); }
-  .hero-visual svg {
-    max-height: none !important;
-    height: auto;
-    width: calc(100% + clamp(40px, 4vw, 80px));
-    margin-left: 0;
-    margin-right: clamp(-40px, -4vw, -80px);
-  }
-  @media (max-width: 960px) {
-    .hero-visual { margin-right: 0; }
-    .hero-visual svg { width: 100%; margin-right: 0; }
-  }
-
+  main section .label-mono .dot { position: relative; z-index: 2; }
+  @media (max-width: 880px) { .flow-spine { display: none; } }
 </style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 </head>
 
 <body>
@@ -766,7 +626,7 @@
         <img src="../../assets/aihlpr-logo.svg" alt="AIHLPR">
       </a>
       <span class="nav-crumb">
-        <a href="../Home.html#capabilities">Oplossingen</a>
+        <a href="../Home.html#capabilities">Solutions</a>
         <span class="sep">/</span>
         <span>Workflows</span>
       </span>
@@ -774,7 +634,7 @@
     <div class="nav-links">
       <div class="nav-dropdown">
         <button class="nav-dropdown-trigger" type="button" aria-expanded="false" aria-haspopup="true" aria-controls="solutionsMenu">
-          Oplossingen <span class="caret" aria-hidden="true"></span>
+          Solutions <span class="caret" aria-hidden="true"></span>
         </button>
         <div class="nav-dropdown-menu" id="solutionsMenu" role="menu">
           <a href="ai-applications-and-platforms.html" class="dd-item" role="menuitem">
@@ -792,9 +652,9 @@
           </a>
         </div>
       </div>
-      <a href="../Home.html#work">Case studies</a>
-      <a href="../../insights/index.html">Onze inzichten</a>
-      <a href="../about.html">Over AIHLPR</a>
+      <a href="../Home.html#work">Case Studies</a>
+      <a href="../../insights/index.html">Our thinking</a>
+      <a href="../about.html">About</a>
       <span class="nav-lang" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-muted);display:inline-flex;align-items:center;gap:6px;">
         <a href="../../capabilities/ai-workflow-infrastructure.html" hreflang="en" style="color:var(--ink-muted);" aria-label="English">EN</a>
         <span style="opacity:0.5;" aria-hidden="true">/</span>
@@ -813,403 +673,23 @@
       <a href="ai-workflow-infrastructure.html">Workflows</a>
     </div>
     <div class="mm-section">
-      <span class="mm-label">Voor wie we werken</span>
+      <span class="mm-label">Who we serve</span>
       <a href="scale-ups.html">Scale-ups</a>
       <a href="enterprise-ai.html">Enterprise</a>
     </div>
-    <a href="../Home.html#work">Case studies</a>
-    <a href="../../insights/index.html">Onze inzichten</a>
-    <a href="../about.html">Over AIHLPR</a>
+    <a href="../Home.html#work">Case Studies</a>
+    <a href="../../insights/index.html">Our thinking</a>
+    <a href="../about.html">About</a>
     <a href="../Home.html#contact" class="cta">Plan een gesprek &rarr;</a>
   </div>
 </nav>
 
 <main>
 
-<style>
-  /* ─── Uniform section heading scale (Page B) ──────────────────
-     Same scale Page A uses, applied across every section type. */
-  main section.block .block-head h2,
-  main section.behaviour .block-head h2,
-  main section.whatwebuild .block-head h2,
-  main section.casesketch .block-head h2,
-  main section.visibility .block-head h2 {
-    font-size: clamp(26px, 2.6vw, 36px);
-    font-weight: 500;
-    letter-spacing: -0.025em;
-    line-height: 1.15;
-    max-width: 30ch;
-  }
-
-  /* =====================================================================
-     MOBILE PASS (<=760px) — adopts the Claude Design mock fidelity:
-     - Tighter hero H1
-     - Five capabilities (whatwebuild): collapsible accordion, one open at
-       a time. Desktop .ww-grid keeps its current expanded grid.
-     - Behaviour stepper: connecting rail + AI/OP/RV/§ avatars on rail
-     - Failure rows: status badge chip + clean stacked layout
-     - Grow flow: tighter pill chain that wraps cleanly
-     - Grow cards: 2-column compact grid
-     - IT-architecture (archlayers): dark collapsible accordion + trust
-       pills moved BELOW the accordion. Desktop keeps its grid.
-     Markup uses .ww-acc (mobile only) and .al-acc (mobile only) siblings
-     to the existing desktop blocks, hidden above 760px. Desktop CSS is
-     not touched.
-     ===================================================================== */
-  .ww-acc, .al-acc, .al-trust-m { display: none; }
-  @media (max-width: 760px) {
-    /* --- Hero tightening for the Samsung S26 Ultra at ~412px --- */
-    .hero { overflow: visible; padding-bottom: clamp(48px, 6vw, 80px); }
-    .hero-grid {
-      /* defeat the asymmetric-hero 2-col rule from the desktop block */
-      grid-template-columns: 1fr !important;
-      gap: 0 !important;
-    }
-    .hero-visual { margin: 0 !important; }
-    .hero h1 { font-size: 26px; line-height: 1.18; letter-spacing: -0.025em; }
-    .hero-lede { font-size: 15px; line-height: 1.55; }
-    .hero-ctas { gap: 10px; flex-direction: column; }
-    .hero-ctas .btn { width: 100%; }
-
-    /* --- IT architecture: hide desktop grid, show dark accordion --- */
-    .archlayers .archlayers-grid { display: none; }
-    .archlayers .archlayers-trust { display: none; }
-    .archlayers .al-acc { display: block; }
-    .archlayers .al-trust-m { display: flex; }
-
-    /* --- Behaviour stepper: connecting rail + avatar circles --- */
-    .bf-track {
-      display: flex !important;
-      flex-direction: column;
-      gap: 0;
-      padding: 18px 16px !important;
-      position: relative;
-    }
-    /* Vertical rail line down the avatars */
-    .bf-track::before {
-      content: ""; position: absolute;
-      left: calc(16px + 14px);
-      top: 36px; bottom: 36px;
-      width: 1px; background: var(--hairline-strong);
-      z-index: 0;
-    }
-    .bf-step {
-      display: grid !important;
-      grid-template-columns: 28px 1fr;
-      gap: 14px !important;
-      padding: 12px 0 !important;
-      background: transparent !important;
-      border: 0 !important;
-      border-radius: 0 !important;
-      position: relative;
-    }
-    .bf-step .bf-eyebrow {
-      grid-column: 2;
-      order: 1;
-      font-size: 9px;
-      letter-spacing: 0.16em;
-      margin-bottom: 2px;
-    }
-    .bf-step .bf-who {
-      grid-column: 1 / -1;
-      display: contents;
-    }
-    .bf-step .bf-av {
-      grid-column: 1;
-      grid-row: span 4;
-      width: 28px; height: 28px;
-      font-size: 9.5px;
-      align-self: start;
-      margin-top: 2px;
-      position: relative;
-      z-index: 1;
-    }
-    .bf-step .bf-name {
-      grid-column: 2;
-      order: 2;
-      font-size: 14px;
-      font-family: var(--font-display);
-      letter-spacing: -0.01em;
-      margin-bottom: 4px;
-    }
-    .bf-step .bf-action {
-      grid-column: 2;
-      order: 3;
-      font-size: 12.5px;
-      line-height: 1.5;
-      margin: 0 0 6px;
-    }
-    .bf-step .bf-tag {
-      grid-column: 2;
-      order: 4;
-      border-top: 0;
-      padding-top: 0;
-      margin: 0 0 6px;
-      font-size: 8.5px;
-      letter-spacing: 0.14em;
-    }
-
-    /* --- Failure rows: badge chip aligned right --- */
-    .failure-panel {
-      border: 1px solid var(--hairline-strong);
-      border-radius: 12px;
-      overflow: hidden;
-      background: var(--white);
-    }
-    .failure-row {
-      display: grid !important;
-      grid-template-columns: 1fr auto !important;
-      gap: 4px 12px !important;
-      padding: 14px 16px !important;
-      align-items: baseline;
-      border-bottom: 1px solid var(--hairline);
-    }
-    .failure-row:last-child { border-bottom: 0; }
-    .failure-row .fname {
-      grid-column: 1;
-      font-size: 14.5px;
-      font-family: var(--font-display);
-      font-weight: 500;
-      letter-spacing: -0.01em;
-    }
-    .failure-row .fmeta {
-      grid-column: 2;
-      grid-row: 1;
-      flex: none;
-      font-family: var(--font-mono);
-      font-size: 8.5px;
-      font-weight: 700;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--ink-soft);
-      border: 1px solid var(--hairline);
-      background: var(--surface-2);
-      border-radius: 4px;
-      padding: 3px 7px;
-      align-self: start;
-      margin-top: 2px;
-    }
-    .failure-row.is-active .fmeta {
-      color: var(--c);
-      border-color: var(--c);
-      background: color-mix(in oklab, var(--c) 7%, var(--white));
-    }
-    .failure-row .fdesc {
-      grid-column: 1 / -1;
-      font-size: 12.5px;
-      line-height: 1.5;
-    }
-
-    /* --- Grow flow: tight pill chain --- */
-    .grow-flow {
-      gap: 8px !important;
-      padding: 0 !important;
-      border: 0 !important;
-      background: transparent !important;
-    }
-    .grow-flow .gf-step {
-      font-family: var(--font-mono);
-      font-size: 9.5px;
-      font-weight: 600;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      color: var(--ink);
-      padding: 8px 12px;
-      border: 1px solid var(--hairline-strong);
-      border-radius: 4px;
-      background: var(--white);
-    }
-    .grow-flow .gf-arr {
-      font-family: var(--font-mono);
-      font-size: 12px;
-      color: var(--c);
-      font-weight: 600;
-    }
-    .grow-labels { gap: 18px; }
-    .grow-labels .gl { border-left: 2px solid var(--c); padding-left: 14px; }
-
-    /* --- Grow cards: 2-column on phones --- */
-    .grow-cards {
-      grid-template-columns: 1fr 1fr !important;
-      gap: 10px !important;
-    }
-    .grow-cards .gc { padding: 14px !important; }
-    .grow-cards .gc-name { font-size: 14.5px; }
-    .grow-cards .gc-desc { font-size: 12px; line-height: 1.45; }
-  }
-
-  /* ===== Mobile accordion styles (light, used by .ww-acc) ===== */
-  .ww-acc {
-    margin-top: 0;
-    border: 1px solid var(--hairline-strong);
-    border-radius: 12px;
-    background: var(--white);
-    overflow: hidden;
-  }
-  .ww-acc details { border-bottom: 1px solid var(--hairline); }
-  .ww-acc details:last-child { border-bottom: 0; }
-  .ww-acc summary {
-    list-style: none; cursor: pointer;
-    display: grid; grid-template-columns: 34px 1fr auto;
-    align-items: center; gap: 12px;
-    padding: 16px 18px; min-height: 56px;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .ww-acc summary::-webkit-details-marker { display: none; }
-  .ww-acc .a-num {
-    font-family: var(--font-mono); font-size: 10px; font-weight: 600;
-    letter-spacing: 0.18em; color: var(--c);
-  }
-  .ww-acc .a-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-  .ww-acc .a-title h3 {
-    font-size: 16.5px; font-weight: 500; letter-spacing: -0.015em;
-    color: var(--ink); margin: 0; line-height: 1.25;
-  }
-  .ww-acc .a-sub {
-    font-size: 12px; line-height: 1.45; color: var(--ink-muted);
-  }
-  .ww-acc .a-chev {
-    width: 9px; height: 9px;
-    border-right: 1.5px solid var(--ink-muted);
-    border-bottom: 1.5px solid var(--ink-muted);
-    transform: rotate(45deg);
-    transition: transform 220ms var(--ease);
-    margin-right: 4px;
-  }
-  .ww-acc details[open] .a-chev { transform: rotate(225deg); }
-  .ww-acc .a-body {
-    padding: 0 18px 18px 64px;
-    display: flex; flex-direction: column; gap: 12px;
-  }
-  .ww-acc .a-body .a-prop {
-    font-size: 13px; line-height: 1.55; color: var(--ink-soft);
-    border-top: 1px solid var(--hairline); padding-top: 12px;
-    margin: 0;
-  }
-  .ww-acc .chips { display: flex; flex-wrap: wrap; gap: 6px; }
-  .ww-acc .chips span {
-    font-family: var(--font-mono); font-size: 9px;
-    letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink);
-    padding: 4px 8px; border: 1px solid var(--hairline-strong);
-    border-radius: 2px;
-  }
-
-  /* ===== Mobile accordion styles (dark, used by .al-acc) ===== */
-  .al-acc {
-    border: 1px solid rgba(255,255,255,0.16);
-    border-radius: 12px;
-    background: rgba(255,255,255,0.02);
-    overflow: hidden;
-  }
-  .al-acc details { border-bottom: 1px solid rgba(255,255,255,0.10); }
-  .al-acc details:last-child { border-bottom: 0; }
-  .al-acc summary {
-    list-style: none; cursor: pointer;
-    display: grid; grid-template-columns: 56px 1fr auto;
-    align-items: center; gap: 12px;
-    padding: 16px 18px; min-height: 56px;
-    -webkit-tap-highlight-color: transparent;
-  }
-  .al-acc summary::-webkit-details-marker { display: none; }
-  .al-acc .a-num {
-    font-family: var(--font-mono); font-size: 9px; font-weight: 600;
-    letter-spacing: 0.18em; text-transform: uppercase; color: #a896e8;
-  }
-  .al-acc .a-title { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
-  .al-acc .a-title h3 {
-    font-size: 16.5px; font-weight: 500; color: #fff; margin: 0; line-height: 1.25;
-  }
-  .al-acc .a-sub { font-size: 12px; line-height: 1.45; color: rgba(255,255,255,0.5); }
-  .al-acc .a-chev {
-    width: 9px; height: 9px;
-    border-right: 1.5px solid rgba(255,255,255,0.5);
-    border-bottom: 1.5px solid rgba(255,255,255,0.5);
-    transform: rotate(45deg);
-    transition: transform 220ms var(--ease);
-    margin-right: 4px;
-  }
-  .al-acc details[open] .a-chev { transform: rotate(225deg); }
-  .al-acc .a-body { padding: 0 18px 18px 86px; }
-  .al-acc .items {
-    list-style: none; padding: 14px 0 0; margin: 0;
-    border-top: 1px solid rgba(255,255,255,0.10);
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .al-acc .items li {
-    font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.06em; color: rgba(255,255,255,0.78);
-    line-height: 1.45; padding-left: 14px; position: relative;
-  }
-  .al-acc .items li::before {
-    content: ""; position: absolute; left: 0; top: 7px;
-    width: 5px; height: 1px; background: rgba(168,150,232,0.6);
-  }
-  /* Mobile trust pills row (lives below the accordion) */
-  .al-trust-m {
-    margin: 26px 0 0; padding: 0; list-style: none;
-    flex-wrap: wrap; gap: 8px;
-  }
-  .al-trust-m li {
-    font-family: var(--font-mono); font-size: 9.5px; font-weight: 500;
-    letter-spacing: 0.16em; text-transform: uppercase; color: #fff;
-    padding: 9px 16px; border: 1px solid rgba(255,255,255,0.25);
-    border-radius: 999px; background: rgba(255,255,255,0.04);
-  }
-</style>
-
-<style>
-  /* ── Flow spine: vertical line connecting section nodes ─────────────── */
-  main { position: relative; }
-  .flow-spine {
-    position: absolute;
-    width: 2px;
-    background: var(--hairline-strong);
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0;
-    transition: opacity 400ms var(--ease);
-  }
-  .flow-spine.is-ready { opacity: 1; }
-  .flow-spine::before {
-    content: "";
-    position: absolute;
-    inset: 0 0 auto 0;
-    height: var(--flow-progress, 0%);
-    background: var(--c);
-    transition: height 120ms linear;
-  }
-  /* Halo the dots so the spine line passes cleanly through them.
-     Default = white halo. Dark archlayers section uses its own dark halo. */
-  main section .label-mono .dot {
-    position: relative;
-    z-index: 2;
-    box-shadow: 0 0 0 5px var(--white);
-  }
-  main section.archlayers .label-mono .dot {
-    box-shadow: 0 0 0 5px #0b0b0c;
-  }
-  /* Flow-spine: lives in the LEFT GUTTER, outside the content column,
-     so it never crosses titles. The section-anchor dots are absolutely
-     positioned into the gutter via the .is-spine-anchor class (added
-     by the spine JS), and the rail JS picks up their relocated x
-     automatically through getBoundingClientRect. */
-  main section .label-mono { position: relative; }
-  main section .label-mono .dot.is-spine-anchor {
-    position: absolute;
-    left: clamp(-32px, -2.4vw, -16px);
-    top: 50%;
-    margin-top: -3px;
-  }
-  /* Hide on narrow screens — alignment-dependent */
-  @media (max-width: 880px) {
-    .flow-spine { display: none; }
-  }
-</style>
-
 <div class="flow-spine" aria-hidden="true"></div>
 
-<!-- HERO -->
-<section class="hero">
+<!-- ============ HERO ============ -->
+<section class="hero" data-screen-label="Hero">
   <div class="container hero-grid">
     <div class="hero-copy">
       <div class="hero-meta">
@@ -1219,996 +699,355 @@
         <span class="sep"></span>
         <span>AI Workflow Systems</span>
       </div>
-      <h1>Workflows die sneller bewegen tussen de tools die je al gebruikt.</h1>
-      <p class="hero-lede">We verbinden forms, inboxes, CRM, ERP, documenten, approvals en reporting tools in één AI-supported workflow. Agentic systems lezen context, routen taken, bereiden updates voor, signaleren uitzonderingen en zetten de volgende stap klaar.</p>
-      <p class="hero-sub">Mensen houden controle over approvals, beslissingen en edge cases. Het systeem verwerkt de herhaalde beweging rondom het werk.</p>
+      <h1>Laat herhaald werk sneller bewegen, zonder controle te verliezen.</h1>
+      <p class="hero-lede">AIHLPR bouwt workflow systems die je tools, documenten, approvals en teams verbinden. Herhaald werk beweegt met minder chasing, duidelijker ownership en menselijke review waar dat nodig is.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="../Home.html#contact">
-          Bespreek een workflow <span class="arrow">&rarr;</span>
+        <a class="btn btn-primary" href="../AIHLPR Home.html#contact">
+          Bespreek een workflow <span class="arrow">→</span>
         </a>
-        <a class="btn btn-secondary" href="#why">
-          Bekijk hoe het werkt <span class="arrow">&darr;</span>
+        <a class="btn btn-secondary" href="#start">
+          Vind je eerste AI-stap <span class="arrow">→</span>
         </a>
       </div>
     </div>
 
     <div class="hero-visual" aria-hidden="true">
-      <svg viewBox="0 0 920 480" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-  <defs>
-    <pattern id="wf-grid" width="40" height="40" patternUnits="userSpaceOnUse">
-      <path d="M 40 0 L 0 0 0 40" stroke="rgba(31,31,31,0.05)" stroke-width="1" fill="none"/>
-    </pattern>
-  </defs>
-  <rect width="820" height="480" fill="url(#wf-grid)"/>
+      <svg viewBox="0 0 900 470" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace">
+        <defs>
+          <pattern id="wf-grid" width="38" height="38" patternUnits="userSpaceOnUse">
+            <path d="M 38 0 L 0 0 0 38" stroke="rgba(31,31,31,0.045)" stroke-width="1" fill="none"></path>
+          </pattern>
+        </defs>
+        <rect width="900" height="470" fill="url(#wf-grid)"></rect>
 
-  <!-- Top metadata strip -->
-  <g font-size="9" letter-spacing="0.16em">
-    <text x="20" y="20" fill="#8A8A8A">EXAMPLE WORKFLOW</text>
-    <text x="800" y="20" text-anchor="end" fill="#9B59B6">3 active · 1 paused for review · 1 escalated</text>
-  </g>
-  <line x1="20" y1="28" x2="800" y2="28" stroke="rgba(31,31,31,0.08)" stroke-width="1"/>
+        <!-- Stage labels -->
+        <g font-size="9.5" letter-spacing="0.16em" fill="#8A8A8A">
+          <text x="36" y="40">WORK COMES IN</text>
+          <text x="330" y="40">MOVES THROUGH</text>
+          <text x="600" y="40">REVIEWED</text>
+          <text x="790" y="40" text-anchor="end">LANDS</text>
+        </g>
+        <line x1="36" y1="52" x2="864" y2="52" stroke="rgba(31,31,31,0.08)" stroke-width="1"></line>
 
-  <!-- TRIGGER (top-left) -->
-  <rect x="40" y="56" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.4"/>
-  <text x="110" y="78" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">TRIGGER</text>
-  <text x="110" y="93" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Trigger received</text>
+        <!-- Incoming sources (left) -->
+        <g>
+          <rect x="36" y="96" width="150" height="44" rx="9" fill="#fff" stroke="var(--hairline-strong)" style="stroke:rgba(31,31,31,0.2)"></rect>
+          <text x="58" y="123" font-size="12" fill="#1F1F1F">Requests</text>
+          <rect x="36" y="210" width="150" height="44" rx="9" fill="#fff" style="stroke:rgba(31,31,31,0.2)" stroke-width="1"></rect>
+          <text x="58" y="237" font-size="12" fill="#1F1F1F">Documents</text>
+          <rect x="36" y="324" width="150" height="44" rx="9" fill="#fff" style="stroke:rgba(31,31,31,0.2)" stroke-width="1"></rect>
+          <text x="58" y="351" font-size="12" fill="#1F1F1F">Messages</text>
+        </g>
 
-  <!-- TRIGGER → CLASSIFY -->
-  <path d="M 110 104 L 110 138" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
-  <polygon points="106,132 110,140 114,132" fill="#9B59B6"/>
+        <!-- connectors in -->
+        <g fill="none" stroke="#9B59B6" stroke-width="1.3" opacity="0.85">
+          <path d="M 186 118 C 250 118, 250 210, 322 220"></path>
+          <path d="M 186 232 L 322 232"></path>
+          <path d="M 186 346 C 250 346, 250 252, 322 244"></path>
+        </g>
 
-  <!-- CLASSIFY -->
-  <rect x="40" y="140" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.4"/>
-  <text x="110" y="162" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">ROUTE</text>
-  <text x="110" y="177" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Right team</text>
+        <!-- AI WORKFLOW core -->
+        <rect x="322" y="150" width="196" height="164" rx="14" fill="#fff" stroke="#9B59B6" stroke-width="1.8"></rect>
+        <text x="420" y="184" text-anchor="middle" font-size="11" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">AI WORKFLOW</text>
+        <line x1="346" y1="198" x2="494" y2="198" stroke="rgba(155,89,182,0.25)" stroke-width="1"></line>
+        <g font-size="11.5" fill="#4A4A4A">
+          <text x="346" y="224">Reads &amp; checks</text>
+          <text x="346" y="252">Updates systems</text>
+          <text x="346" y="280">Routes the next step</text>
+        </g>
+        <circle cx="338" cy="220" r="2.6" fill="#9B59B6"></circle>
+        <circle cx="338" cy="248" r="2.6" fill="#9B59B6"></circle>
+        <circle cx="338" cy="276" r="2.6" fill="#9B59B6"></circle>
 
-  <!-- Retry loop on CLASSIFY -->
-  <path d="M 180 152 Q 230 152 230 168 Q 230 184 182 184" stroke="#9B59B6" stroke-width="0.8" fill="none" stroke-dasharray="3 3"/>
-  <text x="240" y="172" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">temporary failure</text>
+        <!-- workflow -> review -->
+        <path d="M 518 232 L 600 232" fill="none" stroke="#9B59B6" stroke-width="1.3"></path>
+        <polygon points="596,227 606,232 596,237" fill="#9B59B6"></polygon>
 
-  <!-- CLASSIFY branches: SUCCESS path right, FAIL path down -->
-  <path d="M 110 188 L 110 240 L 280 240" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
-  <polygon points="274,236 282,240 274,244" fill="#9B59B6"/>
-  <text x="195" y="232" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">on ok</text>
+        <!-- HUMAN REVIEW gate -->
+        <rect x="606" y="186" width="150" height="92" rx="12" fill="#fff" stroke="#9B59B6" stroke-width="1.6"></rect>
+        <circle cx="630" cy="212" r="4" fill="#9B59B6">
+          <animate attributeName="opacity" values="1;0.25;1" dur="1.8s" repeatCount="indefinite"></animate>
+        </circle>
+        <text x="646" y="216" font-size="11" fill="#9B59B6" letter-spacing="0.12em" font-weight="600">REVIEW</text>
+        <text x="630" y="244" font-size="11.5" fill="#4A4A4A">A person approves</text>
+        <text x="630" y="262" font-size="11.5" fill="#4A4A4A">what matters.</text>
 
-  <!-- ENRICH -->
-  <rect x="280" y="216" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.1"/>
-  <text x="350" y="238" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">AI PREPARES</text>
-  <text x="350" y="253" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Context gathered</text>
+        <!-- review -> destinations -->
+        <g fill="none" stroke="#9B59B6" stroke-width="1.3" opacity="0.85">
+          <path d="M 756 210 C 800 210, 800 150, 832 150"></path>
+          <path d="M 756 232 L 832 232"></path>
+          <path d="M 756 254 C 800 254, 800 314, 832 314"></path>
+        </g>
 
-  <!-- ENRICH → DRAFT (branch with condition) -->
-  <path d="M 420 240 L 510 240 L 510 220 L 520 220" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
-  <text x="500" y="212" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">if amt &gt; €10k</text>
+        <!-- destination chips (right, off toward edge) -->
+        <g font-size="10.5" fill="#1F1F1F">
+          <rect x="832" y="130" width="60" height="40" rx="9" fill="#FAFAF8" style="stroke:rgba(31,31,31,0.2)" stroke-width="1"></rect>
+          <text x="862" y="154" text-anchor="middle">CRM</text>
+          <rect x="832" y="212" width="60" height="40" rx="9" fill="#FAFAF8" style="stroke:rgba(31,31,31,0.2)" stroke-width="1"></rect>
+          <text x="862" y="236" text-anchor="middle">ERP</text>
+          <rect x="832" y="294" width="60" height="40" rx="9" fill="#FAFAF8" style="stroke:rgba(31,31,31,0.2)" stroke-width="1"></rect>
+          <text x="862" y="318" text-anchor="middle">Report</text>
+        </g>
 
-  <!-- DRAFT -->
-  <rect x="520" y="196" width="140" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.1"/>
-  <text x="590" y="218" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">DRAFT</text>
-  <text x="590" y="233" text-anchor="middle" font-size="9.5" fill="#8A8A8A">proposal</text>
+        <!-- bottom annotation -->
+        <text x="36" y="430" font-size="9.5" letter-spacing="0.14em" fill="#8A8A8A">CONTEXT MOVES WITH THE WORK · NOTHING LEAVES WITHOUT A PERSON</text>
 
-  <!-- DRAFT → HUMAN APPROVAL -->
-  <path d="M 590 244 L 590 268 L 460 268 L 460 286" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
-  <polygon points="456,282 460,290 464,282" fill="#9B59B6"/>
-
-  <!-- HUMAN APPROVAL gate (center) -->
-  <rect x="380" y="290" width="160" height="58" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.6"/>
-  <text x="460" y="314" text-anchor="middle" font-size="10" fill="#9B59B6" letter-spacing="0.14em" font-weight="600">HUMAN REVIEW</text>
-  <text x="460" y="332" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Review required</text>
-  <circle cx="396" cy="305" r="3.5" fill="#9B59B6">
-    <animate attributeName="opacity" values="1;0.2;1" dur="1.6s" repeatCount="indefinite"/>
-  </circle>
-
-  <!-- HUMAN REVIEW → ACTION (approved path) -->
-  <path d="M 540 320 L 620 320" stroke="#9B59B6" stroke-width="1.1" fill="none"/>
-  <polygon points="614,316 622,320 614,324" fill="#9B59B6"/>
-  <text x="572" y="312" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">approved</text>
-
-  <!-- ACTION -->
-  <rect x="620" y="296" width="160" height="48" rx="3" fill="#fff" stroke="#9B59B6" stroke-width="1.1"/>
-  <text x="700" y="318" text-anchor="middle" font-size="10" fill="#1F1F1F" letter-spacing="0.10em" font-weight="600">AUDIT TRAIL</text>
-  <text x="700" y="333" text-anchor="middle" font-size="9.5" fill="#8A8A8A">Decision recorded</text>
-  <!-- One thread continues off-frame to the right -->
-  <line x1="780" y1="320" x2="900" y2="320" stroke="#9B59B6" stroke-width="0.9" stroke-dasharray="3 3" opacity="0.55"/>
-  <text x="820" y="312" font-size="8.5" fill="#9B59B6" letter-spacing="0.12em">→ downstream</text>
-
-  <!-- CLASSIFY → DLQ (failure path, dashed) -->
-  <path d="M 110 188 L 110 408 L 880 408" stroke="#8A8A8A" stroke-width="0.9" fill="none" stroke-dasharray="3 3"/>
-  <polygon points="874,404 882,408 874,412" fill="#8A8A8A"/>
-  <text x="395" y="402" font-size="8.5" fill="#8A8A8A" letter-spacing="0.12em">if information is missing</text>
-
-  <!-- DLQ -->
-  <rect x="800" y="386" width="140" height="44" rx="3" fill="#FAFAF8" stroke="#8A8A8A" stroke-width="0.9" stroke-dasharray="3 3"/>
-  <text x="870" y="408" text-anchor="middle" font-size="10" fill="#8A8A8A" letter-spacing="0.14em" font-weight="600">PARKED</text>
-  <text x="870" y="421" text-anchor="middle" font-size="9.5" fill="#8A8A8A">For review</text>
-
-  <!-- HUMAN REVIEW → ESCALATE branch (if SLA breach) -->
-  <path d="M 460 348 L 460 408 L 880 408" stroke="#E63946" stroke-width="0.9" fill="none" stroke-dasharray="3 3" opacity="0.55"/>
-  <text x="495" y="368" font-size="8.5" fill="#E63946" letter-spacing="0.12em" opacity="0.85">if review overdue</text>
-
-  <!-- Animated tracer dot moving along the success path.
-       Waypoints match the exact L-shaped connectors between boxes
-       (TRIGGER → CLASSIFY → ENRICH → DRAFT → HUMAN REVIEW → CRM UPDATED)
-       so the dot rides the purple lines instead of cutting diagonals. -->
-  <circle r="3.5" fill="#9B59B6">
-    <animateMotion dur="6s" repeatCount="indefinite" begin="0s"
-      path="M 110 56 L 110 240 L 510 240 L 510 220 L 590 220 L 590 268 L 460 268 L 460 320 L 700 320"/>
-  </circle>
-</svg>
+        <!-- tracer dot along the main path -->
+        <circle r="4" fill="#9B59B6" data-tracer="" style="animation: tracer-flow 5.5s linear infinite;">
+          <animateMotion dur="5.5s" repeatCount="indefinite" path="M 36 232 L 186 232 L 322 232 L 518 232 L 606 232 L 756 232 L 892 232"></animateMotion>
+        </circle>
+      </svg>
       <div class="hero-visual-caption">
-        <span>Workflow infrastructure</span>
-        <span><b>Trigger</b> &middot; <b>Routing</b> &middot; <b>Review</b> &middot; <b>Record</b></span>
-      </div>
-    </div>
-
-    <!-- Mobile-only vertical rebuild of the hero workflow diagram -->
-    <div class="hero-visual-m" aria-hidden="true">
-      <div class="wf-card" aria-label="Voorbeeldworkflow">
-        <div class="wf-card-head">
-          <span class="l">Voorbeeldworkflow</span>
-          <span class="r">3 actief &middot; 1 gepauzeerd</span>
-        </div>
-        <div class="wf-steps">
-          <div class="wf-step">
-            <span class="pin">01</span>
-            <div class="wf-node"><span class="k">Trigger</span><span class="v">Trigger ontvangen</span></div>
-          </div>
-          <div class="wf-edge"></div>
-          <div class="wf-step">
-            <span class="pin">02</span>
-            <div class="wf-node"><span class="k">Route</span><span class="v">Juiste team</span></div>
-          </div>
-          <div class="wf-edge"><span class="note">bij ok</span></div>
-          <div class="wf-step">
-            <span class="pin">03</span>
-            <div class="wf-node"><span class="k">AI bereidt voor</span><span class="v">Context verzameld &middot; conceptvoorstel</span></div>
-          </div>
-          <div class="wf-edge"></div>
-          <div class="wf-step gate">
-            <span class="pin">04</span>
-            <div class="wf-node"><span class="k">Human review</span><span class="v">Review vereist &middot; goedgekeurd</span></div>
-          </div>
-          <div class="wf-edge"></div>
-          <div class="wf-step">
-            <span class="pin">05</span>
-            <div class="wf-node"><span class="k">Audit trail</span><span class="v">Beslissing vastgelegd &rarr; downstream</span></div>
-          </div>
-          <div class="wf-edge dim"><span class="note">als informatie ontbreekt</span></div>
-          <div class="wf-step parked">
-            <span class="pin">&#10073;&#10073;</span>
-            <div class="wf-node"><span class="k">Geparkeerd</span><span class="v">Vastgehouden voor review &middot; herhaalbaar</span></div>
-          </div>
-        </div>
-        <div class="wf-card-foot">
-          <span>Workflow infrastructure</span>
-          <span><b>Trigger</b> &middot; <b>Routing</b> &middot; <b>Review</b> &middot; <b>Record</b></span>
-        </div>
+        <span>One connected flow</span>
+        <span><b>Tools</b> · <b>documents</b> · <b>approvals</b> · <b>teams</b></span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- SECTION. What we work on (sub-services grid) -->
-<style>
-  .whatwebuild {
-    padding: clamp(72px, 8vw, 112px) 0;
-    border-top: 1px solid var(--hairline);
-    background: var(--surface-2);
-  }
-  .whatwebuild .block-head { margin-bottom: clamp(36px, 4vw, 56px); }
-  .whatwebuild .block-head h2 {
-    max-width: 30ch;
-    font-size: clamp(24px, 2.4vw, 32px);
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-  }
-  .ww-grid {
-    display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
-    gap: 1px;
-    background: var(--hairline);
-    border: 1px solid var(--hairline);
-  }
-  @media (max-width: 1100px) { .ww-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 560px)  { .ww-grid { grid-template-columns: 1fr; } }
-  .ww-tile {
-    background: var(--white);
-    padding: 22px 22px 20px;
-    display: flex; flex-direction: column; gap: 12px;
-    min-height: 220px;
-    transition: background 200ms var(--ease);
-  }
-  .ww-tile:hover { background: var(--surface-2); }
-  .ww-tile .ww-num {
-    font-family: var(--font-mono); font-size: 10px;
-    letter-spacing: 0.18em; color: var(--c); font-weight: 600;
-    text-transform: uppercase;
-  }
-  .ww-tile h3 {
-    font-family: var(--font-display); font-weight: 500;
-    font-size: 19px; color: var(--ink); letter-spacing: -0.018em;
-    line-height: 1.2;
-    margin: 0;
-  }
-  .ww-tile .ww-prop {
-    font-family: var(--font-body); font-size: 13.5px;
-    line-height: 1.5; color: var(--ink-soft);
-    margin: 0;
-  }
-  .ww-tile .ww-chips {
-    margin-top: auto;
-    display: flex; flex-wrap: wrap; gap: 6px;
-    padding-top: 10px;
-  }
-  .ww-tile .ww-chips span {
-    font-family: var(--font-mono); font-size: 9.5px;
-    letter-spacing: 0.14em; text-transform: uppercase;
-    color: var(--ink);
-    padding: 5px 9px;
-    border: 1px solid var(--hairline-strong);
-    border-radius: 2px;
-  }
-</style>
-
-<!-- WHY workflows need infrastructure -->
-<style>
-  .why-band {
-    padding: clamp(64px, 7vw, 96px) 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .why-band .block-head { margin-bottom: clamp(32px, 4vw, 48px); }
-  .why-chain {
-    margin-top: clamp(32px, 4vw, 48px);
-    padding: clamp(20px, 2.4vw, 32px) clamp(20px, 3vw, 36px);
-    border: 1px solid var(--hairline);
-    border-radius: 16px;
-    background: var(--surface-2);
-  }
-  .why-chain ol {
-    list-style: none;
-    margin: 0; padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    gap: clamp(8px, 1.5vw, 16px);
-  }
-  .why-chain li {
-    font-family: var(--font-mono);
-    font-size: clamp(10px, 1vw, 12px);
-    font-weight: 500;
-    letter-spacing: 0.16em;
-    text-transform: uppercase;
-    color: var(--ink);
-    padding: 10px 18px;
-    border: 1px solid var(--hairline-strong);
-    border-radius: 999px;
-    background: var(--white);
-    white-space: nowrap;
-  }
-  .why-chain li + li::before {
-    content: "\2192";
-    display: inline-block;
-    margin-right: 12px;
-    color: var(--ink-muted);
-    font-weight: 400;
-    letter-spacing: 0;
-  }
-  @media (max-width: 760px) {
-    .why-chain ol { justify-content: flex-start; }
-    .why-chain li + li::before { margin-right: 8px; }
-  }
-</style>
-
-<section class="why-band" id="why">
+<!-- ============ SECTION 2 — USE CASES ============ -->
+<section class="block cases" id="use-cases" data-screen-label="Use cases">
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>01 &middot; Waarom workflows infrastructuur nodig hebben</span>
-        <h2 style="margin-top:14px;">AI creëert meer waarde wanneer werk veilig beweegt, niet alleen wanneer het antwoorden geeft.</h2>
+        <span class="label-mono"><span class="dot"></span>Use cases</span>
+        <h2 style="margin-top:14px;">Workflow systems kunnen achter veel delen van je business zitten.</h2>
       </div>
-      <p class="block-lede">De meeste teams hebben AI al gebruikt om iets op te stellen of een document samen te vatten. De stap erna is lastiger: de draft naar de juiste reviewer routen, de policy erbij halen waarnaar verwezen moet worden, de approval vastleggen, de CRM bijwerken. Dat is workflow infrastructure, en dat is wat AI echt nuttig maakt op het werk.</p>
+      <p class="block-lede">AI workflow systems zijn waardevol waar werk beweegt via herhaalde handovers, checks, approvals, documenten, updates of reporting over verschillende tools en teams.</p>
     </div>
 
-    <p style="max-width: 64ch; color: var(--ink-soft); line-height: 1.65; margin: 0 0 8px;">
-      Workflow infrastructure is de laag die AI van een losse tool tot onderdeel van het operationele proces maakt. Het verbindt de trigger, de context, de beslissing, de handoff en het record van wat er is gebeurd.
-    </p>
-
-    <div class="why-chain" aria-hidden="true">
-      <ol>
-        <li>Request</li>
-        <li>Context</li>
-        <li>AI draft</li>
-        <li>Human review</li>
-        <li>Action</li>
-        <li>Record</li>
-      </ol>
+    <div class="cases-list">
+      <article class="case-row">
+        <h3 class="case-title">Sales en customer follow-up <span class="case-arrow">→</span></h3>
+        <p class="case-desc">Routeer inbound leads, bereid replies voor, update CRM, trigger reminders en help commerciële teams focussen op de next best action.</p>
+      </article>
+      <article class="case-row">
+        <h3 class="case-title">Customer onboarding en service operations <span class="case-arrow">→</span></h3>
+        <p class="case-desc">Laat requests, formulieren, documenten, checks, klantcontext en interne handovers door één duidelijker operating flow bewegen.</p>
+      </article>
+      <article class="case-row">
+        <h3 class="case-title">Finance en document operations <span class="case-arrow">→</span></h3>
+        <p class="case-desc">Lees invoices, contracten, claims, purchase orders of statements; haal key details eruit, flag gaps en bereid review of systeemupdates voor.</p>
+      </article>
+      <article class="case-row">
+        <h3 class="case-title">E-commerce content en asset workflows <span class="case-arrow">→</span></h3>
+        <p class="case-desc">Coördineer productcopy, vertalingen, visuals, reviewrondes, approvals en marketplace-ready output over teams en kanalen.</p>
+      </article>
+      <article class="case-row">
+        <h3 class="case-title">Approvals, compliance en internal review <span class="case-arrow">→</span></h3>
+        <p class="case-desc">Bereid requests voor met de juiste context, routeer ze naar de juiste reviewer, leg beslissingen vast en houd exceptions zichtbaar.</p>
+      </article>
+      <article class="case-row">
+        <h3 class="case-title">Management reporting en operational visibility <span class="case-arrow">→</span></h3>
+        <p class="case-desc">Zet verspreide updates uit tools, teams en workflows om in status views, samenvattingen, alerts en beslisklare reports.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<section class="block whatwebuild">
+<!-- ============ SECTION 4 — WHAT WE BUILD ============ -->
+<section class="block build" id="build" data-screen-label="What we build">
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>02 &middot; Wat er rond de AI-output moet gebeuren</span>
-        <h2 style="margin-top:14px;">Wat elke nuttige workflow rond de AI-output nodig heeft.</h2>
+        <span class="label-mono"><span class="dot"></span>Wat we bouwen</span>
+        <h2 style="margin-top:14px;">De systemen die werk door je tools laten bewegen.</h2>
       </div>
-      <p class="block-lede">Vijf capabilities liggen onder elke workflow die we opleveren. De meeste projecten combineren er meerdere, afgestemd op wat de organisatie al draait.</p>
+      <p class="block-lede">AIHLPR bouwt de workflow layer achter herhaald werk: integrations, AI agents, review queues, dashboards, document flows en geautomatiseerde updates. Elke build wordt gevormd rond één echt proces en daarna verbonden met de tools, mensen en beslissingen die al betrokken zijn.</p>
     </div>
 
-    <div class="ww-grid">
-      <article class="ww-tile">
-        <h3>Requests en triggers</h3>
-        <p class="ww-prop">Werk begint ergens. Een form dat wordt ingediend, een e-mail die binnenkomt, een CRM-record dat wordt bijgewerkt, een document dat wordt geüpload. De workflow vangt elke trigger en zet de juiste actie in gang. Betrouwbaar. Elke keer.</p>
-        <div class="ww-chips"><span>Forms</span><span>Inboxes</span><span>CRMs</span><span>Documenten</span></div>
-      </article>
-      <article class="ww-tile">
-        <h3>Context en documenten</h3>
-        <p class="ww-prop">Voordat AI iets nuttigs doet, heeft het de juiste context nodig: de relevante bestanden, de geldende policy, de klantgeschiedenis, de gekoppelde records. De workflow verzamelt dat automatisch, zodat AI niet hoeft te gokken.</p>
-        <div class="ww-chips"><span>Documenten</span><span>Records</span><span>Policies</span></div>
-      </article>
-      <article class="ww-tile">
-        <h3>Routing en approvals</h3>
-        <p class="ww-prop">De juiste taak gaat naar de juiste persoon, met alles wat nodig is om te beslissen er al bij. Geen zoeken naar context. Geen collega's vragen in welke fase iets zit.</p>
-        <div class="ww-chips"><span>Review queues</span><span>Approvals</span><span>Handoffs</span></div>
-      </article>
-      <article class="ww-tile">
-        <h3>Background work</h3>
-        <p class="ww-prop">Routinematige checks, drafts, summaries en reminders lopen op de achtergrond terwijl het team zich op beslissingen focust. Wanneer een persoon nodig is, komt het werk voorbereid aan.</p>
-        <div class="ww-chips"><span>Drafts</span><span>Reminders</span><span>Checks</span></div>
-      </article>
-      <article class="ww-tile">
-        <h3>System updates</h3>
-        <p class="ww-prop">Na approval werkt de workflow de systemen bij die je business al draaien: CRM, ERP, inbox, ticketing, interne databases. Het werk is af. Het record is gesloten.</p>
-        <div class="ww-chips"><span>CRM</span><span>ERP</span><span>Ticketing</span><span>Databases</span></div>
-      </article>
+    <div class="buildsys">
+      <div class="buildsys-head">
+        <span><b>Eén workflow system</b> · opgebouwd uit modules</span>
+        <span class="bs-count">6 bouwblokken</span>
+      </div>
+      <div class="buildsys-grid">
+        <article class="bs-module">
+          <span class="bs-tag">Layer</span>
+          <h3>Workflow layers</h3>
+          <p>Verbind de mensen, tools, data en stappen in een herhaald proces.</p>
+        </article>
+        <article class="bs-module">
+          <span class="bs-tag">Agent</span>
+          <h3>AI agents</h3>
+          <p>Bereid replies voor, routeer taken, check informatie, flag exceptions en stel next actions voor.</p>
+        </article>
+        <article class="bs-module">
+          <span class="bs-tag">Connector</span>
+          <h3>Integrations</h3>
+          <p>Verbind CRM, ERP, inboxes, forms, sheets, storage, dashboards en interne tools.</p>
+        </article>
+        <article class="bs-module">
+          <span class="bs-tag">Queue</span>
+          <h3>Review queues</h3>
+          <p>Geef teams één plek om belangrijke output goed te keuren, aan te passen, af te wijzen of te escaleren.</p>
+        </article>
+        <article class="bs-module">
+          <span class="bs-tag">View</span>
+          <h3>Dashboards</h3>
+          <p>Laat zien wat beweegt, wat wacht, wie eigenaar is en wat aandacht nodig heeft.</p>
+        </article>
+        <article class="bs-module">
+          <span class="bs-tag">Flow</span>
+          <h3>Document flows</h3>
+          <p>Lees, extraheer, check, vat samen en routeer documenten met menselijke review waar nodig.</p>
+        </article>
+      </div>
+      <div class="buildsys-foot"><b>Gevormd rond één echt proces</b> · verbonden met de tools, mensen en beslissingen die al betrokken zijn</div>
     </div>
   </div>
 </section>
 
-<!-- SECTION. How work moves through people and AI -->
-<style>
-  .behaviour { padding: clamp(72px, 8vw, 124px) 0; border-top: 1px solid var(--hairline); }
-  .behaviour .block-head { margin-bottom: clamp(48px, 5vw, 72px); }
-
-  .behaviour-flow {
-    border: 1px solid var(--hairline-strong);
-    border-radius: 12px;
-    background: var(--white);
-    padding: clamp(28px, 3.2vw, 48px) clamp(24px, 2.8vw, 40px);
-    margin-bottom: clamp(48px, 5vw, 72px);
-  }
-  .behaviour-flow-head {
-    display: flex; align-items: baseline; justify-content: space-between;
-    gap: 18px; flex-wrap: wrap;
-    padding-bottom: 16px; margin-bottom: clamp(24px, 2.6vw, 36px);
-    border-bottom: 1px solid var(--hairline);
-    font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
-  }
-  .behaviour-flow-head b { color: var(--ink); font-weight: 600; }
-  .behaviour-flow-head .status {
-    display: inline-flex; align-items: center; gap: 8px;
-    color: var(--teal); font-weight: 600;
-  }
-  .behaviour-flow-head .status::before {
-    content: ""; width: 7px; height: 7px; border-radius: 999px; background: var(--teal);
-  }
-  .bf-track {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px; align-items: stretch; position: relative;
-  }
-  @media (max-width: 880px) { .bf-track { grid-template-columns: 1fr; gap: 12px; } }
-  .bf-step {
-    position: relative;
-    display: flex; flex-direction: column; gap: 10px;
-    padding: 18px 18px 20px;
-    border: 1px solid var(--hairline);
-    border-radius: 8px;
-    background: var(--surface-2);
-  }
-  .bf-step .bf-eyebrow {
-    font-family: var(--font-mono); font-size: 9.5px;
-    letter-spacing: 0.18em; text-transform: uppercase; color: var(--ink-muted);
-    display: flex; align-items: center; gap: 8px;
-  }
-  .bf-step .bf-eyebrow b { color: var(--c); font-weight: 700; letter-spacing: 0.02em; }
-  .bf-step .bf-who { display: flex; align-items: center; gap: 10px; }
-  .bf-step .bf-av {
-    width: 28px; height: 28px; border-radius: 999px;
-    display: grid; place-items: center;
-    font-family: var(--font-mono); font-size: 10px; font-weight: 700;
-    background: var(--white); border: 1px solid var(--hairline);
-    color: var(--ink-soft); letter-spacing: 0.04em;
-  }
-  .bf-step.ai .bf-av { background: var(--c); color: var(--white); border-color: var(--c); }
-  .bf-step .bf-name { font-size: 13.5px; color: var(--ink); font-weight: 500; }
-  .bf-step .bf-name span { color: var(--ink-muted); font-weight: 400; }
-  .bf-step .bf-action { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
-  .bf-step .bf-action b { color: var(--ink); font-weight: 500; }
-  .bf-step .bf-tag {
-    margin-top: auto;
-    font-family: var(--font-mono); font-size: 9.5px;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
-    padding-top: 10px; border-top: 1px dashed var(--hairline);
-  }
-  .bf-step .bf-tag b { color: var(--ink); font-weight: 600; letter-spacing: 0.02em; }
-  .bf-step:not(:last-child)::after {
-    content: ""; position: absolute;
-    right: -12px; top: 50%;
-    width: 16px; height: 1px;
-    background: var(--hairline-strong); z-index: 1;
-  }
-  .bf-step:not(:last-child)::before {
-    content: ""; position: absolute;
-    right: -14px; top: 50%;
-    width: 6px; height: 6px;
-    border-top: 1px solid var(--hairline-strong);
-    border-right: 1px solid var(--hairline-strong);
-    transform: translateY(-50%) rotate(45deg);
-    z-index: 2;
-  }
-  @media (max-width: 880px) {
-    .bf-step:not(:last-child)::after,
-    .bf-step:not(:last-child)::before { display: none; }
-  }
-
-  .behaviour-principles {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(24px, 2.4vw, 36px);
-    padding-top: 22px;
-    border-top: 1px solid var(--ink);
-  }
-  @media (max-width: 880px) { .behaviour-principles { grid-template-columns: 1fr; gap: 28px; } }
-  .principle {
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .principle .p-num {
-    font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.18em; color: var(--ink-muted);
-  }
-  .principle .p-title {
-    font-size: clamp(20px, 1.6vw, 24px);
-    line-height: 1.2; letter-spacing: -0.02em;
-    color: var(--ink); font-weight: 500;
-    margin: 4px 0 6px;
-  }
-  .principle .p-body {
-    font-size: 14.5px; line-height: 1.55;
-    color: var(--ink-soft); max-width: 36ch;
-  }
-</style>
-
-<section class="behaviour">
+<!-- ============ SECTION 5 — BENEFITS ============ -->
+<section class="block benefits" data-screen-label="Benefits">
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>03 &middot; Hoe mensen en AI de workflow delen</span>
-        <h2 style="margin-top:14px;">AI bereidt voor. Mensen beslissen. De workflow bewaart het record.</h2>
+        <span class="label-mono"><span class="dot"></span>Benefits</span>
+        <h2 style="margin-top:14px;">Minder chasing. Duidelijker ownership. Snellere beweging.</h2>
       </div>
-      <p class="block-lede">AI verzamelt, draft en routeert. Mensen beslissen. Keur goed, wijs af, escaleer of stuur terug. Elke beslissing blijft gekoppeld aan de workflow, zodat je zes maanden later nog steeds kunt zien waarom iets is goedgekeurd.</p>
+      <p class="block-lede">Je team krijgt een duidelijkere manier om herhaald werk te bewegen, reviewen en volgen over de tools die ze al gebruiken.</p>
     </div>
 
-    <div class="behaviour-flow">
-      <div class="behaviour-flow-head">
-        <span><b>Voorbeeldworkflow</b> &middot; Refundverzoek van een klant</span>
-        <span class="status">Gerouteerd &middot; gelogd</span>
+    <div class="benefits-grid">
+      <div class="benefit">
+        <h3>Minder handmatig opvolgen</h3>
+        <p>Taken, updates en reminders bewegen zonder dat iemand elke stap hoeft te pushen.</p>
       </div>
-
-      <div class="bf-track">
-        <div class="bf-step ai">
-          <span class="bf-eyebrow"><b>01</b> Prepared</span>
-          <div class="bf-who">
-            <span class="bf-av">AI</span>
-            <span class="bf-name">AI bereidt de draft voor</span>
-          </div>
-          <p class="bf-action">Brengt de klantgeschiedenis, de geldende policy en eerdere beslissingen samen. Citeert de bron. Wacht tot een mens verstuurt.</p>
-          <span class="bf-tag"><b>Scope:</b> Support &middot; read</span>
-        </div>
-
-        <div class="bf-step">
-          <span class="bf-eyebrow"><b>02</b> Operated</span>
-          <div class="bf-who">
-            <span class="bf-av">OP</span>
-            <span class="bf-name">Operator bewaakt de queue</span>
-          </div>
-          <p class="bf-action">Triggert de workflow, bewaakt de queue, draagt over wanneer een item senior review nodig heeft.</p>
-          <span class="bf-tag"><b>Scope:</b> Support &middot; read &middot; write</span>
-        </div>
-
-        <div class="bf-step">
-          <span class="bf-eyebrow"><b>03</b> Signed off</span>
-          <div class="bf-who">
-            <span class="bf-av">RV</span>
-            <span class="bf-name">Reviewer keurt de actie goed</span>
-          </div>
-          <p class="bf-action">Keurt de respons goed met een reason of record. Niets verlaat de queue zonder een persoon.</p>
-          <span class="bf-tag"><b>Scope:</b> Review &middot; approval</span>
-        </div>
-
-        <div class="bf-step">
-          <span class="bf-eyebrow"><b>04</b> Recorded</span>
-          <div class="bf-who">
-            <span class="bf-av">&sect;</span>
-            <span class="bf-name">De beslissing wordt vastgelegd</span>
-          </div>
-          <p class="bf-action">Verzegelde entry: <b>bron</b>, <b>reviewer</b>, <b>timestamp</b> en <b>next step</b>. Op aanvraag exporteerbaar.</p>
-          <span class="bf-tag"><b>Scope:</b> Auditor &middot; read</span>
-        </div>
+      <div class="benefit">
+        <h3>Duidelijker ownership</h3>
+        <p>Elk item heeft een next action, owner, review point of bestemming.</p>
       </div>
-    </div>
-
-    <div class="behaviour-principles">
-      <div class="principle">
-        <span class="p-num">PRINCIPE 01</span>
-        <h3 class="p-title">Gerouteerd via mensen.</h3>
-        <p class="p-body">AI bereidt het werk voor. Mensen houden de beslissing.</p>
+      <div class="benefit">
+        <h3>Snellere handovers</h3>
+        <p>Context beweegt mee met het werk, zodat teams minder tijd kwijt zijn aan reconstrueren wat er is gebeurd.</p>
       </div>
-      <div class="principle">
-        <span class="p-num">PRINCIPE 02</span>
-        <h3 class="p-title">Afgebakend per rol.</h3>
-        <p class="p-body">Mensen en AI zien alleen wat ze mogen zien.</p>
+      <div class="benefit">
+        <h3>Meer zichtbaarheid</h3>
+        <p>Teams zien wat wacht, vastloopt, is goedgekeurd of klaar is voor actie.</p>
       </div>
-      <div class="principle">
-        <span class="p-num">PRINCIPE 03</span>
-        <h3 class="p-title">Vastgelegd waar het werk gebeurt.</h3>
-        <p class="p-body">Elke actie behoudt zijn bron, reviewer, timestamp en next step.</p>
+      <div class="benefit is-key">
+        <h3>Menselijke goedkeuring blijft helder</h3>
+        <p>AI bereidt voor en routeert het werk. Mensen blijven verantwoordelijk voor belangrijke beslissingen.</p>
       </div>
     </div>
   </div>
 </section>
 
-
-<!-- SECTION (new). Failure handling. Asymmetric, dense, monitoring-panel feel. -->
-<section class="block">
-  <div class="container">
-    <div class="failure-block">
-      <div>
-        <span class="label-mono"><span class="dot"></span>04 &middot; Wanneer de workflow afwijkt</span>
-        <h2 style="margin-top:14px;">Hoe het systeem onverwachte situaties opvangt.</h2>
-        <p class="block-lede">
-          Echte workflows komen edge cases tegen. Inputs komen incompleet binnen. APIs vallen tijdelijk uit. Een handtekening ontbreekt. Het systeem vangt elk geval op. Pauzeren, naar een persoon routen, opnieuw proberen, loggen. Zo blijft het werk zichtbaar en het team op de hoogte.
-        </p>
-      </div>
-      <div class="failure-panel" aria-label="Exception handling states">
-        <div class="failure-row is-active">
-          <span class="fname">Tijdelijke fout</span>
-          <span class="fdesc">Het systeem probeert opnieuw voordat het escaleert.</span>
-          <span class="fmeta">Opnieuw proberen</span>
-        </div>
-        <div class="failure-row">
-          <span class="fname">Ontbrekende informatie</span>
-          <span class="fdesc">De workflow vraagt de ontbrekende context op of routeert naar review.</span>
-          <span class="fmeta">Gerouteerd</span>
-        </div>
-        <div class="failure-row is-active">
-          <span class="fname">Approval delay</span>
-          <span class="fdesc">Als de review window wordt gemist, escaleert de taak naar de volgende owner.</span>
-          <span class="fmeta">Geëscaleerd</span>
-        </div>
-        <div class="failure-row">
-          <span class="fname">Lage confidence</span>
-          <span class="fdesc">AI gokt niet. Het item gaat met de context erbij naar een persoon.</span>
-          <span class="fmeta">Naar review gestuurd</span>
-        </div>
-        <div class="failure-row">
-          <span class="fname">Geparkeerd voor review</span>
-          <span class="fdesc">Onopgeloste items worden veilig vastgehouden zodat ze later gereviewd en opnieuw afgespeeld kunnen worden.</span>
-          <span class="fmeta">Wacht op review</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-<section class="grow" data-sec="grow" id="grow">
+<!-- ============ SECTION 6 — CONTROL & TRUST ============ -->
+<section class="control" data-screen-label="Control &amp; trust">
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>05 &middot; Begin met één workflow</span>
-        <h2 style="margin-top:14px;">Vandaag één workflow. Morgen de operationele laag.</h2>
+        <span class="label-mono"><span class="dot"></span>Control &amp; trust</span>
+        <h2 style="margin-top:14px;">Werk beweegt sneller. Controle blijft duidelijk.</h2>
       </div>
-      <p class="block-lede">Eén workflow wordt er twee. Twee wordt een afdeling. Een afdeling wordt cross-functioneel. Wat constant blijft is wat je kunt zien: wat er bewoog, wat er faalde, wie het reviewde, waar het vertraagde. Groei betekent niet dat je zicht verliest. Het betekent dat het zicht meeschaalt met het werk.</p>
+      <p class="block-lede">AI workflows ondersteunen de mensen die er dagelijks mee werken, met review points, permissions, activity trails en duidelijke ownership vanaf het begin ingebouwd.</p>
     </div>
 
-    <!-- Part A. Scaling path -->
-    <div class="grow-stages">
-      <div class="grow-flow">
-        <span class="gf-step">Trigger</span>
-        <span class="gf-arr">&rarr;</span>
-        <span class="gf-step">Workflow</span>
-        <span class="gf-arr">&rarr;</span>
-        <span class="gf-step">Queue</span>
-        <span class="gf-arr">&rarr;</span>
-        <span class="gf-step">Team</span>
-        <span class="gf-arr">&rarr;</span>
-        <span class="gf-step">System</span>
+    <div class="review-flow">
+      <div class="rf-step">
+        <span class="rf-tag">Prepared</span>
+        <span class="rf-title">AI bereidt voor</span>
+        <p>Werk wordt klaargezet met de juiste context.</p>
       </div>
-      <div class="grow-labels">
-        <div class="gl">
-          <span class="gl-lbl">Stage 01</span>
-          <span class="gl-name">Eén workflow.</span>
-          <span class="gl-desc">Eén trigger, één proces, één meetbaar resultaat.</span>
-        </div>
-        <div class="gl">
-          <span class="gl-lbl">Stage 02</span>
-          <span class="gl-name">Connected workflow.</span>
-          <span class="gl-desc">Meerdere tools, approvals, retries en escalaties.</span>
-        </div>
-        <div class="gl">
-          <span class="gl-lbl">Stage 03</span>
-          <span class="gl-name">Operationele laag.</span>
-          <span class="gl-desc">Gedeeld zicht over queues, teams, systemen en action history.</span>
-        </div>
+      <div class="rf-step is-person">
+        <span class="rf-tag">Reviewed</span>
+        <span class="rf-title">Een persoon reviewt</span>
+        <p>Belangrijke output gaat naar de juiste reviewer voordat het verdergaat.</p>
+      </div>
+      <div class="rf-step">
+        <span class="rf-tag">Approved</span>
+        <span class="rf-title">Werk beweegt verder</span>
+        <p>Goedgekeurd werk update de juiste tools of triggert de volgende stap.</p>
+      </div>
+      <div class="rf-step">
+        <span class="rf-tag">Recorded</span>
+        <span class="rf-title">Het is traceerbaar</span>
+        <p>Acties, approvals en wijzigingen kunnen worden bekeken wanneer dat nodig is.</p>
       </div>
     </div>
 
-    <!-- Part B. Visibility layer -->
-    <div class="grow-cards">
-      <div class="gc">
-        <span class="gc-lbl">01</span>
-        <span class="gc-name">Activiteit.</span>
-        <span class="gc-desc">Wat er door de workflow beweegt.</span>
-      </div>
-      <div class="gc">
-        <span class="gc-lbl">02</span>
-        <span class="gc-name">Retries.</span>
-        <span class="gc-desc">Wat opnieuw is geprobeerd na een tijdelijke fout.</span>
-      </div>
-      <div class="gc">
-        <span class="gc-lbl">03</span>
-        <span class="gc-name">Wachttijd.</span>
-        <span class="gc-desc">Waar het werk vertraagt.</span>
-      </div>
-      <div class="gc">
-        <span class="gc-lbl">04</span>
-        <span class="gc-name">Handoffs.</span>
-        <span class="gc-desc">Wie de taak ontving, reviewde of escaleerde.</span>
-      </div>
-      <div class="gc">
-        <span class="gc-lbl">05</span>
-        <span class="gc-name">Queues.</span>
-        <span class="gc-desc">Wat wacht of geblokkeerd is.</span>
-      </div>
-      <div class="gc">
-        <span class="gc-lbl">06</span>
-        <span class="gc-name">Action history.</span>
-        <span class="gc-desc">Wat er gebeurde, wanneer en waarom.</span>
-      </div>
+    <div class="trust-grid">
+      <article class="trust">
+        <h3>Review points</h3>
+        <p>Belangrijke output bereikt de juiste persoon voordat die verdergaat.</p>
+      </article>
+      <article class="trust">
+        <h3>Permissions</h3>
+        <p>Mensen en AI werken alleen met data waarvoor ze toegang hebben.</p>
+      </article>
+      <article class="trust">
+        <h3>Activity trails</h3>
+        <p>Acties, approvals, updates en exceptions zijn traceerbaar wanneer dat nodig is.</p>
+      </article>
+      <article class="trust">
+        <h3>Exception handling</h3>
+        <p>Onduidelijke of low-confidence items worden geflagd voor review.</p>
+      </article>
+      <article class="trust">
+        <h3>Measured rollout</h3>
+        <p>Succes wordt gemeten via tijdswinst, minder stappen en sneller bewegend werk.</p>
+      </article>
+    </div>
+
+    <div class="control-foot">
+      <span>Praktisch voor dagelijks werk</span>
+      <span>Review ingebouwd</span>
+      <span>Permissions helder</span>
+      <span>Human-in-the-loop</span>
     </div>
   </div>
 </section>
 
-<!-- SECTION 05. Designed to grow without losing visibility (merges old Scaling up + Visibility) -->
-<style>
-  .grow { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--white); }
-  .grow .block-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: 32px; align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
-  @media (max-width: 760px) { .grow .block-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
-
-  /* Part A — scaling path */
-  .grow-stages { padding-bottom: clamp(32px, 4vw, 48px); border-bottom: 1px solid var(--hairline); margin-bottom: clamp(32px, 4vw, 48px); }
-  .grow-flow { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; }
-  .grow-flow .gf-step {
-    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-    letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink);
-    padding: 10px 16px; border: 1px solid var(--hairline-strong); border-radius: 4px;
-    background: var(--white);
-  }
-  .grow-flow .gf-arr { font-family: var(--font-mono); font-size: 14px; color: var(--c); font-weight: 600; }
-  .grow-labels { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(18px, 2.4vw, 32px); margin-top: clamp(20px, 2.4vw, 32px); }
-  @media (max-width: 760px) { .grow-labels { grid-template-columns: 1fr; } }
-  .grow-labels .gl { display: flex; flex-direction: column; gap: 8px; }
-  .grow-labels .gl-lbl {
-    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
-    letter-spacing: 0.14em; text-transform: uppercase; color: var(--c);
-  }
-  .grow-labels .gl-name {
-    font-family: var(--font-display); font-weight: 500;
-    font-size: clamp(16px, 1.2vw, 18px); letter-spacing: -0.015em; color: var(--ink);
-  }
-  .grow-labels .gl-desc { font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
-
-  /* Part B — visibility cards */
-  .grow-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: clamp(12px, 1.4vw, 18px); }
-  @media (max-width: 760px) { .grow-cards { grid-template-columns: 1fr 1fr; } }
-  @media (max-width: 480px) { .grow-cards { grid-template-columns: 1fr; } }
-  .grow-cards .gc {
-    background: var(--white); border: 1px solid var(--hairline); border-radius: 10px;
-    padding: clamp(18px, 1.8vw, 22px);
-    display: flex; flex-direction: column; gap: 8px;
-    transition: border-color 200ms var(--ease);
-  }
-  .grow-cards .gc:hover { border-color: var(--c); }
-  .grow-cards .gc-lbl {
-    font-family: var(--font-mono); font-size: 10.5px; font-weight: 600;
-    letter-spacing: 0.16em; text-transform: uppercase; color: var(--c);
-  }
-  .grow-cards .gc-name {
-    font-family: var(--font-display); font-weight: 500;
-    font-size: clamp(16px, 1.2vw, 18px); letter-spacing: -0.015em; color: var(--ink);
-  }
-  .grow-cards .gc-desc { font-size: 14px; line-height: 1.55; color: var(--ink-soft); }
-</style>
-
-<!-- SECTION. Architecture (4 enterprise layers). The moat -->
-<style>
-  .archlayers {
-    background: #0b0b0c;
-    color: #fff;
-    padding: clamp(100px, 12vw, 168px) 0;
-    border-top: 1px solid var(--hairline);
-  }
-  .archlayers .block-head { color: #fff; margin-bottom: clamp(56px, 6vw, 88px); }
-  .archlayers .block-head h2 { color: #fff; }
-  .archlayers .block-head .label-mono { color: rgba(255,255,255,0.55); }
-  .archlayers .block-head .label-mono .dot { background: #a896e8; box-shadow: 0 0 0 5px #0b0b0c; }
-  .archlayers .block-head .block-lede { color: rgba(255,255,255,0.62); }
-
-  .archlayers-grid {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: clamp(16px, 1.6vw, 24px);
-  }
-  @media (max-width: 1100px) { .archlayers-grid { grid-template-columns: repeat(2, 1fr); gap: 18px; } }
-  @media (max-width: 640px)  { .archlayers-grid { grid-template-columns: 1fr; } }
-
-  .archlayer {
-    border: 1px solid rgba(255,255,255,0.14);
-    border-radius: 2px;
-    background: rgba(255,255,255,0.02);
-    padding: clamp(22px, 2vw, 28px) clamp(22px, 2vw, 26px);
-    display: flex; flex-direction: column;
-    gap: 14px;
-    transition: background 200ms var(--ease), border-color 200ms var(--ease);
-  }
-  .archlayer:hover {
-    background: rgba(255,255,255,0.04);
-    border-color: rgba(168,150,232,0.55);
-  }
-  .archlayer .al-num {
-    font-family: var(--font-mono); font-size: 10px;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: #a896e8; font-weight: 600;
-  }
-  .archlayer h3 {
-    font-family: var(--font-display);
-    font-size: clamp(22px, 1.9vw, 26px);
-    font-weight: 500;
-    letter-spacing: -0.02em;
-    color: #fff;
-    margin: 0;
-    line-height: 1.15;
-  }
-  .archlayer .al-sub {
-    font-size: 13.5px; line-height: 1.55;
-    color: rgba(255,255,255,0.55);
-    margin: 0;
-    max-width: 30ch;
-  }
-  .archlayer .al-items {
-    list-style: none; padding: 0; margin: 4px 0 0;
-    display: flex; flex-direction: column; gap: 9px;
-    border-top: 1px solid rgba(255,255,255,0.10);
-    padding-top: 18px;
-  }
-  .archlayer .al-items li {
-    font-family: var(--font-mono); font-size: 11.5px;
-    letter-spacing: 0.06em;
-    color: rgba(255,255,255,0.78);
-    line-height: 1.4;
-    padding-left: 14px;
-    position: relative;
-  }
-  .archlayer .al-items li::before {
-    content: ""; position: absolute;
-    left: 0; top: 7px;
-    width: 5px; height: 1px;
-    background: rgba(168,150,232,0.6);
-  }
-  .archlayers-foot {
-    margin-top: clamp(40px, 4.6vw, 64px);
-    padding-top: 22px;
-    border-top: 1px solid rgba(255,255,255,0.10);
-    display: flex; gap: clamp(18px, 2vw, 32px);
-    flex-wrap: wrap;
-    font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.18em; text-transform: uppercase;
-    color: rgba(255,255,255,0.45);
-  }
-  .archlayers-foot b { color: #fff; font-weight: 600; letter-spacing: 0.02em; margin-right: 6px; }
-
-  /* Trust strip (replaces archlayers-foot) — 5 prominent pills on the dark section */
-  .archlayers-trust {
-    list-style: none;
-    margin: clamp(40px, 4.6vw, 64px) 0 0;
-    padding: 0;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 10px 14px;
-  }
-  .archlayers-trust li {
-    font-family: var(--font-mono);
-    font-size: clamp(11px, 1vw, 13px);
-    font-weight: 500;
-    letter-spacing: 0.18em;
-    text-transform: uppercase;
-    color: #fff;
-    padding: 12px 22px;
-    border: 1px solid rgba(255, 255, 255, 0.25);
-    border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
-  }
-</style>
-
-<section class="archlayers">
+<!-- ============ SECTION 7 — HOW TO START ============ -->
+<section class="block start" data-screen-label="How to start">
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>06 &middot; Gebouwd zodat IT het kan reviewen</span>
-        <h2 style="margin-top:14px;">Ontworpen met je IT-team vanaf dag één.</h2>
+        <span class="label-mono"><span class="dot"></span>Hoe je start</span>
+        <h2 style="margin-top:14px;">Start met één workflow die nu al tijd kost.</h2>
       </div>
-      <p class="block-lede">Je IT- en securityteams reviewen de architectuur vroeg. Deployment, access, data boundaries, logging en security worden allemaal ontworpen voordat iets live gaat.</p>
+      <p class="block-lede">Breng één herhaald proces mee. We mappen hoe het vandaag beweegt, bepalen waar AI kan helpen en definiëren de eerste bruikbare versie om te bouwen.</p>
     </div>
 
-    <div class="archlayers-grid">
-      <article class="archlayer">
-        <span class="al-num">Layer 01</span>
-        <h3>Waar teams het gebruiken</h3>
-        <p class="al-sub">De interface die mensen zien en waarop ze handelen. Authenticated, hardened en geïntegreerd met hoe het team al werkt.</p>
-        <ul class="al-items">
-          <li>CDN-fronted distribution</li>
-          <li>Static SPA hosting</li>
-          <li>TLS termination &middot; cert management</li>
-          <li>WAF &middot; DDoS protection</li>
-          <li>Auth at the edge</li>
-        </ul>
+    <div class="start-track">
+      <article class="start-step">
+        <span class="ss-n">Stap 1</span>
+        <h3>Map de workflow</h3>
+        <p>Tools, mensen, documenten, beslissingen en handovers.</p>
       </article>
-      <article class="archlayer">
-        <span class="al-num">Layer 02</span>
-        <h3>Hoe systemen met elkaar praten</h3>
-        <p class="al-sub">Validated en observable. Schaalt op aanvraag, contained bij failure. De integration boundary tussen de workflow en de systemen die hij raakt.</p>
-        <ul class="al-items">
-          <li>Gateway &middot; request validation</li>
-          <li>Serverless or containerised compute</li>
-          <li>Auto-scaling &middot; throttling</li>
-          <li>Versioned endpoints</li>
-          <li>Structured logging</li>
-        </ul>
+      <article class="start-step">
+        <span class="ss-n">Stap 2</span>
+        <h3>Vind de AI-ready stap</h3>
+        <p>Waar AI tijd kan besparen zonder extra risico toe te voegen.</p>
       </article>
-      <article class="archlayer">
-        <span class="al-num">Layer 03</span>
-        <h3>Waar informatie wordt opgeslagen</h3>
-        <p class="al-sub">Encrypted, replicated, recoverable. Boundaries zijn expliciet en tenant-scoped.</p>
-        <ul class="al-items">
-          <li>Multi-AZ relational</li>
-          <li>Vector + relational in one footprint</li>
-          <li>Encryption at rest &amp; in transit</li>
-          <li>Automated backups &middot; point-in-time recovery</li>
-          <li>Tenant-scoped isolation</li>
-        </ul>
-      </article>
-      <article class="archlayer">
-        <span class="al-num">Layer 04</span>
-        <h3>Hoe toegang wordt geregeld</h3>
-        <p class="al-sub">SSO aan de voorkant, secrets in een vault, elke actie vastgelegd. Ontworpen om reviewable te zijn door IT voordat het schaalt.</p>
-        <ul class="al-items">
-          <li>SSO via SAML / OIDC</li>
-          <li>Secrets vault</li>
-          <li>Role-based access</li>
-          <li>Private network isolation</li>
-          <li>Immutable record of action</li>
-          <li>Policy enforcement</li>
-        </ul>
+      <article class="start-step">
+        <span class="ss-n">Stap 3</span>
+        <h3>Bouw de eerste versie</h3>
+        <p>Een gericht workflow system dat je team met echt werk kan testen.</p>
       </article>
     </div>
-
-    <ul class="archlayers-trust" aria-label="Trust attributes">
-      <li>Cloud-agnostic</li>
-      <li>Tenant-scoped</li>
-      <li>Role-based</li>
-      <li>Audit-ready</li>
-      <li>IT-reviewed</li>
-    </ul>
-
-    <!-- Mobile-only: dark collapsible accordion of the same 4 layers -->
-    <div class="al-acc">
-      <details open>
-        <summary>
-          <span class="a-num">Layer 01</span>
-          <span class="a-title"><h3>Waar teams het gebruiken</h3><span class="a-sub">De interface die mensen zien en waarop ze handelen.</span></span>
-          <span class="a-chev"></span>
-        </summary>
-        <div class="a-body">
-          <ul class="items">
-            <li>CDN-fronted distribution</li>
-            <li>Static SPA hosting</li>
-            <li>TLS termination &middot; cert management</li>
-            <li>WAF &middot; DDoS protection</li>
-            <li>Auth at the edge</li>
-          </ul>
-        </div>
-      </details>
-      <details>
-        <summary>
-          <span class="a-num">Layer 02</span>
-          <span class="a-title"><h3>Hoe systemen met elkaar praten</h3><span class="a-sub">Validated en observable. Contained bij failure.</span></span>
-          <span class="a-chev"></span>
-        </summary>
-        <div class="a-body">
-          <ul class="items">
-            <li>Gateway &middot; request validation</li>
-            <li>Serverless or containerised compute</li>
-            <li>Auto-scaling &middot; throttling</li>
-            <li>Versioned endpoints</li>
-            <li>Structured logging</li>
-          </ul>
-        </div>
-      </details>
-      <details>
-        <summary>
-          <span class="a-num">Layer 03</span>
-          <span class="a-title"><h3>Waar informatie wordt opgeslagen</h3><span class="a-sub">Encrypted, replicated, recoverable.</span></span>
-          <span class="a-chev"></span>
-        </summary>
-        <div class="a-body">
-          <ul class="items">
-            <li>Multi-AZ relational</li>
-            <li>Vector + relational in one footprint</li>
-            <li>Encryption at rest &amp; in transit</li>
-            <li>Automated backups &middot; point-in-time recovery</li>
-            <li>Tenant-scoped isolation</li>
-          </ul>
-        </div>
-      </details>
-      <details>
-        <summary>
-          <span class="a-num">Layer 04</span>
-          <span class="a-title"><h3>Hoe toegang wordt geregeld</h3><span class="a-sub">SSO aan de voorkant, elke actie vastgelegd.</span></span>
-          <span class="a-chev"></span>
-        </summary>
-        <div class="a-body">
-          <ul class="items">
-            <li>SSO via SAML / OIDC</li>
-            <li>Secrets vault</li>
-            <li>Role-based access</li>
-            <li>Private network isolation</li>
-            <li>Immutable record of action</li>
-            <li>Policy enforcement</li>
-          </ul>
-        </div>
-      </details>
-    </div>
-
-    <!-- Mobile-only trust pill row, lives below the accordion -->
-    <ul class="al-trust-m" aria-label="Trust attributes">
-      <li>Cloud-agnostic</li>
-      <li>Tenant-scoped</li>
-      <li>Role-based</li>
-      <li>Audit-ready</li>
-      <li>IT-reviewed</li>
-    </ul>
   </div>
 </section>
 
-<!-- FINAL CTA -->
-<section class="final-cta">
+<!-- ============ FINAL CTA ============ -->
+<section class="final-cta" data-screen-label="Final CTA">
   <div class="container">
     <div class="final-cta-card">
       <div class="final-cta-grid">
         <div>
-          <span class="label-mono"><span class="dot"></span>Begin hier</span>
-          <h2>Breng één workflow mee die je sneller wilt laten bewegen.</h2>
-          <p>Kies één workflow waar je het werk sneller wilt laten bewegen. We brengen de trigger, de mensen, de systemen, de exception paths en de kleinste nuttige versie die het waard is om te shippen in kaart.</p>
+          <span class="label-mono"><span class="dot"></span>Klaar om je eerste workflow te mappen?</span>
+          <h2>Laat zien waar werk vertraagt.</h2>
+          <p>Breng één proces mee dat vandaag te veel handmatig werk vraagt. We helpen de AI-ready stap vinden en definiëren de snelste bruikbare versie om te bouwen.</p>
         </div>
         <div class="final-cta-actions">
-          <a class="btn btn-primary" href="../Home.html#contact">
-            Bespreek een workflow <span class="arrow">&rarr;</span>
+          <a class="btn btn-primary" href="../AIHLPR Home.html#contact">
+            Bespreek een workflow <span class="arrow">→</span>
           </a>
-          <a class="btn btn-ghost" href="../Home.html#work">
-            Lees een case study <span class="arrow">&rarr;</span>
+          <a class="btn btn-ghost" href="../AIHLPR Home.html#contact">
+            Plan een workflowgesprek <span class="arrow">→</span>
           </a>
-          <span class="final-cta-risk">30 minuten. We brengen in kaart wat je eerst automatiseert, wat je voor later laat en wat je meet.</span>
         </div>
       </div>
     </div>
@@ -2216,84 +1055,64 @@
 </section>
 
 <script>
-  // Position the flow spine to connect all section label-mono dots vertically.
+  // Flow spine — connect section label dots vertically with scroll progress.
   (function() {
     const main = document.querySelector('main');
     const spine = document.querySelector('.flow-spine');
     if (!main || !spine) return;
 
     function getDots() {
-      // One dot per main section — exclude hero + final CTA.
-      // This catches section.block, section.behaviour, section.archlayers,
-      // section.partnership, etc, so the spine connects every section header.
-      const sections = main.querySelectorAll(
-        'section:not(.hero):not(.final-cta)'
-      );
+      const sections = main.querySelectorAll('section:not(.hero):not(.final-cta)');
       const dots = [];
       sections.forEach(function(s) {
         const d = s.querySelector('.label-mono .dot');
-        if (d) {
-          // Tag so CSS can pull just this dot into the gutter where
-          // the rail lives, without affecting other label-mono dots.
-          d.classList.add('is-spine-anchor');
-          dots.push(d);
-        }
+        if (d) dots.push(d);
       });
       return dots;
     }
-
-    function position() {
+    function metrics() {
       const dots = getDots();
-      if (dots.length < 2) return;
-
+      if (dots.length < 2) return null;
       const mainRect = main.getBoundingClientRect();
-      const firstRect = dots[0].getBoundingClientRect();
-      const lastRect  = dots[dots.length - 1].getBoundingClientRect();
-
-      const top    = firstRect.top  - mainRect.top  + firstRect.height / 2;
-      const bottom = lastRect.top   - mainRect.top  + lastRect.height  / 2;
-      const left   = firstRect.left - mainRect.left + firstRect.width  / 2 - 1;
-
-      spine.style.top    = top + "px";
-      spine.style.height = (bottom - top) + "px";
-      spine.style.left   = left + "px";
-      spine.classList.add("is-ready");
-
-      updateProgress(top, bottom, mainRect.top);
+      const f = dots[0].getBoundingClientRect();
+      const l = dots[dots.length - 1].getBoundingClientRect();
+      const top = f.top - mainRect.top + f.height / 2;
+      const bottom = l.top - mainRect.top + l.height / 2;
+      const left = Math.max(12, f.left - mainRect.left - 26);
+      return { top, bottom, left, mainTop: mainRect.top };
     }
-
-    function updateProgress(top, bottom, mainTopAbs) {
-      // Convert spine top/bottom (in main-relative px) to document-relative.
-      const docMainTop = window.scrollY + mainTopAbs;
-      const spineTopDoc    = docMainTop + top;
-      const spineBottomDoc = docMainTop + bottom;
+    function updateProgress(m) {
+      const docMainTop = window.scrollY + m.mainTop;
+      const spineTopDoc = docMainTop + m.top;
+      const spineBottomDoc = docMainTop + m.bottom;
       const total = Math.max(1, spineBottomDoc - spineTopDoc);
       const viewportMid = window.scrollY + window.innerHeight * 0.55;
       const raw = (viewportMid - spineTopDoc) / total;
       const clamped = Math.max(0, Math.min(1, raw));
-      spine.style.setProperty("--flow-progress", (clamped * 100).toFixed(2) + "%");
+      spine.style.setProperty('--flow-progress', (clamped * 100).toFixed(2) + '%');
     }
-
+    function position() {
+      const m = metrics();
+      if (!m) return;
+      spine.style.top = m.top + 'px';
+      spine.style.height = (m.bottom - m.top) + 'px';
+      spine.style.left = m.left + 'px';
+      spine.style.opacity = '1';
+      spine.classList.add('is-ready');
+      updateProgress(m);
+    }
     let raf = 0;
     function onScroll() {
       if (raf) return;
       raf = requestAnimationFrame(function() {
         raf = 0;
-        const dots = getDots();
-        if (dots.length < 2) return;
-        const mainRect = main.getBoundingClientRect();
-        const firstRect = dots[0].getBoundingClientRect();
-        const lastRect  = dots[dots.length - 1].getBoundingClientRect();
-        const top    = firstRect.top - mainRect.top + firstRect.height / 2;
-        const bottom = lastRect.top  - mainRect.top + lastRect.height  / 2;
-        updateProgress(top, bottom, mainRect.top);
+        const m = metrics();
+        if (m) { spine.style.left = m.left + 'px'; updateProgress(m); }
       });
     }
-
-    window.addEventListener("load", position);
-    window.addEventListener("resize", position);
-    window.addEventListener("scroll", onScroll, { passive: true });
-    // Initial pass (fonts may shift things slightly afterwards).
+    window.addEventListener('load', position);
+    window.addEventListener('resize', position);
+    window.addEventListener('scroll', onScroll, { passive: true });
     setTimeout(position, 100);
     setTimeout(position, 600);
   })();
@@ -2301,33 +1120,30 @@
 
 </main>
 
-
-<!-- ============= READINESS CHECK COMPONENT ============= -->
-
 <footer class="footer">
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="../../assets/aihlpr-logo-light.svg" alt="AIHLPR">
-        <p>Operationele AI-partner. We bouwen AI-systemen die passen bij hoe organisaties al werken. Van één workflow tot de hele organisatie.</p>
+        <p>AIHLPR bouwt AI-systemen die passen bij hoe organisaties al werken — van één workflow tot een systeem dat over teams heen kan schalen.</p>
       </div>
       <div class="footer-col">
-        <h5>Oplossingen</h5>
+        <h5>Wat we doen</h5>
         <ul>
-          <li><a href="ai-applications-and-platforms.html">Platforms &amp; Tools</a></li>
-          <li><a href="ai-workflow-infrastructure.html">Workflows</a></li>
-          <li><a href="scale-ups.html">Scale-ups</a></li>
-          <li><a href="enterprise-ai.html">Enterprise</a></li>
+          <li><a href="ai-applications-and-platforms.html">AI Applicaties &amp; Platforms</a></li>
+          <li><a href="ai-workflow-infrastructure.html">AI Workflow Systems</a></li>
+          <li><a href="enterprise-ai.html">Enterprise AI</a></li>
+          <li><a href="prototype-to-production.html">Prototype naar Productie</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h5>De site</h5>
         <ul>
-          <li><a href="../Home.html#capabilities">Oplossingen</a></li>
-          <li><a href="../../insights/index.html">Our thinking</a></li>
-          <li><a href="../about.html">Over ons</a></li>
-          <li><a href="../Home.html#how">How We Work</a></li>
-          <li><a href="../Home.html#work">Case studies</a></li>
+          <li><a href="../Home.html#capabilities">Alle capabilities</a></li>
+          <li><a href="../Home.html#how">Hoe we werken</a></li>
+          <li><a href="../Home.html#work">Ons werk</a></li>
+          <li><a href="../../insights/index.html">Compliance</a></li>
+          <li><a href="../about.html">Contact</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -2335,15 +1151,16 @@
         <ul>
           <li><a href="mailto:brinda@moralitybytes.eu">brinda@moralitybytes.eu</a></li>
           <li>Wibautstraat 129, Amsterdam</li>
+          <li>EU-based · NDA op aanvraag</li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
       <a class="footer-mb" href="https://moralitybytes.eu" target="_blank" rel="noopener" aria-label="MoralityBytes">
         <img src="../../assets/moralitybytes-mark.svg" alt="" width="30" height="30">
-        <span>Onderdeel van <strong>MORALITY BYTES</strong></span>
+        <span>A practice of <strong>MORALITY BYTES</strong></span>
       </a>
-      <span>&copy; 2026 AIHLPR &middot; AI engineering die meegaat</span>
+      <span>&copy; 2026 AIHLPR &middot; AI engineering, built to last</span>
     </div>
   </div>
 </footer>
@@ -2366,18 +1183,4 @@
 })();
 </script>
 
-<script>
-  /* Mobile accordions: open one at a time, per group. */
-  (function () {
-    document.querySelectorAll('.ww-acc, .al-acc').forEach(function (group) {
-      var all = group.querySelectorAll('details');
-      all.forEach(function (d) {
-        d.addEventListener('toggle', function () {
-          if (d.open) all.forEach(function (o) { if (o !== d && o.open) o.open = false; });
-        });
-      });
-    });
-  })();
-</script>
-</body>
-</html>
+</body></html>
