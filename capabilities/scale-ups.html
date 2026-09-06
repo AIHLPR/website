@@ -198,7 +198,7 @@
   .ladder { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 0; border: 1px solid var(--hairline); border-radius: 16px; overflow: hidden; background: var(--white); }
   @media (max-width: 980px) { .ladder { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .ladder { grid-template-columns: 1fr; } }
-  .rung { position: relative; padding: clamp(22px, 2vw, 28px); border-right: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 12px; min-height: 230px; }
+  .rung { position: relative; padding: clamp(22px, 2vw, 28px); border-right: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 12px; min-height: 170px; }
   .ladder .rung:last-child { border-right: none; }
   @media (max-width: 980px) { .rung { border-bottom: 1px solid var(--hairline); } .ladder .rung:nth-child(2n) { border-right: none; } }
   @media (max-width: 560px) { .rung { border-right: none; } }
@@ -597,12 +597,12 @@
         <span class="sep"></span>
         <span>AI for growing teams</span>
       </div>
-      <h1>More output from the team you already have.</h1>
-      <p class="hero-lede">AIHLPR builds custom tools, workflow layers, dashboards, integrations, and AI agents that help growing teams move work faster across the systems they already use.</p>
-      <p class="hero-sub">Use AI to reduce follow-ups, prepare updates, process documents, route tasks, and keep people in control of the decisions that matter.</p>
+      <h1>Scale your business with practical AI</h1>
+      <p class="hero-lede">AIHLPR helps growing teams increase capacity, improve workflows, and make better use of the systems they already have.</p>
+      <p class="hero-sub">We build AI systems that take on repetitive work, connect information, support decisions, and help teams operate with greater clarity.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="../Home.html#contact">Find your first AI step <span class="arrow">→</span></a>
-        <a class="btn btn-secondary" href="../Home.html#contact">Talk it through <span class="arrow">→</span></a>
+        <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Book a call <span class="arrow">→</span></a>
+        <a class="btn btn-secondary" href="#help">See where AI helps first <span class="arrow">→</span></a>
       </div>
     </div>
 
@@ -700,16 +700,49 @@
 <section class="badges">
   <div class="container badges-inner">
     <span class="badge">Enterprise-grade delivery</span>
-    <span class="badge">Human review by design</span>
     <span class="badge">Fits your existing tools</span>
-    <span class="badge">GDPR-aware workflows</span>
-    <span class="badge">Pilot-first approach</span>
-    <span class="badge">Scale after proof</span>
+    <span class="badge">People approve what matters</span>
+    <span class="badge">Start small, scale after proof</span>
+  </div>
+</section>
+
+<!-- WHERE THE PRESSURE SHOWS UP -->
+<section class="block">
+  <div class="container">
+    <div class="block-head">
+      <div><span class="label-mono"><span class="dot"></span>The starting point</span></div>
+      <div>
+        <h2>Where growing teams start feeling the pressure</h2>
+        <p class="block-lede" style="margin-top:16px;">Growth often creates operational pressure before it creates a technology problem.</p>
+      </div>
+    </div>
+    <div class="reasons">
+      <div class="reason">
+        <span class="rn">01</span>
+        <h4>Too much coordination</h4>
+        <p>People spend time chasing updates, approvals, and handovers.</p>
+      </div>
+      <div class="reason">
+        <span class="rn">02</span>
+        <h4>Work spread across tools</h4>
+        <p>Information sits across inboxes, spreadsheets, CRM, ERP, and documents.</p>
+      </div>
+      <div class="reason">
+        <span class="rn">03</span>
+        <h4>Experienced people doing repeat work</h4>
+        <p>Important team members spend too much time preparing, checking, and moving information.</p>
+      </div>
+      <div class="reason">
+        <span class="rn">04</span>
+        <h4>AI experiments without a clear path forward</h4>
+        <p>Teams have tried AI tools, but turning them into dependable working systems is harder.</p>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- WHERE AI CAN HELP FIRST (merged) -->
-<section class="block">
+<section class="block" id="help">
   <div class="container">
     <div class="block-head">
       <div>
@@ -717,109 +750,59 @@
       </div>
       <div>
         <h2>Start with the workflow that is already slowing the team down.</h2>
-        <p class="block-lede" style="margin-top:16px;">AIHLPR builds the tool, agent, dashboard, workflow layer, or integration that helps that work move faster, inside the systems your team already uses.</p>
+        <p class="block-lede" style="margin-top:16px;">Six places where an AI layer pays for itself fast, inside the systems your team already uses.</p>
       </div>
     </div>
     <div class="cards">
       <article class="card">
-        <span class="card-eyebrow">Inbox agent · CRM workflow</span>
-        <h3>Lead follow-up</h3>
-        <p>Build an inbox agent or CRM workflow that classifies leads, prepares replies, updates fields, and routes the next action.</p>
+        <span class="card-eyebrow">Inbox agent · CRM</span>
+        <h3>Lead follow up</h3>
+        <p>Capture enquiries, prepare responses, update systems, and route important conversations to the right person.</p>
       </article>
       <article class="card">
         <span class="card-eyebrow">Workflow layer</span>
         <h3>Customer onboarding</h3>
-        <p>Build a workflow layer that moves forms, documents, checks, approvals, and handovers through one clear process.</p>
+        <p>Collect information, check documents, coordinate tasks, and keep onboarding moving.</p>
       </article>
       <article class="card">
         <span class="card-eyebrow">AI document flow</span>
         <h3>Document processing</h3>
-        <p>Build an AI document flow that reads files, extracts key details, flags missing information, and prepares the next step.</p>
+        <p>Read, classify, extract, review, and move information into the systems where it is needed.</p>
       </article>
       <article class="card">
         <span class="card-eyebrow">Dashboards · reporting</span>
         <h3>Internal reporting</h3>
-        <p>Build dashboards and reporting flows that turn scattered updates into summaries, status views, and exception reports.</p>
+        <p>Bring information together, prepare recurring reports, and surface what needs attention.</p>
       </article>
       <article class="card">
         <span class="card-eyebrow">AI-supported tools</span>
-        <h3>Content and asset workflows</h3>
-        <p>Build AI-supported tools for product content, translations, visuals, review flows, and campaign assets.</p>
+        <h3>Content and asset production</h3>
+        <p>Coordinate inputs, generation, review, feedback, and approval across production workflows.</p>
       </article>
       <article class="card">
-        <span class="card-eyebrow">Integrations · agents</span>
+        <span class="card-eyebrow">Agents · integrations</span>
         <h3>Operations coordination</h3>
-        <p>Build integrations and agents that move tasks, approvals, reminders, and updates without constant manual follow-up.</p>
+        <p>Track requests, prepare actions, manage approvals, and keep work moving across teams.</p>
       </article>
     </div>
   </div>
 </section>
 
-<!-- WHY AIHLPR -->
-<section class="block">
+<!-- WHAT CHANGES -->
+<section class="block outcomes">
   <div class="container">
-    <div class="block-head">
-      <div><span class="label-mono"><span class="dot"></span>Why AIHLPR</span></div>
+    <div class="outcomes-grid">
       <div>
-        <h2>Enterprise-grade AI delivery, shaped for growing teams.</h2>
-        <p class="block-lede" style="margin-top:16px;">AIHLPR gives medium-sized companies the structure of an enterprise AI project without turning the first step into a heavy transformation programme. We build practical systems around your tools, data, workflows, and review points, so the result is useful, controlled, and ready to scale.</p>
+        <span class="label-mono"><span class="dot"></span>What changes</span>
+        <h2 style="margin-top:14px; max-width:14ch;">The goal is not another AI tool. It is a better operating workflow.</h2>
       </div>
-    </div>
-    <div class="reasons">
-      <div class="reason">
-        <span class="rn">01</span>
-        <h4>Around real workflows</h4>
-        <p>We start with how work actually moves, then place AI where it removes friction.</p>
-      </div>
-      <div class="reason">
-        <span class="rn">02</span>
-        <h4>Connected to your tools</h4>
-        <p>CRM, ERP, inboxes, documents, dashboards, and approval flows work together.</p>
-      </div>
-      <div class="reason">
-        <span class="rn">03</span>
-        <h4>Human review where it matters</h4>
-        <p>People stay in control of quality, decisions, approvals, and exceptions.</p>
-      </div>
-      <div class="reason">
-        <span class="rn">04</span>
-        <h4>Ready to scale</h4>
-        <p>The first workflow accounts for integrations, access, monitoring, and future expansion.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- HOW WE DE-RISK AI -->
-<section class="block derisk">
-  <div class="container">
-    <div class="block-head">
-      <div><span class="label-mono"><span class="dot"></span>How we de-risk AI</span></div>
-      <div>
-        <h2>Useful AI starts with control.</h2>
-        <p class="block-lede" style="margin-top:16px;">Every AIHLPR build has clear inputs, review points, logs, permissions, and measurable outcomes. Your team can test the workflow with real work before expanding it further.</p>
-      </div>
-    </div>
-    <div class="controls">
-      <div class="control">
-        <span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="3.4"></circle><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"></path></svg></span>
-        <h4>Clear scope</h4>
-        <p>One workflow, one useful outcome, one measurable first step.</p>
-      </div>
-      <div class="control">
-        <span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-        <h4>Review by design</h4>
-        <p>AI prepares, routes, checks, or drafts. People approve what matters.</p>
-      </div>
-      <div class="control">
-        <span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 13a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1.5 1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 11a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1.5-1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-        <h4>System fit</h4>
-        <p>We work with the tools and data your team already relies on.</p>
-      </div>
-      <div class="control">
-        <span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke-linecap="round"></path></svg></span>
-        <h4>Measurable value</h4>
-        <p>Success is judged by time saved, steps removed, faster handling, or better visibility.</p>
+      <div class="outcomes-list">
+        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Less manual follow up</div>
+        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Faster handling of routine work</div>
+        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Better visibility across the process</div>
+        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Fewer disconnected handovers</div>
+        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>More consistent execution</div>
+        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>More time for decisions and higher value work</div>
       </div>
     </div>
   </div>
@@ -830,12 +813,11 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="recommend-tag">Recommended first step</span>
-        <span class="label-mono"><span class="dot"></span>03 · How we start</span>
+        <span class="label-mono"><span class="dot"></span>How we work</span>
       </div>
       <div>
         <h2>One workflow first. Scale what proves useful.</h2>
-        <p class="block-lede" style="margin-top:16px;">We map how the work moves today, find the AI-ready step, and build a focused working version. Your team tests it with real work, reviews the outputs, and decides what should move forward.</p>
+        <p class="block-lede" style="margin-top:16px;">We map the work, deliver a focused first version, and your team tests it on real work before anything expands.</p>
       </div>
     </div>
     <div class="ladder">
@@ -844,35 +826,30 @@
         <div class="rtrack"><span style="--p:20%;"></span></div>
         <h4>Map the workflow</h4>
         <p>Tools, people, documents, decisions, and handovers.</p>
-        <div class="rmeta"><span>People</span><span>Documents</span><span>Handovers</span></div>
       </div>
       <div class="rung">
         <span class="rnum">02</span>
         <div class="rtrack"><span style="--p:40%;"></span></div>
         <h4>Find the AI-ready step</h4>
         <p>Where AI can save time without adding risk.</p>
-        <div class="rmeta"><span>Time saved</span><span>Low risk</span></div>
       </div>
       <div class="rung">
         <span class="rnum">03</span>
         <div class="rtrack"><span style="--p:60%;"></span></div>
         <h4>Build the first version</h4>
         <p>A focused tool, agent, dashboard, workflow layer, or integration.</p>
-        <div class="rmeta"><span>Focused</span><span>On your tools</span></div>
       </div>
       <div class="rung">
         <span class="rnum">04</span>
         <div class="rtrack"><span style="--p:80%;"></span></div>
         <h4>Add review points</h4>
         <p>People stay in control of approvals, exceptions, and quality.</p>
-        <div class="rmeta"><span>Approvals</span><span>Exceptions</span><span>Quality</span></div>
       </div>
       <div class="rung">
         <span class="rnum">05</span>
         <div class="rtrack"><span style="--p:100%;"></span></div>
         <h4>Measure and expand</h4>
         <p>Scale only what proves useful in real work.</p>
-        <div class="rmeta"><span>Measure</span><span>Expand</span></div>
       </div>
     </div>
   </div>
@@ -885,7 +862,7 @@
       <div><span class="label-mono"><span class="dot"></span>What this looks like in practice</span></div>
       <div>
         <h2>From manual asset work to a faster production workflow.</h2>
-        <p class="block-lede" style="margin-top:16px;">In a retail asset workflow, AIHLPR helped turn a slow, manual content and image production process into a guided workflow with AI-supported generation, review, and editing. The goal was simple: help the team create usable product assets faster, with people still controlling quality and final output.</p>
+        <p class="block-lede" style="margin-top:16px;">A retail team's manual content and image process became a guided workflow. AI drafts the assets, the team reviews and publishes, and the same people ship more work.</p>
       </div>
     </div>
     <div class="cs-panel2">
@@ -1001,11 +978,11 @@
         <div>
           <span class="label-mono"><span class="dot"></span>Start with one workflow</span>
           <h2>Show us where work is piling up.</h2>
-          <p>Bring one workflow that takes too much manual effort today. We will help you find the AI-ready step and define the quickest useful version to build.</p>
+          <p>Bring the workflow that eats the most time. In one call we will point out the AI-ready step and what the first version looks like.</p>
         </div>
         <div class="final-cta-actions">
-          <a class="btn btn-primary" href="../Home.html#contact">Find your first AI step <span class="arrow">→</span></a>
-          <a class="btn btn-ghost" href="../Home.html#contact">Book a workflow call <span class="arrow">→</span></a>
+          <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Book a call <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="mailto:brinda@moralitybytes.eu">Email us <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
