@@ -273,7 +273,7 @@
   .buildsys-head b { color: var(--ink); font-weight: 600; }
   .buildsys-head .bs-count { color: var(--c); }
   .buildsys-grid {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 1px; background: var(--hairline);
   }
   @media (max-width: 860px) { .buildsys-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -304,13 +304,51 @@
   }
   .buildsys-foot b { color: var(--ink); font-weight: 600; }
 
-  /* ── Section 5: BENEFITS — clean outcome grid ── */
-  .benefits-grid {
-    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: clamp(26px, 3vw, 40px) clamp(28px, 3.4vw, 56px);
+  /* ── Section 03: HOW THE WORK MOVES — connected flow strip ── */
+  .benefits { background: var(--surface); }
+  .flow-track {
+    display: grid; grid-template-columns: repeat(4, minmax(0, 1fr));
+    border: 1px solid var(--hairline); border-radius: 16px;
+    background: var(--white); overflow: hidden;
   }
-  @media (max-width: 880px) { .benefits-grid { grid-template-columns: 1fr 1fr; gap: 26px 32px; } }
-  @media (max-width: 560px) { .benefits-grid { grid-template-columns: 1fr; } }
+  .flow-step {
+    position: relative;
+    padding: clamp(24px, 2.4vw, 34px);
+    border-right: 1px solid var(--hairline);
+    display: flex; flex-direction: column; gap: 12px;
+  }
+  .flow-step:last-child { border-right: none; }
+  .flow-step .fs-num {
+    font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+    letter-spacing: 0.16em; color: #9B59B6;
+  }
+  .flow-step h3 { font-size: clamp(17px, 1.4vw, 20px); letter-spacing: -0.015em; margin: 0; }
+  .flow-step p { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+  .flow-step:not(:last-child)::after {
+    content: "→";
+    position: absolute; top: 50%; right: -11px; z-index: 2;
+    transform: translateY(-50%);
+    width: 22px; height: 22px; border-radius: 999px;
+    background: #fff; border: 1px solid var(--hairline-strong);
+    color: #9B59B6; font-size: 12px; line-height: 20px; text-align: center;
+  }
+  @media (max-width: 880px) {
+    .flow-track { grid-template-columns: 1fr 1fr; }
+    .flow-step { border-bottom: 1px solid var(--hairline); }
+    .flow-step:nth-child(2n) { border-right: none; }
+    .flow-step:nth-child(n+3) { border-bottom: none; }
+    .flow-step:nth-child(2)::after { display: none; }
+  }
+  @media (max-width: 560px) {
+    .flow-track { grid-template-columns: 1fr; }
+    .flow-step { border-right: none; border-bottom: 1px solid var(--hairline); }
+    .flow-step:last-child { border-bottom: none; }
+    .flow-step:not(:last-child)::after {
+      top: auto; right: auto; bottom: -11px; left: 28px;
+      transform: rotate(90deg);
+    }
+    .flow-step:nth-child(2)::after { display: block; }
+  }
   .benefit {
     display: flex; flex-direction: column; gap: 8px;
     padding-top: 18px; border-top: 2px solid var(--ink);
@@ -404,10 +442,10 @@
 
   .trust-grid {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: clamp(14px, 1.4vw, 20px);
   }
-  @media (max-width: 1080px) { .trust-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 1080px) { .trust-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 680px)  { .trust-grid { grid-template-columns: 1fr 1fr; } }
   @media (max-width: 440px)  { .trust-grid { grid-template-columns: 1fr; } }
   .trust {
@@ -700,13 +738,10 @@
         <span>AI Workflow Systems</span>
       </div>
       <h1>Move repeated work faster, without losing control.</h1>
-      <p class="hero-lede">AIHLPR builds workflow systems that connect your tools, documents, approvals, and teams. Repeated work moves with less chasing, clearer ownership, and human review where it matters.</p>
+      <p class="hero-lede">AIHLPR builds workflow systems that connect your tools, documents, approvals and teams. Repeated work moves with less chasing, clearer ownership and human review where it matters.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="../AIHLPR Home.html#contact">
+        <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
           Discuss a workflow <span class="arrow">→</span>
-        </a>
-        <a class="btn btn-secondary" href="#start">
-          Find your first AI step <span class="arrow">→</span>
         </a>
       </div>
     </div>
@@ -810,36 +845,28 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>Use cases</span>
-        <h2 style="margin-top:14px;">Workflow systems can sit behind many parts of the business.</h2>
+        <span class="label-mono"><span class="dot"></span>01 &middot; Where workflows create value</span>
+        <h2 style="margin-top:14px;">Improve the work that repeats across people, tools and teams.</h2>
       </div>
-      <p class="block-lede">AI workflow systems are useful wherever work moves through repeated handovers, checks, approvals, documents, updates, or reporting across different tools and teams.</p>
+      <p class="block-lede">AI workflows are useful where work depends on repeated handovers, checks, approvals, documents or system updates.</p>
     </div>
 
     <div class="cases-list">
       <article class="case-row">
-        <h3 class="case-title">Sales &amp; customer follow-up <span class="case-arrow">→</span></h3>
-        <p class="case-desc">Route inbound leads, prepare replies, update the CRM, trigger reminders, and keep commercial teams focused on the next best action.</p>
+        <h3 class="case-title">Sales &amp; customer follow up <span class="case-arrow">→</span></h3>
+        <p class="case-desc">Route leads, prepare responses, update systems and keep follow ups moving.</p>
       </article>
       <article class="case-row">
         <h3 class="case-title">Customer onboarding &amp; service <span class="case-arrow">→</span></h3>
-        <p class="case-desc">Move requests, forms, documents, checks, customer context, and internal handovers through one clearer operating flow.</p>
+        <p class="case-desc">Coordinate requests, documents, checks and internal handovers through one flow.</p>
       </article>
       <article class="case-row">
         <h3 class="case-title">Finance &amp; document operations <span class="case-arrow">→</span></h3>
-        <p class="case-desc">Read invoices, contracts, claims, purchase orders, or statements; extract key details; flag gaps; and prepare review or system updates.</p>
+        <p class="case-desc">Read documents, extract information, flag gaps and prepare the next action.</p>
       </article>
       <article class="case-row">
-        <h3 class="case-title">E-commerce content &amp; assets <span class="case-arrow">→</span></h3>
-        <p class="case-desc">Coordinate product copy, translations, visuals, review rounds, approvals, and marketplace-ready outputs across teams and channels.</p>
-      </article>
-      <article class="case-row">
-        <h3 class="case-title">Approvals, compliance &amp; review <span class="case-arrow">→</span></h3>
-        <p class="case-desc">Prepare requests with the right context, route them to the right reviewer, record decisions, and keep exceptions visible.</p>
-      </article>
-      <article class="case-row">
-        <h3 class="case-title">Reporting &amp; operational visibility <span class="case-arrow">→</span></h3>
-        <p class="case-desc">Turn scattered updates from tools, teams, and workflows into status views, summaries, alerts, and decision-ready reports.</p>
+        <h3 class="case-title">Approvals &amp; operational coordination <span class="case-arrow">→</span></h3>
+        <p class="case-desc">Bring the right context together, route work to the right person and keep decisions visible.</p>
       </article>
     </div>
   </div>
@@ -850,50 +877,39 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>What we build</span>
+        <span class="label-mono"><span class="dot"></span>02 &middot; What we build</span>
         <h2 style="margin-top:14px;">The systems that make work move across your tools.</h2>
       </div>
-      <p class="block-lede">AIHLPR builds the workflow layer behind repeated work: integrations, AI agents, review queues, dashboards, document flows, and automated updates. Each build is shaped around one real process, then connected to the tools, people, and decisions already involved.</p>
+      <p class="block-lede">We build the workflow layer around a real process, connecting the people, systems, information and decisions already involved.</p>
     </div>
 
     <div class="buildsys">
       <div class="buildsys-head">
         <span><b>One workflow system</b> · built from modules</span>
-        <span class="bs-count">6 building blocks</span>
+        <span class="bs-count">4 building blocks</span>
       </div>
       <div class="buildsys-grid">
         <article class="bs-module">
           <span class="bs-tag">Layer</span>
-          <h3>Workflow layers</h3>
-          <p>Connect the people, tools, data, and steps involved in a repeated process.</p>
+          <h3>Workflow logic</h3>
+          <p>Define how work moves, what happens next and where decisions are made.</p>
         </article>
         <article class="bs-module">
           <span class="bs-tag">Agent</span>
-          <h3>AI agents</h3>
-          <p>Prepare replies, route tasks, check information, flag exceptions, and suggest next actions.</p>
+          <h3>AI assistance and agents</h3>
+          <p>Read, prepare, check, route or suggest actions where AI is useful.</p>
         </article>
         <article class="bs-module">
           <span class="bs-tag">Connector</span>
           <h3>Integrations</h3>
-          <p>Connect CRM, ERP, inboxes, forms, sheets, storage, dashboards, and internal tools.</p>
-        </article>
-        <article class="bs-module">
-          <span class="bs-tag">Queue</span>
-          <h3>Review queues</h3>
-          <p>Give teams one place to approve, edit, reject, or escalate important outputs.</p>
+          <p>Connect CRM, ERP, inboxes, documents, storage and internal systems.</p>
         </article>
         <article class="bs-module">
           <span class="bs-tag">View</span>
-          <h3>Dashboards</h3>
-          <p>Show what is moving, what is waiting, who owns it, and what needs attention.</p>
-        </article>
-        <article class="bs-module">
-          <span class="bs-tag">Flow</span>
-          <h3>Document flows</h3>
-          <p>Read, extract, check, summarise, and route documents with human review where needed.</p>
+          <h3>Review and visibility</h3>
+          <p>Give teams a place to review important work and see what needs attention.</p>
         </article>
       </div>
-      <div class="buildsys-foot"><b>Shaped around one real process</b> · connected to the tools, people, and decisions already involved</div>
     </div>
   </div>
 </section>
@@ -903,32 +919,31 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>Benefits</span>
-        <h2 style="margin-top:14px;">Less chasing. Clearer ownership. Faster movement.</h2>
+        <span class="label-mono"><span class="dot"></span>03 &middot; How the work moves</span>
+        <h2 style="margin-top:14px;">AI handles the repeatable work. People stay responsible for what matters.</h2>
       </div>
-      <p class="block-lede">Your team gets a clearer way to move, review, and track repeated work across the tools they already use.</p>
     </div>
 
-    <div class="benefits-grid">
-      <div class="benefit">
-        <h3>Less manual chasing</h3>
-        <p>Tasks, updates, and reminders move without someone pushing every step.</p>
+    <div class="flow-track">
+      <div class="flow-step">
+        <span class="fs-num">01</span>
+        <h3>Work comes in</h3>
+        <p>Requests, documents, messages or system events start the workflow.</p>
       </div>
-      <div class="benefit">
-        <h3>Clearer ownership</h3>
-        <p>Each item has a next action, owner, review point, or destination.</p>
+      <div class="flow-step">
+        <span class="fs-num">02</span>
+        <h3>AI prepares and routes</h3>
+        <p>Information is checked, structured and moved to the next step.</p>
       </div>
-      <div class="benefit">
-        <h3>Faster handovers</h3>
-        <p>Context moves with the work, so teams spend less time reconstructing what happened.</p>
+      <div class="flow-step">
+        <span class="fs-num">03</span>
+        <h3>People review where needed</h3>
+        <p>Important, uncertain or sensitive work reaches the right person.</p>
       </div>
-      <div class="benefit">
-        <h3>Better visibility</h3>
-        <p>Teams can see what is waiting, blocked, approved, or ready for action.</p>
-      </div>
-      <div class="benefit is-key">
-        <h3>Human approval stays clear</h3>
-        <p>AI prepares and routes the work. People stay responsible for important decisions.</p>
+      <div class="flow-step">
+        <span class="fs-num">04</span>
+        <h3>The workflow continues</h3>
+        <p>Approved work updates systems, triggers actions or moves to the next stage.</p>
       </div>
     </div>
   </div>
@@ -939,63 +954,29 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>Control &amp; trust</span>
-        <h2 style="margin-top:14px;">Built for real work. Designed for control.</h2>
+        <span class="label-mono"><span class="dot"></span>04 &middot; Control built into the workflow</span>
+        <h2 style="margin-top:14px;">Clear ownership from input to outcome.</h2>
       </div>
-      <p class="block-lede">AI workflows are built to support the people using them every day, with review points, permissions, activity trails, and clear ownership designed in from the start.</p>
-    </div>
-
-    <div class="review-flow">
-      <div class="rf-step">
-        <span class="rf-tag">Prepared</span>
-        <span class="rf-title">AI prepares</span>
-        <p>Work is made ready with the right context.</p>
-      </div>
-      <div class="rf-step is-person">
-        <span class="rf-tag">Reviewed</span>
-        <span class="rf-title">A person reviews</span>
-        <p>Important outputs go to the right reviewer before they move forward.</p>
-      </div>
-      <div class="rf-step">
-        <span class="rf-tag">Approved</span>
-        <span class="rf-title">Work moves on</span>
-        <p>Approved work updates the right tools or triggers the next step.</p>
-      </div>
-      <div class="rf-step">
-        <span class="rf-tag">Recorded</span>
-        <span class="rf-title">It can be traced</span>
-        <p>Actions, approvals, and changes can be reviewed when needed.</p>
-      </div>
+      <p class="block-lede">Control is designed into the workflow rather than added around it later.</p>
     </div>
 
     <div class="trust-grid">
       <article class="trust">
         <h3>Review points</h3>
-        <p>Important outputs reach the right person before they move forward.</p>
+        <p>People approve important outputs before they move forward.</p>
       </article>
       <article class="trust">
         <h3>Permissions</h3>
-        <p>People and AI only work with the data they are allowed to use.</p>
+        <p>Users and AI work only with the information they are allowed to access.</p>
       </article>
       <article class="trust">
-        <h3>Activity trails</h3>
-        <p>Actions, approvals, updates, and exceptions can be traced when needed.</p>
+        <h3>Traceability</h3>
+        <p>Important actions, decisions and exceptions remain visible.</p>
       </article>
       <article class="trust">
         <h3>Exception handling</h3>
-        <p>Unclear or low-confidence items are flagged for review.</p>
+        <p>Unclear cases are routed to people instead of being pushed through automatically.</p>
       </article>
-      <article class="trust">
-        <h3>Measured rollout</h3>
-        <p>Success is tracked through time saved, steps reduced, and work moved faster.</p>
-      </article>
-    </div>
-
-    <div class="control-foot">
-      <span>Practical for daily work</span>
-      <span>Review built in</span>
-      <span>Permissions clear</span>
-      <span>Human-in-the-loop</span>
     </div>
   </div>
 </section>
@@ -1005,26 +986,26 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>How to start</span>
-        <h2 style="margin-top:14px;">Start with one workflow that is already costing time.</h2>
+        <span class="label-mono"><span class="dot"></span>05 &middot; Start with one workflow</span>
+        <h2 style="margin-top:14px;">Start where repeated work is already costing time.</h2>
       </div>
-      <p class="block-lede">Bring one repeated process. We map how it moves today, identify the AI-ready step, and define the first useful version to build.</p>
+      <p class="block-lede">Bring us one process. We map how it works today, identify where AI can genuinely help and build the first useful version around real work.</p>
     </div>
 
     <div class="start-track">
       <article class="start-step">
         <span class="ss-n">Step 1</span>
         <h3>Map the workflow</h3>
-        <p>Tools, people, documents, decisions, and handovers, as the work moves today.</p>
+        <p>Tools, people, documents, decisions and handovers, as the work moves today.</p>
       </article>
       <article class="start-step">
         <span class="ss-n">Step 2</span>
-        <h3>Find the AI-ready step</h3>
+        <h3>Find the useful AI step</h3>
         <p>Where AI can save time and reduce chasing without adding risk.</p>
       </article>
       <article class="start-step">
         <span class="ss-n">Step 3</span>
-        <h3>Build the first version</h3>
+        <h3>Build and test</h3>
         <p>A focused workflow system your team can test with real work.</p>
       </article>
     </div>
@@ -1039,14 +1020,13 @@
         <div>
           <span class="label-mono"><span class="dot"></span>Ready to map your first workflow?</span>
           <h2>Show us where work slows down.</h2>
-          <p>Bring one process that takes too much manual effort today. We will help you find the AI-ready step and define the quickest useful version to build.</p>
         </div>
         <div class="final-cta-actions">
-          <a class="btn btn-primary" href="../AIHLPR Home.html#contact">
+          <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
             Discuss a workflow <span class="arrow">→</span>
           </a>
-          <a class="btn btn-ghost" href="../AIHLPR Home.html#contact">
-            Book a workflow call <span class="arrow">→</span>
+          <a class="btn btn-ghost" href="mailto:brinda@moralitybytes.eu">
+            Email us <span class="arrow">→</span>
           </a>
         </div>
       </div>

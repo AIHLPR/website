@@ -1619,6 +1619,9 @@
     position: relative;
     isolation: isolate;
   }
+  @media (max-width: 760px) {
+    .apps-hero__stage { overflow: hidden; }
+  }
 
   /* Two-screen container: home + console stack absolutely, slide horizontally */
   .apps-hero__screens {
@@ -2188,9 +2191,9 @@
         <span>AI Applications &amp; Platforms</span>
       </span>
 
-      <h1 class="apps-hero__h1">Custom AI tools your team can use every day.</h1>
+      <h1 class="apps-hero__h1">AI applications built around the work your team already does.</h1>
 
-      <p class="apps-hero__sub">Every decision needs context: documents, records, history, and policy. We build internal AI tools that bring that context into one place, so your team can review, decide, and act faster.</p>
+      <p class="apps-hero__sub">We build focused AI tools and platforms that bring information, decisions and actions into one place, connected to the systems your team already uses.</p>
 
       <div class="apps-hero__ctas">
         <a class="apps-hero__cta is-primary" href="../Home.html#contact">Book a scoping call →</a>
@@ -2509,7 +2512,7 @@
 <style id="fits-build-css">
   .fits-grid, .build-grid { display:grid; gap:clamp(24px,2.6vw,40px) clamp(28px,3vw,48px); }
   .fits-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
-  .build-grid { grid-template-columns:repeat(3,minmax(0,1fr)); }
+  .build-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
   @media (max-width:900px){ .fits-grid,.build-grid{ grid-template-columns:1fr; } }
   @media (min-width:901px) and (max-width:1100px){ .build-grid{ grid-template-columns:repeat(2,1fr); } }
   .fit-card {
@@ -2541,31 +2544,27 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>When this fits</span>
+        <span class="label-mono"><span class="dot"></span>01 &middot; When an application makes sense</span>
         <h2 style="margin-top:14px;">Build an AI application when the work needs one clear place to happen.</h2>
       </div>
-      <p class="block-lede">Some workflows need more than a background automation. They need an interface where teams can search, compare, review, approve, edit, or take action. That is where a custom AI application becomes useful.</p>
+      <p class="block-lede">Some workflows need more than automation running in the background. They need a place where people can search, compare, review, approve, edit and act.</p>
     </div>
     <div class="fits-grid">
       <article class="fit-card">
-        <span class="k">One workspace</span>
-        <h3>Teams need one workspace.</h3>
-        <p>Bring documents, data, decisions, and next actions into one place the team can work from.</p>
+        <h3>One workspace</h3>
+        <p>Bring information, decisions and next actions together.</p>
       </article>
       <article class="fit-card">
-        <span class="k">Review</span>
-        <h3>Work needs review.</h3>
-        <p>Give people a clear queue to approve, edit, reject, or escalate AI-assisted outputs.</p>
+        <h3>Human review</h3>
+        <p>Give teams a clear place to review, approve or escalate AI supported work.</p>
       </article>
       <article class="fit-card">
-        <span class="k">Context</span>
-        <h3>Context is scattered.</h3>
-        <p>Pull together records, policies, history, files, and previous decisions before the team acts.</p>
+        <h3>Connected context</h3>
+        <p>Bring together records, documents, history and policies before people act.</p>
       </article>
       <article class="fit-card">
-        <span class="k">Visibility</span>
-        <h3>Visibility matters.</h3>
-        <p>Show what is waiting, what is approved, what is blocked, and what needs attention.</p>
+        <h3>Operational visibility</h3>
+        <p>See what is waiting, moving, blocked or needs attention.</p>
       </article>
     </div>
   </div>
@@ -2575,41 +2574,26 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>What we build</span>
-        <h2 style="margin-top:14px;">AI applications around the work your team already does.</h2>
+        <span class="label-mono"><span class="dot"></span>02 &middot; What we build</span>
+        <h2 style="margin-top:14px;">AI applications around real operational work.</h2>
       </div>
-      <p class="block-lede">We build focused internal tools and platforms that fit your existing process, data, and systems. The goal is a useful workspace where AI helps the team move from context to action.</p>
     </div>
     <div class="build-grid">
       <article class="fit-card">
         <h3>Internal AI tools</h3>
-        <p>Focused tools for review, search, approvals, content, support, reporting, or operations.</p>
-        <span class="tag">Built around one job</span>
+        <p>Focused applications for specific teams, tasks and decisions.</p>
       </article>
       <article class="fit-card">
-        <h3>Dashboards</h3>
-        <p>Views that show queues, status, risks, activity, and what needs attention.</p>
-        <span class="tag">Decision-ready</span>
+        <h3>Knowledge and decision tools</h3>
+        <p>Search, understand and work with internal information with sources kept visible.</p>
       </article>
       <article class="fit-card">
-        <h3>Review queues</h3>
-        <p>Interfaces where AI prepares the work and people approve what matters.</p>
-        <span class="tag">Human-in-the-loop</span>
+        <h3>Workflow applications</h3>
+        <p>Move requests, documents, approvals and actions through a structured process.</p>
       </article>
       <article class="fit-card">
-        <h3>Knowledge interfaces</h3>
-        <p>Search and answer tools that cite sources from policies, documents, records, or internal knowledge.</p>
-        <span class="tag">Source-backed</span>
-      </article>
-      <article class="fit-card">
-        <h3>Workflow apps</h3>
-        <p>Applications that move requests, documents, updates, approvals, and tasks through a clearer process.</p>
-        <span class="tag">End-to-end</span>
-      </article>
-      <article class="fit-card">
-        <h3>Content &amp; asset platforms</h3>
-        <p>Tools for product content, translations, visuals, brand review, campaign assets, and marketplace-ready output.</p>
-        <span class="tag">Multi-channel</span>
+        <h3>Content and asset platforms</h3>
+        <p>Manage content, translation, visuals, review and production across teams and markets.</p>
       </article>
     </div>
   </div>
@@ -3489,10 +3473,10 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>Use cases</span>
-        <h2 style="margin-top:14px;">Where AI applications remove daily friction.</h2>
+        <span class="label-mono"><span class="dot"></span>03 &middot; Where they create value</span>
+        <h2 style="margin-top:14px;">One application can improve an entire process.</h2>
       </div>
-      <p class="block-lede">Four places where we see teams losing hours every week:</p>
+      <p class="block-lede">AI applications are most useful when people need one place to bring together context, decisions, review and action.</p>
     </div>
 
     <div class="poss-stack">
@@ -3500,10 +3484,10 @@
       <div class="poss-stack-copy"><!-- Panel 01. Retail / Ecommerce -->
       <div class="poss-panel" style="--p-c:#E91E63;">
         <div class="panel-copy">
-          <span class="panel-eyebrow">Use case · Retail · Ecommerce</span>
-          <h3>Product content that ships at launch-calendar speed.</h3>
-          <p class="panel-body">Getting products live means juggling images, copy, translations, layouts, and marketplace formats, each one dependent on someone else. We build a structured workflow so the queue stops growing.</p>
-          <p class="panel-outcome"><b>Outcome:</b> Move from repeated manual production cycles to a structured, reviewable asset workflow.</p>
+          <span class="panel-eyebrow">Product &amp; content operations</span>
+          <h3>Move product content from input to market in one workflow.</h3>
+          <p class="panel-body">Bring images, copy, translations, product data and approvals into one place, with AI handling preparation and teams reviewing what matters.</p>
+          <p class="panel-outcome"><b>Outcome:</b> Faster production with a clearer, reviewable workflow.</p>
         </div>
         <div class="panel-figure">
           <div class="dash dash-sku" role="figure" aria-label="Retail SKU dashboard">
@@ -3586,7 +3570,7 @@
               </span>
             </div>
           </div>
-          <span class="stack-line"><b>Works with</b>existing product data, asset libraries, approval tools, and export formats.</span>
+          <span class="stack-line"><b>Works with</b>product data, asset libraries, approval tools and export formats.</span>
         </div>
         <div class="panel-figure-m" aria-hidden="true">
           <div class="dash" role="figure" aria-label="Retail SKU dashboard">
@@ -3623,17 +3607,17 @@
               <span class="stat amber">draft</span>
             </div>
           </div>
-          <span class="stack-line"><b>Works with</b>existing product data, asset libraries, approval tools, and export formats.</span>
+          <span class="stack-line"><b>Works with</b>product data, asset libraries, approval tools and export formats.</span>
         </div>
       </div>
 
       <!-- Panel 02. Knowledge work -->
       <div class="poss-panel flip" style="--p-c:#7E6CE0;">
         <div class="panel-copy">
-          <span class="panel-eyebrow">Knowledge work</span>
-          <h3>Turn your policies and contracts into instant answers.</h3>
-          <p class="panel-body">The answer already lives in your documentation. We build knowledge systems that retrieve it instantly, source cited, so your team asks, reads, and decides in under a minute.</p>
-          <p class="panel-outcome"><b>Outcome:</b> Questions that took manual searching can become reviewable answers in seconds.</p>
+          <span class="panel-eyebrow">Knowledge &amp; decision support</span>
+          <h3>Turn internal knowledge into answers people can act on.</h3>
+          <p class="panel-body">Bring policies, documents, records and previous decisions together so teams can ask questions, see the sources and decide what happens next.</p>
+          <p class="panel-outcome"><b>Outcome:</b> Less time searching for information and more confidence in the answer.</p>
         </div>
         <div class="panel-figure">
           <div class="dash dash-know" role="figure" aria-label="Knowledge retrieval dashboard">
@@ -3697,7 +3681,7 @@
               </div>
             </div>
           </div>
-          <span class="stack-line"><b>Works with</b>document stores, knowledge bases, SharePoint, Google Drive, Notion, and internal databases.</span>
+          <span class="stack-line"><b>Works with</b>document stores, SharePoint, Google Drive, Notion and internal databases.</span>
         </div>
         <div class="panel-figure-m" aria-hidden="true">
           <div class="dash" role="figure" aria-label="Knowledge retrieval dashboard">
@@ -3715,7 +3699,7 @@
               </div>
             </div>
           </div>
-          <span class="stack-line"><b>Works with</b>document stores, knowledge bases, SharePoint, Google Drive, Notion, and internal databases.</span>
+          <span class="stack-line"><b>Works with</b>document stores, SharePoint, Google Drive, Notion and internal databases.</span>
         </div>
       </div>
 
@@ -3723,9 +3707,9 @@
       <div class="poss-panel" style="--p-c:#CC418C;">
         <div class="panel-copy">
           <span class="panel-eyebrow">Customer operations</span>
-          <h3>Customer queries resolved faster, with less prep work.</h3>
-          <p class="panel-body">For every reply, the system pulls order history, applies policy, and drafts a response in your brand tone. Your agent reads, edits if needed, and sends.</p>
-          <p class="panel-outcome"><b>Outcome:</b> Teams spend less time preparing the answer and more time resolving the issue.</p>
+          <h3>Give teams the context they need before they respond.</h3>
+          <p class="panel-body">Bring together customer history, policy, previous interactions and relevant records so AI can prepare the response and the team can review and act.</p>
+          <p class="panel-outcome"><b>Outcome:</b> Less preparation for every query and faster resolution for the customer.</p>
         </div>
         <div class="panel-figure">
           <div class="dash dash-cust" role="figure" aria-label="Customer ops triage queue">
@@ -3846,7 +3830,7 @@
               </span>
             </div>
           </div>
-          <span class="stack-line"><b>Works with</b>CRM, helpdesk, inbox, ticketing, and communication tools.</span>
+          <span class="stack-line"><b>Works with</b>CRM, helpdesk, inbox, ticketing and communication tools.</span>
         </div>
         <div class="panel-figure-m" aria-hidden="true">
           <div class="dash" role="figure" aria-label="Customer ops triage queue">
@@ -3876,17 +3860,17 @@
               <span class="stat">in review</span>
             </div>
           </div>
-          <span class="stack-line"><b>Works with</b>CRM, helpdesk, inbox, ticketing, and communication tools.</span>
+          <span class="stack-line"><b>Works with</b>CRM, helpdesk, inbox, ticketing and communication tools.</span>
         </div>
       </div>
 
       <!-- Panel 04. Workflow & approvals -->
       <div class="poss-panel flip" style="--p-c:#9B59B6;">
         <div class="panel-copy">
-          <span class="panel-eyebrow">Workflow · Approvals</span>
-          <h3>Approvals that don’t make people wait.</h3>
-          <p class="panel-body">Every request arrives with everything the approver needs: policy, risk, history, and linked documents, all assembled before it hits the queue. Decisions take seconds.</p>
-          <p class="panel-outcome"><b>Outcome:</b> Approvers get the context they need before the decision reaches them.</p>
+          <span class="panel-eyebrow">Approvals &amp; internal workflows</span>
+          <h3>Bring the decision to the approver ready to review.</h3>
+          <p class="panel-body">Assemble the request, relevant documents, policy, history and context before it reaches the person responsible for the decision.</p>
+          <p class="panel-outcome"><b>Outcome:</b> Faster approvals with the reasoning and context kept visible.</p>
         </div>
         <div class="panel-figure">
           <div class="dash dash-flow" role="figure" aria-label="Approval chain dashboard">
@@ -3939,7 +3923,7 @@
               </span>
             </div>
           </div>
-          <span class="stack-line"><b>Works with</b>approval queues, Slack or Teams, email, project tools, and internal systems.</span>
+          <span class="stack-line"><b>Works with</b>approval queues, Teams, Slack, email, project tools and internal systems.</span>
         </div>
         <div class="panel-figure-m" aria-hidden="true">
           <div class="dash" role="figure" aria-label="Approval chain dashboard">
@@ -3983,7 +3967,7 @@
               </div>
             </div>
           </div>
-          <span class="stack-line"><b>Works with</b>approval queues, Slack or Teams, email, project tools, and internal systems.</span>
+          <span class="stack-line"><b>Works with</b>approval queues, Teams, Slack, email, project tools and internal systems.</span>
         </div>
       </div>
 
@@ -4071,7 +4055,7 @@
               </span>
             </div>
           </div>
-                    <span class="stack-line"><b>Works with</b>existing product data, asset libraries, approval tools, and export formats.</span>
+                    <span class="stack-line"><b>Works with</b>product data, asset libraries, approval tools and export formats.</span>
         </div>
         <div class="panel-figure" data-stage-idx="1">
           <div class="dash dash-know" role="figure" aria-label="Knowledge retrieval dashboard">
@@ -4135,7 +4119,7 @@
               </div>
             </div>
           </div>
-                    <span class="stack-line"><b>Works with</b>document stores, knowledge bases, SharePoint, Google Drive, Notion, and internal databases.</span>
+                    <span class="stack-line"><b>Works with</b>document stores, SharePoint, Google Drive, Notion and internal databases.</span>
         </div>
         <div class="panel-figure" data-stage-idx="2">
           <div class="dash dash-cust" role="figure" aria-label="Customer ops triage queue">
@@ -4256,7 +4240,7 @@
               </span>
             </div>
           </div>
-                    <span class="stack-line"><b>Works with</b>CRM, helpdesk, inbox, ticketing, and communication tools.</span>
+                    <span class="stack-line"><b>Works with</b>CRM, helpdesk, inbox, ticketing and communication tools.</span>
         </div>
         <div class="panel-figure" data-stage-idx="3">
           <div class="dash dash-flow" role="figure" aria-label="Approval chain dashboard">
@@ -4309,7 +4293,7 @@
               </span>
             </div>
           </div>
-                    <span class="stack-line"><b>Works with</b>approval queues, Slack or Teams, email, project tools, and internal systems.</span>
+                    <span class="stack-line"><b>Works with</b>approval queues, Teams, Slack, email, project tools and internal systems.</span>
                   </div>
         </div>
         </aside></div>
@@ -4540,36 +4524,6 @@
   }
 </style>
 
-<section class="partnership">
-  <div class="container">
-    <div class="partnership-head">
-      <span class="label-mono"><span class="dot"></span>How we work</span>
-      <h2>Everyday tools with enterprise-grade controls.</h2>
-      <p class="partnership-lede">
-        AIHLPR designs the practical side and the technical side together: a tool that fits the way work actually moves, built with access, data boundaries, and review handled from the start. Practical enough for daily use, and clear enough for teams to understand what the system is doing.
-      </p>
-    </div>
-
-    <div class="partnership-proof">
-      <article class="proof-block">
-        <span class="proof-num">01</span>
-        <h3>Designed in from day one.</h3>
-        <p>Deployment, access control, data boundaries, and review points are designed in early, so the setup is clear before anything goes live.</p>
-      </article>
-      <article class="proof-block">
-        <span class="proof-num">02</span>
-        <h3>The team makes the calls.</h3>
-        <p>AI prepares context, drafts, and routes work. The decisions that matter stay with a person to approve.</p>
-      </article>
-      <article class="proof-block">
-        <span class="proof-num">03</span>
-        <h3>We start small on purpose.</h3>
-        <p>One workflow, one team, one measurable outcome. Prove that before touching anything else.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
 <!-- SECTION. Control & trust (compact reassurance) -->
 <style id="trust-css">
   .trust { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--surface-2); }
@@ -4619,28 +4573,28 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>Control &amp; trust</span>
-        <h2 style="margin-top:14px;">Built for daily use, with clear controls.</h2>
+        <span class="label-mono"><span class="dot"></span>04 &middot; Built for daily use</span>
+        <h2 style="margin-top:14px;">Useful for the team. Clear behind the scenes.</h2>
       </div>
-      <p class="block-lede">Every AI application is designed with access, data boundaries, review points, and system visibility in mind &mdash; so teams can use it confidently and the setup stays clear behind the scenes.</p>
+      <p class="block-lede">We design the application and its operating controls together, so it fits the work while remaining understandable and manageable.</p>
     </div>
 
     <div class="trust-grid">
       <article class="trust-card">
-        <h3>Access control</h3>
-        <p>Role-based permissions and clear user scopes.</p>
+        <h3>Connected to existing systems</h3>
+        <p>Work with the data, tools and infrastructure already in place.</p>
       </article>
       <article class="trust-card">
-        <h3>Data boundaries</h3>
-        <p>Designed around your cloud, systems, and residency needs.</p>
+        <h3>People stay in control</h3>
+        <p>Define where AI prepares the work and where people review or decide.</p>
       </article>
       <article class="trust-card">
-        <h3>System integration</h3>
-        <p>Connects to the tools your team already uses.</p>
+        <h3>Access and data boundaries</h3>
+        <p>Permissions and information access follow the needs of the organisation.</p>
       </article>
       <article class="trust-card">
-        <h3>Review visibility</h3>
-        <p>Important actions, sources, and approvals can be checked.</p>
+        <h3>Visible and reviewable</h3>
+        <p>Important sources, actions, approvals and system activity can be checked.</p>
       </article>
     </div>
 
@@ -4665,10 +4619,10 @@
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>How to start</span>
-        <h2 style="margin-top:14px;">Start with one useful tool. Expand when it proves value.</h2>
+        <span class="label-mono"><span class="dot"></span>05 &middot; How it grows</span>
+        <h2 style="margin-top:14px;">Start with one useful application. Grow it around real use.</h2>
       </div>
-      <p class="block-lede">A strong first build starts with one team, one workflow, and one clear outcome. Once it works in daily use, the tool can connect to more systems, support more steps, or become a shared internal platform.</p>
+      <p class="block-lede">Start with one team and one clear job. Once the application works in daily use, connect more systems, support more of the workflow, or extend it into a wider internal platform.</p>
     </div>
 
     <div class="evolve">
@@ -4708,7 +4662,7 @@
         <div>
           <span class="label-mono"><span class="dot"></span>Start here</span>
           <h2>Build something your team will actually use.</h2>
-          <p>Start with one workflow you’d like to move faster. We’ll scope the first version with you, place the human review points, and get something live your team trusts. Then build from there.</p>
+          <p>Bring us a workflow that would benefit from a dedicated tool or workspace. We will define what the application needs to do, where AI belongs and how people stay involved.</p>
         </div>
         <div class="final-cta-actions">
           <a class="btn btn-primary" href="../Home.html#contact">
