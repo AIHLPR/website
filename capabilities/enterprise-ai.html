@@ -8,7 +8,7 @@
 <link rel="alternate" hreflang="nl" href="https://aihlpr.github.io/website/nl/capabilities/enterprise-ai.html">
 <link rel="alternate" hreflang="x-default" href="https://aihlpr.github.io/website/capabilities/enterprise-ai.html">
 <link rel="canonical" href="https://aihlpr.github.io/website/capabilities/enterprise-ai.html">
-<meta name="description" content="Enterprise AI: where AI enters the organisation, where it usually stalls, and what needs to be designed for production. Workflows, integration, governance, and human oversight.">
+<meta name="description" content="Enterprise AI built around real operations: where AI creates value, what has to be true for it to scale, and how it becomes operational. Workflows, integration, governance, and human oversight.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -1509,34 +1509,38 @@
 
   /* ===================== 02 · WHERE IT STALLS — numbered rows + icon + cost callout ===================== */
   .stalls { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--white); }
-  .stalls .sec-head { align-items: start; }
-  .stalls .sec-head h2 { max-width: 18ch; }
+  .stalls .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: end; margin-bottom: clamp(40px, 5vw, 64px); }
+  @media (max-width: 760px) { .stalls .sec-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
+  .stalls .sec-head h2 { margin-top: 14px; max-width: 18ch; }
   .stalls .sec-head .block-lede { font-size: clamp(15px, 1.1vw, 16.5px); line-height: 1.65; color: var(--ink-soft); max-width: 52ch; font-family: var(--font-body); letter-spacing: normal; }
   .stalls .sec-head .block-lede p + p { margin-top: 12px; }
 
-  .stall-list { display: flex; flex-direction: column; border-top: 1px solid var(--hairline); }
+  .stall-list { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  @media (max-width: 760px) { .stall-list { grid-template-columns: 1fr; } }
   .stall-row {
-    display: grid;
-    grid-template-columns: 64px 1.5fr 1fr;
-    gap: clamp(24px, 3vw, 52px);
-    padding: clamp(28px, 3.4vw, 44px) 0;
-    border-bottom: 1px solid var(--hairline);
-    align-items: start;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: clamp(24px, 2.4vw, 32px);
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    background: var(--white);
+    transition: box-shadow 240ms var(--ease), border-color 240ms var(--ease);
   }
+  .stall-row:hover { box-shadow: 0 24px 48px -32px rgba(31,31,31,0.30); border-color: var(--hairline-strong); }
   .stall-row .sr-num {
-    font-family: var(--font-display);
-    font-weight: 500;
-    font-size: 30px;
-    letter-spacing: -0.02em;
-    color: var(--ink-muted);
-    opacity: 0.55;
+    font-family: var(--font-mono);
+    font-size: 11px;
+    letter-spacing: 0.16em;
+    color: var(--accent);
+    font-weight: 600;
     line-height: 1;
   }
-  .stall-main { display: flex; flex-direction: column; gap: 14px; min-width: 0; }
-  .stall-main .sr-titleline { display: flex; align-items: flex-start; gap: 14px; }
+  .stall-main { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .stall-main .sr-titleline { display: flex; align-items: flex-start; gap: 12px; }
   .stall-main .sr-icon { color: var(--ink); margin-top: 2px; }
-  .stall-main h3 { font-size: clamp(20px, 1.9vw, 26px); letter-spacing: -0.02em; max-width: 18ch; }
-  .stall-main p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; max-width: 48ch; margin: 0; }
+  .stall-main h3 { font-size: clamp(19px, 1.7vw, 23px); letter-spacing: -0.02em; }
+  .stall-main p { color: var(--ink-soft); font-size: 14px; line-height: 1.58; margin: 0; }
 
   .stall-cost {
     border-left: 2px solid var(--accent);
@@ -2177,8 +2181,8 @@
     <div class="toc-sticky">
       <div class="toc-label">On this page</div>
       <ol class="toc-list" id="tocList">
-        <li><a href="#applications"><span class="num">01</span> Where AI enters</a></li>
-        <li><a href="#stalls"><span class="num">02</span> Where it stalls</a></li>
+        <li><a href="#applications"><span class="num">01</span> Where AI creates value</a></li>
+        <li><a href="#stalls"><span class="num">02</span> Where it gets difficult</a></li>
         <li><a href="#generative"><span class="num">03</span> How we build</a></li>
         <li><a href="#operational"><span class="num">04</span> How it becomes operational</a></li>
         <li><a href="#governance"><span class="num">05</span> Governance in the workflow</a></li>
@@ -2198,9 +2202,9 @@
         <span class="sep"></span>
         <span>ENTERPRISE AI</span>
       </div>
-      <h1>Enterprise AI your organisation can trust in daily operations.</h1>
-      <p class="hero-lede">We design AI systems that connect to real data, route through real approvals, and stay visible to legal, security, and business teams. Start with one workflow, then scale the operating layer with control.</p>
-      <p class="hero-sub">Enterprise AI works when it connects to real data, routes through real approvals, and answers to real governance. This page shows how we design and build that. From where AI enters your organisation to how it stays governed at scale.</p>
+      <h1>Enterprise AI built around real operations</h1>
+      <p class="hero-lede">AIHLPR helps enterprises turn AI opportunities into working systems across existing workflows, teams, data and technology.</p>
+      <p class="hero-sub">We build practical AI systems that improve how work moves, support better decisions and keep people in control where accountability matters.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="../Home.html#contact">
           Scope an enterprise AI system <span class="arrow">&rarr;</span>
@@ -2238,12 +2242,12 @@
   <div class="container">
     <div class="sec-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>01 &middot; Where AI enters</span>
-        <h2>AI earns its keep inside real workflows.</h2>
+        <span class="label-mono"><span class="dot"></span>01 &middot; Where AI creates value</span>
+        <h2>AI earns its place inside real workflows.</h2>
       </div>
       <div class="block-lede">
-        <p>Enterprise AI is most useful when it improves the work teams already do: reviewing documents, preparing product content, supporting decisions, translating market material, handling requests, checking outputs, and moving information between systems.</p>
-        <p style="margin-top:14px;">The opportunity is rarely one model or one chatbot. It is the workflow around it: the inputs, rules, handovers, approvals, exceptions, and outputs that determine whether AI can actually improve the organisation.</p>
+        <p>Enterprise AI is most useful when it improves work teams already do.</p>
+        <p style="margin-top:14px;">The opportunity is rarely one model or one chatbot. It is the workflow around it that determines whether AI creates real operational value.</p>
       </div>
     </div>
 
@@ -2254,31 +2258,31 @@
           <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11a8.5 8.5 0 0 0-14.6-5.3M3.5 13a8.5 8.5 0 0 0 14.6 5.3"/><path d="M5 2.5v3.2h3.2M19 21.5v-3.2h-3.2"/></svg></span>
         </div>
         <h3>Operational workflows.</h3>
-        <p>AI-assisted processes for repetitive, high-volume work where teams need speed, consistency, and review.</p>
+        <p>Support repetitive, high volume work where teams need speed, consistency and review.</p>
       </div>
       <div class="enter-cell">
         <div class="ec-top">
           <span class="ec-num">02</span>
           <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7l5 5v13H6z"/><path d="M13 3v5h5"/><path d="M9 13h6M9 16.5h4"/></svg></span>
         </div>
-        <h3>Document &amp; data workflows.</h3>
-        <p>Systems that extract, structure, compare, summarise, and route information from documents, files, forms, and internal data.</p>
+        <h3>Document and data workflows.</h3>
+        <p>Extract, structure, compare, summarise and route information across documents, files and internal data.</p>
       </div>
       <div class="enter-cell">
         <div class="ec-top">
           <span class="ec-num">03</span>
           <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="12" height="12" rx="1.3"/><path d="M9 21h12V9"/><path d="M3 9h12M9 3v12"/></svg></span>
         </div>
-        <h3>Content &amp; market operations.</h3>
-        <p>Workflows for product content, localisation, marketplace assets, campaign material, and brand-sensitive review.</p>
+        <h3>Knowledge and decision support.</h3>
+        <p>Bring relevant information together to help teams understand situations and make better decisions.</p>
       </div>
       <div class="enter-cell">
         <div class="ec-top">
           <span class="ec-num">04</span>
           <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5.5" r="2.2"/><circle cx="18" cy="5.5" r="2.2"/><circle cx="12" cy="18.5" r="2.2"/><path d="M8 5.5h8M7.4 7.4 11 16.4M16.6 7.4 13 16.4"/></svg></span>
         </div>
-        <h3>Decision-support systems.</h3>
-        <p>Internal tools that help teams query information, prepare recommendations, surface risks, and act with better context.</p>
+        <h3>Internal applications.</h3>
+        <p>Build AI into purpose built tools around the way specific teams work.</p>
       </div>
     </div>
   </div>
@@ -2288,12 +2292,11 @@
   <div class="container">
     <div class="sec-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>02 &middot; Where it stalls</span>
+        <span class="label-mono"><span class="dot"></span>02 &middot; Where enterprise AI gets difficult</span>
         <h2>What has to be true for AI to scale.</h2>
       </div>
       <div class="block-lede">
-        <p>Enterprise AI rarely slows down because the model can&rsquo;t produce an answer. It slows down when the work <em>around</em> the model isn&rsquo;t ready: ownership, integration, visibility, governance, and cost structure.</p>
-        <p>These are the patterns we see most often when AI has to move from an idea, pilot, vendor workflow, or manual process into daily operations.</p>
+        <p>Enterprise AI rarely slows down because the model cannot produce an answer. It slows down when the organisation around it is not ready.</p>
       </div>
     </div>
 
@@ -2302,15 +2305,10 @@
         <div class="sr-num">01</div>
         <div class="stall-main">
           <div class="sr-titleline">
-            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="8" width="9" height="12" rx="1"/><path d="M3 8 7.5 3.5 12 8"/><path d="M6.5 20v-4h2.5v4"/><path d="M14.5 13h6.5M18.5 10.5 21 13l-2.5 2.5"/></svg></span>
-            <h3>The work lives outside the organisation.</h3>
+            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 9 6.6 5.6a3 3 0 0 0-4.2 4.2L5.5 13"/><path d="M14 15l3.4 3.4a3 3 0 0 0 4.2-4.2L18.5 11"/><path d="M14.5 6.5 16 5M6.5 14.5 5 16M19 9.5 20.5 8M9.5 19 8 20.5"/></svg></span>
+            <h3>The workflow is fragmented.</h3>
           </div>
-          <div class="chip-row"><span>Content</span><span>Localisation</span><span>Reporting</span><span>Review</span></div>
-          <p>External agencies, vendors, and disconnected tools deliver the output. The operating knowledge doesn&rsquo;t stay with the organisation.</p>
-        </div>
-        <div class="stall-cost">
-          <div class="sc-label">What it costs</div>
-          <p>You keep paying per output, per market, per handover. Capability never accrues internally.</p>
+          <p>Work moves across teams, systems, vendors and manual handovers.</p>
         </div>
       </div>
 
@@ -2318,15 +2316,10 @@
         <div class="sr-num">02</div>
         <div class="stall-main">
           <div class="sr-titleline">
-            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 9 6.6 5.6a3 3 0 0 0-4.2 4.2L5.5 13"/><path d="M14 15l3.4 3.4a3 3 0 0 0 4.2-4.2L18.5 11"/><path d="M14.5 6.5 16 5M6.5 14.5 5 16M19 9.5 20.5 8M9.5 19 8 20.5"/></svg></span>
-            <h3>The tool doesn&rsquo;t connect to the workflow.</h3>
+            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/><path d="M17.5 11.5h5M20 9l2.5 2.5L20 14" opacity="0.55"/></svg></span>
+            <h3>Ownership is unclear.</h3>
           </div>
-          <div class="chip-row"><span>ERP</span><span>CRM</span><span>Asset library</span><span>Approval chain</span></div>
-          <p>AI works in the demo. Inside the real environment, it doesn&rsquo;t reach the place where work happens.</p>
-        </div>
-        <div class="stall-cost">
-          <div class="sc-label">What it costs</div>
-          <p>A useful screen, not a usable operating system.</p>
+          <p>There is no clear responsibility for outputs, exceptions, decisions or ongoing improvement.</p>
         </div>
       </div>
 
@@ -2335,35 +2328,12 @@
         <div class="stall-main">
           <div class="sr-titleline">
             <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20.5 20.5 16 16"/><path d="M7.5 10.5 9.5 12.5 13 8.5" stroke-dasharray="1.5 2.2"/></svg></span>
-            <h3>The system is hard to inspect.</h3>
+            <h3>Control arrives too late.</h3>
           </div>
-          <div class="chip-row"><span>Traceable</span><span>Reviewable</span><span>GDPR</span><span>EU AI Act</span></div>
-          <p>Outputs that can&rsquo;t be traced, reviewed, or explained don&rsquo;t get trusted. For European organisations, that becomes a compliance question.</p>
-        </div>
-        <div class="stall-cost">
-          <div class="sc-label">What it costs</div>
-          <p>Every output needs manual confidence-building. Speed makes visibility more important, not less.</p>
-        </div>
-      </div>
-
-      <div class="stall-row" data-reveal>
-        <div class="sr-num">04</div>
-        <div class="stall-main">
-          <div class="sr-titleline">
-            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20.5h16"/><rect x="5" y="13" width="3" height="6"/><rect x="10.5" y="9" width="3" height="10"/><rect x="16" y="4.5" width="3" height="14.5"/></svg></span>
-            <h3>The cost scales with the bottleneck.</h3>
-          </div>
-          <div class="chip-row"><span>New SKU</span><span>New market</span><span>New language</span><span>New rule</span></div>
-          <p>Every new variant adds manual work when the process isn&rsquo;t systematised. Growth increases workload instead of improving the operating model.</p>
-        </div>
-        <div class="stall-cost">
-          <div class="sc-label">What it costs</div>
-          <p>The organisation scales. The workflow scales with people, hours, and review cycles.</p>
+          <p>Permissions, review, traceability and governance are added after the system is already built.</p>
         </div>
       </div>
     </div>
-
-    <p class="stall-close">These aren&rsquo;t four separate problems. They&rsquo;re four signs that the work <b>around</b> the AI isn&rsquo;t ready. AIHLPR builds that layer. Where AI workflows are owned, integrated, reviewed, measured, and improved inside the organisation.</p>
   </div>
 </section>
 
@@ -2383,7 +2353,7 @@
         <span class="label-mono"><span class="dot"></span>03 &middot; How we build</span>
         <h2 style="margin-top:14px;">The right AI pattern for your workflow and data.</h2>
       </div>
-      <p class="block-lede">We pick the right pattern for your workflow, your data, your risk profile, and where the system needs to run. Here's what's available.</p>
+      <p class="block-lede">We choose the technical pattern based on the workflow, the data, the risk profile and where the system needs to run.</p>
     </div>
 
     <div class="gs-stack">
@@ -3111,30 +3081,26 @@
   .layer-section .sec-head .block-lede { font-size: clamp(15px, 1.1vw, 16.5px); line-height: 1.65; color: var(--ink-soft); max-width: 52ch; font-family: var(--font-body); letter-spacing: normal; }
   .layer-section .sec-head .block-lede p + p { margin-top: 12px; }
 
-  /* 04 · OPERATIONAL — stacked bordered cards with vertical rail */
-  .ops-layers { display: flex; flex-direction: column; gap: 16px; }
+  /* 04 · OPERATIONAL — compact three-across cards */
+  .ops-layers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
   .ops-layer {
-    display: grid;
-    grid-template-columns: 64px 1fr;
-    gap: clamp(20px, 2.4vw, 36px);
+    display: flex; flex-direction: column;
+    gap: 14px;
     background: var(--white);
     border: 1px solid var(--hairline);
     border-radius: 14px;
-    padding: clamp(24px, 2.6vw, 36px);
+    padding: clamp(24px, 2.4vw, 32px);
     transition: box-shadow 240ms var(--ease), border-color 240ms var(--ease);
   }
   .ops-layer:hover { box-shadow: 0 24px 48px -32px rgba(31,31,31,0.30); border-color: var(--hairline-strong); }
-  .ops-layer .ol-rail { display: flex; flex-direction: column; align-items: center; gap: 14px; }
+  .ops-layer .ol-rail { display: flex; flex-direction: row; align-items: center; gap: 14px; }
   .ops-layer .ol-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--accent); font-weight: 600; }
-  .ops-layer .ol-line { flex: 1; width: 1px; background: var(--hairline-strong); min-height: 18px; }
-  .ops-layer:last-child .ol-line { display: none; }
-  .ops-body { display: flex; flex-direction: column; gap: 12px; min-width: 0; }
-  .ops-body h3 { font-size: clamp(20px, 1.9vw, 26px); letter-spacing: -0.02em; margin: 0; }
-  .ops-body p { color: var(--ink-soft); font-size: 14.5px; line-height: 1.6; max-width: 62ch; margin: 0; }
-  @media (max-width: 620px) {
-    .ops-layer { grid-template-columns: 1fr; gap: 14px; }
-    .ops-layer .ol-rail { flex-direction: row; }
-    .ops-layer .ol-line { display: none; }
+  .ops-layer .ol-line { display: none; }
+  .ops-body { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .ops-body h3 { font-size: clamp(19px, 1.7vw, 23px); letter-spacing: -0.02em; margin: 0; }
+  .ops-body p { color: var(--ink-soft); font-size: 14px; line-height: 1.58; margin: 0; }
+  @media (max-width: 760px) {
+    .ops-layers { grid-template-columns: 1fr; }
   }
 
   /* 05 · GOVERNANCE — 2x2 bordered cards */
@@ -3181,35 +3147,33 @@
   <div class="container">
     <div class="sec-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>04 &middot; How AI becomes operational</span>
-        <h2>The layer that turns an AI model into operational work.</h2>
+        <span class="label-mono"><span class="dot"></span>04 &middot; How it becomes operational</span>
+        <h2>A model becomes useful when the workflow around it works.</h2>
       </div>
-      <p class="block-lede">A model answers questions. The operating layer turns those answers into work that moves. Connected to your systems, working with your data, paused at human review points, visible to the people running it.</p>
+      <p class="block-lede">The system needs to connect to real work, handle what happens next and remain dependable when things do not go as expected.</p>
     </div>
 
     <div class="ops-layers">
       <div class="ops-layer" data-reveal>
         <div class="ol-rail">
           <span class="ol-num">01</span>
-          <span class="sec-icon ol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h5a5 5 0 0 1 5 5M7 18h5a5 5 0 0 0 5-5"/></svg></span>
+          <span class="sec-icon ol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6M4 11.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
           <span class="ol-line"></span>
         </div>
         <div class="ops-body">
-          <h3>Built around the workflow.</h3>
-          <p>Each AI workflow is designed around the process first: inputs, decisions, handovers, exceptions, approvals, and outputs. The model is only one part of the system.</p>
-          <div class="chip-row"><span>Workflow logic</span><span>Human review</span><span>Exceptions</span><span>Outputs</span></div>
+          <h3>Connect.</h3>
+          <p>Work with the systems, data and tools already used by the organisation.</p>
         </div>
       </div>
       <div class="ops-layer" data-reveal>
         <div class="ol-rail">
           <span class="ol-num">02</span>
-          <span class="sec-icon ol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6M4 11.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
+          <span class="sec-icon ol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h5a5 5 0 0 1 5 5M7 18h5a5 5 0 0 0 5-5"/></svg></span>
           <span class="ol-line"></span>
         </div>
         <div class="ops-body">
-          <h3>Connected to the enterprise stack.</h3>
-          <p>The system works with the tools and data already in place: CRMs, ERPs, document stores, asset libraries, internal databases, APIs, cloud environments, and approval tools.</p>
-          <div class="chip-row"><span>Data sources</span><span>APIs</span><span>Cloud</span><span>Integrations</span><span>Access control</span></div>
+          <h3>Review and handle exceptions.</h3>
+          <p>Route uncertain or sensitive cases to the right person.</p>
         </div>
       </div>
       <div class="ops-layer" data-reveal>
@@ -3219,9 +3183,8 @@
           <span class="ol-line"></span>
         </div>
         <div class="ops-body">
-          <h3>Ready to monitor and scale.</h3>
-          <p>Production systems need visibility after launch. Monitoring, evaluation, versioning, rollout controls, fallback paths, and cost guardrails are built into the operating model.</p>
-          <div class="chip-row"><span>Monitoring</span><span>Evals</span><span>Versioning</span><span>Rollback</span><span>Cost control</span></div>
+          <h3>Act and improve.</h3>
+          <p>Turn outputs into actions, capture feedback and measure how the system performs in use.</p>
         </div>
       </div>
     </div>
@@ -3438,8 +3401,8 @@
 <!-- Mobile sticky TOC chip strip -->
 <nav class="mobile-toc" aria-label="Section navigation">
   <div class="mobile-toc-track">
-    <a href="#applications">01 Where AI enters</a>
-    <a href="#stalls">02 Where it stalls</a>
+    <a href="#applications">01 Where AI creates value</a>
+    <a href="#stalls">02 Where it gets difficult</a>
     <a href="#generative">03 How we build</a>
     <a href="#operational">04 How operational</a>
     <a href="#governance">05 Governance</a>
