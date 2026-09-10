@@ -6,11 +6,6 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://aihlpr.com/Home.html</loc>
-    <lastmod>2026-09-10</lastmod>
-    <priority>1.0</priority>
-  </url>
-  <url>
     <loc>https://aihlpr.com/about.html</loc>
     <lastmod>2026-09-10</lastmod>
     <priority>0.7</priority>
@@ -64,11 +59,6 @@
     <loc>https://aihlpr.com/insights/how-to-score-ai-use-case.html</loc>
     <lastmod>2026-09-10</lastmod>
     <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://aihlpr.com/nl/Home.html</loc>
-    <lastmod>2026-09-10</lastmod>
-    <priority>1.0</priority>
   </url>
   <url>
     <loc>https://aihlpr.com/nl/about.html</loc>
@@ -134,5 +124,9 @@
     <loc>https://aihlpr.com/work/translation-workflow.html</loc>
     <lastmod>2026-09-10</lastmod>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://aihlpr.com/nl/</loc>
+    <priority>1.0</priority>
   </url>
 </urlset>
