@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Asset Workflow Engine · AIHLPR case study</title>
+<title>Localisation Workflow · AIHLPR case study</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -131,6 +131,10 @@
     transition: background 200ms var(--ease), color 200ms var(--ease);
   }
   .nav-cta:hover { background: var(--ink); color: var(--white); }
+  @media (max-width: 760px) {
+    .nav-links { gap: 14px; }
+    .nav-links > a:not(.nav-cta) { display: none; }
+  }
 
   /* -------- Hero -------- */
   .case-hero {
@@ -382,6 +386,28 @@
     align-items: start;
   }
   @media (max-width: 900px) { .problem-grid { grid-template-columns: 1fr; gap: 24px; } }
+
+  /* Before / after: two equal columns */
+  .ba-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 80px);
+    align-items: start;
+  }
+  @media (max-width: 900px) { .ba-grid { grid-template-columns: 1fr; gap: 36px; } }
+  .ba-col .eyebrow { margin-bottom: 14px; }
+  .ba-col .ba-lead {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-size: clamp(18px, 1.6vw, 22px);
+    line-height: 1.35;
+    color: var(--ink);
+    letter-spacing: -0.01em;
+    max-width: 30ch;
+    margin: 0 0 14px;
+  }
+  .metrics-grid.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  @media (max-width: 720px) { .metrics-grid.cols-3 { grid-template-columns: 1fr; } }
 
   /* -------- Approach (scroll-pinned) -------- */
   .approach {
@@ -917,26 +943,24 @@
       <span class="eyebrow">Retail &middot; Localisation operations</span>
     </div>
 
-    <h1>European expansion without brand drift.</h1>
+    <h1>Localisation managed as one working system.</h1>
 
     <p class="outcome">
-      A transcreation workflow for product teams that need approved
-      terminology, market nuance, brand tone, and retailer-ready outputs in
-      one reviewable process.
+      A European consumer products group needed a better way to manage
+      translation across websites, marketplaces, product content and everyday
+      communication between teams. We built one application that combines
+      translation, brand knowledge, local review and workflow management. Each
+      brand has its own knowledge base, and every approved correction helps
+      the tool improve the next draft.
     </p>
 
-    <div class="hero-strip hero-strip--branch" aria-hidden="true">
+    <div class="hero-strip" aria-hidden="true">
       <ol>
-        <li>Source copy</li>
-        <li>Glossary</li>
-        <li class="hero-strip-branch">
-          <span class="hero-strip-branch-label">Market drafts</span>
-          <span class="hero-strip-markets">
-            <em>Market A</em><em>Market B</em><em>Market C</em>
-          </span>
-        </li>
-        <li>Review</li>
-        <li>Export</li>
+        <li>Source content</li>
+        <li>Brand knowledge</li>
+        <li>Translation</li>
+        <li>Local review</li>
+        <li>Approve + learn</li>
       </ol>
     </div>
   </div>
@@ -950,20 +974,38 @@
     </div>
     <div class="metrics-grid">
       <div class="metric">
-        <div><span class="metric-num">3</span><span class="metric-unit">markets</span></div>
-        <div class="metric-label">Localised content paths</div>
+        <div><span class="metric-num">10</span><span class="metric-unit">languages</span></div>
+        <div class="metric-label">From one controlled source</div>
       </div>
       <div class="metric">
-        <div><span class="metric-num">1</span><span class="metric-unit">glossary layer</span></div>
-        <div class="metric-label">Approved terminology</div>
+        <div><span class="metric-num">11</span><span class="metric-unit">EU markets</span></div>
+        <div class="metric-label">Managed through one workflow</div>
       </div>
       <div class="metric metric--text">
-        <div><span class="metric-num">Human</span><span class="metric-unit">review</span></div>
-        <div class="metric-label">Market approval built in</div>
+        <div><span class="metric-num">35% &rarr; 55%</span></div>
+        <div class="metric-label">Approved term adherence with glossary grounding</div>
       </div>
       <div class="metric metric--text">
-        <div><span class="metric-num">Retailer<span class="metric-unit">-ready copy</span></span></div>
-        <div class="metric-label">Structured for PDP use</div>
+        <div><span class="metric-num">Continuous</span><span class="metric-unit">learning</span></div>
+        <div class="metric-label">Accepted corrections improve future drafts</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Before / After -->
+<section class="body-section">
+  <div class="container">
+    <div class="ba-grid">
+      <div class="ba-col">
+        <span class="eyebrow"><span class="eyebrow-dot"></span>Before</span>
+        <p class="ba-lead">Translation moved through an external translation partner, spreadsheets, email and different local reviewers.</p>
+        <p>That added cost, turnaround time and another communication layer. Decisions were scattered, previous corrections were hard to reuse, and internal teams spent too much time coordinating the workflow.</p>
+      </div>
+      <div class="ba-col">
+        <span class="eyebrow"><span class="eyebrow-dot"></span>After</span>
+        <p class="ba-lead">Translation, brand knowledge, review and approval happen in one application.</p>
+        <p>Reviewers receive a direct link, need no account, see the content in context and can correct or approve it in the same place. Every accepted correction becomes part of the tool&rsquo;s memory.</p>
       </div>
     </div>
   </div>
@@ -975,31 +1017,28 @@
     <div class="problem-grid">
       <div>
         <span class="eyebrow"><span class="eyebrow-dot"></span>The problem</span>
-        <h2>Translation was not the hard part. Coordinating market-ready content was.</h2>
+        <h2>Translation was not the hard part. Managing localisation was.</h2>
       </div>
       <div>
         <p class="lead">
-          The client did not only need translated words. Each market needed
-          product content that stayed close to the approved brand language while
-          still feeling local, accurate, and useful for the retailer
-          environment.
+          The client was handling a continuous flow of product, website and
+          marketplace content across European markets.
         </p>
         <p>
-          A simple translation tool or custom GPT could help produce a first
-          draft, but it would not solve the operational problem around the
-          draft. Product terms still needed to be controlled. Claims had to
-          stay consistent. Market teams needed space to clarify nuance. Brand
-          teams needed visibility before changes went live. Every round of
-          clarification created more communication between central teams,
-          agencies, and local markets.
+          Each translation also had to reflect the right brand tone, approved
+          terminology, current marketplace requirements and local market
+          judgment.
         </p>
         <p>
-          The risk was not only slow translation. It was brand drift. When
-          local markets were unsatisfied with copy or imagery, they naturally
-          wanted to improve it. But if each market adapted content separately,
-          the brand system became harder to protect. The workflow needed to
-          support localisation without turning every market into a separate
-          creative production line.
+          Local reviewers were spread across countries and could come from
+          sales, content, ecommerce or another team depending on the request.
+          Questions moved between market teams, digital content teams, brand
+          teams and an external translation partner.
+        </p>
+        <p>
+          The workflow became expensive to run and difficult to follow. Too
+          much team time went into coordinating localisation instead of
+          improving the content.
         </p>
       </div>
     </div>
@@ -1012,7 +1051,7 @@
     <div class="approach-head">
       <span class="eyebrow"><span class="eyebrow-dot"></span>The approach</span>
       <h2 style="font-family: var(--font-display); font-weight: 600; font-size: clamp(28px,3vw,40px); letter-spacing:-0.02em; line-height:1.1; margin:14px 0 0; max-width:24ch;">
-        Localise the content while the asset is still editable.
+        Give every draft the right context before a person sees it.
       </h2>
     </div>
 
@@ -1020,46 +1059,53 @@
       <div class="approach-steps" id="approachSteps">
         <article class="approach-step" data-step="0">
           <span class="step-no">Step 01</span>
-          <h3>Start with approved source copy.</h3>
+          <h3>Start from a controlled source.</h3>
           <p>
-            The workflow begins with approved product copy, feature claims, and
-            brand language so every market version starts from the same
-            controlled source.
+            Structured product files, website copy, campaign content or
+            everyday business text can enter the same workflow. For
+            marketplace content, titles, bullets, descriptions and search
+            terms keep the required structure from input to export.
           </p>
-          <div class="step-meta">Source copy &middot; Claim control</div>
+          <div class="step-meta">Structured content &middot; Free text &middot; Marketplace files</div>
         </article>
 
         <article class="approach-step" data-step="1">
           <span class="step-no">Step 02</span>
-          <h3>Apply glossary and brand rules.</h3>
+          <h3>Switch brands, switch the knowledge behind the translation.</h3>
           <p>
-            Approved terminology, phrase patterns, and brand tone rules guide
-            the first draft so market reviewers are not starting from a generic
-            translation.
+            Each brand has its own knowledge base containing approved
+            terminology, language guidelines, policy documents and previously
+            accepted translations. When the user switches brands, the tool
+            automatically adopts that brand&rsquo;s terminology, tone and rules
+            before creating the draft.
           </p>
-          <div class="step-meta">Glossary &middot; Brand language</div>
+          <div class="step-meta">Glossary &middot; Memory &middot; Brand knowledge</div>
         </article>
 
         <article class="approach-step" data-step="2">
           <span class="step-no">Step 03</span>
-          <h3>Route drafts to market review.</h3>
+          <h3>Make local review easy.</h3>
           <p>
-            Regional reviewers can check copy while the asset is still in
-            progress, reducing late-stage corrections and keeping local nuance
-            inside the workflow.
+            Each market reviewer receives a direct link. No account is
+            required. They can edit, comment and approve in one place, whether
+            the reviewer is from sales, content, ecommerce or another local
+            team. Every accepted correction feeds the tool&rsquo;s memory,
+            helping the next draft start closer to what that market already
+            prefers.
           </p>
-          <div class="step-meta">Market review &middot; Human approval</div>
+          <div class="step-meta">Local review &middot; No account required &middot; Continuous learning</div>
         </article>
 
         <article class="approach-step" data-step="3">
           <span class="step-no">Step 04</span>
-          <h3>Prepare retailer-ready outputs.</h3>
+          <h3>Return approved content ready to use.</h3>
           <p>
-            Final copy can be structured for PDP modules, Amazon content, and
-            campaign asset use, instead of living as disconnected translation
-            files.
+            Final content can move back into the required marketplace file or
+            be exported for websites, documents and other communication. The
+            draft, corrections and final decision remain connected to the
+            request.
           </p>
-          <div class="step-meta">Structured export &middot; Retail readiness</div>
+          <div class="step-meta">Structured export &middot; Decision history</div>
         </article>
       </div>
 
@@ -1136,12 +1182,12 @@
 <!-- Product -->
 <section class="body-section">
   <div class="container">
-    <span class="eyebrow"><span class="eyebrow-dot"></span>What we built</span>
-    <h2>A localisation layer for product-content operations.</h2>
+    <span class="eyebrow"><span class="eyebrow-dot"></span>The localisation layer</span>
+    <h2>Brand knowledge, translation and workflow in one application.</h2>
     <p style="max-width: 60ch;">
-      Designed to keep translation, transcreation, review, and export close to
-      the asset workflow, so teams can move across markets without losing the
-      approved brand system.
+      The tool does more than translate. It keeps the language work and
+      everything around it connected, so localisation becomes easier to manage
+      as more brands, markets and content move through the system.
     </p>
 
     <!-- 3-zone visual: source -> glossary -> market-ready outputs -->
@@ -1177,20 +1223,117 @@
     <!-- 4 written layers. Supporting detail below the visual -->
     <div class="market-layers">
       <div class="market-layer">
-        <h4>Source copy layer</h4>
-        <p>A structured input layer for approved product copy, claims, feature descriptions, and module-level content.</p>
-      </div>
-      <div class="market-layer">
         <h4>Glossary layer</h4>
-        <p>A terminology and phrase-control layer for product names, claims, brand wording, and recurring feature language.</p>
+        <p>Approved terminology is stored by brand and language and versioned as terminology changes.</p>
       </div>
       <div class="market-layer">
-        <h4>Market review layer</h4>
-        <p>A market-review path where regional input can be added before final export, not after the asset has already been produced.</p>
+        <h4>Memory layer</h4>
+        <p>Every translation a market accepts becomes useful context when the same or similar content appears again.</p>
       </div>
       <div class="market-layer">
-        <h4>Export layer</h4>
-        <p>Structured outputs that support retailer-ready product content across markets and formats.</p>
+        <h4>Knowledge layer</h4>
+        <p>Brand guidelines, policy documents and reference material are retrieved into each translation so the draft starts from how that brand already communicates.</p>
+      </div>
+      <div class="market-layer">
+        <h4>Workflow layer</h4>
+        <p>Requests, reviewers, comments, approvals and exports stay together, giving teams a clear view of what is drafted, waiting and approved.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Content in context -->
+<section class="body-section">
+  <div class="container">
+    <div class="problem-grid">
+      <div>
+        <span class="eyebrow"><span class="eyebrow-dot"></span>Content in context</span>
+        <h2>Review the translation where it will actually appear.</h2>
+      </div>
+      <div>
+        <p class="lead">
+          Local teams often had to approve image copy as rows in a
+          spreadsheet, even though the final words would appear inside PDP,
+          A+ or other visual content.
+        </p>
+        <p>
+          In the platform, each market can review the translated copy in the
+          actual image version. They can see how the wording fits the layout,
+          make corrections against the real asset and approve what the
+          customer will eventually see.
+        </p>
+        <p>
+          Layout changes can stay connected across language versions while
+          the words remain specific to each market.
+        </p>
+        <p style="font-family: var(--font-display); font-weight: 500; color: var(--ink);">
+          The layout can travel. The market keeps its words.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Measured, not assumed -->
+<section class="metrics">
+  <div class="container">
+    <div class="metrics-head">
+      <span class="eyebrow"><span class="eyebrow-dot"></span>Measured, not assumed</span>
+      <h2 style="font-family: var(--font-display); font-weight: 600; font-size: clamp(28px,3vw,40px); letter-spacing:-0.02em; line-height:1.1; margin:14px 0 18px; max-width:24ch;">
+        We tested whether the knowledge layer improves the draft.
+      </h2>
+      <p style="font-size:17px; line-height:1.7; color:var(--ink-soft); max-width:62ch; margin:0 0 32px;">
+        We ran 48 client product pages across seven languages using the same
+        model with the glossary switched off and on.
+      </p>
+    </div>
+    <div class="metrics-grid cols-3">
+      <div class="metric metric--text">
+        <div><span class="metric-num">35% &rarr; 55%</span></div>
+        <div class="metric-label">Approved terminology</div>
+      </div>
+      <div class="metric metric--text">
+        <div><span class="metric-num">7.5% &rarr; 11.7%</span></div>
+        <div class="metric-label">Prescribed search terms</div>
+      </div>
+      <div class="metric metric--text">
+        <div><span class="metric-num">100% &rarr; 100%</span></div>
+        <div class="metric-label">Section completeness</div>
+      </div>
+    </div>
+    <p style="font-size:17px; line-height:1.7; color:var(--ink-soft); max-width:62ch; margin:32px 0 0;">
+      The results showed that grounding improves the output, but also where
+      local market judgment still matters. That is why human approval stays in
+      the workflow, accepted corrections feed the memory, and evaluation
+      continues as models, glossaries and requirements change.
+    </p>
+  </div>
+</section>
+
+<!-- Data + deployment -->
+<section class="body-section">
+  <div class="container">
+    <div class="problem-grid">
+      <div>
+        <span class="eyebrow"><span class="eyebrow-dot"></span>Data + deployment</span>
+        <h2>Model choice follows the sensitivity of the work.</h2>
+      </div>
+      <div>
+        <p class="lead">
+          In this implementation, much of the translated content was public
+          product information, so commercial model providers could be used
+          within the agreed setup.
+        </p>
+        <p>
+          For private material such as contracts, internal communication or
+          sensitive business information, the same workflow can run with
+          local or organisation controlled models instead.
+        </p>
+        <p>
+          The glossary, memory, review process and evaluation approach remain
+          the same. The model execution layer can change depending on the
+          organisation&rsquo;s privacy requirements.
+        </p>
       </div>
     </div>
   </div>
@@ -1202,22 +1345,21 @@
     <div class="extended-grid">
       <div>
         <span class="eyebrow"><span class="eyebrow-dot"></span>Applicable to</span>
-        <h2>The same pattern, wherever product language carries brand risk.</h2>
+        <h2>One localisation workflow across the organisation.</h2>
       </div>
       <div>
         <p style="margin-bottom: 12px;">
-          Product localisation is not only about language. It is about keeping
-          claims, terminology, and tone consistent while adapting to market
-          expectations.
+          The same system can support recurring multilingual work wherever
+          brand context, local review and organisational memory matter.
         </p>
         <div class="extension-chips">
-          <span class="extension-chip">European e-commerce expansion</span>
-          <span class="extension-chip">Amazon PDP localisation</span>
-          <span class="extension-chip">Retailer content teams</span>
-          <span class="extension-chip">Consumer product launches</span>
-          <span class="extension-chip">Multi-brand product portfolios</span>
-          <span class="extension-chip">Regulated product claims</span>
-          <span class="extension-chip">Distributor content workflows</span>
+          <span class="extension-chip">Websites</span>
+          <span class="extension-chip">Marketplace content</span>
+          <span class="extension-chip">Product copy</span>
+          <span class="extension-chip">Campaigns</span>
+          <span class="extension-chip">Internal communication</span>
+          <span class="extension-chip">Multi market launches</span>
+          <span class="extension-chip">Multi brand organisations</span>
         </div>
       </div>
     </div>
@@ -1228,8 +1370,8 @@
 <section class="quote">
   <div class="container">
     <blockquote>
-      "The goal is not just faster translation. It is a controlled way to move
-      product language across markets without creating brand drift."
+      "The tool translates. Markets decide. Every approved correction makes
+      the next draft better."
     </blockquote>
     <cite>AIHLPR &middot; Localisation workflow team</cite>
   </div>
