@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+Disallow: /work/product-intelligence-layer.html
+
+Sitemap: https://aihlpr.com/sitemap.xml
