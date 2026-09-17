@@ -572,14 +572,14 @@
     display: grid;
     place-items: center;
     height: 90px;
-    width: clamp(150px, 13vw, 190px);
+    width: clamp(110px, 10vw, 150px);
     filter: grayscale(1);
     opacity: 0.7;
     transition: filter 200ms var(--ease), opacity 200ms var(--ease);
   }
   .client-cell:hover { filter: none; opacity: 1; }
   .client-cell img {
-    max-height: 62px;
+    max-height: 74px;
     max-width: 100%;
     width: auto;
     height: auto;
@@ -832,6 +832,12 @@
     border-radius: 999px;
     transition: border-color 200ms var(--ease), color 200ms var(--ease);
   }
+  /* What we build: lighter "running at scale" band under the two lanes */
+  .cap-band { margin-top: clamp(56px, 8vw, 110px); padding: clamp(24px, 3vw, 40px); border: 1px solid var(--hairline); border-radius: 16px; background: var(--surface-2); display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: clamp(20px, 3vw, 56px); align-items: end; }
+  .cap-band-title { font-family: var(--font-display); font-size: clamp(22px, 2vw, 32px); font-weight: 400; letter-spacing: -0.02em; line-height: 1.12; margin: 12px 0 0; color: var(--ink); text-wrap: balance; }
+  .cap-band-body { font-size: clamp(15px, 1.15vw, 18px); line-height: 1.55; color: var(--ink-soft); margin: 14px 0 0; max-width: 48ch; }
+  .cap-band .cap-strip-chips { margin-top: 0; }
+  @media (max-width: 880px) { .cap-band { grid-template-columns: 1fr; gap: 18px; } }
   .cap-strip:hover .cap-strip-chips span { border-color: var(--c); color: var(--c); }
   .cap-strip-num {
     font-family: var(--font-mono);
@@ -3702,7 +3708,9 @@
       padding: 8px 16px;
       letter-spacing: 0.12em;
     }
-    .hero-pill .sep { display: none; }
+    .hero-pill .sep { display: block; }
+    /* break into two balanced rows: Strategy · Build / Governance · Security first */
+    .hero-pill .sep:nth-child(4) { flex-basis: 100%; width: auto; height: 0; margin: 0; opacity: 0; }
 
     /* Our work tabs: horizontal-scrolling pills on mobile. */
     .work-tabs {
@@ -4294,7 +4302,7 @@
             <span class="dd-title">Platforms &amp; Tools</span>
           </a>
           <a href="capabilities/ai-workflow-infrastructure.html" class="dd-item" role="menuitem">
-            <span class="dd-title">Workflows</span>
+            <span class="dd-title">Systems &amp; Workflows</span>
           </a>
           <span class="dd-divider"></span>
           <a href="capabilities/scale-ups.html" class="dd-item" role="menuitem">
@@ -4323,7 +4331,7 @@
     <div class="mm-section">
       <span class="mm-label">Services</span>
       <a href="capabilities/ai-applications-and-platforms.html">Platforms &amp; Tools</a>
-      <a href="capabilities/ai-workflow-infrastructure.html">Workflows</a>
+      <a href="capabilities/ai-workflow-infrastructure.html">Systems &amp; Workflows</a>
     </div>
     <div class="mm-section">
       <span class="mm-label">Who we serve</span>
@@ -4345,17 +4353,17 @@
       <!-- LEFT: text -->
       <div class="hero-left">
         <div class="hero-meta">
-          <span>AI for your business</span>
+          <span>AI transformation partner</span>
         </div>
 
         <h1>
-          Use AI where it<br>
-          creates real<br>
-          <em class="grad brand-gradient-text">business value.</em>
+          Build intelligence<br>
+          into your<br>
+          <em class="grad brand-gradient-text">business.</em>
         </h1>
 
         <p class="hero-sub">
-          Find the workflow, task, or decision point where AI can save time, reduce repeated work, or improve output &mdash; then turn it into a system your team can use with control.
+          We help organisations move from scattered AI ideas and pilots to working systems that fit their teams, data and existing technology.
         </p>
 
         <div class="hero-pill">
@@ -4366,15 +4374,15 @@
           <span>Governance</span>
           <span class="sep"></span>
           <span class="dot"></span>
-          <span class="last">Security&#8209;first</span>
+          <span class="last">Security&nbsp;first</span>
         </div>
 
         <div class="hero-ctas">
           <button type="button" class="btn btn-primary" data-modal-open="choice">
-            Find your first AI step <span class="arrow">&rarr;</span>
+            Start your AI transformation <span class="arrow">&rarr;</span>
           </button>
           <a class="btn btn-ghost" href="#work">
-            See what we&rsquo;ve built
+            See our work
           </a>
         </div>
       </div>
@@ -4407,7 +4415,6 @@
   <div class="container">
     <div class="clients-head">
       <span class="label-mono"><span class="dot"></span>Trusted by</span>
-      <span class="label-mono" style="text-transform: none; letter-spacing: 0.04em; color: var(--ink-muted); font-style: italic;">AI shipped into retail, sport, publishing, and development operations.</span>
     </div>
   </div>
   <!-- Marquee lives outside the container so it can stretch edge-to-edge.
@@ -4446,9 +4453,9 @@
 
       <!-- LEFT: sticky statement -->
       <aside class="diff-aside reveal">
-        <span class="label-mono"><span class="dot"></span>Where AI actually helps</span>
-        <h2>Less manual work. <span class="brand-gradient-text">More control over how work moves.</span></h2>
-        <p class="lede">When AI is applied to the right step, slow and repeated work becomes easier to move, review, and scale &mdash; without losing human control.</p>
+        <span class="label-mono"><span class="dot"></span>AI transformation, in practice</span>
+        <h2>AI changes more than individual tasks. <span class="brand-gradient-text">It changes how work, systems and decisions connect.</span></h2>
+        <p class="lede">Transformation is more than a new tool. We help your teams decide where AI belongs, bring it into the systems and decisions they already rely on, and keep improving it as the organisation learns.</p>
         <div class="rule"></div>
       </aside>
 
@@ -4458,35 +4465,35 @@
         <!-- 01 hero -->
         <article class="pt pt-hero reveal">
           <div class="pt-main">
-            <h3 class="pt-title">Less manual chasing.</h3>
+            <h3 class="pt-title">AI finds the right role.</h3>
           </div>
           <div class="pt-side">
-            <p class="pt-body">Tasks move forward without someone chasing every update.</p>
+            <p class="pt-body">Start with the business need, then decide where AI actually adds value.</p>
           </div>
         </article>
 
         <!-- 02 -->
         <article class="pt pt-p2 reveal">
-          <h3 class="pt-title">Tools work together.</h3>
-          <p class="pt-body">Data, approvals, and outputs connect across the systems you already use.</p>
+          <h3 class="pt-title">Systems connect.</h3>
+          <p class="pt-body">AI works across the tools, data and workflows already inside your business.</p>
         </article>
 
         <!-- 03 -->
         <article class="pt pt-p3 reveal">
-          <h3 class="pt-title">People stay in control.</h3>
-          <p class="pt-body">Your team reviews important decisions before anything moves forward.</p>
+          <h3 class="pt-title">Boundaries come first.</h3>
+          <p class="pt-body">Permissions, monitoring and escalation are designed into the system, with tighter controls around higher-impact actions.</p>
         </article>
 
         <!-- 04 -->
         <article class="pt pt-p4 reveal">
-          <h3 class="pt-title">Work scales more easily.</h3>
-          <p class="pt-body">More volume moves through the same team without extra coordination.</p>
+          <h3 class="pt-title">Pilots become working systems.</h3>
+          <p class="pt-body">Promising experiments become reliable applications and workflows.</p>
         </article>
 
         <!-- 05 -->
         <article class="pt pt-p5 reveal">
-          <h3 class="pt-title">The system improves after launch.</h3>
-          <p class="pt-body">Real usage shows what to refine, automate further, or keep human-led.</p>
+          <h3 class="pt-title">The system evolves.</h3>
+          <p class="pt-body">Real usage shows what to improve, optimise for cost, automate further, or intentionally keep human-led.</p>
         </article>
 
       </div>
@@ -4503,11 +4510,11 @@
     <div class="cap-section-head reveal">
       <div>
         <span class="label-mono"><span class="dot"></span>What we build</span>
-        <h2 class="cap-title">Two ways AI becomes useful at work.</h2>
+        <h2 class="cap-title">AI tools, agents and everything that keeps them running.</h2>
       </div>
       <p class="cap-subtitle">
-        Some teams need a tool people can use every day. Others need the workflow behind the scenes to move work between systems. We build both, around the way your business already runs.
-      </p>
+            Three layers, designed together: the applications people use every day, the agents and workflows behind them, and the foundations underneath.
+          </p>
     </div>
 
     <div class="capscroll" id="capscroll">
@@ -4516,14 +4523,14 @@
           <a class="capstep-inner" href="capabilities/ai-applications-and-platforms.html">
             <div class="cap-strip-text">
           <h3>AI Applications &amp; Platforms</h3>
-          <p>Internal AI tools, assistants, dashboards, knowledge search, and review screens your team can use in daily work.</p>
+          <p>Tools your teams use directly, from assistants and knowledge search to decision support and custom AI products.</p>
           <div class="cap-strip-chips">
-            <span>AI assistants</span>
-            <span>Custom AI apps</span>
-            <span>Knowledge search</span>
-            <span>Review &amp; approval</span>
-            <span>Activity dashboards</span>
-          </div>
+                <span>Predictive analytics</span>
+                <span>Recommendations</span>
+                <span>Personalisation</span>
+                <span>Internal copilots</span>
+                <span>Customer-facing AI apps</span>
+              </div>
           <span class="cap-strip-link">Explore Applications &amp; Platforms <span class="arrow">&rarr;</span></span>
         </div>
           </a>
@@ -4531,16 +4538,16 @@
         <article class="capstep" data-i="1" style="--c:#9B59B6">
           <a class="capstep-inner" href="capabilities/ai-workflow-infrastructure.html">
             <div class="cap-strip-text">
-          <h3>AI Workflow Systems</h3>
-          <p>Automation layers that move work across tools, documents, approvals, and exceptions &mdash; with people in control of the decisions.</p>
+          <h3>Intelligent Systems &amp; Workflows</h3>
+          <p>The AI layer behind the work, connecting models, data and business logic to the tools you already use, with people involved where judgement matters.</p>
           <div class="cap-strip-chips">
-            <span>Process automation</span>
-            <span>Document automation</span>
-            <span>Routing &amp; escalation</span>
-            <span>Background AI tasks</span>
-            <span>System integration</span>
-          </div>
-          <span class="cap-strip-link">Explore Workflow Systems <span class="arrow">&rarr;</span></span>
+                <span>Agentic systems</span>
+                <span>Multi-agent orchestration</span>
+                <span>Document intelligence</span>
+                <span>Process automation</span>
+                <span>Human review</span>
+              </div>
+          <span class="cap-strip-link">Explore Systems &amp; Workflows <span class="arrow">&rarr;</span></span>
         </div>
           </a>
         </article>
@@ -4698,7 +4705,23 @@
         </div>
 </div>
 
+
   </div>
+    <div class="cap-band reveal">
+      <div>
+        <span class="label-mono"><span class="dot"></span>Running at scale</span>
+        <h3 class="cap-band-title">Performance that holds up as usage grows.</h3>
+        <p class="cap-band-body">Infrastructure, evaluation and model usage are planned for reliability, security and running cost from the start.</p>
+      </div>
+      <div class="cap-strip-chips">
+        <span>AI cost optimisation</span>
+        <span>Token efficiency</span>
+        <span>Model routing</span>
+        <span>Infrastructure as code</span>
+        <span>Evaluation &amp; monitoring</span>
+      </div>
+    </div>
+
 </section>
 
 <script>
@@ -5714,7 +5737,7 @@
         <h5>What we do</h5>
         <ul>
           <li><a href="capabilities/ai-applications-and-platforms.html">Platforms &amp; Tools</a></li>
-          <li><a href="capabilities/ai-workflow-infrastructure.html">Workflows</a></li>
+          <li><a href="capabilities/ai-workflow-infrastructure.html">Systems &amp; Workflows</a></li>
           <li><a href="capabilities/scale-ups.html">Scale-ups</a></li>
           <li><a href="capabilities/enterprise-ai.html">Enterprise</a></li>
         </ul>

@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI Workflow Systems · AIHLPR</title>
+<title>Intelligent Systems & Workflows · AIHLPR</title>
 <link rel="canonical" href="https://aihlpr.com/capabilities/ai-workflow-infrastructure.html">
 <link rel="alternate" hreflang="en" href="https://aihlpr.com/capabilities/ai-workflow-infrastructure.html">
 <link rel="alternate" hreflang="nl" href="https://aihlpr.com/nl/capabilities/ai-workflow-infrastructure.html">
@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AIHLPR">
 <meta property="og:locale" content="en_GB">
-<meta property="og:title" content="AI Workflow Systems · AIHLPR">
+<meta property="og:title" content="Intelligent Systems & Workflows · AIHLPR">
 <meta property="og:description" content="Workflow systems that move repeated work across your tools, documents and teams, with clear ownership and people deciding what matters.">
 <meta property="og:url" content="https://aihlpr.com/capabilities/ai-workflow-infrastructure.html">
 <meta property="og:image" content="https://aihlpr.com/assets/og-image.png">
@@ -19,7 +19,7 @@
 <meta property="og:image:height" content="630">
 <meta property="og:image:alt" content="AIHLPR — operational AI partner">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI Workflow Systems · AIHLPR">
+<meta name="twitter:title" content="Intelligent Systems & Workflows · AIHLPR">
 <meta name="twitter:description" content="Workflow systems that move repeated work across your tools, documents and teams, with clear ownership and people deciding what matters.">
 <meta name="twitter:image" content="https://aihlpr.com/assets/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -109,11 +109,13 @@
     letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted);
     border-left: 1px solid var(--hairline);
     padding-left: 14px; margin-left: 4px;
-    display: inline-flex; align-items: center; gap: 8px;
+    display: inline-flex; align-items: center; gap: 8px; white-space: nowrap;
   }
   .nav-crumb a { color: var(--ink-muted); transition: color 200ms var(--ease); }
   .nav-crumb a:hover { color: var(--ink); }
   .nav-crumb .sep { opacity: 0.5; }
+  /* longer lane name: drop the crumb before it collides with the nav links */
+  @media (max-width: 1060px) { .nav-crumb { display: none; } }
   .nav-links { display: flex; align-items: center; gap: 22px; font-size: 14px; color: var(--ink-soft); }
   .nav-links a { transition: color 180ms var(--ease); }
   .nav-links a:hover { color: var(--ink); }
@@ -684,7 +686,7 @@
       <span class="nav-crumb">
         <a href="/#capabilities">Solutions</a>
         <span class="sep">/</span>
-        <span>Workflows</span>
+        <span>Systems &amp; Workflows</span>
       </span>
     </div>
     <div class="nav-links">
@@ -697,7 +699,7 @@
             <span class="dd-title">Platforms &amp; Tools</span>
           </a>
           <a href="ai-workflow-infrastructure.html" class="dd-item" role="menuitem">
-            <span class="dd-title">Workflows</span>
+            <span class="dd-title">Systems &amp; Workflows</span>
           </a>
           <span class="dd-divider"></span>
           <a href="scale-ups.html" class="dd-item" role="menuitem">
@@ -726,7 +728,7 @@
     <div class="mm-section">
       <span class="mm-label">Services</span>
       <a href="ai-applications-and-platforms.html">Platforms &amp; Tools</a>
-      <a href="ai-workflow-infrastructure.html">Workflows</a>
+      <a href="ai-workflow-infrastructure.html">Systems &amp; Workflows</a>
     </div>
     <div class="mm-section">
       <span class="mm-label">Who we serve</span>
@@ -753,7 +755,7 @@
         <span class="sep"></span>
         <span>Capabilities</span>
         <span class="sep"></span>
-        <span>AI Workflow Systems</span>
+        <span>Intelligent Systems &amp; Workflows</span>
       </div>
       <h1>Move repeated work faster, without losing control.</h1>
       <p class="hero-lede">AIHLPR builds workflow systems that connect your tools, documents, approvals and teams. Repeated work moves with less chasing, clearer ownership and human review where it matters.</p>
@@ -1129,7 +1131,7 @@
         <h5>What we do</h5>
         <ul>
           <li><a href="ai-applications-and-platforms.html">Platforms &amp; Tools</a></li>
-          <li><a href="ai-workflow-infrastructure.html">Workflows</a></li>
+          <li><a href="ai-workflow-infrastructure.html">Systems &amp; Workflows</a></li>
           <li><a href="scale-ups.html">Scale-ups</a></li>
           <li><a href="enterprise-ai.html">Enterprise</a></li>
         </ul>
