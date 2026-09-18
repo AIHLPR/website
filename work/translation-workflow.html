@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Localisation Workflow · AIHLPR case study</title>
+<title>Localisation System · AIHLPR case study</title>
 <meta name="description" content="One application combining translation, brand knowledge, local review and workflow management, across 10 languages and 11 European markets.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AIHLPR">
@@ -28,6 +28,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Roboto:wght@300;400;500&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root {
+    --black: #0C0C0C;
     --blue-trust: #3478E5;
     --blue-sky: #6A9DF0;
     --purple-friendly: #9B59B6;
@@ -726,7 +727,7 @@
 
   /* -------- Next + footer -------- */
   .next {
-    padding: clamp(60px, 7vw, 96px) 0;
+    padding: clamp(40px, 5vw, 64px) 0;
   }
   .next-link {
     display: grid;
@@ -833,6 +834,16 @@
     .case-hero h1 { font-size: 44px; }
     .problem-grid, .approach-grid, .extended-grid { grid-template-columns: 1fr; }
   }
+  .case-name { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); margin: 0 0 14px; }
+  .case-cta-card { background: var(--black, #0C0C0C); color: #fff; border-radius: 24px; padding: clamp(36px, 5vw, 64px); display: flex; flex-direction: column; gap: 16px; }
+  .case-cta-card .eyebrow { color: rgba(255,255,255,0.6); }
+  .case-cta-card h2 { color: #fff; margin: 0; max-width: 24ch; }
+  .case-cta-card p { color: rgba(255,255,255,0.75); margin: 0; max-width: 56ch; font-size: clamp(15px, 1.1vw, 17px); line-height: 1.6; }
+  .case-cta-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 8px; }
+  .case-cta-primary, .case-cta-quiet { display: inline-flex; align-items: center; gap: 8px; padding: 13px 22px; border-radius: 999px; font-weight: 500; font-size: 15px; text-decoration: none; }
+  .case-cta-primary { background: #fff; color: var(--ink, #1F1F1F); }
+  .case-cta-quiet { color: #fff; border: 1px solid rgba(255,255,255,0.35); }
+  .case-cta-quiet:hover { border-color: #fff; }
 </style>
 </head>
 <body>
@@ -962,6 +973,7 @@
       <span class="eyebrow">Retail &middot; Localisation operations</span>
     </div>
 
+    <p class="case-name">Localisation System</p>
     <h1>Localisation managed as one working system.</h1>
 
     <p class="outcome">
@@ -1321,10 +1333,9 @@
       </div>
     </div>
     <p style="font-size:17px; line-height:1.7; color:var(--ink-soft); max-width:62ch; margin:32px 0 0;">
-      The results showed that grounding improves the output, but also where
-      local market judgment still matters. That is why human approval stays in
-      the workflow, accepted corrections feed the memory, and evaluation
-      continues as models, glossaries and requirements change.
+      The results also show where local market judgement still matters.
+      Accepted corrections become useful context, while evaluation continues
+      as models, terminology and market requirements change.
     </p>
   </div>
 </section>
@@ -1385,6 +1396,20 @@
   </div>
 </section>
 
+<!-- Closing CTA -->
+<section class="body-section case-cta">
+  <div class="container">
+    <div class="case-cta-card">
+      <span class="eyebrow"><span class="eyebrow-dot"></span>Does this look familiar?</span>
+      <h2>If localisation is slowing down markets, let&rsquo;s look at where the context is missing.</h2>
+      <p>Bring one content flow, system or AI idea. We&rsquo;ll look at where intelligence could help, what should remain explicit, and what a useful first system could look like.</p>
+      <div class="case-cta-actions">
+        <a class="case-cta-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Discuss the use case <span aria-hidden="true">&rarr;</span></a>
+        <a class="case-cta-quiet" href="/#work">See all case studies <span aria-hidden="true">&rarr;</span></a>
+      </div>
+    </div>
+  </div>
+</section>
 <!-- Quote -->
 <section class="quote">
   <div class="container">
@@ -1392,7 +1417,7 @@
       "The tool translates. Markets decide. Every approved correction makes
       the next draft better."
     </blockquote>
-    <cite>AIHLPR &middot; Localisation workflow team</cite>
+    <cite>AIHLPR &middot; Localisation system team</cite>
   </div>
 </section>
 
@@ -1404,7 +1429,7 @@
       <span class="next-no">01 / 02</span>
       <div>
         <div class="next-sector">Retail &middot; Marketplace asset generation</div>
-        <h3 class="next-title">Product content that keeps up with launch timelines.</h3>
+        <h3 class="next-title">Amazon listings in hours, not weeks.</h3>
       </div>
       <span class="next-arrow">
         <svg viewBox="0 0 16 12" fill="none">
