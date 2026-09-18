@@ -2,25 +2,25 @@
 <html lang="nl"><head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>AI voor Scale-ups · AIHLPR Oplossingen</title>
+<title>AI voor scale-ups · AIHLPR</title>
 <link rel="canonical" href="https://aihlpr.com/nl/capabilities/scale-ups.html">
 <link rel="alternate" hreflang="en" href="https://aihlpr.com/capabilities/scale-ups.html">
 <link rel="alternate" hreflang="nl" href="https://aihlpr.com/nl/capabilities/scale-ups.html">
 <link rel="alternate" hreflang="x-default" href="https://aihlpr.com/capabilities/scale-ups.html">
-<meta name="description" content="Praktische AI voor groeiende teams. Minder afstemming, je bestaande tools verbonden, en meer werk aan zonder extra mensen aan te nemen.">
+<meta name="description" content="Maak AI onderdeel van het bedrijf zonder opnieuw te beginnen. Van strategie tot productie, privacy en security vanaf het begin, werkt met jouw stack.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AIHLPR">
 <meta property="og:locale" content="nl_NL">
-<meta property="og:title" content="AI voor Scale-ups · AIHLPR Oplossingen">
-<meta property="og:description" content="Praktische AI voor groeiende teams. Minder afstemming, je bestaande tools verbonden, en meer werk aan zonder extra mensen aan te nemen.">
+<meta property="og:title" content="AI voor scale-ups · AIHLPR">
+<meta property="og:description" content="Maak AI onderdeel van het bedrijf zonder opnieuw te beginnen. Van strategie tot productie, privacy en security vanaf het begin, werkt met jouw stack.">
 <meta property="og:url" content="https://aihlpr.com/nl/capabilities/scale-ups.html">
 <meta property="og:image" content="https://aihlpr.com/assets/og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="AIHLPR · AI transformation partner">
+<meta property="og:image:alt" content="AIHLPR · AI-transformatiepartner">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="AI voor Scale-ups · AIHLPR Oplossingen">
-<meta name="twitter:description" content="Praktische AI voor groeiende teams. Minder afstemming, je bestaande tools verbonden, en meer werk aan zonder extra mensen aan te nemen.">
+<meta name="twitter:title" content="AI voor scale-ups · AIHLPR">
+<meta name="twitter:description" content="Maak AI onderdeel van het bedrijf zonder opnieuw te beginnen. Van strategie tot productie, privacy en security vanaf het begin, werkt met jouw stack.">
 <meta name="twitter:image" content="https://aihlpr.com/assets/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -216,7 +216,7 @@
   .ladder { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 0; border: 1px solid var(--hairline); border-radius: 16px; overflow: hidden; background: var(--white); }
   @media (max-width: 980px) { .ladder { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .ladder { grid-template-columns: 1fr; } }
-  .rung { position: relative; padding: clamp(22px, 2vw, 28px); border-right: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 12px; min-height: 230px; }
+  .rung { position: relative; padding: clamp(22px, 2vw, 28px); border-right: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 12px; min-height: 170px; }
   .ladder .rung:last-child { border-right: none; }
   @media (max-width: 980px) { .rung { border-bottom: 1px solid var(--hairline); } .ladder .rung:nth-child(2n) { border-right: none; } }
   @media (max-width: 560px) { .rung { border-right: none; } }
@@ -258,6 +258,32 @@
   .reason h4 { margin: 12px 0 8px; font-size: 16px; }
   .reason p { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
 
+
+  /* ---- rewrite: three-up reasons, capability strip, proof, progression ---- */
+  .reasons--three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  @media (max-width: 880px) { .reasons--three { grid-template-columns: 1fr; } }
+  .reasons--plain .reason h4 { margin-top: 0; }
+  .help { background: var(--surface-2); }
+  .cap-strip { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(28px, 3vw, 44px); }
+  .badge--link { color: var(--ink); text-decoration: none; transition: border-color 180ms var(--ease), color 180ms var(--ease); }
+  .badge--link .arrow { opacity: .6; }
+  .badge--link:hover { border-color: var(--ink); }
+  @media (max-width: 760px) { .cap-strip .badge { padding: 12px 16px; font-size: 11.5px; } }
+  .proof-figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); max-width: 720px; margin-bottom: clamp(36px, 4vw, 56px); }
+  .fig { display: flex; flex-direction: column; gap: 8px; padding-left: 16px; border-left: 1px solid var(--hairline-strong); }
+  .fig-num { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 3.4vw, 48px); letter-spacing: -0.02em; line-height: 1; }
+  .fig-lbl { font-size: 14px; line-height: 1.45; color: var(--ink-soft); max-width: 26ch; }
+  .logo-row { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 8px; align-items: center; padding: clamp(18px, 2vw, 26px) 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+  .logo-cell { display: grid; place-items: center; height: 64px; filter: grayscale(1); opacity: .6; }
+  .logo-cell img { max-height: 44px; max-width: 100%; width: auto; height: auto; object-fit: contain; }
+  @media (max-width: 900px) { .logo-row { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .logo-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } .logo-cell { height: 56px; } .proof-figs { grid-template-columns: 1fr; } }
+  .trust-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(18px, 2vw, 26px); }
+  .start-small { background: var(--surface-2); }
+  .progression { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 14px; margin-top: clamp(24px, 3vw, 36px); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
+  .progression span { padding: 10px 14px; border: 1px solid var(--hairline-strong); border-radius: 999px; background: var(--white); }
+  .progression i { width: 22px; height: 1px; background: var(--hairline-strong); }
+  @media (max-width: 560px) { .progression i { display: none; } }
   /* How we de-risk AI — open icon columns (no box), sits on surface tint */
   .derisk { background: var(--surface); }
   .controls { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: clamp(24px,2.8vw,44px); }
@@ -358,6 +384,7 @@
               mask-image: linear-gradient(90deg, #000 92%, transparent 100%);
     }
     .hero-visual svg { min-width: 480px; }
+    @media (max-width: 560px) { .hero-visual svg { display: none; } .hero-visual { overflow: visible; -webkit-mask-image: none; mask-image: none; } .hero .hero-visual::after { display: none !important; } }
     .cs-diagram svg { min-width: 600px; }
     .hero-visual-caption { -webkit-mask-image: none; mask-image: none; }
     .cs-diagram::after, .hero-visual::after {
@@ -558,10 +585,10 @@
         </button>
         <div class="nav-dropdown-menu" id="solutionsMenu" role="menu">
           <a href="ai-applications-and-platforms.html" class="dd-item" role="menuitem">
-            <span class="dd-title">Platforms &amp; Tools</span>
+            <span class="dd-title">Applications &amp; Platforms</span>
           </a>
           <a href="ai-workflow-infrastructure.html" class="dd-item" role="menuitem">
-            <span class="dd-title">Workflows</span>
+            <span class="dd-title">Systems &amp; Workflows</span>
           </a>
           <span class="dd-divider"></span>
           <a href="scale-ups.html" class="dd-item" aria-current="page" role="menuitem">
@@ -574,7 +601,7 @@
       </div>
       <a href="/nl/#work">Case studies</a>
       <a href="../../insights/index.html">Onze inzichten</a>
-      <a href="../about.html">Over AIHLPR</a>
+      <a href="../about.html">Over ons</a>
       <span class="nav-lang" style="font-family:var(--font-mono);font-size:11px;letter-spacing:0.14em;text-transform:uppercase;color:var(--ink-muted);display:inline-flex;align-items:center;gap:6px;">
         <a href="../../capabilities/scale-ups.html" hreflang="en" style="color:var(--ink-muted);" aria-label="English">EN</a>
         <span style="opacity:0.5;" aria-hidden="true">/</span>
@@ -582,24 +609,24 @@
       </span>
       <a href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener" class="cta">Plan een gesprek &rarr;</a>
     </div>
-    <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navMobileMenu">
+    <button class="nav-burger" id="navBurger" type="button" aria-label="Menu openen" aria-expanded="false" aria-controls="navMobileMenu">
       <span></span><span></span><span></span>
     </button>
   </div>
   <div class="nav-mobile-menu" id="navMobileMenu" aria-hidden="true">
     <div class="mm-section">
-      <span class="mm-label">Services</span>
-      <a href="ai-applications-and-platforms.html">Platforms &amp; Tools</a>
-      <a href="ai-workflow-infrastructure.html">Workflows</a>
+      <span class="mm-label">Diensten</span>
+      <a href="ai-applications-and-platforms.html">Applications &amp; Platforms</a>
+      <a href="ai-workflow-infrastructure.html">Systems &amp; Workflows</a>
     </div>
     <div class="mm-section">
-      <span class="mm-label">Voor wie we werken</span>
+      <span class="mm-label">Voor wie</span>
       <a href="scale-ups.html">Scale-ups</a>
       <a href="enterprise-ai.html">Enterprise</a>
     </div>
     <a href="/nl/#work">Case studies</a>
     <a href="../../insights/index.html">Onze inzichten</a>
-    <a href="../about.html">Over AIHLPR</a>
+    <a href="../about.html">Over ons</a>
     <a href="/nl/#contact" class="cta">Plan een gesprek &rarr;</a>
   </div>
 </nav>
@@ -613,14 +640,13 @@
       <div class="hero-meta">
         <span class="num">Scale-ups</span>
         <span class="sep"></span>
-        <span>AI voor groeiende teams</span>
+        <span>AI-transformatie voor scale-ups</span>
       </div>
-      <h1>Meer output uit het team dat je al hebt.</h1>
-      <p class="hero-lede">AIHLPR bouwt custom tools, workflow layers, dashboards, integrations en AI agents die groeiende teams helpen werk sneller te verplaatsen tussen de systemen die ze al gebruiken.</p>
-      <p class="hero-sub">Gebruik AI om follow-ups te verminderen, updates voor te bereiden, documenten te verwerken, taken te routen en mensen in controle te houden van de beslissingen die ertoe doen.</p>
+      <h1>Maak AI onderdeel van het bedrijf, zonder opnieuw te beginnen.</h1>
+      <p class="hero-lede">We werken samen met groeiende teams om te bepalen waar AI thuishoort, de systemen te maken die ertoe doen en de fundamenten te leggen om ze te blijven verbeteren terwijl het bedrijf groeit.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Vind je eerste AI-stap <span class="arrow">→</span></a>
-        <a class="btn btn-secondary" href="mailto:brinda@moralitybytes.eu" target="_blank" rel="noopener">Bespreek het <span class="arrow">→</span></a>
+        <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Bespreek je AI-plannen <span class="arrow">→</span></a>
+        <a class="btn btn-secondary" href="#help">Bekijk wat we maken <span class="arrow">→</span></a>
       </div>
     </div>
 
@@ -635,15 +661,15 @@
 
         <!-- top strip -->
         <g font-size="10" letter-spacing="0.16em">
-          <text x="20" y="26" fill="#8A8A8A">CAPACITEIT · zelfde team</text>
-          <text x="900" y="26" text-anchor="end" fill="#3478E5">lean team → ai layer → meer output</text>
+          <text x="20" y="26" fill="#8A8A8A">AI · ONDERDEEL VAN HET BEDRIJF</text>
+          <text x="900" y="26" text-anchor="end" fill="#3478E5">jouw team → partner → werkende systemen</text>
         </g>
         <line x1="20" y1="36" x2="900" y2="36" stroke="rgba(31,31,31,0.08)" stroke-width="1"></line>
 
         <!-- ===== STAGE 1: LEAN TEAM ===== -->
         <rect x="40" y="120" width="210" height="240" rx="3" fill="#fff" stroke="rgba(31,31,31,0.2)" stroke-width="1.4"></rect>
-        <text x="60" y="150" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#1F1F1F">LEAN TEAM</text>
-        <text x="60" y="166" font-size="9.5" letter-spacing="0.08em" fill="#8A8A8A">zelfde team</text>
+        <text x="60" y="150" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#1F1F1F">JOUW TEAM</text>
+        <text x="60" y="166" font-size="9.5" letter-spacing="0.08em" fill="#8A8A8A">zoals het nu is</text>
         <line x1="60" y1="178" x2="230" y2="178" stroke="rgba(31,31,31,0.08)" stroke-width="1"></line>
         <!-- 6 people glyphs, 3 cols x 2 rows -->
         <g stroke="#1F1F1F" stroke-width="1.3" fill="none">
@@ -666,17 +692,17 @@
 
         <!-- ===== STAGE 2: AI LAYER ===== -->
         <rect x="360" y="96" width="200" height="288" rx="3" fill="#1F1F1F"></rect>
-        <text x="380" y="128" font-size="11" letter-spacing="0.16em" font-weight="600" fill="#fff">AI LAYER</text>
-        <text x="380" y="144" font-size="9" letter-spacing="0.08em" fill="rgba(255,255,255,0.55)">eerst één workflow</text>
+        <text x="380" y="128" font-size="11" letter-spacing="0.16em" font-weight="600" fill="#fff">MET AIHLPR</text>
+        <text x="380" y="144" font-size="9" letter-spacing="0.08em" fill="rgba(255,255,255,0.55)">beslissen · maken · onderhouden</text>
         <line x1="380" y1="158" x2="540" y2="158" stroke="rgba(255,255,255,0.16)" stroke-width="1"></line>
         <g font-size="10.5" letter-spacing="0.04em">
-          <circle cx="384" cy="186" r="3" fill="#5794EA"></circle><text x="396" y="190" fill="rgba(255,255,255,0.92)">updates voorbereiden</text>
-          <circle cx="384" cy="222" r="3" fill="#5794EA"></circle><text x="396" y="226" fill="rgba(255,255,255,0.92)">taken routen</text>
-          <circle cx="384" cy="258" r="3" fill="#5794EA"></circle><text x="396" y="262" fill="rgba(255,255,255,0.92)">opvolgen</text>
-          <circle cx="384" cy="294" r="3" fill="#5794EA"></circle><text x="396" y="298" fill="rgba(255,255,255,0.92)">checken &amp; signaleren</text>
+          <circle cx="384" cy="186" r="3" fill="#5794EA"></circle><text x="396" y="190" fill="rgba(255,255,255,0.92)">bepalen wat de moeite waard is</text>
+          <circle cx="384" cy="222" r="3" fill="#5794EA"></circle><text x="396" y="226" fill="rgba(255,255,255,0.92)">de systemen ontwerpen</text>
+          <circle cx="384" cy="258" r="3" fill="#5794EA"></circle><text x="396" y="262" fill="rgba(255,255,255,0.92)">de stack koppelen</text>
+          <circle cx="384" cy="294" r="3" fill="#5794EA"></circle><text x="396" y="298" fill="rgba(255,255,255,0.92)">evalueren en verbeteren</text>
         </g>
         <line x1="380" y1="320" x2="540" y2="320" stroke="rgba(255,255,255,0.16)" stroke-width="1"></line>
-        <text x="380" y="346" font-size="9" letter-spacing="0.1em" fill="rgba(255,255,255,0.55)">mensen blijven in controle</text>
+        <text x="380" y="346" font-size="9" letter-spacing="0.1em" fill="rgba(255,255,255,0.55)">fundamenten vanaf het begin</text>
 
         <!-- ai layer -> output connectors -->
         <g stroke="#3478E5" stroke-width="1.2" fill="none">
@@ -688,8 +714,8 @@
 
         <!-- ===== STAGE 3: MORE OUTPUT ===== -->
         <rect x="670" y="120" width="210" height="240" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1.4"></rect>
-        <text x="690" y="150" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#2A5FC0">MEER OUTPUT</text>
-        <text x="690" y="166" font-size="9.5" letter-spacing="0.08em" fill="#8A8A8A">zelfde team</text>
+        <text x="690" y="150" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#2A5FC0">WERKENDE SYSTEMEN</text>
+        <text x="690" y="166" font-size="9.5" letter-spacing="0.08em" fill="#8A8A8A">dezelfde mensen, op hun plek</text>
         <line x1="690" y1="178" x2="860" y2="178" stroke="rgba(31,31,31,0.08)" stroke-width="1"></line>
         <!-- output bars, growing -->
         <g>
@@ -699,16 +725,16 @@
           <rect x="690" y="264" width="168" height="12" rx="2" fill="#3478E5"></rect>
           <rect x="690" y="286" width="150" height="12" rx="2" fill="#3478E5"></rect>
         </g>
-        <text x="690" y="345" font-size="9.5" letter-spacing="0.1em" fill="#8A8A8A">werk beweegt zonder achteraan te zitten</text>
+        <text x="690" y="345" font-size="9.5" letter-spacing="0.1em" fill="#8A8A8A">werk dat doorloopt zonder najagen</text>
 
         <!-- tracer dots (single per gap) -->
         <circle class="tracer t1" r="3.5" fill="#1F1F1F"></circle>
         <circle class="tracer t2" r="3.5" fill="#3478E5"></circle>
       </svg>
       <div class="hero-visual-caption">
-        <span><b>add_capacity()</b> · lean team</span>
-        <span>ai layer staat klaar</span>
-        <span><b>meer output</b></span>
+        <span><b>jouw team</b> · zoals het is</span>
+        <span>partner ernaast</span>
+        <span><b>werkende systemen</b></span>
       </div>
     </div>
   </div>
@@ -717,313 +743,135 @@
 <!-- TRUST BADGES -->
 <section class="badges">
   <div class="container badges-inner">
-    <span class="badge">Enterprise-grade delivery</span>
-    <span class="badge">Human review by design</span>
-    <span class="badge">Past in je bestaande tools</span>
-    <span class="badge">GDPR-aware workflows</span>
-    <span class="badge">Pilot-first approach</span>
-    <span class="badge">Schaal na bewijs</span>
+    <span class="badge">Van strategie tot productie</span>
+    <span class="badge">Privacy &amp; security vanaf het begin</span>
+    <span class="badge">Werkt met jouw stack</span>
   </div>
 </section>
 
-<!-- WHERE AI CAN HELP FIRST (merged) -->
+<!-- WHEN AI STARTS TO MATTER -->
 <section class="block">
   <div class="container">
     <div class="block-head">
+      <div><span class="label-mono"><span class="dot"></span>Wanneer AI er echt toe gaat doen</span></div>
       <div>
-        <span class="label-mono"><span class="dot"></span>Waar AI als eerste kan helpen</span>
-      </div>
-      <div>
-        <h2>Start met de workflow die je team nu al vertraagt.</h2>
-        <p class="block-lede" style="margin-top:16px;">AIHLPR bouwt de tool, agent, dashboard, workflow layer of integration die dat werk sneller laat bewegen, binnen de systemen die je team al gebruikt.</p>
+        <h2>De uitdaging is zelden een gebrek aan ideeën. Het is weten wat verdient om echt te worden.</h2>
+        <p class="block-lede" style="margin-top:16px;">Scale-ups beginnen meestal met AI terwijl er al overal in het bedrijf geëxperimenteerd wordt. Het lastige is bepalen wat onderdeel van het bedrijf moet worden, wat simpel moet blijven en wat het waard is om goed te doen.</p>
       </div>
     </div>
-    <div class="cards">
-      <article class="card">
-        <span class="card-eyebrow">Inbox agent · CRM workflow</span>
-        <h3>Lead follow-up</h3>
-        <p>Bouw een inbox agent of CRM workflow die leads classificeert, replies voorbereidt, velden update en de volgende actie routeert.</p>
-      </article>
-      <article class="card">
-        <span class="card-eyebrow">Workflow layer</span>
-        <h3>Customer onboarding</h3>
-        <p>Bouw een workflow layer die forms, documenten, checks, approvals en handovers door één duidelijk proces beweegt.</p>
-      </article>
-      <article class="card">
-        <span class="card-eyebrow">AI document flow</span>
-        <h3>Document processing</h3>
-        <p>Bouw een AI document flow die files leest, key details extraheert, ontbrekende informatie signaleert en de volgende stap voorbereidt.</p>
-      </article>
-      <article class="card">
-        <span class="card-eyebrow">Dashboards · reporting</span>
-        <h3>Internal reporting</h3>
-        <p>Bouw dashboards en reporting flows die verspreide updates omzetten in summaries, status views en exception reports.</p>
-      </article>
-      <article class="card">
-        <span class="card-eyebrow">AI-supported tools</span>
-        <h3>Content en asset workflows</h3>
-        <p>Bouw AI-supported tools voor product content, translations, visuals, review flows en campaign assets.</p>
-      </article>
-      <article class="card">
-        <span class="card-eyebrow">Integrations · agents</span>
-        <h3>Operations coordination</h3>
-        <p>Bouw integrations en agents die taken, approvals, reminders en updates laten bewegen met minder handmatig opvolgen.</p>
-      </article>
-    </div>
-  </div>
-</section>
-
-<!-- WHY AIHLPR -->
-<section class="block">
-  <div class="container">
-    <div class="block-head">
-      <div><span class="label-mono"><span class="dot"></span>Waarom AIHLPR</span></div>
-      <div>
-        <h2>Enterprise-grade AI delivery, gevormd voor groeiende teams.</h2>
-        <p class="block-lede" style="margin-top:16px;">AIHLPR geeft middelgrote bedrijven de structuur van een enterprise AI project, met een eerste stap die praktisch blijft. We bouwen systemen rond je tools, data, workflows en review points, zodat het resultaat bruikbaar, gecontroleerd en schaalbaar is.</p>
-      </div>
-    </div>
-    <div class="reasons">
+    <div class="reasons reasons--three">
       <div class="reason">
         <span class="rn">01</span>
-        <h4>Rond echte workflows</h4>
-        <p>We starten met hoe werk echt beweegt en plaatsen AI waar het frictie vermindert.</p>
+        <h4>Te veel experimenten</h4>
+        <p>Teams proberen AI al uit, maar de nuttige ideeën zitten verstopt tussen losse tools en pilots die nergens op aansluiten.</p>
       </div>
       <div class="reason">
         <span class="rn">02</span>
-        <h4>Verbonden met je tools</h4>
-        <p>CRM, ERP, inboxes, documenten, dashboards en approval flows werken samen.</p>
+        <h4>Systemen worden complexer</h4>
+        <p>Meer klanten, meer data en meer teams zorgen voor meer plekken waar informatie en beslissingen op elkaar moeten aansluiten.</p>
       </div>
       <div class="reason">
         <span class="rn">03</span>
-        <h4>Human review waar het telt</h4>
-        <p>Mensen houden controle over kwaliteit, beslissingen, approvals en uitzonderingen.</p>
+        <h4>Interne capaciteit is beperkt</h4>
+        <p>Je hebt misschien nog geen volledig AI-team nodig, maar de systemen vragen wel serieus technisch denkwerk als ze mee moeten gaan.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE HELP -->
+<section class="block help" id="help">
+  <div class="container">
+    <div class="block-head">
+      <div><span class="label-mono"><span class="dot"></span>Jouw AI-transformatiepartner</span></div>
+      <div>
+        <h2>Van bepalen waar AI thuishoort tot het laten werken in het bedrijf.</h2>
+      </div>
+    </div>
+    <div class="reasons reasons--three reasons--plain">
+      <div class="reason">
+        <h4>Bepalen wat de moeite waard is</h4>
+        <p>Echte AI-kansen scheiden van problemen die beter via proces-, product- of systeemverbeteringen op te lossen zijn.</p>
       </div>
       <div class="reason">
-        <span class="rn">04</span>
-        <h4>Klaar om te schalen</h4>
-        <p>De eerste workflow houdt al rekening met integrations, access, monitoring en toekomstige uitbreiding.</p>
+        <h4>Maken wat ertoe doet</h4>
+        <p>AI-applicaties, intelligente systemen en de koppelingen eromheen realiseren.</p>
       </div>
+      <div class="reason">
+        <h4>Duurzaam maken</h4>
+        <p>Evaluatie, security, infrastructuur, eigenaarschap en operationele kosten regelen rond wat in echt gebruik gaat.</p>
+      </div>
+    </div>
+    <div class="cap-strip" aria-label="Wat we maken">
+      <a class="badge badge--link" href="ai-applications-and-platforms.html">AI Applications &amp; Platforms <span class="arrow">→</span></a>
+      <a class="badge badge--link" href="ai-workflow-infrastructure.html">Intelligent Systems &amp; Workflows <span class="arrow">→</span></a>
+      <span class="badge">Draaien op schaal</span>
     </div>
   </div>
 </section>
 
-<!-- HOW WE DE-RISK AI -->
-<section class="block derisk">
+<!-- PROOF AND TRUST -->
+<section class="block proof">
   <div class="container">
     <div class="block-head">
-      <div><span class="label-mono"><span class="dot"></span>Hoe we AI de-risken</span></div>
+      <div><span class="label-mono"><span class="dot"></span>Bewezen in echte omgevingen</span></div>
       <div>
-        <h2>Nuttige AI begint met controle.</h2>
-        <p class="block-lede" style="margin-top:16px;">Elke AIHLPR build heeft duidelijke inputs, review points, logs, permissies en meetbare outcomes. Je team test de workflow met echt werk voordat we uitbreiden.</p>
+        <h2>Ervaring telt wanneer het experiment een systeem wordt.</h2>
+        <p class="block-lede" style="margin-top:16px;">Ons werk omvat digitale platforms, AI-ondersteunde workflows en productiesystemen bij internationale organisaties en in Europese markten. De focus is op elke schaal dezelfde: iets nuttigs, meetbaars en onderhoudbaars.</p>
       </div>
     </div>
-    <div class="controls">
-      <div class="control">
-        <span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8.5"></circle><circle cx="12" cy="12" r="3.4"></circle><path d="M12 1.5v3M12 19.5v3M1.5 12h3M19.5 12h3"></path></svg></span>
-        <h4>Heldere scope</h4>
-        <p>Eén workflow, één nuttige outcome, één meetbare eerste stap.</p>
-      </div>
-      <div class="control">
-        <span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-        <h4>Review by design</h4>
-        <p>AI bereidt voor, routeert, checkt of draft. Mensen keuren goed wat telt.</p>
-      </div>
-      <div class="control">
-        <span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M10 13a3.5 3.5 0 0 0 5 0l3-3a3.5 3.5 0 0 0-5-5l-1.5 1.5" stroke-linecap="round" stroke-linejoin="round"></path><path d="M14 11a3.5 3.5 0 0 0-5 0l-3 3a3.5 3.5 0 0 0 5 5l1.5-1.5" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>
-        <h4>System fit</h4>
-        <p>We werken met de tools en data waar je team al op vertrouwt.</p>
-      </div>
-      <div class="control">
-        <span class="ci"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2" stroke-linecap="round"></path></svg></span>
-        <h4>Meetbare waarde</h4>
-        <p>Succes meten we in tijdwinst, minder stappen, snellere afhandeling of beter zicht.</p>
-      </div>
+    <div class="proof-figs" aria-label="Ervaring">
+      <div class="fig"><span class="fig-num">15+</span><span class="fig-lbl">Jaar digitale transformatie in de EU</span></div>
+      <div class="fig"><span class="fig-num">15+</span><span class="fig-lbl">Enterprise-klanten</span></div>
+    </div>
+    <div class="logo-row" aria-label="Klanten">
+        <div class="logo-cell"><img src="../../assets/clients/dorel-juvenile.png" alt="Dorel Juvenile" loading="lazy"></div>
+        <div class="logo-cell"><img src="../../assets/clients/maxi-cosi.png" alt="Maxi-Cosi" loading="lazy"></div>
+        <div class="logo-cell"><img src="../../assets/clients/bebeconfort.png" alt="Bebeconfort" loading="lazy"></div>
+        <div class="logo-cell"><img src="../../assets/clients/sphere.png" alt="Sphere" loading="lazy"></div>
+        <div class="logo-cell"><img src="../../assets/clients/erasmus-sport.png" alt="Erasmus Sport" loading="lazy"></div>
+        <div class="logo-cell"><img src="../../assets/clients/undp.png" alt="UNDP" loading="lazy"></div>
+        <div class="logo-cell"><img src="../../assets/clients/ambis.png" alt="Ambis" loading="lazy"></div>
+        <div class="logo-cell"><img src="../../assets/clients/loreal.png" alt="L'Or&eacute;al" loading="lazy"></div>
+        <div class="logo-cell"><img src="../../assets/clients/penguin.png" alt="Penguin" loading="lazy"></div>
+    </div>
+    <div class="trust-chips" aria-label="Vertrouwen">
+      <span class="badge">EU-dataopties</span>
+      <span class="badge">AVG-ervaring</span>
+      <span class="badge">Security by design</span>
+      <span class="badge">Governance vanaf het begin</span>
     </div>
   </div>
 </section>
 
-<!-- 03 · HOW WE START -->
-<section class="block">
+<!-- START SMALL -->
+<section class="block start-small">
   <div class="container">
     <div class="block-head">
+      <div><span class="label-mono"><span class="dot"></span>Een praktische plek om te beginnen</span></div>
       <div>
-        <span class="recommend-tag">Aanbevolen eerste stap</span>
-        <span class="label-mono"><span class="dot"></span>03 · Hoe we starten</span>
-      </div>
-      <div>
-        <h2>Eén workflow eerst. Schaal wat bewezen nuttig is.</h2>
-        <p class="block-lede" style="margin-top:16px;">We mappen hoe het werk vandaag beweegt, vinden de AI-ready stap en bouwen een gefocuste werkende versie. Je team test met echt werk, reviewt de output en beslist wat verder mag.</p>
+        <h2>Begin met één betekenisvol probleem.</h2>
+        <p class="block-lede" style="margin-top:16px;">Je hebt geen complete AI-roadmap nodig om te beginnen. Begin met één plek waar AI kan verbeteren hoe het bedrijf werkt, breng het in echt gebruik en gebruik wat je leert om te bepalen wat daarna aan de beurt is.</p>
       </div>
     </div>
-    <div class="ladder">
-      <div class="rung">
-        <span class="rnum">01</span>
-        <div class="rtrack"><span style="--p:20%;"></span></div>
-        <h4>Map de workflow</h4>
-        <p>Tools, mensen, documenten, beslissingen en handovers.</p>
-        <div class="rmeta"><span>Mensen</span><span>Documenten</span><span>Handovers</span></div>
-      </div>
-      <div class="rung">
-        <span class="rnum">02</span>
-        <div class="rtrack"><span style="--p:40%;"></span></div>
-        <h4>Vind de AI-ready stap</h4>
-        <p>Waar AI tijd kan besparen met beheersbaar risico.</p>
-        <div class="rmeta"><span>Tijdwinst</span><span>Laag risico</span></div>
-      </div>
-      <div class="rung">
-        <span class="rnum">03</span>
-        <div class="rtrack"><span style="--p:60%;"></span></div>
-        <h4>Bouw de eerste versie</h4>
-        <p>Een gefocuste tool, agent, dashboard, workflow layer of integration.</p>
-        <div class="rmeta"><span>Gefocust</span><span>Op je tools</span></div>
-      </div>
-      <div class="rung">
-        <span class="rnum">04</span>
-        <div class="rtrack"><span style="--p:80%;"></span></div>
-        <h4>Voeg review points toe</h4>
-        <p>Mensen houden controle over approvals, uitzonderingen en kwaliteit.</p>
-        <div class="rmeta"><span>Approvals</span><span>Uitzonderingen</span><span>Kwaliteit</span></div>
-      </div>
-      <div class="rung">
-        <span class="rnum">05</span>
-        <div class="rtrack"><span style="--p:100%;"></span></div>
-        <h4>Meet en breid uit</h4>
-        <p>Schaal alleen wat nuttig blijkt in echt werk.</p>
-        <div class="rmeta"><span>Meten</span><span>Uitbreiden</span></div>
-      </div>
+    <div class="progression" aria-label="Hoe het verloopt">
+      <span>Begrijpen</span><i></i><span>Bewijzen</span><i></i><span>Maken</span><i></i><span>Uitbreiden</span>
     </div>
   </div>
 </section>
 
-<!-- CASE STUDY / PROOF STRIP -->
-<section class="block">
-  <div class="container">
-    <div class="block-head">
-      <div><span class="label-mono"><span class="dot"></span>Hoe dit er in de praktijk uitziet</span></div>
-      <div>
-        <h2>Van handmatig asset werk naar een snellere production workflow.</h2>
-        <p class="block-lede" style="margin-top:16px;">In een retail asset workflow hielp AIHLPR een traag, handmatig content- en beeldproces omzetten naar een begeleide workflow met AI-supported generation, review en editing. Het doel was simpel: sneller bruikbare product assets maken, terwijl mensen controle houden over kwaliteit en final output.</p>
-      </div>
-    </div>
-    <div class="cs-panel2">
-      <div class="cs-bar">
-        <div class="cs-meta-inline">
-          <span class="kick">Case sketch</span>
-          <span class="dotsep"></span><span>Retail</span>
-          <span class="dotsep"></span><span>Content &amp; asset workflow</span>
-          <span class="dotsep"></span><span>Client-side testing</span>
-        </div>
-        <a class="btn btn-secondary" href="/nl/#work">Bekijk de case study <span class="arrow">→</span></a>
-      </div>
-      <div class="cs-diagram">
-        <svg viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace" aria-label="Before and after workflow comparison">
-          <defs>
-            <marker id="cs-ag" markerWidth="8" markerHeight="8" refX="5.5" refY="4" orient="auto"><path d="M1 1 L6 4 L1 7" fill="none" stroke="#9A9A96" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></marker>
-            <marker id="cs-ab" markerWidth="8" markerHeight="8" refX="5.5" refY="4" orient="auto"><path d="M1 1 L6 4 L1 7" fill="none" stroke="#3478E5" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></marker>
-          </defs>
-
-          <!-- ===== BEFORE ===== -->
-          <text x="20" y="106" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#8A8A8A">VOOR</text>
-          <text x="20" y="122" font-size="9" letter-spacing="0.08em" fill="#B0B0AC">handmatig</text>
-
-          <!-- nodes -->
-          <g fill="#fff" stroke="rgba(31,31,31,0.22)" stroke-width="1.3">
-            <rect x="150" y="88" width="112" height="44" rx="3"></rect>
-            <rect x="300" y="88" width="112" height="44" rx="3"></rect>
-            <rect x="450" y="88" width="112" height="44" rx="3"></rect>
-            <rect x="600" y="88" width="112" height="44" rx="3"></rect>
-            <rect x="750" y="88" width="112" height="44" rx="3"></rect>
-          </g>
-          <g font-size="10.5" letter-spacing="0.02em" fill="#4A4A4A" text-anchor="middle">
-            <text x="206" y="114">Brief</text>
-            <text x="356" y="114">Draft</text>
-            <text x="506" y="114">Review</text>
-            <text x="656" y="114">Edits</text>
-            <text x="806" y="114">Publiceren</text>
-          </g>
-          <!-- forward arrows -->
-          <g stroke="#9A9A96" stroke-width="1.2" fill="none">
-            <line x1="262" y1="110" x2="296" y2="110" marker-end="url(#cs-ag)"></line>
-            <line x1="412" y1="110" x2="446" y2="110" marker-end="url(#cs-ag)"></line>
-            <line x1="562" y1="110" x2="596" y2="110" marker-end="url(#cs-ag)"></line>
-            <line x1="712" y1="110" x2="746" y2="110" marker-end="url(#cs-ag)"></line>
-          </g>
-          <!-- rework loops -->
-          <g stroke="#B0B0AC" stroke-width="1.1" fill="none" stroke-dasharray="3 3">
-            <path d="M506 88 C 506 56, 356 56, 356 88" marker-end="url(#cs-ag)"></path>
-            <path d="M656 132 C 656 164, 506 164, 506 132" marker-end="url(#cs-ag)"></path>
-          </g>
-          <text x="431" y="48" font-size="9" letter-spacing="0.06em" fill="#B0B0AC" text-anchor="middle">rework loops</text>
-          <text x="581" y="182" font-size="9" letter-spacing="0.06em" fill="#B0B0AC" text-anchor="middle">heen en weer, traag</text>
-
-          <!-- divider / transformation band -->
-          <line x1="20" y1="210" x2="980" y2="210" stroke="rgba(31,31,31,0.10)" stroke-width="1" stroke-dasharray="2 4"></line>
-          <g>
-            <rect x="384" y="195" width="232" height="30" rx="15" fill="#fff" stroke="#3478E5" stroke-width="1.3"></rect>
-            <circle cx="404" cy="210" r="3.5" fill="#3478E5"></circle>
-            <text x="416" y="214" font-size="10" letter-spacing="0.08em" fill="#2A5FC0">AIHLPR · begeleid door AI, zelfde team</text>
-          </g>
-
-          <!-- ===== AFTER ===== -->
-          <text x="20" y="296" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#2A5FC0">NA</text>
-          <text x="20" y="312" font-size="9" letter-spacing="0.08em" fill="#8A8A8A">begeleid</text>
-
-          <!-- Brief -->
-          <rect x="150" y="278" width="112" height="44" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1.4"></rect>
-          <text x="206" y="304" font-size="10.5" fill="#1F1F1F" text-anchor="middle">Brief</text>
-          <!-- AI generation + edit (dark) -->
-          <rect x="300" y="278" width="170" height="44" rx="3" fill="#1F1F1F"></rect>
-          <rect x="438" y="284" width="26" height="14" rx="3" fill="rgba(87,148,234,0.22)"></rect>
-          <text x="451" y="294" font-size="8" letter-spacing="0.08em" fill="#7FB0FF" text-anchor="middle">AI</text>
-          <text x="312" y="300" font-size="10.5" letter-spacing="0.02em" fill="#fff">Generation</text>
-          <text x="312" y="313" font-size="8.5" letter-spacing="0.02em" fill="rgba(255,255,255,0.6)">+ editing</text>
-          <!-- Human review gate -->
-          <rect x="510" y="278" width="150" height="44" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1.4"></rect>
-          <circle cx="532" cy="300" r="9" fill="none" stroke="#3478E5" stroke-width="1.3"></circle>
-          <path d="M528 300 l3 3 l5 -6" fill="none" stroke="#3478E5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-          <text x="550" y="297" font-size="10" fill="#1F1F1F">Human</text>
-          <text x="550" y="309" font-size="10" fill="#1F1F1F">review</text>
-          <!-- Publish -->
-          <rect x="700" y="278" width="112" height="44" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1.4"></rect>
-          <text x="756" y="304" font-size="10.5" fill="#1F1F1F" text-anchor="middle">Publiceren</text>
-
-          <!-- forward arrows (blue) -->
-          <g stroke="#3478E5" stroke-width="1.3" fill="none">
-            <line x1="262" y1="300" x2="296" y2="300" marker-end="url(#cs-ab)"></line>
-            <line x1="470" y1="300" x2="506" y2="300" marker-end="url(#cs-ab)"></line>
-            <line x1="660" y1="300" x2="696" y2="300" marker-end="url(#cs-ab)"></line>
-          </g>
-
-          <!-- after annotations -->
-          <text x="385" y="344" font-size="9" letter-spacing="0.06em" fill="#8A8A8A" text-anchor="middle">bereidt voor &amp; draft</text>
-          <text x="585" y="344" font-size="9" letter-spacing="0.06em" fill="#8A8A8A" text-anchor="middle">mensen keuren goed</text>
-          <text x="836" y="304" font-size="9" letter-spacing="0.06em" fill="#2A5FC0">minder stappen, geen rework</text>
-        </svg>
-      </div>
-      <div class="cs-legend">
-        <span>Minder handmatige stappen</span>
-        <span>Snellere output cycles</span>
-        <span>Human review behouden</span>
-        <span>Een werkend platform, geen demo</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
 <section class="final-cta" id="contact">
   <div class="container">
     <div class="final-cta-card">
       <div class="final-cta-grid">
         <div>
-          <span class="label-mono"><span class="dot"></span>Start met één workflow</span>
-          <h2>Laat zien waar werk opstapelt.</h2>
-          <p>Breng één workflow mee die vandaag te veel handmatig werk vraagt. We helpen je de AI-ready stap vinden en de snelste nuttige versie definiëren om te bouwen.</p>
+          <span class="label-mono"><span class="dot"></span>Begin hier</span>
+          <h2>Weet je nog niet wat het eerste AI-project moet zijn?</h2>
+          <p>Kom met het bedrijfsprobleem, het experiment dat is vastgelopen of het idee waar je nog over twijfelt. We helpen uitzoeken of AI daar thuishoort en hoe de kleinste nuttige volgende stap eruitziet.</p>
         </div>
         <div class="final-cta-actions">
-          <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled">Vind je eerste AI-stap <span class="arrow">→</span></a>
-          <a class="btn btn-ghost" href="mailto:brinda@moralitybytes.eu">Boek een workflow call <span class="arrow">→</span></a>
+          <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Bespreek je AI-plannen <span class="arrow">→</span></a>
+          <a class="btn btn-ghost" href="mailto:brinda@moralitybytes.eu">Mail ons <span class="arrow">→</span></a>
         </div>
       </div>
     </div>
@@ -1037,13 +885,13 @@
     <div class="footer-grid">
       <div class="footer-brand">
         <img src="../../assets/aihlpr-logo-light.svg" alt="AIHLPR">
-        <p>Operational AI partner. We bouwen AI systems die passen bij hoe organisaties al werken, van één workflow tot de hele organisatie.</p>
+        <p>AI-transformatiepartner. AI onderdeel maken van hoe organisaties werken, van één use case tot de hele organisatie.</p>
       </div>
       <div class="footer-col">
         <h5>Wat we doen</h5>
         <ul>
-          <li><a href="ai-applications-and-platforms.html">Platforms &amp; Tools</a></li>
-          <li><a href="ai-workflow-infrastructure.html">Workflows</a></li>
+          <li><a href="ai-applications-and-platforms.html">Applications &amp; Platforms</a></li>
+          <li><a href="ai-workflow-infrastructure.html">Systems &amp; Workflows</a></li>
           <li><a href="scale-ups.html">Scale-ups</a></li>
           <li><a href="enterprise-ai.html">Enterprise</a></li>
         </ul>
@@ -1053,7 +901,7 @@
         <ul>
           <li><a href="/nl/#capabilities">Oplossingen</a></li>
           <li><a href="../../insights/index.html">Onze inzichten</a></li>
-          <li><a href="../about.html">Over AIHLPR</a></li>
+          <li><a href="../about.html">Over ons</a></li>
           <li><a href="/nl/#how">Hoe we werken</a></li>
           <li><a href="/nl/#work">Case studies</a></li>
         </ul>
@@ -1069,9 +917,9 @@
     <div class="footer-bottom">
       <a class="footer-mb" href="https://moralitybytes.eu" target="_blank" rel="noopener" aria-label="MoralityBytes">
         <img src="../../assets/moralitybytes-mark.svg" alt="" width="30" height="30">
-        <span>Een practice van <strong>MORALITY BYTES</strong></span>
+        <span>A practice of <strong>MORALITY BYTES</strong></span>
       </a>
-      <span>&copy; 2026 AIHLPR &middot; AI engineering, built to last</span>
+      <span>&copy; 2026 AIHLPR &middot; AI-transformatiepartner</span>
     </div>
   </div>
 </footer>
