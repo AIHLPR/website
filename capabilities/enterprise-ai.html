@@ -2195,12 +2195,10 @@
     <div class="toc-sticky">
       <div class="toc-label">On this page</div>
       <ol class="toc-list" id="tocList">
-        <li><a href="#applications"><span class="num">01</span> Where AI creates value</a></li>
-        <li><a href="#stalls"><span class="num">02</span> Where it gets difficult</a></li>
-        <li><a href="#generative"><span class="num">03</span> How we build</a></li>
-        <li><a href="#operational"><span class="num">04</span> How it becomes operational</a></li>
-        <li><a href="#governance"><span class="num">05</span> Governance in the workflow</a></li>
-        <li><a href="#regions"><span class="num">06</span> How it scales</a></li>
+        <li><a href="#difficult"><span class="num">01</span> Where it gets difficult</a></li>
+        <li><a href="#build"><span class="num">02</span> How we build</a></li>
+        <li><a href="#cost"><span class="num">03</span> Performance and cost</a></li>
+        <li><a href="#governed"><span class="num">04</span> Governed to scale</a></li>
       </ol>
     </div>
   </aside>
@@ -2212,1176 +2210,246 @@
   <div class="container hero-grid">
     <div class="hero-copy">
       <div class="hero-meta">
-        <span class="num">Capability</span>
+        <span class="num">Enterprise</span>
         <span class="sep"></span>
-        <span>ENTERPRISE AI</span>
+        <span>AI transformation for enterprise</span>
       </div>
-      <h1>Enterprise AI built around real operations</h1>
-      <p class="hero-lede">AIHLPR helps enterprises turn AI opportunities into working systems across existing workflows, teams, data and technology.</p>
-      <p class="hero-sub">We build practical AI systems that improve how work moves, support better decisions and keep people in control where accountability matters.</p>
+      <h1>Move AI from pilot to production without creating another layer of complexity.</h1>
+      <p class="hero-lede">We work with enterprise teams to design, build and scale AI systems within existing architecture, security standards and governance requirements.</p>
       <div class="hero-ctas">
         <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
-          Scope an enterprise AI system <span class="arrow">&rarr;</span>
+          Discuss your enterprise AI system <span class="arrow">&rarr;</span>
         </a>
-        <a class="btn btn-secondary" href="#generative">
-          See how production AI works <span class="arrow">&darr;</span>
+        <a class="btn btn-secondary" href="#build">
+          See how we build <span class="arrow">&darr;</span>
         </a>
       </div>
+      <p class="hero-risk">45 minutes. We’ll look at one system that needs to move beyond the pilot.</p>
     </div>
   </div>
 </section>
 
+<!-- TRUST STRIP -->
+<section class="ent-badges" aria-label="Trust">
+  <div class="container ent-badges-inner">
+    <span class="ent-badge">Enterprise delivery</span>
+    <span class="ent-badge">EU data options</span>
+    <span class="ent-badge">Security from the start</span>
+    <span class="ent-badge">Production ready</span>
+  </div>
+</section>
 
-
-
-
-<!-- USE CASES -->
 <style>
-  .usecases { padding: clamp(100px, 12vw, 160px) 0; border-top: 1px solid var(--hairline); background: var(--white); }
-  .usecases .block-head { margin-bottom: clamp(48px, 5vw, 72px); }
-  .uc-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(18px, 1.8vw, 26px); }
-  @media (max-width: 1100px) { .uc-grid { grid-template-columns: repeat(2, 1fr); } }
-  @media (max-width: 640px)  { .uc-grid { grid-template-columns: 1fr; } }
-  .uc { background: var(--white); border: 1px solid var(--hairline-strong); border-radius: 12px; padding: clamp(24px, 2.4vw, 32px); display: flex; flex-direction: column; gap: 14px; transition: border-color 200ms var(--ease); --c: #3478E5; }
-  .uc:hover { border-color: var(--ink); }
-  .uc .uc-head { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); }
-  .uc .uc-head .num { color: var(--c); font-weight: 700; }
-  .uc h3 { font-family: var(--font-display); font-weight: 500; font-size: clamp(20px, 1.7vw, 24px); letter-spacing: -0.02em; line-height: 1.2; color: var(--ink); margin: 0; max-width: 18ch; }
-  .uc .uc-body { font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
-  .uc .uc-stack { margin-top: auto; padding-top: 12px; border-top: 1px solid var(--hairline); font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.10em; color: var(--ink-muted); }
-  .uc .uc-stack b { color: var(--ink); font-weight: 700; letter-spacing: 0.04em; margin-right: 4px; }
+  .hero-risk { margin-top: 14px; font-size: 13px; font-style: italic; color: var(--ink-muted); max-width: 44ch; }
+  .ent-badges { border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); background: var(--white); }
+  .ent-badges-inner { display: flex; flex-wrap: wrap; gap: 10px; padding: clamp(16px,1.6vw,20px) 0; }
+  .ent-badge { display: inline-flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink-soft); padding: 8px 14px; border: 1px solid var(--hairline); border-radius: 999px; background: var(--surface-2); }
+  .ent-badge::before { content: ""; width: 6px; height: 6px; border-radius: 50%; background: var(--c, #3478E5); }
+  /* 02 · how we build: five stages */
+  .build { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--surface-2); }
+  .stages { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; border: 1px solid var(--hairline); border-radius: 16px; overflow: hidden; background: var(--white); margin-top: clamp(36px, 4vw, 56px); }
+  .stage { padding: clamp(22px, 2vw, 28px); border-right: 1px solid var(--hairline); display: flex; flex-direction: column; gap: 12px; min-height: 200px; }
+  .stage:last-child { border-right: 0; }
+  .stage .st-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--c, #3478E5); font-weight: 600; }
+  .stage .st-bar { height: 2px; background: var(--hairline); border-radius: 999px; overflow: hidden; }
+  .stage .st-bar span { display: block; height: 100%; width: var(--p); background: var(--c, #3478E5); }
+  .stage h3 { font-family: var(--font-display); font-weight: 500; font-size: clamp(17px, 1.35vw, 20px); letter-spacing: -0.015em; line-height: 1.25; margin: 0; }
+  .stage p { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); margin: 0; }
+  @media (max-width: 1080px) { .stages { grid-template-columns: repeat(2, 1fr); } .stage { border-bottom: 1px solid var(--hairline); } .stage:nth-child(2n) { border-right: 0; } }
+  @media (max-width: 600px) { .stages { grid-template-columns: 1fr; } .stage { border-right: 0; min-height: 0; } }
+  /* 03 · performance and cost */
+  .cost { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--white); }
+  .cost-grid { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: clamp(28px, 4vw, 64px); align-items: start; margin-top: clamp(36px, 4vw, 56px); }
+  .cost-list { display: flex; flex-direction: column; border-top: 1px solid var(--hairline-strong); }
+  .cost-item { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hairline); align-items: baseline; }
+  .cost-item dt { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
+  .cost-item dd { margin: 0; font-size: 14.5px; line-height: 1.55; color: var(--ink-soft); }
+  @media (max-width: 1000px) { .cost-grid { grid-template-columns: 1fr; } }
+  @media (max-width: 560px) { .cost-item { grid-template-columns: 1fr; gap: 6px; } }
+  /* the control surface */
+  .cs { border: 1px solid var(--hairline-strong); border-radius: 16px; background: var(--white); overflow: hidden; box-shadow: 0 24px 44px -32px rgba(31,31,31,.35); font-size: 12px; }
+  .cs::before { content: ""; display: block; height: 3px; background: linear-gradient(90deg, #E91E63, #9B59B6, #5794EA); }
+  .cs-top { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-bottom: 1px solid var(--hairline); background: var(--surface-2); }
+  .cs-top .t { font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); }
+  .cs-top .pill { margin-left: auto; }
+  .pill { display: inline-flex; align-items: center; gap: 6px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 9px; border-radius: 999px; white-space: nowrap; }
+  .pill::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: currentColor; }
+  .pill.ok { color: #136B4F; background: #E3F4EE; }
+  .pill.info { color: #2A5FC0; background: #E8F0FC; }
+  .cs-body { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; padding: 16px; }
+  .cs-card { border: 1px solid var(--hairline); border-radius: 12px; padding: 12px 14px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+  .cs-card.wide { grid-column: 1 / -1; }
+  .cs-card .h { display: flex; align-items: center; justify-content: space-between; gap: 8px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); }
+  .cs-card .v { font-family: var(--font-display); font-weight: 500; font-size: 15px; letter-spacing: -0.01em; }
+  .spark { display: flex; align-items: flex-end; gap: 4px; height: 44px; }
+  .spark i { flex: 1; background: #E8F0FC; border-radius: 2px 2px 0 0; height: var(--h); }
+  .spark i.hi { background: #5794EA; }
+  .mix { display: flex; height: 10px; border-radius: 999px; overflow: hidden; }
+  .mix i { display: block; height: 100%; }
+  .mix .s { width: 62%; background: #5794EA; } .mix .m { width: 31%; background: #9B59B6; } .mix .l { width: 7%; background: #E91E63; }
+  .legend { display: flex; gap: 12px; flex-wrap: wrap; font-size: 11px; color: var(--ink-soft); }
+  .legend span { display: inline-flex; align-items: center; gap: 6px; }
+  .legend i { width: 8px; height: 8px; border-radius: 2px; }
+  .routes { display: flex; flex-direction: column; gap: 6px; }
+  .route { display: flex; align-items: center; justify-content: space-between; gap: 10px; font-size: 11.5px; color: var(--ink-soft); }
+  .route b { font-weight: 500; color: var(--ink); }
+  .route .to { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.1em; text-transform: uppercase; }
+  .budget { height: 8px; border-radius: 999px; background: var(--surface); overflow: hidden; }
+  .budget i { display: block; height: 100%; width: 58%; background: linear-gradient(90deg, #5794EA, #9B59B6); border-radius: 999px; }
+  .cs-foot { display: flex; gap: 14px; flex-wrap: wrap; padding: 10px 16px 14px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); border-top: 1px solid var(--hairline); }
+  @media (max-width: 480px) { .cs-body { grid-template-columns: 1fr; } .cs-card.wide { grid-column: auto; } }
+  /* 04 · governed from pilot to scale */
+  .governed { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--surface-2); }
+  .gov-points { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); margin-top: clamp(32px, 4vw, 48px); }
+  .gov-point { padding-top: 14px; border-top: 2px solid var(--ink); }
+  .gov-point h3 { font-family: var(--font-display); font-weight: 500; font-size: 15.5px; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .gov-point p { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); margin: 0; }
+  @media (max-width: 1000px) { .gov-points { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 520px) { .gov-points { grid-template-columns: 1fr; } }
+  .proof-lines { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: clamp(36px, 4vw, 56px); }
+  .proof-line { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--white); text-decoration: none; color: var(--ink); transition: border-color 180ms var(--ease); }
+  .proof-line:hover { border-color: var(--ink); }
+  .proof-line b { font-family: var(--font-display); font-weight: 500; font-size: 16px; letter-spacing: -0.01em; }
+  .proof-line span { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); }
+  @media (max-width: 680px) { .proof-lines { grid-template-columns: 1fr; } }
+  .gov-close { margin-top: clamp(32px, 4vw, 48px); font-family: var(--font-display); font-weight: 500; font-size: clamp(20px, 1.8vw, 26px); letter-spacing: -0.015em; max-width: 30ch; }
 </style>
 
-<section class="apps-section" data-sec="applications" id="applications">
+<!-- 01 · WHERE ENTERPRISE AI GETS DIFFICULT -->
+<section class="stalls" data-sec="difficult" id="difficult">
   <div class="container">
     <div class="sec-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>01 &middot; Where AI creates value</span>
-        <h2>AI earns its place inside real workflows.</h2>
+        <span class="label-mono"><span class="dot"></span>01 &middot; Where enterprise AI gets difficult</span>
+        <h2>The model is rarely the hardest part.</h2>
       </div>
       <div class="block-lede">
-        <p>Enterprise AI is most useful when it improves work teams already do.</p>
-        <p style="margin-top:14px;">The opportunity is rarely one model or one chatbot. It is the workflow around it that determines whether AI creates real operational value.</p>
+        <p>Pilots prove that the intelligence works. Production has to make it reliable inside your systems, policies and budget.</p>
       </div>
     </div>
-
-    <div class="enter-quad" data-reveal>
-      <div class="enter-cell">
-        <div class="ec-top">
-          <span class="ec-num">01</span>
-          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 11a8.5 8.5 0 0 0-14.6-5.3M3.5 13a8.5 8.5 0 0 0 14.6 5.3"/><path d="M5 2.5v3.2h3.2M19 21.5v-3.2h-3.2"/></svg></span>
-        </div>
-        <h3>Operational workflows.</h3>
-        <p>Support repetitive, high volume work where teams need speed, consistency and review.</p>
-      </div>
-      <div class="enter-cell">
-        <div class="ec-top">
-          <span class="ec-num">02</span>
-          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h7l5 5v13H6z"/><path d="M13 3v5h5"/><path d="M9 13h6M9 16.5h4"/></svg></span>
-        </div>
-        <h3>Document and data workflows.</h3>
-        <p>Extract, structure, compare, summarise and route information across documents, files and internal data.</p>
-      </div>
-      <div class="enter-cell">
-        <div class="ec-top">
-          <span class="ec-num">03</span>
-          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="12" height="12" rx="1.3"/><path d="M9 21h12V9"/><path d="M3 9h12M9 3v12"/></svg></span>
-        </div>
-        <h3>Knowledge and decision support.</h3>
-        <p>Bring relevant information together to help teams understand situations and make better decisions.</p>
-      </div>
-      <div class="enter-cell">
-        <div class="ec-top">
-          <span class="ec-num">04</span>
-          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5.5" r="2.2"/><circle cx="18" cy="5.5" r="2.2"/><circle cx="12" cy="18.5" r="2.2"/><path d="M8 5.5h8M7.4 7.4 11 16.4M16.6 7.4 13 16.4"/></svg></span>
-        </div>
-        <h3>Internal applications.</h3>
-        <p>Build AI into purpose built tools around the way specific teams work.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="stalls" data-sec="stalls" id="stalls">
-  <div class="container">
-    <div class="sec-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>02 &middot; Where enterprise AI gets difficult</span>
-        <h2>What has to be true for AI to scale.</h2>
-      </div>
-      <div class="block-lede">
-        <p>Enterprise AI rarely slows down because the model cannot produce an answer. It slows down when the organisation around it is not ready.</p>
-      </div>
-    </div>
-
     <div class="stall-list">
       <div class="stall-row" data-reveal>
         <div class="sr-num">01</div>
         <div class="stall-main">
-          <div class="sr-titleline">
-            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 9 6.6 5.6a3 3 0 0 0-4.2 4.2L5.5 13"/><path d="M14 15l3.4 3.4a3 3 0 0 0 4.2-4.2L18.5 11"/><path d="M14.5 6.5 16 5M6.5 14.5 5 16M19 9.5 20.5 8M9.5 19 8 20.5"/></svg></span>
-            <h3>The workflow is fragmented.</h3>
-          </div>
-          <p>Work moves across teams, systems, vendors and manual handovers.</p>
+          <div class="sr-titleline"><h3>Integrating with existing systems and data</h3></div>
+          <p>Context lives in ERP, CRM, document stores and data platforms that were never designed to feed a model.</p>
         </div>
       </div>
-
       <div class="stall-row" data-reveal>
         <div class="sr-num">02</div>
         <div class="stall-main">
-          <div class="sr-titleline">
-            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="7.5" r="3.5"/><path d="M5 20a7 7 0 0 1 14 0"/><path d="M17.5 11.5h5M20 9l2.5 2.5L20 14" opacity="0.55"/></svg></span>
-            <h3>Ownership is unclear.</h3>
-          </div>
-          <p>There is no clear responsibility for outputs, exceptions, decisions or ongoing improvement.</p>
+          <div class="sr-titleline"><h3>Controlling what AI can access and do</h3></div>
+          <p>Permissions, review and escalation have to hold at the level of each action, not just at login.</p>
         </div>
       </div>
-
       <div class="stall-row" data-reveal>
         <div class="sr-num">03</div>
         <div class="stall-main">
-          <div class="sr-titleline">
-            <span class="sec-icon sr-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20.5 20.5 16 16"/><path d="M7.5 10.5 9.5 12.5 13 8.5" stroke-dasharray="1.5 2.2"/></svg></span>
-            <h3>Control arrives too late.</h3>
-          </div>
-          <p>Permissions, review, traceability and governance are added after the system is already built.</p>
+          <div class="sr-titleline"><h3>Keeping performance and cost predictable</h3></div>
+          <p>Usage grows, models change, and the cost profile can shift significantly as a pilot moves into production.</p>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- DARK BREATH (between 02 Stalls and 03 How we build) -->
-<div class="breath-dark">
-  <div class="container">
-    <span class="bd-eyebrow">The operational difference</span>
-    <p>Pilots prove what&rsquo;s <em>possible.</em> Production proves what&rsquo;s <b>real.</b></p>
-    <div class="bd-mark"></div>
-  </div>
-</div>
-
-<section class="genai-stack" data-rev="rag-v2" data-sec="generative" id="generative">
+<!-- 02 · HOW WE BUILD -->
+<section class="build" data-sec="build" id="build">
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>03 &middot; How we build</span>
-        <h2 style="margin-top:14px;">The right AI pattern for your workflow and data.</h2>
-      </div>
-      <p class="block-lede">We choose the technical pattern based on the workflow, the data, the risk profile and where the system needs to run.</p>
-    </div>
-
-    <div class="gs-stack">
-      <div class="gs-stack-pinned">
-        <div class="gs-stack-copy">
-      <div class="gs-panel" data-gs-idx="0">
-        <div class="gs-copy">
-          <span class="gs-eyebrow">RAG</span>
-          <h3>Retrieval-augmented generation.</h3>
-          <p>The model answers from <b>your data</b>, not its training set. Every answer carries source attribution, permissioned by the user asking.</p>
-          <details class="gs-tech">
-            <summary>Technical pattern</summary>
-            <span class="gs-stack-hint"><b>Stack &middot;</b> Vector store &middot; permissioned retrieval &middot; LLM</span>
-          </details>
-        </div>
-        <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 300" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <defs>
-              <pattern id="ragGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" stroke="rgba(31,31,31,0.04)" stroke-width="1" fill="none"/>
-              </pattern>
-              <linearGradient id="ragLLM" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#5794EA"/>
-                <stop offset="100%" stop-color="#3478E5"/>
-              </linearGradient>
-            </defs>
-            <rect width="480" height="300" fill="url(#ragGrid)"/>
-
-            <!-- Section label -->
-            <text x="20" y="14" font-size="8.5" letter-spacing="0.16em" fill="#8A8A8A">EXTERNAL KNOWLEDGE LAYER</text>
-            <line x1="200" y1="11" x2="460" y2="11" stroke="rgba(31,31,31,0.10)" stroke-width="0.6"/>
-
-            <!-- 1. USER + query input -->
-            <g transform="translate(20, 22)">
-              <circle cx="13" cy="13" r="11" fill="#fff" stroke="#3478E5" stroke-width="1.2"/>
-              <circle cx="13" cy="10" r="3.3" fill="none" stroke="#3478E5" stroke-width="1.2"/>
-              <path d="M 6 20 Q 13 16 20 20" fill="none" stroke="#3478E5" stroke-width="1.2" stroke-linecap="round"/>
-              <text x="32" y="9" font-size="8" letter-spacing="0.14em" fill="#8A8A8A">USER</text>
-              <rect x="32" y="13" width="224" height="16" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
-              <text x="40" y="24" font-size="10" fill="#1F1F1F">What is our refund window?</text>
-            </g>
-
-            <!-- arrow down: QUERY -->
-            <line x1="148" y1="56" x2="148" y2="72" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="144,68 148,76 152,68" fill="#3478E5"/>
-            <text x="156" y="68" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">QUERY</text>
-
-            <!-- 2. RETRIEVER -->
-            <g transform="translate(20, 82)">
-              <rect x="0" y="0" width="256" height="38" rx="5" fill="#fff" stroke="#3478E5" stroke-width="1.2"/>
-              <g transform="translate(14, 10)">
-                <circle cx="9" cy="9" r="7" fill="none" stroke="#3478E5" stroke-width="1.4"/>
-                <line x1="14" y1="14" x2="20" y2="20" stroke="#3478E5" stroke-width="1.4" stroke-linecap="round"/>
-              </g>
-              <text x="44" y="16" font-size="10.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">RETRIEVER</text>
-              <text x="44" y="29" font-size="9" fill="#8A8A8A">embed &middot; cosine &middot; top-k 12</text>
-            </g>
-
-            <!-- Side branch: bidirectional connection to VECTOR STORE + chips -->
-            <line x1="276" y1="95" x2="298" y2="95" stroke="#3478E5" stroke-width="0.9" stroke-dasharray="3 3"/>
-            <polygon points="294,91 302,95 294,99" fill="#3478E5"/>
-            <line x1="298" y1="107" x2="276" y2="107" stroke="#3478E5" stroke-width="0.9" stroke-dasharray="3 3"/>
-            <polygon points="280,103 272,107 280,111" fill="#3478E5"/>
-            <text x="306" y="84" font-size="6.5" letter-spacing="0.12em" fill="#3478E5">SEMANTIC</text>
-            <text x="306" y="120" font-size="6.5" letter-spacing="0.12em" fill="#3478E5">CHUNKS</text>
-
-            <!-- VECTOR STORE (compact cylinder) -->
-            <g transform="translate(354, 78)">
-              <rect x="0" y="6" width="40" height="34" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-              <ellipse cx="20" cy="6" rx="20" ry="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-              <ellipse cx="20" cy="40" rx="20" ry="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-              <ellipse cx="20" cy="20" rx="20" ry="3.5" fill="none" stroke="#3478E5" stroke-width="0.5" opacity="0.5"/>
-              <text x="20" y="20" text-anchor="middle" font-size="7" letter-spacing="0.12em" fill="#3478E5" font-weight="700">VECTOR</text>
-              <text x="20" y="30" text-anchor="middle" font-size="7" letter-spacing="0.12em" fill="#3478E5" font-weight="700">STORE</text>
-            </g>
-
-            <!-- Source chips (compact, right) -->
-            <g transform="translate(402, 80)">
-              <rect x="0" y="0" width="62" height="12" rx="2" fill="#fff" stroke="#3478E5" stroke-width="0.7"/>
-              <text x="5" y="9" font-size="7.5" font-weight="700" fill="#3478E5">refund-policy</text>
-              <rect x="0" y="14" width="62" height="12" rx="2" fill="#fff" stroke="#3478E5" stroke-width="0.7"/>
-              <text x="5" y="23" font-size="7.5" font-weight="700" fill="#3478E5">ticket #4612</text>
-              <rect x="0" y="28" width="62" height="12" rx="2" fill="#fff" stroke="#3478E5" stroke-width="0.7"/>
-              <text x="5" y="37" font-size="7.5" font-weight="700" fill="#3478E5">goodwill-tier</text>
-            </g>
-
-            <!-- arrow down: QUERY + CONTEXT -->
-            <line x1="148" y1="122" x2="148" y2="150" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="144,146 148,154 152,146" fill="#3478E5"/>
-            <text x="156" y="140" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">QUERY + CONTEXT</text>
-
-            <!-- 3. LLM -->
-            <g transform="translate(20, 160)">
-              <rect x="0" y="0" width="256" height="42" rx="5" fill="url(#ragLLM)" stroke="#3478E5" stroke-width="1.2"/>
-              <g transform="translate(14, 11)" stroke="#fff" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M 12 4 Q 4 4 4 13 Q 4 22 12 24 Q 20 22 20 13 Q 20 4 12 4 Z"/>
-                <path d="M 12 4 L 12 24"/>
-                <path d="M 6 11 Q 12 13 18 11"/>
-                <path d="M 6 17 Q 12 19 18 17"/>
-              </g>
-              <text x="44" y="18" font-size="11" font-weight="700" fill="#fff" letter-spacing="0.12em">LLM</text>
-              <text x="44" y="32" font-size="9" fill="rgba(255,255,255,0.88)">grounded generation</text>
-            </g>
-
-            <!-- arrow down to ANSWER -->
-            <line x1="148" y1="204" x2="148" y2="222" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="144,218 148,226 152,218" fill="#3478E5"/>
-
-            <!-- 4. ANSWER -->
-            <g transform="translate(20, 230)">
-              <rect x="0" y="0" width="256" height="50" rx="5" fill="#fff" stroke="#3478E5" stroke-width="1.2"/>
-              <text x="10" y="13" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">ANSWER &middot; CITED</text>
-              <text x="10" y="28" font-size="10" fill="#1F1F1F">30 days &middot; damage-on-arrival</text>
-              <g transform="translate(10, 34)">
-                <rect x="0"  y="0" width="38" height="11" rx="2" fill="color-mix(in oklab, #3478E5 8%, #fff)" stroke="#3478E5" stroke-width="0.8"/>
-                <text x="19" y="8" text-anchor="middle" font-size="7" fill="#3478E5" font-weight="700">&sect;3.2</text>
-                <rect x="44" y="0" width="44" height="11" rx="2" fill="color-mix(in oklab, #3478E5 8%, #fff)" stroke="#3478E5" stroke-width="0.8"/>
-                <text x="66" y="8" text-anchor="middle" font-size="7" fill="#3478E5" font-weight="700">#4612</text>
-                <rect x="94" y="0" width="38" height="11" rx="2" fill="color-mix(in oklab, #3478E5 8%, #fff)" stroke="#3478E5" stroke-width="0.8"/>
-                <text x="113" y="8" text-anchor="middle" font-size="7" fill="#3478E5" font-weight="700">SOP</text>
-              </g>
-            </g>
-
-            <!-- footer caption -->
-            <text x="20" y="294" font-size="7.5" letter-spacing="0.16em" fill="#8A8A8A">DATA STAYS OUTSIDE THE MODEL &middot; ANSWERS CARRY SOURCES</text>
-          </svg></div>
-      </div>
-
-      <div class="gs-panel" data-gs-idx="1">
-        <div class="gs-copy">
-          <span class="gs-eyebrow">Fine-tuning</span>
-          <h3>Domain adaptation.</h3>
-          <p>Fine-tune open or closed models on your documents, your decisions, your voice. The model speaks <b>your language</b>, not a generic one — used when a general model is close but needs to learn the team's decisions and document style.</p>
-          <details class="gs-tech">
-            <summary>Technical pattern</summary>
-            <span class="gs-stack-hint"><b>Stack &middot;</b> Open weights &middot; LoRA / QLoRA &middot; eval suite &middot; registry</span>
-          </details>
-        </div>
-        <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 320" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <defs>
-              <pattern id="ftGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" stroke="rgba(31,31,31,0.04)" stroke-width="1" fill="none"/>
-              </pattern>
-              <linearGradient id="ftBase" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"   stop-color="#5794EA"/>
-                <stop offset="100%" stop-color="#3478E5"/>
-              </linearGradient>
-              <linearGradient id="ftTuned" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"   stop-color="#2E5BB8"/>
-                <stop offset="100%" stop-color="#1E3F8F"/>
-              </linearGradient>
-              <linearGradient id="ftTrain" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#3E6FCF"/>
-                <stop offset="100%" stop-color="#23489C"/>
-              </linearGradient>
-            </defs>
-            <rect width="480" height="320" fill="url(#ftGrid)"/>
-
-            <!-- Section label, top -->
-            <text x="20" y="14" font-size="8.5" letter-spacing="0.16em" fill="#8A8A8A">KNOWLEDGE ABSORBED INTO THE MODEL</text>
-            <line x1="262" y1="11" x2="460" y2="11" stroke="rgba(31,31,31,0.10)" stroke-width="0.6"/>
-
-            <!-- YOUR CORPUS column -->
-            <g transform="translate(20, 30)">
-              <text x="0" y="0" font-size="8" letter-spacing="0.14em" fill="#8A8A8A">YOUR CORPUS</text>
-              <rect x="0" y="10" width="100" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
-              <text x="10" y="24" font-size="9" font-weight="700" fill="#3478E5">contracts</text>
-              <rect x="0" y="36" width="100" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
-              <text x="10" y="50" font-size="9" font-weight="700" fill="#3478E5">prior decisions</text>
-              <rect x="0" y="62" width="100" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
-              <text x="10" y="76" font-size="9" font-weight="700" fill="#3478E5">domain SOPs</text>
-              <rect x="0" y="88" width="100" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
-              <text x="10" y="102" font-size="9" font-weight="700" fill="#3478E5">labeled pairs</text>
-            </g>
-
-            <!-- Arrow corpus -> training -->
-            <line x1="124" y1="78" x2="166" y2="78" stroke="#3478E5" stroke-width="1.2"/>
-            <polygon points="160,74 168,78 160,82" fill="#3478E5"/>
-
-            <!-- TRAINING box (vertical, lavender) -->
-            <g transform="translate(172, 38)">
-              <rect x="0" y="0" width="108" height="80" rx="6" fill="url(#ftTrain)" stroke="#3478E5" stroke-width="1.2"/>
-              <text x="54" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fff" letter-spacing="0.12em">TRAINING</text>
-              <line x1="14" y1="28" x2="94" y2="28" stroke="rgba(255,255,255,0.35)" stroke-width="0.6"/>
-              <text x="54" y="44" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.88)" letter-spacing="0.10em">LoRA &middot; QLoRA</text>
-              <text x="54" y="58" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.78)">3 epochs &middot; lr 1e-4</text>
-              <text x="54" y="72" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.78)">batch 8 &middot; bf16</text>
-            </g>
-
-            <!-- Arrow training -> tuned model -->
-            <line x1="282" y1="78" x2="320" y2="78" stroke="#3478E5" stroke-width="1.2"/>
-            <polygon points="314,74 322,78 314,82" fill="#3478E5"/>
-
-            <!-- TUNED MODEL: layered stack showing frozen + tuned weights -->
-            <g transform="translate(326, 30)">
-              <text x="0" y="0" font-size="8" letter-spacing="0.14em" fill="#8A8A8A">TUNED MODEL</text>
-              <!-- Frozen base layers (top, blue) -->
-              <g>
-                <rect x="0"  y="10" width="120" height="10" rx="2" fill="url(#ftBase)" stroke="#3478E5" stroke-width="0.5"/>
-                <rect x="0"  y="22" width="120" height="10" rx="2" fill="url(#ftBase)" stroke="#3478E5" stroke-width="0.5"/>
-                <rect x="0"  y="34" width="120" height="10" rx="2" fill="url(#ftBase)" stroke="#3478E5" stroke-width="0.5"/>
-              </g>
-              <text x="124" y="29" font-size="7" letter-spacing="0.14em" fill="#3478E5" font-weight="700">FROZEN</text>
-              <!-- Tuned layers (bottom, lavender) -->
-              <g>
-                <rect x="0"  y="48" width="120" height="10" rx="2" fill="url(#ftTuned)" stroke="#3478E5" stroke-width="0.5"/>
-                <rect x="0"  y="60" width="120" height="10" rx="2" fill="url(#ftTuned)" stroke="#3478E5" stroke-width="0.5"/>
-                <rect x="0"  y="72" width="120" height="10" rx="2" fill="url(#ftTuned)" stroke="#3478E5" stroke-width="0.5"/>
-                <rect x="0"  y="84" width="120" height="10" rx="2" fill="url(#ftTuned)" stroke="#3478E5" stroke-width="0.5"/>
-              </g>
-              <text x="124" y="73" font-size="7" letter-spacing="0.14em" fill="#3478E5" font-weight="700">TUNED</text>
-              <text x="0" y="110" font-size="7.5" letter-spacing="0.12em" fill="#8A8A8A">your domain &middot; your voice</text>
-            </g>
-
-            <!-- Divider line -->
-            <line x1="20" y1="166" x2="460" y2="166" stroke="rgba(31,31,31,0.10)" stroke-width="0.6"/>
-
-            <!-- Inference label -->
-            <text x="20" y="182" font-size="8.5" letter-spacing="0.16em" fill="#8A8A8A">INFERENCE &middot; NO EXTERNAL STORE</text>
-
-            <!-- USER -> TUNED MODEL -> ANSWER (single line) -->
-            <g transform="translate(20, 196)">
-              <circle cx="14" cy="14" r="13" fill="#fff" stroke="#3478E5" stroke-width="1.3"/>
-              <circle cx="14" cy="11" r="4"  fill="none" stroke="#3478E5" stroke-width="1.3"/>
-              <path d="M 6 22 Q 14 17 22 22" fill="none" stroke="#3478E5" stroke-width="1.3" stroke-linecap="round"/>
-            </g>
-            <text x="20" y="240" font-size="8" letter-spacing="0.14em" fill="#8A8A8A">USER</text>
-
-            <line x1="56" y1="210" x2="158" y2="210" stroke="#3478E5" stroke-width="1.2"/>
-            <polygon points="152,206 160,210 152,214" fill="#3478E5"/>
-            <text x="64" y="204" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">QUERY</text>
-
-            <!-- Tuned model badge (compact, layered fill) -->
-            <g transform="translate(162, 192)">
-              <rect x="0" y="0" width="142" height="40" rx="5" fill="url(#ftBase)" stroke="#3478E5" stroke-width="1.2"/>
-              <rect x="0" y="22" width="142" height="18" rx="0" fill="url(#ftTuned)"/>
-              <rect x="0" y="0"  width="142" height="40" rx="5" fill="none" stroke="#3478E5" stroke-width="1.2"/>
-              <text x="71" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" letter-spacing="0.10em">TUNED MODEL</text>
-              <text x="71" y="34" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.92)">knowledge in weights</text>
-            </g>
-
-            <line x1="308" y1="210" x2="346" y2="210" stroke="#3478E5" stroke-width="1.2"/>
-            <polygon points="340,206 348,210 340,214" fill="#3478E5"/>
-
-            <!-- Answer chip -->
-            <g transform="translate(348, 192)">
-              <rect x="0" y="0" width="128" height="40" rx="5" fill="#fff" stroke="#3478E5" stroke-width="1.2"/>
-              <text x="10" y="14" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">ANSWER</text>
-              <text x="10" y="29" font-size="9.5" fill="#1F1F1F">30 days &middot; standard</text>
-            </g>
-
-            <!-- Eval gates strip -->
-            <text x="20" y="262" font-size="8.5" letter-spacing="0.16em" fill="#8A8A8A">EVAL GATES</text>
-            <g transform="translate(20, 270)">
-              <rect x="0"   y="0" width="106" height="20" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-              <text x="53"  y="13" text-anchor="middle" font-size="9" fill="#1F1F1F">accuracy</text>
-              <rect x="112" y="0" width="106" height="20" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-              <text x="165" y="13" text-anchor="middle" font-size="9" fill="#1F1F1F">grounding</text>
-              <rect x="224" y="0" width="106" height="20" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-              <text x="277" y="13" text-anchor="middle" font-size="9" fill="#1F1F1F">safety</text>
-              <rect x="336" y="0" width="106" height="20" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-              <text x="389" y="13" text-anchor="middle" font-size="9" fill="#1F1F1F">latency</text>
-            </g>
-
-            <!-- Footer caption -->
-            <text x="20" y="310" font-size="8" letter-spacing="0.16em" fill="#8A8A8A">DATA BECOMES THE MODEL &middot; ANSWERS COME FROM TRAINED WEIGHTS</text>
-          </svg></div>
-      </div>
-
-      <div class="gs-panel" data-gs-idx="2">
-        <div class="gs-copy">
-          <span class="gs-eyebrow">Agents</span>
-          <h3>Agentic workflows.</h3>
-          <p>Long-running AI processes that carry repeated tasks across business systems and hand back to a person when judgement is needed.</p>
-          <details class="gs-tech">
-            <summary>Technical pattern</summary>
-            <span class="gs-stack-hint"><b>Stack &middot;</b> Tool calling &middot; planner &middot; memory &middot; human-in-loop gate</span>
-          </details>
-        </div>
-        <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 240" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <rect x="20" y="14" width="120" height="28" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="80" y="32" text-anchor="middle" font-size="10" font-weight="600" fill="#3478E5">TASK</text>
-            <line x1="80" y1="46" x2="80" y2="64" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="76,60 80,68 84,60" fill="#3478E5"/>
-            <rect x="20" y="70" width="120" height="28" rx="3" fill="#3478E5" stroke="#3478E5"/>
-            <text x="80" y="88" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" letter-spacing="0.10em">PLAN</text>
-            <line x1="80" y1="102" x2="80" y2="118" stroke="#3478E5" stroke-width="1"/>
-            <rect x="20" y="124" width="120" height="24" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="80" y="140" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Step 1 &middot; lookup</text>
-            <line x1="80" y1="152" x2="80" y2="166" stroke="#3478E5" stroke-width="1"/>
-            <rect x="20" y="170" width="120" height="24" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="80" y="186" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Step 2 &middot; compute</text>
-            <line x1="80" y1="198" x2="80" y2="212" stroke="#3478E5" stroke-width="1"/>
-            <rect x="20" y="216" width="120" height="20" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="80" y="230" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Step 3 &middot; prepare</text>
-            <text x="180" y="26" font-size="9" letter-spacing="0.14em" fill="#8A8A8A">TOOLS</text>
-            <rect x="180" y="34" width="110" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="190" y="49" font-size="9.5" fill="#1F1F1F">CRM &middot; read</text>
-            <rect x="180" y="62" width="110" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="190" y="77" font-size="9.5" fill="#1F1F1F">Calc &middot; pricing</text>
-            <rect x="180" y="90" width="110" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="190" y="105" font-size="9.5" fill="#1F1F1F">Docs &middot; search</text>
-            <rect x="180" y="118" width="110" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="190" y="133" font-size="9.5" fill="#1F1F1F">ERP &middot; propose</text>
-            <rect x="320" y="80" width="130" height="60" rx="6" fill="#fff" stroke="#3478E5" stroke-width="1.4" stroke-dasharray="5 3"/>
-            <text x="385" y="106" text-anchor="middle" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.10em">HUMAN</text>
-            <text x="385" y="124" text-anchor="middle" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.10em">REVIEW</text>
-            <line x1="296" y1="110" x2="318" y2="110" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="312,106 320,110 312,114" fill="#3478E5"/>
-            <rect x="320" y="160" width="130" height="32" rx="3" fill="#3478E5" stroke="#3478E5"/>
-            <text x="385" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" letter-spacing="0.14em">APPROVED</text>
-          </svg></div>
-      </div>
-
-      <div class="gs-panel" data-gs-idx="3">
-        <div class="gs-copy">
-          <span class="gs-eyebrow">Vector search</span>
-          <h3>Semantic retrieval.</h3>
-          <p>Find by meaning, not keywords. Documents, prior decisions, customer cases, all searchable by what they <b>mean</b>.</p>
-          <details class="gs-tech">
-            <summary>Technical pattern</summary>
-            <span class="gs-stack-hint"><b>Stack &middot;</b> pgvector &middot; Pinecone &middot; OpenSearch &middot; in-house indexes</span>
-          </details>
-        </div>
-        <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 240" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <rect x="20" y="14" width="180" height="26" rx="3" fill="#fff" stroke="#8A8A8A" stroke-width="0.8"/>
-            <text x="30" y="32" font-size="10" fill="#1F1F1F">customer churn signals</text>
-            <text x="20" y="56" font-size="9" letter-spacing="0.14em" fill="#8A8A8A">QUERY &middot; NATURAL LANGUAGE</text>
-            <text x="248" y="30" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.12em">EMBED &rarr;</text>
-            <rect x="20" y="70" width="440" height="160" rx="6" fill="#FAFAF8" stroke="#3478E5" stroke-width="0.8" stroke-dasharray="3 3"/>
-            <text x="32" y="86" font-size="9" letter-spacing="0.14em" fill="#8A8A8A">VECTOR SPACE</text>
-            <circle cx="68"  cy="120" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="110" cy="180" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="160" cy="100" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="80"  cy="200" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="200" cy="200" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="380" cy="100" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="420" cy="170" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="350" cy="200" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="220" cy="110" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="60"  cy="150" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="120" cy="135" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="440" cy="200" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="295" cy="175" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="245" cy="195" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="270" cy="140" r="5" fill="#3478E5"/>
-            <circle cx="270" cy="140" r="42" fill="none" stroke="#3478E5" stroke-width="0.8" stroke-dasharray="3 3"/>
-            <text x="282" y="138" font-size="9" font-weight="700" fill="#3478E5">query</text>
-            <circle cx="248" cy="115" r="4" fill="#3478E5"/>
-            <circle cx="300" cy="120" r="4" fill="#3478E5"/>
-            <circle cx="306" cy="160" r="4" fill="#3478E5"/>
-            <circle cx="240" cy="170" r="4" fill="#3478E5"/>
-            <text x="448" y="225" text-anchor="end" font-size="9" letter-spacing="0.14em" fill="#3478E5" font-weight="700">TOP-K NEIGHBOURS</text>
-          </svg></div>
-      </div>
-
-      <div class="gs-panel" data-gs-idx="4">
-        <div class="gs-copy">
-          <span class="gs-eyebrow">Multi-modal</span>
-          <h3>Text, vision, voice.</h3>
-          <p>Vision models classify and extract. Speech models transcribe. Language models reason. All under <b>one governance frame</b>, audited the same way.</p>
-          <details class="gs-tech">
-            <summary>Technical pattern</summary>
-            <span class="gs-stack-hint"><b>Stack &middot;</b> CLIP &middot; Whisper &middot; GPT-4o &middot; Claude &middot; Gemini</span>
-          </details>
-        </div>
-        <div class="gs-diagram gs-diagram-mobile"><svg viewBox="0 0 480 240" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <rect x="20" y="20" width="130" height="50" rx="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="85" y="42" text-anchor="middle" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.14em">TEXT</text>
-            <text x="85" y="58" text-anchor="middle" font-size="9" fill="#8A8A8A">documents &middot; tickets</text>
-            <rect x="20" y="90" width="130" height="50" rx="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="85" y="112" text-anchor="middle" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.14em">VISION</text>
-            <text x="85" y="128" text-anchor="middle" font-size="9" fill="#8A8A8A">images &middot; scans</text>
-            <rect x="20" y="160" width="130" height="50" rx="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="85" y="182" text-anchor="middle" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.14em">VOICE</text>
-            <text x="85" y="198" text-anchor="middle" font-size="9" fill="#8A8A8A">calls &middot; meetings</text>
-            <path d="M 150 45 Q 220 80 290 118" stroke="#3478E5" stroke-width="1" fill="none"/>
-            <path d="M 150 115 L 290 118" stroke="#3478E5" stroke-width="1" fill="none"/>
-            <path d="M 150 185 Q 220 150 290 122" stroke="#3478E5" stroke-width="1" fill="none"/>
-            <polygon points="284,114 292,118 284,122" fill="#3478E5"/>
-            <rect x="290" y="92" width="140" height="56" rx="6" fill="#3478E5" stroke="#3478E5"/>
-            <text x="360" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="0.14em">UNIFIED</text>
-            <text x="360" y="134" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="0.14em">REASONING</text>
-            <text x="240" y="220" font-size="9" letter-spacing="0.14em" fill="#8A8A8A" text-anchor="middle">UNDER ONE GOVERNANCE FRAME</text>
-            <rect x="170" y="170" width="290" height="32" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8" stroke-dasharray="4 3"/>
-            <text x="184" y="190" font-size="9.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">POLICY</text>
-            <text x="252" y="190" font-size="9.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">AUDIT</text>
-            <text x="316" y="190" font-size="9.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">REVIEW</text>
-            <text x="384" y="190" font-size="9.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">RECORD</text>
-          </svg></div>
-      </div>
-        </div>
-        <aside class="gs-sticky" aria-hidden="true">
-          <div class="gs-stage">
-          <div class="gs-diagram is-active" data-gs-stage="0"><svg viewBox="0 0 480 300" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <defs>
-              <pattern id="ragGridSt" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" stroke="rgba(31,31,31,0.04)" stroke-width="1" fill="none"/>
-              </pattern>
-              <linearGradient id="ragLLMSt" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#5794EA"/>
-                <stop offset="100%" stop-color="#3478E5"/>
-              </linearGradient>
-            </defs>
-            <rect width="480" height="300" fill="url(#ragGridSt)"/>
-
-            <!-- Section label -->
-            <text x="20" y="14" font-size="8.5" letter-spacing="0.16em" fill="#8A8A8A">EXTERNAL KNOWLEDGE LAYER</text>
-            <line x1="200" y1="11" x2="460" y2="11" stroke="rgba(31,31,31,0.10)" stroke-width="0.6"/>
-
-            <!-- 1. USER + query input -->
-            <g transform="translate(20, 22)">
-              <circle cx="13" cy="13" r="11" fill="#fff" stroke="#3478E5" stroke-width="1.2"/>
-              <circle cx="13" cy="10" r="3.3" fill="none" stroke="#3478E5" stroke-width="1.2"/>
-              <path d="M 6 20 Q 13 16 20 20" fill="none" stroke="#3478E5" stroke-width="1.2" stroke-linecap="round"/>
-              <text x="32" y="9" font-size="8" letter-spacing="0.14em" fill="#8A8A8A">USER</text>
-              <rect x="32" y="13" width="224" height="16" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
-              <text x="40" y="24" font-size="10" fill="#1F1F1F">What is our refund window?</text>
-            </g>
-
-            <!-- arrow down: QUERY -->
-            <line x1="148" y1="56" x2="148" y2="72" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="144,68 148,76 152,68" fill="#3478E5"/>
-            <text x="156" y="68" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">QUERY</text>
-
-            <!-- 2. RETRIEVER -->
-            <g transform="translate(20, 82)">
-              <rect x="0" y="0" width="256" height="38" rx="5" fill="#fff" stroke="#3478E5" stroke-width="1.2"/>
-              <g transform="translate(14, 10)">
-                <circle cx="9" cy="9" r="7" fill="none" stroke="#3478E5" stroke-width="1.4"/>
-                <line x1="14" y1="14" x2="20" y2="20" stroke="#3478E5" stroke-width="1.4" stroke-linecap="round"/>
-              </g>
-              <text x="44" y="16" font-size="10.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">RETRIEVER</text>
-              <text x="44" y="29" font-size="9" fill="#8A8A8A">embed &middot; cosine &middot; top-k 12</text>
-            </g>
-
-            <!-- Side branch: bidirectional connection to VECTOR STORE + chips -->
-            <line x1="276" y1="95" x2="298" y2="95" stroke="#3478E5" stroke-width="0.9" stroke-dasharray="3 3"/>
-            <polygon points="294,91 302,95 294,99" fill="#3478E5"/>
-            <line x1="298" y1="107" x2="276" y2="107" stroke="#3478E5" stroke-width="0.9" stroke-dasharray="3 3"/>
-            <polygon points="280,103 272,107 280,111" fill="#3478E5"/>
-            <text x="306" y="84" font-size="6.5" letter-spacing="0.12em" fill="#3478E5">SEMANTIC</text>
-            <text x="306" y="120" font-size="6.5" letter-spacing="0.12em" fill="#3478E5">CHUNKS</text>
-
-            <!-- VECTOR STORE (compact cylinder) -->
-            <g transform="translate(354, 78)">
-              <rect x="0" y="6" width="40" height="34" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-              <ellipse cx="20" cy="6" rx="20" ry="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-              <ellipse cx="20" cy="40" rx="20" ry="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-              <ellipse cx="20" cy="20" rx="20" ry="3.5" fill="none" stroke="#3478E5" stroke-width="0.5" opacity="0.5"/>
-              <text x="20" y="20" text-anchor="middle" font-size="7" letter-spacing="0.12em" fill="#3478E5" font-weight="700">VECTOR</text>
-              <text x="20" y="30" text-anchor="middle" font-size="7" letter-spacing="0.12em" fill="#3478E5" font-weight="700">STORE</text>
-            </g>
-
-            <!-- Source chips (compact, right) -->
-            <g transform="translate(402, 80)">
-              <rect x="0" y="0" width="62" height="12" rx="2" fill="#fff" stroke="#3478E5" stroke-width="0.7"/>
-              <text x="5" y="9" font-size="7.5" font-weight="700" fill="#3478E5">refund-policy</text>
-              <rect x="0" y="14" width="62" height="12" rx="2" fill="#fff" stroke="#3478E5" stroke-width="0.7"/>
-              <text x="5" y="23" font-size="7.5" font-weight="700" fill="#3478E5">ticket #4612</text>
-              <rect x="0" y="28" width="62" height="12" rx="2" fill="#fff" stroke="#3478E5" stroke-width="0.7"/>
-              <text x="5" y="37" font-size="7.5" font-weight="700" fill="#3478E5">goodwill-tier</text>
-            </g>
-
-            <!-- arrow down: QUERY + CONTEXT -->
-            <line x1="148" y1="122" x2="148" y2="150" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="144,146 148,154 152,146" fill="#3478E5"/>
-            <text x="156" y="140" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">QUERY + CONTEXT</text>
-
-            <!-- 3. LLM -->
-            <g transform="translate(20, 160)">
-              <rect x="0" y="0" width="256" height="42" rx="5" fill="url(#ragLLMSt)" stroke="#3478E5" stroke-width="1.2"/>
-              <g transform="translate(14, 11)" stroke="#fff" fill="none" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M 12 4 Q 4 4 4 13 Q 4 22 12 24 Q 20 22 20 13 Q 20 4 12 4 Z"/>
-                <path d="M 12 4 L 12 24"/>
-                <path d="M 6 11 Q 12 13 18 11"/>
-                <path d="M 6 17 Q 12 19 18 17"/>
-              </g>
-              <text x="44" y="18" font-size="11" font-weight="700" fill="#fff" letter-spacing="0.12em">LLM</text>
-              <text x="44" y="32" font-size="9" fill="rgba(255,255,255,0.88)">grounded generation</text>
-            </g>
-
-            <!-- arrow down to ANSWER -->
-            <line x1="148" y1="204" x2="148" y2="222" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="144,218 148,226 152,218" fill="#3478E5"/>
-
-            <!-- 4. ANSWER -->
-            <g transform="translate(20, 230)">
-              <rect x="0" y="0" width="256" height="50" rx="5" fill="#fff" stroke="#3478E5" stroke-width="1.2"/>
-              <text x="10" y="13" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">ANSWER &middot; CITED</text>
-              <text x="10" y="28" font-size="10" fill="#1F1F1F">30 days &middot; damage-on-arrival</text>
-              <g transform="translate(10, 34)">
-                <rect x="0"  y="0" width="38" height="11" rx="2" fill="color-mix(in oklab, #3478E5 8%, #fff)" stroke="#3478E5" stroke-width="0.8"/>
-                <text x="19" y="8" text-anchor="middle" font-size="7" fill="#3478E5" font-weight="700">&sect;3.2</text>
-                <rect x="44" y="0" width="44" height="11" rx="2" fill="color-mix(in oklab, #3478E5 8%, #fff)" stroke="#3478E5" stroke-width="0.8"/>
-                <text x="66" y="8" text-anchor="middle" font-size="7" fill="#3478E5" font-weight="700">#4612</text>
-                <rect x="94" y="0" width="38" height="11" rx="2" fill="color-mix(in oklab, #3478E5 8%, #fff)" stroke="#3478E5" stroke-width="0.8"/>
-                <text x="113" y="8" text-anchor="middle" font-size="7" fill="#3478E5" font-weight="700">SOP</text>
-              </g>
-            </g>
-
-            <!-- footer caption -->
-            <text x="20" y="294" font-size="7.5" letter-spacing="0.16em" fill="#8A8A8A">DATA STAYS OUTSIDE THE MODEL &middot; ANSWERS CARRY SOURCES</text>
-          </svg></div>
-
-          <div class="gs-diagram" data-gs-stage="1"><svg viewBox="0 0 480 320" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <defs>
-              <pattern id="ftGridSt" width="20" height="20" patternUnits="userSpaceOnUse">
-                <path d="M 20 0 L 0 0 0 20" stroke="rgba(31,31,31,0.04)" stroke-width="1" fill="none"/>
-              </pattern>
-              <linearGradient id="ftBaseSt" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"   stop-color="#5794EA"/>
-                <stop offset="100%" stop-color="#3478E5"/>
-              </linearGradient>
-              <linearGradient id="ftTunedSt" x1="0" y1="0" x2="1" y2="0">
-                <stop offset="0%"   stop-color="#2E5BB8"/>
-                <stop offset="100%" stop-color="#1E3F8F"/>
-              </linearGradient>
-              <linearGradient id="ftTrainSt" x1="0" y1="0" x2="0" y2="1">
-                <stop offset="0%"   stop-color="#3E6FCF"/>
-                <stop offset="100%" stop-color="#23489C"/>
-              </linearGradient>
-            </defs>
-            <rect width="480" height="320" fill="url(#ftGridSt)"/>
-
-            <text x="20" y="14" font-size="8.5" letter-spacing="0.16em" fill="#8A8A8A">KNOWLEDGE ABSORBED INTO THE MODEL</text>
-            <line x1="262" y1="11" x2="460" y2="11" stroke="rgba(31,31,31,0.10)" stroke-width="0.6"/>
-
-            <g transform="translate(20, 30)">
-              <text x="0" y="0" font-size="8" letter-spacing="0.14em" fill="#8A8A8A">YOUR CORPUS</text>
-              <rect x="0" y="10" width="100" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
-              <text x="10" y="24" font-size="9" font-weight="700" fill="#3478E5">contracts</text>
-              <rect x="0" y="36" width="100" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
-              <text x="10" y="50" font-size="9" font-weight="700" fill="#3478E5">prior decisions</text>
-              <rect x="0" y="62" width="100" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
-              <text x="10" y="76" font-size="9" font-weight="700" fill="#3478E5">domain SOPs</text>
-              <rect x="0" y="88" width="100" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.9"/>
-              <text x="10" y="102" font-size="9" font-weight="700" fill="#3478E5">labeled pairs</text>
-            </g>
-
-            <line x1="124" y1="78" x2="166" y2="78" stroke="#3478E5" stroke-width="1.2"/>
-            <polygon points="160,74 168,78 160,82" fill="#3478E5"/>
-
-            <g transform="translate(172, 38)">
-              <rect x="0" y="0" width="108" height="80" rx="6" fill="url(#ftTrainSt)" stroke="#3478E5" stroke-width="1.2"/>
-              <text x="54" y="20" text-anchor="middle" font-size="10.5" font-weight="700" fill="#fff" letter-spacing="0.12em">TRAINING</text>
-              <line x1="14" y1="28" x2="94" y2="28" stroke="rgba(255,255,255,0.35)" stroke-width="0.6"/>
-              <text x="54" y="44" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.88)" letter-spacing="0.10em">LoRA &middot; QLoRA</text>
-              <text x="54" y="58" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.78)">3 epochs &middot; lr 1e-4</text>
-              <text x="54" y="72" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.78)">batch 8 &middot; bf16</text>
-            </g>
-
-            <line x1="282" y1="78" x2="320" y2="78" stroke="#3478E5" stroke-width="1.2"/>
-            <polygon points="314,74 322,78 314,82" fill="#3478E5"/>
-
-            <g transform="translate(326, 30)">
-              <text x="0" y="0" font-size="8" letter-spacing="0.14em" fill="#8A8A8A">TUNED MODEL</text>
-              <g>
-                <rect x="0"  y="10" width="120" height="10" rx="2" fill="url(#ftBaseSt)" stroke="#3478E5" stroke-width="0.5"/>
-                <rect x="0"  y="22" width="120" height="10" rx="2" fill="url(#ftBaseSt)" stroke="#3478E5" stroke-width="0.5"/>
-                <rect x="0"  y="34" width="120" height="10" rx="2" fill="url(#ftBaseSt)" stroke="#3478E5" stroke-width="0.5"/>
-              </g>
-              <text x="124" y="29" font-size="7" letter-spacing="0.14em" fill="#3478E5" font-weight="700">FROZEN</text>
-              <g>
-                <rect x="0"  y="48" width="120" height="10" rx="2" fill="url(#ftTunedSt)" stroke="#3478E5" stroke-width="0.5"/>
-                <rect x="0"  y="60" width="120" height="10" rx="2" fill="url(#ftTunedSt)" stroke="#3478E5" stroke-width="0.5"/>
-                <rect x="0"  y="72" width="120" height="10" rx="2" fill="url(#ftTunedSt)" stroke="#3478E5" stroke-width="0.5"/>
-                <rect x="0"  y="84" width="120" height="10" rx="2" fill="url(#ftTunedSt)" stroke="#3478E5" stroke-width="0.5"/>
-              </g>
-              <text x="124" y="73" font-size="7" letter-spacing="0.14em" fill="#3478E5" font-weight="700">TUNED</text>
-              <text x="0" y="110" font-size="7.5" letter-spacing="0.12em" fill="#8A8A8A">your domain &middot; your voice</text>
-            </g>
-
-            <line x1="20" y1="166" x2="460" y2="166" stroke="rgba(31,31,31,0.10)" stroke-width="0.6"/>
-
-            <text x="20" y="182" font-size="8.5" letter-spacing="0.16em" fill="#8A8A8A">INFERENCE &middot; NO EXTERNAL STORE</text>
-
-            <g transform="translate(20, 196)">
-              <circle cx="14" cy="14" r="13" fill="#fff" stroke="#3478E5" stroke-width="1.3"/>
-              <circle cx="14" cy="11" r="4"  fill="none" stroke="#3478E5" stroke-width="1.3"/>
-              <path d="M 6 22 Q 14 17 22 22" fill="none" stroke="#3478E5" stroke-width="1.3" stroke-linecap="round"/>
-            </g>
-            <text x="20" y="240" font-size="8" letter-spacing="0.14em" fill="#8A8A8A">USER</text>
-
-            <line x1="56" y1="210" x2="158" y2="210" stroke="#3478E5" stroke-width="1.2"/>
-            <polygon points="152,206 160,210 152,214" fill="#3478E5"/>
-            <text x="64" y="204" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">QUERY</text>
-
-            <g transform="translate(162, 192)">
-              <rect x="0" y="0" width="142" height="40" rx="5" fill="url(#ftBaseSt)" stroke="#3478E5" stroke-width="1.2"/>
-              <rect x="0" y="22" width="142" height="18" rx="0" fill="url(#ftTunedSt)"/>
-              <rect x="0" y="0"  width="142" height="40" rx="5" fill="none" stroke="#3478E5" stroke-width="1.2"/>
-              <text x="71" y="16" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" letter-spacing="0.10em">TUNED MODEL</text>
-              <text x="71" y="34" text-anchor="middle" font-size="8" fill="rgba(255,255,255,0.92)">knowledge in weights</text>
-            </g>
-
-            <line x1="308" y1="210" x2="346" y2="210" stroke="#3478E5" stroke-width="1.2"/>
-            <polygon points="340,206 348,210 340,214" fill="#3478E5"/>
-
-            <g transform="translate(348, 192)">
-              <rect x="0" y="0" width="128" height="40" rx="5" fill="#fff" stroke="#3478E5" stroke-width="1.2"/>
-              <text x="10" y="14" font-size="7.5" letter-spacing="0.14em" fill="#8A8A8A">ANSWER</text>
-              <text x="10" y="29" font-size="9.5" fill="#1F1F1F">30 days &middot; standard</text>
-            </g>
-
-            <text x="20" y="262" font-size="8.5" letter-spacing="0.16em" fill="#8A8A8A">EVAL GATES</text>
-            <g transform="translate(20, 270)">
-              <rect x="0"   y="0" width="106" height="20" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-              <text x="53"  y="13" text-anchor="middle" font-size="9" fill="#1F1F1F">accuracy</text>
-              <rect x="112" y="0" width="106" height="20" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-              <text x="165" y="13" text-anchor="middle" font-size="9" fill="#1F1F1F">grounding</text>
-              <rect x="224" y="0" width="106" height="20" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-              <text x="277" y="13" text-anchor="middle" font-size="9" fill="#1F1F1F">safety</text>
-              <rect x="336" y="0" width="106" height="20" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-              <text x="389" y="13" text-anchor="middle" font-size="9" fill="#1F1F1F">latency</text>
-            </g>
-
-            <text x="20" y="310" font-size="8" letter-spacing="0.16em" fill="#8A8A8A">DATA BECOMES THE MODEL &middot; ANSWERS COME FROM TRAINED WEIGHTS</text>
-          </svg></div>
-
-          <div class="gs-diagram" data-gs-stage="2"><svg viewBox="0 0 480 240" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <rect x="20" y="14" width="120" height="28" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="80" y="32" text-anchor="middle" font-size="10" font-weight="600" fill="#3478E5">TASK</text>
-            <line x1="80" y1="46" x2="80" y2="64" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="76,60 80,68 84,60" fill="#3478E5"/>
-            <rect x="20" y="70" width="120" height="28" rx="3" fill="#3478E5" stroke="#3478E5"/>
-            <text x="80" y="88" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" letter-spacing="0.10em">PLAN</text>
-            <line x1="80" y1="102" x2="80" y2="118" stroke="#3478E5" stroke-width="1"/>
-            <rect x="20" y="124" width="120" height="24" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="80" y="140" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Step 1 &middot; lookup</text>
-            <line x1="80" y1="152" x2="80" y2="166" stroke="#3478E5" stroke-width="1"/>
-            <rect x="20" y="170" width="120" height="24" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="80" y="186" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Step 2 &middot; compute</text>
-            <line x1="80" y1="198" x2="80" y2="212" stroke="#3478E5" stroke-width="1"/>
-            <rect x="20" y="216" width="120" height="20" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="80" y="230" text-anchor="middle" font-size="9.5" fill="#1F1F1F">Step 3 &middot; prepare</text>
-            <text x="180" y="26" font-size="9" letter-spacing="0.14em" fill="#8A8A8A">TOOLS</text>
-            <rect x="180" y="34" width="110" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="190" y="49" font-size="9.5" fill="#1F1F1F">CRM &middot; read</text>
-            <rect x="180" y="62" width="110" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="190" y="77" font-size="9.5" fill="#1F1F1F">Calc &middot; pricing</text>
-            <rect x="180" y="90" width="110" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="190" y="105" font-size="9.5" fill="#1F1F1F">Docs &middot; search</text>
-            <rect x="180" y="118" width="110" height="22" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8"/>
-            <text x="190" y="133" font-size="9.5" fill="#1F1F1F">ERP &middot; propose</text>
-            <rect x="320" y="80" width="130" height="60" rx="6" fill="#fff" stroke="#3478E5" stroke-width="1.4" stroke-dasharray="5 3"/>
-            <text x="385" y="106" text-anchor="middle" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.10em">HUMAN</text>
-            <text x="385" y="124" text-anchor="middle" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.10em">REVIEW</text>
-            <line x1="296" y1="110" x2="318" y2="110" stroke="#3478E5" stroke-width="1"/>
-            <polygon points="312,106 320,110 312,114" fill="#3478E5"/>
-            <rect x="320" y="160" width="130" height="32" rx="3" fill="#3478E5" stroke="#3478E5"/>
-            <text x="385" y="180" text-anchor="middle" font-size="10" font-weight="700" fill="#fff" letter-spacing="0.14em">APPROVED</text>
-          </svg></div>
-
-          <div class="gs-diagram" data-gs-stage="3"><svg viewBox="0 0 480 240" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <rect x="20" y="14" width="180" height="26" rx="3" fill="#fff" stroke="#8A8A8A" stroke-width="0.8"/>
-            <text x="30" y="32" font-size="10" fill="#1F1F1F">customer churn signals</text>
-            <text x="20" y="56" font-size="9" letter-spacing="0.14em" fill="#8A8A8A">QUERY &middot; NATURAL LANGUAGE</text>
-            <text x="248" y="30" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.12em">EMBED &rarr;</text>
-            <rect x="20" y="70" width="440" height="160" rx="6" fill="#FAFAF8" stroke="#3478E5" stroke-width="0.8" stroke-dasharray="3 3"/>
-            <text x="32" y="86" font-size="9" letter-spacing="0.14em" fill="#8A8A8A">VECTOR SPACE</text>
-            <circle cx="68"  cy="120" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="110" cy="180" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="160" cy="100" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="80"  cy="200" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="200" cy="200" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="380" cy="100" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="420" cy="170" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="350" cy="200" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="220" cy="110" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="60"  cy="150" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="120" cy="135" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="440" cy="200" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="295" cy="175" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="245" cy="195" r="3" fill="#8A8A8A" opacity="0.5"/>
-            <circle cx="270" cy="140" r="5" fill="#3478E5"/>
-            <circle cx="270" cy="140" r="42" fill="none" stroke="#3478E5" stroke-width="0.8" stroke-dasharray="3 3"/>
-            <text x="282" y="138" font-size="9" font-weight="700" fill="#3478E5">query</text>
-            <circle cx="248" cy="115" r="4" fill="#3478E5"/>
-            <circle cx="300" cy="120" r="4" fill="#3478E5"/>
-            <circle cx="306" cy="160" r="4" fill="#3478E5"/>
-            <circle cx="240" cy="170" r="4" fill="#3478E5"/>
-            <text x="448" y="225" text-anchor="end" font-size="9" letter-spacing="0.14em" fill="#3478E5" font-weight="700">TOP-K NEIGHBOURS</text>
-          </svg></div>
-
-          <div class="gs-diagram" data-gs-stage="4"><svg viewBox="0 0 480 240" font-family="JetBrains Mono, ui-monospace, monospace" aria-hidden="true">
-            <rect x="20" y="20" width="130" height="50" rx="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="85" y="42" text-anchor="middle" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.14em">TEXT</text>
-            <text x="85" y="58" text-anchor="middle" font-size="9" fill="#8A8A8A">documents &middot; tickets</text>
-            <rect x="20" y="90" width="130" height="50" rx="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="85" y="112" text-anchor="middle" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.14em">VISION</text>
-            <text x="85" y="128" text-anchor="middle" font-size="9" fill="#8A8A8A">images &middot; scans</text>
-            <rect x="20" y="160" width="130" height="50" rx="4" fill="#fff" stroke="#3478E5" stroke-width="1"/>
-            <text x="85" y="182" text-anchor="middle" font-size="10" font-weight="700" fill="#3478E5" letter-spacing="0.14em">VOICE</text>
-            <text x="85" y="198" text-anchor="middle" font-size="9" fill="#8A8A8A">calls &middot; meetings</text>
-            <path d="M 150 45 Q 220 80 290 118" stroke="#3478E5" stroke-width="1" fill="none"/>
-            <path d="M 150 115 L 290 118" stroke="#3478E5" stroke-width="1" fill="none"/>
-            <path d="M 150 185 Q 220 150 290 122" stroke="#3478E5" stroke-width="1" fill="none"/>
-            <polygon points="284,114 292,118 284,122" fill="#3478E5"/>
-            <rect x="290" y="92" width="140" height="56" rx="6" fill="#3478E5" stroke="#3478E5"/>
-            <text x="360" y="118" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="0.14em">UNIFIED</text>
-            <text x="360" y="134" text-anchor="middle" font-size="11" font-weight="700" fill="#fff" letter-spacing="0.14em">REASONING</text>
-            <text x="240" y="220" font-size="9" letter-spacing="0.14em" fill="#8A8A8A" text-anchor="middle">UNDER ONE GOVERNANCE FRAME</text>
-            <rect x="170" y="170" width="290" height="32" rx="3" fill="#fff" stroke="#3478E5" stroke-width="0.8" stroke-dasharray="4 3"/>
-            <text x="184" y="190" font-size="9.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">POLICY</text>
-            <text x="252" y="190" font-size="9.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">AUDIT</text>
-            <text x="316" y="190" font-size="9.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">REVIEW</text>
-            <text x="384" y="190" font-size="9.5" font-weight="700" fill="#3478E5" letter-spacing="0.10em">RECORD</text>
-          </svg></div>
-          </div>
-        </aside>
+        <span class="label-mono"><span class="dot"></span>02 &middot; How we build</span>
+        <h2 style="margin-top:14px;">A clear path from pilot to production.</h2>
       </div>
     </div>
-
-  </div>
-</section>
-
-
-<!-- 04 · HOW AI BECOMES OPERATIONAL + 05 · GOVERNANCE + EU MAP -->
-<style>
-  .layer-section { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--white); }
-  .layer-section.is-tinted { background: var(--surface); }
-  .layer-section .sec-head { display: grid; grid-template-columns: 1.1fr 1fr; gap: clamp(32px, 5vw, 72px); align-items: start; margin-bottom: clamp(40px, 5vw, 64px); }
-  @media (max-width: 760px) { .layer-section .sec-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 32px; } }
-  .layer-section .sec-head h2 { margin-top: 14px; max-width: 22ch; }
-  .layer-section .sec-head .block-lede { font-size: clamp(15px, 1.1vw, 16.5px); line-height: 1.65; color: var(--ink-soft); max-width: 52ch; font-family: var(--font-body); letter-spacing: normal; }
-  .layer-section .sec-head .block-lede p + p { margin-top: 12px; }
-
-  /* 04 · OPERATIONAL — compact three-across cards */
-  .ops-layers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
-  .ops-layer {
-    display: flex; flex-direction: column;
-    gap: 14px;
-    background: var(--white);
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    padding: clamp(24px, 2.4vw, 32px);
-    transition: box-shadow 240ms var(--ease), border-color 240ms var(--ease);
-  }
-  .ops-layer:hover { box-shadow: 0 24px 48px -32px rgba(31,31,31,0.30); border-color: var(--hairline-strong); }
-  .ops-layer .ol-rail { display: flex; flex-direction: row; align-items: center; gap: 14px; }
-  .ops-layer .ol-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--accent); font-weight: 600; }
-  .ops-layer .ol-line { display: none; }
-  .ops-body { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
-  .ops-body h3 { font-size: clamp(19px, 1.7vw, 23px); letter-spacing: -0.02em; margin: 0; }
-  .ops-body p { color: var(--ink-soft); font-size: 14px; line-height: 1.58; margin: 0; }
-  @media (max-width: 760px) {
-    .ops-layers { grid-template-columns: 1fr; }
-  }
-
-  /* 05 · GOVERNANCE — 2x2 bordered cards */
-  .gov2-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-  .gov2-cell {
-    background: var(--white);
-    border: 1px solid var(--hairline);
-    border-radius: 14px;
-    padding: clamp(24px, 2.6vw, 34px);
-    display: flex; flex-direction: column; gap: 14px;
-    transition: border-color 240ms var(--ease), box-shadow 240ms var(--ease);
-  }
-  .gov2-cell:hover { border-color: var(--hairline-strong); box-shadow: 0 24px 48px -34px rgba(31,31,31,0.28); }
-  .gov2-cell .gc-top { display: flex; align-items: center; gap: 14px; }
-  .gov2-cell .gc-num { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; color: var(--accent); font-weight: 600; }
-  .gov2-cell h3 { font-size: clamp(19px, 1.7vw, 23px); letter-spacing: -0.02em; margin: 0; }
-  .gov2-cell p { color: var(--ink-soft); font-size: 14px; line-height: 1.58; margin: 0; }
-  .gov2-cell .gc-foot { margin-top: auto; padding-top: 6px; }
-  @media (max-width: 760px) { .gov2-grid { grid-template-columns: 1fr; } }
-
-  /* EU residency dot-grid map (Compliance card) */
-  .eu-map { margin-top: 8px; display: flex; gap: 22px; align-items: center; flex-wrap: wrap; }
-  .eu-dots { display: grid; gap: 3px; }
-  .eu-dots .eu-dot { width: 4px; height: 4px; border-radius: 999px; background: transparent; }
-  .eu-dots .eu-dot.land { background: var(--ink-muted); opacity: 0.5; }
-  .eu-dots .eu-dot.city {
-    background: var(--accent); width: 6px; height: 6px;
-    margin: -1px;
-    box-shadow: 0 0 0 3px var(--accent-soft, rgba(52,120,229,0.10));
-    opacity: 1;
-  }
-  .eu-legend { display: flex; flex-direction: column; gap: 10px; }
-  .eu-legend .el-cap { font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink-muted); }
-  .eu-legend .el-item { display: flex; align-items: center; gap: 9px; font-family: var(--font-mono); font-size: 11.5px; color: var(--ink); letter-spacing: 0.04em; }
-  .eu-legend .el-item .el-pin {
-    width: 7px; height: 7px; border-radius: 999px;
-    background: var(--accent);
-    box-shadow: 0 0 0 3px var(--accent-soft, rgba(52,120,229,0.10));
-    flex: none;
-  }
-</style>
-
-<section class="layer-section" data-sec="operational" id="operational">
-  <div class="container">
-    <div class="sec-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>04 &middot; How it becomes operational</span>
-        <h2>A model becomes useful when the workflow around it works.</h2>
-      </div>
-      <p class="block-lede">The system needs to connect to real work, handle what happens next and remain dependable when things do not go as expected.</p>
-    </div>
-
-    <div class="ops-layers">
-      <div class="ops-layer" data-reveal>
-        <div class="ol-rail">
-          <span class="ol-num">01</span>
-          <span class="sec-icon ol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><ellipse cx="12" cy="5.5" rx="8" ry="3"/><path d="M4 5.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6M4 11.5v6c0 1.7 3.6 3 8 3s8-1.3 8-3v-6"/></svg></span>
-          <span class="ol-line"></span>
-        </div>
-        <div class="ops-body">
-          <h3>Connect.</h3>
-          <p>Work with the systems, data and tools already used by the organisation.</p>
-        </div>
-      </div>
-      <div class="ops-layer" data-reveal>
-        <div class="ol-rail">
-          <span class="ol-num">02</span>
-          <span class="sec-icon ol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h5a5 5 0 0 1 5 5M7 18h5a5 5 0 0 0 5-5"/></svg></span>
-          <span class="ol-line"></span>
-        </div>
-        <div class="ops-body">
-          <h3>Review and handle exceptions.</h3>
-          <p>Route uncertain or sensitive cases to the right person.</p>
-        </div>
-      </div>
-      <div class="ops-layer" data-reveal>
-        <div class="ol-rail">
-          <span class="ol-num">03</span>
-          <span class="sec-icon ol-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="13" rx="1.4"/><path d="M6 12l2.6-3.2 2 2 2.6-4 2 3.2H18"/><path d="M9 21h6M12 17v4"/></svg></span>
-          <span class="ol-line"></span>
-        </div>
-        <div class="ops-body">
-          <h3>Act and improve.</h3>
-          <p>Turn outputs into actions, capture feedback and measure how the system performs in use.</p>
-        </div>
-      </div>
+    <div class="stages">
+      <article class="stage" data-reveal><span class="st-num">01</span><div class="st-bar"><span style="--p:20%"></span></div><h3>Understand the environment</h3><p>Architecture, data, permissions, existing systems and technical constraints come first.</p></article>
+      <article class="stage" data-reveal><span class="st-num">02</span><div class="st-bar"><span style="--p:40%"></span></div><h3>Design the intelligence layer</h3><p>Choose models, context, decision logic and boundaries around the job the system needs to do.</p></article>
+      <article class="stage" data-reveal><span class="st-num">03</span><div class="st-bar"><span style="--p:60%"></span></div><h3>Put it into real use</h3><p>Build against real data and workflows, with evaluation and review designed into the system.</p></article>
+      <article class="stage" data-reveal><span class="st-num">04</span><div class="st-bar"><span style="--p:80%"></span></div><h3>Productionise the system</h3><p>Infrastructure, monitoring, security, deployment and ownership are made repeatable.</p></article>
+      <article class="stage" data-reveal><span class="st-num">05</span><div class="st-bar"><span style="--p:100%"></span></div><h3>Scale what proves useful</h3><p>Extend only where usage and evaluation show that the system is worth expanding.</p></article>
     </div>
   </div>
 </section>
 
-<section class="layer-section is-tinted" data-sec="governance" id="governance">
-  <div class="container">
-    <div class="sec-head">
-      <div>
-        <span class="label-mono"><span class="dot"></span>05 &middot; Governance built into the workflow</span>
-        <h2>Governance designed into the workflow from the start.</h2>
-      </div>
-      <div class="block-lede">
-        <p>Compliance, oversight, and review work best as part of how the system runs. We design boundaries, accountability, traceability, and review states into the workflow from the start.</p>
-      </div>
-    </div>
-
-    <div class="gov2-grid" data-reveal>
-      <div class="gov2-cell">
-        <div class="gc-top">
-          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 4H4v16h2M18 4h2v16h-2"/><path d="M12 4v16" stroke-dasharray="2 3"/></svg></span>
-          <span class="gc-num">01</span>
-        </div>
-        <h3>Clear system boundaries.</h3>
-        <p>What AI can draft, suggest, classify, retrieve, or prepare is defined separately from what humans must approve, publish, escalate, or override.</p>
-        <div class="gc-foot"><div class="chip-row"><span>Model limits</span><span>Approval rules</span><span>Escalation paths</span></div></div>
-      </div>
-      <div class="gov2-cell">
-        <div class="gc-top">
-          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="3.3"/><path d="M5.5 20a6.5 6.5 0 0 1 13 0"/></svg></span>
-          <span class="gc-num">02</span>
-        </div>
-        <h3>Human accountability.</h3>
-        <p>Each workflow has named roles: owner, operator, reviewer, approver, and auditor. People know who maintains the system, who reviews outputs, and who signs off before operational use.</p>
-        <div class="gc-foot"><div class="chip-row"><span>Owner</span><span>Operator</span><span>Reviewer</span><span>Approver</span><span>Auditor</span></div></div>
-      </div>
-      <div class="gov2-cell">
-        <div class="gc-top">
-          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6Z"/><path d="M9.4 12l1.8 1.8 3.4-3.8"/></svg></span>
-          <span class="gc-num">03</span>
-        </div>
-        <h3>Reviewable outputs.</h3>
-        <p>Outputs should be traceable enough for teams to understand what was generated, what changed, who reviewed it, and what was approved.</p>
-        <div class="gc-foot"><div class="chip-row"><span>Logs</span><span>Version history</span><span>Review trails</span><span>Evidence</span></div></div>
-      </div>
-      <div class="gov2-cell">
-        <div class="gc-top">
-          <span class="sec-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v5c0 4.6 3 7.6 7 9 4-1.4 7-4.4 7-9V6Z"/><path d="M9 11.5l2 2 4-4.4"/></svg></span>
-          <span class="gc-num">04</span>
-        </div>
-        <h3>Compliance readiness.</h3>
-        <p>GDPR, EU AI Act, security, and internal policy requirements are easier to manage when data boundaries, human oversight, and auditability are built into the workflow from the start.</p>
-        <div class="eu-map">
-          <div class="eu-dots" style="grid-template-columns: repeat(13, 4px);"><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot city" title="Amsterdam"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot city" title="Frankfurt"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot land"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i><i class="eu-dot"></i></div>
-          <div class="eu-legend">
-            <span class="el-cap">EU residency</span>
-            <span class="el-item"><span class="el-pin"></span>Amsterdam</span>
-            <span class="el-item"><span class="el-pin"></span>Frankfurt</span>
-          </div>
-        </div>
-        <div class="gc-foot"><div class="chip-row"><span>GDPR</span><span>EU AI Act</span><span>Access control</span><span>Auditability</span></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<!-- SECTION 06. How it scales & expands (regional deployment + organisational reach) -->
-<section class="block borrowed" data-sec="regions" id="regions">
+<!-- 03 · PERFORMANCE AND COST AT SCALE -->
+<section class="cost" data-sec="cost" id="cost">
   <div class="container">
     <div class="block-head">
       <div>
-        <span class="label-mono"><span class="dot"></span>06 &middot; How it scales</span>
-        <h2 style="margin-top:14px;">From one workflow to the layer your business runs on.</h2>
+        <span class="label-mono"><span class="dot"></span>03 &middot; Performance and cost at scale</span>
+        <h2 style="margin-top:14px;">AI cost is an architecture decision.</h2>
       </div>
-      <p class="block-lede">One workflow proves the model. One division adopts it. Cross-functional teams pick it up, and the same operating layer extends across markets — each region with its own data residency, reviewers, and regulatory overlay. Same foundation, same controls.</p>
+      <p class="block-lede">Model choice, token use, routing, infrastructure and evaluation all affect what an AI system costs to run. We design these together rather than treating cost optimisation as something to fix after launch.</p>
     </div>
-
-    <div class="topo-expand" aria-label="Topology expansion">
-      <div class="topo-step">
-        <span class="ts-num">01</span>
-        <h3>One division</h3>
-        <div class="ts-vis" aria-hidden="true">
-          <i style="left:46%;top:42%"></i>
+    <div class="cost-grid">
+      <dl class="cost-list">
+        <div class="cost-item"><dt>Infrastructure as code</dt><dd>Repeatable environments, deployments and configuration.</dd></div>
+        <div class="cost-item"><dt>Model routing</dt><dd>Use different models where their capability and cost make sense.</dd></div>
+        <div class="cost-item"><dt>Token efficiency</dt><dd>Reduce unnecessary context, repeated calls and oversized model usage.</dd></div>
+        <div class="cost-item"><dt>Evaluation &amp; monitoring</dt><dd>Track quality, behaviour and cost as the system changes.</dd></div>
+        <div class="cost-item"><dt>Cost visibility</dt><dd>Make usage and model spend visible enough to manage.</dd></div>
+      </dl>
+      <div class="cs" role="img" aria-label="A control surface for a running AI system: usage over thirty days, the mix of small, mid and large models, routing rules, evaluation status, and spend against budget.">
+        <div class="cs-top"><span class="t">Control surface</span><span class="t">&middot;</span><span class="t">Last 30 days</span><span class="pill ok">Within budget</span></div>
+        <div class="cs-body">
+          <div class="cs-card wide">
+            <div class="h"><span>Usage</span><span>Requests per day</span></div>
+            <div class="spark" aria-hidden="true"><i style="--h:38%"></i><i style="--h:44%"></i><i style="--h:41%"></i><i style="--h:52%"></i><i style="--h:49%"></i><i style="--h:58%"></i><i style="--h:63%"></i><i style="--h:57%"></i><i style="--h:66%"></i><i style="--h:71%"></i><i style="--h:68%"></i><i style="--h:74%"></i><i style="--h:79%"></i><i class="hi" style="--h:84%"></i></div>
+          </div>
+          <div class="cs-card">
+            <div class="h"><span>Model mix</span><span>62 / 31 / 7</span></div>
+            <div class="mix" aria-hidden="true"><i class="s"></i><i class="m"></i><i class="l"></i></div>
+            <div class="legend"><span><i style="background:#5794EA"></i>Small</span><span><i style="background:#9B59B6"></i>Mid</span><span><i style="background:#E91E63"></i>Large</span></div>
+          </div>
+          <div class="cs-card">
+            <div class="h"><span>Routing</span><span>By task</span></div>
+            <div class="routes">
+              <div class="route"><b>Classification</b><span class="to">small</span></div>
+              <div class="route"><b>Summaries</b><span class="to">mid</span></div>
+              <div class="route"><b>Complex reasoning</b><span class="to">large</span></div>
+            </div>
+          </div>
+          <div class="cs-card">
+            <div class="h"><span>Evaluation</span><span class="pill ok">Stable</span></div>
+            <div class="v">Quality within range</div>
+            <div class="legend"><span>Last run today</span><span>Behaviour unchanged</span></div>
+          </div>
+          <div class="cs-card">
+            <div class="h"><span>Spend vs budget</span><span class="pill info">Day 18 of 30</span></div>
+            <div class="budget" aria-hidden="true"><i></i></div>
+            <div class="legend"><span>On track</span><span>Per model, per team</span></div>
+          </div>
         </div>
-        <span class="ts-meta">one function &middot; one region</span>
-      </div>
-      <div class="topo-step">
-        <span class="ts-num">02</span>
-        <h3>Cross-functional</h3>
-        <div class="ts-vis" aria-hidden="true">
-          <i style="left:26%;top:32%"></i>
-          <i style="left:54%;top:38%"></i>
-          <i style="left:42%;top:64%"></i>
-          <i style="left:70%;top:58%"></i>
-        </div>
-        <span class="ts-meta">several functions &middot; one region</span>
-      </div>
-      <div class="topo-step">
-        <span class="ts-num">03</span>
-        <h3>Multi-region</h3>
-        <div class="ts-vis" aria-hidden="true">
-          <i style="left:18%;top:24%"></i>
-          <i style="left:34%;top:50%"></i>
-          <i style="left:22%;top:72%"></i>
-          <i style="left:58%;top:30%"></i>
-          <i style="left:64%;top:62%"></i>
-          <i style="left:78%;top:44%"></i>
-          <i style="left:84%;top:74%"></i>
-        </div>
-        <span class="ts-meta">more functions &middot; multiple regions</span>
-      </div>
-      <div class="topo-step">
-        <span class="ts-num">04</span>
-        <h3>Operational layer</h3>
-        <div class="ts-vis" aria-hidden="true">
-          <i style="left:10%;top:18%"></i>
-          <i style="left:24%;top:38%"></i>
-          <i style="left:14%;top:62%"></i>
-          <i style="left:30%;top:78%"></i>
-          <i style="left:44%;top:24%"></i>
-          <i style="left:50%;top:54%"></i>
-          <i style="left:46%;top:80%"></i>
-          <i style="left:64%;top:34%"></i>
-          <i style="left:70%;top:62%"></i>
-          <i style="left:80%;top:22%"></i>
-          <i style="left:86%;top:50%"></i>
-          <i style="left:90%;top:78%"></i>
-        </div>
-        <span class="ts-meta">organisation-wide layer</span>
-      </div>
-    </div>
-
-    <div class="regions" aria-label="Regional deployment topology">
-      <div class="region primary">
-        <div class="region-pulse" aria-hidden="true"></div>
-        <div class="region-head">
-          <span class="region-code">EU-WEST</span>
-          <span class="region-flag">primary</span>
-        </div>
-        <h3>Frankfurt &middot; Amsterdam</h3>
-        <div class="region-meta">
-          <div class="row"><span class="k">Residency</span><span class="v">EU only &middot; pinned</span></div>
-          <div class="row"><span class="k">Regulation</span><span class="v">GDPR &middot; EU AI Act</span></div>
-          <div class="row"><span class="k">Reviewers</span><span class="v">local language</span></div>
-          <div class="row"><span class="k">Languages</span><span class="v">EN &middot; DE &middot; FR &middot; NL</span></div>
-        </div>
-      </div>
-
-      <div class="region">
-        <div class="region-pulse" aria-hidden="true"></div>
-        <div class="region-head">
-          <span class="region-code">US-EAST</span>
-          <span class="region-flag">active</span>
-        </div>
-        <h3>Virginia</h3>
-        <div class="region-meta">
-          <div class="row"><span class="k">Residency</span><span class="v">US only &middot; pinned</span></div>
-          <div class="row"><span class="k">Regulation</span><span class="v">SOC 2 &middot; CCPA</span></div>
-          <div class="row"><span class="k">Reviewers</span><span class="v">US business hours</span></div>
-          <div class="row"><span class="k">Languages</span><span class="v">EN &middot; ES</span></div>
-        </div>
-      </div>
-
-      <div class="region standby">
-        <div class="region-pulse" aria-hidden="true"></div>
-        <div class="region-head">
-          <span class="region-code">APAC</span>
-          <span class="region-flag">on request</span>
-        </div>
-        <h3>Singapore</h3>
-        <div class="region-meta">
-          <div class="row"><span class="k">Residency</span><span class="v">SG &middot; resident</span></div>
-          <div class="row"><span class="k">Regulation</span><span class="v">PDPA &middot; MAS guidance</span></div>
-          <div class="row"><span class="k">Reviewers</span><span class="v">follow-the-sun</span></div>
-          <div class="row"><span class="k">Languages</span><span class="v">EN &middot; JA &middot; ZH</span></div>
-        </div>
+        <div class="cs-foot"><span>Environments as code</span><span>Alerts on drift</span><span>Spend by model</span></div>
       </div>
     </div>
   </div>
 </section>
 
+<!-- 04 · GOVERNED FROM PILOT TO SCALE -->
+<section class="governed" data-sec="governed" id="governed">
+  <div class="container">
+    <div class="block-head">
+      <div>
+        <span class="label-mono"><span class="dot"></span>04 &middot; Governed from pilot to scale</span>
+        <h2 style="margin-top:14px;">Build for the environment AI has to live in.</h2>
+      </div>
+    </div>
+    <div class="gov-points">
+      <div class="gov-point"><h3>Permissions</h3><p>What the system may access and act on, per action.</p></div>
+      <div class="gov-point"><h3>Auditability</h3><p>Inputs, decisions and actions recorded and reviewable.</p></div>
+      <div class="gov-point"><h3>Deployment</h3><p>EU regions, private cloud or your own infrastructure.</p></div>
+      <div class="gov-point"><h3>Evaluation records</h3><p>Quality and behaviour tracked over time, not just at launch.</p></div>
+      <div class="gov-point"><h3>Operational ownership</h3><p>Your team knows how it runs and who owns it.</p></div>
+    </div>
+    <div class="proof-lines">
+      <a class="proof-line" href="../work/asset-workflow-engine.html"><b>Marketplace Asset Platform</b><span>2 brands &middot; 100 SKUs &middot; production system</span></a>
+      <a class="proof-line" href="../work/translation-workflow.html"><b>Localisation System</b><span>10 languages &middot; 11 European markets &middot; brand specific intelligence</span></a>
+    </div>
+    <p class="gov-close">Start with one system that needs to move beyond the pilot.</p>
+  </div>
+</section>
 
 <!-- FINAL CTA -->
 <section class="final-cta" id="contact">
@@ -3389,17 +2457,16 @@
     <div class="final-cta-card">
       <div class="final-cta-grid">
         <div>
-          <span class="label-mono"><span class="dot"></span>Where to start</span>
-          <h2>Start with one workflow. Extend the layer as it proves value.</h2>
-          <p>Enterprise AI can start small. One workflow, one team, one measurable outcome, one clear review point. That's the foundation.</p>
-          <p style="margin-top:14px;">The same operating layer then extends across teams, markets, data sources, and use cases.</p>
+          <span class="label-mono"><span class="dot"></span>Start here</span>
+          <h2>One system, beyond the pilot.</h2>
+          <p>Bring the system that has proved itself in a pilot and needs to run inside your architecture, security standards and budget. We’ll map what production requires and where to start.</p>
         </div>
         <div class="final-cta-actions">
-          <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled">
-            Book a scoping call <span class="arrow">&rarr;</span>
+          <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">
+            Discuss your enterprise AI system <span class="arrow">&rarr;</span>
           </a>
           <a class="btn btn-ghost" href="/#work">
-            See what we've built <span class="arrow">&rarr;</span>
+            See the case studies <span class="arrow">&rarr;</span>
           </a>
         </div>
       </div>
@@ -3415,12 +2482,10 @@
 <!-- Mobile sticky TOC chip strip -->
 <nav class="mobile-toc" aria-label="Section navigation">
   <div class="mobile-toc-track">
-    <a href="#applications">01 Where AI creates value</a>
-    <a href="#stalls">02 Where it gets difficult</a>
-    <a href="#generative">03 How we build</a>
-    <a href="#operational">04 How operational</a>
-    <a href="#governance">05 Governance</a>
-    <a href="#regions">06 How it scales</a>
+    <a href="#difficult">01 Where it gets difficult</a>
+    <a href="#build">02 How we build</a>
+    <a href="#cost">03 Performance and cost</a>
+    <a href="#governed">04 Governed to scale</a>
   </div>
 </nav>
 

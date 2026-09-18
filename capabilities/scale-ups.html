@@ -258,6 +258,32 @@
   .reason h4 { margin: 12px 0 8px; font-size: 16px; }
   .reason p { font-size: 13.5px; line-height: 1.55; color: var(--ink-soft); }
 
+
+  /* ---- rewrite: three-up reasons, capability strip, proof, progression ---- */
+  .reasons--three { grid-template-columns: repeat(3, minmax(0,1fr)); }
+  @media (max-width: 880px) { .reasons--three { grid-template-columns: 1fr; } }
+  .reasons--plain .reason h4 { margin-top: 0; }
+  .help { background: var(--surface-2); }
+  .cap-strip { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(28px, 3vw, 44px); }
+  .badge--link { color: var(--ink); text-decoration: none; transition: border-color 180ms var(--ease), color 180ms var(--ease); }
+  .badge--link .arrow { opacity: .6; }
+  .badge--link:hover { border-color: var(--ink); }
+  @media (max-width: 760px) { .cap-strip .badge { padding: 12px 16px; font-size: 11.5px; } }
+  .proof-figs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(20px, 3vw, 48px); max-width: 720px; margin-bottom: clamp(36px, 4vw, 56px); }
+  .fig { display: flex; flex-direction: column; gap: 8px; padding-left: 16px; border-left: 1px solid var(--hairline-strong); }
+  .fig-num { font-family: var(--font-display); font-weight: 600; font-size: clamp(34px, 3.4vw, 48px); letter-spacing: -0.02em; line-height: 1; }
+  .fig-lbl { font-size: 14px; line-height: 1.45; color: var(--ink-soft); max-width: 26ch; }
+  .logo-row { display: grid; grid-template-columns: repeat(9, minmax(0, 1fr)); gap: 8px; align-items: center; padding: clamp(18px, 2vw, 26px) 0; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+  .logo-cell { display: grid; place-items: center; height: 64px; filter: grayscale(1); opacity: .6; }
+  .logo-cell img { max-height: 44px; max-width: 100%; width: auto; height: auto; object-fit: contain; }
+  @media (max-width: 900px) { .logo-row { grid-template-columns: repeat(5, minmax(0, 1fr)); } }
+  @media (max-width: 560px) { .logo-row { grid-template-columns: repeat(3, minmax(0, 1fr)); } .logo-cell { height: 56px; } .proof-figs { grid-template-columns: 1fr; } }
+  .trust-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(18px, 2vw, 26px); }
+  .start-small { background: var(--surface-2); }
+  .progression { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 14px; margin-top: clamp(24px, 3vw, 36px); font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); }
+  .progression span { padding: 10px 14px; border: 1px solid var(--hairline-strong); border-radius: 999px; background: var(--white); }
+  .progression i { width: 22px; height: 1px; background: var(--hairline-strong); }
+  @media (max-width: 560px) { .progression i { display: none; } }
   /* How we de-risk AI — open icon columns (no box), sits on surface tint */
   .derisk { background: var(--surface); }
   .controls { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: clamp(24px,2.8vw,44px); }
@@ -358,6 +384,7 @@
               mask-image: linear-gradient(90deg, #000 92%, transparent 100%);
     }
     .hero-visual svg { min-width: 480px; }
+    @media (max-width: 560px) { .hero-visual svg { display: none; } .hero-visual { overflow: visible; -webkit-mask-image: none; mask-image: none; } .hero .hero-visual::after { display: none !important; } }
     .cs-diagram svg { min-width: 600px; }
     .hero-visual-caption { -webkit-mask-image: none; mask-image: none; }
     .cs-diagram::after, .hero-visual::after {
@@ -613,14 +640,13 @@
       <div class="hero-meta">
         <span class="num">Scale-ups</span>
         <span class="sep"></span>
-        <span>AI for growing teams</span>
+        <span>AI transformation for scale-ups</span>
       </div>
-      <h1>Scale your business with practical AI</h1>
-      <p class="hero-lede">AIHLPR helps growing teams increase capacity, improve workflows, and make better use of the systems they already have.</p>
-      <p class="hero-sub">We build AI systems that take on repetitive work, connect information, support decisions, and help teams operate with greater clarity.</p>
+      <h1>Make AI part of the business, without starting from scratch.</h1>
+      <p class="hero-lede">We work alongside growing teams to decide where AI belongs, build the systems that matter, and put the foundations in place to keep improving them as the business grows.</p>
       <div class="hero-ctas">
-        <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Book a call <span class="arrow">→</span></a>
-        <a class="btn btn-secondary" href="#help">See where AI helps first <span class="arrow">→</span></a>
+        <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Talk through your AI plans <span class="arrow">→</span></a>
+        <a class="btn btn-secondary" href="#help">See what we build <span class="arrow">→</span></a>
       </div>
     </div>
 
@@ -635,15 +661,15 @@
 
         <!-- top strip -->
         <g font-size="10" letter-spacing="0.16em">
-          <text x="20" y="26" fill="#8A8A8A">CAPACITY · same team</text>
-          <text x="900" y="26" text-anchor="end" fill="#3478E5">lean team → ai layer → more output</text>
+          <text x="20" y="26" fill="#8A8A8A">AI · PART OF THE BUSINESS</text>
+          <text x="900" y="26" text-anchor="end" fill="#3478E5">your team → partner → working systems</text>
         </g>
         <line x1="20" y1="36" x2="900" y2="36" stroke="rgba(31,31,31,0.08)" stroke-width="1"></line>
 
         <!-- ===== STAGE 1: LEAN TEAM ===== -->
         <rect x="40" y="120" width="210" height="240" rx="3" fill="#fff" stroke="rgba(31,31,31,0.2)" stroke-width="1.4"></rect>
-        <text x="60" y="150" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#1F1F1F">LEAN TEAM</text>
-        <text x="60" y="166" font-size="9.5" letter-spacing="0.08em" fill="#8A8A8A">same team</text>
+        <text x="60" y="150" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#1F1F1F">YOUR TEAM</text>
+        <text x="60" y="166" font-size="9.5" letter-spacing="0.08em" fill="#8A8A8A">as it is today</text>
         <line x1="60" y1="178" x2="230" y2="178" stroke="rgba(31,31,31,0.08)" stroke-width="1"></line>
         <!-- 6 people glyphs, 3 cols x 2 rows -->
         <g stroke="#1F1F1F" stroke-width="1.3" fill="none">
@@ -666,17 +692,17 @@
 
         <!-- ===== STAGE 2: AI LAYER ===== -->
         <rect x="360" y="96" width="200" height="288" rx="3" fill="#1F1F1F"></rect>
-        <text x="380" y="128" font-size="11" letter-spacing="0.16em" font-weight="600" fill="#fff">AI LAYER</text>
-        <text x="380" y="144" font-size="9" letter-spacing="0.08em" fill="rgba(255,255,255,0.55)">one workflow first</text>
+        <text x="380" y="128" font-size="11" letter-spacing="0.16em" font-weight="600" fill="#fff">WITH AIHLPR</text>
+        <text x="380" y="144" font-size="9" letter-spacing="0.08em" fill="rgba(255,255,255,0.55)">decide · build · sustain</text>
         <line x1="380" y1="158" x2="540" y2="158" stroke="rgba(255,255,255,0.16)" stroke-width="1"></line>
         <g font-size="10.5" letter-spacing="0.04em">
-          <circle cx="384" cy="186" r="3" fill="#5794EA"></circle><text x="396" y="190" fill="rgba(255,255,255,0.92)">prepare updates</text>
-          <circle cx="384" cy="222" r="3" fill="#5794EA"></circle><text x="396" y="226" fill="rgba(255,255,255,0.92)">route tasks</text>
-          <circle cx="384" cy="258" r="3" fill="#5794EA"></circle><text x="396" y="262" fill="rgba(255,255,255,0.92)">follow up</text>
-          <circle cx="384" cy="294" r="3" fill="#5794EA"></circle><text x="396" y="298" fill="rgba(255,255,255,0.92)">check &amp; flag</text>
+          <circle cx="384" cy="186" r="3" fill="#5794EA"></circle><text x="396" y="190" fill="rgba(255,255,255,0.92)">decide what is worth it</text>
+          <circle cx="384" cy="222" r="3" fill="#5794EA"></circle><text x="396" y="226" fill="rgba(255,255,255,0.92)">design the systems</text>
+          <circle cx="384" cy="258" r="3" fill="#5794EA"></circle><text x="396" y="262" fill="rgba(255,255,255,0.92)">connect the stack</text>
+          <circle cx="384" cy="294" r="3" fill="#5794EA"></circle><text x="396" y="298" fill="rgba(255,255,255,0.92)">evaluate and improve</text>
         </g>
         <line x1="380" y1="320" x2="540" y2="320" stroke="rgba(255,255,255,0.16)" stroke-width="1"></line>
-        <text x="380" y="346" font-size="9" letter-spacing="0.1em" fill="rgba(255,255,255,0.55)">people stay in control</text>
+        <text x="380" y="346" font-size="9" letter-spacing="0.1em" fill="rgba(255,255,255,0.55)">foundations from the start</text>
 
         <!-- ai layer -> output connectors -->
         <g stroke="#3478E5" stroke-width="1.2" fill="none">
@@ -688,8 +714,8 @@
 
         <!-- ===== STAGE 3: MORE OUTPUT ===== -->
         <rect x="670" y="120" width="210" height="240" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1.4"></rect>
-        <text x="690" y="150" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#2A5FC0">MORE OUTPUT</text>
-        <text x="690" y="166" font-size="9.5" letter-spacing="0.08em" fill="#8A8A8A">same team</text>
+        <text x="690" y="150" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#2A5FC0">WORKING SYSTEMS</text>
+        <text x="690" y="166" font-size="9.5" letter-spacing="0.08em" fill="#8A8A8A">same people, in place</text>
         <line x1="690" y1="178" x2="860" y2="178" stroke="rgba(31,31,31,0.08)" stroke-width="1"></line>
         <!-- output bars, growing -->
         <g>
@@ -706,9 +732,9 @@
         <circle class="tracer t2" r="3.5" fill="#3478E5"></circle>
       </svg>
       <div class="hero-visual-caption">
-        <span><b>add_capacity()</b> · lean team</span>
-        <span>ai layer in place</span>
-        <span><b>more output</b></span>
+        <span><b>your team</b> · as it is</span>
+        <span>partner alongside</span>
+        <span><b>working systems</b></span>
       </div>
     </div>
   </div>
@@ -717,289 +743,134 @@
 <!-- TRUST BADGES -->
 <section class="badges">
   <div class="container badges-inner">
-    <span class="badge">Enterprise-grade delivery</span>
-    <span class="badge">Fits your existing tools</span>
-    <span class="badge">People approve what matters</span>
-    <span class="badge">Start small, scale after proof</span>
+    <span class="badge">Strategy to production</span>
+    <span class="badge">Privacy &amp; security from the start</span>
+    <span class="badge">Works with your stack</span>
   </div>
 </section>
 
-<!-- WHERE THE PRESSURE SHOWS UP -->
+<!-- WHEN AI STARTS TO MATTER -->
 <section class="block">
   <div class="container">
     <div class="block-head">
-      <div><span class="label-mono"><span class="dot"></span>The starting point</span></div>
+      <div><span class="label-mono"><span class="dot"></span>When AI starts to matter</span></div>
       <div>
-        <h2>Where growing teams start feeling the pressure</h2>
-        <p class="block-lede" style="margin-top:16px;">Growth often creates operational pressure before it creates a technology problem.</p>
+        <h2>The challenge is rarely a lack of ideas. It is knowing what deserves to become real.</h2>
+        <p class="block-lede" style="margin-top:16px;">Scale-ups usually reach AI with experiments already happening across the business. The difficult part is deciding what should become part of the company, what should stay simple, and what is worth doing properly.</p>
       </div>
     </div>
-    <div class="reasons">
+    <div class="reasons reasons--three">
       <div class="reason">
         <span class="rn">01</span>
-        <h4>Too much coordination</h4>
-        <p>People spend time chasing updates, approvals, and handovers.</p>
+        <h4>Too many experiments</h4>
+        <p>Teams are already trying AI, but the useful ideas are mixed in with one off tools and disconnected pilots.</p>
       </div>
       <div class="reason">
         <span class="rn">02</span>
-        <h4>Work spread across tools</h4>
-        <p>Information sits across inboxes, spreadsheets, CRM, ERP, and documents.</p>
+        <h4>Systems are getting more complex</h4>
+        <p>More customers, more data and more teams create more places where information and decisions need to connect.</p>
       </div>
       <div class="reason">
         <span class="rn">03</span>
-        <h4>Experienced people doing repeat work</h4>
-        <p>Important team members spend too much time preparing, checking, and moving information.</p>
+        <h4>Internal capacity is limited</h4>
+        <p>You may not need a full AI team yet, but the systems still need serious technical thinking if they are going to last.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE HELP -->
+<section class="block help" id="help">
+  <div class="container">
+    <div class="block-head">
+      <div><span class="label-mono"><span class="dot"></span>Your AI transformation partner</span></div>
+      <div>
+        <h2>From deciding where AI belongs to making it work in the business.</h2>
+      </div>
+    </div>
+    <div class="reasons reasons--three reasons--plain">
+      <div class="reason">
+        <h4>Decide what is worth doing</h4>
+        <p>Separate genuine AI opportunities from problems better solved through process, product or system improvements.</p>
       </div>
       <div class="reason">
-        <span class="rn">04</span>
-        <h4>AI experiments without a clear path forward</h4>
-        <p>Teams have tried AI tools, but turning them into dependable working systems is harder.</p>
+        <h4>Build what matters</h4>
+        <p>Create AI applications, intelligent systems and the connections needed around them.</p>
       </div>
+      <div class="reason">
+        <h4>Make it sustainable</h4>
+        <p>Put evaluation, security, infrastructure, ownership and running cost around what moves into real use.</p>
+      </div>
+    </div>
+    <div class="cap-strip" aria-label="What we build">
+      <a class="badge badge--link" href="ai-applications-and-platforms.html">AI Applications &amp; Platforms <span class="arrow">→</span></a>
+      <a class="badge badge--link" href="ai-workflow-infrastructure.html">Intelligent Systems &amp; Workflows <span class="arrow">→</span></a>
+      <span class="badge">Running at scale</span>
     </div>
   </div>
 </section>
 
-<!-- WHERE AI CAN HELP FIRST (merged) -->
-<section class="block" id="help">
+<!-- PROOF AND TRUST -->
+<section class="block proof">
   <div class="container">
     <div class="block-head">
+      <div><span class="label-mono"><span class="dot"></span>Proven in real environments</span></div>
       <div>
-        <span class="label-mono"><span class="dot"></span>Where AI can help first</span>
-      </div>
-      <div>
-        <h2>Start with the workflow that is already slowing the team down.</h2>
-        <p class="block-lede" style="margin-top:16px;">Six places where an AI layer pays for itself fast, inside the systems your team already uses.</p>
+        <h2>Experience matters when the experiment becomes a system.</h2>
+        <p class="block-lede" style="margin-top:16px;">Our work spans digital platforms, AI enabled workflows and production systems across international organisations and European markets. The focus is the same at every scale: something useful, measurable and maintainable.</p>
       </div>
     </div>
-    <div class="cards">
-      <article class="card">
-        <span class="card-eyebrow">Inbox agent · CRM</span>
-        <h3>Lead follow up</h3>
-        <p>Capture enquiries, prepare responses, update systems, and route important conversations to the right person.</p>
-      </article>
-      <article class="card">
-        <span class="card-eyebrow">Workflow layer</span>
-        <h3>Customer onboarding</h3>
-        <p>Collect information, check documents, coordinate tasks, and keep onboarding moving.</p>
-      </article>
-      <article class="card">
-        <span class="card-eyebrow">AI document flow</span>
-        <h3>Document processing</h3>
-        <p>Read, classify, extract, review, and move information into the systems where it is needed.</p>
-      </article>
-      <article class="card">
-        <span class="card-eyebrow">Dashboards · reporting</span>
-        <h3>Internal reporting</h3>
-        <p>Bring information together, prepare recurring reports, and surface what needs attention.</p>
-      </article>
-      <article class="card">
-        <span class="card-eyebrow">AI-supported tools</span>
-        <h3>Content and asset production</h3>
-        <p>Coordinate inputs, generation, review, feedback, and approval across production workflows.</p>
-      </article>
-      <article class="card">
-        <span class="card-eyebrow">Agents · integrations</span>
-        <h3>Operations coordination</h3>
-        <p>Track requests, prepare actions, manage approvals, and keep work moving across teams.</p>
-      </article>
+    <div class="proof-figs" aria-label="Experience">
+      <div class="fig"><span class="fig-num">15+</span><span class="fig-lbl">Years of digital transformation across the EU</span></div>
+      <div class="fig"><span class="fig-num">15+</span><span class="fig-lbl">Enterprise clients</span></div>
+    </div>
+    <div class="logo-row" aria-label="Clients">
+        <div class="logo-cell"><img src="../assets/clients/dorel-juvenile.png" alt="Dorel Juvenile" loading="lazy"></div>
+        <div class="logo-cell"><img src="../assets/clients/maxi-cosi.png" alt="Maxi-Cosi" loading="lazy"></div>
+        <div class="logo-cell"><img src="../assets/clients/bebeconfort.png" alt="Bebeconfort" loading="lazy"></div>
+        <div class="logo-cell"><img src="../assets/clients/sphere.png" alt="Sphere" loading="lazy"></div>
+        <div class="logo-cell"><img src="../assets/clients/erasmus-sport.png" alt="Erasmus Sport" loading="lazy"></div>
+        <div class="logo-cell"><img src="../assets/clients/undp.png" alt="UNDP" loading="lazy"></div>
+        <div class="logo-cell"><img src="../assets/clients/ambis.png" alt="Ambis" loading="lazy"></div>
+        <div class="logo-cell"><img src="../assets/clients/loreal.png" alt="L'Or&eacute;al" loading="lazy"></div>
+        <div class="logo-cell"><img src="../assets/clients/penguin.png" alt="Penguin" loading="lazy"></div>
+    </div>
+    <div class="trust-chips" aria-label="Trust">
+      <span class="badge">EU data options</span>
+      <span class="badge">GDPR experience</span>
+      <span class="badge">Security by design</span>
+      <span class="badge">Governance from the start</span>
     </div>
   </div>
 </section>
 
-<!-- WHAT CHANGES -->
-<section class="block outcomes">
-  <div class="container">
-    <div class="outcomes-grid">
-      <div>
-        <span class="label-mono"><span class="dot"></span>What changes</span>
-        <h2 style="margin-top:14px; max-width:14ch;">The goal is not another AI tool. It is a better operating workflow.</h2>
-      </div>
-      <div class="outcomes-list">
-        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Less manual follow up</div>
-        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Faster handling of routine work</div>
-        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Better visibility across the process</div>
-        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>Fewer disconnected handovers</div>
-        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>More consistent execution</div>
-        <div class="outcome"><span class="tick"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 7 9.5 17.5 4 12" stroke-linecap="round" stroke-linejoin="round"></path></svg></span>More time for decisions and higher value work</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 03 · HOW WE START -->
-<section class="block">
+<!-- START SMALL -->
+<section class="block start-small">
   <div class="container">
     <div class="block-head">
+      <div><span class="label-mono"><span class="dot"></span>A practical place to begin</span></div>
       <div>
-        <span class="label-mono"><span class="dot"></span>How we work</span>
-      </div>
-      <div>
-        <h2>One workflow first. Scale what proves useful.</h2>
-        <p class="block-lede" style="margin-top:16px;">We map the work, deliver a focused first version, and your team tests it on real work before anything expands.</p>
+        <h2>Start with one meaningful problem.</h2>
+        <p class="block-lede" style="margin-top:16px;">You do not need a complete AI roadmap before you begin. Start with one place where intelligence could improve how the business works, put it into real use, and use what you learn to decide what deserves to come next.</p>
       </div>
     </div>
-    <div class="ladder">
-      <div class="rung">
-        <span class="rnum">01</span>
-        <div class="rtrack"><span style="--p:20%;"></span></div>
-        <h4>Map the workflow</h4>
-        <p>Tools, people, documents, decisions, and handovers.</p>
-      </div>
-      <div class="rung">
-        <span class="rnum">02</span>
-        <div class="rtrack"><span style="--p:40%;"></span></div>
-        <h4>Find the AI-ready step</h4>
-        <p>Where AI can save time without adding risk.</p>
-      </div>
-      <div class="rung">
-        <span class="rnum">03</span>
-        <div class="rtrack"><span style="--p:60%;"></span></div>
-        <h4>Build the first version</h4>
-        <p>A focused tool, agent, dashboard, workflow layer, or integration.</p>
-      </div>
-      <div class="rung">
-        <span class="rnum">04</span>
-        <div class="rtrack"><span style="--p:80%;"></span></div>
-        <h4>Add review points</h4>
-        <p>People stay in control of approvals, exceptions, and quality.</p>
-      </div>
-      <div class="rung">
-        <span class="rnum">05</span>
-        <div class="rtrack"><span style="--p:100%;"></span></div>
-        <h4>Measure and expand</h4>
-        <p>Scale only what proves useful in real work.</p>
-      </div>
+    <div class="progression" aria-label="How it progresses">
+      <span>Understand</span><i></i><span>Prove</span><i></i><span>Build</span><i></i><span>Extend</span>
     </div>
   </div>
 </section>
 
-<!-- CASE STUDY / PROOF STRIP -->
-<section class="block">
-  <div class="container">
-    <div class="block-head">
-      <div><span class="label-mono"><span class="dot"></span>What this looks like in practice</span></div>
-      <div>
-        <h2>From manual asset work to a faster production workflow.</h2>
-        <p class="block-lede" style="margin-top:16px;">A retail team's manual content and image process became a guided workflow. AI drafts the assets, the team reviews and publishes, and the same people ship more work.</p>
-      </div>
-    </div>
-    <div class="cs-panel2">
-      <div class="cs-bar">
-        <div class="cs-meta-inline">
-          <span class="kick">Case sketch</span>
-          <span class="dotsep"></span><span>Retail</span>
-          <span class="dotsep"></span><span>Content &amp; asset workflow</span>
-          <span class="dotsep"></span><span>Client-side testing</span>
-        </div>
-        <a class="btn btn-secondary" href="/#work">See the case study <span class="arrow">→</span></a>
-      </div>
-      <div class="cs-diagram">
-        <svg viewBox="0 0 1000 400" preserveAspectRatio="xMidYMid meet" font-family="JetBrains Mono, ui-monospace, monospace" aria-label="Before and after workflow comparison">
-          <defs>
-            <marker id="cs-ag" markerWidth="8" markerHeight="8" refX="5.5" refY="4" orient="auto"><path d="M1 1 L6 4 L1 7" fill="none" stroke="#9A9A96" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></marker>
-            <marker id="cs-ab" markerWidth="8" markerHeight="8" refX="5.5" refY="4" orient="auto"><path d="M1 1 L6 4 L1 7" fill="none" stroke="#3478E5" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"></path></marker>
-          </defs>
-
-          <!-- ===== BEFORE ===== -->
-          <text x="20" y="106" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#8A8A8A">BEFORE</text>
-          <text x="20" y="122" font-size="9" letter-spacing="0.08em" fill="#B0B0AC">manual</text>
-
-          <!-- nodes -->
-          <g fill="#fff" stroke="rgba(31,31,31,0.22)" stroke-width="1.3">
-            <rect x="150" y="88" width="112" height="44" rx="3"></rect>
-            <rect x="300" y="88" width="112" height="44" rx="3"></rect>
-            <rect x="450" y="88" width="112" height="44" rx="3"></rect>
-            <rect x="600" y="88" width="112" height="44" rx="3"></rect>
-            <rect x="750" y="88" width="112" height="44" rx="3"></rect>
-          </g>
-          <g font-size="10.5" letter-spacing="0.02em" fill="#4A4A4A" text-anchor="middle">
-            <text x="206" y="114">Brief</text>
-            <text x="356" y="114">Draft</text>
-            <text x="506" y="114">Review</text>
-            <text x="656" y="114">Edits</text>
-            <text x="806" y="114">Publish</text>
-          </g>
-          <!-- forward arrows -->
-          <g stroke="#9A9A96" stroke-width="1.2" fill="none">
-            <line x1="262" y1="110" x2="296" y2="110" marker-end="url(#cs-ag)"></line>
-            <line x1="412" y1="110" x2="446" y2="110" marker-end="url(#cs-ag)"></line>
-            <line x1="562" y1="110" x2="596" y2="110" marker-end="url(#cs-ag)"></line>
-            <line x1="712" y1="110" x2="746" y2="110" marker-end="url(#cs-ag)"></line>
-          </g>
-          <!-- rework loops -->
-          <g stroke="#B0B0AC" stroke-width="1.1" fill="none" stroke-dasharray="3 3">
-            <path d="M506 88 C 506 56, 356 56, 356 88" marker-end="url(#cs-ag)"></path>
-            <path d="M656 132 C 656 164, 506 164, 506 132" marker-end="url(#cs-ag)"></path>
-          </g>
-          <text x="431" y="48" font-size="9" letter-spacing="0.06em" fill="#B0B0AC" text-anchor="middle">rework loops</text>
-          <text x="581" y="182" font-size="9" letter-spacing="0.06em" fill="#B0B0AC" text-anchor="middle">back-and-forth, slow</text>
-
-          <!-- divider / transformation band -->
-          <line x1="20" y1="210" x2="980" y2="210" stroke="rgba(31,31,31,0.10)" stroke-width="1" stroke-dasharray="2 4"></line>
-          <g>
-            <rect x="384" y="195" width="232" height="30" rx="15" fill="#fff" stroke="#3478E5" stroke-width="1.3"></rect>
-            <circle cx="404" cy="210" r="3.5" fill="#3478E5"></circle>
-            <text x="416" y="214" font-size="10" letter-spacing="0.08em" fill="#2A5FC0">AIHLPR · guided by AI, same team</text>
-          </g>
-
-          <!-- ===== AFTER ===== -->
-          <text x="20" y="296" font-size="11" letter-spacing="0.14em" font-weight="600" fill="#2A5FC0">AFTER</text>
-          <text x="20" y="312" font-size="9" letter-spacing="0.08em" fill="#8A8A8A">guided</text>
-
-          <!-- Brief -->
-          <rect x="150" y="278" width="112" height="44" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1.4"></rect>
-          <text x="206" y="304" font-size="10.5" fill="#1F1F1F" text-anchor="middle">Brief</text>
-          <!-- AI generation + edit (dark) -->
-          <rect x="300" y="278" width="170" height="44" rx="3" fill="#1F1F1F"></rect>
-          <rect x="438" y="284" width="26" height="14" rx="3" fill="rgba(87,148,234,0.22)"></rect>
-          <text x="451" y="294" font-size="8" letter-spacing="0.08em" fill="#7FB0FF" text-anchor="middle">AI</text>
-          <text x="312" y="300" font-size="10.5" letter-spacing="0.02em" fill="#fff">Generation</text>
-          <text x="312" y="313" font-size="8.5" letter-spacing="0.02em" fill="rgba(255,255,255,0.6)">+ edit</text>
-          <!-- Human review gate -->
-          <rect x="510" y="278" width="150" height="44" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1.4"></rect>
-          <circle cx="532" cy="300" r="9" fill="none" stroke="#3478E5" stroke-width="1.3"></circle>
-          <path d="M528 300 l3 3 l5 -6" fill="none" stroke="#3478E5" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"></path>
-          <text x="550" y="297" font-size="10" fill="#1F1F1F">Human</text>
-          <text x="550" y="309" font-size="10" fill="#1F1F1F">review</text>
-          <!-- Publish -->
-          <rect x="700" y="278" width="112" height="44" rx="3" fill="#fff" stroke="#3478E5" stroke-width="1.4"></rect>
-          <text x="756" y="304" font-size="10.5" fill="#1F1F1F" text-anchor="middle">Publish</text>
-
-          <!-- forward arrows (blue) -->
-          <g stroke="#3478E5" stroke-width="1.3" fill="none">
-            <line x1="262" y1="300" x2="296" y2="300" marker-end="url(#cs-ab)"></line>
-            <line x1="470" y1="300" x2="506" y2="300" marker-end="url(#cs-ab)"></line>
-            <line x1="660" y1="300" x2="696" y2="300" marker-end="url(#cs-ab)"></line>
-          </g>
-
-          <!-- after annotations -->
-          <text x="385" y="344" font-size="9" letter-spacing="0.06em" fill="#8A8A8A" text-anchor="middle">prepares &amp; drafts</text>
-          <text x="585" y="344" font-size="9" letter-spacing="0.06em" fill="#8A8A8A" text-anchor="middle">people approve</text>
-          <text x="836" y="304" font-size="9" letter-spacing="0.06em" fill="#2A5FC0">fewer steps, no rework</text>
-        </svg>
-      </div>
-      <div class="cs-legend">
-        <span>Manual steps reduced</span>
-        <span>Faster output cycles</span>
-        <span>Human review preserved</span>
-        <span>A working platform, not a demo</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FINAL CTA -->
 <section class="final-cta" id="contact">
   <div class="container">
     <div class="final-cta-card">
       <div class="final-cta-grid">
         <div>
-          <span class="label-mono"><span class="dot"></span>Start with one workflow</span>
-          <h2>Show us where work is piling up.</h2>
-          <p>Bring the workflow that eats the most time. In one call we will point out the AI-ready step and what the first version looks like.</p>
+          <span class="label-mono"><span class="dot"></span>Start here</span>
+          <h2>Not sure what the first AI project should be?</h2>
+          <p>Bring the business problem, the experiment that has stalled, or the idea you are still unsure about. We can help work out whether AI belongs there and what the smallest useful next step looks like.</p>
         </div>
         <div class="final-cta-actions">
-          <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Book a call <span class="arrow">→</span></a>
+          <a class="btn btn-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Talk through your AI plans <span class="arrow">→</span></a>
           <a class="btn btn-ghost" href="mailto:brinda@moralitybytes.eu">Email us <span class="arrow">→</span></a>
         </div>
       </div>
