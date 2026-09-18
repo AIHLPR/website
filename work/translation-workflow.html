@@ -57,7 +57,7 @@
     --gutter: clamp(20px, 5vw, 64px);
   }
   * { box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: auto; }
   html, body {
     margin: 0; padding: 0;
     background: var(--white);
@@ -844,6 +844,15 @@
   .case-cta-primary { background: #fff; color: var(--ink, #1F1F1F); }
   .case-cta-quiet { color: #fff; border: 1px solid rgba(255,255,255,0.35); }
   .case-cta-quiet:hover { border-color: #fff; }
+  .break-points { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; margin-top: 28px; }
+  .break-point { padding-top: 14px; border-top: 2px solid var(--ink); }
+  .break-point h4 { font-family: var(--font-display); font-weight: 500; font-size: 16px; letter-spacing: -0.01em; margin: 0 0 6px; }
+  .break-point p { font-size: 14px; line-height: 1.5; color: var(--ink-soft); margin: 0; }
+  @media (max-width: 720px) { .break-points { grid-template-columns: 1fr; } }
+  .approach-lede { margin: 14px 0 0; font-size: clamp(15px, 1.15vw, 17px); line-height: 1.6; color: var(--ink-soft); max-width: 52ch; }
+  .market-layers--three { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+  @media (max-width: 860px) { .market-layers--three { grid-template-columns: 1fr !important; } }
+  .outcome-line { margin: 22px 0 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(20px, 1.9vw, 26px); letter-spacing: -0.015em; }
 </style>
 </head>
 <body>
@@ -970,19 +979,17 @@
       <span class="sep"></span>
       <span class="case-no">02 / 03</span>
       <span class="sep"></span>
-      <span class="eyebrow">Retail &middot; Localisation operations</span>
+      <span class="eyebrow">AI localisation &middot; 11 European markets</span>
     </div>
 
     <p class="case-name">Localisation System</p>
-    <h1>Localisation managed as one working system.</h1>
+    <h1>Translation was not the hard part. Managing localisation was.</h1>
 
     <p class="outcome">
-      A European consumer products group needed a better way to manage
-      translation across websites, marketplaces, product content and everyday
-      communication between teams. We built one application that combines
-      translation, brand knowledge, local review and workflow management. Each
-      brand has its own knowledge base, and every approved correction helps
-      the tool improve the next draft.
+      Product and marketplace content moved across languages, brands and
+      local teams through agencies, spreadsheets and email. We put in place
+      one localisation system that brings translation, terminology, market
+      review and accepted corrections together.
     </p>
 
     <div class="hero-strip" aria-hidden="true">
@@ -1003,7 +1010,7 @@
     <div class="metrics-head">
       <span class="eyebrow"><span class="eyebrow-dot"></span>Outcomes</span>
     </div>
-    <div class="metrics-grid">
+    <div class="metrics-grid cols-3">
       <div class="metric">
         <div><span class="metric-num">10</span><span class="metric-unit">languages</span></div>
         <div class="metric-label">From one controlled source</div>
@@ -1016,127 +1023,94 @@
         <div><span class="metric-num">35% &rarr; 55%</span></div>
         <div class="metric-label">Approved term adherence with glossary grounding</div>
       </div>
-      <div class="metric metric--text">
-        <div><span class="metric-num">Continuous</span><span class="metric-unit">learning</span></div>
-        <div class="metric-label">Accepted corrections improve future drafts</div>
-      </div>
     </div>
   </div>
 </section>
 
-<!-- Before / After -->
-<section class="body-section">
-  <div class="container">
-    <div class="ba-grid">
-      <div class="ba-col">
-        <span class="eyebrow"><span class="eyebrow-dot"></span>Before</span>
-        <p class="ba-lead">Translation moved through an external translation partner, spreadsheets, email and different local reviewers.</p>
-        <p>That added cost, turnaround time and another communication layer. Decisions were scattered, previous corrections were hard to reuse, and internal teams spent too much time coordinating the workflow.</p>
-      </div>
-      <div class="ba-col">
-        <span class="eyebrow"><span class="eyebrow-dot"></span>After</span>
-        <p class="ba-lead">Translation, brand knowledge, review and approval happen in one application.</p>
-        <p>Reviewers receive a direct link, need no account, see the content in context and can correct or approve it in the same place. Every accepted correction becomes part of the tool&rsquo;s memory.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Problem -->
+<!-- 01 · Where the work was breaking -->
 <section class="body-section">
   <div class="container">
     <div class="problem-grid">
       <div>
-        <span class="eyebrow"><span class="eyebrow-dot"></span>The problem</span>
-        <h2>Translation was not the hard part. Managing localisation was.</h2>
+        <span class="eyebrow"><span class="eyebrow-dot"></span>01 &middot; Where the work was breaking</span>
+        <h2>Localisation knowledge was scattered across the process.</h2>
       </div>
       <div>
         <p class="lead">
-          The client was handling a continuous flow of product, website and
-          marketplace content across European markets.
+          The source content was rarely the problem. The difficulty was keeping
+          approved terminology, changing brand guidance, market requirements and
+          local decisions consistent across every request.
         </p>
-        <p>
-          Each translation also had to reflect the right brand tone, approved
-          terminology, current marketplace requirements and local market
-          judgment.
-        </p>
-        <p>
-          Local reviewers were spread across countries and could come from
-          sales, content, ecommerce or another team depending on the request.
-          Questions moved between market teams, digital content teams, brand
-          teams and an external translation partner.
-        </p>
-        <p>
-          The workflow became expensive to run and difficult to follow. Too
-          much team time went into coordinating localisation instead of
-          improving the content.
-        </p>
+        <div class="break-points">
+          <div class="break-point"><h4>External handovers</h4><p>Agency loops added time and cost.</p></div>
+          <div class="break-point"><h4>Scattered decisions</h4><p>Terminology and market corrections lived across spreadsheets, email and individual reviewers.</p></div>
+          <div class="break-point"><h4>Local review came late</h4><p>Market teams often saw content only after significant work had already happened.</p></div>
+        </div>
       </div>
     </div>
   </div>
 </section>
-
 <!-- Approach (scroll-pinned) -->
 <section class="approach" id="approach">
   <div class="container">
     <div class="approach-head">
-      <span class="eyebrow"><span class="eyebrow-dot"></span>The approach</span>
+      <span class="eyebrow"><span class="eyebrow-dot"></span>02 &middot; What we built</span>
       <h2 style="font-family: var(--font-display); font-weight: 600; font-size: clamp(28px,3vw,40px); letter-spacing:-0.02em; line-height:1.1; margin:14px 0 0; max-width:24ch;">
-        Give every draft the right context before a person sees it.
+        One system for translation, context and market review.
       </h2>
+      <p class="approach-lede">Every request starts with the source content and the knowledge relevant to that brand and market.</p>
     </div>
 
     <div class="approach-grid">
       <div class="approach-steps" id="approachSteps">
         <article class="approach-step" data-step="0">
-          <span class="step-no">Step 01</span>
-          <h3>Start from a controlled source.</h3>
+          <span class="step-no">Layer 01</span>
+          <h3>Source</h3>
           <p>
-            Structured product files, website copy, campaign content or
-            everyday business text can enter the same workflow. For
-            marketplace content, titles, bullets, descriptions and search
-            terms keep the required structure from input to export.
+            Approved content and assets. Structured product files, website
+            copy, campaign content or everyday business text enter the same
+            system, and marketplace content keeps its required structure from
+            input to export.
           </p>
           <div class="step-meta">Structured content &middot; Free text &middot; Marketplace files</div>
         </article>
 
         <article class="approach-step" data-step="1">
-          <span class="step-no">Step 02</span>
-          <h3>Switch brands, switch the knowledge behind the translation.</h3>
+          <span class="step-no">Layer 02</span>
+          <h3>Brand knowledge</h3>
           <p>
-            Each brand has its own knowledge base containing approved
-            terminology, language guidelines, policy documents and previously
-            accepted translations. When the user switches brands, the tool
-            automatically adopts that brand&rsquo;s terminology, tone and rules
-            before creating the draft.
+            Terminology, guidance and previous decisions. Each brand has its
+            own knowledge base of approved terms, language guidelines, policy
+            documents and accepted translations. Switch brands and the system
+            adopts that brand&rsquo;s terminology, tone and rules before it
+            drafts anything.
           </p>
           <div class="step-meta">Glossary &middot; Memory &middot; Brand knowledge</div>
         </article>
 
         <article class="approach-step" data-step="2">
-          <span class="step-no">Step 03</span>
-          <h3>Make local review easy.</h3>
+          <span class="step-no">Layer 03</span>
+          <h3>AI translation</h3>
           <p>
-            Each market reviewer receives a direct link. No account is
-            required. They can edit, comment and approve in one place, whether
-            the reviewer is from sales, content, ecommerce or another local
-            team. Every accepted correction feeds the tool&rsquo;s memory,
-            helping the next draft start closer to what that market already
-            prefers.
+            The draft is created with the relevant context already attached:
+            the brand&rsquo;s terminology, its guidance and what each market
+            has accepted before. The model translates inside that context, not
+            the source in isolation.
           </p>
-          <div class="step-meta">Local review &middot; No account required &middot; Continuous learning</div>
+          <div class="step-meta">Grounded draft &middot; Per brand &middot; Per market</div>
         </article>
 
         <article class="approach-step" data-step="3">
-          <span class="step-no">Step 04</span>
-          <h3>Return approved content ready to use.</h3>
+          <span class="step-no">Layer 04</span>
+          <h3>Market review</h3>
           <p>
-            Final content can move back into the required marketplace file or
-            be exported for websites, documents and other communication. The
-            draft, corrections and final decision remain connected to the
-            request.
+            Local teams review the translation where it will actually appear,
+            correct it, approve it, and feed useful decisions back into the
+            system. A direct link, no account needed, whether the reviewer is
+            from sales, content or ecommerce. Approved content returns to the
+            marketplace file or export it came from.
           </p>
-          <div class="step-meta">Structured export &middot; Decision history</div>
+          <div class="step-meta">Review in context &middot; No account required &middot; Structured export</div>
         </article>
       </div>
 
@@ -1210,106 +1184,39 @@
   </div>
 </section>
 
-<!-- Product -->
+<!-- 03 · Where the intelligence sits -->
 <section class="body-section">
   <div class="container">
-    <span class="eyebrow"><span class="eyebrow-dot"></span>The localisation layer</span>
-    <h2>Brand knowledge, translation and workflow in one application.</h2>
-    <p style="max-width: 60ch;">
-      The tool does more than translate. It keeps the language work and
-      everything around it connected, so localisation becomes easier to manage
-      as more brands, markets and content move through the system.
-    </p>
-
-    <!-- 3-zone visual: source -> glossary -> market-ready outputs -->
+    <span class="eyebrow"><span class="eyebrow-dot"></span>03 &middot; Where the intelligence sits</span>
+    <h2>Give every draft the right context before a person sees it.</h2>
     <div class="market-flow" aria-hidden="true">
       <div class="market-zone market-zone--source">
         <span class="market-zone-label">Approved source copy</span>
-        <ul class="market-zone-items">
-          <li>Product copy</li>
-          <li>Claims</li>
-          <li>Feature notes</li>
-        </ul>
+        <ul class="market-zone-items"><li>Product copy</li><li>Claims</li><li>Feature notes</li></ul>
       </div>
       <span class="market-arrow">&rarr;</span>
       <div class="market-zone market-zone--glossary">
         <span class="market-zone-label">Glossary + brand rules</span>
-        <ul class="market-zone-items">
-          <li>Approved terminology</li>
-          <li>Brand tone</li>
-          <li>Claim consistency</li>
-        </ul>
+        <ul class="market-zone-items"><li>Approved terminology</li><li>Brand tone</li><li>Claim consistency</li></ul>
       </div>
       <span class="market-arrow">&rarr;</span>
       <div class="market-zone market-zone--outputs">
         <span class="market-zone-label">Market-ready outputs</span>
-        <ul class="market-zone-items">
-          <li><em>EN</em> reviewed</li>
-          <li><em>FR</em> reviewed</li>
-          <li><em>DE</em> reviewed</li>
-        </ul>
+        <ul class="market-zone-items"><li><em>EN</em> reviewed</li><li><em>FR</em> reviewed</li><li><em>DE</em> reviewed</li></ul>
       </div>
     </div>
-
-    <!-- 4 written layers. Supporting detail below the visual -->
-    <div class="market-layers">
-      <div class="market-layer">
-        <h4>Glossary layer</h4>
-        <p>Approved terminology is stored by brand and language and versioned as terminology changes.</p>
-      </div>
-      <div class="market-layer">
-        <h4>Memory layer</h4>
-        <p>Every translation a market accepts becomes useful context when the same or similar content appears again.</p>
-      </div>
-      <div class="market-layer">
-        <h4>Knowledge layer</h4>
-        <p>Brand guidelines, policy documents and reference material are retrieved into each translation so the draft starts from how that brand already communicates.</p>
-      </div>
-      <div class="market-layer">
-        <h4>Workflow layer</h4>
-        <p>Requests, reviewers, comments, approvals and exports stay together, giving teams a clear view of what is drafted, waiting and approved.</p>
-      </div>
+    <div class="market-layers market-layers--three">
+      <div class="market-layer"><h4>Grounded translation</h4><p>The model works with approved terminology, brand guidance and market context rather than translating the source in isolation.</p></div>
+      <div class="market-layer"><h4>Learning from accepted corrections</h4><p>Approved terminology and reviewer decisions become reusable context for future requests.</p></div>
+      <div class="market-layer"><h4>Different models for different information</h4><p>Public content can use external models where appropriate. Sensitive internal material can use private or local model options when required.</p></div>
     </div>
   </div>
 </section>
-
-<!-- Content in context -->
-<section class="body-section">
-  <div class="container">
-    <div class="problem-grid">
-      <div>
-        <span class="eyebrow"><span class="eyebrow-dot"></span>Content in context</span>
-        <h2>Review the translation where it will actually appear.</h2>
-      </div>
-      <div>
-        <p class="lead">
-          Local teams often had to approve image copy as rows in a
-          spreadsheet, even though the final words would appear inside PDP,
-          A+ or other visual content.
-        </p>
-        <p>
-          In the platform, each market can review the translated copy in the
-          actual image version. They can see how the wording fits the layout,
-          make corrections against the real asset and approve what the
-          customer will eventually see.
-        </p>
-        <p>
-          Layout changes can stay connected across language versions while
-          the words remain specific to each market.
-        </p>
-        <p style="font-family: var(--font-display); font-weight: 500; color: var(--ink);">
-          The layout can travel. The market keeps its words.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Measured, not assumed -->
 <section class="metrics">
   <div class="container">
     <div class="metrics-head">
-      <span class="eyebrow"><span class="eyebrow-dot"></span>Measured, not assumed</span>
+      <span class="eyebrow"><span class="eyebrow-dot"></span>04 &middot; What changed</span>
       <h2 style="font-family: var(--font-display); font-weight: 600; font-size: clamp(28px,3vw,40px); letter-spacing:-0.02em; line-height:1.1; margin:14px 0 18px; max-width:24ch;">
         We tested whether the knowledge layer improves the draft.
       </h2>
@@ -1337,87 +1244,41 @@
       Accepted corrections become useful context, while evaluation continues
       as models, terminology and market requirements change.
     </p>
+    <p class="outcome-line">One path from draft to market review.</p>
   </div>
 </section>
 
-<!-- Data + deployment -->
+<!-- 05 · What keeps improving after launch -->
 <section class="body-section">
   <div class="container">
     <div class="problem-grid">
       <div>
-        <span class="eyebrow"><span class="eyebrow-dot"></span>Data + deployment</span>
-        <h2>Model choice follows the sensitivity of the work.</h2>
+        <span class="eyebrow"><span class="eyebrow-dot"></span>05 &middot; What keeps improving after launch</span>
+        <h2>Localisation improves when decisions stop disappearing.</h2>
       </div>
       <div>
         <p class="lead">
-          In this implementation, much of the translated content was public
-          product information, so commercial model providers could be used
-          within the agreed setup.
+          Accepted terminology, reviewer corrections and market decisions become
+          part of the knowledge available to the next request. Evaluation
+          continues as models, terminology and brand requirements change.
         </p>
-        <p>
-          For private material such as contracts, internal communication or
-          sensitive business information, the same workflow can run with
-          local or organisation controlled models instead.
-        </p>
-        <p>
-          The glossary, memory, review process and evaluation approach remain
-          the same. The model execution layer can change depending on the
-          organisation&rsquo;s privacy requirements.
-        </p>
+        <p class="outcome-line">The tool translates. Markets decide. Every approved correction makes the next draft better.</p>
       </div>
     </div>
   </div>
 </section>
-
-<!-- Extended to -->
-<section class="body-section extended">
-  <div class="container">
-    <div class="extended-grid">
-      <div>
-        <span class="eyebrow"><span class="eyebrow-dot"></span>Applicable to</span>
-        <h2>One localisation workflow across the organisation.</h2>
-      </div>
-      <div>
-        <p style="margin-bottom: 12px;">
-          The same system can support recurring multilingual work wherever
-          brand context, local review and organisational memory matter.
-        </p>
-        <div class="extension-chips">
-          <span class="extension-chip">Websites</span>
-          <span class="extension-chip">Marketplace content</span>
-          <span class="extension-chip">Product copy</span>
-          <span class="extension-chip">Campaigns</span>
-          <span class="extension-chip">Internal communication</span>
-          <span class="extension-chip">Multi market launches</span>
-          <span class="extension-chip">Multi brand organisations</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- Closing CTA -->
 <section class="body-section case-cta">
   <div class="container">
     <div class="case-cta-card">
       <span class="eyebrow"><span class="eyebrow-dot"></span>Does this look familiar?</span>
-      <h2>If localisation is slowing down markets, let&rsquo;s look at where the context is missing.</h2>
-      <p>Bring one content flow, system or AI idea. We&rsquo;ll look at where intelligence could help, what should remain explicit, and what a useful first system could look like.</p>
+      <h2>Managing localisation across brands or markets?</h2>
+      <p>If translation itself is not the bottleneck, we can look at where terminology, context, review or market knowledge is getting lost and whether an intelligent system would help.</p>
       <div class="case-cta-actions">
         <a class="case-cta-primary" href="https://outlook.office.com/book/AIHLPR@moralitybytes.eu/s/yUQTA2zbLUq2XrerfPEAOA2?ismsaljsauthenabled" target="_blank" rel="noopener">Discuss the use case <span aria-hidden="true">&rarr;</span></a>
         <a class="case-cta-quiet" href="/#work">See all case studies <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
-  </div>
-</section>
-<!-- Quote -->
-<section class="quote">
-  <div class="container">
-    <blockquote>
-      "The tool translates. Markets decide. Every approved correction makes
-      the next draft better."
-    </blockquote>
-    <cite>AIHLPR &middot; Localisation system team</cite>
   </div>
 </section>
 
