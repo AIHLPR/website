@@ -1634,6 +1634,8 @@
   .breath-sentence .bs-attr { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); margin-top: 24px; }
 
 
+  .shell--single { display: block; }
+  .shell--single .main-col { max-width: none; }
 </style>
 
 <!-- Borrowed CSS from hidden enterprise-ai-systems page -->
@@ -1939,98 +1941,7 @@
 </style>
 
 
-<style>
-  /* Ensure GenAI vertical-scroll panels render as a normal flow column */
-  .genai-stack { overflow: visible; padding-top: var(--section-y); }
-  .genai-stack .gs-stack {
-    display: flex !important;
-    flex-direction: column !important;
-    overflow: visible !important;
-  }
-  .genai-stack .gs-panel {
-    display: block;
-  }
-  
-  @media (max-width: 920px) {
-    .gs-panel, .gs-panel.flip {
-      grid-template-columns: 1fr; gap: 28px;
-    }
-    .gs-panel.flip .gs-copy { order: 0; }
-    .gs-panel.flip .gs-diagram { order: 1; }
-  }
 
-  .gs-copy { max-width: 44ch; display: flex; flex-direction: column; gap: 14px; }
-  .gs-copy .gs-eyebrow {
-    font-family: var(--font-mono); font-size: 10.5px;
-    letter-spacing: 0.22em; text-transform: uppercase;
-    color: var(--gc, var(--ink)); font-weight: 700;
-  }
-  .gs-copy h3 {
-    font-family: var(--font-display); font-weight: 500;
-    font-size: clamp(24px, 2.4vw, 32px);
-    letter-spacing: -0.025em; line-height: 1.2;
-    color: var(--ink); margin: 0; max-width: 18ch;
-  }
-  .gs-copy p {
-    font-size: clamp(15px, 1.15vw, 17px);
-    line-height: 1.6; color: var(--ink-soft); margin: 0;
-  }
-  .gs-copy p b { color: var(--ink); font-weight: 600; }
-  .gs-stack-hint {
-    margin-top: 6px;
-    font-family: var(--font-mono); font-size: 10px;
-    letter-spacing: 0.16em; color: var(--ink-muted);
-  }
-  .gs-stack-hint b { color: var(--ink); font-weight: 700; letter-spacing: 0.04em; }
-
-  /* Buyer-facing one-liner above the technical details */
-  .gs-when {
-    margin: 14px 0 0;
-    font-size: 13.5px;
-    line-height: 1.5;
-    color: var(--ink);
-  }
-  /* Technical pattern collapsed behind a small disclosure */
-  .gs-tech {
-    margin-top: 8px;
-    font-family: var(--font-mono);
-    font-size: 10px;
-    letter-spacing: 0.14em;
-  }
-  .gs-tech > summary {
-    list-style: none;
-    cursor: pointer;
-    color: var(--ink-muted);
-    text-transform: uppercase;
-    padding: 4px 0;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-  }
-  .gs-tech > summary::-webkit-details-marker { display: none; }
-  .gs-tech > summary::before {
-    content: "+";
-    display: inline-block;
-    color: var(--ink);
-    font-weight: 700;
-  }
-  .gs-tech[open] > summary::before { content: "\2212"; }
-  .gs-tech > summary:hover { color: var(--ink); }
-  .gs-tech .gs-stack-hint {
-    display: block;
-    margin-top: 6px;
-  }
-
-  .gs-diagram {
-    background: var(--surface-2);
-    border: 1px solid var(--hairline-strong);
-    border-radius: 12px;
-    padding: clamp(20px, 2vw, 28px);
-    min-height: 280px;
-    display: grid; place-items: stretch;
-  }
-  .gs-diagram svg { width: 100%; height: auto; display: block; }
-</style>
 
 
 <body>
@@ -2188,20 +2099,8 @@
 
 <main>
 
-<div class="shell">
+<div class="shell shell--single">
 
-  <!-- LEFT RAIL TOC (desktop only) -->
-  <aside class="toc-rail" aria-label="Section navigation">
-    <div class="toc-sticky">
-      <div class="toc-label">On this page</div>
-      <ol class="toc-list" id="tocList">
-        <li><a href="#difficult"><span class="num">01</span> Where it gets difficult</a></li>
-        <li><a href="#build"><span class="num">02</span> How we build</a></li>
-        <li><a href="#cost"><span class="num">03</span> Performance and cost</a></li>
-        <li><a href="#governed"><span class="num">04</span> Governed to scale</a></li>
-      </ol>
-    </div>
-  </aside>
 
   <div class="main-col">
 
@@ -2259,7 +2158,10 @@
   @media (max-width: 600px) { .stages { grid-template-columns: 1fr; } .stage { border-right: 0; min-height: 0; } }
   /* 03 · performance and cost */
   .cost { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--white); }
-  .cost-grid { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: clamp(28px, 4vw, 64px); align-items: start; margin-top: clamp(36px, 4vw, 56px); }
+  .cost-grid { display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr); gap: clamp(28px, 4vw, 64px); align-items: center; margin-top: clamp(36px, 4vw, 56px); }
+  .cost-copy { display: flex; flex-direction: column; }
+  .cost-outcome { margin-top: clamp(22px, 2.5vw, 32px); }
+  .cost-outcome p { margin: 12px 0 0; font-family: var(--font-display); font-weight: 500; font-size: clamp(17px, 1.4vw, 21px); letter-spacing: -0.015em; line-height: 1.35; max-width: 30ch; }
   .cost-list { display: flex; flex-direction: column; border-top: 1px solid var(--hairline-strong); }
   .cost-item { display: grid; grid-template-columns: 200px minmax(0, 1fr); gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--hairline); align-items: baseline; }
   .cost-item dt { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--ink); font-weight: 600; }
@@ -2298,13 +2200,48 @@
   .budget i { display: block; height: 100%; width: 58%; background: linear-gradient(90deg, #5794EA, #9B59B6); border-radius: 999px; }
   .cs-foot { display: flex; gap: 14px; flex-wrap: wrap; padding: 10px 16px 14px; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-muted); border-top: 1px solid var(--hairline); }
   @media (max-width: 480px) { .cs-body { grid-template-columns: 1fr; } .cs-card.wide { grid-column: auto; } }
+  /* ---- the surface plays as four scenes, then holds ---- */
+  .cs-scenes { display: flex; align-items: center; gap: 16px; padding: 10px 16px 0; font-family: var(--font-mono); font-size: 9.5px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-muted); position: relative; flex-wrap: wrap; }
+  .cs-scenes span { display: inline-flex; gap: 6px; transition: color 300ms var(--ease); }
+  .cs-scenes span i { font-style: normal; color: var(--hairline-strong); }
+  .cs-scenes span.is-on { color: var(--ink); } .cs-scenes span.is-on i { color: #5794EA; }
+  .cs-scenes span.is-done { color: var(--ink-soft); }
+  .cs-progress { display: block; width: 100%; height: 2px; background: var(--hairline); margin-top: 8px; border-radius: 999px; overflow: hidden; }
+  .cs-progress u { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #5794EA, #9B59B6); transition: width 600ms var(--ease); }
+  /* scene 1: usage bars grow in, one after another */
+  .cs.is-play .spark i { transform: scaleY(0); transform-origin: bottom; transition: transform 420ms var(--ease); }
+  .cs.is-play .spark i:nth-child(1) { transition-delay: 0ms; } .cs.is-play .spark i:nth-child(2) { transition-delay: 60ms; } .cs.is-play .spark i:nth-child(3) { transition-delay: 120ms; } .cs.is-play .spark i:nth-child(4) { transition-delay: 180ms; } .cs.is-play .spark i:nth-child(5) { transition-delay: 240ms; } .cs.is-play .spark i:nth-child(6) { transition-delay: 300ms; } .cs.is-play .spark i:nth-child(7) { transition-delay: 360ms; } .cs.is-play .spark i:nth-child(8) { transition-delay: 420ms; } .cs.is-play .spark i:nth-child(9) { transition-delay: 480ms; } .cs.is-play .spark i:nth-child(10) { transition-delay: 540ms; } .cs.is-play .spark i:nth-child(11) { transition-delay: 600ms; } .cs.is-play .spark i:nth-child(12) { transition-delay: 660ms; } .cs.is-play .spark i:nth-child(13) { transition-delay: 720ms; } .cs.is-play .spark i:nth-child(14) { transition-delay: 780ms; }
+  .cs.is-play.s1 .spark i { transform: scaleY(1); }
+  /* scene 2: the mix fills, routing rows arrive */
+  .cs.is-play .mix i { width: 0; transition: width 700ms var(--ease); }
+  .cs.is-play.s2 .mix .s { width: 62%; } .cs.is-play.s2 .mix .m { width: 31%; transition-delay: 200ms; } .cs.is-play.s2 .mix .l { width: 7%; transition-delay: 400ms; }
+  .cs.is-play .route { opacity: 0; transform: translateX(6px); transition: opacity 360ms var(--ease), transform 360ms var(--ease); }
+  .cs.is-play.s2 .route { opacity: 1; transform: none; }
+  .cs.is-play.s2 .route:nth-child(2) { transition-delay: 160ms; } .cs.is-play.s2 .route:nth-child(3) { transition-delay: 320ms; }
+  /* scene 3: evaluation runs, then settles */
+  .cs.is-play [data-cs-eval], .cs.is-play [data-cs-evalv] { opacity: 0; transition: opacity 320ms var(--ease); }
+  .cs.is-play.s3 [data-cs-eval], .cs.is-play.s3 [data-cs-evalv] { opacity: 1; }
+  .cs.is-play.s3 [data-cs-eval].run { color: #2A5FC0; background: #E8F0FC; }
+  /* scene 4: spend fills against budget, the verdict appears */
+  .cs.is-play .budget i { width: 0; transition: width 900ms var(--ease); }
+  .cs.is-play.s4 .budget i { width: 58%; }
+  .cs.is-play [data-cs-budget] { opacity: 0; transition: opacity 320ms var(--ease); }
+  .cs.is-play.s4 [data-cs-budget] { opacity: 1; }
+  /* keep cards steady while parts fade in */
+  .cs.is-play .spark, .cs.is-play .mix, .cs.is-play .budget { will-change: transform; }
+  @media (prefers-reduced-motion: reduce) { .cs.is-play * { transition: none !important; } }
+
   /* 04 · governed from pilot to scale */
   .governed { padding: var(--section-y) 0; border-top: 1px solid var(--hairline); background: var(--surface-2); }
   .gov-points { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: clamp(16px, 2vw, 28px); margin-top: clamp(32px, 4vw, 48px); }
   .gov-point { padding-top: 14px; border-top: 2px solid var(--ink); }
   .gov-point h3 { font-family: var(--font-display); font-weight: 500; font-size: 15.5px; letter-spacing: -0.01em; margin: 0 0 6px; }
   .gov-point p { font-size: 13.5px; line-height: 1.5; color: var(--ink-soft); margin: 0; }
-  @media (max-width: 1000px) { .gov-points { grid-template-columns: repeat(2, 1fr); } }
+  .gov-points--three { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .gov-points--three .gov-point h3 { font-size: 17px; }
+  .gov-points--three .gov-point p { font-size: 14.5px; }
+  .gov-chips { display: flex; flex-wrap: wrap; gap: 10px; margin-top: clamp(24px, 3vw, 36px); }
+  @media (max-width: 1000px) { .gov-points { grid-template-columns: repeat(2, 1fr); } .gov-points--three { grid-template-columns: 1fr; } }
   @media (max-width: 520px) { .gov-points { grid-template-columns: 1fr; } }
   .proof-lines { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: clamp(36px, 4vw, 56px); }
   .proof-line { display: flex; flex-direction: column; gap: 6px; padding: 18px 20px; border: 1px solid var(--hairline); border-radius: 12px; background: var(--white); text-decoration: none; color: var(--ink); transition: border-color 180ms var(--ease); }
@@ -2383,6 +2320,7 @@
       <p class="block-lede">Model choice, token use, routing, infrastructure and evaluation all affect what an AI system costs to run. We design these together rather than treating cost optimisation as something to fix after launch.</p>
     </div>
     <div class="cost-grid">
+      <div class="cost-copy">
       <dl class="cost-list">
         <div class="cost-item"><dt>Infrastructure as code</dt><dd>Repeatable environments, deployments and configuration.</dd></div>
         <div class="cost-item"><dt>Model routing</dt><dd>Use different models where their capability and cost make sense.</dd></div>
@@ -2390,8 +2328,13 @@
         <div class="cost-item"><dt>Evaluation &amp; monitoring</dt><dd>Track quality, behaviour and cost as the system changes.</dd></div>
         <div class="cost-item"><dt>Cost visibility</dt><dd>Make usage and model spend visible enough to manage.</dd></div>
       </dl>
-      <div class="cs" role="img" aria-label="A control surface for a running AI system: usage over thirty days, the mix of small, mid and large models, routing rules, evaluation status, and spend against budget.">
-        <div class="cs-top"><span class="t">Control surface</span><span class="t">&middot;</span><span class="t">Last 30 days</span><span class="pill ok">Within budget</span></div>
+      <div class="cost-outcome">
+        <span class="label-mono"><span class="dot"></span>What it adds up to</span>
+        <p>Predictable running cost, a model mix you can explain, and infrastructure your own team can rebuild.</p>
+      </div>
+      </div>
+      <div class="cs" data-cs role="img" aria-label="A control surface for a running AI system: usage over thirty days, the mix of small, mid and large models, routing rules, evaluation status, and spend against budget.">
+        <div class="cs-top"><span class="t">Control surface</span><span class="t">&middot;</span><span class="t">Last 30 days</span><span class="pill ok" data-cs-budget>Within budget</span></div>
         <div class="cs-body">
           <div class="cs-card wide">
             <div class="h"><span>Usage</span><span>Requests per day</span></div>
@@ -2411,8 +2354,8 @@
             </div>
           </div>
           <div class="cs-card">
-            <div class="h"><span>Evaluation</span><span class="pill ok">Stable</span></div>
-            <div class="v">Quality within range</div>
+            <div class="h"><span>Evaluation</span><span class="pill ok" data-cs-eval>Stable</span></div>
+            <div class="v" data-cs-evalv>Quality within range</div>
             <div class="legend"><span>Last run today</span><span>Behaviour unchanged</span></div>
           </div>
           <div class="cs-card">
@@ -2420,6 +2363,13 @@
             <div class="budget" aria-hidden="true"><i></i></div>
             <div class="legend"><span>On track</span><span>Per model, per team</span></div>
           </div>
+        </div>
+        <div class="cs-scenes" aria-hidden="true">
+          <span data-scene="1"><i>01</i>Usage</span>
+          <span data-scene="2"><i>02</i>Routing</span>
+          <span data-scene="3"><i>03</i>Evaluation</span>
+          <span data-scene="4"><i>04</i>Cost</span>
+          <b class="cs-progress"><u></u></b>
         </div>
         <div class="cs-foot"><span>Environments as code</span><span>Alerts on drift</span><span>Spend by model</span></div>
       </div>
@@ -2433,15 +2383,17 @@
     <div class="block-head">
       <div>
         <span class="label-mono"><span class="dot"></span>04 &middot; Governed from pilot to scale</span>
-        <h2 style="margin-top:14px;">Build for the environment AI has to live in.</h2>
+        <h2 style="margin-top:14px;">Governance that survives production.</h2>
       </div>
+      <p class="block-lede">The system needs clear limits, traceable decisions and operational ownership once real users and real data are involved.</p>
     </div>
-    <div class="gov-points">
-      <div class="gov-point"><h3>Permissions</h3><p>What the system may access and act on, per action.</p></div>
-      <div class="gov-point"><h3>Auditability</h3><p>Inputs, decisions and actions recorded and reviewable.</p></div>
-      <div class="gov-point"><h3>Deployment</h3><p>EU regions, private cloud or your own infrastructure.</p></div>
-      <div class="gov-point"><h3>Evaluation records</h3><p>Quality and behaviour tracked over time, not just at launch.</p></div>
-      <div class="gov-point"><h3>Operational ownership</h3><p>Your team knows how it runs and who owns it.</p></div>
+    <div class="gov-points gov-points--three">
+      <div class="gov-point"><h3>Action level permissions</h3><p>Define what the system may read, recommend, change or trigger, with escalation around higher impact actions.</p></div>
+      <div class="gov-point"><h3>Traceability and evaluation</h3><p>Keep important inputs, outputs, system actions and evaluation records available for review over time.</p></div>
+      <div class="gov-point"><h3>Operational ownership</h3><p>Make responsibility explicit across the people who operate, review and maintain the system.</p></div>
+    </div>
+    <div class="gov-chips" aria-label="Compliance context">
+      <span class="ent-badge">GDPR</span><span class="ent-badge">EU AI Act</span><span class="ent-badge">EU data options</span><span class="ent-badge">Access control</span><span class="ent-badge">Auditability</span>
     </div>
     <div class="proof-lines">
       <a class="proof-line" href="../work/asset-workflow-engine.html"><b>Marketplace Asset Platform</b><span>2 brands &middot; 100 SKUs &middot; production system</span></a>
@@ -2479,15 +2431,6 @@
 
 </main>
 
-<!-- Mobile sticky TOC chip strip -->
-<nav class="mobile-toc" aria-label="Section navigation">
-  <div class="mobile-toc-track">
-    <a href="#difficult">01 Where it gets difficult</a>
-    <a href="#build">02 How we build</a>
-    <a href="#cost">03 Performance and cost</a>
-    <a href="#governed">04 Governed to scale</a>
-  </div>
-</nav>
 
 
 <!-- ============= READINESS CHECK COMPONENT ============= -->
@@ -2538,83 +2481,7 @@
 
 
 
-<style>
-  /* Genai pinned scroll: copy on left, sticky diagram on right */
-  .genai-stack { overflow: visible; }
-  .genai-stack .gs-stack { display: block; overflow: visible; }
-  .genai-stack .gs-panel { display: block; min-height: 86vh; padding: clamp(40px, 8vh, 120px) 0; }
-  .genai-stack .gs-copy  { max-width: 44ch; display: flex; flex-direction: column; gap: 14px; }
-  .genai-stack .gs-diagram-mobile { display: none; }
-  @media (min-width: 921px) {
-    .genai-stack .gs-stack-pinned {
-      display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
-      gap: clamp(36px, 4.4vw, 80px);
-      align-items: start;
-    }
-    .genai-stack .gs-sticky {
-      position: sticky;
-      top: 12vh;
-      height: 76vh;
-      display: grid; place-items: center;
-      z-index: 1;
-    }
-    .genai-stack .gs-stage {
-      position: relative;
-      width: 100%;
-      max-width: 540px;
-    }
-    .genai-stack .gs-stage .gs-diagram {
-      position: absolute; inset: 0;
-      opacity: 0;
-      transform: translateY(14px) scale(0.985);
-      transition: opacity 380ms var(--ease), transform 480ms var(--ease);
-    }
-    .genai-stack .gs-stage .gs-diagram.is-active {
-      opacity: 1;
-      transform: translateY(0) scale(1);
-      position: relative;
-    }
-  }
-  @media (max-width: 920px) {
-    .genai-stack .gs-stack-pinned { display: block; }
-    .genai-stack .gs-sticky { display: none; }
-    .genai-stack .gs-panel { min-height: 0; padding: 36px 0; }
-    .genai-stack .gs-diagram-mobile { display: block; margin-top: 16px; }
-  }
-</style>
-<script>
-  (function() {
-    var section = document.querySelector('.genai-stack');
-    if (!section) return;
-    var panels = section.querySelectorAll('.gs-stack-copy .gs-panel');
-    var stages = section.querySelectorAll('.gs-stage .gs-diagram');
-    if (!panels.length || !stages.length) return;
-    function setActive(i) {
-      for (var k = 0; k < stages.length; k++) {
-        stages[k].classList.toggle('is-active', k === i);
-      }
-    }
-    var raf = 0;
-    function update() {
-      if (raf) return;
-      raf = requestAnimationFrame(function() {
-        raf = 0;
-        var best = 0, bestDist = Infinity;
-        for (var i = 0; i < panels.length; i++) {
-          var r = panels[i].getBoundingClientRect();
-          var mid = (r.top + r.bottom) / 2;
-          var d = Math.abs(mid - window.innerHeight / 2);
-          if (d < bestDist) { bestDist = d; best = i; }
-        }
-        setActive(best);
-      });
-    }
-    window.addEventListener('scroll', update, { passive: true });
-    window.addEventListener('resize', update);
-    update();
-  })();
-</script>
+
 
 <script>
 (function () {
@@ -2634,39 +2501,6 @@
 })();
 </script>
 
-<!-- TOC active-state observer (blueprint) -->
-<script>
-(function () {
-  const sections = document.querySelectorAll('section[data-sec]');
-  const tocLinks = document.querySelectorAll('#tocList a, .mobile-toc a');
-  if (!sections.length || !tocLinks.length) return;
-  function activate(id) {
-    tocLinks.forEach(a => a.classList.toggle('is-active', a.getAttribute('href') === '#' + id));
-  }
-  const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-      if (e.isIntersecting) activate(e.target.id);
-    });
-  }, { rootMargin: '-30% 0px -60% 0px' });
-  sections.forEach(s => io.observe(s));
-
-  // Mobile-toc auto-scroll active chip into view
-  const mobToc = document.querySelector('.mobile-toc');
-  if (mobToc) {
-    const obsMob = new MutationObserver(() => {
-      const active = mobToc.querySelector('a.is-active');
-      if (active) {
-        const rect = active.getBoundingClientRect();
-        const parentRect = mobToc.getBoundingClientRect();
-        if (rect.left < parentRect.left || rect.right > parentRect.right) {
-          mobToc.scrollTo({ left: active.offsetLeft - 20, behavior: 'smooth' });
-        }
-      }
-    });
-    obsMob.observe(mobToc, { subtree: true, attributes: true, attributeFilter: ['class'] });
-  }
-})();
-</script>
 
 <script>
   /* Scroll-reveal for [data-reveal] elements: fade + lift with sibling stagger. */
@@ -2690,6 +2524,54 @@
     }, { rootMargin: '0px 0px -12% 0px', threshold: 0.12 });
     revealEls.forEach(function (el) { ro.observe(el); });
   })();
+</script>
+
+<script>
+(function () {
+  var cs = document.querySelector('[data-cs]');
+  if (!cs) return;
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var scenes = cs.querySelectorAll('.cs-scenes [data-scene]');
+  var bar = cs.querySelector('.cs-progress u');
+  var evalPill = cs.querySelector('[data-cs-eval]');
+  var timers = [], visible = false, running = false;
+  function at(ms, fn) { timers.push(setTimeout(fn, ms)); }
+  function clear() { timers.forEach(clearTimeout); timers = []; }
+  function mark(n) {
+    scenes.forEach(function (el, i) { el.classList.toggle('is-on', i === n - 1); el.classList.toggle('is-done', i < n - 1); });
+    if (bar) bar.style.width = (n * 25) + '%';
+  }
+  function settle() {
+    cs.classList.remove('is-play');
+    cs.classList.remove('s1', 's2', 's3', 's4');
+    scenes.forEach(function (el) { el.classList.add('is-done'); el.classList.remove('is-on'); });
+    if (bar) bar.style.width = '100%';
+    if (evalPill) { evalPill.textContent = 'Stable'; evalPill.classList.remove('run'); }
+  }
+  function play() {
+    if (running) return; running = true; clear();
+    cs.classList.remove('s1', 's2', 's3', 's4');
+    cs.classList.add('is-play');
+    if (bar) bar.style.width = '0%';
+    if (evalPill) { evalPill.textContent = 'Running'; evalPill.classList.add('run'); }
+    void cs.offsetWidth;
+    at(200,  function () { cs.classList.add('s1'); mark(1); });
+    at(2200, function () { cs.classList.add('s2'); mark(2); });
+    at(4400, function () { cs.classList.add('s3'); mark(3); });
+    at(5600, function () { if (evalPill) { evalPill.textContent = 'Stable'; evalPill.classList.remove('run'); } });
+    at(6600, function () { cs.classList.add('s4'); mark(4); });
+    at(9800, function () { running = false; if (visible) play(); else settle(); });
+  }
+  if (reduce || !('IntersectionObserver' in window)) { settle(); return; }
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) {
+      visible = e.isIntersecting;
+      if (visible && !running) play();
+      if (!visible && running) { clear(); running = false; settle(); }
+    });
+  }, { threshold: 0.4 });
+  io.observe(cs);
+})();
 </script>
 </body>
 </html>
