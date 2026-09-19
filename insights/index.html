@@ -362,6 +362,10 @@
   .reveal { opacity:0; transform:translateY(12px); transition:opacity 520ms var(--ease), transform 520ms var(--ease); }
   .reveal.in { opacity:1; transform:none; }
   @media (prefers-reduced-motion:reduce){ .reveal { opacity:1; transform:none; } }
+  /* nav: never wrap the links or the call button; drop the crumb before it collides */
+  .nav-links > a, .nav-links .cta, .nav-links .nav-lang, .nav-dropdown-trigger { white-space: nowrap; }
+  .nav-crumb { white-space: nowrap; }
+  @media (max-width: 1320px) { .nav-crumb { display: none; } }
 </style>
 </head>
 <body>

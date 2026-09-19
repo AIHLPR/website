@@ -1331,6 +1331,10 @@
   }
   @media (max-width: 880px) { .strong-list { grid-template-columns: 1fr; } }
 
+  /* nav: never wrap the links or the call button; drop the crumb before it collides */
+  .nav-links > a, .nav-links .cta, .nav-links .nav-lang, .nav-dropdown-trigger { white-space: nowrap; }
+  .nav-crumb { white-space: nowrap; }
+  @media (max-width: 1320px) { .nav-crumb { display: none; } }
 </style>
 </head>
 
